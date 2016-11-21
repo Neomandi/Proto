@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+</head>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script type='text/javascript' src='tableExport.js'></script>
+<script type='text/javascript' src='jquery.base64.js'></script>
+<script type='text/javascript' src='jspdf/libs/sprintf.js'></script>
+<script type='text/javascript' src='jspdf/jspdf.js'></script>
+<script type='text/javascript' src='jspdf/libs/base64.js'></script>
+<script>
+$(document).ready(function(e){
+$('#pdf').click(function(e){
+$('#content').tableExport({
+type: 'pdf',
+escape: 'false'
+});
+});
+});
+</script>
+<script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  
+var name = getUrlVars()["Name"];
+var mobile = getUrlVars()["Mobile"];
+var aadhar = getUrlVars()["Aadhar"];
+var email = getUrlVars()["Email"];
+var state = getUrlVars()["State"];
+var district = getUrlVars()["District"];
+var taluk = getUrlVars()["Taluk"];
+var hobli = getUrlVars()["Hobli"];
+var village = getUrlVars()["Village"];
+
+</script>
+<style>
+#content
+{
+	position: absolute;
+	left: 500px;
+	top: 100px;
+}
+#pdf
+{
+	position: absolute;
+	left: 575px;
+	top: 425px;
+}
+table
+{
+	border-collapse: collapse;
+}
+</style>
+<body>
+<div id = "content">
+<table id = "mytable" border = "1" bgcolor = "#C0C0C0">
+	<tr>
+		<td colspan = "2">
+			<h1>Your Profile Information</h1>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Name</b></td>
+		<td id = "nm"><script>document.getElementById("nm").innerHTML = name;</script></td>
+	</tr>
+	<tr>
+		<td><b>Mobile</b></td>
+		<td id = "mob"><script>document.getElementById("mob").innerHTML = mobile;</script></td>
+	</tr>
+	<tr>
+		<td><b>Aadhar Number</b></td>
+		<td id = "an"><script>document.getElementById("an").innerHTML = aadhar;</script></td>
+	</tr>
+	<tr>
+		<td><b>Email ID</b></td>
+		<td id = "em"><script>document.getElementById("em").innerHTML = email;</script></td>
+	</tr>
+	<tr>
+		<td><b>State</b></td>
+		<td id = "st"><script>document.getElementById("st").innerHTML = state;</script></td>
+	</tr>
+	<tr>
+		<td><b>District</b></td>
+		<td id = "dist"><script>document.getElementById("dist").innerHTML = district;</script></td>
+	</tr>
+	<tr>
+		<td><b>Taluk</b></td>
+		<td id = "tal"><script>document.getElementById("tal").innerHTML = taluk;</script></td>
+	</tr>
+	<tr>
+		<td><b>Hobli</b></td>
+		<td id = "hob"><script>document.getElementById("hob").innerHTML = hobli;</script></td>
+	</tr>
+	<tr>
+		<td><b>Village</b></td>
+		<td id = "vill"><script>document.getElementById("vill").innerHTML = village;</script></td>
+	</tr>
+</table>
+</div>
+<br/>
+<button id = 'pdf'>Download profile info as PDF</button>
+</body>
+</html>
