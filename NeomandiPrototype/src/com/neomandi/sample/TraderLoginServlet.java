@@ -56,7 +56,7 @@ public class TraderLoginServlet extends HttpServlet {
 				
 			}
 			
-			stmt = con.prepareStatement("SELECT * FROM treg WHERE userid = ?");
+			stmt = con.prepareStatement("SELECT * FROM treg WHERE name = ?");
 			//System.out.println("SELECT * FROM TREG WHERE USERID = ?");
 			stmt.setString(1, uid);
 			rs = stmt.executeQuery();
