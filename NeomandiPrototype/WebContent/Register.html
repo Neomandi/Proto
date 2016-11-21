@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register | Neomandi</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+$(function(){
+  $("#header").load("Header.html"); 
+  $("#footer").load("Footer.html");
+});
+</script> 
+</head>
+<link rel="stylesheet" href="Header&footerstyle.css">
+<style>
+a {
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+a:hover {
+    background-color: lightblue;
+}
+</style>
+<body>
+
+<div id = "header"></div>
+<br/>
+<div id = "content">
+<a href = "FRegister.html">Click here if you're a Farmer</a><br/><br/><br/>
+<a href = "TRegister.html">Click here if you're a Trader</a><br/><br/><br/>
+<a href = "ERegister.html">Click here if you're a Employee</a><br/><br/>
+</div>
+
+<div id = "footer"></div>
+
+</body>
+</html>
