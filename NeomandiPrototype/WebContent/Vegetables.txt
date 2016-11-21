@@ -1,1 +1,0 @@
-<option>Carrot</option><option>Beans</option><option>Onion</option><option>Potato</option><option>Radish</option>
