@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EmployeeLoginServlet
@@ -38,7 +39,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 System.out.println("Inside EmployeeLoginServlet doPost()....");
 		 
-		 PrintWriter pw = response.getWriter();
+		    PrintWriter pw = response.getWriter();
 			String uid = request.getParameter("uid");
 			String pwd = request.getParameter("pwd");
 			String password = "";
@@ -65,10 +66,17 @@ public class EmployeeLoginServlet extends HttpServlet {
 					password = rs.getString("pass");
 				}
 				if(password.equals(pwd) && password != "")
-					pw.write("<html><body><h1>Login Successfull!!</h1>"
+				{
+					//HttpSession session = request.getSession(true);
+					//session.setAttribute("user", uid);
+					
+					pw.write("<html><style>h2{position: absolute; top: 0px; left: 1100px;}</style><body><h1>Login Successfull!!</h1><h2>Welcome "+uid+"</h2>"
 							+ "<a href = "+"ProductEntryScreen.html"+">Click here add the product.</a></bod></html>");
+				}
 				else
+				{
 					pw.write("<html><body><h1>Login Failed!!</h1></body></html>");
+				}
 			}
 			catch(SQLException e)
 			{
