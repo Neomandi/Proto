@@ -2,7 +2,7 @@ package com.neomandi.sample;
 
 public interface Constants 
 {
-	//Define database attributes.
+	//Define database attributes. Manjunath's Commit
     public static final String DBNAME = "com.mysql.jdbc.Driver";
     public static final String URL = "jdbc:mysql://localhost:3306/neomandi";
     public static final String UID = "root";
