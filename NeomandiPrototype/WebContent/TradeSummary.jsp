@@ -51,8 +51,57 @@ table
 	position: absolute;
 	left: 690px;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    
+}
+ li
+{
+	display: inline;
+    float: left;
+    
+}
+li a:hover:not(.active) {
+    color: white;
+    
+}
+.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;
+    
+}
+
+ a
+{
+    text-align: center;
+    border: 1px solid black;
+      border-radius: 9px 9px 0 0;
+    background-color: blue;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 160px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
 </style>
 <body>
+
+<ul><li><a  href="Search.html">Product Search</a></li>
+  <li><a href="TraderBlock.jsp">Block Funds</a></li>
+  <li><a href="Trade/Auction.jsp">Trade/Auction</a></li>
+  <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
+  <li><a href="TradeConsignment.jsp">Trade Consignment</a></li></ul>
+
+
 <center><h1>Trade Summary</h1></center>
 <center>
 <form action = "" method = "get">
