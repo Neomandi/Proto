@@ -56,6 +56,7 @@ public class JDBCOperations
             {
                 JDBCHelper.Close(con);
                 JDBCHelper.Close(stmt);
+                System.out.println("this is test cmt");
             }
         }
         return false;
