@@ -154,4 +154,14 @@
     <servlet-name>TraderProfileServlet</servlet-name>
     <url-pattern>/tprofile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FarmerPage</display-name>
+    <servlet-name>FarmerPage</servlet-name>
+    <servlet-class>com.neomandi.sample.FarmerPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FarmerPage</servlet-name>
+    <url-pattern>/fpage</url-pattern>
+  </servlet-mapping>
 </web-app>
