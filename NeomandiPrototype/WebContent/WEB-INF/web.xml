@@ -164,4 +164,14 @@
     <servlet-name>FarmerPage</servlet-name>
     <url-pattern>/fpage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FarmerPage2</display-name>
+    <servlet-name>FarmerPage2</servlet-name>
+    <servlet-class>com.neomandi.sample.FarmerPage2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FarmerPage2</servlet-name>
+    <url-pattern>/fpage2</url-pattern>
+  </servlet-mapping>
 </web-app>
