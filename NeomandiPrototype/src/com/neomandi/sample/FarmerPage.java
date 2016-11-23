@@ -87,6 +87,7 @@ public class FarmerPage extends HttpServlet {
 			 	    	"span:hover + div  #div1{"+
 			 	    	   " display: block;"+
 			 	    	"}");
+			      
 			 	    	
 			 	    	out.println("</style>");
 			        //-------------------------------------------------
@@ -118,7 +119,7 @@ public class FarmerPage extends HttpServlet {
 			        	String sql = "select aadharnum from freg where pass='"+pass+"' ";
 			        	System.out.println(sql);
 			        	resultSet = statement.executeQuery(sql);
-			        	out.print("<table><tr><th><font color='green' size='5'>Aadhar number</font></th></tr>");
+			        	out.print("<table><tr><th><font color='blue' size='5'>Aadhar number</font></th></tr>");
 			        	while(resultSet.next()){
 			        		out.print("<tr><td background='pink'>"+resultSet.getString("aadharnum")+"</td></tr>");
 
@@ -153,6 +154,7 @@ public class FarmerPage extends HttpServlet {
 			        			+ "<th><font color='green' size='5'>Lot size</font></th>"
 			        			+ "<th><font color='green' size='5'>Quantity bid for:</font></th>"
 			        			+ "</tr>");
+			       
 			        	while(resultSet.next()){
 			        		out.println("<tr><td background='pink'><span><form action=' ' ><input type = 'button' name = 'lotno1' value ='"+resultSet.getString("lotnumber")+"' readonly/></form></span><div id = 'div1'>");
 			        		lot+=resultSet.getString("lotnumber");
@@ -179,6 +181,7 @@ public class FarmerPage extends HttpServlet {
 										"<td> "+resultSet.getString("qualitygrade")+"</td>"+
 										"<td>"+resultSet.getString("quantity")+"</td>");
 										
+										
 									}
 									
 								} catch (Exception e) {
@@ -193,76 +196,20 @@ public class FarmerPage extends HttpServlet {
 			        		lot+=resultSet.getString("lotnumber");
 			        
 			        		
-			        		
+			        		out.println("<br/><br/>");
 			        		
 			        		
 			        	}
-			        	out.print("</table>");
-			        	out.print("<input type='button' name='accept' value='Accept all'/>");
-					       out.print("<input type='button' name='reject' value='Reject all'/><br/><br/>");
-					       out.print("<h3>Time progress:</h3>");
-					       out.print("<progress value='70' max='100'>70%</progress><br/>");
+			        	
 			    	} catch (Exception e) {
 			    		e.printStackTrace();
 			    	}
-			        
-			        
-			        
-			        //-------------------------------------------------------------------------------
-			        
-			        //for hover the lot number
-			        
-			        out.println("<span>"+
-					    	"<form action='' method='post'>"+
-					    	"<input  id='1' type='button' value ='"+lot+"'/></form>"+
-					    	"<br/>"+
-					    	"</span>"+
-					    	"<div>");
-			        try{	
-						if(con == null)
-						{
-							System.out.println("Connection establish failed");
-						}
-						statement = con.createStatement();
-						String sql = "select produce,kindofpro,qualitygrade,quantity from productentry where lotnumber='"+lot+"'";
-						System.out.println(sql);		
-						resultSet = statement.executeQuery(sql);
-						while(resultSet.next()){
-							out.println("<br/><table border='1'>"+
-							"<tr>"+
-							"<th>produce</th>"+
-							"<th>product</th>"+
-							"<th>grade</th>"+
-							"<th>quantity</th></tr>"+
-							"<tr>"+
-							"<td>"+resultSet.getString("produce")+" </td>"+
-							"<td>"+resultSet.getString("kindofpro")+" </td>"+
-							"<td> "+resultSet.getString("qualitygrade")+"</td>"+
-							"<td>"+resultSet.getString("quantity")+"</td>");
-							
-						}
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-					out.println("</table>"+
-			"</div>");
-					
-					
-					      
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			       
-				       //--------------------------------------------------------------------------------------
+			        out.println("</table>");
+			        out.println("<input type='button' value='Accept all' style='position: absolute; right:200;'>");
+			        out.println("<input type='button' value='Reject all' style='position: absolute; right: 0;'>");
+ //--------------------------------------------------------------------------------------
 				        //for hover the button
-				      
+				   /*   
 				    	out.println("<span>"+
 				    	"<form action='lotservlet' method='post'>"+
 				    	"<input type='submit' value='Lot details'/></form>"+
@@ -299,13 +246,20 @@ public class FarmerPage extends HttpServlet {
 					}
 
 					out.println("</table>"+
-			"</div>");
+			"</div>");*/
 					
 					
 				       //--------------------------------------------------------------------------
 					//for displaY the bid details
 					//-------------------------------------------------------------------------
-						
+			      
+			        
+			        out.print("<input type='button' name='accept' value='Accept all'/>");
+				       out.print("<input type='button' name='reject' value='Reject all'/><br/><br/>");
+				       out.print("<h3>Time progress:</h3>");
+				       out.print("<progress value='70' max='100'>70%</progress><br/>");
+				       out.println("<br/><br/>");
+				       
 
 					       	out.println("<table border='1'>"+
 							"<tr>"+
@@ -354,6 +308,7 @@ public class FarmerPage extends HttpServlet {
 				"</tr>");
 							
 						out.println("</table>");
+						
 						//out.println("</form>");
 				       out.println("</body></html>"); 
 				       
@@ -361,26 +316,6 @@ public class FarmerPage extends HttpServlet {
 				       //------------------------------------------------------------------------------------
 				   
 				       
-				        //for other details
-				        //-------------------------------------------------------------------------------
-				       /* out.print("<form>");
-					       out.println("<font color='violet'");
-					       out.print("<h3 style='font-size:20px;'><b>Lot size:</b></h3>");
-					       out.println(" <input type='text' name='lsize'/><br/>");
-					       out.print("<h3>Average price:</h3>");
-					       out.println(" <input type='text' name='avg'/><br/>");
-					       out.println("<h3>Quantity bid for:</h3>");
-					       out.println(" <input type='text' name='qtybid'/>");
-					       out.println("<input type='button' name='accept' value='Accept all'/>");
-					       out.println("<input type='button' name='reject' value='Reject all'/><br/><br/>");
-					       out.println("<h3>Time progress:</h3>");
-					       out.println("<progress value='70' max='100'>70%</progress><br/>");
-					       out.println("</font>");
-					       out.println("</form>");*/
-					      
-				        
-				        
-				        //---------------------------------------------------------------------------------
 				       
 				       
 				       
