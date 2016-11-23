@@ -47,6 +47,12 @@ input[type = text]
 {
 	border: none;
 }
+#pic
+{
+	position: absolute;
+	top: 150px;
+	left: 500px;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -96,7 +102,7 @@ input[type = text]
 		</tr>
 		<tr>
 			<th>Image</th>
-			<td><input name="browse" size="50" type="file" /></td>
+			<td><input type='file' onchange="readURL(this);" /></td>
 		</tr>
 		<tr>
 			<th>Lot Number</th>
@@ -104,6 +110,8 @@ input[type = text]
 		</tr>
 	</table>
 	<br/>
+	
+    <img id="pic" src="#" alt="your image" />
 	<input type = "submit" value = "Submit"/>
 	<input type = "reset" value = "Reset"/>
 </form>
@@ -112,6 +120,21 @@ $("#kproduce").change(function() {
 	   $("#produce").load("ProduceData/" + $(this).val() + ".txt");
 	   console.log("ProduceData/" + $(this).val()+ ".txt");
 	});
+	
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#pic')
+                .attr('src', e.target.result)
+                .width(250)
+                .height(250);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 <div id = "footer"></div>
 </body>
