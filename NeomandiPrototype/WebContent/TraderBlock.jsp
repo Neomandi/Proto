@@ -52,12 +52,12 @@ li a:hover:not(.active) {
  
 <ul><li><a href="Search.html">Product Search</a></li>
   <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href="Trade/Auction.jsp">Trade/Auction</a></li>
+  <li><a href="Retreive.jsp">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TradeConsignment.jsp">Trade Consignment</a></li></ul>
+  <li><a href="TradeConsignment.jsp">Track Consignment</a></li></ul>
 
 <font color="red">
-<u><h2>Block Money</h2></u>
+<u><h2>Block Funds</h2></u>
 </font>
 <form action=" " method="post">
 <font color="green"><h3>Choose Account:

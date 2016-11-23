@@ -12,10 +12,6 @@ Statement statement = null;
 ResultSet resultSet = null;    
 
 con = JDBCHelper.getConnection();
-	
-	
-	
-	
 %>
 
 

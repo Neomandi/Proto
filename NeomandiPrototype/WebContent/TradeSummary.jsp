@@ -97,9 +97,9 @@ li a:hover:not(.active) {
 
 <ul><li><a  href="Search.html">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href="Trade/Auction.jsp">Trade/Auction</a></li>
+  <li><a href="  .jsp">Trade/Auction</a></li>
   <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TradeConsignment.jsp">Trade Consignment</a></li></ul>
+  <li><a href="TrackConsignment.jsp">Track Consignment</a></li></ul>
 
 
 <center><h1>Trade Summary</h1></center>

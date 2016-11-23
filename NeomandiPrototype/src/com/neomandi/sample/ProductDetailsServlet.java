@@ -87,7 +87,7 @@ public class ProductDetailsServlet extends HttpServlet {
                 stmt.setString(5, produce);
                 stmt.setString(6, quality);
                 stmt.setString(7, qunatity);
-               // stmt.setBlob(7, inputStream);
+                //stmt.setBlob(8, inputStream);
                 if (inputStream != null) {
                     // fetches input stream of the upload file for the blob column
                     stmt.setBlob(8, inputStream);
