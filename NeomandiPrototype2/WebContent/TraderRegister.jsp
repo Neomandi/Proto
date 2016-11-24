@@ -214,18 +214,18 @@ button
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "tregform" action = "tregister" method = "post" enctype='multipart/form-data' onsubmit = "return validateTForm();" >
+<form name = "tregform" action = "TraderRegisterInt.jsp" method = "post" enctype='multipart/form-data' onsubmit = "return validateTForm();" >
 	<div style = "align-content: center;">
 	<fieldset>
 		<legend>Trader Registration Page</legend>
 		<label for = "name">Name</label><br />
-		<input type = "text" id = "name" name = "t_name" placeholder = "Name" required/><br/>
+		<input type = "text" id = "name" name = "tradername" required/><br/>
 		<label for = "mob">Mobile Number</label><br />
-		<input type = "text" id = "mob" name = "t_mob" placeholder = "Mobile Number" required/><br/>
+		<input type = "text" id = "mob" name = "tradermobile" required/><br/>
 		<label for = "anum">Aadhar Number</label><br />
-		<input type = "text" id = "anum" name = "t_aadharnum" placeholder = "Aadhar Number" required/><br/>
+		<input type = "text" id = "anum" name = "traderaadharnum" required/><br/>
 		<label for = "email">Email</label><br />
-		<input type = "text" id = "email" name = "t_email" placeholder = "Email" required/><br/>
+		<input type = "text" id = "email" name = "traderemail" required/><br/>
 		<label for = "state">State</label><br />
 		<select id = "state" name = "state" onchange = "populate('state','district')">
 			<option value = ""></option>
@@ -263,35 +263,35 @@ button
 		<select id = "district" name = "district">
 		</select><br/>
 		<label for = "taluk">Taluk</label><br />
-		<input type = "text" id = "taluk" name = "t_taluk" placeholder = "Taluk" required/><br/>
+		<input type = "text" id = "taluk" name = "tradertaluk" required/><br/>
 		<label for = "hobli">Hobli</label><br />
-		<input type = "text" id = "hobli" name = "t_hobli" placeholder = "Hobli" required/><br/>
+		<input type = "text" id = "hobli" name = "traderhobli" required/><br/>
 		<label for = "village">Village</label><br />
-		<input type = "text" id = "village" name = "t_village" placeholder = "Village" required/><br/><br/>
+		<input type = "text" id = "village" name = "tradervillage" required/><br/><br/>
 		<label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "browse"/>
+		<input type = "file" name="pic" id = "photo" name = "browse"/>
 	</fieldset>
 	<br/>
 	<fieldset>
 		<legend>Bank Account Details</legend>
 		<label for = "bankname">Bank Name</label><br />
-		<input type = "text" id = "bankname" name = "t_bankname" placeholder = "Bank Name" required/><br/>
+		<input type = "text" id = "bankname" name = "traderbankname" required/><br/>
 		<label for = "accountnum">Account Number</label><br />
-		<input type = "text" id = "accountnum" name = "t_accountnum" placeholder = "Account Number" required/><br/>
+		<input type = "text" id = "accountnum" name = "traderbankaccountnum" required/><br/>
 		<label for = "branch">Branch</label><br />
-		<input type = "text" id = "branch" name = "t_branch" placeholder = "Branch" required/><br/>
+		<input type = "text" id = "branch" name = "traderbankbranch" required/><br/>
 		<label for = "ifsc">IFSC Code</label><br />
-		<input type = "text" id = "ifsc" name = "t_ifsc" placeholder = "IFSC Code" required/><br/><br/>
+		<input type = "text" id = "ifsc" name = "traderifsc" required/><br/><br/>
 	</fieldset>
 	<br/>
 	<fieldset>
 		<legend>User ID</legend>
 		<label for = "uid">Preferred User ID</label><br />
-		<input type = "text" id = "uid" name = "t_uid" placeholder = "User ID" required/><br/>
+		<input type = "text" id = "uid" name = "traderuid" placeholder = "User ID" required/><br/>
 		<label for = "licensenum">License Number</label><br />
-		<input type = "text" id = "licensenum" name = "t_licensenum" placeholder = "License Number" required/><br/>
+		<input type = "text" id = "licensenum" name = "traderlicensenumber" placeholder = "License Number" required/><br/>
 		<label for = "password">Password</label><br />
-		<input type = "password" id = "password" name = "t_pwd" placeholder = "Password" required/><br/><br/>
+		<input type = "password" id = "password" name = "traderpwd" placeholder = "Password" required/><br/><br/>
 	</fieldset>
 	</div>
 	<br />
