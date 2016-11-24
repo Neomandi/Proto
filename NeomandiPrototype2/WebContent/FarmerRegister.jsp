@@ -203,7 +203,7 @@ select
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "fregform" action = "fregister" method = "post" enctype='multipart/form-data' onsubmit = "return validateFForm();">
+<form name = "fregform" action = "FarmerRegisterInt.jsp" method = "post" enctype='multipart/form-data' onsubmit = "return validateFForm();">
 	<fieldset>
 		<legend>Farmer Registration Page</legend>
 		<label for = "name">Name</label><br/>
