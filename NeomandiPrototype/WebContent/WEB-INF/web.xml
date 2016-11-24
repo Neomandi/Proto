@@ -166,12 +166,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FarmerPage3</display-name>
-    <servlet-name>FarmerPage3</servlet-name>
-    <servlet-class>com.neomandi.sample.FarmerPage3</servlet-class>
+    <display-name>FarmerPage2</display-name>
+    <servlet-name>FarmerPage2</servlet-name>
+    <servlet-class>com.neomandi.sample.FarmerPage2</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FarmerPage3</servlet-name>
-    <url-pattern>/fpage3</url-pattern>
+    <servlet-name>FarmerPage2</servlet-name>
+    <url-pattern>/fpage2</url-pattern>
   </servlet-mapping>
 </web-app>

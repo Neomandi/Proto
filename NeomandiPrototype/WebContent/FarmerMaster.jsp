@@ -52,8 +52,9 @@ li a:hover:not(.active) {
 <body>
  
 <ul>
+  
   <li><a href="">My Lots</a></li>
-  <li><a href="">Auction</a></li>
+  <li><a href="fpage2">Auction</a></li>
   <li><a href="">Trade Summary</a></li>
   </ul>
 
