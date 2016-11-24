@@ -1,10 +1,14 @@
 package com.neomandi.prototype;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.neomandi.prototype.EmployeeRegisterBean;
 
 /**
  * Servlet implementation class ControllerServlet
@@ -21,6 +25,15 @@ public class ControllerServlet extends HttpServlet {
     }
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{
+		RequestDispatcher rd=null;	
+		EmployeeRegisterBean rb=(EmployeeRegisterBean) request.getAttribute("ebean");
+		String uri=request.getRequestURI();
+		
+		if(uri.contains("EmployeeRegister"))
+		{
+			//
+		}
+		
 		
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
