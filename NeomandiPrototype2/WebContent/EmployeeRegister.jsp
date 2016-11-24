@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="ISO-8859-1">
 <link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<title>Trader Registration</title>
+<title>Employee Registration</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
@@ -33,20 +33,12 @@ function populate(s1, s2)
 }
 function validateTForm()
 {
-	var name = document.tregform.t_name;
-	var mob = document.tregform.t_mob;
-	var aadharnum = document.tregform.t_aadharnum;
-	var email = document.tregform.t_email;
-	var taluk = document.tregform.t_taluk;
-	var hobli = document.tregform.t_hobli;
-	var village = document.tregform.t_village;
-	var bankname = document.tregform.t_bankname;
-	var accnum = document.tregform.t_accountnum;
-	var branch = document.tregform.t_branch;
-	var ifsc = document.tregform.t_ifsc;
-	var uid = document.tregform.t_uid;
-	var license = document.tregform.t_licensenum;
-	var pwd = doucment.tregform.t_pwd;
+	var name = document.tregform.employeename;
+	var mob = document.tregform.employeemob;
+	var aadharnum = document.tregform.employeeaadharnum;
+	var email = document.tregform.employeeemail;
+	var uid = document.tregform.employeeuid;
+	var pwd = doucment.tregform.employeepwd;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
@@ -90,59 +82,6 @@ function validateTForm()
         email.focus();
         return false;
     }
-	
-	//Taluk name validation
-	if(!taluk.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.")
-		taluk.focus();
-		return false;
-	}
-	
-	//Hobli name validation
-	if(!hobli.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.")
-		hobli.focus();
-		return false;
-	}
-	
-	//Village name validation
-	if(!village.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.")
-		village.focus();
-		return false;
-	}
-	
-	//Bank name validation
-	if(!bankname.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.")
-		bankname.focus();
-		return false;
-	}
-	
-	//Account Branch name validation
-	if(!branch.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.")
-		branch.focus();
-		return false;
-	}
-	
-	//IFSC Code validation
-	var ifscval = ifsc.value;
-	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
-	{
-		//value is ok
-	}
-	else
-	{
-		window.alert("Please enter valid IFSC Code.")
-		ifsc.focus();
-		return false;
-	}
 }
 </script> 
 <style type = "text/css">
@@ -158,7 +97,7 @@ legend
 }
 form 
 {
-   	  max-width: 300px;
+      max-width: 300px;
 	  margin: 10px auto;
 	  padding: 10px 20px;
 	  background: rgb(30,115,119);
@@ -214,20 +153,20 @@ button
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "tregform" action = "TraderRegisterInt.jsp" method = "post" enctype='multipart/form-data' onsubmit = "return validateTForm();" >
+<form name = "Eregform" action = "EmployeeRegisterInt.jsp" method = "post" onsubmit = "return validateTForm();">
 	<div style = "align-content: center;">
 	<fieldset>
-		<legend>Trader Registration Page</legend>
+		<legend>Employee Registration Page</legend>
 		<label for = "name">Name</label><br />
-		<input type = "text" id = "name" name = "tradername" required/><br/>
+		<input type = "text" id = "name" name = "employeename" placeholder = "Name" required/><br/>
 		<label for = "mob">Mobile Number</label><br />
-		<input type = "text" id = "mob" name = "tradermobile" required/><br/>
+		<input type = "text" id = "mob" name = "employeemob" placeholder = "Mobile Number" required/><br/>
 		<label for = "anum">Aadhar Number</label><br />
-		<input type = "text" id = "anum" name = "traderaadharnum" required/><br/>
+		<input type = "text" id = "anum" name = "employeeaadharnum" placeholder = "Aadhar Number" required/><br/>
 		<label for = "email">Email</label><br />
-		<input type = "text" id = "email" name = "traderemail" required/><br/>
+		<input type = "text" id = "email" name = "employeeemail" placeholder = "Email" required/><br/>
 		<label for = "state">State</label><br />
-		<select id = "state" name = "state" onchange = "populate('state','district')">
+		<select id = "state" name = "employeestate" onchange = "populate('state','district')">
 			<option value = ""></option>
 			<option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -260,38 +199,16 @@ button
 			<option value = "West Bengal">West Bengal</option>
 		</select><br/>
 		<label for = "district">District</label><br />
-		<select id = "district" name = "district">
+		<select id = "district" name = "employeedistrict">
 		</select><br/>
-		<label for = "taluk">Taluk</label><br />
-		<input type = "text" id = "taluk" name = "tradertaluk" required/><br/>
-		<label for = "hobli">Hobli</label><br />
-		<input type = "text" id = "hobli" name = "traderhobli" required/><br/>
-		<label for = "village">Village</label><br />
-		<input type = "text" id = "village" name = "tradervillage" required/><br/><br/>
-		<label for = "photo">Photo</label><br/>
-		<input type = "file" name="pic" id = "photo" name = "browse"/>
-	</fieldset>
-	<br/>
-	<fieldset>
-		<legend>Bank Account Details</legend>
-		<label for = "bankname">Bank Name</label><br />
-		<input type = "text" id = "bankname" name = "traderbankname" required/><br/>
-		<label for = "accountnum">Account Number</label><br />
-		<input type = "text" id = "accountnum" name = "traderbankaccountnum" required/><br/>
-		<label for = "branch">Branch</label><br />
-		<input type = "text" id = "branch" name = "traderbankbranch" required/><br/>
-		<label for = "ifsc">IFSC Code</label><br />
-		<input type = "text" id = "ifsc" name = "traderifsc" required/><br/><br/>
 	</fieldset>
 	<br/>
 	<fieldset>
 		<legend>User ID</legend>
 		<label for = "uid">Preferred User ID</label><br />
-		<input type = "text" id = "uid" name = "traderuid" placeholder = "User ID" required/><br/>
-		<label for = "licensenum">License Number</label><br />
-		<input type = "text" id = "licensenum" name = "traderlicensenumber" placeholder = "License Number" required/><br/>
+		<input type = "text" id = "uid" name = "employeeuid" placeholder = "User ID" required/><br/>
 		<label for = "password">Password</label><br />
-		<input type = "password" id = "password" name = "traderpwd" placeholder = "Password" required/><br/><br/>
+		<input type = "password" id = "password" name = "employeepwd" placeholder = "Password" required/><br/><br/>
 	</fieldset>
 	</div>
 	<br />
@@ -299,6 +216,11 @@ button
 	<input type = "reset" value = "Reset"/>
 </form>
 <br/>
+
+<!--  <form action = "EmployeeLogin.html" name = "f2">
+<p>Already Registered? Click here to login.</p><br/>
+<input type = "submit" value = "Login"/>
+</form> -->
 
 </div>
 <div id = "footer"></div>
