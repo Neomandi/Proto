@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Trader Master Page</title>
 <style>
 ul {
     list-style-type: none;
@@ -84,7 +84,7 @@ li a:hover:not(.active) {
 	text-decoration: none;
 	padding: 10px 20px;
 }
-
+/*
 #navigation_container {
    margin: 0 auto;
    width: 960px;
@@ -105,17 +105,24 @@ li a:hover:not(.active) {
    z-index: 200; /* the stack order: foreground */
    margin: 3em 0;
    top: 0px;
-}
+}*/
 </style>
 </head>
 <body>
- 
-<ul>
-   <li><a class="active" href="FarmerPage2.jsp">Auction</a></li>
-  <li><a href="">My Lots</a></li>
-	<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+<%@ include file="Ribbon.jsp" %><br><br>
+<!--   <div id="navigation_container">
+       <div > 
+   <ul class="rectangle">
+      <li>WELCOME &nbsp &nbsp &nbsp <%=request.getAttribute("uname")%>  &nbsp  &nbsp &nbsp &nbsp you logged in at</li>
+   </ul>
+  </div> 
+</div>
+  <br>-->
+ <ul><li><a class="active" href="ProductSearch.jsp">Product Search</a></li>
+  <li><a href="TraderBlock.jsp">Block Funds</a></li>
+  <li><a href="TradeorAuction.jsp">Trade/Auction</a></li>
+  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
+  <li><a href="TradeConsignment.jsp">Track Consignment</a></li>
   </ul>
-
-
 </body>
 </html>

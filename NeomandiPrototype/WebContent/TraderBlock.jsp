@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Block Funds</title>
-
 <head>
 <style>
 ul {
@@ -47,12 +48,11 @@ li a:hover:not(.active) {
 }
 </style></head>
 <body>
-
-
+<%@ include file="Ribbon.jsp" %><br><br>
  
-<ul><li><a href="Search.html">Product Search</a></li>
+<ul><li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href="Retreive.jsp">Trade/Auction</a></li>
+  <li><a href="TradeorAuction.jsp">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href="TradeConsignment.jsp">Track Consignment</a></li></ul>
 

@@ -52,13 +52,14 @@ table
 	left: 690px;
 }
 
+
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
-    
+    background-color: white;    
 }
  li
 {
@@ -88,21 +89,82 @@ li a:hover:not(.active) {
 	display: inline;
 	display: block;
     color: white;
-	width: 160px;
+	width: 100px;
 	text-decoration: none;
 	padding: 10px 20px;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 9px 9px 0 0;    
+}
+
+ li
+{
+	display: inline;
+    float: left;    
+}
+
+li a:hover:not(.active) {
+    color: white;
+    
+}
+
+.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;    
+}
+
+ a
+{
+    text-align: center;
+    background-color: blue;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 150px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
+#navigation_container {
+   margin: 0 auto;
+   width: 960px;
+}
+
+.rectangle {
+	width: 1200px;
+   color: white;
+   text-align:center;
+   background: #e5592e;
+   height: 62px;
+   position: relative;
+   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+   box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+   -webkit-border-radius: 34px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   z-index: 200; /* the stack order: foreground */
+   margin: 3em 0;
+   top: 0px;
+}
 </style>
+
 <body>
-<%@ include file="Ribbon.jsp" %><br><br>
-<ul><li><a  href="ProductSearch.jsp">Product Search</a></li>
-  <li><a href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href=" TradeorAuction.jsp">Trade/Auction</a></li>
-  <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TrackConsignment.jsp">Track Consignment</a></li></ul>
 
-
-<center><h1>Trade Summary</h1></center>
+ 
+<ul>
+   <li><a  href="FarmerPage2.jsp">Auction</a></li>
+  <li><a href="">My Lots</a></li>
+	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+  </ul>
+<center><h1>Farmer Summary</h1></center>
 <center>
 <form action = "" method = "get">
 
@@ -159,3 +221,9 @@ li a:hover:not(.active) {
 <center><button id = "word">Export to DOC</button></center>
 </body>
 </html>
+
+
+
+
+
+
