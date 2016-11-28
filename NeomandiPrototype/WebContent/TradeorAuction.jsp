@@ -9,7 +9,7 @@ ResultSet resultSet = null;
 con = JDBCHelper.getConnection();
 %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="script.js"></script>
 <script>
 var start = new Date();
 var maxTime = 60000;
@@ -73,7 +73,7 @@ li a:hover:not(.active) {
 {
     text-align: center;
     border: 1px solid black;
-      border-radius: 9px 9px 0 0;
+    border-radius: 9px 9px 0 0;
     background-color: blue;   
 	display: inline;
 	display: block;
@@ -144,7 +144,7 @@ li a:hover:not(.active) {
 			<td><%= resultSet.getString("marketcode") %></td> <!-- Market Code -->
 			<td><%= resultSet.getString("produce") %></td> <!-- Produce -->
 			<td><%= resultSet.getString("qualitygrade") %></td> <!-- Grade -->
-			<td><input type = "number" id = '<%= resultSet.getString("lotnum") %>' name = "price"/></td> <!-- Best Bid -->
+			<td><input type = "number" id = '<%= resultSet.getString("lotnum") %>' name = "price" readonly/></td> <!-- Best Bid -->
 			<td> <input type="button" onclick = "fun<%= resultSet.getString("lotnum") %>()" value="Increment Price" /><script>
 				function fun<%= resultSet.getString("lotnum") %>()
 				{

@@ -21,7 +21,9 @@ html {
 		padding: .34em 1em;
 		margin: 0;
 		margin-top: 1%;
-		position:relative;
+		position: absolute;
+		left: 0px;
+		top: -14px;
 		width: 1300px;
 		height: 30px;
 		color: blue;
@@ -61,8 +63,10 @@ html {
 	  border-width: .10em .10em 0 0;
 	  background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
 	}
-p
+#one
 {
+	position: absolute;
+	right: 0px;
 	color: red;
 	text-decoration: none;
 }
@@ -73,9 +77,10 @@ p
 		<span id="content">
 		<font size="4"  face="Comic Sans MS" color="white"  >welcome <% HttpSession hc=request.getSession(false); out.println((String)hc.getAttribute("name")); %> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
         <%out.println(hc.getAttribute("date"));%> &nbsp &nbsp at  <% out.println((String)hc.getAttribute("time"));%>
-         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  
+         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <!--  <a id  = 'one' href = "">Logout</a>  -->
 		</font>
 		</span>
 	</div>
+	<br/>
 </body>
 </html>

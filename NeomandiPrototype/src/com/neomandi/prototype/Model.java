@@ -1,14 +1,13 @@
 package com.neomandi.prototype;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import javax.sql.rowset.JdbcRowSet;
 
 public class Model {
 
@@ -333,8 +332,8 @@ public class Model {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		System.out.println(flbn.getFname());
-		System.out.println(flbn.getFpwd());
+		//System.out.println(flbn.getFname());
+		//System.out.println(flbn.getFpwd());
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -408,7 +407,7 @@ public class Model {
 			String kproduce = psb.getKproduce();
 			String produce = psb.getProduce();
 			String quality = psb.getQuality();
-			System.out.println("inside model()-> kproduce is "+kproduce+"produce is "+produce+" quality is "+quality);
+			System.out.println("inside model()-> kproduce is "+kproduce+" produce is "+produce+" quality is "+quality);
 			//System.out.println("The kinofpro: "+kproduce+" The produce: "+produce+" The quality: "+quality);
 			
 			pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and produce = ? and qualitygrade = ?");
@@ -444,6 +443,7 @@ public class Model {
 		return null;
 	}
 
+	//Product Entry
 	public String productEntry(ProductEntryBean peb) {
 		
 		String msg = null;
@@ -463,7 +463,7 @@ public class Model {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -472,6 +472,14 @@ public class Model {
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
 				ps.setString(8, null);
+				
+				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
+				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
+				String date=df.format(new Date());
+				String date2=df1.format(new Date());
+				
+				ps.setString(9, date);
+				ps.setString(10, date2);
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -501,6 +509,7 @@ public class Model {
 	}
 
 	@SuppressWarnings("resource")
+	//Add Trade
 	public String addTrade(String lotnumber) {
 		String msg = null;
 		PreparedStatement ps = null;
@@ -571,6 +580,12 @@ public class Model {
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
 		}
-		return "SUCCESS"+produce;
+		return "SUCCESS "+produce;
+	}
+	
+	//Time slots
+	public void auction()
+	{
+		String slot1 = "";
 	}
 }
