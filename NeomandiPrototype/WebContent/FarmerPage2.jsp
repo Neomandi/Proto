@@ -144,7 +144,7 @@ li a:hover:not(.active) {
 <body>
 <ul>
    <li><a class="active" href="FarmerPage2.jsp">Auction</a></li>
-  <li><a href="">My Lots</a></li>
+  <li><a href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
   </ul>
 	<%
@@ -155,15 +155,13 @@ li a:hover:not(.active) {
 	String produce = request.getParameter("produce");
 	String quality = request.getParameter("quality");
 	String qunatity = request.getParameter("photo");
-	//String pass= request.getParameter("fpwd");
-	//session.setAttribute("password",pass);
-	String pass="Farmer1";
-	System.out.println("password="+pass);
-	 
+	
+	 HttpSession session1=request.getSession(false);  
+     String pass=(String)session1.getAttribute("pass"); 
 	 Connection con = null;
      Statement statement = null;
      ResultSet resultSet = null;    
-
+     ResultSet resultSet1 = null;   
      con = JDBCHelper.getConnection();
 	%>
 	<h1><font color="orange">
@@ -197,6 +195,14 @@ li a:hover:not(.active) {
 %>
   
 </table>
+<table border="1"><th><font color="green" size="5">Lot number</font></th>
+	        			<th><font color="green" size="5">Average price</font></th>
+	        			<th><font color="green" size="5">Lot size</font></th>
+	        			<th><font color="green" size="5">Quantity bid for:</font></th>
+	        			<th></th>
+	        			<th></th>
+	        			<th></th>
+	        			</tr>
 <%
 //fetching lotnumber and hover the button
 String lot="";
@@ -212,17 +218,17 @@ try{
 	if(resultSet!=null){
     	while(resultSet.next()){
 %>
-	<table border="1"><th><font color="green" size="5">Lot number</font></th>
-	        			<th><font color="green" size="5">Average price</font></th>
-	        			<th><font color="green" size="5">Lot size</font></th>
-	        			<th><font color="green" size="5">Quantity bid for:</font></th>
-	        			<th></th>
-	        			<th></th>
-	        			<th></th>
-	        			</tr>
+	
 	     				<tr><td background="pink"><span><form action=" " >
 	     				<input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>></form></span>
 	        			<div id ="div1">
+	        			<table border="2" bgcolor="lightgreen">
+								<tr>
+								<th>lotnumber</th>		
+								<th>produce</th>
+								<th>product</th>
+								<th>grade</th>
+								<th>quantity</th></tr>
 	        			<% 
 	        			try{	
 							if(con == null)
@@ -231,26 +237,20 @@ try{
 							}
 							statement = con.createStatement();
 							lot+=resultSet.getString("lotnumber");
-							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where lotnumber='"+lot+"'";
+							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
 							System.out.println(sql5);		
-							resultSet = statement.executeQuery(sql5);
+							resultSet1 = statement.executeQuery(sql5);
 							
-							while(resultSet.next()){
+							while(resultSet1.next()){
 								
 						%>
-							<br/><table border="2" bgcolor="lightgreen">
+							<br/>
 								<tr>
-								<th>lotnumber</th>		
-								<th>produce</th>
-								<th>product</th>
-								<th>grade</th>
-								<th>quantity</th></tr>
-								<tr>
-								<td><%= resultSet.getString("lotnumber")%></td>
-								<td><%= resultSet.getString("produce")%> </td>
-								<td><%= resultSet.getString("kindofpro")%></td>
-								<td> <%=resultSet.getString("qualitygrade")%></td>
-								<td><%= resultSet.getString("quantity")%></td>
+								<td><%= resultSet1.getString("lotnumber")%></td>
+								<td><%= resultSet1.getString("produce")%> </td>
+								<td><%= resultSet1.getString("kindofpro")%></td>
+								<td> <%=resultSet1.getString("qualitygrade")%></td>
+								<td><%= resultSet1.getString("quantity")%></td>
 								
 							<% 	
 							}

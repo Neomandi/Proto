@@ -24,7 +24,7 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 	}
 </style>
 </head>
-<body> <%@ include file="Ribbon.jsp" %><br><br>
+<body> 
 
 	<%
 	String farmerid = request.getParameter("farmerid");
@@ -34,11 +34,12 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 	String produce = request.getParameter("produce");
 	String quality = request.getParameter("quality");
 	String qunatity = request.getParameter("photo");
-	String pass= request.getParameter("fpwd");
-	session.setAttribute("password",pass);
-	//String pass="Farmer1";
-	System.out.println("password="+pass);
-	 
+	 String pass=request.getParameter("fpwd");  
+     
+       
+     HttpSession session1=request.getSession();  
+     session1.setAttribute("pass",pass);  
+
 	 Connection con = null;
      Statement statement = null;
      ResultSet resultSet = null;    
@@ -76,6 +77,14 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 %>
   
 </table>
+<table border="1"><th><font color="green" size="5">Lot number</font></th>
+	        			<th><font color="green" size="5">Average price</font></th>
+	        			<th><font color="green" size="5">Lot size</font></th>
+	        			<th><font color="green" size="5">Quantity bid for</font></th>
+	        			<th></th>
+	        			<th></th>
+	        			<th></th>
+	        			</tr>
 <%
 //fetching lotnumber and hover the button
 String lot="";
@@ -91,17 +100,17 @@ try{
 	if(resultSet!=null){
     	while(resultSet.next()){
 %>
-	<table border="1"><th><font color="green" size="5">Lot number</font></th>
-	        			<th><font color="green" size="5">Average price</font></th>
-	        			<th><font color="green" size="5">Lot size</font></th>
-	        			<th><font color="green" size="5">Quantity bid for</font></th>
-	        			<th></th>
-	        			<th></th>
-	        			<th></th>
-	        			</tr>
+	
 	     				<tr><td background="pink"><span><form action=" " >
 	     				<input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>></form></span>
 	        			<div id ="div1">
+	        			<br/><table border="2" bgcolor="lightgreen">
+								<tr>
+								<th>lotnumber</th>		
+								<th>produce</th>
+								<th>product</th>
+								<th>grade</th>
+								<th>quantity</th></tr>
 	        			<% 
 	        			try{	
 							if(con == null)
@@ -110,27 +119,21 @@ try{
 							}
 							statement = con.createStatement();
 							lot+=resultSet.getString("lotnumber");
-							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where lotnumber='"+lot+"'";
+							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
 							System.out.println(sql5);		
 							resultSet1 = statement.executeQuery(sql5);
 							
 							while(resultSet1.next()){
 								
 						%>
-							<br/><table border="2" bgcolor="lightgreen">
-								<tr>
-								<th>lotnumber</th>		
-								<th>produce</th>
-								<th>product</th>
-								<th>grade</th>
-								<th>quantity</th></tr>
+							
 								<tr>
 								<td><%= resultSet1.getString("lotnumber")%></td>
 								<td><%= resultSet1.getString("produce")%> </td>
 								<td><%= resultSet1.getString("kindofpro")%></td>
 								<td> <%=resultSet1.getString("qualitygrade")%></td>
 								<td><%= resultSet1.getString("quantity")%></td>
-								
+								</tr>
 							<% 	
 							}
 							

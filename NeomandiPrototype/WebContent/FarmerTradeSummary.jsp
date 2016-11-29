@@ -161,10 +161,10 @@ li a:hover:not(.active) {
  
 <ul>
    <li><a  href="FarmerPage2.jsp">Auction</a></li>
-  <li><a href="">My Lots</a></li>
+  <li><a href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
   </ul>
-<center><h1>Farmer Summary</h1></center>
+<center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 <center>
 <form action = "" method = "get">
 
