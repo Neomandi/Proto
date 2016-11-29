@@ -307,7 +307,7 @@ public class ControllerServlet extends HttpServlet {
 		}	
 		
 		
-		
+		//Product Search
 		if(uri.contains("ProductSearch"))
 		{
 			
@@ -330,7 +330,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-		
+		//Add Trade
 		if(uri.contains("AddTrade"))
 		{
 			String lotnumber = request.getParameter("s1");
@@ -341,7 +341,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				
 				String msg1=msg.substring(7);
-				msg="product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
+				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
 				System.out.println("message sent is "+msg);
 				request.setAttribute("errmsg", msg);
 				rd=request.getRequestDispatcher("ProductSearchResult.jsp");
@@ -375,6 +375,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//Product Entry
 		if(uri.contains("ProductEntry"))
 		{
 			Model m = new Model();
@@ -414,6 +415,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
