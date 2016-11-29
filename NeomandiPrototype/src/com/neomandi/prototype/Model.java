@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -321,7 +322,7 @@ public class Model {
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
 		}
-		System.out.println("returning message to cs...");
+		//System.out.println("returning message to cs...");
 		return msg;
 	}
 	
@@ -473,10 +474,18 @@ public class Model {
 				ps.setString(7, peb.getQuantity());
 				ps.setString(8, null);
 				
-				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
+				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
+				
+				try {
+					String slot = TimeSlots.time(date+" "+date2);
+					System.out.println(slot);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				ps.setString(9, date);
 				ps.setString(10, date2);
