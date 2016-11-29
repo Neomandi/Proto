@@ -444,7 +444,7 @@ public class Model {
 	}
 
 	//Product Entry
-	public String productEntry(ProductEntryBean peb) {
+	public String productEntry(ProductEntryBean peb){
 		
 		String msg = null;
 		PreparedStatement ps = null;
@@ -474,7 +474,7 @@ public class Model {
 				ps.setString(8, null);
 				
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
-				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
+				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				
@@ -583,9 +583,4 @@ public class Model {
 		return "SUCCESS "+produce;
 	}
 	
-	//Time slots
-	public void auction()
-	{
-		String slot1 = "";
-	}
 }
