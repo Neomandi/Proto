@@ -450,6 +450,7 @@ public class Model {
 		String msg = null;
 		PreparedStatement ps = null;
 		Connection con = null;
+		String slot = "";
 		//InputStream inputStream = null;
 		
 		try
@@ -464,7 +465,7 @@ public class Model {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -480,7 +481,7 @@ public class Model {
 				String date2=df1.format(new Date());
 				
 				try {
-					String slot = TimeSlots.time(date+" "+date2);
+					slot = TimeSlots.time(date+" "+date2);
 					System.out.println(slot);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -489,6 +490,7 @@ public class Model {
 				
 				ps.setString(9, date);
 				ps.setString(10, date2);
+				ps.setString(11, slot);
 				ps.execute();
 				
 				msg = "SUCCESS";
