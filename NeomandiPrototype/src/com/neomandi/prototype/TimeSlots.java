@@ -5,10 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Seconds;
 
 public class TimeSlots {
 
@@ -21,10 +17,15 @@ public class TimeSlots {
 	System.out.println("Time Slot: "+st);
 	//String dateStop = "01/14/2012 09:20:00";
 	
-	Date s1t = format.parse("11/29/2016 10:15:00.000");
-	Date s2t = format.parse("11/29/2016 10:25:00.000");
-	Date s3t = format.parse("11/29/2016 10:35:00.000");
-	Date s4t = format.parse("11/29/2016 10:45:00.000");
+	SimpleDateFormat dformat = new SimpleDateFormat("MM/dd/yyyy");
+	String date=dformat.format(new Date());
+	
+	//System.out.println("Today's date "+date);
+	
+	Date s1t = format.parse(date+" "+"10:15:00.000");
+	Date s2t = format.parse(date+" "+"10:25:00.000");
+	Date s3t = format.parse(date+" "+"10:35:00.000");
+	Date s4t = format.parse(date+" "+"10:45:00.000");
 
 	
 
