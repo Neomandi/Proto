@@ -13,15 +13,7 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 ">
 <title>Insert title here</title>
 <style>
- div {
-	 background-color:blue;
-	 padding: 20px;
-	 display: none;
-	}
-	 	    	    
-	span:hover + div {
-	display: block;
-	}
+
 	table
 {
 	border-collapse: collapse;
@@ -142,6 +134,7 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body>
+ <%@ include file="Ribbon.jsp" %><br>
 <ul>
    <li><a class="active" href="FarmerPage2.jsp">Auction</a></li>
   <li><a href="Lotdetails.jsp">My Lots</a></li>
@@ -212,135 +205,28 @@ try{
 		System.out.println("Connection establish failed");
 	}
 	statement = con.createStatement();
-	String sql = "select lotnumber from productentry where farmerid='"+s+"' ";
+	String sql = "select lotnumber,quantity from productentry where farmerid='"+s+"' ";
 	System.out.println(sql);
 	resultSet = statement.executeQuery(sql);
-	if(resultSet!=null){
+
     	while(resultSet.next()){
 %>
 	
 	     				<tr><td background="pink"><span><form action=" " >
 	     				<input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>></form></span>
-	        			<div id ="div1">
-	        			<table border="2" bgcolor="lightgreen">
-								<tr>
-								<th>lotnumber</th>		
-								<th>produce</th>
-								<th>product</th>
-								<th>grade</th>
-								<th>quantity</th></tr>
-	        			<% 
-	        			try{	
-							if(con == null)
-							{
-								System.out.println("Connection establish failed");
-							}
-							statement = con.createStatement();
-							lot+=resultSet.getString("lotnumber");
-							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
-							System.out.println(sql5);		
-							resultSet1 = statement.executeQuery(sql5);
-							
-							while(resultSet1.next()){
-								
-						%>
-							<br/>
-								<tr>
-								<td><%= resultSet1.getString("lotnumber")%></td>
-								<td><%= resultSet1.getString("produce")%> </td>
-								<td><%= resultSet1.getString("kindofpro")%></td>
-								<td> <%=resultSet1.getString("qualitygrade")%></td>
-								<td><%= resultSet1.getString("quantity")%></td>
-								
-							<% 	
-							}
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						%>
-						</table>
-				</div>
-				</td><td></td><td></td><td></td><td><input type="button" value="Accept all">
-				</td><td><input type="button" value="Reject all"></td>
-				<td><h3>Time progress:</h3><progress value="70" max="100" >70%</progress></td><div></tr>
-				<% 
-	        				lot+=resultSet.getString("lotnumber");
 	        			
-	        				
-	        				
-	        				
-	        				
-	        				
-	        		}
-	        	}
-	        	
-					
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    	}
+				</td><td></td><td><%=resultSet.getString("quantity") %></td><td></td><td><input type="button" value="Accept">
+				</td><td><input type="button" value="Reject "></td>
+				<td><h3>Time progress:</h3><progress value="70" max="100" >70%</progress></td><div></tr>
+			<%
+		}
+	}
+	catch(SQLException e)
+	{
+		e.printStackTrace();	
+	}
 %>
-	        </table>
-	        
-	         <!-- for dispaly the bid details -->
-	        <br/><br/>
-		     <table border="1">
-			<tr>
-				<th colspan="3">Bid Details</th>
-				<th colspan='3' cellpading="50"></th>
-			</tr>
-			<tr>
-				<th>Quantity</th>
-				<th>Bid</th>
-				<th></th>
-				<th cellpadding="10"></th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			
-			
-			
-		</table>
+	       
 	</form>
 						
 </body>

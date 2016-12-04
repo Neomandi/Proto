@@ -190,11 +190,12 @@ li a:hover:not(.active) {
 </table>
 <br/><table  width="100%" height="50%" border="2" bgcolor="ADFF2F">
 								<tr>
-								<th>lotnumber</th>		
-								<th>produce</th>
-								<th>product</th>
-								<th>grade</th>
-								<th>quantity</th></tr>
+								<h2><b>
+								<th>Lotnumber</th>		
+								<th>Produce</th>
+								<th>Product</th>
+								<th>Grade</th>
+								<th>Quantity</th></b></h2></tr>
 <%
 //fetching lotdetails
 
