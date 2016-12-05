@@ -25,6 +25,18 @@ public class ControllerServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    static int maxvol = 0;
+    
+    private static void setVal(int maxvol2) {
+		maxvol = maxvol2;
+		
+	}
+    
+    public static int getVal()
+    {
+    	return maxvol;
+    }
+	
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{
 		
@@ -37,6 +49,10 @@ public class ControllerServlet extends HttpServlet {
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
+		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
+		
+		ControllerServlet.setVal(atbean.getMaxvol()); 
+		
 		
 		String uri=request.getRequestURI();
 		
@@ -414,8 +430,34 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		}
+		
+		if(uri.contains("ActionTrail"))
+		{
+			Model m = new Model();
+			String msg = m.actionTrail(atbean);
+			if(msg.equals("SUCCESS"))
+			{
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("AuctionTrailPage.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				//
+			}
+		}
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		

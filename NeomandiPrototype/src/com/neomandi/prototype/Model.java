@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -540,6 +541,7 @@ public class Model {
 			else
 			{
 				con.setAutoCommit(false);
+				
 				ps =con.prepareStatement("select * from productentry where lotnumber = ?");
 				ps.setString(1, lotnumber);
 				ps.execute();
@@ -592,6 +594,120 @@ public class Model {
 			JDBCHelper.Close(con);
 		}
 		return "SUCCESS "+produce;
+	}
+
+	public String actionTrail(ActionTrailBean atbean) {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		Statement stmt = null;
+		String msg = "";
+
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				return msg + "Connection not established.";
+			}
+			else
+			{			
+				con.setAutoCommit(false);
+				
+				String sql = "TRUNCATE biddingdata";
+				stmt = con.createStatement();
+				System.out.println("Truncate: "+stmt.executeUpdate(sql));
+				
+				ps = con.prepareStatement("insert into biddingdata values(?,?,?,?,?,?)");
+				
+				ps.setString(1, "T1");
+				ps.setInt(2, atbean.getV1());
+				ps.setInt(3, atbean.getB1());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv1());
+				ps.setInt(6, atbean.getBb1());
+				ps.addBatch();
+				
+				ps.setString(1, "T2");
+				ps.setInt(2, atbean.getV2());
+				ps.setInt(3, atbean.getB2());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv2());
+				ps.setInt(6, atbean.getBb2());
+				ps.addBatch();
+				
+				ps.setString(1, "T3");
+				ps.setInt(2, atbean.getV3());
+				ps.setInt(3, atbean.getB3());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv3());
+				ps.setInt(6, atbean.getBb3());
+				ps.addBatch();
+				
+				ps.setString(1, "T4");
+				ps.setInt(2, atbean.getV4());
+				ps.setInt(3, atbean.getB4());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv4());
+				ps.setInt(6, atbean.getBb4());
+				ps.addBatch();
+				
+				ps.setString(1, "T5");
+				ps.setInt(2, atbean.getV5());
+				ps.setInt(3, atbean.getB5());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv5());
+				ps.setInt(6, atbean.getBb5());
+				ps.addBatch();
+				
+				ps.setString(1, "T6");
+				ps.setInt(2, atbean.getV6());
+				ps.setInt(3, atbean.getB6());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv6());
+				ps.setInt(6, atbean.getBb6());
+				ps.addBatch();
+				
+				ps.setString(1, "T7");
+				ps.setInt(2, atbean.getV7());
+				ps.setInt(3, atbean.getB7());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv7());
+				ps.setInt(6, atbean.getBb7());
+				ps.addBatch();
+				
+				ps.setString(1, "T8");
+				ps.setInt(2, atbean.getV8());
+				ps.setInt(3, atbean.getB8());
+				ps.setString(4, null);
+				ps.setInt(5, atbean.getAv8());
+				ps.setInt(6, atbean.getBb8());
+				ps.addBatch();
+				
+				System.out.println(ps.executeBatch());
+				
+				con.commit();
+			}
+			return "SUCCESS";
+		}
+		catch(SQLException e)
+		{
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
+		return msg;
 	}
 	
 }
