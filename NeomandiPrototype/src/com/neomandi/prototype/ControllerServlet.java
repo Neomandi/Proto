@@ -140,6 +140,7 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("FarmerLogin"))
 		{
 			String name=flbn.getFname();
+			String pass=flbn.getFpwd();
 			Model m = new Model();
 			String msg = m.farmerLogin(flbn);
 			if(msg.equals("SUCCESS"))
@@ -148,11 +149,12 @@ public class ControllerServlet extends HttpServlet {
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
-				HttpSession hc=request.getSession();
-				hc.setAttribute("date", date);
-				hc.setAttribute("time",date2);
-				hc.setAttribute("name", name);
-				rd=request.getRequestDispatcher("FarmerPage.jsp");
+				HttpSession hs=request.getSession();
+				hs.setAttribute("date", date);
+				hs.setAttribute("time",date2);
+				hs.setAttribute("name", name);
+				hs.setAttribute("pass",pass);
+				rd=request.getRequestDispatcher("FarmerMaster.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -182,6 +184,30 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		}						
+		//farmer logout
+		if(uri.contains("Logout"))
+		{
+			HttpSession hc=request.getSession(false);
+			if(hc!=null)
+			{
+				hc.removeAttribute("flbean");
+				hc.invalidate();				
+			}
+/*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
+			 request.setAttribute("logout", msg);*/
+			 rd=request.getRequestDispatcher("Login.html");	
+			 try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 		
 		
 		//Employee Login

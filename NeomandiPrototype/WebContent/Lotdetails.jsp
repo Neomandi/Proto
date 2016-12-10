@@ -133,23 +133,19 @@ li a:hover:not(.active) {
 
 </head>
 <body>
+<%@ include file="Fribbon.jsp" %><br><br>
+
 <ul>
-   <li><a  href="FarmerPage2.jsp">Auction</a></li>
-  <li><a href="Lotdetails.jsp">My Lots</a></li>
+   <li><a href="FarmerMaster.jsp" >Auction</a></li>
+  <li><a class="active" href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+	<li> <a  href ="Logout.do">Logout</a></li>
   </ul>
+
 <%
-	String farmerid = request.getParameter("farmerid");
-	String lotnum = request.getParameter("lotnum");
-	String marketcode = request.getParameter("marketcode");
-	String kproduce = request.getParameter("kproduce");
-	String produce = request.getParameter("produce");
-	String quality = request.getParameter("quality");
-	String qunatity = request.getParameter("photo");
-	//String pass= request.getParameter("fpwd");
 	
-	 HttpSession session1=request.getSession(false);  
-     String pass=(String)session1.getAttribute("pass");  
+	 HttpSession hs1=request.getSession(false);  
+     String pass=(String)hs1.getAttribute("pass");  
 	 
 	 Connection con = null;
      Statement statement = null;
@@ -229,6 +225,6 @@ li a:hover:not(.active) {
 						}
 						%>
 						</table>
-
+						
 </body>
 </html>
