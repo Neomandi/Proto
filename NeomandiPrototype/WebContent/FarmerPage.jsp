@@ -9,22 +9,44 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1  import java.io.IOException;
-">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1  import java.io.IOException;">
 <title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="script.js"></script>
+<script>
+var start = new Date();
+var maxTime = 60000;
+var timeoutVal = Math.floor(maxTime/100);
+animateUpdate();
+
+function updateProgress(percentage) {
+    $('#pbar_innerdiv').css("width", percentage + "%");
+    $('#pbar_innertext').text(percentage + "%");
+}
+
+function animateUpdate() {
+    var now = new Date();
+    var timeDiff = now.getTime() - start.getTime();
+    var perc = Math.round((timeDiff/maxTime)*100);
+    console.log(perc);
+      if (perc <= 100) {
+       updateProgress(perc);
+       setTimeout(animateUpdate, timeoutVal);
+      }
+}</script>
+
+
+
+
 <style>
- div {
-	 background-color:blue;
-	 padding: 20px;
-	 display: none;
-	}
-	 	    	    
-	span:hover + div {
-	display: block;
-	}
+
 </style>
 </head>
-<body> <%@ include file="Ribbon.jsp" %><br><br>
+<body> 
+<%@ include file="Ribbon.jsp" %><br>
+<font color="#FF1493" size="9">
+<u>Farmer Page</u>
+</font>
 
 	<%
 	String farmerid = request.getParameter("farmerid");
@@ -34,38 +56,39 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 	String produce = request.getParameter("produce");
 	String quality = request.getParameter("quality");
 	String qunatity = request.getParameter("photo");
-	String pass= request.getParameter("fpwd");
-	session.setAttribute("password",pass);
-	//String pass="Farmer1";
-	System.out.println("password="+pass);
-	 
+	 String pass=request.getParameter("fpwd");  
+     
+       
+     HttpSession session1=request.getSession();  
+     session1.setAttribute("pass",pass);  
+
 	 Connection con = null;
      Statement statement = null;
      ResultSet resultSet = null;    
      ResultSet resultSet1 = null;    
      con = JDBCHelper.getConnection();
-	%>
-	<h1><font color="orange">
-	     <u>Farmer Page</u>
-	 </h1></font>
-	 <%
+	
+	
 	 
+	//display aadhar number 
      String s="";
+	 String name="";
      try{	
      	if(con == null)
      	{
      		System.out.println("Connection establish failed");
      	}
      	statement = con.createStatement();
-     	String sql = "select aadharnum from freg where pass='"+pass+"' ";
-     	System.out.println(sql);
+     	String sql = "select aadharnum,name from freg where pass='"+pass+"' ";
+     	//System.out.println(sql);
      	resultSet = statement.executeQuery(sql);
     	while(resultSet.next()){
      	%>
      	<table><tr><th><font color="blue" size="5">Aadhar number</font></th></tr>
      	<tr><td background="pink"><%= resultSet.getString("aadharnum")%></td></tr>
      	<% s+=resultSet.getString("aadharnum");
-		        	System.out.println("aadhar number="+s); %>
+     	 name+=resultSet.getString("name");
+		        //	System.out.println("aadhar number="+s); %>
 		<%
 		}
 	}
@@ -76,8 +99,18 @@ javax.servlet.http.HttpServletResponse,java.sql.SQLException"
 %>
   
 </table>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- display lotdetails -->
+<table border="1"><th><font color="#C71585" size="5">Lot number</font></th>
+	        			<th><font color="#C71585" size="5">Average price</font></th>
+	        			<th><font color="#C71585" size="5">Lot size</font></th>
+	        			<th><font color="#C71585" size="5">Quantity bid for</font></th>
+	        			<th></th>
+	        			<th></th>
+	        			<th><font color="#C71585" size="5">Time progress</font></th>
+	        			</tr>
 <%
-//fetching lotnumber and hover the button
+//fetching lotnumber 
 String lot="";
 try{	
 	if(con == null)
@@ -85,142 +118,79 @@ try{
 		System.out.println("Connection establish failed");
 	}
 	statement = con.createStatement();
-	String sql = "select lotnumber from productentry where farmerid='"+s+"' ";
-	System.out.println(sql);
+	String sql = "select lotnumber,quantity from productentry where farmerid='"+s+"' ";
+	//System.out.println(sql);
 	resultSet = statement.executeQuery(sql);
-	if(resultSet!=null){
+
     	while(resultSet.next()){
 %>
-	<table border="1"><th><font color="green" size="5">Lot number</font></th>
-	        			<th><font color="green" size="5">Average price</font></th>
-	        			<th><font color="green" size="5">Lot size</font></th>
-	        			<th><font color="green" size="5">Quantity bid for</font></th>
-	        			<th></th>
-	        			<th></th>
-	        			<th></th>
-	        			</tr>
+						
 	     				<tr><td background="pink"><span><form action=" " >
 	     				<input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>></form></span>
-	        			<div id ="div1">
-	        			<% 
-	        			try{	
-							if(con == null)
-							{
-								System.out.println("Connection establish failed");
-							}
-							statement = con.createStatement();
-							lot+=resultSet.getString("lotnumber");
-							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where lotnumber='"+lot+"'";
-							System.out.println(sql5);		
-							resultSet1 = statement.executeQuery(sql5);
-							
-							while(resultSet1.next()){
-								
-						%>
-							<br/><table border="2" bgcolor="lightgreen">
-								<tr>
-								<th>lotnumber</th>		
-								<th>produce</th>
-								<th>product</th>
-								<th>grade</th>
-								<th>quantity</th></tr>
-								<tr>
-								<td><%= resultSet1.getString("lotnumber")%></td>
-								<td><%= resultSet1.getString("produce")%> </td>
-								<td><%= resultSet1.getString("kindofpro")%></td>
-								<td> <%=resultSet1.getString("qualitygrade")%></td>
-								<td><%= resultSet1.getString("quantity")%></td>
-								
-							<% 	
-							}
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						%>
-						</table>
-				</div>
-				</td><td></td><td></td><td></td><td><input type="button" value="Accept all">
-				</td><td><input type="button" value="Reject all"></td>
-				<td><h3>Time progress:</h3><progress value="70" max="100" >70%</progress></td><div></tr>
-				<% 
-	        				//lot+=resultSet.getString("lotnumber");
 	        			
-	        				
-	        				
-	        				
-	        				
-	        				
-	        		}
-	        	}
-	        	
-					
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    	}
+				</td><td></td><td><%=resultSet.getString("quantity") %></td><td></td><td><input type="button" value="Accept ">
+				</td><td><input type="button" value="Reject"></td>
+				<td><div id="pbar_outerdiv" style="width: 140px; height: 18px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
+		<div id="pbar_innerdiv" style="background-color: lightgreen; z-index: 2; height: 100%; width: 0%;"></div>
+		<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
+		</div></td></tr>
+			<%
+		}
+	}
+	catch(SQLException e)
+	{
+		e.printStackTrace();	
+	}
 %>
-	        </table>
-	        
-	         <!-- for dispaly the bid details -->
-	        <br/><br/>
-		     <table border="1">
-			<tr>
-				<th colspan="3">Bid Details</th>
-				<th colspan='3' cellpading="50"></th>
-			</tr>
-			<tr>
-				<th>Quantity</th>
-				<th>Bid</th>
-				<th></th>
-				<th cellpadding="10"></th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "></td>
-			</tr>
-			<tr>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="button" value="Accept"/></td>
-				<td><input type="button" value="Reject"/></td>
-				<td><input type="button" value="Accept till here "/></td>
-				<td><input type="button" value="Reject all below "/></td>
-			</tr>
-			
-			
-			
-		</table>
+	  </table>  
+	  
+	  
+	  <!-- ---------------------------------------------------------------------------------------------- -->  
+	   <%
+//fetching date and time
+String date="";
+String time="";
+String slot="";
+try{	
+	if(con == null)
+	{
+		System.out.println("Connection establish failed");
+	}
+	statement = con.createStatement();
+	String sql = "select Date,Time,Slots from productentry where farmerid='"+s+"' ";
+	//System.out.println(sql);
+	resultSet = statement.executeQuery(sql);
+
+    	while(resultSet.next()){
+
+			%>
+			<font size="5" color="#9785f"></font>
+			  <script type="text/javascript">
+       window.onload();
+    </script>
+			<% 
+			date+=resultSet.getString("Date");
+			time+=resultSet.getString("Time");
+			slot+=resultSet.getString("Slots");
+			System.out.println("date="+date);
+			System.out.println("time="+time);
+			System.out.println("slot="+slot);
+			 HttpSession session2=request.getSession();  
+		     session2.setAttribute("time",time);  
+		     session2.setAttribute("slot",slot);  
+		     session2.setAttribute("date",date);  
+		}
+	}
+	catch(SQLException e)
+	{
+		e.printStackTrace();	
+	}
+%>
+	
 	</form>
-						
+	<br><br>	
+	<form action="CountDown.jsp" method="post">
+	<font color="violet" ><h3>click to see your auction schedule</h3><input type="submit" value="CLICK"/></font>
+	</form>				
 </body>
 </html>

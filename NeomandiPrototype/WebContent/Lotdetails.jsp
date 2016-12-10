@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import=" com.neomandi.prototype.JDBCHelper, java.io.PrintWriter, java.sql.Connection, java.sql.ResultSet,java.sql.Statement,
    javax.servlet.ServletException,
@@ -6,15 +5,14 @@ javax.servlet.http.HttpServlet,
  javax.servlet.http.HttpServletRequest,
 javax.servlet.http.HttpServletResponse,java.sql.SQLException"
     %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1  import java.io.IOException;
-">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style>
-
-	table
+table
 {
 	border-collapse: collapse;
 }
@@ -132,15 +130,15 @@ li a:hover:not(.active) {
    top: 0px;
 }
 </style>
+
 </head>
 <body>
- <%@ include file="Ribbon.jsp" %><br>
 <ul>
-   <li><a class="active" href="FarmerPage2.jsp">Auction</a></li>
+   <li><a  href="FarmerPage2.jsp">Auction</a></li>
   <li><a href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
   </ul>
-	<%
+<%
 	String farmerid = request.getParameter("farmerid");
 	String lotnum = request.getParameter("lotnum");
 	String marketcode = request.getParameter("marketcode");
@@ -148,17 +146,19 @@ li a:hover:not(.active) {
 	String produce = request.getParameter("produce");
 	String quality = request.getParameter("quality");
 	String qunatity = request.getParameter("photo");
+	//String pass= request.getParameter("fpwd");
 	
 	 HttpSession session1=request.getSession(false);  
-     String pass=(String)session1.getAttribute("pass"); 
+     String pass=(String)session1.getAttribute("pass");  
+	 
 	 Connection con = null;
      Statement statement = null;
      ResultSet resultSet = null;    
-     ResultSet resultSet1 = null;   
+    
      con = JDBCHelper.getConnection();
 	%>
-	<h1><font color="orange">
-	     <u>Farmer Page</u>
+	<h1><font color="#FF1493">
+	     <u>Lot Details</u>
 	 </h1></font>
 	 <%
 	 
@@ -174,8 +174,8 @@ li a:hover:not(.active) {
      	resultSet = statement.executeQuery(sql);
     	while(resultSet.next()){
      	%>
-     	<table><tr><th><font color="blue" size="5">Aadhar number</font></th></tr>
-     	<tr><td background="pink"><%= resultSet.getString("aadharnum")%></td></tr>
+     	<table><tr><th><font color="blue" size="5"></font></th></tr>
+     	<!-- <tr><td background="pink"><%= resultSet.getString("aadharnum")%></td></tr>  -->
      	<% s+=resultSet.getString("aadharnum");
 		        	System.out.println("aadhar number="+s); %>
 		<%
@@ -188,46 +188,47 @@ li a:hover:not(.active) {
 %>
   
 </table>
-<table border="1"><th><font color="green" size="5">Lot number</font></th>
-	        			<th><font color="green" size="5">Average price</font></th>
-	        			<th><font color="green" size="5">Lot size</font></th>
-	        			<th><font color="green" size="5">Quantity bid for:</font></th>
-	        			<th></th>
-	        			<th></th>
-	        			<th></th>
-	        			</tr>
+<br/><table  width="100%" height="50%" border="2" bgcolor="ADFF2F">
+								<tr>
+								<h2><b>
+								<th>Lotnumber</th>		
+								<th>Produce</th>
+								<th>Product</th>
+								<th>Grade</th>
+								<th>Quantity</th></b></h2></tr>
 <%
-//fetching lotnumber and hover the button
-String lot="";
-try{	
-	if(con == null)
-	{
-		System.out.println("Connection establish failed");
-	}
-	statement = con.createStatement();
-	String sql = "select lotnumber,quantity from productentry where farmerid='"+s+"' ";
-	System.out.println(sql);
-	resultSet = statement.executeQuery(sql);
+//fetching lotdetails
 
-    	while(resultSet.next()){
-%>
-	
-	     				<tr><td background="pink"><span><form action=" " >
-	     				<input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>></form></span>
-	        			
-				</td><td></td><td><%=resultSet.getString("quantity") %></td><td></td><td><input type="button" value="Accept">
-				</td><td><input type="button" value="Reject "></td>
-				<td><h3>Time progress:</h3><progress value="70" max="100" >70%</progress></td><div></tr>
-			<%
-		}
-	}
-	catch(SQLException e)
-	{
-		e.printStackTrace();	
-	}
-%>
-	       
-	</form>
-						
+	        			try{	
+							if(con == null)
+							{
+								System.out.println("Connection establish failed");
+							}
+							statement = con.createStatement();
+							
+							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
+							System.out.println(sql5);		
+							resultSet = statement.executeQuery(sql5);
+							
+							while(resultSet.next()){
+								
+						%>
+							
+								<tr>
+								<td><%= resultSet.getString("lotnumber")%></td>
+								<td><%= resultSet.getString("produce")%> </td>
+								<td><%= resultSet.getString("kindofpro")%></td>
+								<td> <%=resultSet.getString("qualitygrade")%></td>
+								<td><%= resultSet.getString("quantity")%></td>
+								
+							<% 	
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						%>
+						</table>
+
 </body>
 </html>
