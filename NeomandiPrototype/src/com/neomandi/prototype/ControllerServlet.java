@@ -51,7 +51,7 @@ public class ControllerServlet extends HttpServlet {
 		ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
 		
-		ControllerServlet.setVal(atbean.getMaxvol()); 
+		//ControllerServlet.setVal(atbean.getMaxvol()); 
 		
 		
 		String uri=request.getRequestURI();

@@ -56,6 +56,10 @@ input[type = text]
 	top: 75px;
 	left: 500px;
 }
+a
+{
+	text-decoration: none;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -122,7 +126,9 @@ input[type = text]
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
 							out.print(msg);
-									%></b></p>
+									%></b></p><br/>
+									
+	<a href = "EmployeeLogin.jsp"><b>Back</b></a>
 </form>
 </center>
 <script>
