@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*" %>
+    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*" %>
 <html><head>
-<%
-Connection con = null;
-Statement statement = null;
-ResultSet resultSet = null;    
-
-con = JDBCHelper.getConnection();
-%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="script.js"></script>
 <script>
@@ -82,12 +75,31 @@ li a:hover:not(.active) {
 	text-decoration: none;
 	padding: 10px 20px;
 }
+
+a.more {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 110px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
+table
+{
+border-collapse: collapse;
+
+}
 </style></head>
 <body>
  <%@ include file="Ribbon.jsp" %><br><br>
 <ul><li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a class="active"  href="Retreive.jsp">Trade/Auction</a></li>
+  <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href="TradeConsignment.jsp">Track Consignment</a></li></ul><br><br><br>
 <nav>
@@ -99,13 +111,11 @@ li a:hover:not(.active) {
 		<li><a href = "logout">Logout</a></li>
 	</ul>
 </nav><br/>
-
 <h2 align="center"><font><strong>Trade List</strong></font></h2>
 <form onsubmit = "return false" oninput = "lotcost.value = price.value * 1000; commission.value = ((5*price.value))*10; marketcess.value = price.value*10; finalcost.value = parseInt(lotcost.value) + parseInt(commission.value) + parseInt(marketcess.value) + parseInt(transport.value);">
 <table align="center" cellpadding="5" cellspacing="5" border="1">
 <tr></tr>
-
-<tr bgcolor="#A52A2A">
+<tr bgcolor="yellow">
 		<td><b>Lot Number</b></td>
 		<td><b>Lot Cost</b></td>
 		<td><b>Transportation Cost</b></td>
@@ -121,60 +131,39 @@ li a:hover:not(.active) {
 		<td><b>Progress</b></td>
 		<td></td>
 	</tr>   
-
-<%
-	try{	
-		if(con == null)
-		{
-			System.out.println("Connection establish failed");
-		}
-		statement = con.createStatement();
-		String sql = "SELECT * FROM tradelist";
-		resultSet = statement.executeQuery(sql);
-		while(resultSet.next()){ 
-	%>
-	
-	<tr bgcolor="#DEB887">
-			
-			<td><%= resultSet.getString("lotnum") %></td> <!-- Lot Num  -->
+<%			List<TradeListBean> al=(List<TradeListBean>)request.getAttribute("msg");
+			for(Object o:al)
+			{
+				TradeListBean tlb=(TradeListBean)o;
+%><tr bgcolor="#DEB887">
+			<td><% out.println(tlb.getLotnum()); %></td>
 			<td><output name = "lotcost" id = "lotcost"></output></td> <!-- Lot Cost -->
 			<td>3000</td> <!-- Transportation Charges -->
 			<td><output name = "commission" id = "commission"></output></td> <!-- Commission Charges -->
 			<td><output name = "marketcess" id = "marketcess"></output></td> <!-- Market Cess -->
-			<td><%= resultSet.getString("marketcode") %></td> <!-- Market Code -->
-			<td><%= resultSet.getString("produce") %></td> <!-- Produce -->
-			<td><%= resultSet.getString("qualitygrade") %></td> <!-- Grade -->
-			<td><input type = "number" id = '<%= resultSet.getString("lotnum") %>' name = "price" readonly/></td> <!-- Best Bid -->
-			<td> <input type="button" onclick = "fun<%= resultSet.getString("lotnum") %>()" value="Increment Price" /><script>
-				function fun<%= resultSet.getString("lotnum") %>()
+			<td><%= tlb.getMarketcode() %></td> <!-- Market Code -->
+			<td><%= tlb.getProduce() %></td>  
+			<td><%= tlb.getQualitygrade() %></td> <!-- Grade -->
+			<td><input type = "number" id = '<%= tlb.getLotnum() %>' name = "price" readonly/></td> <!-- Best Bid -->
+			<td> <input type="button" onclick = "fun<%= tlb.getLotnum() %>()" value="Increment Price" /></form>
+			<script>
+				function fun<%=tlb.getLotnum() %>()
 				{
-				    var value = parseInt(document.getElementById('<%= resultSet.getString("lotnum") %>').value, 10);
+				    var value = parseInt(document.getElementById('<%= tlb.getLotnum()%>').value, 10);
 				    value = isNaN(value) ? 0 : value;
 				    value++;
-				    document.getElementById('<%= resultSet.getString("lotnum") %>').value = value;
+				    document.getElementById('<%= tlb.getLotnum() %>').value = value;
 				}
-			</script></td>
-			<td><%= resultSet.getString("quantity") %></td> <!-- Quantity -->
+			</script>  </td>
+			<td><%= tlb.getQuantity() %></td> <!-- Quantity -->
 			<td><output name = "finalcost" id = "finalcost"></output></td> <!-- My Final Cost -->
 			<td><div id="pbar_outerdiv" style="width: 75px; height: 18px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
 		<div id="pbar_innerdiv" style="background-color: lightblue; z-index: 2; height: 100%; width: 0%;"></div>
 		<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
 		</div></td>
-			<td><input type = 'submit' value = 'Remove'/></td>
-			
-			
-			
+			<td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>"  class="more">REMOVE</a></td>
 		</tr>
-<%
-		}
-	}
-	catch(SQLException e)
-	{
-		e.printStackTrace();	
-	}
-%>
-
- </table>
-</form>  
+<%}%>
+ </table> 
 </body>
 </html>

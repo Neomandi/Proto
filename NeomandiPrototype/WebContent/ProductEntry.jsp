@@ -121,8 +121,7 @@ input[type = text]
 	
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
-							out.print(msg);
-									%></b></p>
+							out.print(msg);	%></b></p>
 </form>
 </center>
 <script>
@@ -141,11 +140,9 @@ function readURL(input) {
                 .width(250)
                 .height(250);
         };
-
         reader.readAsDataURL(input.files[0]);
     }
 }
 </script>
-<!--  <div id = "footer"></div>  -->
 </body>
 </html>

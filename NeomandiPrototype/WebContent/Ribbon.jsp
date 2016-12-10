@@ -51,8 +51,7 @@ html {
 	}
 	
 #content:before {
-		position: "left";
-
+      position: "left";
 	  left: 0;
 	  border-width: .10em 0 0 .10em;
 	  background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
@@ -75,8 +74,22 @@ html {
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"  >welcome <% HttpSession hc=request.getSession(false); out.println((String)hc.getAttribute("name")); %> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
-        <%out.println(hc.getAttribute("date"));%> &nbsp &nbsp at  <% out.println((String)hc.getAttribute("time"));%>
+		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
+		<% 
+			HttpSession tlog=request.getSession(false);
+			if((String)tlog.getAttribute("name")==null)
+			{ 				
+				 out.println("<script type=\"text/javascript\">");
+			  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+			  	 out.println("location='TraderLogin.jsp';");
+			 	 out.println("</script>");
+			}	
+			else
+				 out.println((String)tlog.getAttribute("name")); 
+				%> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
+			
+			
+        <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp at  <% out.println((String)tlog.getAttribute("time"));%>
          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <!--  <a id  = 'one' href = "">Logout</a>  -->
 		</font>
 		</span>

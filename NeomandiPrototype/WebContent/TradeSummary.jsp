@@ -97,7 +97,7 @@ li a:hover:not(.active) {
 <%@ include file="Ribbon.jsp" %><br><br>
 <ul><li><a  href="ProductSearch.jsp">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href=" TradeorAuction.jsp">Trade/Auction</a></li>
+  <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href="TrackConsignment.jsp">Track Consignment</a></li></ul>
 
@@ -111,7 +111,7 @@ li a:hover:not(.active) {
  To:    <input type = "date" id = "to"/><br/>
 
 <br/>
-<input type = "submit" value = "Get Summarry"/>
+<input type = "submit" value = "Get Summary"/>
 <br/><br/>
 
 <table id = 'mytable' border>

@@ -107,6 +107,8 @@ li a:hover:not(.active) {
    top: 0px;
 }*/
 </style>
+
+
 </head>
 <body>
 <%@ include file="Ribbon.jsp" %><br><br>
@@ -118,11 +120,13 @@ li a:hover:not(.active) {
   </div> 
 </div>
   <br>-->
- <ul><li><a class="active" href="ProductSearch.jsp">Product Search</a></li>
+ <ul><li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href="TradeorAuction.jsp">Trade/Auction</a></li>
+  <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href="TradeConsignment.jsp">Track Consignment</a></li>
   </ul>
+  <br><br>
+
 </body>
 </html>
