@@ -1,6 +1,7 @@
 package com.neomandi.prototype;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -199,6 +200,11 @@ public class ControllerServlet extends HttpServlet {
 				hc.setAttribute("date", date);
 				hc.setAttribute("time",date2);
 				hc.setAttribute("name", name);
+				
+				HttpSession elog = request.getSession();
+				elog.setAttribute("name", elbn.getEname());
+				elog.setAttribute("pwd", elbn.getEpwd());
+				
 				rd=request.getRequestDispatcher("ProductEntry.jsp");
 				try 
 				{
@@ -835,6 +841,41 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				//
+			}
+		}
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(uri.contains("ELogout"))
+		{
+			HttpSession elog = request.getSession(false);
+			if(elog!=null)
+			{ 
+				elog.invalidate();
+				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
+				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
 			}
 		}
 	}

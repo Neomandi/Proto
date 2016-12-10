@@ -56,7 +56,7 @@ input[type = text]
 	top: 75px;
 	left: 500px;
 }
-a
+.bc
 {
 	text-decoration: none;
 }
@@ -64,7 +64,7 @@ a
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
- <%@ include file="Ribbon.jsp" %><br><br>
+ <%@ include file="ERibbon.jsp" %><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
 <h2>Market Yard Window: Product Entry Screen</h2>
@@ -125,14 +125,11 @@ a
 	
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
-<<<<<<< HEAD
 							out.print(msg);
 									%></b></p><br/>
 									
-	<a href = "EmployeeLogin.jsp"><b>Back</b></a>
-=======
-							out.print(msg);	%></b></p>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+	<a class = 'bc' href = "EmployeeLogin.jsp"><b>Back</b></a>
+
 </form>
 </center>
 <script>
