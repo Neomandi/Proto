@@ -125,10 +125,14 @@ a
 	
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
+<<<<<<< HEAD
 							out.print(msg);
 									%></b></p><br/>
 									
 	<a href = "EmployeeLogin.jsp"><b>Back</b></a>
+=======
+							out.print(msg);	%></b></p>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 </form>
 </center>
 <script>
@@ -147,11 +151,9 @@ function readURL(input) {
                 .width(250)
                 .height(250);
         };
-
         reader.readAsDataURL(input.files[0]);
     }
 }
 </script>
-<!--  <div id = "footer"></div>  -->
 </body>
 </html>

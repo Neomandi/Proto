@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="java.util.*, com.neomandi.prototype.ProductSearchResultBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,14 +47,58 @@ li a:hover:not(.active) {
 	text-decoration: none;
 	padding: 10px 20px;
 }
+
+a.moree {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 110px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
+a.more {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 60px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
 </style>
 </head>
 <body>
 <%@ include file="Ribbon.jsp" %>
+<%String lotnum="null";
+String msg1=(String)request.getAttribute("notlogged");
+String msg2=(String)request.getAttribute("productsearchresult");
+String msg3=(String)request.getAttribute("errmsg");
+
+if(msg1!=null)
+{
+	 out.println("<script type=\"text/javascript\">");
+  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+  	 out.println("location='TraderLogin.jsp';");
+ 	 out.println("</script>");
+}
+else
+{
+	HttpSession psr=request.getSession(false);
+	List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+ %>
  <br><br>
-<ul><li><a class="active" href="Search.html">Product Search</a></li>
+<ul><li><a class="active" href="ProductSearch.do">Product Search</a></li>
   <li><a  href="TraderBlock.jsp">Block Funds</a></li>
-  <li><a href="TradeorAuction.jsp">Trade/Auction</a></li>
+  <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href="TradeConsignment.jsp">Track Consignment</a></li></ul>
 
@@ -62,7 +108,7 @@ li a:hover:not(.active) {
 		<tr>
 			<th>Kind of Produce</th>
 			<td><select name = "kproduce" id = "kproduce">
-					<option selected value = "base">Please Select</option>
+					<option selected value = "base">Select Produce</option> 
 					<option value = "Vegetable">VEGETABLES</option>
 					<option value = "FRUITS">FRUITS</option>
 					<option value = "GRAINS">GRAINS</option>
@@ -71,13 +117,13 @@ li a:hover:not(.active) {
 		</tr>
 		<tr>
 			<th>Produce</th>
-			<td><select name = "produce" id = "produce">
-					<option>Please choose from above</option>
+			<td><select name = "produce" id = "produce" >
+					<option>Choose Produce first</option>
 				</select>
-		</tr>
+		</tr>		
 		<tr>
 			<th>Quality Grade</th>
-			<td><select name = "quality" id = "quality">
+			<td><select name = "quality" id = "quality" >
 					<option selected>Please Select</option>
 					<option value = "A">A</option>
 					<option value = "B">B</option>
@@ -131,10 +177,9 @@ li a:hover:not(.active) {
 		</tr>
 	</table>
 	<br/>
-	<input type = "submit" value = "Submit"/>
-	<input type = "reset" value = "Reset"/>
+	<input type = "submit" value = "SEARCH" style="float: left;"/>
 </form>
-
+<br><br><br>
 <script>
 $("#kproduce").change(function() {
 	   $("#produce").load("ProduceData/" + $(this).val() + ".txt");
@@ -161,5 +206,45 @@ function populate(s1, s2)
 	}
 }
 </script>
+<%
+  if(msg2!=null||msg3!=null)
+  {
+	%>
+<p align = "right"></p>
+<table align="center" border>
+
+						<tr>
+						<th>Lot Number</th>
+						<th>Market Code</th>
+						<th>Produce</th>
+						<th>Quality Grade</th>
+						<th>Quantity</th>
+						<th></th>
+						</tr>
+						
+					<%
+						for(Object o:l)
+						{						
+							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
+							lotnum=psr1.getLotnumber();							
+					%>
+						<tr>
+						<th><% out.println(psr1.getLotnumber()); %></th>
+						<th><% out.println(psr1.getMarketcode()); %></th>
+						<th><% out.println(psr1.getProduce()); %></th>
+						<th><% out.println(psr1.getQualitygrade()); %></th>
+						<th><% out.println(psr1.getQuantity());%></th>
+						<td><a href ="AddTrade.do?s1=<%= lotnum %>" class="moree">Add to trade List</a></td>
+						</tr>
+					<%
+						}
+					%>					
+</table>
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center" class="more"><b><% if(msg != null)
+							out.print(msg);%></b></p>
+<%}
+ else
+{}}%>
 </body>
 </html>
