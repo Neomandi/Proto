@@ -80,7 +80,7 @@ html {
 		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
 		<% 
 			HttpSession elog=request.getSession(false);
-			if((String)elog.getAttribute("name")==null)
+			if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
 			{ 				
 				 out.println("<script type=\"text/javascript\">");
 			  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
@@ -88,7 +88,9 @@ html {
 			 	 out.println("</script>");
 			}	
 			else
-				 out.println((String)elog.getAttribute("name")); 
+			{
+				 out.println((String)elog.getAttribute("name"));
+			}
 				%> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
 			
 			
@@ -97,7 +99,6 @@ html {
 		</font>
 		</span>
 	</div>
-	<a id = "one" href = "ELogout.do">Logout</a>
 	<br/>
 </body>
 </html>

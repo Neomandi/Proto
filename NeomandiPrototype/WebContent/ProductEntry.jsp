@@ -60,6 +60,15 @@ input[type = text]
 {
 	text-decoration: none;
 }
+.logout
+{
+	text-decoration: none;
+	color: red;
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	font-size: 32px;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -129,6 +138,7 @@ input[type = text]
 									%></b></p><br/>
 									
 	<a class = 'bc' href = "EmployeeLogin.jsp"><b>Back</b></a>
+	<a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
 
 </form>
 </center>

@@ -184,7 +184,8 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		}						
-		//farmer logout
+		
+		//Farmer logout
 		if(uri.contains("Logout"))
 		{
 			HttpSession hc=request.getSession(false);
@@ -195,7 +196,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 /*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
 			 request.setAttribute("logout", msg);*/
-			 rd=request.getRequestDispatcher("Login.html");	
+			 rd=request.getRequestDispatcher("FarmerLogin.jsp");	
 			 try 
 				{
 					rd.forward(request, response);			
@@ -356,7 +357,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}	
 		
-		
+		//Product Search
 		if(uri.contains("ProductSearch"))
 		{
 			System.out.println("***************************************************************************");
@@ -497,6 +498,7 @@ public class ControllerServlet extends HttpServlet {
 			}			
 		}
 		
+		//Trader Block Bank
 		if(uri.contains("traderblockbank"))
 		{
 			HttpSession tlog=request.getSession(false);
@@ -577,6 +579,7 @@ public class ControllerServlet extends HttpServlet {
 				}			
 		}
 		
+		//Trader Block Amount
 		if(uri.contains("traderblockamount"))
 		{
 			System.out.println("***************************************************************************");
@@ -651,6 +654,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//TradeorAuction
 		if(uri.contains("TradeorAuction"))
 		{
 			System.out.println("***************************************************************************");
@@ -687,7 +691,7 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
-		
+		//SubmitIncrement1
 		if(uri.contains("SubmitIncrement1"))
 		{
 			System.out.println("***************************************************************************");
@@ -745,6 +749,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//SubmitIncrement2
 		if(uri.contains("SubmitIncrement2"))
 		{
 			System.out.println("***************************************************************************");
@@ -801,6 +806,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//RemoveLotnumber
 		if(uri.contains("removelotnumber"))
 		{
 			System.out.println("***************************************************************************");
@@ -827,6 +833,7 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		//TraderLogout
 		if(uri.contains("logout"))
 		{
 			HttpSession tlog=request.getSession(false);
@@ -844,6 +851,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//AuctionTrail
 		if(uri.contains("ActionTrail"))
 		{
 			Model m = new Model();
@@ -870,26 +878,23 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		//EmployeeLogout
 		if(uri.contains("ELogout"))
 		{
+			RequestDispatcher rd1=null;
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)
 			{ 
+				elog.removeAttribute("name");
+				elog.removeAttribute("pwd");
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
-				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				rd1=request.getRequestDispatcher("EmployeeLogin.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd1.forward(request, response);	
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block
@@ -901,7 +906,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
+				return;
 			}
 		}
 	}
