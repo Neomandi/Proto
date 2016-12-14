@@ -122,7 +122,7 @@ h1
 </style>
 <body>
 <h1>Farmer Login</h1>
-<form action="FarmerLoginInt.jsp" method="get" name = "FarmerLoginform">
+<form action="FarmerLoginInt.jsp" method="post" name = "FarmerLoginform">
 	<div class="wrap">
 		<div class="avatar">
       <img src="Images/Neomandi.png">

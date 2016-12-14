@@ -130,8 +130,7 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a>
-		<li> <a  href ="Logout.do">Logout</a></li>
-		</li>
+		<li> <a  href ="FLogout.do">Logout</a></li>
 	 </ul>
 	
 	
@@ -204,7 +203,7 @@
 		    <th></th>
 		    <th></th>
 		    <th><font color="#C71585" size="5">Time progress</font></th>
-		    <th><font color="#C71585" size="5">Timer</th>
+		    <th><font color="#C71585" size="5">Timer</font></th>
 		</tr>
 		<%
 			//fetching lotnumber 

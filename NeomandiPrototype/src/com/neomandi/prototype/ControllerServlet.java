@@ -186,8 +186,9 @@ public class ControllerServlet extends HttpServlet {
 		}						
 		
 		//Farmer logout
-		if(uri.contains("Logout"))
+		if(uri.contains("FLogout"))
 		{
+			System.out.println("Inside FarmerLogout");
 			HttpSession hc=request.getSession(false);
 			if(hc!=null)
 			{
@@ -199,7 +200,8 @@ public class ControllerServlet extends HttpServlet {
 			 rd=request.getRequestDispatcher("FarmerLogin.jsp");	
 			 try 
 				{
-					rd.forward(request, response);			
+					rd.forward(request, response);	
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block
@@ -881,6 +883,7 @@ public class ControllerServlet extends HttpServlet {
 		//EmployeeLogout
 		if(uri.contains("ELogout"))
 		{
+			System.out.println("Inside Elogout");
 			RequestDispatcher rd1=null;
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)

@@ -107,7 +107,7 @@ body {
 h1
 {
 	position: absolute;
-	left: 580px;
+	left: 565px;
 	top: 40px;
 }
 #two
