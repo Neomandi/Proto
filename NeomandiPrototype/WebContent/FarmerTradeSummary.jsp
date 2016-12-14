@@ -157,13 +157,15 @@ li a:hover:not(.active) {
 </style>
 
 <body>
-
+<%@ include file="Fribbon.jsp" %><br><br>
  
 <ul>
-   <li><a  href="FarmerPage2.jsp">Auction</a></li>
-  <li><a href="Lotdetails.jsp">My Lots</a></li>
-	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+	 <li><a href="FarmerMaster.jsp">Auction</a></li>
+	<li><a href="Lotdetails.jsp">My Lots</a></li>
+	<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+	<li> <a  href ="Logout.do">Logout</a></li>
   </ul>
+ 
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 <center>
 <form action = "" method = "get">
@@ -219,6 +221,8 @@ li a:hover:not(.active) {
 <center><button id = "excel">Export to XLS</button></center>
 <br/>
 <center><button id = "word">Export to DOC</button></center>
+
+
 </body>
 </html>
 

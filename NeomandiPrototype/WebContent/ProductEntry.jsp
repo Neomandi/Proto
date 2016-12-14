@@ -56,11 +56,25 @@ input[type = text]
 	top: 75px;
 	left: 500px;
 }
+.bc
+{
+	text-decoration: none;
+}
+.logout
+{
+	text-decoration: none;
+	color: red;
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	font-size: 32px;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
- <%@ include file="TRibbon.jsp" %><br><br>
+
+ <%@ include file="ERibbon.jsp" %><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
 <h2>Market Yard Window: Product Entry Screen</h2>
@@ -121,7 +135,12 @@ input[type = text]
 	
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
-							out.print(msg);	%></b></p>
+							out.print(msg);
+									%></b></p><br/>
+									
+	<a class = 'bc' href = "EmployeeLogin.jsp"><b>Back</b></a>
+	<a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
+
 </form>
 </center>
 <script>
