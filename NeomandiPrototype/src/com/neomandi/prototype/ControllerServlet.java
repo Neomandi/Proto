@@ -660,8 +660,12 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			String name=null;
+			String pwd=null;
 			try
 			{
+				pwd=tlbn.getTpwd();
+				name=tlbn.getTname();
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -676,12 +680,14 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		
-			String name=tlbn.getTname();
-			String pwd=tlbn.getTpwd();
+
+
 			Model m=new Model();
-			List<TradeListBean> al=m.tradeOrAuction(name,pwd);
+			Mynewclass mc=m.tradeOrAuction(name,pwd);
 			HttpSession traderlistbean=request.getSession();
-			traderlistbean.setAttribute("tlb",al);
+			traderlistbean.setAttribute("tlb",mc.getAl());
+			HttpSession MyFinalCost=request.getSession(true);
+			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
 			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
 				rd.forward(request, response);
@@ -734,7 +740,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				@SuppressWarnings("rawtypes")
 				List al=mc.getAl();
-				HttpSession MyFinalCost=request.getSession(true);
+				HttpSession MyFinalCost=request.getSession(false);
 				MyFinalCost.setAttribute("MyFinalCost",al);
 				request.setAttribute("smsg", "success");				
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");

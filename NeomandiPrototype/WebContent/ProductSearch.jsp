@@ -81,7 +81,7 @@ a.more {
 </style>
 </head>
 <body>
-<%@ include file="TRibbon.jsp" %><br><br><br>
+<%@ include file="TRibbon.jsp" %><br><br>
 <%
 String lotnum="null";
 String quantity="null";

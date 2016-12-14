@@ -63,7 +63,7 @@ $(#ICICI).click(function(){$("#form0").submit();})
 </style></head>
 <body>
 <%@ include file="TRibbon.jsp" %><br><br>
-<ul>
+<br><br><ul>
   <li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>

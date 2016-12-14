@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- 
+ <meta http-equiv="refresh"  content="2; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do"> -->
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> /*
@@ -186,7 +188,7 @@ System.out.println("time is "+sdf.format(new Date()));%>
 
 <script>
 var Etime=document.getElementById("time").value;
-var Btime="04:39:00:00";
+var Btime="02:50:00:00";
 start = Etime.split(":");
 end =Btime.split(":");
 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -226,11 +228,13 @@ var timedifference=+hours+":"+minutes+":"+seconds;
 console.log("differences in time is "+timedifference);
 var idiff = parseInt("timedifference") + "<br>";
 countdown(minutes,seconds,hours);
-
-var t=setTimeout(auction, 1000);
+console.log(diff);
+diff=diff+300000;
+console.log(diff);
+var t=setTimeout(auction, diff);
 function auction()
 {
-	//window.location='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
+	//window.location='http://localhost:8080/NeomandiPrototype/ProductBuyingScreen.html'
 }
 
 
@@ -275,21 +279,19 @@ function countdown(minutes,seconds,hours)
 				 				}	
 								else
 								{
-					            	var str="<center><b><h4><font color='blue' >Your Auction has begun</font></h4></b></center>";
-					            	str+="<center><b><h4><font color='blue' >Your Auction will ends in</font></h4></b></center>";
+					            	var str="<center><b><h4><font color='blue' >Your Auction ends in</font></h4></b></center>";
 					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
-					            	var strCmd = "document.getElementById('auction').style.display = 'none'";
+					            //	var strCmd = "document.getElementById('auction').style.display = 'none'";
 					            	var waitseconds = seconds;
 
 					            	// Calculate time out period then execute the command
 					            	var timeOutPeriod = waitseconds * 1000;
-					            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+					            	//var hideTimer = setTimeout(strCmd, timeOutPeriod);
 					            	document.getElementById("timer").innerHTML=str;
 					            	function count(minutes) {
 					        		    var seconds =60;
 					        		    var mins = minutes
 					        		    var timedifference=+hours+":"+minutes+":"+seconds;
-					        		    
 					        		    function tick() 
 					        		    {
 					        		        var counter = document.getElementById("hms");
@@ -301,14 +303,15 @@ function countdown(minutes,seconds,hours)
 					        		        } 
 					        		        else 
 					        		        {
-					        		 
-						        		            if(mins > 1){
-						        		 				setTimeout(function () { count(mins - 1); },1000);
-						        						}
-						        		            	else{
-						        		            	var str1="<center><h4><font color='blue' >Your Auction has end</font></h4><center>";
-						        		            	document.getElementById("auction1").innerHTML=str1;
-						        		            	}
+						        		       if(mins > 1)
+						        		       {
+						        		 		setTimeout(function () { count(mins - 1); },1000);
+						        			   }
+						        		       else
+						        		       {
+						        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
+						        		           	document.getElementById("auction1").innerHTML=str1;
+						        		       }
 					        		    	}
 				        		     	}
 				        		   	 	tick();
@@ -321,7 +324,6 @@ function countdown(minutes,seconds,hours)
 			    tick();
 			}
 			countdown(minutes,seconds,hours);
-
 </script>
 <table id = "t1" border = "border">
 	<tr>
@@ -333,13 +335,13 @@ function countdown(minutes,seconds,hours)
 		<th>Market Code</th>
 		<th>Produce</th>
 		<th>Quality Grade</th>
-		<th>Best Bid(Rs/kg)</th>
+		<th>Best_Bid(Rs/kg)</th>
 		<th>My Bid(Rs/kg)</th>
 		<th>Increase Bid</th>
 		<th>Increase Bid</th>
 		<th>Volume Available(kg)</th>
 		<th>Volume_Bidding_for(kg)</th>
-		<th>My Final Cost</th>
+		<th>My_Final_Cost</th>
 		<th>Remove Lot</th>
 	</tr>
 <%
@@ -381,13 +383,11 @@ else
 			{
 				System.out.println("lotnum which trader will bid for is "+tlb.getLotnum());
 				if(request.getAttribute("smsg")!=null)// incremented
-				{				
-					System.out.println("if incremented");			
+				{							
 					HttpSession MyFinalCost=request.getSession(false);
 					List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
 					for(Object m:l)
-					{
-						System.out.println("inside for each()");	
+					{	
 						MyFinalCostBean mfcb=(MyFinalCostBean)m;
 						System.out.println("list of lotnum inside mfcb is "+mfcb);
 						if(mfcb.getLotnum().equals(tlb.getLotnum()))
@@ -402,7 +402,7 @@ else
 <td align="center"><%= tlb.getMarketcode() %></td>
 <td align="center"><%= tlb.getProduce() %></td>
 <td align="center"><%= tlb.getQualitygrade() %></td>
-<td align="center"><input name="BestBid" id="BestBid" readonly/></td>						
+<td align="center"><%= mfcb.getBestbid() %></td>						
 <td align="center"><input type="text" name="MyBid" id="<%= tlb.getLotnum()%>"  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%>"/> </td>
 <td align="center"><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
 <script>
@@ -431,7 +431,7 @@ function fun2<%=tlb.getLotnum() %>()
 </script>
 <td align="center"><%= tlb.getQuantity()%> </td>	
 <td align="right"><%=tlb.getQuantityneeded() %></td>			
-<td align="center"><input name = "finalcost" id = "finalcost"  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%>"></input></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" class="more"> REMOVE</a></td>
 </tr>
@@ -439,20 +439,27 @@ function fun2<%=tlb.getLotnum() %>()
 				}
 			}
 			else
-			{		
+			{	
+				HttpSession MyFinalCost=request.getSession(false);
+				List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
+				for(Object m:l)
+				{	
+					MyFinalCostBean mfcb=(MyFinalCostBean)m;
+					if(mfcb.getLotnum().equals(tlb.getLotnum()))
+					{
 				%>
 				<tr>
 				<td align="center"><%out.println(tlb.getLotnum());%></td>
-				<td align="center"><input name = "lotcost" id = "lotcost" value="<% out.println(""); %>"></input></td>
+				<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(" "+mfcb.getLotcost()+" ");} else{ System.out.println(""); System.out.println("");}%></td>
 				<td align="center">3000</td>
-				<td align="center"><input type="text" name = "commission" id = "commission" value="<% out.println("");%>"></input></td>
-				<td align="center"><input type="text" name = "marketcess" id = "marketcess"  value="<%out.println("");%>"></input></td>
+				<td align="center"><% if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());}%></td>
+				<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%></td>
 				<td align="center"><%= tlb.getMarketcode() %></td>
 				<td align="center"><%= tlb.getProduce() %></td>
 				<td align="center"><%= tlb.getQualitygrade() %></td>
-				<td align="center"><input name="BestBid" id="BestBid" readonly/></td>				
+				<td align="center"><%= mfcb.getBestbid() %></td>				
 							
-				<td align="center"><input type="text" name="MyBid" id="<%= tlb.getLotnum()%>"  value="<% out.println("");%>"></input> </td>
+				<td align="center"><input type="text" name="MyBid" id="<%= tlb.getLotnum()%>"  value="<% if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%>"></input> </td>
 				<td align="center"><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
 				<script>
 				function fun<%=tlb.getLotnum() %>()
@@ -479,12 +486,14 @@ function fun2<%=tlb.getLotnum() %>()
 				}	
 				</script>
 				<td align="center"><%= tlb.getQuantity()%> </td>	
-				<td align="center"><input type="text" name="quantity" ></td>			
-				<td align="center"><input name = "finalcost" id = "finalcost"  value="<%out.println("");%>"></input></td>
+				<td align="center"><%=tlb.getQuantityneeded()%></td>			
+				<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
 				</form>
 				<td align="center"><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" class="more"> REMOVE</a></td>
 				</tr>
 				<% 
+				}
+				}
 				}
 			 }	
 		}
@@ -508,14 +517,14 @@ function fun2<%=tlb.getLotnum() %>()
  %>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
-<td><input name = "lotcost" id = "lotcost" value="<%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getLotcost()); else out.println("");%>"></input></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getLotcost()); else out.println("");%></td>
 <td>3000</td>
-<td><input type="text" name = "commission" id = "commission" value=<%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getCommission());%>"></input></td>
-<td><input type="text" name = "marketcess" id = "marketcess"  value="<%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMarketcess());%>"></input></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getCommission());%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMarketcess());%></td>
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
-<td><input name="BestBid" id="BestBid" readonly/></td>				
+<td><%= mfcb.getBestbid() %></td>				
 <td><input type="text" name="MyBid" id="<%= tlbr.getLotnum()%>"  value="<%if(tlbr.getLotnum().equals(mfcb.getLotnum())){System.out.println("my lotnumber is"+mfcb.getLotnum()+"bidprice is"+mfcb.getPrice()); out.println(mfcb.getPrice());}%>"></input> </td>
 <td><a href="SubmitIncrement1.do?lotnum=<%=tlbr.getLotnum() %>" onclick = "fun<%= tlbr.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
 <script>
@@ -540,7 +549,7 @@ function fun<%=tlbr.getLotnum() %>()
 </script>
 <td><%= tlbr.getQuantity()%> </td>	
 <td><input type="text" name="quantity" ></td>			
-<td><input name = "finalcost" id = "finalcost"  value="<%if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());}%>"></input></td>
+<td><%if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());}%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 </tr><% 
@@ -551,10 +560,10 @@ function fun<%=tlbr.getLotnum() %>()
 %>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
-<td><input name = "lotcost" id = "lotcost" value="<% out.println(""); %>"></input></td>
+<td><% out.println(""); %></td>
 <td>3000</td>
-<td><input type="text" name = "commission" id = "commission" value="<% out.println("");%>"></input></td>
-<td><input type="text" name = "marketcess" id = "marketcess"  value="<%out.println("");%>"></input></td>
+<td><% out.println("");%></td>
+<td><%out.println("");%>></td>
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
@@ -587,7 +596,7 @@ function fun2<%=tlbr.getLotnum() %>()
 </script>
 <td><%= tlbr.getQuantity()%> </td>	
 <td><input type="text" name="quantity" ></td>			
-<td><input name = "finalcost" id = "finalcost"  value="<%out.println("");%>"></input></td>
+<td><%out.println("");%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 </tr>
@@ -619,7 +628,7 @@ function fun2<%=tlbr.getLotnum() %>()
 		<th>Increase Bid</th>
 		<th>Increase Bid</th>
 		<th>Volume Available(kg)</th>
-		<th>Volume Needed(kg)</th>
+		<th>Volume_Bidding_for(kg)</th>
 		<th>My Final Cost</th>
 	</tr>
 
@@ -644,6 +653,7 @@ if(msg!=null)
 }
 else
 {	
+	System.out.println("final lot cost is less than blocekd moaney");
 	int i=0;
 	int finalcostlist=0;
 	int tradelist=0;
@@ -656,7 +666,7 @@ else
 		{
 			if(al.size()==0)
 			{
-				System.out.println("None of The lotnumber selected come under auction 2 slot");
+				out.println("None of The lotnumber selected come under auction 2 slot");
 			}
 			TradeListBean tlb=(TradeListBean)o;//***********     added on dec 8
 			if(tlb.getSlotnumber()==null)
@@ -670,8 +680,7 @@ else
 					{					
 						MyFinalCostBean mfcb=(MyFinalCostBean)m;
 						System.out.println("list of lotnum inside mfcb is "+mfcb);
-						if(mfcb.getLotnum().equals(tlb.getLotnum()) &&tlb.getSlotnumber()==null)
-						{
+						if(mfcb.getLotnum().equals(tlb.getLotnum()) &&tlb.getSlotnumber()==null){
 %>
 <tr>
 <td><%out.println(tlb.getLotnum());%></td>
@@ -684,7 +693,7 @@ else
 <td><%= tlb.getQualitygrade() %></td>
 <td><output name="BestBid" id="BestBid" readonly/></td>						
 <td><output type="text" name="MyBid" id="<%= tlb.getLotnum()%>"> <!--  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("my bidprice"+mfcb.getPrice()+"my lotnumber is"+mfcb.getLotnum()); out.println(mfcb.getPrice());}%>"/>--> </td>
-<td>AUCTION 2 NOT YET STARTED </td>
+<td> </td>
 <script>
 function fun<%=tlb.getLotnum() %>()
 {
@@ -696,7 +705,7 @@ function fun<%=tlb.getLotnum() %>()
    document.getElementById('<%= tlb.getLotnum() %>').value =valu;
 }
 </script>
-<td>AUCTION 2 NOT YET STARTED</td>
+<td></td>
 <script>
 function fun2<%=tlb.getLotnum() %>()
 {

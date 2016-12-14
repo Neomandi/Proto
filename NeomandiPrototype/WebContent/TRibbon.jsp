@@ -86,10 +86,10 @@ html {
 			}	
 			else
 				 out.println((String)tlog.getAttribute("name")); 
-				%> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
+				%> &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
 			
 			
-        <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp at  <% out.println((String)tlog.getAttribute("time"));%>
+        <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp  at  <% out.println((String)tlog.getAttribute("time"));%>
          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <!--  <a id  = 'one' href = "">Logout</a>  -->
 		</font>
 		</span>

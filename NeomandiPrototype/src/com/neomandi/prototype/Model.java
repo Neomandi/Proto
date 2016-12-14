@@ -24,6 +24,7 @@ int count=0;
 		
 		try
 		{
+			
 			con = JDBCHelper.getConnection();
 			
 			if(con == null)
@@ -860,14 +861,18 @@ int count=0;
 
 
 	@SuppressWarnings({ "resource" })
-	public List<TradeListBean> tradeOrAuction(String name, String pwd) 
+	public Mynewclass tradeOrAuction(String name, String pwd) 
 	{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
 		String aadharnumber="";
 		TradeListBean tlb=null;
+		MyFinalCostBean mfcb=null;
 		List<TradeListBean> al=new ArrayList<TradeListBean>();
+		List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();
+		Mynewclass mc=new Mynewclass();
+		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -905,7 +910,30 @@ int count=0;
 					tlb.setQuantityneeded(rs.getString("quantityneeded"));
 					al.add(tlb);
 					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" fro quanityt"+rs.getString("quantityneeded"));
-				}	
+				}
+				mc.setAl(al);
+					
+				
+				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid FROM traders_bid_price where aadharnumber=?");
+				ps.setString(1, aadharnumber);
+				ps.execute();
+				rs = ps.getResultSet();				
+				while(rs.next())
+				{
+					mfcb=new MyFinalCostBean();
+					mfcb.setCommission(rs.getString("commission"));
+					mfcb.setLotcost(rs.getString("lotcost"));
+					mfcb.setMarketcess(rs.getString("marketcess"));
+					mfcb.setMyfinalcost(rs.getString("myfinalcost"));
+					int price=rs.getInt("bidprice");
+					String prices=String.valueOf(price);
+					mfcb.setPrice(prices);
+					mfcb.setLotnum(rs.getString("lotnum"));
+					mfcb.setBestbid(rs.getString("bestbid"));
+					System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
+					bl.add(mfcb);
+				}
+				mc.setBl(bl);
 			}						
 			con.commit();		
 		}
@@ -925,7 +953,7 @@ int count=0;
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
 		}
-		return al;
+		return mc;
 	}
 
 	@SuppressWarnings("resource")
@@ -1231,14 +1259,14 @@ int count=0;
 					ps.execute();
 					System.out.println("biddng price the trader is ready to pay now is "+res);
 					
-					ps =con.prepareStatement("select bidprice, lotnum, aadharnumber from traders_bid_price");
+					/*ps =con.prepareStatement("select bidprice, lotnum, aadharnumber from traders_bid_price");
 					ps.execute();
 					rs = ps.getResultSet();				
 					while(rs.next())
 					{
 						System.out.println("bidprice after updating in traders_bid_price "+rs.getInt("bidprice")+" lotnum is "+rs.getString("lotnum")+" aadharnumber "+rs.getString("aadharnumber"));
-					}					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost from traders_bid_price where aadharnumber=?");
+					}*/					
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
 					rs = ps.getResultSet();	
@@ -1258,6 +1286,7 @@ int count=0;
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
+						mfcb.setBestbid(rs.getString("bestbid"));
 						System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						al.add(mfcb);
 					}	
@@ -1282,7 +1311,7 @@ int count=0;
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?)");
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,1);
@@ -1290,9 +1319,10 @@ int count=0;
 					ps.setString(5,commissions);
 					ps.setString(6,marketcesss);
 					ps.setString(7,finalcosts);
+					ps.setString(8,"0");
 					ps.execute();
 					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 				//	ps.setString(2,lotnumber );
 					ps.execute();
@@ -1315,6 +1345,7 @@ int count=0;
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
+						mfcb.setBestbid(rs.getString("bestbid"));
 						al.add(mfcb);
 					}					
 					System.out.println("inside model()-> al->"+al);
@@ -1490,7 +1521,7 @@ int count=0;
 					{
 						System.out.println("bidprice after updating in traders_bid_price "+rs.getInt("bidprice")+" lotnum is "+rs.getString("lotnum")+" aadharnumber "+rs.getString("aadharnumber"));
 					}					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
 					rs = ps.getResultSet();	
@@ -1510,6 +1541,7 @@ int count=0;
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
+						mfcb.setBestbid(rs.getString("bestbid"));
 						System.out.println("commission "+mfcb.getCommission()+" lotcost"+mfcb.getLotcost()+" marktecess"+mfcb.getMarketcess()+"final price"+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						al.add(mfcb);
 					}	
@@ -1533,7 +1565,7 @@ int count=0;
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?)");
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,2);
@@ -1541,9 +1573,10 @@ int count=0;
 					ps.setString(5,commissions);
 					ps.setString(6,marketcesss);
 					ps.setString(7,finalcosts);
+					ps.setString(8,"0");
 					ps.execute();
 					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
 					rs = ps.getResultSet();	
@@ -1566,6 +1599,7 @@ int count=0;
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
+						mfcb.setBestbid(rs.getString("bestbid"));
 						al.add(mfcb);
 					}					
 					System.out.println("inside model()-> al->"+al);
