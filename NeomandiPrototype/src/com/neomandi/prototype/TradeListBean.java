@@ -10,8 +10,15 @@ String produce;
 String qualitygrade;
 int quantity;
 String slotnumber;
+String quantityneeded;
 
 
+public String getQuantityneeded() {
+	return quantityneeded;
+}
+public void setQuantityneeded(String quantityneeded) {
+	this.quantityneeded = quantityneeded;
+}
 public String getSlotnumber() {
 	return slotnumber;
 }
@@ -52,7 +59,8 @@ public void setQuantity(int quantity) {
 @Override
 public String toString() {
 	return "TradeListBean [lotnum=" + lotnum + ", marketcode=" + marketcode + ", produce=" + produce + ", qualitygrade="
-			+ qualitygrade + ", quantity=" + quantity + ", slotnumber=" + slotnumber + "]";
+			+ qualitygrade + ", quantity=" + quantity + ", slotnumber=" + slotnumber + ", quantityneeded="
+			+ quantityneeded + "]";
 }
 @Override
 public int hashCode() {
@@ -63,6 +71,7 @@ public int hashCode() {
 	result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 	result = prime * result + ((qualitygrade == null) ? 0 : qualitygrade.hashCode());
 	result = prime * result + quantity;
+	result = prime * result + ((quantityneeded == null) ? 0 : quantityneeded.hashCode());
 	result = prime * result + ((slotnumber == null) ? 0 : slotnumber.hashCode());
 	return result;
 }
@@ -96,6 +105,11 @@ public boolean equals(Object obj) {
 	} else if (!qualitygrade.equals(other.qualitygrade))
 		return false;
 	if (quantity != other.quantity)
+		return false;
+	if (quantityneeded == null) {
+		if (other.quantityneeded != null)
+			return false;
+	} else if (!quantityneeded.equals(other.quantityneeded))
 		return false;
 	if (slotnumber == null) {
 		if (other.slotnumber != null)

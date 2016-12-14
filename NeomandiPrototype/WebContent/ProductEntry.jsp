@@ -60,7 +60,7 @@ input[type = text]
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
- <%@ include file="Ribbon.jsp" %><br><br>
+ <%@ include file="TRibbon.jsp" %><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
 <h2>Market Yard Window: Product Entry Screen</h2>

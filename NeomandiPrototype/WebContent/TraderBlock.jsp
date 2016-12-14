@@ -62,7 +62,7 @@ $(#ICICI).click(function(){$("#form0").submit();})
 
 </style></head>
 <body>
-<%@ include file="Ribbon.jsp" %><br><br>
+<%@ include file="TRibbon.jsp" %><br><br>
 <ul>
   <li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
@@ -155,7 +155,7 @@ if(msg1!=null)
 	else if(request.getAttribute("blockamount")!=null)
 	{
 		out.println("Successfully blocked amount: "+request.getAttribute("blockamount"));%><br><br><%
-		out.println("Total Amount blocked from your account till Date: "+request.getAttribute("totalblock"));
+		out.println("Total Amount blocked from your account till now: "+request.getAttribute("totalblock"));
 	}
 }
 }%></font>

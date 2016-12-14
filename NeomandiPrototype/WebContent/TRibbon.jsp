@@ -24,7 +24,7 @@ html {
 		position: absolute;
 		left: 0px;
 		top: -14px;
-		width: 1300px;
+		width: 1900px;
 		height: 30px;
 		color: blue;
 		font: 32px 'Patua One', sans-serif;

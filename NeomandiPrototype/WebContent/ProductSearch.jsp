@@ -74,14 +74,21 @@ a.more {
 	padding: 10px 20px;
 }
 
+#search {
+    width: 90px;  height: 2em;
+}
+
 </style>
 </head>
 <body>
-<%@ include file="Ribbon.jsp" %>
-<%String lotnum="null";
+<%@ include file="TRibbon.jsp" %><br><br><br>
+<%
+String lotnum="null";
+String quantity="null";
 String msg1=(String)request.getAttribute("notlogged");
 String msg2=(String)request.getAttribute("productsearchresult");
 String msg3=(String)request.getAttribute("errmsg");
+String msg4=(String)request.getAttribute("quantity");
 
 if(msg1!=null)
 {
@@ -95,8 +102,8 @@ else
 	HttpSession psr=request.getSession(false);
 	List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
  %>
- <br><br>
-<ul><li><a class="active" href="ProductSearch.do">Product Search</a></li>
+  <br><br>
+  <ul><li><a class="active" href="ProductSearch.do">Product Search</a></li>
   <li><a  href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
@@ -206,7 +213,7 @@ function populate(s1, s2)
 	}
 }
 </script>
-<%
+<%		
   if(msg2!=null||msg3!=null)
   {
 	%>
@@ -218,31 +225,63 @@ function populate(s1, s2)
 						<th>Market Code</th>
 						<th>Produce</th>
 						<th>Quality Grade</th>
-						<th>Quantity</th>
+						<th>Quantity Available</th>
+						<th>Quantity Needed</th>
 						<th></th>
-						</tr>
-						
+						</tr>						
 					<%
 						for(Object o:l)
 						{						
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
-							lotnum=psr1.getLotnumber();							
-					%>
+							lotnum=psr1.getLotnumber();		
+							quantity=psr1.getQuantity();					
+							%>
 						<tr>
-						<th><% out.println(psr1.getLotnumber()); %></th>
-						<th><% out.println(psr1.getMarketcode()); %></th>
-						<th><% out.println(psr1.getProduce()); %></th>
-						<th><% out.println(psr1.getQualitygrade()); %></th>
-						<th><% out.println(psr1.getQuantity());%></th>
-						<td><a href ="AddTrade.do?s1=<%= lotnum %>" class="moree">Add to trade List</a></td>
-						</tr>
-					<%
+						<td><% out.println(psr1.getLotnumber()); %></td>
+						<td><% out.println(psr1.getMarketcode()); %></td>
+						<td><% out.println(psr1.getProduce()); %></td>
+						<td><% out.println(psr1.getQualitygrade()); %></td>
+						<td><% out.println(psr1.getQuantity());%></td>
+						<input type="hidden" id="quantity" value="<%= psr1.getQuantity()%>">
+						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
+						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
+					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
+						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
+						<script> 
+						function fun<%=psr1.getLotnumber() %>()
+						{							
+							var total=document.getElementById("quantity").value;
+							var totals=parseInt(total);
+							var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
+							var neededs=parseInt(needed);
+							console.log("QUANTITY needed IS needed="+needed);
+							console.log("QUANTITY needed IS neededs="+neededs);
+							var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
+							console.log(product);
+							var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
+							if(neededs>totals)
+							{
+								alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
+								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+							}
+							else if(isNaN(neededs))
+							{
+								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+								alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
+							}
+							else 
+							{
+								alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"Kgs");
+								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+								window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs
+							}													
 						}
-					%>					
+						</script></td>
+						</tr>
+					<%}%>					
 </table>
 <% String msg = (String)request.getAttribute("errmsg");  %>
-<p align = "center" class="more"><b><% if(msg != null)
-							out.print(msg);%></b></p>
+<p align = "center" class="more"><b><% if(msg != null)out.print(msg);%></b></p>
 <%}
  else
 {}}%>

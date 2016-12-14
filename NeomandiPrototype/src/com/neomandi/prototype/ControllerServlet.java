@@ -346,8 +346,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 			Model m=new Model();
-			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			System.out.println("list which is being sent to ProductSearch is "+msg);//sending the product list from product entry to product serch result  
+			List<ProductSearchResultBean> msg = m.productSearch(psb);//sending the product list from product entry to product serch result  
 			HttpSession psr=request.getSession();
 			psr.setAttribute("beans", msg);
 			request.setAttribute("productsearchresult", "productsearchresult");
@@ -385,12 +384,12 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 			String lotnumber = request.getParameter("s1");
-			System.out.println("inside CS-> inside AddTrade()->"+lotnumber);
+			String quantity= request.getParameter("quantity");
+			System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
 			Model m = new Model();
-			String msg = m.addTrade(lotnumber,tlbn);
+			String msg = m.addTrade(lotnumber,tlbn,quantity);
 			if(msg.contains("SUCCESS"))
-			{
-				
+			{				
 				String msg1=msg.substring(7);
 				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
 				System.out.println("message sent is "+msg);
@@ -401,11 +400,9 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-
-					e.printStackTrace();
+							e.printStackTrace();
 				} catch (IOException e) {
-
-					e.printStackTrace();
+							e.printStackTrace();
 				}
 			}
 			else
@@ -421,12 +418,12 @@ public class ControllerServlet extends HttpServlet {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
-		}
+			}		  
+	}
 		
 		//Product Entry
-		if(uri.contains("ProductEntry"))
-		{			
+	if(uri.contains("ProductEntry"))
+	{			
 			System.out.println("***************************************************************************");
 			Model m = new Model();
 			String msg = m.productEntry(peb);
@@ -774,8 +771,26 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("***************************************************************************");
 			String lotnumber=request.getParameter("lotnum");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-			String name=tlbn.getTname();
+			TraderLoginBean tlbn=null;
+			String name=null;
+			try
+			{ 
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				name=tlbn.getTname();
+				if(name==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+
 			String pwd=tlbn.getTpwd();
 			System.out.println("inside CS()-> name is "+name+" "+pwd);
 			Model m=new Model();
@@ -795,11 +810,11 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
-		if(uri.contains("logout"))
+		if(uri.contains("tlogout"))
 		{
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-			if(tlbn!=null)
+			//  TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlog!=null)
 			{
 				tlog.invalidate();
 				rd=request.getRequestDispatcher("TraderLogin.jsp");

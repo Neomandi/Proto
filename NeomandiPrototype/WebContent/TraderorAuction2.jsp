@@ -165,7 +165,7 @@ border-collapse: collapse;
 }
 </style></head>
 <body>
- <%@ include file="Ribbon.jsp" %><br><br><br><br>
+ <%@ include file="TRibbon.jsp" %><br><br><br><br>
 <ul><li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  href="TraderBlock.jsp">Block Funds</a></li>
   <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>
@@ -176,19 +176,17 @@ border-collapse: collapse;
 		<li><a href = "ProductBuyingScreen.html">Buy</a></li>
 		<li><a href = "OrderStatusScreen.html">Order Status</a></li>
 		<li><a href = "PaymentScreen.html">Payment</a></li>
-		<li><a href = "logout.do">Logout</a></li>
+		<li><a href = "tlogout.do">Logout</a></li>
 	</ul>
-</nav><br/><br><br><h2>AUCTION SLOT:1</h2><br><pre>																												AUCTION STARTS IN 																														
- 																																	<div id="timer"><input type="text" id="timer1"><br></div></pre>
+</nav><br/><br><br><h2>AUCTION SLOT:1</h2><br>AUCTION STARTS IN<div id="timer"><input type="text" id="timer1"><br></div>
 <%
 SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
 System.out.println("time is "+sdf.format(new Date()));%>
 <input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>
 
-  
 <script>
 var Etime=document.getElementById("time").value;
-var Btime="19:49:00:00";
+var Btime="04:39:00:00";
 start = Etime.split(":");
 end =Btime.split(":");
 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -322,13 +320,13 @@ function countdown(minutes,seconds,hours)
 			    		}
 			    tick();
 			}
-			countdown(minutes,seconds);
+			countdown(minutes,seconds,hours);
 
 </script>
 <table id = "t1" border = "border">
 	<tr>
 		<th>Lot Number</th>
-		<th>Lot Cost</th>
+		<th>Lot_Cost</th>
 		<th>Transportation Charges</th>
 		<th>Commission Charges</th>
 		<th>Market Cess</th>
@@ -340,7 +338,7 @@ function countdown(minutes,seconds,hours)
 		<th>Increase Bid</th>
 		<th>Increase Bid</th>
 		<th>Volume Available(kg)</th>
-		<th>Volume Needed(kg)</th>
+		<th>Volume_Bidding_for(kg)</th>
 		<th>My Final Cost</th>
 		<th>Remove Lot</th>
 	</tr>
@@ -372,7 +370,7 @@ else
 	{
 		HttpSession traderlistbean=request.getSession(false);
 		List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-
+		
 		System.out.println("inside trderlist bean"+al);
 		for(Object o:al)
 		{
@@ -396,11 +394,11 @@ else
 						{
 %>
 <tr>
-<td align="center"><%out.println(tlb.getLotnum());%></td>
-<td align="center"><input name = "lotcost" id = "lotcost" value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(mfcb.getLotcost());} else{ System.out.println(""); System.out.println("");}%>"/></td>
+<td align="center"><%out.println(" "+tlb.getLotnum()+" ");%></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(" "+mfcb.getLotcost()+" ");} else{ System.out.println(""); System.out.println("");}%></td>
 <td align="center">3000</td>
-<td align="center"><input type="text" name = "commission" id = "commission" value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());} %>"/></td>
-<td align="center"><input type="text" name = "marketcess" id = "marketcess"  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%>"/></td>
+<td width="400"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());} %></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%></td>
 <td align="center"><%= tlb.getMarketcode() %></td>
 <td align="center"><%= tlb.getProduce() %></td>
 <td align="center"><%= tlb.getQualitygrade() %></td>
@@ -432,7 +430,7 @@ function fun2<%=tlb.getLotnum() %>()
 }	
 </script>
 <td align="center"><%= tlb.getQuantity()%> </td>	
-<td align="center"><input type="text" name="quantity" ></td>			
+<td align="right"><%=tlb.getQuantityneeded() %></td>			
 <td align="center"><input name = "finalcost" id = "finalcost"  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%>"></input></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" class="more"> REMOVE</a></td>
@@ -488,10 +486,10 @@ function fun2<%=tlb.getLotnum() %>()
 				</tr>
 				<% 
 				}
-		 }	
+			 }	
 		}
 	}
-	else
+	else//removed row
 	{	
 			int j=0;
 			HttpSession remove=request.getSession(false);
@@ -605,7 +603,7 @@ function fun2<%=tlbr.getLotnum() %>()
 
 
 
-<br><br><h2>AUCTION SLOT:2</h2><br><br>
+<h2>AUCTION SLOT:2</h2><br><br>
 <table id = "t1" border = "border">
 	<tr>
 		<th>Lot Number</th>
@@ -653,34 +651,33 @@ else
 	{
 		HttpSession traderlistbean=request.getSession(false);
 		List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-
 		System.out.println("inside trderlist bean"+al);
 		for(Object o:al)
 		{
+			if(al.size()==0)
+			{
+				System.out.println("None of The lotnumber selected come under auction 2 slot");
+			}
 			TradeListBean tlb=(TradeListBean)o;//***********     added on dec 8
 			if(tlb.getSlotnumber()==null)
 			{
-				System.out.println("lotnum which trader will bid for is "+tlb.getLotnum());
+				System.out.println("lotnum which trader will bid for is "+tlb.getLotnum()+" slotnumebr is "+tlb.getSlotnumber());
 				if(request.getAttribute("smsg")!=null)// incremented
-				{				
-					System.out.println("if incremented");			
+				{								
 					HttpSession MyFinalCost=request.getSession(false);
 					List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
 					for(Object m:l)
-					{
-						System.out.println("inside for each()");	
+					{					
 						MyFinalCostBean mfcb=(MyFinalCostBean)m;
 						System.out.println("list of lotnum inside mfcb is "+mfcb);
-						
-						if(mfcb.getLotnum().equals(tlb.getLotnum()))
+						if(mfcb.getLotnum().equals(tlb.getLotnum()) &&tlb.getSlotnumber()==null)
 						{
 %>
-
 <tr>
 <td><%out.println(tlb.getLotnum());%></td>
-<td><output name = "lotcost" id = "lotcost">  <!--  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(mfcb.getLotcost());} else{ System.out.println(""); System.out.println("");}%> "/> --> </td>
+<td><output name = "lotcost" id = "lotcost"/> </td>
 <td>3000</td>
-<td><output type="text" name = "commission" id = "commission"> <!-- value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());} %>"/>--></td>
+<td><output type="text" name = "commission" id = "commission"> </td>
 <td><output type="text" name = "marketcess" id = "marketcess"> <!--  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%>"/>--></td>
 <td><%= tlb.getMarketcode() %></td>
 <td><%= tlb.getProduce() %></td>
@@ -784,9 +781,7 @@ function fun2<%=tlb.getLotnum() %>()
 				{				
 		   			for(Object mm:l)
 					{
-						MyFinalCostBean mfcb=(MyFinalCostBean)mm;
-						
-						
+						MyFinalCostBean mfcb=(MyFinalCostBean)mm;									
 						System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());		
 						System.out.println("******************************");
 						System.out.println("**removed and increment		**");
