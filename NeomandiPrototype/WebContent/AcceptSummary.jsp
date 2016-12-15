@@ -180,16 +180,66 @@ li a:hover:not(.active) {
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 
 <center>
-<form action ="FarmerSummaryInt.jsp" method = "get">
+<form action = "" method = "get">
 
  From:  <input type = "date" id = "from"/><br/><br/>
  
  To:    <input type = "date" id = "to"/><br/>
 
- <br/>
+<br/>
 <input type = "submit" value = "Get Summary"/> 
 <br/><br/>
 </form>
+
+<%  HttpSession hs=request.getSession(false);  
+	     String pass=(String)hs.getAttribute("pass");  
+	    System.out.println(" in getsummary password="+pass);
+	    HttpSession hs1=request.getSession(false); 
+	    String lotnumber=(String)hs1.getAttribute("lotnumber");
+	    System.out.println("lotnumber="+lotnumber);
+	    String lotsize=(String)hs1.getAttribute("lotsize");
+	    String quantitysold=(String)hs1.getAttribute("quantitysold");
+	    String averageprice=(String)hs1.getAttribute("averageprice");
+	    String finalprice=(String)hs1.getAttribute("finalprice");
+	    int lot=Integer.parseInt(lotsize);
+	    int qsold=Integer.parseInt(quantitysold);
+	    String status="";
+	    if(lot==qsold)
+	    	status+="Fully executed .Accepted by You";
+	    	else
+	    	status+="partially executed.Accepted by you";
+	    
+	    %>
+		 
+		<center>
+		<form>
+		 
+
+<table id = 'mytable' border>
+
+		<tr bgcolor = '#00FF00'>
+			<th>Lot number</th>
+			<th>Lot size</th>
+		   <th>Quantity Sold </th>
+		    <th>Average price</th>
+		     <th>Final price</th>
+		     <th>Status</th>
+		    
+		</tr>
+		<tr>
+		<td><%=lotnumber %></td>
+		<td><%=lotsize %></td>
+		<td><%=quantitysold%></td>
+		<td><%=averageprice%></td>
+		<td><%= finalprice%></td>
+		<td><%= status %></td>
+		</tr>
+		
+</table><br/>
+</form>
+</center>
+
+
 
 <br/>
 <br/>		

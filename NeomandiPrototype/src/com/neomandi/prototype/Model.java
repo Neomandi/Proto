@@ -388,7 +388,71 @@ int count=0;
 		return msg;
 		
 	}
-
+	//farmer trade summary
+	
+	public SummaryBean getSummary(SummaryBean sb){
+		
+		String msg="";
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				
+			}
+			else
+			{
+				con.setAutoCommit(false);
+				
+				ps = con.prepareStatement("select * from getsummary" );
+				ps.executeQuery();
+				
+				rs = ps.getResultSet();
+				
+				if(rs.next())
+				{
+					sb=new SummaryBean();
+					 sb.setLotnumber(rs.getString("lotnumber"));
+					 sb.setLotsize(rs.getString("lotsize"));
+					 sb.setQuantitysold(rs.getString("Quantitysold"));
+					 sb.setAverageprice(rs.getString("averageprice"));
+					 sb.setFinalprice(rs.getString("finalprice"));
+					 sb.setStatus(rs.getString("status"));
+					 String lot=sb.getLotsize();
+					 String qsold=sb.getQuantitysold();
+				
+						
+				}
+				System.out.println("in model beab="+sb);
+				
+				con.commit();
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
+		return sb;
+	
+		
+		
+	}
+//---------------------------------------------------------------------------------
 	public List<ProductSearchResultBean> productSearch(ProductSearchBean psb) 
 	{
 		List<ProductSearchResultBean> l = new ArrayList<ProductSearchResultBean>();

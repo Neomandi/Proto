@@ -180,7 +180,7 @@ li a:hover:not(.active) {
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 
 <center>
-<form action ="FarmerSummaryInt.jsp" method = "get">
+<form action ="RejectSummary.jsp" method = "get">
 
  From:  <input type = "date" id = "from"/><br/><br/>
  

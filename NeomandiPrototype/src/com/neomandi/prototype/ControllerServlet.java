@@ -52,6 +52,7 @@ public class ControllerServlet extends HttpServlet {
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
+		SummaryBean sb=(SummaryBean)request.getAttribute("sb");
 		
 		//ControllerServlet.setVal(atbean.getMaxvol()); 
 		
@@ -183,31 +184,45 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}						
-		//farmer logout
-		if(uri.contains("Logout"))
-		{
-			HttpSession hc=request.getSession(false);
-			if(hc!=null)
-			{
-				hc.removeAttribute("flbean");
-				hc.invalidate();				
-			}
-/*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
-			 request.setAttribute("logout", msg);*/
-			 rd=request.getRequestDispatcher("Login.html");	
-			 try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 		}
+		//farmer trade summary
+				if(uri.contains("GetSummary")){
+					System.out.println("in cs uri="+uri);
+					Model m = new Model();
+					 sb=m.getSummary(sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					HttpSession hs1=request.getSession();
+					hs1.setAttribute("lotnumber",lotnumber);
+					hs1.setAttribute("lotsize",lotsize);
+					hs1.setAttribute("quantitysold", quantitysold);
+					hs1.setAttribute("averageprice", averageprice);
+					hs1.setAttribute("finalprice", finalprice);
+					hs1.setAttribute("status", status);
+					rd=request.getRequestDispatcher("GetSummary.jsp");
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+		
+		
+	
 		
 		
 		//Employee Login
@@ -580,7 +595,6 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("traderblockamount"))
 		{
 			System.out.println("***************************************************************************");
-			String noinput=null;
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 			if(tlbn.getTname()==null)
@@ -887,6 +901,35 @@ public class ControllerServlet extends HttpServlet {
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
 				rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
+			}
+		}
+		
+		
+		//farmer logout
+		if(uri.contains("Logout"))
+		{
+			HttpSession flog = request.getSession(false);
+			if(flog!=null)
+			{ 
+				flog.invalidate();
+				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
+				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				rd=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{
 					rd.forward(request, response);			
