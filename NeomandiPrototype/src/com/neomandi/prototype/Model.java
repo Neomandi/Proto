@@ -615,7 +615,7 @@ int count=0;
 					ps.execute();				
 					//con.commit();	
 					
-					ps=con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?)");
+					ps=con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnum);
 					ps.setInt(3, 0);
@@ -623,6 +623,7 @@ int count=0;
 					ps.setString(5,"0");
 					ps.setString(6,"0");
 					ps.setString(7,"0");
+					ps.setString(8,"0");
 					ps.execute();				
 					con.commit();
 					
