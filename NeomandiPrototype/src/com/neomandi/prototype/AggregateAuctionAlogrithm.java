@@ -25,8 +25,9 @@ public class AggregateAuctionAlogrithm {
 		List<AggregateDataBean> li = new ArrayList<AggregateDataBean>();
 		//List<String> a = new ArrayList<String>();
 		//List<String> b = new ArrayList<String>();
-		int maxvol = 505;
 		double avg = 0;
+		int maxvol = 505;
+		
 		
 		try
 		{
