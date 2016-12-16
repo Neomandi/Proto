@@ -364,9 +364,10 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -382,7 +383,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			System.out.println("list which is being sent to ProductSearch is "+msg);//sending the product list from product entry to product serch result  
 			HttpSession psr=request.getSession();
 			psr.setAttribute("beans", msg);
 			request.setAttribute("productsearchresult", "productsearchresult");
@@ -403,9 +403,10 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -502,9 +503,10 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("traderblockbank"))
 		{
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -583,7 +585,6 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("traderblockamount"))
 		{
 			System.out.println("***************************************************************************");
-			String noinput=null;
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 			if(tlbn.getTname()==null)
@@ -659,11 +660,12 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				pwd=tlbn.getTpwd();
 				name=tlbn.getTname();
 				if(tlbn.getTname()==null)
@@ -702,9 +704,10 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -760,9 +763,10 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -844,7 +848,17 @@ public class ControllerServlet extends HttpServlet {
 		{
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-			if(tlbn!=null)
+			if(tlbn==null)
+			{
+				rd=request.getRequestDispatcher("TraderLogin.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}	
+			}
+			else
 			{
 				tlog.invalidate();
 				rd=request.getRequestDispatcher("TraderLogin.jsp");

@@ -34,8 +34,8 @@ html {
 		box-shadow: inset 0px 1px 0px rgba(255,255,255,.3),
 					inset 0px 0px 20px rgba(0,0,0,0.1),
 					0px 1px 1px rgba(0,0,0,0.4);
-		 background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
-      display: inline-block;
+		background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
+        display: inline-block;
 	}
 
 #content:before, #content:after {
@@ -51,11 +51,11 @@ html {
 	}
 	
 #content:before {
-      position: "left";
-	  left: 0;
-	  border-width: .10em 0 0 .10em;
-	  background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
-	}
+	    position: "left";
+		left: 0;
+		border-width: .10em 0 0 .10em;
+		background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
+		}
 	
 #content:after {
 	  right: 0;
@@ -69,6 +69,25 @@ html {
 	color: red;
 	text-decoration: none;
 }
+
+.logout
+{	
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 21px 21px 21px 21px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 90px;
+	height: 25px;
+	text-decoration: none;
+	padding: 10px 20px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	font-size: 32px;
+}
 </style>
 </head>
 <body>
@@ -78,22 +97,19 @@ html {
 		<% 
 			HttpSession tlog=request.getSession(false);
 			if((String)tlog.getAttribute("name")==null)
-			{ 				
-				 out.println("<script type=\"text/javascript\">");
+			{    out.println("<script type=\"text/javascript\">");
 			  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 			  	 out.println("location='TraderLogin.jsp';");
 			 	 out.println("</script>");
 			}	
 			else
 				 out.println((String)tlog.getAttribute("name")); 
-				%> &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
-			
-			
-        <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp  at  <% out.println((String)tlog.getAttribute("time"));%>
+				%> &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp you logged in on
+ <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp  at  <% out.println((String)tlog.getAttribute("time"));%>
          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <!--  <a id  = 'one' href = "">Logout</a>  -->
 		</font>
 		</span>
 	</div>
-	<br/>
+	<br/><a class = 'logout' href = "logout.do"><b>Logout</b></a>
 </body>
 </html>

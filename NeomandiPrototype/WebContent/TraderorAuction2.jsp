@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- 
- <meta http-equiv="refresh"  content="2; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do"> -->
+ <meta http-equiv="refresh"  content="2; URL=http://192.173.6.16/:8080/NeomandiPrototype/TradeorAuction.do"> -->
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> /*
@@ -395,16 +395,16 @@ else
 %>
 <tr>
 <td align="center"><%out.println(" "+tlb.getLotnum()+" ");%></td>
-<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(" "+mfcb.getLotcost()+" ");} else{ System.out.println(""); System.out.println("");}%></td>
-<td align="center">3000</td>
-<td width="400"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());} %></td>
-<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%></td>
-<td align="center"><%= tlb.getMarketcode() %></td>
-<td align="center"><%= tlb.getProduce() %></td>
-<td align="center"><%= tlb.getQualitygrade() %></td>
-<td align="center"><%= mfcb.getBestbid() %></td>						
-<td align="center"><input type="text" name="MyBid" id="<%= tlb.getLotnum()%>"  value="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%>"/> </td>
-<td align="center"><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
+<td align="center" width="69"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost"+mfcb.getLotcost()); out.println(" "+mfcb.getLotcost()+" ");} else{ System.out.println(""); System.out.println("");}%></td>
+<td align="center" width="180">3000</td>
+<td width="160"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission"+mfcb.getCommission());  out.println(mfcb.getCommission());} %></td>
+<td align="center" width="100"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%></td>
+<td align="center" width="110"><%= tlb.getMarketcode() %></td>
+<td align="center" width="90"><%= tlb.getProduce() %></td>
+<td align="center" width="110"><%= tlb.getQualitygrade() %></td>
+<td align="center" width="160"><%= mfcb.getBestbid() %></td>
+<td align="center"><input type="number" name="MyBid" id="<%= tlb.getLotnum()%>"  min="<%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%>"/> </td>
+<td><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
 <script>
 function fun<%=tlb.getLotnum() %>()
 {
@@ -429,7 +429,7 @@ function fun2<%=tlb.getLotnum() %>()
    	document.getElementById('<%= tlb.getLotnum() %>').value =valu;
 }	
 </script>
-<td align="center"><%= tlb.getQuantity()%> </td>	
+<td align="center" width="160"><%= tlb.getQuantity()%> </td>	
 <td align="right"><%=tlb.getQuantityneeded() %></td>			
 <td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
 </form>

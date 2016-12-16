@@ -80,8 +80,8 @@ $(#ICICI).click(function(){$("#form0").submit();})
 	<input type="radio"  name="HDFC" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>HDFC
 	<input type="radio"  name="SBM" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBM
 	<input type="radio"  name="CITI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>CITI
-  <br><br>  
-</form><br><br>
+  <br>
+</form>
 <% 
 
 String msg3=(String)request.getAttribute("notlogged");
