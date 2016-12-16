@@ -617,6 +617,7 @@ int count=0;
 					System.out.println("values inserted into traders_bid_price is lotnum"+lotnum+" aadharnumber "+aadharnumber+"bidprice,lotcost,commission,marketcess,myfinalcost as 0	0	0	0	0");
 					
 					ps=con.prepareStatement("insert into traders_bid_price(aadharnumber,lotnum,bidprice,lotcost,commission,marketcess,myfinalcost) values(?,?,?,?,?,?,?)");
+
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnum);
 					ps.setInt(3, 0);
@@ -624,6 +625,7 @@ int count=0;
 					ps.setString(5,"0");
 					ps.setString(6,"0");
 					ps.setString(7,"0");
+					ps.setString(8,"0");
 					ps.execute();				
 					con.commit();
 					
