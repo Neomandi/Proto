@@ -194,13 +194,16 @@ li a:hover:not(.active) {
 <%  HttpSession hs=request.getSession(false);  
 	     String pass=(String)hs.getAttribute("pass");  
 	    System.out.println(" in getsummary password="+pass);
-	    HttpSession hs1=request.getSession(false); 
-	    String lotnumber=(String)hs1.getAttribute("lotnumber");
-	    System.out.println("lotnumber="+lotnumber);
-	    String lotsize=(String)hs1.getAttribute("lotsize");
-	    String quantitysold=(String)hs1.getAttribute("quantitysold");
-	    String averageprice=(String)hs1.getAttribute("averageprice");
-	    String finalprice=(String)hs1.getAttribute("finalprice");
+	    
+	    HttpSession hsr=request.getSession(false); 
+	    String lotnumber=(String)hsr.getAttribute("lotnumber");
+	    hsr.setAttribute("lotnumber", lotnumber);
+	    System.out.println(" in getsummary lotnumber="+lotnumber);
+	    String lotsize=(String)hsr.getAttribute("lotsize");
+	    String quantitysold=(String)hsr.getAttribute("quantitysold");
+	    String averageprice=(String)hsr.getAttribute("averageprice");
+	    String finalprice=(String)hsr.getAttribute("finalprice");
+	    System.out.println("in getsummary lotsize="+lotsize);
 	    int lot=Integer.parseInt(lotsize);
 	    int qsold=Integer.parseInt(quantitysold);
 	    String status="";
@@ -208,9 +211,10 @@ li a:hover:not(.active) {
 	    	status+="Fully executed .waiting for your acceptance";
 	    	else
 	    	status+="partially executed.waiting for your acceptance";
-	    
+	    	 String lotsize1=String.valueOf(lot);
+			 String quantitysold1=String.valueOf(qsold);
 	    %>
-		 
+		
 		<center>
 		<form>
 		 
@@ -228,8 +232,8 @@ li a:hover:not(.active) {
 		</tr>
 		<tr>
 		<td><%=lotnumber %></td>
-		<td><%=lotsize %></td>
-		<td><%=quantitysold%></td>
+		<td><%=lotsize1 %></td>
+		<td><%=quantitysold1%></td>
 		<td><%=averageprice%></td>
 		<td><%= finalprice%></td>
 		<td><%= status %></td>

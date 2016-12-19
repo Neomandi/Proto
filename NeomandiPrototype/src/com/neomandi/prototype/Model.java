@@ -390,12 +390,16 @@ int count=0;
 	}
 	//farmer trade summary
 	
-	public SummaryBean getSummary(SummaryBean sb){
-		
-		String msg="";
+	@SuppressWarnings("resource")
+	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		String aadhar="";
+		String lotnumber="";
+		
+		
+		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -404,17 +408,43 @@ int count=0;
 			{
 				
 			}
+			
 			else
 			{
 				con.setAutoCommit(false);
-				
-				ps = con.prepareStatement("select * from getsummary" );
-				ps.executeQuery();
-				
+				//aadharnum
+				ps =con.prepareStatement("select aadharnum from freg where name = ? and pass=?");
+				ps.setString(1, name);
+				ps.setString(2, pass);
+				ps.execute();
 				rs = ps.getResultSet();
-				
-				if(rs.next())
+				while(rs.next())
 				{
+					aadhar=rs.getString("aadharnum");
+					System.out.println("aadharnumber of "+name+" is "+aadhar);
+				}	
+				
+				//lotnumber
+				String farmerid=aadhar;
+				System.out.println("in cs farmerid="+farmerid);
+				ps=con.prepareStatement("select lotnumber from productentry where farmerid='"+farmerid+"'");
+				//ps.setString(1,farmerid);
+				ps.execute();
+				rs=ps.getResultSet();
+				while(rs.next()){
+					lotnumber=rs.getString("lotnumber");
+					System.out.println("in cs farmer lotnumber="+lotnumber);
+				}
+				//getsummary details
+				ps = con.prepareStatement("select * from getsummary where lotnumber=?" );
+				ps.setString(1,lotnumber);
+				System.out.println(ps);
+				System.out.println("Execute"+ps.executeQuery());
+				rs=ps.getResultSet();
+				System.out.println(rs+" "+ps.getResultSet());
+				while(rs!=null&&rs.next())
+				{
+					System.out.println("inside while()->rs is "+rs);
 					sb=new SummaryBean();
 					 sb.setLotnumber(rs.getString("lotnumber"));
 					 sb.setLotsize(rs.getString("lotsize"));
@@ -424,9 +454,11 @@ int count=0;
 					 sb.setStatus(rs.getString("status"));
 					 String lot=sb.getLotsize();
 					 String qsold=sb.getQuantitysold();
-				
-						
+					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
+						
+				
+				
 				System.out.println("in model beab="+sb);
 				
 				con.commit();
@@ -444,8 +476,9 @@ int count=0;
 		}
 		finally
 		{
-			JDBCHelper.Close(ps);
+			
 			JDBCHelper.Close(con);
+			JDBCHelper.Close(ps);
 		}
 		return sb;
 	

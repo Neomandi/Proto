@@ -44,6 +44,8 @@ public class ControllerServlet extends HttpServlet {
 	{
 		
 		RequestDispatcher rd=null;	
+		
+		RequestDispatcher rd1=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
 		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
@@ -188,8 +190,13 @@ public class ControllerServlet extends HttpServlet {
 		//farmer trade summary
 				if(uri.contains("GetSummary")){
 					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
 					Model m = new Model();
-					 sb=m.getSummary(sb);
+					sb=m.getSummary(name, pass, sb);
 					
 					System.out.println(" in cs sb="+sb);
 					String lotnumber=sb.getLotnumber();
@@ -199,14 +206,60 @@ public class ControllerServlet extends HttpServlet {
 					String finalprice=sb.getFinalprice();
 					String status=sb.getStatus();
 					System.out.println(("in cs avg="+averageprice));
-					HttpSession hs1=request.getSession();
-					hs1.setAttribute("lotnumber",lotnumber);
-					hs1.setAttribute("lotsize",lotsize);
-					hs1.setAttribute("quantitysold", quantitysold);
-					hs1.setAttribute("averageprice", averageprice);
-					hs1.setAttribute("finalprice", finalprice);
-					hs1.setAttribute("status", status);
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
 					rd=request.getRequestDispatcher("GetSummary.jsp");
+					
+				
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+				if(uri.contains("AcceptSummary.do")){
+					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
+					Model m = new Model();
+					sb=m.getSummary(name, pass, sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
+					rd=request.getRequestDispatcher("AcceptSummary.jsp");
+					
+				
 					try 
 					{
 						rd.forward(request, response);			
@@ -220,6 +273,49 @@ public class ControllerServlet extends HttpServlet {
 					}
 					
 				}
+				if(uri.contains("RejectSummary.do")){
+					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
+					Model m = new Model();
+					sb=m.getSummary(name, pass, sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
+					rd=request.getRequestDispatcher("RejectSummary.jsp");
+					
+				
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+		
 		
 		
 	

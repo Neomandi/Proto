@@ -202,6 +202,7 @@
 		    <th><font color="#C71585" size="5">Timer</th>
 		</tr>
 		<%
+		
 			//fetching lotnumber 
 			String lot="";
 			try{	
@@ -210,7 +211,7 @@
 					System.out.println("Connection establish failed");
 				}
 				statement = con.createStatement();
-				String sql = "select lotnumber,quantity from productentry where farmerid='"+s+"' ";
+				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 			
 				//System.out.println(sql);
 				resultSet = statement.executeQuery(sql);
@@ -226,13 +227,13 @@
 				</span>
 				</td>
 				
-			 <td><!-- for average price --></td>
+			 <td><%=resultSet.getString("averageprice") %></td>
 			 <td><%=resultSet.getString("quantity") %></td>
-			 <td></td>
+			 <td><%=resultSet.getString("quantitybidfor") %></td>
 			 <td><form action="FarmerAccept.jsp">
-			 <input  id="accept" type="submit" value="Accept " onclick="setDisable()" ></td></form>
+			 <input  id="accept" type="submit" value="Accept " disabled ></td></form>
 			 <form action="FarmerReject.jsp">
-			 <td><input  id="reject" type="submit" value="Reject"></td></form>
+			 <td><input  id="reject" type="submit" value="Reject" disabled></td></form>
 			 <td>
 			 	<div id="pbar_outerdiv" style="width: 140px; height: 18px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
 					<div id="pbar_innerdiv" style="background-color: lightgreen; z-index: 2; height: 100%; width: 0%;"></div>
@@ -303,15 +304,42 @@
 			var s2="Slot2";
 			var s3="Slot3";
 			var s4="Slot4";
-		
+		var timedif;
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(Slot==s1){
 				var Etime=document.getElementById("time").value;
-				var Btime="11:33:00";
+				var Btime="10:30:00";
+				var Btime1="10:35:00";
 				start = Etime.split(":");
 				end =Btime.split(":");
+				end1=Btime1.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+				var end1Date=newDate(0,0,0,end1[0],end[2],end[2]);
+				var diff1 = end1Date.getTime() - startDate.getTime();
+				var hours1 = Math.floor(diff1 / 1000 / 60 / 60);
+				var res3=0;
+				var seconds1= Math.floor(diff1 /1000);
+				var minutes1 = Math.floor(diff1 / 1000 / 60);
+				if(seconds1>60)
+				{
+						res1=seconds1%60;
+						res2=Math.floor(seconds1/60);
+								
+						seconds1=res1;
+						minutes1=res2;
+				}
+				if(minutes1>60)
+				{
+						res1=minutes1%60;
+						res3=Math.floor(minutes1/60);
+								
+						hours1=res3;
+						minutes1=res1;
+				}
+				
+				
+				//
 				var diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
 				console.log("current time is "+Etime);
@@ -347,12 +375,7 @@
 				console.log("differences in time is "+timedifference);
 				var idiff = parseInt("timedifference") + "<br>";
 				countdown(minutes,seconds,hours);
-
-				var t=setTimeout(auction, 1000);
-				function auction()
-				{
-					//window.location='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
-				}
+				count(minutes1,seconds1,hours1);
 				//time progress-------------------------
 	    		var start = new Date();
 				var maxTime = diff;
@@ -375,7 +398,11 @@
 				      }
 				}
 				//----------------------------------
-
+					
+				var five=300000;
+				timedif=diff+five;
+				console.log("count"+timedif);
+				
 		}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(Slot==s2){
@@ -420,12 +447,6 @@
 			console.log("differences in time is "+timedifference);
 			var idiff = parseInt("timedifference") + "<br>";
 			countdown(minutes,seconds,hours);
-
-			var t=setTimeout(auction, 1000);
-			function auction()
-			{
-				//window.location='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
-			}
 			//time progress-------------------------
     		var start = new Date();
 			var maxTime = diff;
@@ -448,7 +469,10 @@
 			      }
 			}
 			//----------------------------------
-			
+
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 	}
 			      
 		
@@ -524,7 +548,10 @@
 			      }
 			}
 			//----------------------------------
-			
+
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 			
 	}
 			
@@ -571,13 +598,6 @@
 			console.log("differences in time is "+timedifference);
 			var idiff = parseInt("timedifference") + "<br>";
 			countdown(minutes,seconds,hours);
-
-			var t=setTimeout(auction, 1000);
-			function auction()
-			{
-				//window.location='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
-			}
-
 			//time progress-------------------------
     		var start = new Date();
 			var maxTime =diff;
@@ -601,9 +621,11 @@
 			}
 			//----------------------------------
 
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 			
 		}
-			
 			///---------------------for count down timer----------------------------------	
 			
 			function countdown(minutes,seconds,hours) 
@@ -653,19 +675,25 @@
 					            	var timeOutPeriod = waitseconds * 1000;
 					            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
 					            	document.getElementById("timer").innerHTML=str;
-					            	function count(minutes) {
+					            	//during auction
+					            	
+					            	
+					            	
+					            	
+					            	//
+					            	count(minutes1,seconds1,hours1); {
 					            		
-					        		    var seconds =60;
-					        		    var mins = minutes
+					        		    var seconds =seconds1;
+					        		    var mins = minutes1
 					        		    var timedifference=+hours+":"+minutes+":"+seconds;
 					        		    
 					        		    function tick() 
 					        		    {
 					        		        var counter = document.getElementById("hms");
 					        		        var current_minutes = mins-1
-					        		       	seconds--;
-					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-					        		        if( seconds > 0 ) {
+					        		       	seconds1--;
+					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds1 < 10 ? "0" : "") + String(seconds1);
+					        		        if( seconds1 > 0 ) {
 					        		            setTimeout(tick,1000);
 					        		        } 
 					        		        else 
@@ -676,6 +704,11 @@
 						        						}
 						        		            	else{
 						        		            	var str1="<center><h4><font color='blue' >Your Auction has end</font></h4><center>";
+						        		            	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
+										            	var waitseconds = seconds;
+										            	var timeOutPeriod = waitseconds * 1000;
+										            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
+										            	
 						        		            	document.getElementById("auction1").innerHTML=str1;
 						        		            	}
 						        		           
@@ -726,23 +759,15 @@
 			}*/
 			
 	</script>
-	<script language="javascript" type="text/javascript">
-	var seconds=300;
-	function setDisable(seconds,accept){
-		if(seconds>0){
-			$("#accept").attr("disabled", "disabled");
-		 $("#accept").prop("disabled", "disabled");
-		 $("#accept").attr("disabled", true);
-		 $("#accept").prop("disabled", true);
-		}
-		else
-			  $("#accept").removeAttr('disabled');
-		  $("#accept").attr("disabled", false)
-	}
- 
+	 <script>
 
-</script>
- 
+//console.log("time="+timedif);
+ var t=setTimeout(auction,timedif);
+ function auction(){
+	 document.getElementById("accept").disabled=false;
+	 document.getElementById("reject").disabled=false;
+ }
+ </script>
 
 </body>
 </html>

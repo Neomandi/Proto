@@ -191,16 +191,16 @@ li a:hover:not(.active) {
 <br/><br/>
 </form>
 
-<%  HttpSession hs=request.getSession(false);  
-	     String pass=(String)hs.getAttribute("pass");  
-	    System.out.println(" in getsummary password="+pass);
-	    HttpSession hs1=request.getSession(false); 
-	    String lotnumber=(String)hs1.getAttribute("lotnumber");
+<%  
+	    HttpSession hsa=request.getSession(false); 
+	    String lotnumber=(String)hsa.getAttribute("lotnumber");
+	    
 	    System.out.println("lotnumber="+lotnumber);
-	    String lotsize=(String)hs1.getAttribute("lotsize");
-	    String quantitysold=(String)hs1.getAttribute("quantitysold");
-	    String averageprice=(String)hs1.getAttribute("averageprice");
-	    String finalprice=(String)hs1.getAttribute("finalprice");
+	    String lotsize=(String)hsa.getAttribute("lotsize");
+	    String quantitysold=(String)hsa.getAttribute("quantitysold");
+	    String averageprice=(String)hsa.getAttribute("averageprice");
+	    String finalprice=(String)hsa.getAttribute("finalprice");
+	    System.out.println("in accept summary lotsize="+lotsize);
 	    int lot=Integer.parseInt(lotsize);
 	    int qsold=Integer.parseInt(quantitysold);
 	    String status="";
