@@ -120,7 +120,7 @@ li a:hover:not(.active) {
   </div> 
 </div>
   <br>-->
- <ul><li><a href="ProductSearch.jsp">Product Search</a></li>
+ <ul><li><a href="product.jsp">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>

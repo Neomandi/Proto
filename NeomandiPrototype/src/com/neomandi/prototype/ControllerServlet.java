@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
@@ -374,7 +375,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("ProductSearch.jsp");
+				rd=request.getRequestDispatcher("product.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -386,7 +387,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession psr=request.getSession();
 			psr.setAttribute("beans", msg);
 			request.setAttribute("productsearchresult", "productsearchresult");
-			rd=request.getRequestDispatcher("ProductSearch.jsp");
+			rd=request.getRequestDispatcher("product.jsp");
 			try 
 			{
 				rd.forward(request, response);			
@@ -413,7 +414,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("ProductSearch.jsp");
+				rd=request.getRequestDispatcher("product.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -431,7 +432,7 @@ public class ControllerServlet extends HttpServlet {
 				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
 				System.out.println("message sent is "+msg);
 				request.setAttribute("errmsg", msg);
-				rd=request.getRequestDispatcher("ProductSearch.jsp");
+				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -445,7 +446,7 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				request.setAttribute("errmsg", msg);
-			    rd=request.getRequestDispatcher("ProductSearch.jsp");
+			    rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -699,6 +700,64 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		if(uri.contains("increment"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String name=tlbn.getTname();
+			String pwd=tlbn.getTpwd();
+			Model m=new Model();
+			String increment=request.getParameter("increment");
+			String lotnum=request.getParameter("lotnum");
+			//System.out.println("lotnum in CS is "+lotnum);
+			Myclass mc=(Myclass)m.Increment(name,pwd,increment,lotnum);
+			if(mc.getMsg().matches(".*\\d+.*"))
+			{
+				request.setAttribute("msg", mc.getMsg());
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				@SuppressWarnings("rawtypes")
+				List al=mc.getAl();
+				HttpSession MyFinalCost=request.getSession(false);
+				MyFinalCost.setAttribute("MyFinalCost",al);
+				request.setAttribute("smsg", "success");				
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try 
+				{
+					rd.forward(request, response);
+				}
+				catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		//SubmitIncrement1
 		if(uri.contains("SubmitIncrement1"))
 		{
@@ -930,6 +989,91 @@ public class ControllerServlet extends HttpServlet {
 				return;
 			}
 		}
+		
+		if(uri.contains("OrderStatus"))
+		{
+			System.out.println("inside CS");
+			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
+			//System.out.println("time is "+sdf.format(new Date()));
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String name=tlbn.getTname();
+			String pwd=tlbn.getTpwd();
+			Model m=new Model();
+			Myclass2 mc=(Myclass2)m.orderstatus(name,pwd);
+			request.setAttribute("errmsg", mc);
+			rd=request.getRequestDispatcher("OrderStatus.jsp");
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		/*else
+		{				
+			    System.out.println("***************************************************************************");
+			    String lotnumber = request.getParameter("lotnumber");
+			    String value = request.getParameter("value");
+				HttpSession tlog=request.getSession(false);
+				TraderLoginBean tlbn=null;
+				try
+				{
+					tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+					if(tlbn.getTname()==null)
+					{}
+				}
+				catch(NullPointerException e)
+				{			
+					request.setAttribute("notlogged","not loggedin");
+					rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+					try {
+						rd.forward(request, response);
+					} catch (ServletException | IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+				String name=tlbn.getTname();
+				String pwd=tlbn.getTpwd();
+				HttpSession traderbank=request.getSession(false);
+				String bank=(String)traderbank.getAttribute("traderbank");
+				Model m=new Model();
+				Myclass1 mc=(Myclass1)m.submitIncrement1(name,pwd,lotnumber,bank);
+			    JSONObject json = new JSONObject();
+			    json.put("bidprice", mc.getBidprice());
+			    json.put("commission", mc.getCommission());
+			    json.put("lotcost", mc.getLotcost());
+			    json.put("myfinalcost", mc.getMyfinalcost());
+			    response.setContentType("application/json");
+			    try {
+					response.getWriter().write(json.toString());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}*/	
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

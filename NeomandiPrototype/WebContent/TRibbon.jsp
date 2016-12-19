@@ -5,16 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-  
 <style>
-
 *{margin:0px;padding:0px;}
 
 html {
-  	width:100%;
+	  	width:100%;
 		height:100%;
-		
-  text-align: center;
+  		text-align: center;
 	}
 	
 #ribbon {
@@ -79,12 +76,12 @@ html {
 	display: inline;
 	display: block;
     color: white;
-	width: 90px;
-	height: 25px;
+	width: 130px;
+	height: 29px;
 	text-decoration: none;
 	padding: 10px 20px;
 	position: absolute;
-	top: 5px;
+	top: 4px;
 	right: 10px;
 	font-size: 32px;
 }
@@ -93,7 +90,7 @@ html {
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
+		<font size="4"  face="Comic Sans MS" color="white"> welcome 
 		<% 
 			HttpSession tlog=request.getSession(false);
 			if((String)tlog.getAttribute("name")==null)
@@ -103,13 +100,13 @@ html {
 			 	 out.println("</script>");
 			}	
 			else
-				 out.println((String)tlog.getAttribute("name")); 
-				%> &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp you logged in on
- <%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp  at  <% out.println((String)tlog.getAttribute("time"));%>
-         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <!--  <a id  = 'one' href = "">Logout</a>  -->
+				out.println((String)tlog.getAttribute("name")); 
+				%>  &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp  &nbsp &nbsp &nbsp  &nbsp  &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp You logged in on
+ 				<%out.println(tlog.getAttribute("date"));%> &nbsp &nbsp  at  <% out.println((String)tlog.getAttribute("time"));%>
+         		&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
 		</font>
 		</span>
 	</div>
-	<br/><a class = 'logout' href = "logout.do"><b>Logout</b></a>
+	<br/><a class = 'logout' href = "logout.do">LOGOUT</a>
 </body>
 </html>

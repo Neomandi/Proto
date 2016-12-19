@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*, com.neomandi.prototype.ProductSearchResultBean"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Product Search</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
 
@@ -77,7 +78,9 @@ a.more {
 </style>
 </head>
 <body>
+
 <%@ include file="TRibbon.jsp" %><br><br>
+
 <%
 String lotnum="null";
 String quantity="null";
@@ -99,7 +102,7 @@ else
 	List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
  %>
   <br><br>
-  <ul><li><a class="active" href="ProductSearch.do">Product Search</a></li>
+  <ul><li><a class="active" href="product.jsp">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>

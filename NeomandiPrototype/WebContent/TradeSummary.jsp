@@ -94,12 +94,12 @@ li a:hover:not(.active) {
 }
 </style>
 <body>
-<%@ include file="TRibbon.jsp" %><br><br>
-<ul><li><a  href="ProductSearch.jsp">Product Search</a></li>
+ <%@ include file="TRibbon.jsp" %><br><br><br><br>
+<ul><li><a  href="product.jsp">Product Search</a></li>
   <li><a href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TrackConsignment.jsp">Track Consignment</a></li></ul>
+  <li><a href="TradeConsignment.jsp">Track consignment</a></li></ul><br><br><br><br>
 
 
 <center><h1>Trade Summary</h1></center>
