@@ -121,6 +121,9 @@
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="script.js"></script>
+		<script>
+		
+		</script>
 		
 	</head>
 <body>
@@ -129,20 +132,12 @@
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a>
+		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
 		<li> <a  href ="FLogout.do">Logout</a></li>
-	 </ul>
+	</ul>
 	
 	
 	 <%
-
-		String farmerid = request.getParameter("farmerid");
-		String lotnum = request.getParameter("lotnum");
-		String marketcode = request.getParameter("marketcode");
-		String kproduce = request.getParameter("kproduce");
-		String produce = request.getParameter("produce");
-		String quality = request.getParameter("quality");
-		String qunatity = request.getParameter("photo");
 		
 		 HttpSession hs=request.getSession(false);  
 	     String pass=(String)hs.getAttribute("pass");  
@@ -206,6 +201,7 @@
 		    <th><font color="#C71585" size="5">Timer</font></th>
 		</tr>
 		<%
+		
 			//fetching lotnumber 
 			String lot="";
 			try{	
@@ -214,7 +210,7 @@
 					System.out.println("Connection establish failed");
 				}
 				statement = con.createStatement();
-				String sql = "select lotnumber,quantity from productentry where farmerid='"+s+"' ";
+				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 			
 				//System.out.println(sql);
 				resultSet = statement.executeQuery(sql);
@@ -225,15 +221,18 @@
 			 <td background="pink">
 			 	<span>
 			 		<form action=" " >
-						 <input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>>
+						 <input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%>/>
 					</form>
 				</span>
 				</td>
-			 <td></td>
+				
+			 <td><%=resultSet.getString("averageprice") %></td>
 			 <td><%=resultSet.getString("quantity") %></td>
-			 <td></td>
-			 <td><input type="button" value="Accept "></td>
-			 <td><input type="button" value="Reject"></td>
+			 <td><%=resultSet.getString("quantitybidfor") %></td>
+			 <td><form action="FarmerAccept.jsp">
+			 <input  id="accept" type="submit" value="Accept " disabled ></td></form>
+			 <form action="FarmerReject.jsp">
+			 <td><input  id="reject" type="submit" value="Reject" disabled></td></form>
 			 <td>
 			 	<div id="pbar_outerdiv" style="width: 140px; height: 18px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
 					<div id="pbar_innerdiv" style="background-color: lightgreen; z-index: 2; height: 100%; width: 0%;"></div>
@@ -252,7 +251,11 @@
 		e.printStackTrace();	
 	}
 %>
-</table>  
+
+
+</table> 
+
+
 <%
 	//fetching date and time
 	String date="";
@@ -300,20 +303,23 @@
 			var s2="Slot2";
 			var s3="Slot3";
 			var s4="Slot4";
-		
+		var timedif;
+		var Btime1;
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(Slot==s1){
-				var Etime=document.getElementById("time1").value;
-				
-				var Btime="14:45:00:00";
+				var Etime=document.getElementById("time").value;
+				var Btime="10:30:00";
+				 Btime1="10:35:00";
 				start = Etime.split(":");
 				end =Btime.split(":");
+				
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+			
+				//
 				var diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
-				console.log("new time="+Etime);
-				
+				console.log("current time is "+Etime);
 				console.log("difference in milliseconds is "+diff);
 				var hours = Math.floor(diff / 1000 / 60 / 60);
 				//diff -= hours* 60 * 60;
@@ -346,29 +352,261 @@
 				console.log("differences in time is "+timedifference);
 				var idiff = parseInt("timedifference") + "<br>";
 				countdown(minutes,seconds,hours);
+				count(minutes1,seconds1,hours1);
+				//time progress-------------------------
+	    		var start = new Date();
+				var maxTime = diff;
+				var timeoutVal = Math.floor(maxTime/100);
+				animateUpdate();
+
+				function updateProgress(percentage) {
+				    $('#pbar_innerdiv').css("width", percentage + "%");
+				    $('#pbar_innertext').text(percentage + "%");
+				}
+
+				function animateUpdate() {
+				    var now = new Date();
+				    var timeDiff = now.getTime() - start.getTime();
+				    var perc = Math.round((timeDiff/maxTime)*100);
+				    console.log(perc);
+				      if (perc <= 100) {
+				       updateProgress(perc);
+				       setTimeout(animateUpdate, timeoutVal);
+				      }
+				}
+				//----------------------------------
+					
+				var five=300000;
+				timedif=diff+five;
+				console.log("count"+timedif);
+				
 		}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(Slot==s2){
-			
+			var Etime=document.getElementById("time").value;
+			var Btime="10:40:00:00";
+			start = Etime.split(":");
+			end =Btime.split(":");
+			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+			var diff = endDate.getTime() - startDate.getTime();
+			console.log("end time is "+Btime);
+			console.log("current time is "+Etime);
+			console.log("difference in milliseconds is "+diff);
+			var hours = Math.floor(diff / 1000 / 60 / 60);
+			//diff -= hours* 60 * 60;
+			var seconds= Math.floor(diff /1000);
+			var minutes = Math.floor(diff / 1000 / 60);
+			var res3=0;
+			console.log("differences in minutes before calc "+minutes);		
+			console.log("differences in seconds before calc "+seconds);		
+			if(seconds>60)
+			{
+					res1=seconds%60;
+					res2=Math.floor(seconds/60);
+							
+					seconds=res1;
+					minutes=res2;
+			}
+			if(minutes>60)
+			{
+					res1=minutes%60;
+					res3=Math.floor(minutes/60);
+							
+					hours=res3;
+					minutes=res1;
+			}
+			console.log("differences in minutes is "+minutes);
+			console.log("differences in seconds is "+seconds);
+			console.log("differences in hours is "+hours);
+
+			var timedifference=+hours+":"+minutes+":"+seconds;
+			console.log("differences in time is "+timedifference);
+			var idiff = parseInt("timedifference") + "<br>";
+			countdown(minutes,seconds,hours);
+			//time progress-------------------------
+    		var start = new Date();
+			var maxTime = diff;
+			var timeoutVal = Math.floor(maxTime/100);
+			animateUpdate();
+
+			function updateProgress(percentage) {
+			    $('#pbar_innerdiv').css("width", percentage + "%");
+			    $('#pbar_innertext').text(percentage + "%");
+			}
+
+			function animateUpdate() {
+			    var now = new Date();
+			    var timeDiff = now.getTime() - start.getTime();
+			    var perc = Math.round((timeDiff/maxTime)*100);
+			    console.log(perc);
+			      if (perc <= 100) {
+			       updateProgress(perc);
+			       setTimeout(animateUpdate, timeoutVal);
+			      }
+			}
+			//----------------------------------
+
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 	}
 			      
 		
 		//-------------------------------for slot3-----------------------------------------------------------------
 		else if(Slot==s3){
-			
-			
+			var Etime=document.getElementById("time").value;
+			var Btime="10:50:00:00";
+			start = Etime.split(":");
+			end =Btime.split(":");
+			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+			var diff = endDate.getTime() - startDate.getTime();
+			console.log("end time is "+Btime);
+			console.log("current time is "+Etime);
+			console.log("difference in milliseconds is "+diff);
+			var hours = Math.floor(diff / 1000 / 60 / 60);
+			//diff -= hours* 60 * 60;
+			var seconds= Math.floor(diff /1000);
+			var minutes = Math.floor(diff / 1000 / 60);
+			var res3=0;
+			console.log("differences in minutes before calc "+minutes);		
+			console.log("differences in seconds before calc "+seconds);		
+			if(seconds>60)
+			{
+					res1=seconds%60;
+					res2=Math.floor(seconds/60);
+							
+					seconds=res1;
+					minutes=res2;
+			}
+			if(minutes>60)
+			{
+					res1=minutes%60;
+					res3=Math.floor(minutes/60);
+							
+					hours=res3;
+					minutes=res1;
+			}
+			console.log("differences in minutes is "+minutes);
+			console.log("differences in seconds is "+seconds);
+			console.log("differences in hours is "+hours);
+
+			var timedifference=+hours+":"+minutes+":"+seconds;
+			console.log("differences in time is "+timedifference);
+			var idiff = parseInt("timedifference") + "<br>";
+			countdown(minutes,seconds,hours);
+
+			var t=setTimeout(auction, 1000);
+			function auction()
+			{
+				//window.location='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
+			}
+
+			//time progress-------------------------
+    		var start = new Date();
+			var maxTime = diff;
+			var timeoutVal = Math.floor(maxTime/100);
+			animateUpdate();
+
+			function updateProgress(percentage) {
+			    $('#pbar_innerdiv').css("width", percentage + "%");
+			    $('#pbar_innertext').text(percentage + "%");
+			}
+
+			function animateUpdate() {
+			    var now = new Date();
+			    var timeDiff = now.getTime() - start.getTime();
+			    var perc = Math.round((timeDiff/maxTime)*100);
+			    console.log(perc);
+			      if (perc <= 100) {
+			       updateProgress(perc);
+			       setTimeout(animateUpdate, timeoutVal);
+			      }
+			}
+			//----------------------------------
+
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 			
 	}
 			
 		//----------------------------------for slot4---------------------------------------------------------------	
 		else if (Slot==s4){
-			
+			var Etime=document.getElementById("time").value;
+			var Btime="11:00:00:00";
+			start = Etime.split(":");
+			end =Btime.split(":");
+			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+			var diff = endDate.getTime() - startDate.getTime();
+			console.log("end time is "+Btime);
+			console.log("current time is "+Etime);
+			console.log("difference in milliseconds is "+diff);
+			var hours = Math.floor(diff / 1000 / 60 / 60);
+			//diff -= hours* 60 * 60;
+			var seconds= Math.floor(diff /1000);
+			var minutes = Math.floor(diff / 1000 / 60);
+			var res3=0;
+			console.log("differences in minutes before calc "+minutes);		
+			console.log("differences in seconds before calc "+seconds);		
+			if(seconds>60)
+			{
+					res1=seconds%60;
+					res2=Math.floor(seconds/60);
+							
+					seconds=res1;
+					minutes=res2;
+			}
+			if(minutes>60)
+			{
+					res1=minutes%60;
+					res3=Math.floor(minutes/60);
+							
+					hours=res3;
+					minutes=res1;
+			}
+			console.log("differences in minutes is "+minutes);
+			console.log("differences in seconds is "+seconds);
+			console.log("differences in hours is "+hours);
+
+			var timedifference=+hours+":"+minutes+":"+seconds;
+			console.log("differences in time is "+timedifference);
+			var idiff = parseInt("timedifference") + "<br>";
+			countdown(minutes,seconds,hours);
+			//time progress-------------------------
+    		var start = new Date();
+			var maxTime =diff;
+			var timeoutVal = Math.floor(maxTime/100);
+			animateUpdate();
+
+			function updateProgress(percentage) {
+			    $('#pbar_innerdiv').css("width", percentage + "%");
+			    $('#pbar_innertext').text(percentage + "%");
+			}
+
+			function animateUpdate() {
+			    var now = new Date();
+			    var timeDiff = now.getTime() - start.getTime();
+			    var perc = Math.round((timeDiff/maxTime)*100);
+			    console.log(perc);
+			      if (perc <= 100) {
+			       updateProgress(perc);
+			       setTimeout(animateUpdate, timeoutVal);
+			      }
+			}
+			//----------------------------------
+
+			var five='300000';
+			var timedif=diff+five;
+			console.log("count"+timedif);
 			
 		}
-			
 			///---------------------for count down timer----------------------------------	
+			
 			function countdown(minutes,seconds,hours) 
-{
+				{
 				    var seconds =seconds;
 				    var mins = minutes
 				    var hour=hours;
@@ -379,23 +617,18 @@
 			   		function tick() 
 			   		{
 				        var counter = document.getElementById("timer");
-				        /*if(seconds==0)
-				        {
-				        	var current_minutes = mins-1
-				        	seconds=59;
-				        }
-				        else*/
-				        	var current_minutes = mins
+				        var current_minutes = mins
 			       		seconds--;
 				        var hour=hours;
 				        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 				        if( seconds > 0 )
 				        {
 				            setTimeout(tick,1000);
+				           
 				        } 
-				        else 
+				        else
 			        	{
-			 				if(mins > 1)
+			 				if(mins >= 1)
 			 				{
 			 					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
 			 				}			 				
@@ -412,13 +645,20 @@
 					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
 					            	var strCmd = "document.getElementById('auction').style.display = 'none'";
 					            	var waitseconds = seconds;
-
-					            	// Calculate time out period then execute the command
 					            	var timeOutPeriod = waitseconds * 1000;
 					            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+					            	var strCmd1 = "document.getElementById('msg').style.display = 'none'";
+					            	var waitseconds = seconds;
+					            	var timeOutPeriod = waitseconds * 1000;
+					            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
 					            	document.getElementById("timer").innerHTML=str;
-					            	function count(minutes) {
-					        		    var seconds =60;
+					            	//during auction
+					            	function count(minutes1,seconds1) {
+					            		var Etime=document.getElementById("time").value;
+					            		end1 =Btime1.split(":");
+					            		var endDate = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+					            		//diff1=endDate.getTime()=
+					        		  // var seconds =60;
 					        		    var mins = minutes
 					        		    var timedifference=+hours+":"+minutes+":"+seconds;
 					        		    
@@ -435,30 +675,70 @@
 					        		        {
 					        		 
 						        		            if(mins > 1){
-						        		 				setTimeout(function () { count(mins - 1); },1000);
+						        		 				setTimeout(function () { count(mins-1); },1000);
 						        						}
 						        		            	else{
 						        		            	var str1="<center><h4><font color='blue' >Your Auction has end</font></h4><center>";
 						        		            	document.getElementById("auction1").innerHTML=str1;
 						        		            	}
+						        		           
+						        		            //setButtonStatus(seconds,accept);
 					        		    	}
 				        		     	}
 				        		   	 	tick();
+				        		   
 				        			}
-				        			count(5);				            	
+				        			count(minutes1,seconds1);
+					            	
+				        			//time progress-------------------------
+				            		var start = new Date();
+				    				var maxTime = 300000;
+				    				var timeoutVal = Math.floor(maxTime/100);
+				    				animateUpdate();
+
+				    				function updateProgress(percentage) {
+				    				    $('#pbar_innerdiv').css("width", percentage + "%");
+				    				    $('#pbar_innertext').text(percentage + "%");
+				    				}
+
+				    				function animateUpdate() {
+				    				    var now = new Date();
+				    				    var timeDiff = now.getTime() - start.getTime();
+				    				    var perc = Math.round((timeDiff/maxTime)*100);
+				    				    console.log(perc);
+				    				      if (perc <= 100) {
+				    				       updateProgress(perc);
+				    				       setTimeout(animateUpdate, timeoutVal);
+				    				      }
+				    				}
+				    				//----------------------------------
+				    				 /*var jspcall = "Fpage.jsp?";
+			        		            window.location.href = jspcall;*/
 								}
 							}
 			 				}		       
 			    		}
 			    tick();
 			}
-			countdown(minutes,seconds);
+			countdown(minutes,seconds,hours);
 			//
+			
+			
 			/*var t=setTimeout(nextPage,5000)
 			function nextPage(){
 				window.location='http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp';
 			}*/
-			///
+			
 	</script>
+	 <script>
+
+//console.log("time="+timedif);
+ var t=setTimeout(auction,timedif);
+ function auction(){
+	 document.getElementById("accept").disabled=false;
+	 document.getElementById("reject").disabled=false;
+ }
+ </script>
+
 </body>
 </html>

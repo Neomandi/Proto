@@ -45,6 +45,8 @@ public class ControllerServlet extends HttpServlet {
 	{
 		
 		RequestDispatcher rd=null;	
+		
+		RequestDispatcher rd2=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
 		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
@@ -53,6 +55,7 @@ public class ControllerServlet extends HttpServlet {
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
+		SummaryBean sb=(SummaryBean)request.getAttribute("sb");
 		
 		//ControllerServlet.setVal(atbean.getMaxvol()); 
 		
@@ -212,6 +215,138 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 		}
+		//farmer trade summary
+				if(uri.contains("GetSummary")){
+					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
+					Model m = new Model();
+					sb=m.getSummary(name, pass, sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
+					rd=request.getRequestDispatcher("GetSummary.jsp");
+					
+				
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+				if(uri.contains("AcceptSummary.do")){
+					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
+					Model m = new Model();
+					sb=m.getSummary(name, pass, sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
+					rd=request.getRequestDispatcher("AcceptSummary.jsp");
+					
+				
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				if(uri.contains("RejectSummary.do")){
+					System.out.println("in cs uri="+uri);
+					HttpSession hs=request.getSession(false);
+					String name=(String) hs.getAttribute("name");
+					String pass=(String) hs.getAttribute("pass");
+					System.out.println("in cs pass="+pass);
+					System.out.println("in cs name="+name);
+					Model m = new Model();
+					sb=m.getSummary(name, pass, sb);
+					
+					System.out.println(" in cs sb="+sb);
+					String lotnumber=sb.getLotnumber();
+					String lotsize=sb.getLotsize();
+					String quantitysold=sb.getQuantitysold();
+					String averageprice=sb.getAverageprice();
+					String finalprice=sb.getFinalprice();
+					String status=sb.getStatus();
+					System.out.println(("in cs avg="+averageprice));
+					
+					HttpSession hsr=request.getSession();
+					hsr.setAttribute("lotnumber",lotnumber);
+					hsr.setAttribute("lotsize",lotsize);
+					hsr.setAttribute("quantitysold", quantitysold);
+					hsr.setAttribute("averageprice", averageprice);
+					hsr.setAttribute("finalprice", finalprice);
+					hsr.setAttribute("status", status);
+					rd=request.getRequestDispatcher("RejectSummary.jsp");
+					
+				
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+		
+		
+		
+	
 		
 		
 		//Employee Login
@@ -686,7 +821,7 @@ public class ControllerServlet extends HttpServlet {
 
 
 			Model m=new Model();
-			Mynewclass mc=m.tradeOrAuction(name,pwd);
+			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			HttpSession traderlistbean=request.getSession();
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
@@ -990,6 +1125,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+
 		if(uri.contains("OrderStatus"))
 		{
 			System.out.println("inside CS");
@@ -1074,6 +1210,41 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 		}*/	
+		
+		if(uri.contains("FLogout"))
+		{
+			HttpSession flog = request.getSession(false);
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(flog!=null)
+			{ 
+				flog.invalidate();
+				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
+				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				rd2=request.getRequestDispatcher("FarmerLogin.jsp");
+				try 
+				{
+					rd.forward(request, response);
+					return;
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
+			}
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

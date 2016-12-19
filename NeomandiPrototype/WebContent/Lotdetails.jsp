@@ -139,7 +139,7 @@ li a:hover:not(.active) {
    <li><a href="FarmerMaster.jsp" >Auction</a></li>
   <li><a class="active" href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-	<li> <a  href ="Logout.do">Logout</a></li>
+	
   </ul>
 
 <%

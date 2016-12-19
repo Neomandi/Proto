@@ -77,7 +77,7 @@ html {
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
+		<font size="4"  face="Comic Sans MS" color="white"  >Welcome 
 		<% 
 			HttpSession elog=request.getSession(false);
 			if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)

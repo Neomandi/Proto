@@ -51,8 +51,7 @@ html {
 	}
 	
 #content:before {
-		position: "left";
-
+      position: "left";
 	  left: 0;
 	  border-width: .10em 0 0 .10em;
 	  background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
@@ -63,27 +62,45 @@ html {
 	  border-width: .10em .10em 0 0;
 	  background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
 	}
-.one
+#one
 {
 	position: absolute;
-	right: 0px;
+	right: 12px;
+	top: 5px;
 	color: red;
 	text-decoration: none;
+	font-size: 32px;
+	font-style: italic;
 }
 </style>
 </head>
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"  >welcome <% HttpSession hc=request.getSession(false); out.println((String)hc.getAttribute("name")); %> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
-        <%out.println(hc.getAttribute("date"));%> &nbsp &nbsp at  <% out.println((String)hc.getAttribute("time"));%>
+		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
+		<% 
+			HttpSession flog=request.getSession(false);
+			if((String)flog.getAttribute("name")==null)
+			{ 				
+				 out.println("<script type=\"text/javascript\">");
+			  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+			  	 out.println("location='FarmerLogin.jsp';");
+			 	 out.println("</script>");
+			}	
+			else
+				 out.println((String)flog.getAttribute("name")); 
+				%> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp you logged in on
+			
+			
+        <%out.println(flog.getAttribute("date"));%> &nbsp &nbsp at 
+         <% out.println((String)flog.getAttribute("time"));%>
          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-         
 		</font>
 		</span>
 	</div>
+	<form action="FLogout.do">
+	<input type="submit" id = "one" value = "Logout"/ >
+	</form>
 	<br/>
-	
-	
 </body>
 </html>

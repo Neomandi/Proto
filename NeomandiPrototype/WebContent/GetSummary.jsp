@@ -180,17 +180,68 @@ li a:hover:not(.active) {
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 
 <center>
-<form action ="FarmerSummaryInt.jsp" method = "get">
+<form action = "" method = "get">
 
  From:  <input type = "date" id = "from"/><br/><br/>
  
  To:    <input type = "date" id = "to"/><br/>
 
- <br/>
+<br/>
 <input type = "submit" value = "Get Summary"/> 
 <br/><br/>
 </form>
 
+<%  HttpSession hs=request.getSession(false);  
+	     String pass=(String)hs.getAttribute("pass");  
+	    System.out.println(" in getsummary password="+pass);
+	    
+	    HttpSession hsr=request.getSession(false); 
+	    String lotnumber=(String)hsr.getAttribute("lotnumber");
+	    hsr.setAttribute("lotnumber", lotnumber);
+	    System.out.println(" in getsummary lotnumber="+lotnumber);
+	    String lotsize=(String)hsr.getAttribute("lotsize");
+	    String quantitysold=(String)hsr.getAttribute("quantitysold");
+	    String averageprice=(String)hsr.getAttribute("averageprice");
+	    String finalprice=(String)hsr.getAttribute("finalprice");
+	    System.out.println("in getsummary lotsize="+lotsize);
+	    int lot=Integer.parseInt(lotsize);
+	    int qsold=Integer.parseInt(quantitysold);
+	    String status="";
+	    if(lot==qsold)
+	    	status+="Fully executed .waiting for your acceptance";
+	    	else
+	    	status+="partially executed.waiting for your acceptance";
+	    	 String lotsize1=String.valueOf(lot);
+			 String quantitysold1=String.valueOf(qsold);
+	    %>
+		
+		<center>
+		<form>
+		 
+
+<table id = 'mytable' border>
+
+		<tr bgcolor = '#00FF00'>
+			<th>Lot number</th>
+			<th>Lot size</th>
+		   <th>Quantity Sold </th>
+		    <th>Average price</th>
+		     <th>Final price</th>
+		     <th>Status</th>
+		    
+		</tr>
+		<tr>
+		<td><%=lotnumber %></td>
+		<td><%=lotsize1 %></td>
+		<td><%=quantitysold1%></td>
+		<td><%=averageprice%></td>
+		<td><%= finalprice%></td>
+		<td><%= status %></td>
+		</tr>
+		
+</table><br/>
+</form>
+</center>
 <br/>
 <br/>		
 

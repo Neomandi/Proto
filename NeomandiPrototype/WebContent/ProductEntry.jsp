@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,7 +28,8 @@ $(function(){
 table
 {
 	border-collapse: collapse;
-	width: 25%;
+	width: 480px;
+	height: 200px;
 	text-align: left;
 	position: absoulte;
 	
@@ -53,7 +54,7 @@ input[type = text]
 #pic
 {
 	position: absolute;
-	top: 75px;
+	top: 400px;
 	left: 500px;
 }
 .bc
@@ -65,9 +66,35 @@ input[type = text]
 	text-decoration: none;
 	color: red;
 	position: absolute;
-	top: 8px;
-	right: 10px;
+	top: 6px;
+	right: 30px;
 	font-size: 32px;
+}
+#kproduce
+{
+	size: 15;
+}
+input[type=submit]
+{
+	background-color: rgb(30,115,190);
+	border: none;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 4px;
+	height: 30px;
+    width: 60px;
+}
+input[type=reset]
+{
+	background-color: rgb(30,115,190);
+	border: none;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 4px;
+	height: 30px;
+    width: 60px;
 }
 </style>
 </head>
@@ -76,20 +103,20 @@ input[type = text]
 <%@ include file="ERibbon.jsp" %><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
-<h2>Market Yard Window: Product Entry Screen</h2>
+<h2>Market Yard Window: Product Entry Screen</h2><br/>
 <center><form action = "ProductEntryInt.jsp" method = "post" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>
-			<td><input type = "text"  name = "farmerid" id = "farmerid" placeholder = "Enter farmerid"/></td>
+			<td><input type = "text"  name = "farmerid" id = "farmerid" placeholder = "Enter farmerid" style = "width: 235px;"/></td>
 		</tr>
 		<tr>
 			<th>Market Code</th>
-			<td><input type = "text" name = "marketcode" id = "marketcode" placeholder = "Enter the market code"/></td>
+			<td><input type = "text" name = "marketcode" id = "marketcode" placeholder = "Enter the market code" style = "width: 235px;"/></td>
 		</tr>
 		<tr>
 			<th>Kind of produce</th>
-			<td><select name = "kproduce" id = "kproduce">
+			<td><select name = "kproduce" id = "kproduce" style = "width: 235px;">
 					<option selected value = "base">Please Select</option>
 					<option value = "Vegetable">VEGETABLES</option>
 					<option value = "FRUITS">FRUITS</option>
@@ -99,13 +126,13 @@ input[type = text]
 		</tr>
 		<tr>
 			<th>Produce</th>
-			<td><select name = "produce" id = "produce">
+			<td><select name = "produce" id = "produce" style = "width: 235px;">
 					<option>Please choose from above</option>
 				</select></td>
 		</tr>
 		<tr> 
 			<th>Quality grade</th>
-			<td><select name = "quality" id = "quality">
+			<td><select name = "quality" id = "quality" style = "width: 235px;">
 					<option></option>
 					<option>A</option>
 					<option>B</option>
@@ -115,29 +142,29 @@ input[type = text]
 		</tr>
 		<tr>
 			<th>Quantity</th>
-			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity"/></td>
+			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity" style = "width: 235px;"/></td>
 		</tr>
-		<!--<tr>
+		<!-- <tr>
 			<th>Image</th>
-			<td><input type='file' name = 'photo' onchange="readURL(this);" /></td>
+			<td><input type="file" name = "photo" onchange="readURL(this);" /></td>
 		</tr>  -->
 		<tr>
 			<th>Lot Number</th>
-			<td><input type = "text" name = "lotnum" id = "lotnum"/></td>
+			<td><input type = "text" name = "lotnum" id = "lotnum" style = "width: 235px;"/></td>
 		</tr>
 	</table>
 	<br/>
 	
-    <!-- <img id="pic" src="#" alt="your image" /> -->
-	<input type = "submit" value = "Submit"/>
-	<input type = "reset" value = "Reset"/>
+    <!-- <img id="pic" name = "pic" src="#" alt="your image" />  -->
+	<input type = "submit" value = "Submit"/>&nbsp &nbsp
+	<input type = "reset" value = "Reset"/><br/><br/>
 	
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<p align = "center"><b><% if(msg!=null)
 							out.print(msg);
 									%></b></p><br/>
 									
-	<a class = 'bc' href = "EmployeeLogin.jsp"><b>Back</b></a>
+	<!-- <a class = 'bc' href = "EmployeeLogin.jsp"><h3>Back</h3></a>  -->
 	<a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
 
 </form>
@@ -155,7 +182,7 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#pic')
                 .attr('src', e.target.result)
-                .width(250)
+                .width(400)
                 .height(250);
         };
         reader.readAsDataURL(input.files[0]);

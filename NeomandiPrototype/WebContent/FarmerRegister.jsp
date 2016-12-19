@@ -272,7 +272,7 @@ select
 		<input type = "text" id = "ifsc" name = "farmerIfscCode" placeholder = "IFSC Code" required/><br/><br/>
 	</fieldset>
 	<br/>
-	<input type = "submit" value = "Register"/>
+	<input type = "submit" value = "Register"/>&nbsp &nbsp
 	<input type = "reset" value = "Reset"/>
 </form>
 <br/>
