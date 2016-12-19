@@ -1067,8 +1067,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		
-		//Farmer Logout
-		if(uri.contains("Logout"))
+		if(uri.contains("FLogout"))
 		{
 			HttpSession flog = request.getSession(false);
 			PrintWriter out = null;

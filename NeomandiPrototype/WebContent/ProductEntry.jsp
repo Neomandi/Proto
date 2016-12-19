@@ -54,7 +54,7 @@ input[type = text]
 #pic
 {
 	position: absolute;
-	top: 75px;
+	top: 400px;
 	left: 500px;
 }
 .bc
@@ -144,9 +144,9 @@ input[type=reset]
 			<th>Quantity</th>
 			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity" style = "width: 235px;"/></td>
 		</tr>
-		<!--<tr>
+		<!-- <tr>
 			<th>Image</th>
-			<td><input type='file' name = 'photo' onchange="readURL(this);" /></td>
+			<td><input type="file" name = "photo" onchange="readURL(this);" /></td>
 		</tr>  -->
 		<tr>
 			<th>Lot Number</th>
@@ -155,7 +155,7 @@ input[type=reset]
 	</table>
 	<br/>
 	
-    <!-- <img id="pic" src="#" alt="your image" /> -->
+    <!-- <img id="pic" name = "pic" src="#" alt="your image" />  -->
 	<input type = "submit" value = "Submit"/>&nbsp &nbsp
 	<input type = "reset" value = "Reset"/><br/><br/>
 	
@@ -182,7 +182,7 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#pic')
                 .attr('src', e.target.result)
-                .width(250)
+                .width(400)
                 .height(250);
         };
         reader.readAsDataURL(input.files[0]);

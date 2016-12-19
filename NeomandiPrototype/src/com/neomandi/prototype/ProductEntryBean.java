@@ -1,5 +1,7 @@
 package com.neomandi.prototype;
 
+import java.io.InputStream;
+
 public class ProductEntryBean {
 	private String farmerid;
 	private String marketcode;
@@ -8,14 +10,11 @@ public class ProductEntryBean {
 	private String quality;
 	private String quantity;
 	private String lotnum;
-	
-	
 	public String getFarmerid() {
 		return farmerid;
 	}
 	public void setFarmerid(String farmerid) {
 		this.farmerid = farmerid;
-		System.out.println("Farmerid: "+farmerid);
 	}
 	public String getMarketcode() {
 		return marketcode;
@@ -118,7 +117,6 @@ public class ProductEntryBean {
 				+ ", produce=" + produce + ", quality=" + quality + ", quantity=" + quantity + ", lotnum=" + lotnum
 				+ "]";
 	}
-	
 	
 	
 }

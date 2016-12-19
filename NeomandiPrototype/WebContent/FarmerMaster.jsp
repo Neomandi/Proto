@@ -132,8 +132,12 @@
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-		<li> <a  href ="Logout.do">Logout</a></li>
+		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a>
+
+		
+		</li>
+
+		<li> <a  href ="FLogout.do">Logout</a></li>
 	 </ul>
 	
 	
@@ -304,40 +308,18 @@
 			var s3="Slot3";
 			var s4="Slot4";
 		var timedif;
+		var Btime1;
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(Slot==s1){
 				var Etime=document.getElementById("time").value;
 				var Btime="10:30:00";
-				var Btime1="10:35:00";
+				 Btime1="10:35:00";
 				start = Etime.split(":");
 				end =Btime.split(":");
-				end1=Btime1.split(":");
+				
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-				var end1Date=newDate(0,0,0,end1[0],end[2],end[2]);
-				var diff1 = end1Date.getTime() - startDate.getTime();
-				var hours1 = Math.floor(diff1 / 1000 / 60 / 60);
-				var res3=0;
-				var seconds1= Math.floor(diff1 /1000);
-				var minutes1 = Math.floor(diff1 / 1000 / 60);
-				if(seconds1>60)
-				{
-						res1=seconds1%60;
-						res2=Math.floor(seconds1/60);
-								
-						seconds1=res1;
-						minutes1=res2;
-				}
-				if(minutes1>60)
-				{
-						res1=minutes1%60;
-						res3=Math.floor(minutes1/60);
-								
-						hours1=res3;
-						minutes1=res1;
-				}
-				
-				
+			
 				//
 				var diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
@@ -675,24 +657,22 @@
 					            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
 					            	document.getElementById("timer").innerHTML=str;
 					            	//during auction
-					            	
-					            	
-					            	
-					            	
-					            	//
-					            	count(minutes1,seconds1,hours1); {
-					            		
-					        		    var seconds =seconds1;
-					        		    var mins = minutes1
+					            	function count(minutes1,seconds1) {
+					            		var Etime=document.getElementById("time").value;
+					            		end1 =Btime1.split(":");
+					            		var endDate = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+					            		//diff1=endDate.getTime()=
+					        		  // var seconds =60;
+					        		    var mins = minutes
 					        		    var timedifference=+hours+":"+minutes+":"+seconds;
 					        		    
 					        		    function tick() 
 					        		    {
 					        		        var counter = document.getElementById("hms");
 					        		        var current_minutes = mins-1
-					        		       	seconds1--;
-					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds1 < 10 ? "0" : "") + String(seconds1);
-					        		        if( seconds1 > 0 ) {
+					        		       	seconds--;
+					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+					        		        if( seconds > 0 ) {
 					        		            setTimeout(tick,1000);
 					        		        } 
 					        		        else 
@@ -703,11 +683,6 @@
 						        						}
 						        		            	else{
 						        		            	var str1="<center><h4><font color='blue' >Your Auction has end</font></h4><center>";
-						        		            	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
-										            	var waitseconds = seconds;
-										            	var timeOutPeriod = waitseconds * 1000;
-										            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
-										            	
 						        		            	document.getElementById("auction1").innerHTML=str1;
 						        		            	}
 						        		           
@@ -717,7 +692,8 @@
 				        		   	 	tick();
 				        		   
 				        			}
-				        			count(5);
+				        			count(minutes1,seconds1);
+					            	
 				        			//time progress-------------------------
 				            		var start = new Date();
 				    				var maxTime = 300000;
