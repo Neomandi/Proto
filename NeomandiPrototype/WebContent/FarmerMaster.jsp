@@ -132,13 +132,8 @@
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a>
-<<<<<<< HEAD
-		
-		</li>
-=======
-		<li> <a  href ="FLogout.do">Logout</a></li>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li> <a  href ="Logout.do">Logout</a></li>
 	 </ul>
 	
 	

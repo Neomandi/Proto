@@ -1067,20 +1067,27 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		
-		//farmer logout
+		//Farmer Logout
 		if(uri.contains("Logout"))
 		{
 			HttpSession flog = request.getSession(false);
-			PrintWriter out=null;
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			if(flog!=null)
 			{ 
 				flog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
-				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
 				rd2=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd.forward(request, response);
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block

@@ -559,7 +559,7 @@ int count=0;
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -585,6 +585,8 @@ int count=0;
 				ps.setString(9, date);
 				ps.setString(10, date2);
 				ps.setString(11, slot);
+				ps.setString(12, null);
+				ps.setString(13, null);
 				ps.execute();
 				
 				msg = "SUCCESS";
