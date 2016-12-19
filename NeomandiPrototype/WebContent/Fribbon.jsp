@@ -98,7 +98,7 @@ html {
 		</font>
 		</span>
 	</div>
-	<form action="Logout.do">
+	<form action="FLogout.do">
 	<input type="submit" id = "one" value = "Logout"/ >
 	</form>
 	<br/>
