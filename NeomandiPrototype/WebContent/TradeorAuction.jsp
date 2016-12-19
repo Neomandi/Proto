@@ -96,7 +96,7 @@ border-collapse: collapse;
 }
 </style></head>
 <body>
- <%@ include file="Ribbon.jsp" %><br><br>
+ <%@ include file="TRibbon.jsp" %><br><br>
 <ul><li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  href="TraderBlock.jsp">Block Funds</a></li>
   <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>

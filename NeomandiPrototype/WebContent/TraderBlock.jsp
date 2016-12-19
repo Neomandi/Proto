@@ -62,8 +62,8 @@ $(#ICICI).click(function(){$("#form0").submit();})
 
 </style></head>
 <body>
-<%@ include file="Ribbon.jsp" %><br><br>
-<ul>
+<%@ include file="TRibbon.jsp" %><br><br>
+<br><br><ul>
   <li><a href="ProductSearch.jsp">Product Search</a></li>
   <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
@@ -80,8 +80,8 @@ $(#ICICI).click(function(){$("#form0").submit();})
 	<input type="radio"  name="HDFC" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>HDFC
 	<input type="radio"  name="SBM" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBM
 	<input type="radio"  name="CITI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>CITI
-  <br><br>  
-</form><br><br>
+  <br>
+</form>
 <% 
 
 String msg3=(String)request.getAttribute("notlogged");
@@ -155,7 +155,7 @@ if(msg1!=null)
 	else if(request.getAttribute("blockamount")!=null)
 	{
 		out.println("Successfully blocked amount: "+request.getAttribute("blockamount"));%><br><br><%
-		out.println("Total Amount blocked from your account till Date: "+request.getAttribute("totalblock"));
+		out.println("Total Amount blocked from your account till now: "+request.getAttribute("totalblock"));
 	}
 }
 }%></font>

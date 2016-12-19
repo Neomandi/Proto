@@ -12,7 +12,13 @@ String price;
 String msg;
 String finalcosts;
 String lotnum;
-
+String bestbid;
+public String getBestbid() {
+	return bestbid;
+}
+public void setBestbid(String bestbid) {
+	this.bestbid = bestbid;
+}
 public String getLotnum() {
 	return lotnum;
 }
@@ -65,12 +71,13 @@ public void setMsg(String msg) {
 public String toString() {
 	return "MyFinalCostBean [lotcost=" + lotcost + ", commission=" + commission + ", marketcess=" + marketcess
 			+ ", myfinalcost=" + myfinalcost + ", price=" + price + ", msg=" + msg + ", finalcosts=" + finalcosts
-			+ ", lotnum=" + lotnum + "]";
+			+ ", lotnum=" + lotnum + ", bestbid=" + bestbid + "]";
 }
 @Override
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
+	result = prime * result + ((bestbid == null) ? 0 : bestbid.hashCode());
 	result = prime * result + ((commission == null) ? 0 : commission.hashCode());
 	result = prime * result + ((finalcosts == null) ? 0 : finalcosts.hashCode());
 	result = prime * result + ((lotcost == null) ? 0 : lotcost.hashCode());
@@ -90,6 +97,11 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	MyFinalCostBean other = (MyFinalCostBean) obj;
+	if (bestbid == null) {
+		if (other.bestbid != null)
+			return false;
+	} else if (!bestbid.equals(other.bestbid))
+		return false;
 	if (commission == null) {
 		if (other.commission != null)
 			return false;

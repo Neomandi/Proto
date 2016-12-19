@@ -45,7 +45,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		RequestDispatcher rd=null;	
 		
-		RequestDispatcher rd1=null;	
+		RequestDispatcher rd2=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
 		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
@@ -186,6 +186,33 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+		}						
+		
+		//Farmer logout
+		if(uri.contains("FLogout"))
+		{
+			System.out.println("Inside FarmerLogout");
+			HttpSession hc=request.getSession(false);
+			if(hc!=null)
+			{
+				hc.removeAttribute("flbean");
+				hc.invalidate();				
+			}
+/*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
+			 request.setAttribute("logout", msg);*/
+			 rd=request.getRequestDispatcher("FarmerLogin.jsp");	
+			 try 
+				{
+					rd.forward(request, response);	
+					return;
+				}			
+				catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		//farmer trade summary
 				if(uri.contains("GetSummary")){
@@ -467,14 +494,15 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}	
 		
-		
+		//Product Search
 		if(uri.contains("ProductSearch"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -490,7 +518,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			System.out.println("list which is being sent to ProductSearch is "+msg);//sending the product list from product entry to product serch result  
 			HttpSession psr=request.getSession();
 			psr.setAttribute("beans", msg);
 			request.setAttribute("productsearchresult", "productsearchresult");
@@ -511,9 +538,10 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -528,12 +556,12 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 			String lotnumber = request.getParameter("s1");
-			System.out.println("inside CS-> inside AddTrade()->"+lotnumber);
+			String quantity= request.getParameter("quantity");
+			System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
 			Model m = new Model();
-			String msg = m.addTrade(lotnumber,tlbn);
+			String msg = m.addTrade(lotnumber,tlbn,quantity);
 			if(msg.contains("SUCCESS"))
-			{
-				
+			{				
 				String msg1=msg.substring(7);
 				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
 				System.out.println("message sent is "+msg);
@@ -544,11 +572,9 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-
-					e.printStackTrace();
+							e.printStackTrace();
 				} catch (IOException e) {
-
-					e.printStackTrace();
+							e.printStackTrace();
 				}
 			}
 			else
@@ -564,8 +590,8 @@ public class ControllerServlet extends HttpServlet {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
-		}
+			}		  
+	}
 		
 		//Product Entry
 		if(uri.contains("ProductEntry"))
@@ -608,12 +634,14 @@ public class ControllerServlet extends HttpServlet {
 			}			
 		}
 		
+		//Trader Block Bank
 		if(uri.contains("traderblockbank"))
 		{
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn =null;
 			try
 			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -688,6 +716,7 @@ public class ControllerServlet extends HttpServlet {
 				}			
 		}
 		
+		//Trader Block Amount
 		if(uri.contains("traderblockamount"))
 		{
 			System.out.println("***************************************************************************");
@@ -761,13 +790,19 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//TradeorAuction
 		if(uri.contains("TradeorAuction"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				pwd=tlbn.getTpwd();
+				name=tlbn.getTname();
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -782,12 +817,14 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		
-			String name=tlbn.getTname();
-			String pwd=tlbn.getTpwd();
+
+
 			Model m=new Model();
-			List<TradeListBean> al=m.tradeOrAuction(name,pwd);
+			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			HttpSession traderlistbean=request.getSession();
-			traderlistbean.setAttribute("tlb",al);
+			traderlistbean.setAttribute("tlb",mc.getAl());
+			HttpSession MyFinalCost=request.getSession(true);
+			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
 			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
 				rd.forward(request, response);
@@ -797,14 +834,15 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
-		
+		//SubmitIncrement1
 		if(uri.contains("SubmitIncrement1"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -840,7 +878,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				@SuppressWarnings("rawtypes")
 				List al=mc.getAl();
-				HttpSession MyFinalCost=request.getSession(true);
+				HttpSession MyFinalCost=request.getSession(false);
 				MyFinalCost.setAttribute("MyFinalCost",al);
 				request.setAttribute("smsg", "success");				
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
@@ -855,13 +893,15 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//SubmitIncrement2
 		if(uri.contains("SubmitIncrement2"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
 			try
 			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -911,6 +951,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//RemoveLotnumber
 		if(uri.contains("removelotnumber"))
 		{
 			System.out.println("***************************************************************************");
@@ -937,11 +978,22 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		//TraderLogout
 		if(uri.contains("logout"))
 		{
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-			if(tlbn!=null)
+			if(tlbn==null)
+			{
+				rd=request.getRequestDispatcher("TraderLogin.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}	
+			}
+			else
 			{
 				tlog.invalidate();
 				rd=request.getRequestDispatcher("TraderLogin.jsp");
@@ -954,6 +1006,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//AuctionTrail
 		if(uri.contains("ActionTrail"))
 		{
 			Model m = new Model();
@@ -980,26 +1033,24 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		//EmployeeLogout
 		if(uri.contains("ELogout"))
 		{
+			System.out.println("Inside Elogout");
+			RequestDispatcher rd1=null;
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)
 			{ 
+				elog.removeAttribute("name");
+				elog.removeAttribute("pwd");
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
-				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
+				rd1=request.getRequestDispatcher("EmployeeLogin.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd1.forward(request, response);	
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block
@@ -1011,7 +1062,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
+				return;
 			}
 		}
 		
@@ -1020,12 +1071,13 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("Logout"))
 		{
 			HttpSession flog = request.getSession(false);
+			PrintWriter out=null;
 			if(flog!=null)
 			{ 
 				flog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd=request.getRequestDispatcher("FarmerLogin.jsp");
+				rd2=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{
 					rd.forward(request, response);			

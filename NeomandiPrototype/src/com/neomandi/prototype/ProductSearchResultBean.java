@@ -1,6 +1,9 @@
 package com.neomandi.prototype;
 
-public class ProductSearchResultBean {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ProductSearchResultBean implements Serializable {
 	private String lotnumber;
 	private String marketcode;
 	private String produce;

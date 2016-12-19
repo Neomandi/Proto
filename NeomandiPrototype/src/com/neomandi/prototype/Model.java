@@ -615,7 +615,7 @@ int count=0;
 
 	@SuppressWarnings("resource")
 	//Add Trade
-	public String addTrade(String lotnumber,TraderLoginBean tlbn) 
+	public String addTrade(String lotnumber,TraderLoginBean tlbn, String quant) 
 	{
 		System.out.println("inside Model-> inside AddTrade()");
 		String msg = null;

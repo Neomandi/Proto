@@ -212,7 +212,7 @@ button
 	</fieldset>
 	</div>
 	<br />
-	<input type = "submit" value = "Register"/>
+	<input type = "submit" value = "Register"/>&nbsp &nbsp
 	<input type = "reset" value = "Reset"/>
 </form>
 <br/>
