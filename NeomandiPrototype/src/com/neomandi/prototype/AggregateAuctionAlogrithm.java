@@ -26,7 +26,8 @@ public class AggregateAuctionAlogrithm {
 		//List<String> a = new ArrayList<String>();
 		//List<String> b = new ArrayList<String>();
 		double avg = 0;
-		int maxvol = 505;
+		String lotnum = "";
+		int maxvol = 0;
 		
 		
 		try
@@ -41,7 +42,7 @@ public class AggregateAuctionAlogrithm {
 			con.setAutoCommit(false);
 			
 			
-			String sql1 = "SELECT tb.aadharnumber, tb.bidprice, tl.quantityneeded, tb.bestbid FROM traders_bid_price tb, tradelist tl WHERE tb.lotnum = tl.lotnum and tb.aadharnumber = tl.aadharnumber ORDER BY tb.bidprice desc, tl.quantityneeded desc";
+			String sql1 = "SELECT tl.lotnum, tb.aadharnumber, tb.bidprice, tl.quantityneeded, tb.bestbid FROM traders_bid_price tb, tradelist tl WHERE tb.lotnum = tl.lotnum and tb.aadharnumber = tl.aadharnumber ORDER BY tb.bidprice desc, tl.quantityneeded desc";
 			stmt1 = con.createStatement();
 			rs = stmt1.executeQuery(sql1);
 			//System.out.println(rs);
@@ -63,11 +64,27 @@ public class AggregateAuctionAlogrithm {
 				System.out.println("QuantityNeeded: "+quantityneeded);
 				System.out.println("--------------------------------");
 				
+				lotnum = rs.getString("lotnum");
+				
 				li.add(ab);
 			}
 			System.out.println(li);
 			System.out.println();
 			System.out.println();
+			//System.out.println("The lotnumber is: "+lotnum);
+			
+			String sql3 = "SELECT quantity FROM productentry WHERE lotnumber = ?";
+			pstmt1 = con.prepareStatement(sql3);
+			pstmt1.setString(1, lotnum);
+			ResultSet rs1 = pstmt1.executeQuery();
+			if(rs1.next())
+			{
+				maxvol = rs1.getInt("quantity");
+			}
+			
+			int maxavg = maxvol;
+			//System.out.println("The maxvol of "+lotnum+" is: "+maxvol);
+			//System.out.println("The maxavg: "+maxavg);
 			
 			for(int i=0;i<li.size();i++)
 			{
@@ -142,9 +159,11 @@ public class AggregateAuctionAlogrithm {
 				}	
 			}
 			
+			avg = avg/maxavg;
+			
 			System.out.println("----------------------");
 			System.out.println("Max vol remaining: "+maxvol);
-			System.out.println("The Average price: "+avg/10000);
+			System.out.println("The Average price: "+avg);
 			System.out.println("Best bid is: "+li.get(0).getBidprice());
 			System.out.println();
 			/*System.out.println(a);
@@ -166,7 +185,17 @@ public class AggregateAuctionAlogrithm {
 				//System.out.println("SQL: "+pstmt);
 				pstmt.executeUpdate();
 			}*/
-		con.commit();
+			
+			PreparedStatement pstmt3 = null;
+			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
+			pstmt3 = con.prepareStatement(sql4);
+			pstmt3.setDouble(1, avg);
+			pstmt3.setDouble(2, maxvol);
+			pstmt3.setString(3, lotnum);
+			System.out.println(pstmt3);
+			System.out.println(pstmt3.executeUpdate());
+			
+			con.commit();
 		
 	}
 	catch(SQLException e)
