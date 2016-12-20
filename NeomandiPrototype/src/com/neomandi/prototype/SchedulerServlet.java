@@ -1,0 +1,117 @@
+package com.neomandi.prototype;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SimpleScheduleBuilder;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
+
+/**
+ * Servlet implementation class SchedulerServlet
+ */
+public class SchedulerServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SchedulerServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		
+		System.out.println("SchedulerServlet init()......");
+		JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
+		
+		//Trigger t1 = TriggerBuilder.newTrigger().withIdentity("Simple Trigger").startNow().build();
+
+		//Trigger t1 = TriggerBuilder.newTrigger().withIdentity("CroneTrigger").withSchedule(CronScheduleBuilder.cronSchedule("	0 0 14 1/1 * ? *")).build();
+		
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss.SSS");
+		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+		String date = format1.format(new Date());
+		//System.out.println(format1.format(new Date()));
+		Date s1t = null;
+		try {
+			s1t = format.parse(date+" "+"10:30:00.000");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Date e1t = null;;
+		try {
+			e1t = format.parse(date+" "+"10:40:00.000");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println(s1t);
+		
+		SimpleScheduleBuilder.simpleSchedule();
+		Trigger t1 = TriggerBuilder.newTrigger().withIdentity("SimpleTrigger").withSchedule(SimpleScheduleBuilder.repeatSecondlyForever()).startAt(s1t).endAt(e1t).build();
+		Scheduler sc = null;
+		try {
+			sc = StdSchedulerFactory.getDefaultScheduler();
+		} catch (SchedulerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+		System.out.println("Start time: "+t1.getStartTime());
+		System.out.println("End time: "+t1.getEndTime());
+		
+		//System.out.println("The Trigger Time: "+s1t);
+		
+		String dt = format.format(new Date());
+		
+		
+			try {
+				sc.start();
+			} catch (SchedulerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				sc.scheduleJob(job, t1);
+			} catch (SchedulerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			//System.out.println("End time: "+t1.getEndTime());
+	}
+
+}
