@@ -1,0 +1,13 @@
+﻿Revert "Signed-off-by: DESKTOP-DHGVPTS\NEOMANDI-PC2 <rashmi@neomandi.com>"
+
+This reverts commit 7cc8ba6c691b27b05a60f0cfcd3337afe578f526.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   NeomandiPrototype/.classpath
+#
+
