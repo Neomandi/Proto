@@ -153,9 +153,9 @@ li a:hover:not(.active) {
     
      con = JDBCHelper.getConnection();
 	%>
-	<h1><font color="#FF1493">
+	<!--  <h1><font color="#FF1493">
 	     <u>Lot Details</u>
-	 </h1></font>
+	 </h1></font>-->
 	 <%
 	 
      String s="";
@@ -184,7 +184,7 @@ li a:hover:not(.active) {
 %>
   
 </table>
-<br/><table  width="100%" height="50%" border="2" bgcolor="ADFF2F">
+<br/><table  width="65%" height="50%" border="2" bgcolor="ADFF2F">
 								<tr>
 								<h2><b>
 								<th>Lotnumber</th>		

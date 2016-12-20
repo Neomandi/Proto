@@ -174,7 +174,7 @@
 			<th><font color="blue" size="5">AadharNumber</font></th>
 		</tr>
 		<tr>
-			<td background="pink"><%= resultSet.getString("aadharnum")%></td>
+			<td><%= resultSet.getString("aadharnum")%></td>
 		</tr>
 		<% s+=resultSet.getString("aadharnum");
 		    name+=resultSet.getString("name");
@@ -191,8 +191,8 @@
 	<!-- display lotdetails -->
 	
 			
-				<table border="1">
-				
+				<table  border="1">
+				<div id="load_tweets">
 		<tr>
 			<th><font color="#C71585" size="5">Lot number</font></th>
 		    <th><font color="#C71585" size="5">Average price</font></th>
@@ -201,7 +201,7 @@
 		    <th></th>
 		    <th></th>
 		    <th><font color="#C71585" size="5">Time progress</font></th>
-		    <th><font color="#C71585" size="5">Timer</font></th>
+		    <th><font color="#C71585" size="5">Status</font></th>
 		</tr>
 		<%
 		
@@ -221,18 +221,11 @@
 		%>
 							
 		 <tr>
-			 <td >
-			 
-			 		<form action=" " >
-						 <input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%> id="lot">
-					</form>
-				
-				</td>
-				
+			 <td ><%=resultSet.getString("lotnumber")%></td>
 			 <td><%=resultSet.getString("averageprice") %></td>
 			 <td><%=resultSet.getString("quantity") %></td>
 			 <td><%=resultSet.getString("quantitybidfor") %></td>
-					
+				</div>	
 			 <td><form action="FarmerAccept.jsp">
 			 <input  id="accept" type="submit" value="Accept " disabled ></td></form>
 			 <form action="FarmerReject.jsp">
@@ -243,9 +236,9 @@
 					<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
 				</div>
 			 </td>
-			 <td><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
+			<div id="load_tweets1"> <td  width="30%" height="5%"><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
 				<div id="auction"></div>
-				<div id="auction1"></div></td>
+				<div id="auction1"></div></td></div>
 		</tr>
 	<%
 		}
@@ -355,10 +348,12 @@
 				
 				countdown(minutes,seconds,hours);
 				//time progress-------------------------
-	    		var start = new Date();
-				var maxTime = diff;
-				var timeoutVal = Math.floor(maxTime/100);
-				animateUpdate();
+	    				
+    					var start = new Date();
+						var maxTime =diff;
+				            		
+				        			var timeoutVal = Math.floor(maxTime/100);
+				        			animateUpdate();
 
 				function updateProgress(percentage) {
 				    $('#pbar_innerdiv').css("width", percentage + "%");
@@ -392,6 +387,7 @@
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 			var diff = endDate.getTime() - startDate.getTime();
+			
 			console.log("end time is "+Btime);
 			console.log("current time is "+Etime);
 			console.log("difference in milliseconds is "+diff);
@@ -427,8 +423,9 @@
 			var idiff = parseInt("timedifference") + "<br>";
 			countdown(minutes,seconds,hours);
 			//time progress-------------------------
+			
     		var start = new Date();
-			var maxTime = diff;
+			var maxTime =diff;
 			var timeoutVal = Math.floor(maxTime/100);
 			animateUpdate();
 
@@ -724,27 +721,29 @@ function countdown(minutes,seconds,hours)
 					            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
 				        			count(minutes1,seconds1);
 				        			//time progress-------------------------
-				            		/*var start = new Date();
-				        			var maxTime =diff1;
-				        			var timeoutVal = Math.floor(maxTime/100);
-				        			animateUpdate();
+				    				
+			    					var start = new Date();
+									var maxTime =diff1;
+							            		
+							        			var timeoutVal = Math.floor(maxTime/100);
+							        			animateUpdate();
 
-				        			function updateProgress(percentage) {
-				        			    $('#pbar_innerdiv').css("width", percentage + "%");
-				        			    $('#pbar_innertext').text(percentage + "%");
-				        			}
+							function updateProgress(percentage) {
+							    $('#pbar_innerdiv').css("width", percentage + "%");
+							    $('#pbar_innertext').text(percentage + "%");
+							}
 
-				        			function animateUpdate() {
-				        			    var now = new Date();
-				        			    var timeDiff = now.getTime() - start.getTime();
-				        			    var perc = Math.round((timeDiff/maxTime)*100);
-				        			    console.log(perc);
-				        			      if (perc <= 100) {
-				        			       updateProgress(perc);
-				        			       setTimeout(animateUpdate, timeoutVal);
-				        			      }
-				        			}*/
-				        			//----------------------------------
+							function animateUpdate() {
+							    var now = new Date();
+							    var timeDiff = now.getTime() - start.getTime();
+							    var perc = Math.round((timeDiff/maxTime)*100);
+							    console.log(perc);
+							      if (perc <= 100) {
+							       updateProgress(perc);
+							       setTimeout(animateUpdate, timeoutVal);
+							      }
+							}
+							//----------------------------------
 								}
 							}
 			 				}		       
@@ -769,7 +768,8 @@ function countdown(minutes,seconds,hours)
 	 document.getElementById("reject").disabled=false;
  }
  </script>
- <!--<script type="text/javascript">
+ <!-- 
+<script type="text/javascript">
 var auto_refresh = setInterval(
 function ()
 {
@@ -777,13 +777,22 @@ $('#load_tweets').load('Farmermaster.jsp').fadeIn("slow");
 }, 1000); // refresh every 10000 milliseconds
 
 
+</script>
+<script type="text/javascript">
+var auto_refresh = setInterval(
+function ()
+{
+$('#load_tweets1').load('Farmermaster.jsp').fadeIn("slow");
+}, 1000); // refresh every 10000 milliseconds
+
 
 </script>
- 
+ -->
   <script>
   setTimeout(function(){
 	   window.location.reload(1);
 	}, 3000);
-  </script> -->
+  </script> 
+
 </body>
 </html>
