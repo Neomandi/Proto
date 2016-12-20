@@ -134,7 +134,7 @@ h1
 		<input type="password" placeholder="Password" name = "epwd" required>
 		<!-- <a href="" class="forgot_link">forgot ?</a>  --><br/>
 		<input type = "submit" value = "Login"/>
-		<a id = "two" href = "Login.html">Back</a>
+		<a id = "two" href = "HomePage.html">Home</a>
 	</div>
   <script src="js/index.js"></script>
 </form>

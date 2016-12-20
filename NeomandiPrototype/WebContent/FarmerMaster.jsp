@@ -14,10 +14,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		
-		<title>Insert title here</title>
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
+		<title>Neomandi | Farmer Master Page</title>
 		<style>
 		ul {
 		    list-style-type: none;
@@ -122,10 +120,6 @@
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="script.js"></script>
-		<script>
-		
-		</script>
-		
 	</head>
 <body>
 	 <%@ include file="Fribbon.jsp" %><br><br>
@@ -134,10 +128,11 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+<<<<<<< HEAD
+=======
 		
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	</ul>
-	
-	
 	 <%
 		
 		 HttpSession hs=request.getSession(false);  

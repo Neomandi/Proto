@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Servlet implementation class ControllerServlet
@@ -419,7 +416,7 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.traderRegister(trb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("TraderMasterPage.jsp");
+				rd=request.getRequestDispatcher("Success.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -1220,6 +1217,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}*/	
 		
+		//Farmer Logout
 		if(uri.contains("FLogout"))
 		{
 			HttpSession flog = request.getSession(false);

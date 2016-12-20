@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isErrorPage="true"%>
+    pageEncoding="ISO-8859-1" isErrorPage="true" import="java.io.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,7 +7,7 @@
 <title>Error</title>
 </head>
 <body>
-<h1>Sorry error occurred. Please report to admin.</h1>
-<%= exception.getMessage() %>
+Error occurred:
+<%=exception.getMessage()%>
 </body>
 </html>
