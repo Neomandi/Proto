@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public class Model {
 int count=0;
 	@SuppressWarnings("resource")

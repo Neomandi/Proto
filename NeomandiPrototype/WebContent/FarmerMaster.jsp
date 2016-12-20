@@ -128,6 +128,10 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	</ul>
 	 <%
 		
