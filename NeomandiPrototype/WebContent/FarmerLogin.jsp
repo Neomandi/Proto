@@ -133,8 +133,8 @@ h1
 		</div>
 		<input type="password" placeholder="password" name = "fpwd" required>
 		<!-- <a href="" class="forgot_link">forgot ?</a>  --><br/>
-		<input type = "submit" value = "Login"/><br/>
-		<a id = "one" href = "Login.html">Back</a>
+		<input type = "submit" value = "Login"/>
+		<a id = "one" href = "HomePage.html">Home</a>
 	</div>
 <script src="js/index.js"></script>
 </form>

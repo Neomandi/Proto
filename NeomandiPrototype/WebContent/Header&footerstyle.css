@@ -48,6 +48,7 @@ body {
 	margin:0;
 	padding:0;
 	height:100%;
+	text-align: initial;
 }
 #wrapper {
 	min-height:100%;
@@ -55,12 +56,13 @@ body {
 }
 #header {
 	padding: 10px;
+	width: 110%;
 }
 #content {
-	padding-bottom:100px; /* Height of the footer element */
+	padding-bottom: 100px; /* Height of the footer element */
 }
 #footer {
-	width: 100%;
+	width: 110%;
 	height: 100px;
 	position: absolute;
 	bottom: 0;

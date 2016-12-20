@@ -134,7 +134,7 @@ h1
 		<input type="password" placeholder="password" name = "tpwd" required>
 		<!-- <a href="" class="forgot_link">forgot ?</a>  --><br/>
 		<input type = "submit" value = "Login"/>
-		<a id = "three" href = "Login.html">Back</a>
+		<a id = "three" href = "HomePage.html">Home</a>
 	</div>
 
   <script src="js/index.js"></script>

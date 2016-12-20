@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Servlet implementation class ControllerServlet
@@ -279,6 +276,7 @@ public class ControllerServlet extends HttpServlet {
 					String averageprice=sb.getAverageprice();
 					String finalprice=sb.getFinalprice();
 					String status=sb.getStatus();
+					String account=sb.getAccountnum();
 					String msg="Accept";
 					System.out.println(("in cs avg="+averageprice));
 					
@@ -294,6 +292,7 @@ public class ControllerServlet extends HttpServlet {
 					HttpSession farmerstatus=request.getSession();
 					farmerstatus.setAttribute("msg",msg);
 					farmerstatus.setAttribute("lotnumber",lotnumber);
+					farmerstatus.setAttribute("accountnumber", account);
 					try 
 					{
 						rd.forward(request, response);			
@@ -417,7 +416,7 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.traderRegister(trb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("TraderMasterPage.jsp");
+				rd=request.getRequestDispatcher("Success.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -1218,6 +1217,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}*/	
 		
+		//Farmer Logout
 		if(uri.contains("FLogout"))
 		{
 			HttpSession flog = request.getSession(false);

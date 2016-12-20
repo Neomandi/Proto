@@ -99,7 +99,7 @@ html {
 		</span>
 	</div>
 	<form action="FLogout.do">
-	<input type="submit" id = "one" value = "Logout"/ >
+	<input type="submit" id = "one" value = "Logout"/>
 	</form>
 	<br/>
 </body>
