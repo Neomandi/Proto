@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public class Model {
 int count=0;
 	@SuppressWarnings("resource")
@@ -396,6 +398,7 @@ int count=0;
 		Connection con = null;
 		ResultSet rs = null;
 		String aadhar="";
+		String account="";
 		String lotnumber="";
 		
 		
@@ -413,7 +416,7 @@ int count=0;
 			{
 				con.setAutoCommit(false);
 				//aadharnum
-				ps =con.prepareStatement("select aadharnum from freg where name = ? and pass=?");
+				ps =con.prepareStatement("select aadharnum,accountnum from freg where name = ? and pass=?");
 				ps.setString(1, name);
 				ps.setString(2, pass);
 				ps.execute();
@@ -421,6 +424,7 @@ int count=0;
 				while(rs.next())
 				{
 					aadhar=rs.getString("aadharnum");
+					account=rs.getString("accountnum");
 					System.out.println("aadharnumber of "+name+" is "+aadhar);
 				}	
 				
@@ -452,13 +456,15 @@ int count=0;
 					 sb.setAverageprice(rs.getString("averageprice"));
 					 sb.setFinalprice(rs.getString("finalprice"));
 					 sb.setStatus(rs.getString("status"));
+					 sb.setAccountnum(account);
 					 String lot=sb.getLotsize();
 					 String qsold=sb.getQuantitysold();
+					 
 					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
 						
 				
-				
+				sb.setAccountnum(account);
 				System.out.println("in model beab="+sb);
 				
 				con.commit();

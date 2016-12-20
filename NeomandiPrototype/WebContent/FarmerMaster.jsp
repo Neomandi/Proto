@@ -134,7 +134,7 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-		<li> <a  href ="FLogout.do">Logout</a></li>
+		
 	</ul>
 	
 	
@@ -376,7 +376,9 @@
 				      }
 				}
 				//----------------------------------
-					
+				var five=300000;
+				timedif=diff+five;
+				console.log("count"+timedif);	
 				
 				
 		}
@@ -641,9 +643,9 @@ function countdown(minutes,seconds,hours)
 				 				}	
 								else
 								{
-					            	var str="<center><b><h4><font color='blue' >Your Auction has begun</font></h4></b></center>";
-					            	str+="<center><b><h4><font color='blue' >Your Auction will ends in</font></h4></b></center>";
-					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
+					            	var str="<center><b><h4><font color='blue' ><div id='a1'>Your Auction has begun</div></font></h4></b></center>";
+					            	str+="<center><b><h4><font color='blue' ><div id='a2'>Your Auction will ends in</div></font></h4></b></center>";
+					            	str+="<center><h4><font color='red' ><div id='hms'>5:00</div></font></h4></center>";
 					            	var strCmd = "document.getElementById('auction').style.display = 'none'";
 					            	var waitseconds = seconds;
 					            	var timeOutPeriod = waitseconds * 1000;
@@ -677,7 +679,20 @@ function countdown(minutes,seconds,hours)
 						        			   }
 						        		       else
 						        		       {
+						        		    	   
 						        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
+						        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
+									            	var waitseconds = seconds;
+									            	var timeOutPeriod = waitseconds * 1000;
+									            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
+									            	var strCmd3 = "document.getElementById('a1').style.display = 'none'";
+									            	var waitseconds = seconds;
+									            	var timeOutPeriod = waitseconds * 1000;
+									            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
+									            	var strCmd4 = "document.getElementById('a2').style.display = 'none'";
+									            	var waitseconds = seconds;
+									            	var timeOutPeriod = waitseconds * 1000;
+									            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
 						        		           	document.getElementById("auction1").innerHTML=str1;
 						        		       }
 					        		    	}
@@ -709,7 +724,7 @@ function countdown(minutes,seconds,hours)
 					            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
 				        			count(minutes1,seconds1);
 				        			//time progress-------------------------
-				            		var start = new Date();
+				            		/*var start = new Date();
 				        			var maxTime =diff1;
 				        			var timeoutVal = Math.floor(maxTime/100);
 				        			animateUpdate();
@@ -728,7 +743,7 @@ function countdown(minutes,seconds,hours)
 				        			       updateProgress(perc);
 				        			       setTimeout(animateUpdate, timeoutVal);
 				        			      }
-				        			}
+				        			}*/
 				        			//----------------------------------
 								}
 							}
@@ -764,6 +779,11 @@ $('#load_tweets').load('Farmermaster.jsp').fadeIn("slow");
 
 
 </script>
-  -->
+ 
+  <script>
+  setTimeout(function(){
+	   window.location.reload(1);
+	}, 3000);
+  </script> -->
 </body>
 </html>
