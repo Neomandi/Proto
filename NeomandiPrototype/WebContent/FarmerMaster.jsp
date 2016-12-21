@@ -14,8 +14,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
-		<title>Neomandi | Farmer Master Page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		
+		<title>Insert title here</title>
+		
 		<style>
 		ul {
 		    list-style-type: none;
@@ -120,6 +122,10 @@
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="script.js"></script>
+		<script>
+		
+		</script>
+		
 	</head>
 <body>
 	 <%@ include file="Fribbon.jsp" %><br><br>
@@ -128,11 +134,10 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-<<<<<<< HEAD
-=======
 		
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	</ul>
+	
+	
 	 <%
 		
 		 HttpSession hs=request.getSession(false);  
@@ -179,6 +184,7 @@
 			{
 				e.printStackTrace();	
 			}
+		     
 		%>
 	  
 	</table>
@@ -196,7 +202,7 @@
 		    <th></th>
 		    <th></th>
 		    <th><font color="#C71585" size="5">Time progress</font></th>
-		    <th><font color="#C71585" size="5">Timer</font></th>
+		    <th><font color="#C71585" size="5">Status</font></th>
 		</tr>
 		<%
 		
@@ -213,21 +219,24 @@
 				//System.out.println(sql);
 				resultSet = statement.executeQuery(sql);
 				while(resultSet.next()){
+					String avg="--";
+					
+						
 		%>
 							
 		 <tr>
-			 <td >
-			 
-			 		<form action=" " >
-						 <input type ="button" name ="lotno1" value =<%=resultSet.getString("lotnumber")%> id="lot">
-					</form>
-				
-				</td>
-				
-			 <td><%=resultSet.getString("averageprice") %></td>
+			 <td ><%=resultSet.getString("lotnumber")%></td>
+			<%  if(resultSet.getString("averageprice")!=null){%>
+			<td><%=resultSet.getString("averageprice") %></td>
+			<%}else{ %>
+			<td><%=avg %></td>
+			<%} %>
 			 <td><%=resultSet.getString("quantity") %></td>
+			 <%  if(resultSet.getString("quantitybidfor")!=null){%>
 			 <td><%=resultSet.getString("quantitybidfor") %></td>
-					
+				<%}else{ %>
+			<td><%=avg %></td>
+			<%} %>	
 			 <td><form action="FarmerAccept.jsp">
 			 <input  id="accept" type="submit" value="Accept " disabled ></td></form>
 			 <form action="FarmerReject.jsp">
@@ -238,7 +247,7 @@
 					<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
 				</div>
 			 </td>
-			 <td><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
+			 <td width="30%" height="5%"><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
 				<div id="auction"></div>
 				<div id="auction1"></div></td>
 		</tr>
@@ -249,6 +258,7 @@
 	{
 		e.printStackTrace();	
 	}
+			
 %>
 
 
@@ -285,6 +295,7 @@
 					{
 						e.printStackTrace();	
 					}
+					
 				%>
 		  
 		  <!-- ---------------------------------------------------------------------------------------------- -->  
@@ -640,7 +651,7 @@ function countdown(minutes,seconds,hours)
 								{
 					            	var str="<center><b><h4><font color='blue' ><div id='a1'>Your Auction has begun</div></font></h4></b></center>";
 					            	str+="<center><b><h4><font color='blue' ><div id='a2'>Your Auction will ends in</div></font></h4></b></center>";
-					            	str+="<center><h4><font color='red' ><div id='hms'>5:00</div></font></h4></center>";
+					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
 					            	var strCmd = "document.getElementById('auction').style.display = 'none'";
 					            	var waitseconds = seconds;
 					            	var timeOutPeriod = waitseconds * 1000;
@@ -674,7 +685,6 @@ function countdown(minutes,seconds,hours)
 						        			   }
 						        		       else
 						        		       {
-						        		    	   
 						        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
 						        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
 									            	var waitseconds = seconds;
@@ -719,7 +729,7 @@ function countdown(minutes,seconds,hours)
 					            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
 				        			count(minutes1,seconds1);
 				        			//time progress-------------------------
-				            		/*var start = new Date();
+				            		var start = new Date();
 				        			var maxTime =diff1;
 				        			var timeoutVal = Math.floor(maxTime/100);
 				        			animateUpdate();
@@ -738,7 +748,7 @@ function countdown(minutes,seconds,hours)
 				        			       updateProgress(perc);
 				        			       setTimeout(animateUpdate, timeoutVal);
 				        			      }
-				        			}*/
+				        			}
 				        			//----------------------------------
 								}
 							}
@@ -764,21 +774,16 @@ function countdown(minutes,seconds,hours)
 	 document.getElementById("reject").disabled=false;
  }
  </script>
- <!--<script type="text/javascript">
-var auto_refresh = setInterval(
-function ()
-{
-$('#load_tweets').load('Farmermaster.jsp').fadeIn("slow");
-}, 1000); // refresh every 10000 milliseconds
-
-
-
-</script>
  
-  <script>
+
+
+
+ 
+ <!--   <script>
   setTimeout(function(){
 	   window.location.reload(1);
-	}, 3000);
-  </script> -->
+	}, 1000);
+  </script>-->
+  
 </body>
 </html>

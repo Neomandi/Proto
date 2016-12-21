@@ -219,7 +219,7 @@ li a:hover:not(.active) {
 		<form>
 		 
 
-<table id = 'mytable' border>
+<table  width="65%" height="70%" id = 'mytable' border>
 
 		<tr bgcolor = '#00FF00'>
 			<th>Lot number</th>
@@ -236,7 +236,7 @@ li a:hover:not(.active) {
 		<td><%=quantitysold1%></td>
 		<td><%=averageprice%></td>
 		<td><%= finalprice%></td>
-		<td><%= status %></td>
+		<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
 		</tr>
 		
 </table><br/>
