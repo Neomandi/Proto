@@ -79,7 +79,7 @@ a.more {
 </head>
 <body>
 
-<%@ include file="TRibbon.jsp" %><br><br>
+<%@ include file="TRibbon.jsp" %>
 
 <%
 String lotnum="null";
@@ -103,13 +103,12 @@ else
  %>
   <br><br>
   <ul><li><a class="active" href="product.jsp">Product Search</a></li>
-  <li><a href="TraderBlock.jsp">Block Funds</a></li>
+  <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TradeConsignment.jsp">Track Consignment</a></li></ul>
-
+  <li><a href="OrderStatus.do">Order Status</a></li></ul><br><br><br>
 <br><br><br>
-<form action = "ProductSearchInt.jsp" method = "post">
+<form action="ProductSearchInt.jsp" method = "post">
 	<table border>
 		<tr>
 			<th>Kind of Produce</th>
@@ -178,15 +177,32 @@ else
 				</select></td>
 		</tr> -->
 		<tr>
-			<th>Market Code</th>
-			<td><input type = "text" id = "marketcode"/></td>
+			<th>Auction Slot</th>
+			<td><select name = "slot" id = "slot" >
+					<option selected>Please Select</option>
+					<option value = "slot1" >Slot 1 (10:30-10:35)</option>
+					<option value = "slot2">Slot 2 (10:40-10:45)</option>
+					<option value = "slot3">Slot 3 (10:50-10:55)</option>
+				</select>
 		</tr>
 	</table>
 	<br/>
-	<input type = "submit" value = "SEARCH" style="float: left;"/>
+	<input type = "submit" value = "SEARCH" onclick="fun()" style="float: left;margin-right:18px;"/>
+	<input type = "reset" value = "RESET" style="float: left;margin-right:14px;"/>
 </form>
 <br><br><br>
 <script>
+function fun()
+{
+	console.log("kproduce="+document.getElementById("kproduce").value+" slot="+document.getElementById("slot").value+" grade="+document.getElementById("quality").value)
+	if(document.getElementById("kproduce").value=="base"&&document.getElementById("slot").value=="Please Select")
+		alert("You need to choose atleast Slot number or kind of produce")
+	else
+	{
+		console.log("inside else");
+		//window.location.href='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
+	}
+}
 $("#kproduce").change(function() {
 	   $("#produce").load("ProduceData/" + $(this).val() + ".txt");
 	   console.log("ProduceData/" + $(this).val()+ ".txt");
@@ -213,6 +229,7 @@ function populate(s1, s2)
 }
 </script>
 <%		
+  System.out.println("msg2="+msg2);
   if(msg2!=null||msg3!=null)
   {
 	%>
@@ -241,7 +258,7 @@ function populate(s1, s2)
 						<td><% out.println(psr1.getProduce()); %></td>
 						<td><% out.println(psr1.getQualitygrade()); %></td>
 						<td><% out.println(psr1.getQuantity());%></td>
-						<input type="hidden" id="quantity" value="<%= psr1.getQuantity()%>">
+						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
 						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
 					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
@@ -249,12 +266,12 @@ function populate(s1, s2)
 						<script> 
 						function fun<%=psr1.getLotnumber() %>()
 						{							
-							var total=document.getElementById("quantity").value;
+							var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
 							var totals=parseInt(total);
 							var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
 							var neededs=parseInt(needed);
 							console.log("QUANTITY needed IS needed="+needed);
-							console.log("QUANTITY needed IS neededs="+neededs);
+							console.log("total is "+totals)
 							var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
 							console.log(product);
 							var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
@@ -277,12 +294,7 @@ function populate(s1, s2)
 						}
 						</script></td>
 						</tr>
-					<%}%>					
+					<%}}}%>					
 </table>
-<% String msg = (String)request.getAttribute("errmsg");  %>
-<p align = "center" class="more"><b><% if(msg != null)out.print(msg);%></b></p>
-<%}
- else
-{}}%>
 </body>
 </html>

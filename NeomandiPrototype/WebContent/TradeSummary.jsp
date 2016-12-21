@@ -83,7 +83,7 @@ li a:hover:not(.active) {
 {
     text-align: center;
     border: 1px solid black;
-      border-radius: 9px 9px 0 0;
+    border-radius: 9px 9px 0 0;
     background-color: blue;   
 	display: inline;
 	display: block;
@@ -94,12 +94,12 @@ li a:hover:not(.active) {
 }
 </style>
 <body>
- <%@ include file="TRibbon.jsp" %><br><br><br><br>
+ <%@ include file="TRibbon.jsp" %><br><br>
 <ul><li><a  href="product.jsp">Product Search</a></li>
-  <li><a href="TraderBlock.jsp">Block Funds</a></li>
+  <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TradeConsignment.jsp">Track consignment</a></li></ul><br><br><br><br>
+  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br><br><br><br><br>
 
 
 <center><h1>Trade Summary</h1></center>
@@ -113,7 +113,7 @@ li a:hover:not(.active) {
 <br/>
 <input type = "submit" value = "Get Summary"/>
 <br/><br/>
-
+<!--  
 <table id = 'mytable' border>
 	<tr bgcolor = '#00FF00'>
 		<th>Lot Number</th>
@@ -156,6 +156,6 @@ li a:hover:not(.active) {
 <br/>
 <center><button id = "excel">Export to XLS</button></center>
 <br/>
-<center><button id = "word">Export to DOC</button></center>
+<center><button id = "word">Export to DOC</button></center>--><!--  -->
 </body>
 </html>

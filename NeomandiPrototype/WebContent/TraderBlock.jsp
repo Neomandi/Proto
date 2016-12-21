@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Block Funds</title>
+<title>Hold Funds</title>
 <head>
 <style>
 
@@ -62,18 +62,17 @@ $(#ICICI).click(function(){$("#form0").submit();})
 
 </style></head>
 <body>
-<%@ include file="TRibbon.jsp" %><br><br>
+<%@ include file="TRibbon.jsp" %>
 <br><br><ul>
   <li><a href="product.jsp">Product Search</a></li>
-  <li><a  class="active" href="TraderBlock.jsp">Block Funds</a></li>
+  <li><a class="active" href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="TradeConsignment.jsp">Track Consignment</a></li>
-</ul>
+  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br>
 <font color="red"><br><br><br>
-<h2><u>Block Funds</u></h2><br><br>
+<h2><u>Hold Funds</u></h2><br><br>
 </font>
-<form name="form0" action="traderblockbank.do" method="post">
+<!-- <form name="form0" action="traderblockbank.do" method="post">
 <font color="green"> <h3>Choose Bank:<br><br>
 	<input type="radio"  name="ICICI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>ICICI
 	<input type="radio"  name="SBI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBI
@@ -81,7 +80,7 @@ $(#ICICI).click(function(){$("#form0").submit();})
 	<input type="radio"  name="SBM" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBM
 	<input type="radio"  name="CITI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>CITI
   <br>
-</form>
+</form> -->
 <% 
 
 String msg3=(String)request.getAttribute("notlogged");
@@ -116,13 +115,13 @@ else
 %>
 <font color="blue">
 <h3>Account Details:</h3><br/></font><font color="black" ><h5></font>
-ACCOUNT NUMBER: <input type="text" name="a1" value="<%=tbb.getAccountnumber() %>" /><br/><br/>
 BANK NAME: <input type="text" name="a2" value="<%=tbb.getDbbankname() %>"/><br/><br/>
+ACCOUNT NUMBER: <input type="text" name="a1" value="<%=tbb.getAccountnumber() %>" /><br/><br/>
 BANKS IFSC: <input type="text" name="a3" value="<%=tbb.getIfsc() %>" /><br/><br/>
-</h5></font><br><br>
-Balance Available: <input type="text" id="a5" name="a5" value="<%=tbb.getBalance() %>"/><br/><br/>
-  <form action="traderblockamount.do?accno=<%=acc %>&bank=<%=bank %>" method="post">
-Enter amount to be blocked: <input type="text" id="block" name="block" required/> <br/><br/>
+BALANCE AVAILABLE: <input type="text" id="a5" name="a5" value="<%=tbb.getBalance() %>"/><br/><br/>
+TOTAL AMOUNT BLOCKED:  <input type="text" id="a6" name="a5" value="<%if(request.getAttribute("totalblock")==null)out.println(tbb.getBlock()); else out.println(request.getAttribute("totalblock")); %>"/><br/><br/>
+<form action="traderblockamount.do?accno=<%=acc %>&bank=<%=bank %>" method="post"><h4><font color="black">ENTER AMOUNT TO BE BLOCKED: <input type="text" id="block" name="block" required value="<%if(request.getParameter("block")!=null) out.println(request.getParameter("block")); %>"/> <br/><br/></font>
+</h4><br><br>
 <input type="submit" name="blockbutton" value="BLOCK" onclick="fun()"/><br/><br/>
 <script>
 function fun()
@@ -154,8 +153,8 @@ if(msg1!=null)
 	}
 	else if(request.getAttribute("blockamount")!=null)
 	{
-		out.println("Successfully blocked amount: "+request.getAttribute("blockamount"));%><br><br><%
-		out.println("Total Amount blocked from your account till now: "+request.getAttribute("totalblock"));
+		out.println("Successfully blocked amount: "); /*+request.getAttribute("blockamount"));*/%><br><br><%
+//		out.println("Total Amount blocked from your account till now: ");+request.getAttribute("totalblock"));
 	}
 }
 }%></font>

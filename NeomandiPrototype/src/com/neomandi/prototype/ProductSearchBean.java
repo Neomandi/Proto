@@ -4,6 +4,13 @@ public class ProductSearchBean {
 private String kproduce;
 private String produce;
 private String quality;
+private String slot;
+public String getSlot() {
+	return slot;
+}
+public void setSlot(String slot) {
+	this.slot = slot;
+}
 @Override
 public int hashCode() {
 	final int prime = 31;
@@ -11,6 +18,7 @@ public int hashCode() {
 	result = prime * result + ((kproduce == null) ? 0 : kproduce.hashCode());
 	result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 	result = prime * result + ((quality == null) ? 0 : quality.hashCode());
+	result = prime * result + ((slot == null) ? 0 : slot.hashCode());
 	return result;
 }
 @Override
@@ -37,11 +45,17 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!quality.equals(other.quality))
 		return false;
+	if (slot == null) {
+		if (other.slot != null)
+			return false;
+	} else if (!slot.equals(other.slot))
+		return false;
 	return true;
 }
 @Override
 public String toString() {
-	return "ProductSearchBean [kproduce=" + kproduce + ", produce=" + produce + ", quality=" + quality + "]";
+	return "ProductSearchBean [kproduce=" + kproduce + ", produce=" + produce + ", quality=" + quality + ", slot="
+			+ slot + "]";
 }
 public String getKproduce() {
 	return kproduce;

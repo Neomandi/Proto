@@ -250,9 +250,9 @@ function populate(s1, s2)
 							var totals=parseInt(total);
 							var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
 							var neededs=parseInt(needed);
-							console.log("QUANTITY needed IS needed="+needed);
 							console.log("QUANTITY needed IS neededs="+neededs);
 							var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
+							console.log("total is "+totals);
 							console.log(product);
 							var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
 							if(neededs>totals)
@@ -265,7 +265,7 @@ function populate(s1, s2)
 								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 								alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
 							}
-							else 
+							else if(neededs==totals||neededs<totals)
 							{
 								alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
 								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
@@ -274,12 +274,7 @@ function populate(s1, s2)
 						}
 						</script></td>
 						</tr>
-					<%}%>					
+					<%}}}%>					
 </table>
-<% String msg = (String)request.getAttribute("errmsg");  %>
-<p align = "center" class="more"><b><% if(msg != null)out.print(msg);%></b></p>
-<%}
- else
-{}}%>
 </body>
 </html>

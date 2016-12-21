@@ -5,6 +5,24 @@ import java.util.List;
 
 public class Myclass2 {
 
+	String result;
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	String volumesold;
+public String getVolumesold() {
+		return volumesold;
+	}
+
+	public void setVolumesold(String volumesold) {
+		this.volumesold = volumesold;
+	}
+
 @SuppressWarnings("rawtypes")
 List al=new ArrayList();
 @SuppressWarnings({ "rawtypes", "rawtypes", "rawtypes" })
