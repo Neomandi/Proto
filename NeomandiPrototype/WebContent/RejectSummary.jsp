@@ -174,7 +174,7 @@ li a:hover:not(.active) {
 	 <li><a href="FarmerMaster.jsp">Auction</a></li>
 	<li><a href="Lotdetails.jsp">My Lots</a></li>
 	<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-	<li> <a  href ="Logout.do">Logout</a></li>
+	
   </ul>
  
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
@@ -215,7 +215,7 @@ li a:hover:not(.active) {
 		<form>
 		 
 
-<table id = 'mytable' border>
+<table id = 'mytable'  width="65%" height="70%" border>
 
 		<tr bgcolor = '#00FF00'>
 			<th>Lot number</th>
@@ -232,7 +232,7 @@ li a:hover:not(.active) {
 		<td><%=quantitysold%></td>
 		<td><%=averageprice%></td>
 		<td><%= finalprice%></td>
-		<td><%= status %></td>
+		<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
 		</tr>
 		
 </table><br/>

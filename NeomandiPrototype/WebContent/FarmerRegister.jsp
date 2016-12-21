@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link rel="icon" type="image/png" href="Images/Neomandi1.png">
+<title>Farmer Registration</title>
 <meta charset="ISO-8859-1">
 <title>Farmer Registration</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>

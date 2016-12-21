@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Servlet implementation class ControllerServlet
@@ -43,6 +40,9 @@ public class ControllerServlet extends HttpServlet {
 	
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{
+		
+		
+		
 		
 		RequestDispatcher rd=null;	
 		
@@ -276,6 +276,8 @@ public class ControllerServlet extends HttpServlet {
 					String averageprice=sb.getAverageprice();
 					String finalprice=sb.getFinalprice();
 					String status=sb.getStatus();
+					String account=sb.getAccountnum();
+					String msg="Accept";
 					System.out.println(("in cs avg="+averageprice));
 					
 					HttpSession hsr=request.getSession();
@@ -285,9 +287,12 @@ public class ControllerServlet extends HttpServlet {
 					hsr.setAttribute("averageprice", averageprice);
 					hsr.setAttribute("finalprice", finalprice);
 					hsr.setAttribute("status", status);
+					hsr.setAttribute("msg",msg);
 					rd=request.getRequestDispatcher("AcceptSummary.jsp");
-					
-				
+					HttpSession farmerstatus=request.getSession();
+					farmerstatus.setAttribute("msg",msg);
+					farmerstatus.setAttribute("lotnumber",lotnumber);
+					farmerstatus.setAttribute("accountnumber", account);
 					try 
 					{
 						rd.forward(request, response);			
@@ -319,7 +324,7 @@ public class ControllerServlet extends HttpServlet {
 					String finalprice=sb.getFinalprice();
 					String status=sb.getStatus();
 					System.out.println(("in cs avg="+averageprice));
-					
+					String msg="reject";
 					HttpSession hsr=request.getSession();
 					hsr.setAttribute("lotnumber",lotnumber);
 					hsr.setAttribute("lotsize",lotsize);
@@ -327,9 +332,11 @@ public class ControllerServlet extends HttpServlet {
 					hsr.setAttribute("averageprice", averageprice);
 					hsr.setAttribute("finalprice", finalprice);
 					hsr.setAttribute("status", status);
-					rd=request.getRequestDispatcher("RejectSummary.jsp");
 					
-				
+					rd=request.getRequestDispatcher("RejectSummary.jsp");
+					HttpSession farmerstatus=request.getSession();
+					 farmerstatus.setAttribute("msg",msg);
+					 farmerstatus.setAttribute("lotnumber",lotnumber);
 					try 
 					{
 						rd.forward(request, response);			
@@ -343,9 +350,8 @@ public class ControllerServlet extends HttpServlet {
 					}
 					
 				}
-		
-		
-		
+				
+				
 	
 		
 		
@@ -410,7 +416,7 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.traderRegister(trb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("product.jsp");
+				rd=request.getRequestDispatcher("Success.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -1230,6 +1236,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}*/	
 		
+		//Farmer Logout
 		if(uri.contains("FLogout"))
 		{
 			HttpSession flog = request.getSession(false);

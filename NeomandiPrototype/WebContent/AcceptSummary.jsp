@@ -191,26 +191,30 @@ li a:hover:not(.active) {
 <br/><br/>
 </form>
 
-<%  
-	    HttpSession hsa=request.getSession(false); 
-	    String lotnumber=(String)hsa.getAttribute("lotnumber");
+<%  HttpSession hs=request.getSession(false);  
+	     String pass=(String)hs.getAttribute("pass");  
+	    System.out.println(" in getsummary password="+pass);
 	    
-	    System.out.println("lotnumber="+lotnumber);
-	    String lotsize=(String)hsa.getAttribute("lotsize");
-	    String quantitysold=(String)hsa.getAttribute("quantitysold");
-	    String averageprice=(String)hsa.getAttribute("averageprice");
-	    String finalprice=(String)hsa.getAttribute("finalprice");
-	    System.out.println("in accept summary lotsize="+lotsize);
+	    HttpSession hsr=request.getSession(false); 
+	    String lotnumber=(String)hsr.getAttribute("lotnumber");
+	    hsr.setAttribute("lotnumber", lotnumber);
+	    System.out.println(" in getsummary lotnumber="+lotnumber);
+	    String lotsize=(String)hsr.getAttribute("lotsize");
+	    String quantitysold=(String)hsr.getAttribute("quantitysold");
+	    String averageprice=(String)hsr.getAttribute("averageprice");
+	    String finalprice=(String)hsr.getAttribute("finalprice");
+	    System.out.println("in getsummary lotsize="+lotsize);
 	    int lot=Integer.parseInt(lotsize);
 	    int qsold=Integer.parseInt(quantitysold);
 	    String status="";
 	    if(lot==qsold)
-	    	status+="Fully executed .Accepted by You";
+	    	status+="Fully executed .waiting for your acceptance";
 	    	else
-	    	status+="partially executed.Accepted by you";
-	    
+	    	status+="partially executed.waiting for your acceptance";
+	    	 String lotsize1=String.valueOf(lot);
+			 String quantitysold1=String.valueOf(qsold);
 	    %>
-		 
+		
 		<center>
 		<form>
 		 
@@ -228,19 +232,16 @@ li a:hover:not(.active) {
 		</tr>
 		<tr>
 		<td><%=lotnumber %></td>
-		<td><%=lotsize %></td>
-		<td><%=quantitysold%></td>
+		<td><%=lotsize1 %></td>
+		<td><%=quantitysold1%></td>
 		<td><%=averageprice%></td>
 		<td><%= finalprice%></td>
-		<td><%= status %></td>
+		<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
 		</tr>
 		
 </table><br/>
 </form>
 </center>
-
-
-
 <br/>
 <br/>		
 

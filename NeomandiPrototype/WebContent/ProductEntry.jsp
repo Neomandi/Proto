@@ -36,8 +36,8 @@ table
 }
 th 
 {
-    background-color: #4CAF50;
-    color: white;
+    background-color: rgb(182,228,31);
+    color: black;
 }
 input[type=file]
 {
@@ -79,22 +79,26 @@ input[type=submit]
 	background-color: rgb(30,115,190);
 	border: none;
 	text-align: center;
+	color: white;
+	font-size:20px;
 	display: inline-block;
 	cursor: pointer;
 	border-radius: 4px;
 	height: 30px;
-    width: 60px;
+    width: 75px;
 }
 input[type=reset]
 {
 	background-color: rgb(30,115,190);
 	border: none;
 	text-align: center;
+	color: white;
+	font-size:20px;
 	display: inline-block;
 	cursor: pointer;
 	border-radius: 4px;
 	height: 30px;
-    width: 60px;
+    width: 75px;
 }
 </style>
 </head>
@@ -103,7 +107,7 @@ input[type=reset]
 <%@ include file="ERibbon.jsp" %><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
-<h2>Market Yard Window: Product Entry Screen</h2><br/>
+<center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
 <center><form action = "ProductEntryInt.jsp" method = "post" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
 	<table border = '2'>
 		<tr>
