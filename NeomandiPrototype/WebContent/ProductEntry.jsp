@@ -108,7 +108,7 @@ input[type=reset]
 <!-- <div id = "header"></div>  -->
 <br/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
-<center><form action = "ProductEntryInt.jsp" method = "post" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
+<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>
@@ -148,10 +148,10 @@ input[type=reset]
 			<th>Quantity</th>
 			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity" style = "width: 235px;"/></td>
 		</tr>
-		<!-- <tr>
+		<tr>
 			<th>Image</th>
 			<td><input type="file" name = "photo" onchange="readURL(this);" /></td>
-		</tr>  -->
+		</tr>
 		<tr>
 			<th>Lot Number</th>
 			<td><input type = "text" name = "lotnum" id = "lotnum" style = "width: 235px;"/></td>
@@ -159,7 +159,7 @@ input[type=reset]
 	</table>
 	<br/>
 	
-    <!-- <img id="pic" name = "pic" src="#" alt="your image" />  -->
+    <img id="pic" name = "pic" src="#" alt="your image" />
 	<input type = "submit" value = "Submit"/>&nbsp &nbsp
 	<input type = "reset" value = "Reset"/><br/><br/>
 	

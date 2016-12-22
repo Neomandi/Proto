@@ -640,7 +640,7 @@ int count=0;
 				ps.setString(5, peb.getProduce());
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
-				ps.setString(8, null);
+				ps.setBlob(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");

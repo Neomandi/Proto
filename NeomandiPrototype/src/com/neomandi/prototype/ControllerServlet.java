@@ -1,6 +1,7 @@
 package com.neomandi.prototype;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,11 +9,14 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+@MultipartConfig(maxFileSize = 16177215)
 /**
  * Servlet implementation class ControllerServlet
  */
@@ -41,9 +45,6 @@ public class ControllerServlet extends HttpServlet {
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{
 		
-		
-		
-		
 		RequestDispatcher rd=null;	
 		
 		RequestDispatcher rd2=null;	
@@ -53,7 +54,7 @@ public class ControllerServlet extends HttpServlet {
 		TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
-		ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
+		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
 		SummaryBean sb=(SummaryBean)request.getAttribute("sb");
 		
@@ -622,17 +623,59 @@ public class ControllerServlet extends HttpServlet {
 		//Product Entry
 		if(uri.contains("ProductEntry"))
 		{			
+			String farmerid = request.getParameter("farmerid");
+			String lotnum = request.getParameter("lotnum");
+			String marketcode = request.getParameter("marketcode");
+			String kproduce = request.getParameter("kproduce");
+			String produce = request.getParameter("produce");
+			String quality = request.getParameter("quality");
+			String quantity = request.getParameter("quantity");
+			
+			System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
+			
+			InputStream inputStream = null; // input stream of the upload file
+	        
+	        // obtains the upload file part in this multipart request
+	        Part filePart = null;
+			try {
+				filePart = request.getPart("photo");
+			} catch (IllegalStateException | IOException | ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	        
+			System.out.println(filePart);
+	        
+	        if (filePart != null) {
+	            // prints out some information for debugging
+	            System.out.println(filePart.getName());
+	            System.out.println(filePart.getSize());
+	            System.out.println(filePart.getContentType());
+	             
+	            // obtains input stream of the upload file
+	            try {
+					inputStream = filePart.getInputStream();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	        System.out.println("Input Stream: "+inputStream);
+	        
+			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, inputStream);
+			
 			System.out.println("***************************************************************************");
 			Model m = new Model();
-			String msg = m.productEntry(peb);
+			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
-				System.out.println("Sending msg "+msg);
+				//System.out.println("Sending msg "+msg);
 				request.setAttribute("errmsg", msg);
 				rd=request.getRequestDispatcher("ProductEntry.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd.forward(request, response);
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block
@@ -648,7 +691,8 @@ public class ControllerServlet extends HttpServlet {
 			    rd=request.getRequestDispatcher("ProductEntry.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd.forward(request, response);
+					return;
 				}			
 				catch (ServletException e) {
 					// TODO Auto-generated catch block
