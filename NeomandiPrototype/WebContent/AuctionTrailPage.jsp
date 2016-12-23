@@ -117,7 +117,7 @@ con = JDBCHelper.getConnection();
 			try{	
 				if(con == null)
 				{
-					System.out.println("Connection establish failed");
+					out.println("Connection establish failed");
 				}
 				statement = con.createStatement();
 				AggregatingData.aggregate();
