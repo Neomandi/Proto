@@ -204,7 +204,7 @@ select
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "fregform" action = "FarmerRegisterInt.jsp" method = "post"  onsubmit = "return validateFForm();">
+<form name = "fregform" action = "FarmerRegister.do" enctype='multipart/form-data' method = "post"  onsubmit = "return validateFForm();">
 	<fieldset>
 		<legend>Farmer Registration Page</legend>
 		<label for = "name">Name</label><br/>
@@ -257,8 +257,8 @@ select
 		<input type = "text" id = "hobli" name = "farmerHobli" placeholder = "Hobli" required/><br/>
 		<label for = "village">Village</label><br/>
 		<input type = "text" id = "village" name = "farmerVillage" placeholder = "Village" required/><br/><br/>
-		<!-- <label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "farmerPhoto"/>  --> <!-- use (enctype='multipart/form-data') for photo in form -->
+		<label for = "photo">Photo</label><br/>
+		<input type = "file" id = "photo" name = "farmerPhoto"/> <!-- use (enctype='multipart/form-data') for photo in form -->
 	</fieldset>
 	<br/>
 	<fieldset>
