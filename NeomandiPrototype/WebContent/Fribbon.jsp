@@ -77,7 +77,7 @@ html {
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"  >welcome 
+		<font size="4"  face="Comic Sans MS" color="white"  >Welcome 
 		<% 
 			HttpSession flog=request.getSession(false);
 			if((String)flog.getAttribute("name")==null)

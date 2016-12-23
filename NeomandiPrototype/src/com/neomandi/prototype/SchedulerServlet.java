@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -63,7 +66,22 @@ public class SchedulerServlet extends HttpServlet {
 		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
 		String date = format1.format(new Date());
 		//System.out.println(format1.format(new Date()));
+		
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss.SSS");
+		String time = timeFormat.format(new Date());
 		Date s1t = null;
+		
+		
+		//System.out.println("Time: "+time);
+		
+		DateTimeFormatter formatter1 = DateTimeFormat.forPattern("HH:mm:ss.SSS");
+        LocalTime time1 = formatter1.parseLocalTime(time);
+        time1 = time1.plusMinutes(10);
+		
+		
+		//System.out.println("Time + 10min: "+time1);
+		
+		
 		try {
 			s1t = format.parse(date+" "+"10:30:00.000");
 		} catch (ParseException e) {

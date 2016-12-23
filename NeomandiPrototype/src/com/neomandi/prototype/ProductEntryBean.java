@@ -10,6 +10,8 @@ public class ProductEntryBean {
 	private String quality;
 	private String quantity;
 	private String lotnum;
+	private InputStream photo;
+	
 	public String getFarmerid() {
 		return farmerid;
 	}
@@ -52,6 +54,24 @@ public class ProductEntryBean {
 	public void setLotnum(String lotnum) {
 		this.lotnum = lotnum;
 	}
+	public InputStream getPhoto() {
+		return photo;
+	}
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
+	}
+	public ProductEntryBean(String farmerid, String marketcode, String kproduce, String produce, String quality,
+			String quantity, String lotnum, InputStream photo) {
+		super();
+		this.farmerid = farmerid;
+		this.marketcode = marketcode;
+		this.kproduce = kproduce;
+		this.produce = produce;
+		this.quality = quality;
+		this.quantity = quantity;
+		this.lotnum = lotnum;
+		this.photo = photo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,6 +80,7 @@ public class ProductEntryBean {
 		result = prime * result + ((kproduce == null) ? 0 : kproduce.hashCode());
 		result = prime * result + ((lotnum == null) ? 0 : lotnum.hashCode());
 		result = prime * result + ((marketcode == null) ? 0 : marketcode.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
 		result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 		result = prime * result + ((quality == null) ? 0 : quality.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
@@ -94,6 +115,11 @@ public class ProductEntryBean {
 				return false;
 		} else if (!marketcode.equals(other.marketcode))
 			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
 		if (produce == null) {
 			if (other.produce != null)
 				return false;
@@ -115,8 +141,10 @@ public class ProductEntryBean {
 	public String toString() {
 		return "ProductEntryBean [farmerid=" + farmerid + ", marketcode=" + marketcode + ", kproduce=" + kproduce
 				+ ", produce=" + produce + ", quality=" + quality + ", quantity=" + quantity + ", lotnum=" + lotnum
-				+ "]";
+				+ ", photo=" + photo + "]";
 	}
+	
+	
 	
 	
 }
