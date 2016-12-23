@@ -269,7 +269,7 @@ button
 		<label for = "village">Village</label><br />
 		<input type = "text" id = "village" name = "traderVillage" placeholder = "Village" required/><br/><br/>
 		<label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "traderPhoto"/> --><!-- Use (enctype = 'multipart/form-data') in form -->
+		<input type = "file" id = "photo" name = "traderPhoto"/> <!-- Use (enctype = 'multipart/form-data') in form -->
 	</fieldset>
 	<br/>
 	<fieldset>
