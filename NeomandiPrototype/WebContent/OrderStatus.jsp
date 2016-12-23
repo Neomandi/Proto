@@ -88,8 +88,8 @@ a.more {
 <ul><li><a  href="product.jsp">Product Search</a></li>
   <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
-  <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br><br><br><br><br>
+  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
+  <li><a class="active" href = "OrderStatus.do">Order Status</a></li></ul><br><br><br><br><br><br><br>
 
 <h2>ORDER STATUS</h2><br><br>
 STATUS:PENDING

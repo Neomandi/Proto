@@ -73,7 +73,10 @@ a.more {
 #search {
     width: 90px;  height: 2em;
 }
-
+table
+{
+float:center
+}
 </style>
 </head>
 <body>
@@ -107,7 +110,7 @@ else
 
 <br><br><br>
 <form action = "ProductSearchInt.jsp" method = "post">
-	<table border>
+	<table border style="float:center" >
 		<tr>
 			<th>Kind of Produce</th>
 			<td><select name = "kproduce" id = "kproduce">
@@ -181,6 +184,7 @@ else
 	</table>
 	<br/>
 	<input type = "submit" value = "SEARCH" style="float: left;"/>
+
 </form>
 <br><br><br>
 <script>

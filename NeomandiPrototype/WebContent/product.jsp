@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Product Search</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
@@ -74,7 +74,10 @@ a.more {
 #search {
     width: 90px;  height: 2em;
 }
-
+table
+{
+float: center;
+}
 </style>
 </head>
 <body>
@@ -106,10 +109,10 @@ else
   <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="OrderStatus.do">Order Status</a></li></ul><br><br><br>
-<br><br><br>
+  <li><a href="OrderStatus.do">Order Status</a></li></ul><br>
 <form action="ProductSearchInt.jsp" method = "post">
-	<table border>
+<center>
+	<table border style="float:center" width="300">
 		<tr>
 			<th>Kind of Produce</th>
 			<td><select name = "kproduce" id = "kproduce">
@@ -185,10 +188,10 @@ else
 					<option value = "slot3">Slot 3 (10:50-10:55)</option>
 				</select>
 		</tr>
-	</table>
+	</table></center>
 	<br/>
-	<input type = "submit" value = "SEARCH" onclick="fun()" style="float: left;margin-right:18px;"/>
-	<input type = "reset" value = "RESET" style="float: left;margin-right:14px;"/>
+	<input type = "submit" value = "SEARCH" onclick="fun()" style="float: center;margin-right:18px;"/>
+	<input type = "reset" value = "RESET" style="float: center;margin-right:14px;"/>
 </form>
 <br><br><br>
 <script>

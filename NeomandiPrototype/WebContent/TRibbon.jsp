@@ -81,7 +81,7 @@ html {
 	text-decoration: none;
 	padding: 10px 20px;
 	position: absolute;
-	top: 4px;
+	top: 1px;
 	right: 10px;
 	font-size: 32px;
 }

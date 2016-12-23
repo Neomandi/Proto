@@ -165,6 +165,10 @@ table
 border-collapse: collapse;
 
 }
+td
+{
+text-align:center
+}
 </style></head>
 <body>
  <%@ include file="TRibbon.jsp" %><br><br>
@@ -181,7 +185,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 
 <script>
 var Etime=document.getElementById("time").value;
-var Btime="10:56:00:00";
+var Btime="2:08:00:00";
 start = Etime.split(":");
 end =Btime.split(":");
 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -213,10 +217,10 @@ if(minutes>60)
 		hours=res3;
 		minutes=res1;
 }
-console.log("differences in minutes is "+minutes);
-console.log("differences in seconds is "+seconds);
-console.log("differences in hours is "+hours);
-
+//console.log("differences in minutes is "+minutes);
+//console.log("differences in seconds is "+seconds);
+//console.log("differences in hours is "+hours);
+ 
 var timedifference=+hours+":"+minutes+":"+seconds;
 console.log("differences in time is "+timedifference);
 var idiff = parseInt("timedifference") + "<br>";
@@ -312,7 +316,7 @@ function countdown(minutes,seconds,hours)
 				        		   	 	tick();
 				        			}		
 					            	var Etime1=document.getElementById("time").value;
-					            	var Btime1="11:05:00:00";
+					            	var Btime1="02:13:00:00";
 					            	start1 = Etime1.split(":");
 					            	end1 =Btime1.split(":");
 					            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
@@ -418,7 +422,7 @@ else
 <td align="center" width="110"><%= tlb.getMarketcode() %></td>
 <td align="center" width="90"><%= tlb.getProduce() %></td>
 <td align="center" width="110"><%= tlb.getQualitygrade() %></td>
-<td align="center" width="160"><%= mfcb.getBestbid() %></td>
+<td align="center" width="160"><% if(mfcb.getBestbid()==null)out.println("--"); else  out.println(mfcb.getBestbid()); %></td>
 <td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 <input type="hidden" id="lotnum" value="<%out.println(tlb.getLotnum());%>">
 <form>
@@ -430,6 +434,7 @@ function funct()
 {
 	var lotnum=$("#lotnum").val()
 	var value=$("#number").val()
+	console.log("increment is "+document.getElementById("number").value)
     $( "form" ).on( "submit", function() {
 	event.preventDefault();
 	location.href='http://localhost:8080/NeomandiPrototype/increment.do?increment=' + value+' &&lotnum='+lotnum
@@ -439,17 +444,7 @@ function funct()
 <td><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" id="submit1" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td> 
 <!--<td><input type="submit" id="submit1" onclick="funn()"></td>
 <script>
-function funn()
 
-	console.log("inside script")
-	/*$(document).ready(function() 
-	{
-		$("#submit1").click(function() 
-		{*/
-			$.get('ControllerServlet',{lotnumber : <%=tlb.getLotnum() %>, value: 1}, function(json){$('#lotcost').text(json.lotcost);
-			});
-			//});)				
-}
 </script>-->
 <script>
 function fun<%=tlb.getLotnum() %>()
@@ -481,8 +476,7 @@ function fun2<%=tlb.getLotnum() %>()
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" class="more"> REMOVE</a></td>
 </tr>
-<%			
-				 }
+<%				 }
 			   }
 			}
 			else
@@ -504,7 +498,7 @@ function fun2<%=tlb.getLotnum() %>()
 				<td align="center"><%= tlb.getMarketcode() %></td>
 				<td align="center"><%= tlb.getProduce() %></td>
 				<td align="center"><%= tlb.getQualitygrade() %></td>
-				<td align="center"><%= mfcb.getBestbid() %></td>	
+				<td align="center"><% if(mfcb.getBestbid()==null)out.println("-"); else  out.println(mfcb.getBestbid());  %></td>	
 				<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 				<!-- <form>-->
 				<input type="hidden" id="lotnum" value="<%out.println(tlb.getLotnum());%>">
@@ -527,24 +521,6 @@ function fun2<%=tlb.getLotnum() %>()
 				
 				 <td><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>"&&value= id="submit1" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td> 
 				<!-- <td><input type="button" id="submit1" onclick="funn()"></td> -->
-				
-				<script>
-				function funn()
-				{
-				console.log("inside script")
-				/*$(document).ready(function() 
-				{
-					$("#submit1").click(function() 
-					{*/
-				    	$.get('ControllerServlet',
-				    			{lotnumber : <%=tlb.getLotnum() %>, value: 1
-				    		}, function(json){
-				    			$('#lotcost').text(json.lotcost);				    		
-				    			})
-					   // });
-				//});)				
-				}
-				</script>
 				<script>
 				function fun<%=tlb.getLotnum() %>()
 				{
@@ -587,8 +563,8 @@ function fun2<%=tlb.getLotnum() %>()
 				//});)				
 				</script>
 				<% 
-				}
-				}
+						}
+					}
 				}
 			 }	
 		}
@@ -625,7 +601,7 @@ function fun2<%=tlb.getLotnum() %>()
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
-<td><%= mfcb.getBestbid() %></td>		
+<td align="center"><% if(mfcb.getBestbid()==null)out.println("-");  else  out.println(mfcb.getBestbid());  %></td>		
 <td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 <input type="hidden" id="lotnum" values="<%out.println(tlbr.getLotnum());%>">
 <form>
@@ -693,7 +669,7 @@ function fun<%=tlbr.getLotnum() %>()
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
-<td><%= mfcb.getBestbid() %></td>		
+<td align="center"><% if(mfcb.getBestbid()==null)out.println("-"); else  out.println(mfcb.getBestbid());  %></td>		
 <td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>			
 <input type="hidden" id="lotnum" values="<%out.println(tlbr.getLotnum());%>">
 <form>

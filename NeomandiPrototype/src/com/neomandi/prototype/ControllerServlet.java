@@ -682,11 +682,8 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 				System.out.println("***************************************************************************");
-				//HttpSession tlog=request.getSession(false);
-				//TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				String name=tlbn.getTname();
 				String pwd=tlbn.getTpwd();
-				String bankname="";
 				/*if(request.getParameter("ICICI")!=null && request.getParameter("ICICI").equals("on"))
 				{
 					 bankname="ICICI";
@@ -764,16 +761,16 @@ public class ControllerServlet extends HttpServlet {
 				String name=tlbn.getTname();
 				String pwd=tlbn.getTpwd();
 				String amount=request.getParameter("block");
-				System.out.println("amount length is "+amount.length());
 				String bankname=request.getParameter("bank");
 				HttpSession traderbank=request.getSession();
 				traderbank.setAttribute("traderbank", bankname);
 				String accno=request.getParameter("accno");
 				Model m=new Model();
 				String msg[]=m.traderblockamount(name,pwd,amount,bankname,accno);
-				System.out.println("message received by CS is "+msg);
+				System.out.println("message received by CS is msg[0]"+msg[0]+" msg1 "+msg[1]);
 				if(msg[1]==null)
 				{
+					System.out.println("msg[1]==null");
 					request.setAttribute("blockmsg",msg[0]);
 					rd=request.getRequestDispatcher("TraderBlock.jsp");
 					try {
@@ -785,6 +782,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 				else
 				{
+					System.out.println("msg[1]!=null");
 					int balance=Integer.parseInt(msg[0]);
 					int block=Integer.parseInt(msg[1]);
 					HttpSession traderblockbean=request.getSession(false);
@@ -842,9 +840,6 @@ public class ControllerServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 			}
-		
-
-
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			HttpSession traderlistbean=request.getSession();
@@ -862,6 +857,9 @@ public class ControllerServlet extends HttpServlet {
 		
 		if(uri.contains("increment"))
 		{
+			String increment=request.getParameter("increment");
+			String lotnum=request.getParameter("lotnum");
+			System.out.println("lotnum in CS is "+lotnum+" increment is "+increment.length());
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
@@ -884,9 +882,6 @@ public class ControllerServlet extends HttpServlet {
 			String name=tlbn.getTname();
 			String pwd=tlbn.getTpwd();
 			Model m=new Model();
-			String increment=request.getParameter("increment");
-			String lotnum=request.getParameter("lotnum");
-			//System.out.println("lotnum in CS is "+lotnum);
 			Myclass mc=(Myclass)m.Increment(name,pwd,increment,lotnum);
 			if(mc.getMsg().matches(".*\\d+.*"))
 			{
