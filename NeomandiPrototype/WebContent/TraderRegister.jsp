@@ -46,13 +46,13 @@ function validateTForm()
 	var ifsc = document.tregform.traderifsc;
 	var uid = document.tregform.traderuid;
 	var license = document.tregform.traderlicensenum;
-	var pwd = doucment.tregform.traderpwd;
+	var pwd = document.tregform.traderpwd;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		name.focus();
 		return false;
 	}
@@ -64,17 +64,17 @@ function validateTForm()
 	} else {
 	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
-	    return false
+	    return false;
 	}
 	
 	//Aadhar number validation
-	var val = aadharnum.value;
-	if (/^\d{12}$/.test(val)) {
+	var aval = aadharnum.value;
+	if (/^\d{12}$/.test(aval)) {
 	    // value is ok, use it
 	} else {
 	    alert("Invalid aadhar number, must be twelve digits");
 	    aadharnum.focus();
-	    return false
+	    return false;
 	}
 	
 	//Email validation
@@ -94,7 +94,7 @@ function validateTForm()
 	//Taluk name validation
 	if(!taluk.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		taluk.focus();
 		return false;
 	}
@@ -102,7 +102,7 @@ function validateTForm()
 	//Hobli name validation
 	if(!hobli.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		hobli.focus();
 		return false;
 	}
@@ -110,7 +110,7 @@ function validateTForm()
 	//Village name validation
 	if(!village.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		village.focus();
 		return false;
 	}
@@ -118,7 +118,7 @@ function validateTForm()
 	//Bank name validation
 	if(!bankname.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		bankname.focus();
 		return false;
 	}
@@ -126,7 +126,7 @@ function validateTForm()
 	//Account Branch name validation
 	if(!branch.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		branch.focus();
 		return false;
 	}
@@ -139,7 +139,7 @@ function validateTForm()
 	}
 	else
 	{
-		window.alert("Please enter valid IFSC Code.")
+		window.alert("Please enter valid IFSC Code.");
 		ifsc.focus();
 		return false;
 	}

@@ -38,13 +38,13 @@ function validateTForm()
 	var aadharnum = document.tregform.employeeaadharnum;
 	var email = document.tregform.employeeemail;
 	var uid = document.tregform.employeeuid;
-	var pwd = doucment.tregform.employeepwd;
+	var pwd = document.tregform.employeepwd;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		name.focus();
 		return false;
 	}
@@ -56,17 +56,17 @@ function validateTForm()
 	} else {
 	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
-	    return false
+	    return false;
 	}
 	
 	//Aadhar number validation
-	var val = aadharnum.value;
-	if (/^\d{12}$/.test(val)) {
+	var aval = aadharnum.value;
+	if (/^\d{12}$/.test(aval)) {
 	    // value is ok, use it
 	} else {
 	    alert("Invalid aadhar number, must be twelve digits");
 	    aadharnum.focus();
-	    return false
+	    return false;
 	}
 	
 	//Email validation
