@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean" %>
+    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,7 +68,7 @@ $(#ICICI).click(function(){$("#form0").submit();})
   <li><a class="active" href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br>
+  <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br>
 <font color="red"><br><br><br>
 <h2><u>Hold Funds</u></h2><br><br>
 </font>
@@ -153,7 +153,7 @@ if(msg1!=null)
 	}
 	else if(request.getAttribute("blockamount")!=null)
 	{
-		out.println("Successfully blocked amount: "); /*+request.getAttribute("blockamount"));*/%><br><br><%
+		out.println("Successfully blocked amount:"+request.getAttribute("blockamount"));
 //		out.println("Total Amount blocked from your account till now: ");+request.getAttribute("totalblock"));
 	}
 }

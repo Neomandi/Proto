@@ -1,5 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TradeSummaryBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +11,7 @@
 <script type='text/javascript' src='jspdf/libs/sprintf.js'></script>
 <script type='text/javascript' src='jspdf/jspdf.js'></script>
 <script type='text/javascript' src='jspdf/libs/base64.js'></script>
+<script type='text/javascript' src='jspdf/jquery-2.1.3.js'></script>
 <script>
 $(document).ready(function(e){
 	$('#pdf').click(function(e){
@@ -34,6 +35,35 @@ $(document).ready(function(e){
 		});
 	});
 });
+
+
+function tableToJson(table) {
+    var data = [];
+
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+    data.push(headers);
+    // go through cells
+    for (var i=1; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+
+    return data;
+}
+
 </script>
 </head>
 <style>
@@ -92,6 +122,10 @@ li a:hover:not(.active) {
 	text-decoration: none;
 	padding: 10px 20px;
 }
+td
+{
+text-align:center
+}
 </style>
 <body>
  <%@ include file="TRibbon.jsp" %><br><br>
@@ -99,63 +133,79 @@ li a:hover:not(.active) {
   <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   <li><a class="active" href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br><br><br><br><br>
-
-
+  <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br>
 <center><h1>Trade Summary</h1></center>
 <center>
-<form action = "" method = "get">
-
- From:  <input type = "date" id = "from"/><br/><br/>
- 
- To:    <input type = "date" id = "to"/><br/>
-
+<form action = "tradeSummary.do" method = "post">
+ From:  <input type = "date" name="from" id = "from" required/><br/><br/>
+ To:    <input type = "date" name="to" id = "to" required/><br/>
 <br/>
-<input type = "submit" value = "Get Summary"/>
-<br/><br/>
-<!--  
-<table id = 'mytable' border>
-	<tr bgcolor = '#00FF00'>
-		<th>Lot Number</th>
-		<th>Quantity</th>
-		<th>Bid</th>
-		<th>Final Price</th>
-	</tr>
-	<tr bgcolor = '#00FFFF'>
-		<td>312POTB2013</td>
-		<td>1500</td>
-		<td>22</td>
-		<td>26500</td>
-	</tr>
-	<tr bgcolor = '#00FFFF'>
-		<td>312RAGA2013</td>
-		<td>5000</td>
-		<td>18</td>
-		<td>20000</td>
-	</tr>
-	<tr bgcolor = '#00FFFF'>
-		<td>312APPC2013</td>
-		<td>3000</td>
-		<td>15</td>
-		<td>10000</td>
-	</tr>
-	<tr bgcolor = '#00FFFF'>
-		<td>312BARa2013</td>
-		<td>8000</td>
-		<td>10</td>
-		<td>30000</td>
-	</tr>
-</table><br/>
+<input type = "submit" value = "Get Summary" onclick="fun()"/>
 </form>
+<br/><br/>
+<%if(request.getAttribute("tradesummary")!=null)
+{
+if(request.getAttribute("tradesummary").equals("no"))
+{
+  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE</b>
+  <%} else if(request.getAttribute("tradesummary").equals("success"))
+  {%>
+<table id = 'mytable' border style="width:60%">
+	<tr>
+		<th>Lot Number</th>
+		<th>Quantity Available</th>
+		<th>Quantity Bid for</th>
+		<th>Quantity Assigned</th>
+		<th>Bid Price</th>
+		<th>Final Cost</th>
+		<th>Auction Result</th>
+	</tr>
+	<tr>
+	<% 
+		HttpSession tradesummary=request.getSession(false);
+		List al=(List)tradesummary.getAttribute("tradesummary");
+		//request.setAttribute("theList", al);
+		for(Object o:al)
+		{
+			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
+			<td><%=tsb.getLotnum() %></td>
+			<td><%=tsb.getQuantity() %></td>
+			<td><%=tsb.getQuantityneeded() %></td>
+			<td><%=tsb.getVolumesold()%></td>
+			<td><%=tsb.getBidprice() %></td>
+			<td><%=tsb.getMyfinalcost() %></td>
+			<td><%=tsb.getResult() %></td>
+	</tr>
+		<%}%>
+</table><br/>
 </center>
 <br/>
 <br/>
 <p align= "center"><b>Export Summary</b></p>
 <br/>
-<center><button id = "pdf">Export to PDF</button></center>
-<br/>
+<center>
+<input type="button" value="Export to PDF" onclick="callme()" /></center><br><br>
+<script>
+		function callme(){
+			var table = tableToJson($('#mytable').get(0));
+			var doc = new jsPDF('l','pt','letter',true);
+			$.each(table, function(i, row){
+				$.each(row, function(j,cell){
+			//	if(j=="Lot Number"){
+				 doc.cell(1,10,135,20,cell,i);	
+				//}
+				//else{
+					//doc.cell(1,10,90,20,cell,i);
+				//}
+				
+				});
+			});
+			doc.save('TradeSummary.pdf');
+			}
+		
+		</script>
 <center><button id = "excel">Export to XLS</button></center>
 <br/>
-<center><button id = "word">Export to DOC</button></center>--><!--  -->
+<center><button id = "word">Export to DOC</button></center><%}}%>
 </body>
 </html>

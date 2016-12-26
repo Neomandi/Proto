@@ -43,6 +43,103 @@ td
 	background-color: rgb(182,228,31);
 }
 </style>
+<style>
+table
+{
+border-collapse: collapse;
+
+}</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style>
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+ li
+{
+	display: inline;
+    float: left;
+}
+li a:hover:not(.active) {
+    color: white;    
+}
+.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;    
+}
+ a
+{
+    text-align: center;
+    border: 1px solid black;
+      border-radius: 9px 9px 0 0;
+    background-color: blue;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 160px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+a.pdf
+{
+text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 110px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+a.moree {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 110px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
+a.more {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 9px 9px;
+    background-color: red;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 60px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+
+#search {
+    width: 90px;  height: 2em;
+}
+
+</style>
+<body>
+<%@ include file="TRibbon.jsp" %><br><br>
+<ul><li><a  href="product.jsp">Product Search</a></li>
+  <li><a href="TraderBlock.do">Hold Funds</a></li>
+  <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
+  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
+  <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a class="active" href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br><br><br><br><br>
+
 <body>
 <div id = 'myProfile'>
 <br/><br/>
@@ -60,7 +157,6 @@ td
 		{
 			out.println("Connection not established!");
 		}
-		
 		String sql = "SELECT * FROM treg WHERE aadharnumber = ?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setLong(1, 100000000001L);
@@ -93,6 +189,6 @@ td
 	%>
 </table>
 </div><br/><br/>
-<a href = "javascript:genPDF()">Download PDF</a>
+<a href = "javascript:genPDF()" class="pdf">Download PDF</a>
 </body>
 </html>

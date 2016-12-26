@@ -305,7 +305,6 @@ public class ControllerServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
 				}
 				if(uri.contains("RejectSummary.do")){
 					System.out.println("in cs uri="+uri);
@@ -350,12 +349,7 @@ public class ControllerServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				}
-				
-				
-	
-		
-		
+				}		
 		//Employee Login
 		if(uri.contains("EmployeeLogin"))
 		{
@@ -733,6 +727,8 @@ public class ControllerServlet extends HttpServlet {
 					 bankname="ICICI";
 				}
 				else if(request.getParameter("SBI")!=null && request.getParameter("SBI").equals("on"))
+			
+				
 				{
 					 bankname="SBI";
 				}
@@ -839,22 +835,12 @@ public class ControllerServlet extends HttpServlet {
 					try 
 					{
 						rd.forward(request, response);
-					} catch (ServletException | IOException e) 
-					{
-						e.printStackTrace();
-					}
-				}
-				/*request.setAttribute("blockmsg",noinput);
-					rd=request.getRequestDispatcher("TraderBlock.jsp");
-					try 
-					{
-						rd.forward(request, response);
 					} 
 					catch (ServletException | IOException e) 
 					{
 						e.printStackTrace();
-					}		
-				}*/
+					}
+				}
 			}
 		}
 		
@@ -903,12 +889,12 @@ public class ControllerServlet extends HttpServlet {
 		{
 			String increment=request.getParameter("increment");
 			String lotnum=request.getParameter("lotnum");
-			System.out.println("lotnum in CS is "+lotnum+" increment is "+increment.length());
+			System.out.println("lotnum is"+lotnum);
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			try
-			{
+			{			
 				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
@@ -917,7 +903,8 @@ public class ControllerServlet extends HttpServlet {
 			{			
 				request.setAttribute("notlogged","not loggedin");
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
-				try {
+				try 
+				{
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
 					e1.printStackTrace();
@@ -1058,6 +1045,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
+				@SuppressWarnings("rawtypes")
 				List al=mc.getAl();
 				HttpSession MyFinalCost=request.getSession(true);
 				MyFinalCost.setAttribute("MyFinalCost",al);
@@ -1339,6 +1327,60 @@ public class ControllerServlet extends HttpServlet {
 				Model m=new Model();
 				m.farmeracceptstatus(lotnum,name,pwd,accno);
 		}
+		
+		if(uri.contains("tradeSummary"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String from=request.getParameter("from");
+			String to=request.getParameter("to");
+	        System.out.println("from is "+from);
+	        System.out.println("to is "+to);
+			String name=tlbn.getTname();
+			String pwd=tlbn.getTpwd();
+			Model m=new Model();
+			@SuppressWarnings("rawtypes")
+			List al=(List)m.tradeSummary(name,pwd,from,to);
+			if(al.size()==0)
+			{
+				request.setAttribute("tradesummary","no");
+				rd=request.getRequestDispatcher("TradeSummary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else
+			{
+				HttpSession tradeSummary=request.getSession();
+				tradeSummary.setAttribute("tradesummary", al);
+				request.setAttribute("tradesummary","success");
+				rd=request.getRequestDispatcher("TradeSummary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}	
+			}
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -1351,5 +1393,4 @@ public class ControllerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		process(request,response);
 	}
-
 }

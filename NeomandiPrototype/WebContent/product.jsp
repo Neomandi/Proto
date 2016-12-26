@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*, com.neomandi.prototype.ProductSearchResultBean"%>
+    pageEncoding="ISO-8859-1" import="java.util.*, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -109,7 +109,9 @@ else
   <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="OrderStatus.do">Order Status</a></li></ul><br>
+  <li><a href="OrderStatus.do">Order Status</a></li>
+  <li><a href="TraderProfile.jsp">Your Profile</a></li>
+  </ul><br>
 <form action="ProductSearchInt.jsp" method = "post">
 <center>
 	<table border style="float:center" width="300">
