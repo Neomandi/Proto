@@ -50,8 +50,8 @@ public class ControllerServlet extends HttpServlet {
 		RequestDispatcher rd2=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
-		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
-		TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
+		//FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
+		//TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
@@ -106,8 +106,56 @@ public class ControllerServlet extends HttpServlet {
 		//Farmer Registration
 		if(uri.contains("FarmerRegister"))
 		{
+			String farmerName = request.getParameter("farmerName");
+			long farmerMobile = Long.valueOf(request.getParameter("farmerMobile")).longValue();
+			long farmerAadharnum = Long.valueOf(request.getParameter("farmerAadharnum")).longValue();
+			String farmerEmail = request.getParameter("farmerEmail");
+			String farmerState = request.getParameter("farmerState");
+			String farmerDistrict = request.getParameter("farmerDistrict");
+			String farmerTaluk = request.getParameter("farmerTaluk");
+			String farmerHobli = request.getParameter("farmerHobli");
+			String farmerVillage = request.getParameter("farmerVillage");
+			String farmerBankName = request.getParameter("farmerBankName");
+			long farmerAccountNum = Long.valueOf(request.getParameter("farmerAccountNum")).longValue();
+			String farmerBranch = request.getParameter("farmerBranch");
+			String farmerIfscCode = request.getParameter("farmerIfscCode");
+			
+			System.out.println("The fname: "+farmerName+" The mobile: "+farmerMobile+" The Aadhar number: "+farmerAadharnum+" The Email: "+farmerEmail+" The state: "+farmerState+" The district: "+farmerDistrict+" The taluk: "+farmerTaluk+" The hobli: "+farmerHobli+" The village: "+farmerVillage+" The bankname: "+farmerBankName+" The accountnum: "+farmerAccountNum+" The branchname: "+farmerBranch+" The IFSC code: "+farmerIfscCode);
+			
+			InputStream farmerPhoto = null; // input stream of the upload file
+
+			// obtains the upload file part in this multipart request
+	        Part filePart = null;;
+			try {
+				filePart = request.getPart("farmerPhoto");
+			} catch (IllegalStateException | IOException | ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	        
+	        if (filePart != null) {
+	            // prints out some information for debugging
+	            System.out.println(filePart.getName());
+	            System.out.println(filePart.getSize());
+	            System.out.println(filePart.getContentType());
+	             
+	            // obtains input stream of the upload file
+	            try {
+	            	farmerPhoto = filePart.getInputStream();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	        
+			System.out.println(filePart);
+			System.out.println(farmerPhoto);
+			
+			
+			FarmerRegisterBean fbean = new FarmerRegisterBean(farmerName, farmerMobile, farmerAadharnum, farmerEmail, farmerState, farmerDistrict, farmerTaluk, farmerHobli, farmerVillage, farmerBankName, farmerAccountNum, farmerBranch, farmerIfscCode, farmerPhoto);
+	        
 			Model m = new Model();
-			String msg = m.farmerRegister(frb);
+			String msg = m.farmerRegister(fbean);
 			if(msg.equals("SUCCESS"))
 			{
 				rd=request.getRequestDispatcher("Success.jsp");
@@ -216,140 +264,142 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 		}
-		//farmer trade summary
-				if(uri.contains("GetSummary")){
-					System.out.println("in cs uri="+uri);
-					HttpSession hs=request.getSession(false);
-					String name=(String) hs.getAttribute("name");
-					String pass=(String) hs.getAttribute("pass");
-					System.out.println("in cs pass="+pass);
-					System.out.println("in cs name="+name);
-					Model m = new Model();
-					sb=m.getSummary(name, pass, sb);
-					
-					System.out.println(" in cs sb="+sb);
-					String lotnumber=sb.getLotnumber();
-					String lotsize=sb.getLotsize();
-					String quantitysold=sb.getQuantitysold();
-					String averageprice=sb.getAverageprice();
-					String finalprice=sb.getFinalprice();
-					String status=sb.getStatus();
-					System.out.println(("in cs avg="+averageprice));
-					
-					HttpSession hsr=request.getSession();
-					hsr.setAttribute("lotnumber",lotnumber);
-					hsr.setAttribute("lotsize",lotsize);
-					hsr.setAttribute("quantitysold", quantitysold);
-					hsr.setAttribute("averageprice", averageprice);
-					hsr.setAttribute("finalprice", finalprice);
-					hsr.setAttribute("status", status);
-					rd=request.getRequestDispatcher("GetSummary.jsp");
-					
-				
-					try 
-					{
-						rd.forward(request, response);			
-					}			
-					catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					
-				}
-				if(uri.contains("AcceptSummary.do")){
-					System.out.println("in cs uri="+uri);
-					HttpSession hs=request.getSession(false);
-					String name=(String) hs.getAttribute("name");
-					String pass=(String) hs.getAttribute("pass");
-					System.out.println("in cs pass="+pass);
-					System.out.println("in cs name="+name);
-					Model m = new Model();
-					sb=m.getSummary(name, pass, sb);
-					
-					System.out.println(" in cs sb="+sb);
-					String lotnumber=sb.getLotnumber();
-					String lotsize=sb.getLotsize();
-					String quantitysold=sb.getQuantitysold();
-					String averageprice=sb.getAverageprice();
-					String finalprice=sb.getFinalprice();
-					String status=sb.getStatus();
-					String account=sb.getAccountnum();
-					String msg="Accept";
-					System.out.println(("in cs avg="+averageprice));
-					
-					HttpSession hsr=request.getSession();
-					hsr.setAttribute("lotnumber",lotnumber);
-					hsr.setAttribute("lotsize",lotsize);
-					hsr.setAttribute("quantitysold", quantitysold);
-					hsr.setAttribute("averageprice", averageprice);
-					hsr.setAttribute("finalprice", finalprice);
-					hsr.setAttribute("status", status);
-					hsr.setAttribute("msg",msg);
-					rd=request.getRequestDispatcher("AcceptSummary.jsp");
-					HttpSession farmerstatus=request.getSession();
-					farmerstatus.setAttribute("msg",msg);
-					farmerstatus.setAttribute("lotnumber",lotnumber);
-					farmerstatus.setAttribute("accountnumber", account);
-					try 
-					{
-						rd.forward(request, response);			
-					}			
-					catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				if(uri.contains("RejectSummary.do")){
-					System.out.println("in cs uri="+uri);
-					HttpSession hs=request.getSession(false);
-					String name=(String) hs.getAttribute("name");
-					String pass=(String) hs.getAttribute("pass");
-					System.out.println("in cs pass="+pass);
-					System.out.println("in cs name="+name);
-					Model m = new Model();
-					sb=m.getSummary(name, pass, sb);
-					
-					System.out.println(" in cs sb="+sb);
-					String lotnumber=sb.getLotnumber();
-					String lotsize=sb.getLotsize();
-					String quantitysold=sb.getQuantitysold();
-					String averageprice=sb.getAverageprice();
-					String finalprice=sb.getFinalprice();
-					String status=sb.getStatus();
-					System.out.println(("in cs avg="+averageprice));
-					String msg="reject";
-					HttpSession hsr=request.getSession();
-					hsr.setAttribute("lotnumber",lotnumber);
-					hsr.setAttribute("lotsize",lotsize);
-					hsr.setAttribute("quantitysold", quantitysold);
-					hsr.setAttribute("averageprice", averageprice);
-					hsr.setAttribute("finalprice", finalprice);
-					hsr.setAttribute("status", status);
-					
-					rd=request.getRequestDispatcher("RejectSummary.jsp");
-					HttpSession farmerstatus=request.getSession();
-					 farmerstatus.setAttribute("msg",msg);
-					 farmerstatus.setAttribute("lotnumber",lotnumber);
-					try 
-					{
-						rd.forward(request, response);			
-					}			
-					catch (ServletException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}		
+
+		if(uri.contains("GetSummary")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			System.out.println(("in cs avg="+averageprice));
+			
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+			rd=request.getRequestDispatcher("GetSummary.jsp");
+			
+		
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		if(uri.contains("AcceptSummary.do")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			String account=sb.getAccountnum();
+			String msg="Accept";
+			System.out.println(("in cs avg="+averageprice));
+			
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+			hsr.setAttribute("msg",msg);
+			rd=request.getRequestDispatcher("AcceptSummary.jsp");
+			HttpSession farmerstatus=request.getSession();
+			farmerstatus.setAttribute("msg",msg);
+			farmerstatus.setAttribute("lotnumber",lotnumber);
+			farmerstatus.setAttribute("accountnumber", account);
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		if(uri.contains("RejectSummary.do")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			System.out.println(("in cs avg="+averageprice));
+			String msg="reject";
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+			
+			rd=request.getRequestDispatcher("RejectSummary.jsp");
+			HttpSession farmerstatus=request.getSession();
+			 farmerstatus.setAttribute("msg",msg);
+			 farmerstatus.setAttribute("lotnumber",lotnumber);
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		//Employee Login
 		if(uri.contains("EmployeeLogin"))
 		{
@@ -406,9 +456,59 @@ public class ControllerServlet extends HttpServlet {
 		//Trader Registration
 		if(uri.contains("TraderRegister"))
 		{
-			System.out.println("***************************************************************************");
+			String traderName = request.getParameter("traderName");
+			long traderMobile = Long.valueOf(request.getParameter("traderMobile")).longValue();
+			long traderAadharnum = Long.valueOf(request.getParameter("traderAadharnum")).longValue();
+			String traderEmail = request.getParameter("traderEmail");
+			String traderState = request.getParameter("traderState");
+			String traderDistrict = request.getParameter("traderDistrict");
+			String traderTaluk = request.getParameter("traderTaluk");
+			String traderHobli = request.getParameter("traderHobli");
+			String traderVillage = request.getParameter("traderVillage");
+			String traderBankName = request.getParameter("traderBankName");
+			long traderAccountNum = Long.valueOf(request.getParameter("traderAccountNum")).longValue();
+			String traderBranch = request.getParameter("traderBranch");
+			String traderIfscCode = request.getParameter("traderIfscCode");
+			String traderUid = request.getParameter("traderUid");
+			String traderLicenseNum = request.getParameter("traderLicenseNum");
+			String traderPwd = request.getParameter("traderPwd");
+			
+			
+			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode);
+			
+			InputStream traderPhoto = null; // input stream of the upload file
+
+			// obtains the upload file part in this multipart request
+	        Part filePart = null;;
+			try {
+				filePart = request.getPart("traderPhoto");
+			} catch (IllegalStateException | IOException | ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	        
+	        if (filePart != null) {
+	            // prints out some information for debugging
+	            System.out.println(filePart.getName());
+	            System.out.println(filePart.getSize());
+	            System.out.println(filePart.getContentType());
+	             
+	            // obtains input stream of the upload file
+	            try {
+	            	traderPhoto = filePart.getInputStream();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	        
+			System.out.println(filePart);
+			System.out.println(traderPhoto);
+			
+			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto);
+			
 			Model m = new Model();
-			String msg = m.traderRegister(trb);
+			String msg = m.traderRegister(tbean);
 			if(msg.equals("SUCCESS"))
 			{
 				rd=request.getRequestDispatcher("Success.jsp");
@@ -625,7 +725,7 @@ public class ControllerServlet extends HttpServlet {
 			String quality = request.getParameter("quality");
 			String quantity = request.getParameter("quantity");
 			
-			System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
+			//System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
 			
 			InputStream inputStream = null; // input stream of the upload file
 	        
@@ -659,22 +759,23 @@ public class ControllerServlet extends HttpServlet {
 			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, inputStream);
 			
 			System.out.println("***************************************************************************");
+			PrintWriter pw = null;
 			Model m = new Model();
 			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
 				//System.out.println("Sending msg "+msg);
 				request.setAttribute("errmsg", msg);
-				rd=request.getRequestDispatcher("ProductEntry.jsp");
+				//rd=request.getRequestDispatcher("ProductEntry.jsp");
 				try 
 				{
-					rd.forward(request, response);
-					return;
+					pw = response.getWriter();
+					pw.println("<script>");
+					pw.println("alert('Your lot number is: "+lotnum+"');");
+					pw.println("location = 'ProductEntry.jsp';");
+					pw.println("</script>");
 				}			
-				catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
+				catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					}
@@ -885,6 +986,7 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		//Increment
 		if(uri.contains("increment"))
 		{
 			String increment=request.getParameter("increment");
@@ -1177,7 +1279,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
-
+		//Order Status
 		if(uri.contains("OrderStatus"))
 		{
 			System.out.println("inside CS");
@@ -1299,6 +1401,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		//Farmer Accept Status
 		if(uri.contains("farmeracceptstatus"))
 		{
 			 String lotnum=(String) request.getAttribute("lotnum");

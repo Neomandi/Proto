@@ -29,6 +29,7 @@ table
 {
 	border-collapse: collapse;
 	width: 30%;
+	border: 2px solid black;
 }
 th
 {
@@ -36,11 +37,13 @@ th
 	height: 30px;
 	text-align: left;
 	background-color: rgb(1,163,226);
+	border: 2px solid black;
 }
 td
 {
 	padding: 12px;
 	background-color: rgb(182,228,31);
+	border: 2px solid black;
 }
 </style>
 <style>
@@ -145,6 +148,7 @@ a.more {
 <br/><br/>
 <h1>Trader Profile</h1>
 <br/>
+<img src = "Images/Neomandi.png" alt = "can't display" height = "200" width = "200"/>
 <table border>
 	<%
 	Connection con = null;
