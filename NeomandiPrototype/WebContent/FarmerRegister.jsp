@@ -53,7 +53,7 @@ function validateFForm()
 	//Name validation
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		name.focus();
 		return false;
 	}
@@ -65,17 +65,17 @@ function validateFForm()
 	} else {
 	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
-	    return false
+	    return false;
 	}
 	
 	//Aadhar number validation
-	var val = aadharnum.value;
-	if (/^\d{12}$/.test(val)) {
+	var aval = aadharnum.value;
+	if (/^\d{12}$/.test(aval)) {
 	    // value is ok, use it
 	} else {
 	    alert("Invalid aadhar number, must be twelve digits");
 	    aadharnum.focus();
-	    return false
+	    return false;
 	}
 	
 	//Email validation
@@ -95,7 +95,7 @@ function validateFForm()
 	//Taluk name validation
 	if(!taluk.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		taluk.focus();
 		return false;
 	}
@@ -103,7 +103,7 @@ function validateFForm()
 	//Hobli name validation
 	if(!hobli.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		hobli.focus();
 		return false;
 	}
@@ -111,7 +111,7 @@ function validateFForm()
 	//Village name validation
 	if(!village.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		village.focus();
 		return false;
 	}
@@ -119,7 +119,7 @@ function validateFForm()
 	//Bank name validation
 	if(!bankname.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		bankname.focus();
 		return false;
 	}
@@ -127,7 +127,7 @@ function validateFForm()
 	//Account Branch name validation
 	if(!branch.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.")
+		window.alert("Please enter only alphtabets.");
 		branch.focus();
 		return false;
 	}
@@ -140,7 +140,7 @@ function validateFForm()
 	}
 	else
 	{
-		window.alert("Please enter valid IFSC Code.")
+		window.alert("Please enter valid IFSC Code.");
 		ifsc.focus();
 		return false;
 	}
@@ -204,7 +204,7 @@ select
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "fregform" action = "FarmerRegisterInt.jsp" method = "post"  onsubmit = "return validateFForm();">
+<form name = "fregform" action = "FarmerRegister.do" enctype='multipart/form-data' method = "post"  onsubmit = "return validateFForm();">
 	<fieldset>
 		<legend>Farmer Registration Page</legend>
 		<label for = "name">Name</label><br/>
@@ -257,8 +257,8 @@ select
 		<input type = "text" id = "hobli" name = "farmerHobli" placeholder = "Hobli" required/><br/>
 		<label for = "village">Village</label><br/>
 		<input type = "text" id = "village" name = "farmerVillage" placeholder = "Village" required/><br/><br/>
-		<!-- <label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "farmerPhoto"/>  --> <!-- use (enctype='multipart/form-data') for photo in form -->
+		<label for = "photo">Photo</label><br/>
+		<input type = "file" id = "photo" name = "farmerPhoto"/> <!-- use (enctype='multipart/form-data') for photo in form -->
 	</fieldset>
 	<br/>
 	<fieldset>

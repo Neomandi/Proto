@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean" %>
+    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,7 +68,7 @@ $(#ICICI).click(function(){$("#form0").submit();})
   <li><a class="active" href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href = "OrderStatus.do">Order Status</a></li></ul><br><br><br>
+  <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br>
 <font color="red"><br><br><br>
 <h2><u>Hold Funds</u></h2><br><br>
 </font>
@@ -115,12 +115,12 @@ else
 %>
 <font color="blue">
 <h3>Account Details:</h3><br/></font><font color="black" ><h5></font>
-BANK NAME: <input type="text" name="a2" value="<%=tbb.getDbbankname() %>"/><br/><br/>
-ACCOUNT NUMBER: <input type="text" name="a1" value="<%=tbb.getAccountnumber() %>" /><br/><br/>
-BANKS IFSC: <input type="text" name="a3" value="<%=tbb.getIfsc() %>" /><br/><br/>
-BALANCE AVAILABLE: <input type="text" id="a5" name="a5" value="<%=tbb.getBalance() %>"/><br/><br/>
-TOTAL AMOUNT BLOCKED:  <input type="text" id="a6" name="a5" value="<%if(request.getAttribute("totalblock")==null)out.println(tbb.getBlock()); else out.println(request.getAttribute("totalblock")); %>"/><br/><br/>
-<form action="traderblockamount.do?accno=<%=acc %>&bank=<%=bank %>" method="post"><h4><font color="black">ENTER AMOUNT TO BE BLOCKED: <input type="text" id="block" name="block" required value="<%if(request.getParameter("block")!=null) out.println(request.getParameter("block")); %>"/> <br/><br/></font>
+BANK NAME: <input type="text" name="a2" value="<%=tbb.getDbbankname() %>" readonly/><br/><br/>
+ACCOUNT NUMBER: <input type="text" name="a1" value="<%=tbb.getAccountnumber() %>" readonly/><br/><br/>
+BANKS IFSC: <input type="text" name="a3" value="<%=tbb.getIfsc() %>"readonly /><br/><br/>
+BALANCE AVAILABLE: <input type="text" id="a5" name="a5" value="<%=tbb.getBalance() %>"readonly/><br/><br/>
+TOTAL AMOUNT BLOCKED:  <input type="text" id="a6" name="a5" value="<%if(request.getAttribute("totalblock")==null)out.println(tbb.getBlock()); else out.println(request.getAttribute("totalblock")); %>"readonly/><br/><br/>
+<form action="traderblockamount.do?accno=<%=acc %>&bank=<%=bank %>" method="post"><h4><font color="black">ENTER AMOUNT TO BE BLOCKED: <input type="number" id="block" min="1" name="block" required value="<%if(request.getParameter("block")!=null) out.println(request.getParameter("block")); %>"/> <br/><br/></font>
 </h4><br><br>
 <input type="submit" name="blockbutton" value="BLOCK" onclick="fun()"/><br/><br/>
 <script>
@@ -153,7 +153,7 @@ if(msg1!=null)
 	}
 	else if(request.getAttribute("blockamount")!=null)
 	{
-		out.println("Successfully blocked amount: "); /*+request.getAttribute("blockamount"));*/%><br><br><%
+		out.println("Successfully blocked amount:"+request.getAttribute("blockamount"));
 //		out.println("Total Amount blocked from your account till now: ");+request.getAttribute("totalblock"));
 	}
 }

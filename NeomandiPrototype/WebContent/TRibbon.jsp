@@ -81,7 +81,7 @@ html {
 	text-decoration: none;
 	padding: 10px 20px;
 	position: absolute;
-	top: 4px;
+	top: 1px;
 	right: 10px;
 	font-size: 32px;
 }
@@ -90,7 +90,7 @@ html {
 <body>
 <div id="ribbon">
 		<span id="content">
-		<font size="4"  face="Comic Sans MS" color="white"> welcome 
+		<font size="4"  face="Comic Sans MS" color="white"> Welcome 
 		<% 
 			HttpSession tlog=request.getSession(false);
 			if((String)tlog.getAttribute("name")==null)

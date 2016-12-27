@@ -116,7 +116,7 @@ int count=0;
 				ps.setString(12, frb.getFarmerBranch());
 				ps.setString(13, frb.getFarmerIfscCode());
 				ps.setString(14, null);
-				ps.setString(15, null);
+				ps.setBlob(15, frb.getFarmerPhoto());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -221,23 +221,23 @@ int count=0;
 				con.setAutoCommit(false);
 				
 				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-				ps.setString(1, trb.getTradername());
-				ps.setLong(2, trb.getTradermob());
-				ps.setLong(3, trb.getTraderaadharnum());
-				ps.setString(4, trb.getTraderemail());
-				ps.setString(5, trb.getTraderstate());
-				ps.setString(6, trb.getTraderdistrict());
-				ps.setString(7, trb.getTradertaluk());
-				ps.setString(8, trb.getTraderhobli());
-				ps.setString(9, trb.getTradervillage());
-				ps.setString(10, trb.getTraderbankname());
-				ps.setLong(11, trb.getTraderaccountnum());
-				ps.setString(12, trb.getTraderbranch());
-				ps.setString(13, trb.getTraderifsc());
-				ps.setString(14, trb.getTraderuid());
-				ps.setString(15, trb.getTraderlicensenum());
-				ps.setString(16, trb.getTraderpwd());
-				ps.setString(17, null);
+				ps.setString(1, trb.getTraderName());
+				ps.setLong(2, trb.getTraderMobile());
+				ps.setLong(3, trb.getTraderAadharnum());
+				ps.setString(4, trb.getTraderEmail());
+				ps.setString(5, trb.getTraderState());
+				ps.setString(6, trb.getTraderDistrict());
+				ps.setString(7, trb.getTraderTaluk());
+				ps.setString(8, trb.getTraderHobli());
+				ps.setString(9, trb.getTraderVillage());
+				ps.setString(10, trb.getTraderBankName());
+				ps.setLong(11, trb.getTraderAccountNum());
+				ps.setString(12, trb.getTraderBranch());
+				ps.setString(13, trb.getTraderIfscCode());
+				ps.setString(14, trb.getTraderUid());
+				ps.setString(15, trb.getTraderLicenseNum());
+				ps.setString(16, trb.getTraderPwd());
+				ps.setBlob(17, trb.getTraderPhoto());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -640,7 +640,7 @@ int count=0;
 				ps.setString(5, peb.getProduce());
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
-				ps.setString(8, null);
+				ps.setBlob(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
@@ -709,10 +709,7 @@ int count=0;
 			}
 			else
 			{
-				System.out.println("Connection established");
 				con.setAutoCommit(false);
-				
-
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
 				ps.setString(1, tlbn.getTname());
 				ps.setString(2, tlbn.getTpwd());
@@ -721,21 +718,16 @@ int count=0;
 				while(rs.next())
 				{
 					 aadharnumber=rs.getString("aadharnumber");
-					 System.out.println("aadharnumber of trader is "+aadharnumber);
 				}				
-
 				ps =con.prepareStatement("select * from productentry where lotnumber = ?");
-
 				ps.setString(1, lotnumber);
 				ps.execute();
-				
 				rs = ps.getResultSet();
-				
 				String lotnum = "";
 				String marketcode = "";
 				produce = "";
 				String qualitygrade = "";
-				long quantity = 0;
+				String quantity ="";
 				String slotnumber=null;
 				while(rs.next())
 				{
@@ -743,23 +735,23 @@ int count=0;
 					marketcode = rs.getString("marketcode");
 					produce = rs.getString("produce");
 					qualitygrade = rs.getString("qualitygrade");
-					quantity = rs.getLong("quantity");
+					quantity = rs.getString("quantity");
 					slotnumber=rs.getString("slotnumber");
-					System.out.println("slotnumber beofre checking whether its null is "+slotnumber);
-				}
-			
+					System.out.println("slotnumber before checking whether its null is "+slotnumber);
+				}			
 				String lot[]=new String[100];
 				int i=0;
 				ps = con.prepareStatement("select lotnum from tradelist where aadharnumber=?");
 				ps.setString(1,aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();
+				System.out.println("lotnum trader "+tlbn.getTname()+" ss bidding for is ");
 				while(rs.next())
 				{
 					lot[i]=rs.getString("lotnum");
+					System.out.println(lot[i]);
 					i++;
 				}
-				
 				if(Arrays.asList(lot).contains(lotnum))
 				{
 					ps = con.prepareStatement("select * from tradelist");
@@ -773,24 +765,22 @@ int count=0;
 				}
 				else
 				{
+					SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy"); 
 					System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
-					ps = con.prepareStatement("insert into tradelist values(?,?,?,?,?,?,?,?,?)");
-					
+					ps = con.prepareStatement("insert into tradelist(lotnum,marketcode,produce,qualitygrade,quantity,aadharnumber,price,slotnumber,quantityneeded) values(?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, lotnum);
 					ps.setString(2, marketcode);
 					ps.setString(3, produce);
 					ps.setString(4, qualitygrade);
-					ps.setLong(5, quantity);
+					ps.setString(5, quantity);
 					ps.setString(6, aadharnumber);
 					ps.setInt(7, 0);
 					ps.setString(8, slotnumber);
 					ps.setString(9, quantityneeded);
 					ps.execute();				
 					//con.commit();	
-					System.out.println("values inserted into traders_bid_price is lotnum"+lotnum+" aadharnumber "+aadharnumber+"bidprice,lotcost,commission,marketcess,myfinalcost as 0	0	0	0	0");
-					
+					System.out.println("values inserted into traders_bid_price is lotnum"+lotnum+" aadharnumber "+aadharnumber+"bidprice,lotcost,commission,marketcess,myfinalcost as 0	0	0	0	0 "+sdf.format(new Date()));
 					ps=con.prepareStatement("insert into traders_bid_price(aadharnumber,lotnum,bidprice,lotcost,commission,marketcess,myfinalcost) values(?,?,?,?,?,?,?)");
-
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnum);
 					ps.setInt(3, 0);
@@ -916,117 +906,155 @@ int count=0;
 
 
 	@SuppressWarnings("resource")
-	public String[] traderblockamount(String name, String pwd, String amount, String bankname, String accno) 
+	public String[] traderblockamount(String name, String pwd, String amount, String bankname, String accno)
 	{
+
 		System.out.println("inside model-> traderBlockamount()->..bankname is"+bankname+" trader name is "+name+" pwd is "+pwd);
-		PreparedStatement ps = null;
-		Connection con = null;
-		ResultSet rs = null;
-		String aadharnumber="";
-		String[] msg=new String[2];
-		int balance=0;
-		try
-		{
+		PreparedStatement ps = null;	
+		Connection con = null;		
+		ResultSet rs = null;	
+		String aadharnumber="";	
+		String[] msg=new String[2];	
+		int balance=0;		
+		try		
+		{		
 			con = JDBCHelper.getConnection();
-			
-			if(con == null)
+			if(con == null)		
 			{
-			}
-			else
+			}			
+			else		
 			{
-				con.setAutoCommit(false);
-				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
-				ps.setString(1, name);
+				con.setAutoCommit(false);	
+				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");				
+				ps.setString(1, name);		
 				ps.setString(2, pwd);
-				ps.execute();
-				rs = ps.getResultSet();
+				ps.execute();		
+				rs = ps.getResultSet();				
 				while(rs.next())
-				{
-					aadharnumber=rs.getString("aadharnumber");
-				}
-				Integer block=Integer.parseInt(amount);
+				{					
+					aadharnumber=rs.getString("aadharnumber");	
+				}		
+				Integer block=Integer.parseInt(amount);		
 				ps =con.prepareStatement("select ifsc,balance from tbankaccount where aadharnumber = ? and bankname=?");
-				ps.setString(1, aadharnumber);
-				ps.setString(2, bankname);
-				ps.execute();
-				rs = ps.getResultSet();			
-				while(rs.next())
-				{
-					balance=rs.getInt("balance");
-				}
-				System.out.println("old balance is "+balance);
-				balance=balance-block;
-				if(balance<0)
-				{
-					balance=balance+block;
-					msg[0]="you dont have sufficient amount to block money..you can block max "+balance+" please enter valid amount";
-					msg[1]=null;
-				}
-				else
-				{
-						ps =con.prepareStatement("update tbankaccount set balance =? where  accountnumber= ?");
-						ps.setInt(1, balance);
-						ps.setString(2, accno);
-						ps.execute();
-						msg[0]=String.valueOf(balance);
+				ps.setString(1, aadharnumber);								
+				ps.setString(2, bankname);								
+				ps.execute();								
+				rs = ps.getResultSet();				
+				while(rs.next())				
+				{					
+					balance=rs.getInt("balance");				
+				}				
+				System.out.println("old balance is "+balance);								
+				balance=balance-block;								
+				if(balance<0)								
+				{									
+					balance=balance+block;									
+					msg[0]="you dont have sufficient amount to block money..you can block max "+balance+" please enter valid amount";									
+					msg[1]=null;								
+				}								
+				else								
+				{										
+					ps =con.prepareStatement("update tbankaccount set balance =? where  accountnumber= ?");									
+					ps.setInt(1, balance);										
+					ps.setString(2, accno);
+					ps.execute();
+					msg[0]=String.valueOf(balance);
+							
 						
-						ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
-						ps.setString(1, accno);
-						ps.execute();
-						rs = ps.getResultSet();			
-						while(rs.next())
-							balance=rs.getInt("balance");
-						System.out.println("new balance according to DB "+balance);							
-						System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);
-						ps =con.prepareStatement("insert into traders_blocked_amount(tradername,aadharnumber,balance,blockamount,bankname) values(?,?,?,?,?)");
-						ps.setString(1, name);
-						ps.setString(2, aadharnumber);
-						ps.setString(3, msg[0]);
-						ps.setString(4, amount);
-						ps.setString(5,bankname);
-						ps.execute();
+/*ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
 						
-						int[]blockamount=new int[10000];
-						int i=0;
-						ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
-						ps.setString(1, aadharnumber);
-						ps.execute();
-						rs = ps.getResultSet();			
-						while(rs.next())
-						{
-							blockamount[i]=rs.getInt("blockamount");
-							i++;
-						}
+ps.setString(1, accno);
 						
-						for(i=1;i<blockamount.length;i++)
-							blockamount[0]=blockamount[0]+blockamount[i];
-						 msg[1]=String.valueOf(blockamount[0]);
-						 System.out.println("total blocked amount is "+blockamount[0]);
-				}						
+ps.execute();
+						
+rs = ps.getResultSet();			
+						
+while(rs.next())
+							
+balance=rs.getInt("balance");
+						
+System.out.println("new balance according to DB "+balance);
+						
+System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);*/
+			ps =con.prepareStatement("SELECT sum(blockamount) FROM traders_blocked_amount where tradername=?");
+			ps.setString(1, name);									
+			ps.execute();									
+			rs = ps.getResultSet();									
+			int blockamount=0;									
+			while(rs.next())										
+			blockamount=rs.getInt("sum(blockamount)");									
+			blockamount=blockamount+block;									
+			String blockamounts=String.valueOf(blockamount);									
+			System.out.println("total blocked amount is "+blockamount);		
+			msg[1]=blockamounts;
+			System.out.println("amount to be blocked now is  "+block);									
+			ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");
+									
+			ps.setString(1, blockamounts);
+									
+			ps.setString(2, aadharnumber);
+									
+			ps.execute();
+									
+			ps =con.prepareStatement("SELECT sum(blockamount) FROM traders_blocked_amount where tradername=?");
+									
+			ps.setString(1, name);
+									
+			ps.execute();
+									
+			rs = ps.getResultSet();			
+									
+									
+			while(rs.next())
+										
+			blockamount=rs.getInt("sum(blockamount)");	
+									
+			System.out.println("after updating traders account, total blocked amount is "+blockamount);
+							
+			}						
+						
 			con.commit();			
+						
 			}
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			try {
-				con.rollback();
+					
 			}
-			catch (SQLException e1)
+					
+			catch(SQLException e)
+					
 			{
-				e1.printStackTrace();
+						
+			e.printStackTrace();
+						
+			try {
+							
+			con.rollback();
+						
 			}
-		}
-		finally
-		{
+						
+			catch (SQLException e1)
+						
+			{
+							
+			e1.printStackTrace();
+						
+			}
+					
+			}
+					
+			finally
+					
+			{
+						
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
-		}
-		return msg;		
-	}
+					
+			}
+					
+			return msg;		
+				
+			}
 
-
-	@SuppressWarnings({ "resource" })
+@SuppressWarnings({ "resource" })
 	public Mynewclass tradeOrAuction(String name, String pwd) 
 	{
 		PreparedStatement ps = null;
@@ -1319,7 +1347,7 @@ int count=0;
 	@SuppressWarnings("resource")
 	public Myclass submitIncrementOne(String name, String pwd, String lotnumber,String bankname) 
 	{
-		System.out.println("inside Model()->.....submtIncrementOne");
+		System.out.println("inside Model()->.....submtIncrementOne lotnumber is  "+lotnumber);
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -1339,8 +1367,7 @@ int count=0;
 		Myclass mc=new Myclass();
 		try
 		{
-			con = JDBCHelper.getConnection();
-			
+			con = JDBCHelper.getConnection();			
 			if(con == null)
 			{
 			}
@@ -1520,8 +1547,7 @@ int count=0;
 					System.out.println("insd3 model() mfcb-> "+mfcb);
 				}				
 				
-				int res[]=new int[19];
-				int j=0;
+				int res=0;
 				ps =con.prepareStatement("select myfinalcost from traders_bid_price where aadharnumber=?");
 				ps.setString(1,aadharnumber);
 				ps.execute();
@@ -1529,13 +1555,10 @@ int count=0;
 				while(rs.next())
 				{
 					finalcosts=rs.getString("myfinalcost");
-					res[j]=Integer.parseInt(finalcosts);
-					j++;					
-				}
-				for(int k=0;k<res.length;k++)
-				{
-					finalcost=finalcost+res[k];
-				}
+					int resu=Integer.parseInt(finalcosts);					
+					res=res+resu;		
+				}				
+				finalcost=res;				
 				System.out.println("finalcost= "+finalcost);
 				System.out.println("total blocked amount= "+result);
 				int diff=finalcost-result;
@@ -2088,35 +2111,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	public Myclass Increment(String name, String pwd, String increments, String lotnum) 
 	{
 		int increment=0;
-		if(increments.length()>1)
-		{
-			char[]ca=increments.toCharArray();
-			for(int i=0;i<ca.length;i++)
-			{
-				System.out.println("c= "+i+" "+ca[i]);
-			}
-			System.out.println("length is increments.length()"+increments.length());
-			Character c=increments.charAt(increments.length()-1);
-			System.out.println("char c ="+c);
-			if(Character.isDigit(c))
-			{
-				increment=Integer.parseInt(increments);
-			}
-			else
-			{
-				StringBuilder sb=new StringBuilder(increments);
-				sb.deleteCharAt(increments.length()-1);
-			    System.out.println("increment is sb="+sb);
-			    String incrementss=new String(sb);
-				increment=Integer.parseInt(incrementss);
-			}
-				
-		}
-		else
-		{
-			increment=Integer.parseInt(increments);
-		    System.out.println("increment is "+increments);
-		}
+		increments=increments.trim();
+		increment=Integer.parseInt(increments);
 		System.out.println("inside Model()->.....Increment... lotnum is "+lotnum+" increments is "+increment);
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -2458,22 +2454,23 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				else
 				{
 					con.setAutoCommit(false);
-					ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where tradername=?");
+					ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where tradername=?)");
 					ps.setString(1, name);
 					ps.setString(2, name);
 					ps.execute();
 					rs = ps.getResultSet();
 					while(rs.next())
-					{
+					{							
 						ps =con.prepareStatement("select tl.slotnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
 						ps.setString(1, name);
-						ps.setString(2, pwd);
+						ps.setString(2, rs.getString("lotnum"));
+						ps.setString(3, pwd);
 						ps.execute();
 						rs = ps.getResultSet();
 						OrderStatusBean osbn1=null;
 						while(rs.next())
 						{					
-							osbn1.setLotnum(rs.getString("lotnum"));
+							osbn1=new OrderStatusBean();
 							osbn1.setMarketcode(rs.getString("marketcode"));
 							osbn1.setProduce(rs.getString("produce"));
 							osbn1.setQualitygrade(rs.getString("qualitygrade"));
@@ -2525,7 +2522,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}
 			else
 			{		
-				ps =con.prepareStatement("select ar.tradername from auction_result ar where ar.tradername=?");//this checks whether the trader has on in auction by checking his name in auction result table
+				ps =con.prepareStatement("select ar.tradername from auction_result ar where ar.tradername=?");//this checks whether the trader has won in auction by checking his name in auction result table
 				ps.setString(1,name);
 				ps.execute();
 				rs = ps.getResultSet();
@@ -2537,6 +2534,16 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.execute();
 					if(rs.next())
 					{
+						String volumesolds=rs.getString("volumesold");
+						String bidprice=rs.getString("bidprice");
+						int volumesold=Integer.parseInt(volumesolds);
+						int bidprice1=Integer.parseInt("bidprice");
+						int lotcost=volumesold*bidprice1;
+						String lotcosts=String.valueOf(lotcost);
+						int commission = (int) (lotcost*0.05);
+						int marketcess = 1*10;
+						int myfinalcost=commission+marketcess+3000+lotcost;
+						String myfinalcosts=String.valueOf(myfinalcost);
 						
 					}
 					else
@@ -2548,4 +2555,62 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 }catch(Exception e)
 		{
 	e.printStackTrace();
-}}}
+}}
+
+	@SuppressWarnings("resource")
+	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) {
+		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		List<TradeSummaryBean> al=new ArrayList<TradeSummaryBean>();	
+
+		try
+		{
+			con = JDBCHelper.getConnection();
+			if(con == null)
+			{
+			}
+			else
+			{		
+				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and `created_at` BETWEEN ? and ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+				ps.setString(1,name);
+				ps.setString(2,from);
+				ps.setString(3, to);
+				ps.setString(4,pwd);
+				ps.execute();
+				rs = ps.getResultSet();
+				TradeSummaryBean tsb=null;
+				while(rs.next())
+				{	
+					tsb=new TradeSummaryBean();
+					tsb.setBidprice(rs.getString("bidprice"));
+					tsb.setLotnum(rs.getString("lotnum"));
+					tsb.setMyfinalcost(rs.getString("myfinalcost"));
+					tsb.setQuantity(rs.getString("quantity"));
+					tsb.setQuantityneeded(rs.getString("quantityneeded"));
+					
+					ps =con.prepareStatement("SELECT ar.volumesold FROM auction_result ar where ar.tradername=? and ar.lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
+					ps.setString(1,name);
+					ps.setString(2,rs.getString("lotnum"));
+					ps.execute();
+					rs = ps.getResultSet();
+					if(rs.next())
+					{
+						tsb.setVolumesold(rs.getString("volumesold"));
+						tsb.setResult("WON");
+					}
+					else
+					{
+						tsb.setVolumesold("--");
+						tsb.setResult("LOST");
+					}
+					al.add(tsb);					
+				}	
+				return al;
+			}
+		}catch(Exception e)
+		{
+	e.printStackTrace();
+}
+		return al;}}
