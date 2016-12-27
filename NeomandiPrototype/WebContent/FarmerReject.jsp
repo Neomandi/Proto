@@ -182,15 +182,21 @@ li a:hover:not(.active) {
 <center>
 <form action ="RejectSummary.do" method = "get">
 
- From:  <input type = "date" id = "from"/><br/><br/>
+ From:  <input type = "date" id = "from"/ name="from"><br/><br/>
  
- To:    <input type = "date" id = "to"/><br/>
+ To:    <input type = "date" id = "to" name="to"/><br/>
 
  <br/>
 <input type = "submit" value = "Get Summary"/> 
 <br/><br/>
 </form>
-
+<%
+	String from=request.getParameter("from");
+	String to=request.getParameter("to");
+	System.out.println("from="+from);
+	System.out.println("to="+to);
+	
+	%>
 <br/>
 <br/>		
 

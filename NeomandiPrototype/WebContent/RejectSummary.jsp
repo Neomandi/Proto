@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  import=" com.neomandi.prototype.JDBCHelper, 
+    pageEncoding="ISO-8859-1"  
+    import=" com.neomandi.prototype.JDBCHelper, 
      java.io.PrintWriter,
      java.sql.Connection,
      java.sql.ResultSet,
@@ -166,93 +167,96 @@ li a:hover:not(.active) {
    top: 0px;
 }
 </style>
+<style>
 
+ #mytable table, td, th {
+    border: 1px solid black;
+    text-align:center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+}
+
+th {
+    text-align:center;
+}
+}
+
+</style>
 <body>
-<%@ include file="Fribbon.jsp" %><br><br>
- 
-<ul>
-	 <li><a href="FarmerMaster.jsp">Auction</a></li>
-	<li><a href="Lotdetails.jsp">My Lots</a></li>
-	<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-	
-  </ul>
- 
-<center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
-
-<center>
-<form action = "" method = "get">
-
- From:  <input type = "date" id = "from"/><br/><br/>
- 
- To:    <input type = "date" id = "to"/><br/>
-
-<br/>
-<input type = "submit" value = "Get Summary"/> 
-<br/><br/>
-</form>
-
-<%  HttpSession hs=request.getSession(false);  
-	     String pass=(String)hs.getAttribute("pass");  
-	    System.out.println(" in getsummary password="+pass);
-	    HttpSession hs1=request.getSession(false); 
-	    String lotnumber=(String)hs1.getAttribute("lotnumber");
-	    System.out.println("lotnumber="+lotnumber);
-	    String lotsize=(String)hs1.getAttribute("lotsize");
-	    String quantitysold=(String)hs1.getAttribute("quantitysold");
-	    String averageprice=(String)hs1.getAttribute("averageprice");
-	    String finalprice=(String)hs1.getAttribute("finalprice");
-	    int lot=Integer.parseInt(lotsize);
-	    int qsold=Integer.parseInt(quantitysold);
-	    String status="";
-	    if(lot==qsold)
-	    	status+="Fully executed .Rejected by You";
-	    	else
-	    	status+="partially executed.Rejected by you";
-	    
-	    %>
-		 
-		<center>
-		<form>
-		 
-
-<table id = 'mytable'  width="65%" height="70%" border>
-
-		<tr bgcolor = '#00FF00'>
-			<th>Lot number</th>
-			<th>Lot size</th>
-		   <th>Quantity Sold </th>
-		    <th>Average price</th>
-		     <th>Final price</th>
-		     <th>Status</th>
-		    
-		</tr>
-		<tr>
-		<td><%=lotnumber %></td>
-		<td><%=lotsize %></td>
-		<td><%=quantitysold%></td>
-		<td><%=averageprice%></td>
-		<td><%= finalprice%></td>
-		<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
-		</tr>
-		
-</table><br/>
-</form>
-</center>
-
-
-
-<br/>
-<br/>		
-
-<p align= "center"><b>Export Summary</b></p>
-<br/>
-<center><button id = "pdf">Export to PDF</button></center>
-<br/>
-<center><button id = "excel">Export to XLS</button></center>
-<br/>
-<center><button id = "word">Export to DOC</button></center>
-
-
+	<%@ include file="Fribbon.jsp" %><br><br>
+	<ul>
+	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
+		<li><a href="Lotdetails.jsp">My Lots</a></li>
+		<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+	</ul>
+ 	<center>
+ 		<font color="#C71585"><h1>Farmer Summary</h1></font>
+ 		<form action = "" method = "get">
+			From:  <input type = "date" id = "from"/><br/><br/>
+ 			To:    <input type = "date" id = "to"/><br/><br/>
+			<input type = "submit" value = "Get Summary"/><br/><br/>
+		</form>
+		<%  
+			HttpSession hs=request.getSession(false);  
+	     	String pass=(String)hs.getAttribute("pass");  
+		    System.out.println(" in getsummary password="+pass);
+		    HttpSession hs1=request.getSession(false); 
+		    String lotnumber=(String)hs1.getAttribute("lotnumber");
+		    System.out.println("lotnumber="+lotnumber);
+		    String lotsize=(String)hs1.getAttribute("lotsize");
+		    String quantitysold=(String)hs1.getAttribute("quantitysold");
+		    String averageprice=(String)hs1.getAttribute("averageprice");
+		    String finalprice=(String)hs1.getAttribute("finalprice");
+		    int fprice=Integer.parseInt(finalprice);
+			int MUCharge=1*fprice/100;
+			int PACharge=100;
+			int EPUCharge=100;
+			int TCharge=MUCharge+PACharge+EPUCharge;
+		    int myEarn=fprice-TCharge;
+		    int lot=Integer.parseInt(lotsize);
+		    int qsold=Integer.parseInt(quantitysold);
+		    String status="";
+		    if(lot==qsold)
+		    	status+="Fully executed .Rejected by You";
+		    	else
+		    	status+="Partially executed. Rejected by you";
+		%>
+	<center>
+	<form>
+		<table id = 'mytable'  width="65%" height="70%" border>
+			<tr bgcolor = '#00FF00'>
+				<th>From</th>
+				<th>To</th>
+				<th>Lot number</th>
+				<th>Lot size</th>
+		   		<th>Quantity Sold </th>
+		    	<th>Average price</th>
+		     	<th>Final price</th>
+		     	<th>Status</th>
+		     	<th>My Earnings</th>
+		   </tr>
+			<tr>
+				<td width="10%" height="5%"><%=request.getParameter("from") %>
+				<td width="10%" height="5%"><%=request.getParameter("to") %>
+				<td width="10%" height="5%"><%=lotnumber %></td>
+				<td width="10%" height="5%"><%=lotsize %></td>
+				<td width="10%" height="5%"><%=quantitysold%></td>
+				<td width="10%" height="5%"><%=averageprice%></td>
+				<td width="10%" height="5%"><%= finalprice%></td>
+				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
+				<td><%=myEarn %></td>
+			</tr>
+	</table><br/>
+	</form>
+	</center>
+	<br/><br/>		
+	<p align= "center"><b>Export Summary</b></p><br/>
+	<center><button id = "pdf">Export to PDF</button></center><br/>
+	<center><button id = "excel">Export to XLS</button></center><br/>
+	<center><button id = "word">Export to DOC</button></center>
 </body>
 </html>
 

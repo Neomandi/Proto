@@ -15,7 +15,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		
+		<!-- <meta http-equiv="refresh" content="5; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> -->
 		<title>Insert title here</title>
 		
 		<style>
@@ -138,17 +138,15 @@
 	</ul>
 	
 	
-	 <%
-		
-		 HttpSession hs=request.getSession(false);  
-	     String pass=(String)hs.getAttribute("pass");  
-	    // String time=(String)hs.getAttribute("time");
-	     SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
-	     String time=df1.format(new Date());
-		System.out.println("password="+pass);
-		System.out.println("new time="+time);
-		HttpSession hs1=request.getSession(false);  
-	    hs1.setAttribute("pass",pass); 
+	 <%	 	HttpSession hs=request.getSession(false);  
+	     	String pass=(String)hs.getAttribute("pass");  
+	     	// String time=(String)hs.getAttribute("time");
+	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
+	     	String time=df1.format(new Date());
+		 	System.out.println("password="+pass);
+			System.out.println("new time="+time);
+			HttpSession hs1=request.getSession(false);  
+	   	     hs1.setAttribute("pass",pass); 
 		     Connection con = null;
 		     Statement statement = null;
 		     ResultSet resultSet = null;    
@@ -190,10 +188,7 @@
 	</table>
 	<!-- ------------------------------------------------------------------------------------------------- -->
 	<!-- display lotdetails -->
-	
-			
-				<table border="1">
-				
+	<table border="1" id="mytable">
 		<tr>
 			<th><font color="#C71585" size="5">Lot number</font></th>
 		    <th><font color="#C71585" size="5">Average price</font></th>
@@ -201,11 +196,9 @@
 		    <th><font color="#C71585" size="5">Quantity bid for</font></th>
 		    <th></th>
 		    <th></th>
-		    <th><font color="#C71585" size="5">Time progress</font></th>
 		    <th><font color="#C71585" size="5">Status</font></th>
 		</tr>
 		<%
-		
 			//fetching lotnumber 
 			String lot="";
 			try{	
@@ -215,41 +208,39 @@
 				}
 				statement = con.createStatement();
 				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
-			
 				//System.out.println(sql);
 				resultSet = statement.executeQuery(sql);
 				while(resultSet.next()){
 					String avg="--";
-					
-						
 		%>
-							
-		 <tr>
+		<tr>
 			 <td ><%=resultSet.getString("lotnumber")%></td>
 			<%  if(resultSet.getString("averageprice")!=null){%>
-			<td><%=resultSet.getString("averageprice") %></td>
+			<div id="avg"><td><%String average=(String)resultSet.getString("averageprice");
+			                     String averag[]=average.split(".");
+			                     String result=averag[0];
+			                     result=result+".";
+			                     result=result+averag[1].substring(0,1);
+			                     System.out.println("before"+average+" after"+result);
+			                     out.println(result);%></td></div>
 			<%}else{ %>
 			<td><%=avg %></td>
 			<%} %>
 			 <td><%=resultSet.getString("quantity") %></td>
 			 <%  if(resultSet.getString("quantitybidfor")!=null){%>
-			 <td><%=resultSet.getString("quantitybidfor") %></td>
+			<div id="qty"><td><%=resultSet.getString("quantitybidfor") %></td></div> 
 				<%}else{ %>
 			<td><%=avg %></td>
 			<%} %>	
 			 <td><form action="FarmerAccept.jsp">
-			 <input  id="accept" type="submit" value="Accept " disabled ></td></form>
-			 <form action="FarmerReject.jsp">
-			 <td><input  id="reject" type="submit" value="Reject" disabled></td></form>
-			 <td>
-			 	<div id="pbar_outerdiv" style="width: 140px; height: 18px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
-					<div id="pbar_innerdiv" style="background-color: lightgreen; z-index: 2; height: 100%; width: 0%;"></div>
-					<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
-				</div>
-			 </td>
+			 <input  id="accept" type="submit" value="Accept " disabled ></form></td>
+			<td> <form action="FarmerReject.jsp">
+			 <input  id="reject" type="submit" value="Reject" disabled></form></td>
+			
 			 <td width="30%" height="5%"><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
 				<div id="auction"></div>
-				<div id="auction1"></div></td>
+				<div id="auction1"></div>
+			</td>
 		</tr>
 	<%
 		}
@@ -260,29 +251,24 @@
 	}
 			
 %>
-
-
 </table>		
-
-
 <%
 	//fetching date and time
 	String date="";
-	
 	String slot="";
-		try{	
-				if(con == null)
-					{
-						System.out.println("Connection establish failed");
-					}
+	try{	
+			if(con == null)
+				{
+					System.out.println("Connection establish failed");
+				}
 					statement = con.createStatement();
 					String sql = "select Date,Time,Slots from productentry where farmerid='"+s+"' ";
 					//System.out.println(sql);
 					resultSet = statement.executeQuery(sql);
 					while(resultSet.next()){
-	%>
-					<font size="5" color="#9785f"></font>
-				<% 
+%>
+	<font size="5" color="#9785f"></font>
+<% 
 					date+=resultSet.getString("Date");
 					//time+=resultSet.getString("Time");
 					slot+=resultSet.getString("Slots");
@@ -296,7 +282,7 @@
 						e.printStackTrace();	
 					}
 					
-				%>
+%>
 		  
 		  <!-- ---------------------------------------------------------------------------------------------- -->  
 		 <form>
@@ -313,8 +299,9 @@
 			var s2="Slot2";
 			var s3="Slot3";
 			var s4="Slot4";
-		var timedif;
-		var Btime1;
+			var timedif;
+			var Btime1;
+			var diff;
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(Slot==s1){
 				var Etime=document.getElementById("time").value;
@@ -325,7 +312,7 @@
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-				var diff = endDate.getTime() - startDate.getTime();
+				 diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
 				console.log("current time is "+Etime);
 				console.log("difference in milliseconds is "+diff);
@@ -385,9 +372,7 @@
 				var five=300000;
 				timedif=diff+five;
 				console.log("count"+timedif);	
-				
-				
-		}
+			}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(Slot==s2){
 			var Etime=document.getElementById("time").value;
@@ -397,7 +382,7 @@
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-			var diff = endDate.getTime() - startDate.getTime();
+		    diff = endDate.getTime() - startDate.getTime();
 			console.log("end time is "+Btime);
 			console.log("current time is "+Etime);
 			console.log("difference in milliseconds is "+diff);
@@ -459,9 +444,7 @@
 			timedif=diff+five;
 			console.log("count"+timedif);
 	}
-			      
-		
-		//-------------------------------for slot3-----------------------------------------------------------------
+	//-------------------------------for slot3-----------------------------------------------------------------
 		else if(Slot==s3){
 			var Etime=document.getElementById("time").value;
 			var Btime="10:50:00";
@@ -470,7 +453,7 @@
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-			var diff = endDate.getTime() - startDate.getTime();
+			 diff = endDate.getTime() - startDate.getTime();
 			console.log("end time is "+Btime);
 			console.log("current time is "+Etime);
 			console.log("difference in milliseconds is "+diff);
@@ -534,8 +517,7 @@
 			console.log("count"+timedif);
 			
 	}
-			
-		//----------------------------------for slot4---------------------------------------------------------------	
+	//----------------------------------for slot4---------------------------------------------------------------	
 		else if (Slot==s4){
 			var Etime=document.getElementById("time").value;
 			var Btime="11:00:00";
@@ -544,7 +526,7 @@
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-			var diff = endDate.getTime() - startDate.getTime();
+			 diff = endDate.getTime() - startDate.getTime();
 			console.log("end time is "+Btime);
 			console.log("current time is "+Etime);
 			console.log("difference in milliseconds is "+diff);
@@ -607,166 +589,145 @@
 			console.log("count"+timedif);
 			
 		}
-			///---------------------for count down timer----------------------------------	
+		//---------------------for count down timer----------------------------------	
 			
 function countdown(minutes,seconds,hours) 
 {
-				    var seconds =seconds;
-				    var mins = minutes
-				    var hour=hours;
-				    var res1=0;
-				    var res2=0;
-				    var timedifference=+hours+":"+minutes+":"+seconds;
-				   		    
-			   		function tick() 
-			   		{
-				        var counter = document.getElementById("timer");
-				        /*if(seconds==0)
-				        {
-				        	var current_minutes = mins-1
-				        	seconds=59;
-				        }
-				        else*/
-				        	var current_minutes = mins
-			       		seconds--;
-				        var hour=hours;
-				        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-				        if( seconds > 0 )
-				        {
-				            setTimeout(tick,1000);
-				        } 
-				        else 
-			        	{
-			 				if(mins > 0)
-			 				{
-			 					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
-			 				}			 				
-							else
-							{
-								if(hour>1)
-								{
-				 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
-				 				}	
-								else
-								{
-					            	var str="<center><b><h4><font color='blue' ><div id='a1'>Your Auction has begun</div></font></h4></b></center>";
-					            	str+="<center><b><h4><font color='blue' ><div id='a2'>Your Auction will ends in</div></font></h4></b></center>";
-					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
-					            	var strCmd = "document.getElementById('auction').style.display = 'none'";
-					            	var waitseconds = seconds;
-					            	var timeOutPeriod = waitseconds * 1000;
-					            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
-					            	var strCmd1 = "document.getElementById('msg').style.display = 'none'";
-					            	var waitseconds = seconds;
-					            	var timeOutPeriod = waitseconds * 1000;
-					            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
-					            	document.getElementById("timer").innerHTML=str;
-					            	function count(minutes1,seconds1) 
-					            	{
-					            		console.log("minutes is"+minutes);
-					            		console.log("seconds is"+seconds1);
-					        		    var seconds =seconds1;
-					        		    var mins = minutes1
-					        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
-					        		    function tick() 
-					        		    {
-					        		        var counter = document.getElementById("hms");
-					        		        var current_minutes = mins
-					        		       	seconds--;
-					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-					        		        if( seconds > 0 ) {
-					        		            setTimeout(tick,1000);
-					        		        } 
-					        		        else 
-					        		        {
-						        		       if(mins > 0)
-						        		       {
-						        		 		setTimeout(function () { count(mins - 1,60); },1000);
-						        			   }
-						        		       else
-						        		       {
-						        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
-						        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
-									            	var waitseconds = seconds;
-									            	var timeOutPeriod = waitseconds * 1000;
-									            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
-									            	var strCmd3 = "document.getElementById('a1').style.display = 'none'";
-									            	var waitseconds = seconds;
-									            	var timeOutPeriod = waitseconds * 1000;
-									            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
-									            	var strCmd4 = "document.getElementById('a2').style.display = 'none'";
-									            	var waitseconds = seconds;
-									            	var timeOutPeriod = waitseconds * 1000;
-									            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
-						        		           	document.getElementById("auction1").innerHTML=str1;
-						        		       }
-					        		    	}
-				        		     	}
-				        		   	 	tick();
-				        			}		
-					            	var Etime1=document.getElementById("time").value;
-					            	
-					            	start1 = Etime1.split(":");
-					            	end1 =Btime1.split(":");
-					            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-					            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-					            	var diff1 = endDate1.getTime() - startDate1.getTime();					            	
-					            	var hours1 = Math.floor(diff1 / 1000 / 60 / 60);
-					            	var seconds1= Math.floor(diff1 /1000);
-					            	var minutes1 = Math.floor(diff1 / 1000 / 60);
-					            	var res1;
-					            	var res2;
-					            	if(seconds1>60)
-					            	{
-					            			res1=seconds1%60;
-					            			res2=Math.floor(seconds1/60);
-					            					
-					            			seconds1=res1;
-					            			minutes1=res2;
-					            	}
-					            	console.log("auction ends at "+Btime1);
-					            	console.log("time is  "+Etime1);
-					            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-				        			count(minutes1,seconds1);
-				        			//time progress-------------------------
-				            		var start = new Date();
-				        			var maxTime =diff1;
-				        			var timeoutVal = Math.floor(maxTime/100);
-				        			animateUpdate();
-
-				        			function updateProgress(percentage) {
-				        			    $('#pbar_innerdiv').css("width", percentage + "%");
-				        			    $('#pbar_innertext').text(percentage + "%");
-				        			}
-
-				        			function animateUpdate() {
-				        			    var now = new Date();
-				        			    var timeDiff = now.getTime() - start.getTime();
-				        			    var perc = Math.round((timeDiff/maxTime)*100);
-				        			    console.log(perc);
-				        			      if (perc <= 100) {
-				        			       updateProgress(perc);
-				        			       setTimeout(animateUpdate, timeoutVal);
-				        			      }
-				        			}
-				        			//----------------------------------
-								}
-							}
-			 				}		       
-			    		}
-			    tick();
-			}
-			countdown(minutes,seconds,hours);
+	 	var seconds =seconds;
+	    var mins = minutes
+	    var hour=hours;
+	    var res1=0;
+	    var res2=0;
+	    var timedifference=+hours+":"+minutes+":"+seconds;
+	   		    
+		function tick() 
+		{
+	        var counter = document.getElementById("timer");
+	        /*if(seconds==0)
+	        {
+	        	var current_minutes = mins-1
+	        	seconds=59;
+	        }
+	        else*/
+	        	var current_minutes = mins
+    		seconds--;
+	        var hour=hours;
+	        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+	        if( seconds > 0 )
+	        {
+	            setTimeout(tick,1000);
+	        } 
+	        else 
+     	{
+				if(mins > 0)
+				{
+					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
+				}			 				
+				else
+				{
+					if(hour>1)
+					{
+	 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
+	 				}	
+					else
+					{
+						
+		            	var str="<center><b><h4><font color='blue' ><div id='a1'>Your Auction has begun</div></font></h4></b></center>";
+		            	str+="<center><b><h4><font color='blue' ><div id='a2'>Your Auction will ends in</div></font></h4></b></center>";
+		            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
+		            	var strCmd = "document.getElementById('auction').style.display = 'none'";
+		            	var waitseconds = seconds;
+		            	var timeOutPeriod = waitseconds * 1000;
+		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+		            	var strCmd1 = "document.getElementById('msg').style.display = 'none'";
+		            	var waitseconds = seconds;
+		            	var timeOutPeriod = waitseconds * 1000;
+		            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
+		            	document.getElementById("timer").innerHTML=str;
+		            	function count(minutes1,seconds1) 
+		            	{
+		            		console.log("minutes is"+minutes);
+		            		console.log("seconds is"+seconds1);
+		        		    var seconds =seconds1;
+		        		    var mins = minutes1
+		        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
+		        		    function tick() 
+		        		    {
+		        		        var counter = document.getElementById("hms");
+		        		        var current_minutes = mins
+		        		       	seconds--;
+		        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+		        		        if( seconds > 0 ) {
+		        		            setTimeout(tick,1000);
+		        		        } 
+		        		        else 
+		        		        {
+			        		       if(mins > 0)
+			        		       {
+			        		 		setTimeout(function () { count(mins - 1,60); },1000);
+			        			   }
+			        		       else
+			        		       {
+			        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
+			        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
+						            	var strCmd3 = "document.getElementById('a1').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
+						            	var strCmd4 = "document.getElementById('a2').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
+						    			document.getElementById("auction1").innerHTML=str1;
+			        		       }
+		        		    	}
+	        		     	}
+	        		   	 	tick();
+	        			}		
+		            	var Etime1=document.getElementById("time").value;
+		            	start1 = Etime1.split(":");
+		            	end1 =Btime1.split(":");
+		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+		            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+		            	var td = endDate1.getTime() - startDate1.getTime();					            	
+		            	var hours1 = Math.floor(td / 1000 / 60 / 60);
+		            	var seconds1= Math.floor(td /1000);
+		            	var minutes1 = Math.floor(td / 1000 / 60);
+		            	var res1;
+		            	var res2;
+		            	if(seconds1>60)
+		            	{
+		            			res1=seconds1%60;
+		            			res2=Math.floor(seconds1/60);
+		            					
+		            			seconds1=res1;
+		            			minutes1=res2;
+		            	}
+		            	console.log("auction ends at "+Btime1);
+		            	console.log("time is  "+Etime1);
+		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
+	        			count(minutes1,seconds1);
+	        			
+					}
+				}
+				}		       
+ 		}
+ tick();
+}
+countdown(minutes,seconds,hours);			   
 			
-			
-			/*var t=setTimeout(nextPage,5000)
+			/*
+			var t=setTimeout(nextPage,diff)
 			function nextPage(){
 				window.location='http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp';
-			}*/
-			
+			}
+			*/
 	</script>
 	 <script>
-
+	
 //console.log("time="+timedif);
  var t=setTimeout(auction,timedif);
  function auction(){
@@ -774,16 +735,11 @@ function countdown(minutes,seconds,hours)
 	 document.getElementById("reject").disabled=false;
  }
  </script>
- 
-
-
-
- 
- <!--   <script>
-  setTimeout(function(){
-	   window.location.reload(1);
-	}, 1000);
-  </script>-->
-  
-</body>
+<script>
+ var s= setTimeout(refresh,diff-5000);
+ 		function refresh(){
+ 			 setTimeout(function() { window.location.reload(true); },5000); 
+ 		}
+ </script>
+ </body>
 </html>

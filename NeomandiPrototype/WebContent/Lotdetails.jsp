@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import=" com.neomandi.prototype.JDBCHelper, java.io.PrintWriter, java.sql.Connection, java.sql.ResultSet,java.sql.Statement,
-   javax.servlet.ServletException,
-javax.servlet.http.HttpServlet,
- javax.servlet.http.HttpServletRequest,
-javax.servlet.http.HttpServletResponse,java.sql.SQLException"
-    %>
+    pageEncoding="ISO-8859-1"
+    import=" com.neomandi.prototype.JDBCHelper, 
+    java.io.PrintWriter, java.sql.Connection, 
+    java.sql.ResultSet,java.sql.Statement,
+    javax.servlet.ServletException,
+	javax.servlet.http.HttpServlet,
+ 	javax.servlet.http.HttpServletRequest,
+	javax.servlet.http.HttpServletResponse,
+	java.sql.SQLException"
+ %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -133,30 +137,23 @@ li a:hover:not(.active) {
 
 </head>
 <body>
-<%@ include file="Fribbon.jsp" %><br><br>
-
-<ul>
-   <li><a href="FarmerMaster.jsp" >Auction</a></li>
-  <li><a class="active" href="Lotdetails.jsp">My Lots</a></li>
-	<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-	
-  </ul>
-
 <%
 	
 	 HttpSession hs1=request.getSession(false);  
      String pass=(String)hs1.getAttribute("pass");  
-	 
 	 Connection con = null;
      Statement statement = null;
      ResultSet resultSet = null;    
-    
      con = JDBCHelper.getConnection();
-	%>
-	<!--  <h1><font color="#FF1493">
-	     <u>Lot Details</u>
-	 </h1></font>-->
-	 <%
+%>
+<%@ include file="Fribbon.jsp" %><br><br>
+
+<ul>
+   	 <li><a href="FarmerMaster.jsp" >Auction</a></li>
+ 	 <li><a class="active" href="Lotdetails.jsp">My Lots</a></li>
+	 <li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+</ul>
+<%
 	 
      String s="";
      try{	
@@ -169,12 +166,9 @@ li a:hover:not(.active) {
      	System.out.println(sql);
      	resultSet = statement.executeQuery(sql);
     	while(resultSet.next()){
-     	%>
-     	<table><tr><th><font color="blue" size="5"></font></th></tr>
-     	<!-- <tr><td background="pink"><%= resultSet.getString("aadharnum")%></td></tr>  -->
-     	<% s+=resultSet.getString("aadharnum");
-		        	System.out.println("aadhar number="+s); %>
-		<%
+  			s+=resultSet.getString("aadharnum");
+		    System.out.println("aadhar number="+s);
+		
 		}
 	}
 	catch(SQLException e)
@@ -182,49 +176,43 @@ li a:hover:not(.active) {
 		e.printStackTrace();	
 	}
 %>
-  
-</table>
-<br/><table  width="65%" height="50%" border="2" bgcolor="ADFF2F">
-								<tr>
-								<h2><b>
-								<th>Lotnumber</th>		
-								<th>Produce</th>
-								<th>Product</th>
-								<th>Grade</th>
-								<th>Quantity</th></b></h2></tr>
+  <br/><br/>
+  <table  width="65%" height="50%" border="2" bgcolor="ADFF2F">
+		<tr>
+			<h2><b>
+				<th>Lotnumber</th>		
+				<th>Produce</th>
+				<th>Product</th>
+				<th>Grade</th>
+				<th>Quantity</th>
+			</b></h2>
+		</tr>						
 <%
 //fetching lotdetails
-
-	        			try{	
-							if(con == null)
-							{
-								System.out.println("Connection establish failed");
-							}
-							statement = con.createStatement();
-							
-							String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
-							System.out.println(sql5);		
-							resultSet = statement.executeQuery(sql5);
-							
-							while(resultSet.next()){
-								
-						%>
-							
-								<tr>
-								<td><%= resultSet.getString("lotnumber")%></td>
-								<td><%= resultSet.getString("produce")%> </td>
-								<td><%= resultSet.getString("kindofpro")%></td>
-								<td> <%=resultSet.getString("qualitygrade")%></td>
-								<td><%= resultSet.getString("quantity")%></td>
-								
-							<% 	
-							}
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						%>
-						</table>
-						
+	try{	
+		if(con == null)
+			{
+				System.out.println("Connection establish failed");
+			}
+			statement = con.createStatement();
+			String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
+			System.out.println(sql5);		
+			resultSet = statement.executeQuery(sql5);
+			while(resultSet.next()){
+%>
+		<tr>
+			<td><%= resultSet.getString("lotnumber")%></td>
+			<td><%= resultSet.getString("produce")%> </td>
+			<td><%= resultSet.getString("kindofpro")%></td>
+			<td><%=resultSet.getString("qualitygrade")%></td>
+			<td><%= resultSet.getString("quantity")%></td>
+		</tr>						
+<% 	
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+}
+%>
+</table>
 </body>
 </html>
