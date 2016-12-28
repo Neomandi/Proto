@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  
-    import=" com.neomandi.prototype.JDBCHelper, 
+    pageEncoding="ISO-8859-1"  import=" com.neomandi.prototype.JDBCHelper, 
      java.io.PrintWriter,
      java.sql.Connection,
      java.sql.ResultSet,
@@ -185,78 +184,89 @@ th {
 }
 
 </style>
+
 <body>
 	<%@ include file="Fribbon.jsp" %><br><br>
-	<ul>
+ 	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
 	</ul>
  	<center>
  		<font color="#C71585"><h1>Farmer Summary</h1></font>
- 		<form action = "" method = "get">
-			From:  <input type = "date" id = "from"/><br/><br/>
- 			To:    <input type = "date" id = "to"/><br/><br/>
-			<input type = "submit" value = "Get Summary"/><br/><br/>
+	</center>
+	<center>
+		<form action = "" method = "get">
+			From:  <input type = "date" id = "from" name="from"/><br/><br/>
+ 			To:    <input type = "date" id = "to" name="to"/><br/><br/>
+			<input type = "submit" value = "Get Summary"/> <br/><br/>
 		</form>
 		<%  
 			HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
-		    System.out.println(" in getsummary password="+pass);
-		    HttpSession hs1=request.getSession(false); 
-		    String lotnumber=(String)hs1.getAttribute("lotnumber");
-		    System.out.println("lotnumber="+lotnumber);
-		    String lotsize=(String)hs1.getAttribute("lotsize");
-		    String quantitysold=(String)hs1.getAttribute("quantitysold");
-		    String averageprice=(String)hs1.getAttribute("averageprice");
-		    String finalprice=(String)hs1.getAttribute("finalprice");
-		    int fprice=Integer.parseInt(finalprice);
+	    	System.out.println(" in getsummary password="+pass);
+		    HttpSession hsr=request.getSession(false); 
+		    String lotnumber=(String)hsr.getAttribute("lotnumber");
+		    hsr.setAttribute("lotnumber", lotnumber);
+		    System.out.println(" in getsummary lotnumber="+lotnumber);
+		    String lotsize=(String)hsr.getAttribute("lotsize");
+		    String quantitysold=(String)hsr.getAttribute("quantitysold");
+		    String averageprice=(String)hsr.getAttribute("averageprice");
+		    int aprice=Integer.parseInt(averageprice);
+		    int qsold=Integer.parseInt(quantitysold);
+		    int fprice=aprice*qsold;
 			int MUCharge=1*fprice/100;
 			int PACharge=100;
 			int EPUCharge=100;
 			int TCharge=MUCharge+PACharge+EPUCharge;
 		    int myEarn=fprice-TCharge;
+		    System.out.println("in getsummary lotsize="+lotsize);
 		    int lot=Integer.parseInt(lotsize);
-		    int qsold=Integer.parseInt(quantitysold);
+		  
 		    String status="";
 		    if(lot==qsold)
-		    	status+="Fully executed .Rejected by You";
-		    	else
-		    	status+="Partially executed. Rejected by you";
-		%>
-	<center>
-	<form>
-		<table id = 'mytable'  width="65%" height="70%" border>
+	    		status+="Fully executed .Rejected by you";
+	    			else
+	    		status+="Partially executed.Rejected by you";
+	    	 	String lotsize1=String.valueOf(lot);
+			 	String quantitysold1=String.valueOf(qsold);
+	    %>
+		<center>
+			<form>
+		 	<table  width="65%" height="70%" id = 'mytable' border>
 			<tr bgcolor = '#00FF00'>
-				<th>From</th>
-				<th>To</th>
-				<th>Lot number</th>
-				<th>Lot size</th>
-		   		<th>Quantity Sold </th>
-		    	<th>Average price</th>
-		     	<th>Final price</th>
-		     	<th>Status</th>
-		     	<th>My Earnings</th>
+				<th width="10%" height="5%">From</th>
+				<th width="10%" height="5%">To</th>
+				<th width="10%" height="5%">Lot number</th>
+				<th width="10%" height="5%">Lot size</th>
+		   		<th width="10%" height="5%">Quantity Sold </th>
+		    	<th width="10%" height="5%">Average price</th>
+		    	<th width="10%" height="5%">Final price</th>
+		     	<th >Status</th>
+		     	<th width="10%" height="5%">My Earnings</th>
 		   </tr>
 			<tr>
-				<td width="10%" height="5%"><%=request.getParameter("from") %>
-				<td width="10%" height="5%"><%=request.getParameter("to") %>
+				<td width="10%" height="5%"><%=request.getParameter("from") %></td>
+				<td width="10%" height="5%"><%=request.getParameter("to") %></td>
 				<td width="10%" height="5%"><%=lotnumber %></td>
-				<td width="10%" height="5%"><%=lotsize %></td>
-				<td width="10%" height="5%"><%=quantitysold%></td>
+				<td width="10%" height="5%"><%=lotsize1 %></td>
+				<td width="10%" height="5%"><%=quantitysold1%></td>
 				<td width="10%" height="5%"><%=averageprice%></td>
-				<td width="10%" height="5%"><%= finalprice%></td>
+				<td width="10%" height="5%"><%= fprice%></td>
 				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
-				<td><%=myEarn %></td>
+				<td width="10%" height="5%"><%=myEarn %></td>
 			</tr>
-	</table><br/>
+		</table><br/>
 	</form>
-	</center>
-	<br/><br/>		
-	<p align= "center"><b>Export Summary</b></p><br/>
+</center>
+<br/>
+<br/>		
+ <p align= "center"><b>Export Summary</b></p><br/>
 	<center><button id = "pdf">Export to PDF</button></center><br/>
 	<center><button id = "excel">Export to XLS</button></center><br/>
 	<center><button id = "word">Export to DOC</button></center>
+		
+
 </body>
 </html>
 

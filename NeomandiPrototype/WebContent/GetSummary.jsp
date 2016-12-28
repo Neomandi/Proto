@@ -212,8 +212,9 @@ th {
 		    String lotsize=(String)hsr.getAttribute("lotsize");
 		    String quantitysold=(String)hsr.getAttribute("quantitysold");
 		    String averageprice=(String)hsr.getAttribute("averageprice");
-		    String finalprice=(String)hsr.getAttribute("finalprice");
-		    int fprice=Integer.parseInt(finalprice);
+		    int aprice=Integer.parseInt(averageprice);
+		    int qsold=Integer.parseInt(quantitysold);
+		    int fprice=aprice*qsold;
 			int MUCharge=1*fprice/100;
 			int PACharge=100;
 			int EPUCharge=100;
@@ -221,7 +222,7 @@ th {
 		    int myEarn=fprice-TCharge;
 		    System.out.println("in getsummary lotsize="+lotsize);
 		    int lot=Integer.parseInt(lotsize);
-		    int qsold=Integer.parseInt(quantitysold);
+		  
 		    String status="";
 		    if(lot==qsold)
 	    		status+="Fully executed .Waiting for your acceptance";
@@ -251,7 +252,7 @@ th {
 				<td width="10%" height="5%"><%=lotsize1 %></td>
 				<td width="10%" height="5%"><%=quantitysold1%></td>
 				<td width="10%" height="5%"><%=averageprice%></td>
-				<td width="10%" height="5%"><%= finalprice%></td>
+				<td width="10%" height="5%"><%= fprice%></td>
 				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
 				<td width="10%" height="5%"><%=myEarn %></td>
 			</tr>

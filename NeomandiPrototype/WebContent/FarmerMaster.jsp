@@ -122,23 +122,15 @@
 		}*/
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="script.js"></script>
-		<script>
-		
-		</script>
-		
+		<script type="text/javascript" src="script.js"></script>		
 	</head>
 <body>
-	 <%@ include file="Fribbon.jsp" %><br><br>
-	
+	 <%@ include file="Fribbon.jsp" %><br><br>	
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
-		
 	</ul>
-	
-	
 	 <%	 	HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");

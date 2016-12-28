@@ -323,8 +323,6 @@ public class ControllerServlet extends HttpServlet {
 			String lotsize=sb.getLotsize();
 			String quantitysold=sb.getQuantitysold();
 			String averageprice=sb.getAverageprice();
-			String finalprice=sb.getFinalprice();
-			String status=sb.getStatus();
 			String account=sb.getAccountnum();
 			String msg="Accept";
 			System.out.println(("in cs avg="+averageprice));
@@ -334,8 +332,6 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("lotsize",lotsize);
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
-			hsr.setAttribute("finalprice", finalprice);
-			hsr.setAttribute("status", status);
 			hsr.setAttribute("msg",msg);
 			rd=request.getRequestDispatcher("AcceptSummary.jsp");
 			HttpSession farmerstatus=request.getSession();

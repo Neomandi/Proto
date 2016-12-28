@@ -400,9 +400,6 @@ int count=0;
 		String aadhar="";
 		String account="";
 		String lotnumber="";
-		
-		
-		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -425,23 +422,17 @@ int count=0;
 				{
 					aadhar=rs.getString("aadharnum");
 					account=rs.getString("accountnum");
+					System.out.println("in model account num="+account);
 					System.out.println("aadharnumber of "+name+" is "+aadhar);
 				}	
 				
 				//lotnumber
 				String farmerid=aadhar;
 				System.out.println("in cs farmerid="+farmerid);
-				ps=con.prepareStatement("select lotnumber from productentry where farmerid='"+farmerid+"'");
-				//ps.setString(1,farmerid);
-				ps.execute();
-				rs=ps.getResultSet();
-				while(rs.next()){
-					lotnumber=rs.getString("lotnumber");
-					System.out.println("in cs farmer lotnumber="+lotnumber);
-				}
+				
 				//getsummary details
-				ps = con.prepareStatement("select * from getsummary where lotnumber=?" );
-				ps.setString(1,lotnumber);
+				ps = con.prepareStatement("select * from productentry where farmerid=?" );
+				ps.setString(1,farmerid);
 				System.out.println(ps);
 				System.out.println("Execute"+ps.executeQuery());
 				rs=ps.getResultSet();
@@ -451,22 +442,16 @@ int count=0;
 					System.out.println("inside while()->rs is "+rs);
 					sb=new SummaryBean();
 					 sb.setLotnumber(rs.getString("lotnumber"));
-					 sb.setLotsize(rs.getString("lotsize"));
-					 sb.setQuantitysold(rs.getString("Quantitysold"));
+					 sb.setLotsize(rs.getString("quantity"));
+					 sb.setQuantitysold(rs.getString("quantitybidfor"));
 					 sb.setAverageprice(rs.getString("averageprice"));
-					 sb.setFinalprice(rs.getString("finalprice"));
-					 sb.setStatus(rs.getString("status"));
-
 					 sb.setAccountnum(account);
-					 String lot=sb.getLotsize();
-					 String qsold=sb.getQuantitysold();
-
 					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
 						
 				
 				sb.setAccountnum(account);
-				System.out.println("in model beab="+sb);
+				System.out.println("in model bean="+sb);
 				
 				con.commit();
 			}
@@ -488,9 +473,6 @@ int count=0;
 			JDBCHelper.Close(ps);
 		}
 		return sb;
-	
-		
-		
 	}
 	public List<ProductSearchResultBean> productSearch(ProductSearchBean psb) 
 	{
