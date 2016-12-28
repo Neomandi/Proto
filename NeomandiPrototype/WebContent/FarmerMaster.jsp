@@ -210,10 +210,8 @@
 			 <td ><%=resultSet.getString("lotnumber")%></td>
 			<%  if(resultSet.getString("averageprice")!=null){%>
 			<div id="avg"><td><%String average=(String)resultSet.getString("averageprice");
-			                     String averag[]=average.split(".");
-			                     String result=averag[0];
-			                     result=result+".";
-			                     result=result+averag[1].substring(0,1);
+			                    double avg1=Double.parseDouble(average);
+			                    double result=Math.round(avg1*100)/100;
 			                     System.out.println("before"+average+" after"+result);
 			                     out.println(result);%></td></div>
 			<%}else{ %>
