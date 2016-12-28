@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!--  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">--> 
+ <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> /*
@@ -27,7 +27,7 @@ function Block() {
     if (ask) 
     {
         window.alert("This post was successfully deleted.");
-        document.location.href = "http://localhost:8080/NeomandiPrototype/TraderBlock.jsp";
+        document.location.href = "http://192.173.6.16:8080/NeomandiPrototype/TraderBlock.jsp";
     }
 }
 </script> 
@@ -160,12 +160,13 @@ a.more1 {
     background-color: #00FF00;   
 	display: inline;
 	display: block;
-    color: black;
+    color: red;
 	width: 110px;
 	text-decoration: none;
 	padding: 10px 20px;
 }
-a.one {
+
+a.one { border-radius: 1px 1px 1px 1px;
     text-align: center;
     border: 1px solid black;
     background-color: #FF8C00;   
@@ -177,7 +178,7 @@ a.one {
 	padding: 10px 20px;
 }
 
-a.two {
+a.two { border-radius: 1px 1px 1px 1px;
     text-align: center;
     border: 1px solid black;
     background-color: #FFD700;   
@@ -208,12 +209,11 @@ a.three {
    
 }
 
-
 table
 {
 border-collapse: collapse;
-
 }
+
 td
 {
 text-align:center
@@ -266,10 +266,6 @@ if(minutes>60)
 		hours=res3;
 		minutes=res1;
 }
-//console.log("differences in minutes is "+minutes);
-//console.log("differences in seconds is "+seconds);
-//console.log("differences in hours is "+hours);
- 
 var timedifference=+hours+":"+minutes+":"+seconds;
 console.log("differences in time is "+timedifference);
 var idiff = parseInt("timedifference") + "<br>";
@@ -449,7 +445,7 @@ else
 		{
 			TradeListBean tlb=(TradeListBean)o;
 			System.out.println("we are bidding for "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
-			if(tlb.getSlotnumber()!=null && tlb.getSlotnumber().equals("slot1"))
+			if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
 			{						
 				HttpSession MyFinalCost=request.getSession(false);
 				List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
@@ -474,17 +470,17 @@ else
 <form id="form<%=tlb.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlb.getLotnum()%>" value="<%out.print(tlb.getLotnum());%>"></input>
 <td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" required></td>
-<td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" class=" more1">Submit</a></td>
+<td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" class=" more1">SUBMIT</a></td>
 </form>
 <script>
 function funct<%=tlb.getLotnum()%>()
 {
 	var lotnum=$("#lotnum<%=tlb.getLotnum()%>").val()
-	var value=$("#number<%=tlb.getLotnum()%>").val()
-	if(document.getElementById("number<%out.println(tlb.getLotnum());%>").value==null)
+	var valu=document.getElementById("number<%out.println(tlb.getLotnum());%>").value
+	if(valu==null)
 	{
-				 out.println("alert('you need to enter the increment in the bid before submitting ');");
-				 out.println("location='TradeorAuction.do';");
+		out.println("alert('you need to enter the increment in the bid before submitting ');");
+		out.println("location='TradeorAuction.do';");
 	}
 	console.log("increment is "+document.getElementById('number<%out.println(tlb.getLotnum());%>').value));
     $( "form" ).on( "submit", function() {
@@ -534,7 +530,7 @@ else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>
 		   	{
 		   		TradeListBean tlbr=(TradeListBean)m;
 		   		System.out.println("inside tlbr->"+tlbr);
-		   		if(tlbr.getSlotnumber()!=null && tlbr.getSlotnumber().equals("slot1"))
+		   		if(tlbr.getSlotnumber()!=null && (tlbr.getSlotnumber().equals("slot1")||tlbr.getSlotnumber().equals("Slot1")))
 				{
 		   			System.out.println("lotnum which belongs to slot1 "+tlbr.getLotnum());
 			   		if(request.getAttribute("smsg")!=null)// incremented
@@ -562,18 +558,18 @@ else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>
 <form id="form<%=tlbr.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlbr.getLotnum()%>" value="<%out.print(tlbr.getLotnum());%>"></input>
 <td><input type="number" min="0" name="increment" id="number<%out.println(tlbr.getLotnum());%>"></td>
-<td><a href="#" onclick="document.getElementById('form<%=tlbr.getLotnum()%>').submit();" class=" more1">Submit</a></td>
+<td><a href="#" onclick="document.getElementById('form<%=tlbr.getLotnum()%>').submit();" class=" more1">SUBMIT</a></td>
 </form>
 <script>
 	function funct<%=tlbr.getLotnum()%>()
 	{
 			var lotnum=$("#lotnum<%=tlbr.getLotnum()%>").val()
-			var value=$("#number<%=tlbr.getLotnum()%>").val()
-			if(document.getElementById('number<%out.println(tlbr.getLotnum());%>').value==null)
+			var valu=document.getElementById("number<%out.println(tlbr.getLotnum());%>").value
+			if(valu==null)
 			{
 				 out.println("alert('you need to enter the increment in the bid before submitting ');");
 				 out.println("location='TradeorAuction.do';");
-				}
+			}
 	        $( "form" ).on( "submit", function() {
 			event.preventDefault();
 			location.href='http://localhost:8080/NeomandiPrototype/increment.do?increment=' + value+'&&lotnum='+lotnum
@@ -644,14 +640,14 @@ else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>
 <form id="form<%=tlbr.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlbr.getLotnum()%>" value="<%out.print(tlbr.getLotnum());%>"></input>
 <td><input type="number" min="0" name="increment" id="number<%out.println(tlbr.getLotnum());%>" ></td>
-<td><a href="#" onclick="document.getElementById('form<%=tlbr.getLotnum()%>').submit();" class=" more1">Submit</a></td>
+<td><a href="#" onclick="document.getElementById('form<%=tlbr.getLotnum()%>').submit();" class=" more1">SUBMIT</a></td>
 </form>
 <script>
 function funct<%=tlbr.getLotnum()%>()
 {
 					var lotnum=$("#lotnum<%=tlbr.getLotnum()%>").val()
-					var value=$("#number<%=tlbr.getLotnum()%>").val()
-					if(document.getElementById('number<%out.println(tlbr.getLotnum());%>').value==null)
+					var valu=document.getElementById("number<%out.println(tlbr.getLotnum());%>").value
+					if(valu==null)
 					{
 						 out.println("alert('you need to enter the increment in the bid before submitting ');");
 						 out.println("location='TradeorAuction.do';");
