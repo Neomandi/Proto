@@ -157,10 +157,10 @@ a.more1 {
     text-align: center;
     border: 1px solid black;
     border-radius: 9px 9px 9px 9px;
-    background-color: #00FF00;   
+    background-color: #1E90FF;   
 	display: inline;
 	display: block;
-    color: red;
+    color: white;
 	width: 110px;
 	text-decoration: none;
 	padding: 10px 20px;
@@ -169,7 +169,7 @@ a.more1 {
 a.one { border-radius: 1px 1px 1px 1px;
     text-align: center;
     border: 1px solid black;
-    background-color: #FF8C00;   
+    background-color: #7CFC00;   
 	display: inline;
 	display: block;
     color: black;
@@ -193,7 +193,7 @@ a.two { border-radius: 1px 1px 1px 1px;
 a.three {
     text-align: center;
     border: 1px solid black;
-    background-color: #FF4500;   
+    background-color: red;   
 	display: inline;
 	display: block;
     color: black;
