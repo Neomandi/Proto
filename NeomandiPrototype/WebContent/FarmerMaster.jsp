@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  import=" com.neomandi.prototype.JDBCHelper, 
+    pageEncoding="ISO-8859-1"  import=" com.neomandi.prototype.JDBCHelper,  java.text.DecimalFormat,
      java.io.PrintWriter,
      java.sql.Connection,
      java.sql.ResultSet,
@@ -210,10 +210,15 @@
 			 <td ><%=resultSet.getString("lotnumber")%></td>
 			<%  if(resultSet.getString("averageprice")!=null){%>
 			<div id="avg"><td><%String average=(String)resultSet.getString("averageprice");
-			                    double avg1=Double.parseDouble(average);
-			                    double result=Math.round(avg1*100)/100;
-			                     System.out.println("before"+average+" after"+result);
-			                     out.println(result);%></td></div>
+			                    double x=Double.parseDouble(average);
+			                    x=x*100;
+			                   x=(int)x;
+			                   x=x/100;
+			                    // double result= (double)nf.format( avg1 );
+			                  
+			                     
+			                     System.out.println("before"+average+" after"+x);
+			                     out.println(x);%></td></div>
 			<%}else{ %>
 			<td><%=avg %></td>
 			<%} %>
