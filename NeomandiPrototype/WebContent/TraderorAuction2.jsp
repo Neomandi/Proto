@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">
+<!--  <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do"> -->
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> /*
@@ -217,6 +217,11 @@ border-collapse: collapse;
 td
 {
 text-align:center
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
 }
 </style></head>
 <body>
@@ -477,12 +482,7 @@ function funct<%=tlb.getLotnum()%>()
 {
 	var lotnum=$("#lotnum<%=tlb.getLotnum()%>").val()
 	var valu=document.getElementById("number<%out.println(tlb.getLotnum());%>").value
-	if(valu==null)
-	{
-		out.println("alert('you need to enter the increment in the bid before submitting ');");
-		out.println("location='TradeorAuction.do';");
-	}
-	console.log("increment is "+document.getElementById('number<%out.println(tlb.getLotnum());%>').value));
+	console.log("increment is "+document.getElementById('number<%out.println(tlb.getLotnum());%>').value);
     $( "form" ).on( "submit", function() {
 	event.preventDefault();
 	location.href='http://localhost:8080/NeomandiPrototype/increment.do?increment=' + value+' &&lotnum='+lotnum
@@ -511,10 +511,24 @@ int quantityassigned=Integer.parseInt(quantityassigneds);
 System.out.println(" assigned is "+quantityassigneds+" ");
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a><%}
 else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
-<%}else if(quantityassigned==0){%><a class="three"><%=quantityassigned %></a></td>
-<td align="center"><%}if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
+<%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);}%></a></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
+<td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 </form>
-<td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" class="more"> REMOVE</a></td>
+<input type="hidden" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+<script>
+var volume=document.getElementById("<%=tlb.getLotnum()%>").value;
+var block=new  Number(volume);
+console.log("volume assigned is "+block+"");
+console.log(block*1==1);
+if(block*1!=0)
+{
+	console.log("inside block");
+	$(document).ready(function(){
+    $("#a<%=tlb.getLotnum() %>").attr("disabled","disabled");
+	    });
+	document.getElementById('a<%=tlb.getLotnum()%>').removeAttribute("href");
+}</script>
 </tr>
 <%				 }
 			   }
@@ -607,10 +621,24 @@ int quantityassigned=Integer.parseInt(quantityassigneds);
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a>	
 <%}
 else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
-<%}else if(quantityassigned==0){%><a class="three"><%=quantityassigned %></a></td>		
-<td><%}if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum())) System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());  out.println(mfcb.getMyfinalcost());}%></td>
+<%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);} %></a></td>		
+<td><%if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum())) System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());  out.println(mfcb.getMyfinalcost());}%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
+<input type="hidden" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+<script>
+var volume=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var block=new  Number(volume);
+console.log("volume assigned is "+block+"");
+console.log(block*1==1);
+if(block*1!=0)
+{
+	console.log("inside block");
+	$(document).ready(function(){
+    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
+	    });
+	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
+}</script>
 </tr><% 
 			}	
 		}	
@@ -684,7 +712,7 @@ function fun2<%=tlbr.getLotnum() %>()
 		document.getElementById('<%= tlbr.getLotnum() %>').value =valu;
 }	
 </script>
-<td><%= tlbr.getQuantity()%> </td>	
+<td><%=tlbr.getQuantity()%> </td>	
 <td><%=tlbr.getQuantityneeded() %></td>		
 <td><%String quantityneededs=tlbr.getQuantityneeded();
 int quantityneeded=Integer.parseInt(quantityneededs);
@@ -692,10 +720,24 @@ String quantityassigneds=mfcb.getQuantityassigned();
 int quantityassigned=Integer.parseInt(quantityassigneds);
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a>	
 <%}else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
-<%}else if(quantityassigned==0){%><a class="three"><%=quantityassigned %></a></td>	
-<td><%}if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost()); System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());%></td>
+<%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);} %></a></td>	
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost()); System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
+<input type="hidden" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+<script>
+var volume=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var block=new  Number(volume);
+console.log("volume assigned is "+block+"");
+console.log(block*1==1);
+if(block*1==1)
+{
+	console.log("inside block");
+	$(document).ready(function(){
+    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
+	    });
+	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
+}</script>
 </tr>
 <% }}}}}}}%>
 <tr>
