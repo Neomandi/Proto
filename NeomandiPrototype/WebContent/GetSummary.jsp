@@ -212,24 +212,44 @@ th {
 		    String lotsize=(String)hsr.getAttribute("lotsize");
 		    String quantitysold=(String)hsr.getAttribute("quantitysold");
 		    String averageprice=(String)hsr.getAttribute("averageprice");
-		    int aprice=Integer.parseInt(averageprice);
-		    int qsold=Integer.parseInt(quantitysold);
-		    int fprice=aprice*qsold;
-			int MUCharge=1*fprice/100;
-			int PACharge=100;
-			int EPUCharge=100;
-			int TCharge=MUCharge+PACharge+EPUCharge;
-		    int myEarn=fprice-TCharge;
+		    double aprice=Double.parseDouble(averageprice);
+		    aprice=aprice*100;
+		    aprice=(int)aprice;
+		    aprice=aprice/100;
+		    double qsold=Double.parseDouble(quantitysold);
+		    qsold=qsold*100;
+		    qsold=(int)qsold;
+		    qsold=qsold/100;
+		    double fprice=aprice*qsold;
+		    fprice=fprice*100;
+		    fprice=(int)fprice;
+		    fprice=fprice/100;
+			double MUCharge=1*fprice/100;
+			double PACharge=100;
+			double EPUCharge=100;
+			double TCharge=MUCharge+PACharge+EPUCharge;
+		    double myEarn=fprice-TCharge;
+		    myEarn=myEarn*100;
+		    myEarn=(int)myEarn;
+		    myEarn=myEarn/100;
 		    System.out.println("in getsummary lotsize="+lotsize);
-		    int lot=Integer.parseInt(lotsize);
+		    double lot=Integer.parseInt(lotsize);
 		  
 		    String status="";
 		    if(lot==qsold)
 	    		status+="Fully executed .Waiting for your acceptance";
 	    			else
 	    		status+="Partially executed.Waiting for your acceptance";
-	    	 	String lotsize1=String.valueOf(lot);
+	    		String lotsize1=String.valueOf(lot);
+	    	 	double lsize=Double.parseDouble(lotsize1);
+	    	 	lsize=lsize*100;
+	    	 	lsize=(int)lsize;
+	    	 	lsize=lsize/100;
 			 	String quantitysold1=String.valueOf(qsold);
+			 	double qs=Double.parseDouble(quantitysold1);
+			 	qs=qs*100;
+			 	qs=(int)qs;
+			 	qs=qs/100;
 	    %>
 		<center>
 			<form>
@@ -249,9 +269,9 @@ th {
 				<td width="10%" height="5%"><%=request.getParameter("from") %></td>
 				<td width="10%" height="5%"><%=request.getParameter("to") %></td>
 				<td width="10%" height="5%"><%=lotnumber %></td>
-				<td width="10%" height="5%"><%=lotsize1 %></td>
-				<td width="10%" height="5%"><%=quantitysold1%></td>
-				<td width="10%" height="5%"><%=averageprice%></td>
+				<td width="10%" height="5%"><%=lsize %></td>
+				<td width="10%" height="5%"><%=qs%></td>
+				<td width="10%" height="5%"><%=aprice%></td>
 				<td width="10%" height="5%"><%= fprice%></td>
 				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
 				<td width="10%" height="5%"><%=myEarn %></td>
