@@ -89,7 +89,8 @@ a.more {
   <li><a href="TraderBlock.do">Hold Funds</a></li>
   <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a class="active" href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br><br><br><br><br>
+  <li><a class="active" href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li>
+  </ul><br><br><br><br><br><br><br>
 
 <h2>ORDER STATUS</h2><br><br>
 STATUS:PENDING
@@ -107,7 +108,7 @@ STATUS:PENDING
 		<th>VOLUME ASSIGNED(kg)</th>
 		<th>MY FINAL COST</th>
 		<th>AUCTION RESULT</th>
-		<th>STATUS</th>
+		<th>FARMER ACCEPTANCE STATUS</th>
 	</tr>
 <%
   RequestDispatcher rd=null;
@@ -116,15 +117,9 @@ STATUS:PENDING
   List al=mc.getAl();
   for(Object o:al)
   {
-	  OrderStatusBean osbn=(OrderStatusBean)o;
+	OrderStatusBean osbn=(OrderStatusBean)o;
 	if(osbn.getSlotnumber()!=null && osbn.getSlotnumber().equals("slot1"))
 	{
-		/*List bl=mc.getBl();
-		for(Object m1:bl)
-		
-			MyFinalCostBean mfcb=(MyFinalCostBean)m1;
-			if(mfcb.getLotnum().equals(tlb.getLotnum()))
-			{}*/
 %>
 <tr>
 <td align="center"><%out.println(" "+osbn.getLotnum()+" ");%></td>
@@ -132,51 +127,16 @@ STATUS:PENDING
 <td align="center" width="110"><%= osbn.getMarketcode() %></td>
 <td align="center" width="90"><%= osbn.getProduce() %></td>
 <td align="center" width="110"><%= osbn.getQualitygrade() %></td>
-<td align="center" width="160"><%= osbn.getBestbid() %></td>
-<td align="center"><%out.println(osbn.getBidprice());%> </td>
+<td align="center" width="160"><% if(osbn.getBestbid()==null)out.println("--"); else out.println(osbn.getBestbid()); %></td>
+<td align="center"><%if(osbn.getBidprice()==null)out.println("--"); else out.println(osbn.getBidprice());%> </td>
 <td align="center"><%=osbn.getQuantityneeded()%></td>
 <td><%=osbn.getVolumesold() %></td>
 <td align="center"><%=osbn.getMyfinalcost()%></td>
 <td><%=osbn.getResult() %></td>
 <td>PENDING</td>
 <td align="center"><output type="text" id="status"></td>
-
-</tr>
-<%}} 
-  while(check!=1)
-  {
-	  HttpSession farmerstatus=request.getSession(false); 
-	  if(farmerstatus.getAttribute("msg")==null)
-			out.println(""); 
-	  else if(farmerstatus.getAttribute("msg").equals("accept"))
-	  {
-		request.setAttribute("lotnum",farmerstatus.getAttribute("lotnum"));
-		request.setAttribute("accno",farmerstatus.getAttribute("accountnumber"));
-		rd=request.getRequestDispatcher("farmeracceptstatus.do");
-		try 
-		{
-			rd.forward(request, response);			
-		}			
-		catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	  }
-	  else if(farmerstatus.getAttribute("msg").equals("reject"))
-	  {
-		  request.setAttribute("lotnum",farmerstatus.getAttribute("lotnum"));
-		/* // rd=request.getRequestDispatcher("farmeracceptstatus.do");
-		  try 
-		  {
-		 	rd.forward(request, response);			
-		  }			
-		  catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		  }*/
-	  }
-  }
-%>
-	</table>
+</tr><%}}%>
+</table>
+<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/farmeracceptstatus.do">
 </body>
 </html>
