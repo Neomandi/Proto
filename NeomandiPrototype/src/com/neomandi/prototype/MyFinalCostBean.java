@@ -13,6 +13,13 @@ String msg;
 String finalcosts;
 String lotnum;
 String bestbid;
+String quantityassigned;
+public String getQuantityassigned() {
+	return quantityassigned;
+}
+public void setQuantityassigned(String quantityassigned) {
+	this.quantityassigned = quantityassigned;
+}
 public String getBestbid() {
 	return bestbid;
 }
@@ -71,7 +78,7 @@ public void setMsg(String msg) {
 public String toString() {
 	return "MyFinalCostBean [lotcost=" + lotcost + ", commission=" + commission + ", marketcess=" + marketcess
 			+ ", myfinalcost=" + myfinalcost + ", price=" + price + ", msg=" + msg + ", finalcosts=" + finalcosts
-			+ ", lotnum=" + lotnum + ", bestbid=" + bestbid + "]";
+			+ ", lotnum=" + lotnum + ", bestbid=" + bestbid + ", quantityneeded=" + quantityassigned + "]";
 }
 @Override
 public int hashCode() {
@@ -86,6 +93,7 @@ public int hashCode() {
 	result = prime * result + ((msg == null) ? 0 : msg.hashCode());
 	result = prime * result + ((myfinalcost == null) ? 0 : myfinalcost.hashCode());
 	result = prime * result + ((price == null) ? 0 : price.hashCode());
+	result = prime * result + ((quantityassigned == null) ? 0 : quantityassigned.hashCode());
 	return result;
 }
 @Override
@@ -141,6 +149,11 @@ public boolean equals(Object obj) {
 		if (other.price != null)
 			return false;
 	} else if (!price.equals(other.price))
+		return false;
+	if (quantityassigned == null) {
+		if (other.quantityassigned != null)
+			return false;
+	} else if (!quantityassigned.equals(other.quantityassigned))
 		return false;
 	return true;
 }

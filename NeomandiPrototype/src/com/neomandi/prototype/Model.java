@@ -1087,7 +1087,6 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					aadharnumber=rs.getString("aadharnumber");
 					System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 				}			
-				
 				ps =con.prepareStatement("SELECT lotnum, marketcode, produce,qualitygrade, quantity, slotnumber,quantityneeded FROM tradelist where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
@@ -1106,9 +1105,8 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanityt"+rs.getString("quantityneeded"));
 				}
 				mc.setAl(al);
-					
 				
-				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid FROM traders_bid_price where aadharnumber=?");
+				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();				
@@ -1124,6 +1122,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					mfcb.setPrice(prices);
 					mfcb.setLotnum(rs.getString("lotnum"));
 					mfcb.setBestbid(rs.getString("bestbid"));
+					mfcb.setQuantityassigned(rs.getString("quantityassigned"));
 					System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 					bl.add(mfcb);
 				}
@@ -1461,7 +1460,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					{
 						System.out.println("bidprice after updating in traders_bid_price "+rs.getInt("bidprice")+" lotnum is "+rs.getString("lotnum")+" aadharnumber "+rs.getString("aadharnumber"));
 					}*/					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
 					rs = ps.getResultSet();	
@@ -1482,6 +1481,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
 						mfcb.setBestbid(rs.getString("bestbid"));
+						mfcb.setQuantityassigned(rs.getString("quantityassigned"));
 						System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						al.add(mfcb);
 					}	
@@ -1506,7 +1506,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?)");
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,1);
@@ -1515,9 +1515,10 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					ps.setString(6,marketcesss);
 					ps.setString(7,finalcosts);
 					ps.setString(8,"0");
+					ps.setString(9,"0");
 					ps.execute();
 					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 				//	ps.setString(2,lotnumber );
 					ps.execute();
@@ -1541,6 +1542,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
 						mfcb.setBestbid(rs.getString("bestbid"));
+						mfcb.setQuantityassigned(rs.getString("quantityassigned"));
 						al.add(mfcb);
 					}					
 					System.out.println("inside model()-> al->"+al);
@@ -2219,7 +2221,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(6,aadharnumber);
 					ps.setString(7,lotnumber);
 					ps.execute();									
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
 					rs = ps.getResultSet();	
@@ -2240,6 +2242,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
 						mfcb.setBestbid(rs.getString("bestbid"));
+						mfcb.setQuantityassigned(rs.getString("quantityassigned"));
 						//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						al.add(mfcb);
 					}	
@@ -2264,7 +2267,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?)");
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,1);
@@ -2273,9 +2276,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(6,marketcesss);
 					ps.setString(7,finalcosts);
 					ps.setString(8,"0");
+					ps.setString(9,"0");
 					ps.execute();
 					
-					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid from traders_bid_price where aadharnumber=?");
+					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 				//	ps.setString(2,lotnumber );
 					ps.execute();
@@ -2299,6 +2303,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
 						mfcb.setBestbid(rs.getString("bestbid"));
+						mfcb.setQuantityassigned(rs.getString("quantityassigned"));						
 						al.add(mfcb);
 					}					
 					System.out.println("inside model()-> al->"+al);
@@ -2359,16 +2364,18 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		}
 	}
 	
-	@SuppressWarnings({ "resource", "null" })
+	@SuppressWarnings({ "resource" })
 	public Myclass2 orderstatus(String name, String pwd) 
 	{
 		System.out.println("inside Model()->.....orderstatus");
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		ResultSet rs3 = null;
 		Myclass2 mc=new Myclass2();
-		List<OrderStatusBean> al=new ArrayList<OrderStatusBean>();		
-		//List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();		
+		List<OrderStatusBean> al=new ArrayList<OrderStatusBean>();				
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2446,7 +2453,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						{
 							osbn.setVolumesold(rs.getString("volumesold")); 
 						}	
-						osbn.setResult("YOU WON");
+						osbn.setResult("LOT HAS BEEN ASSIGNED");
+						System.out.println("inside model-> nside osbn is "+osbn);
 						al.add(osbn);
 					}
 					mc.setAl(al);
@@ -2458,43 +2466,44 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(1, name);
 					ps.setString(2, name);
 					ps.execute();
-					rs = ps.getResultSet();
-					while(rs.next())
+					rs1 = ps.getResultSet();
+					while(rs1.next())
 					{							
 						ps =con.prepareStatement("select tl.slotnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
 						ps.setString(1, name);
-						ps.setString(2, rs.getString("lotnum"));
+						ps.setString(2, rs1.getString("lotnum"));
 						ps.setString(3, pwd);
 						ps.execute();
-						rs = ps.getResultSet();
+						rs2 = ps.getResultSet();
 						OrderStatusBean osbn1=null;
-						while(rs.next())
+						while(rs2.next())
 						{					
 							osbn1=new OrderStatusBean();
-							osbn1.setMarketcode(rs.getString("marketcode"));
-							osbn1.setProduce(rs.getString("produce"));
-							osbn1.setQualitygrade(rs.getString("qualitygrade"));
-							osbn1.setQuantityneeded(rs.getString("quantityneeded"));
-							osbn1.setSlotnumber(rs.getString("slotnumber"));						
+							osbn1.setMarketcode(rs2.getString("marketcode"));
+							osbn1.setProduce(rs2.getString("produce"));
+							osbn1.setQualitygrade(rs2.getString("qualitygrade"));
+							osbn1.setQuantityneeded(rs2.getString("quantityneeded"));
+							osbn1.setSlotnumber(rs2.getString("slotnumber"));						
 						}	
-						ps =con.prepareStatement("select tdp.lotcost,tdp.lotnum,tdp.bidprice,tdp.bestbid,tdp.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tdp.aadharnumber=tr.aadharnumber and tl.lotnum=tdp.lotnum and tr.name=? and tr.pass=?");
+						ps =con.prepareStatement("select tdp.lotcost,tdp.lotnum,tdp.bidprice,tdp.bestbid,tdp.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tr.aadharnumber=tl.aadharnumber and tr.aadharnumber=tdp.aadharnumber and tdp.lotnum=tl.lotnum and tr.name=? and tr.pass=? and tdp.lotnum=?");
 						ps.setString(1, name);
 						ps.setString(2, pwd);
+						ps.setString(3, rs1.getString("lotnum"));
 						ps.execute();
-						rs = ps.getResultSet();
-						while(rs.next())
+						rs3 = ps.getResultSet();
+						while(rs3.next())
 						{						
-							osbn1.setLotcost(rs.getString("lotcost"));
-							osbn1.setBestbid(rs.getString("bestbid"));
-							osbn1.setBidprice(rs.getString("bidprice"));
-							osbn1.setMyfinalcost(rs.getString("myfinalcost"));
-							osbn1.setLotnum(rs.getString("lotnum"));						
+							osbn1.setLotcost(rs3.getString("lotcost"));
+							osbn1.setBestbid(rs3.getString("bestbid"));
+							osbn1.setBidprice(rs3.getString("bidprice"));
+							osbn1.setMyfinalcost(rs3.getString("myfinalcost"));
+							osbn1.setLotnum(rs3.getString("lotnum"));						
 						}	
-						
 						osbn1.setVolumesold("0");
-						osbn1.setResult("YOU LOST");					
+						osbn1.setResult("LOT HAS NOT BEEEN ASSIGNED");					
 						al.add(osbn1);
 					}
+					System.out.println("inside model indide al is "+al);
 					mc.setAl(al);
 				}
 			}
@@ -2506,13 +2515,11 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		return mc;
 	}
 
-	public void farmeracceptstatus(String lotnum, String name, String pwd,String accno)
+	public void farmeracceptstatus(String lotnum, String tradername, String traderpwd,String accno)
 	{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		Myclass2 mc=new Myclass2();
-		List<TradeListBean> al=new ArrayList<TradeListBean>();		
 		List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();		
 		try
 		{
@@ -2522,22 +2529,23 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}
 			else
 			{		
-				ps =con.prepareStatement("select ar.tradername from auction_result ar where ar.tradername=?");//this checks whether the trader has won in auction by checking his name in auction result table
-				ps.setString(1,name);
+				ps =con.prepareStatement("select volumesold from auction_result where tradername=? and lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
+				ps.setString(1,tradername);
+				ps.setString(2, lotnum);
 				ps.execute();
 				rs = ps.getResultSet();
 				if(rs.next())
 				{	
 					ps =con.prepareStatement("select ar.volumesold,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.tradername=tr.name and tr.name=? and tr.pass=?");
-					ps.setString(1, name);
-					ps.setString(2, pwd);
+					ps.setString(1, tradername);
+					ps.setString(2, traderpwd);
 					ps.execute();
 					if(rs.next())
 					{
 						String volumesolds=rs.getString("volumesold");
 						String bidprice=rs.getString("bidprice");
 						int volumesold=Integer.parseInt(volumesolds);
-						int bidprice1=Integer.parseInt("bidprice");
+						int bidprice1=Integer.parseInt(bidprice);
 						int lotcost=volumesold*bidprice1;
 						String lotcosts=String.valueOf(lotcost);
 						int commission = (int) (lotcost*0.05);
@@ -2547,30 +2555,32 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						
 					}
 					else
+					{
+					
+					}
+				}	
+				else
 				{
 					
 				}
-	}	
 }
 }catch(Exception e)
 		{
 	e.printStackTrace();
 }}
 
-	@SuppressWarnings("resource")
 	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) {
 		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		List<TradeSummaryBean> al=new ArrayList<TradeSummaryBean>();	
-
 		try
 		{
 			con = JDBCHelper.getConnection();
 			if(con == null)
-			{
-			}
+			{}
 			else
 			{		
 				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and `created_at` BETWEEN ? and ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
@@ -2594,8 +2604,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(1,name);
 					ps.setString(2,rs.getString("lotnum"));
 					ps.execute();
-					rs = ps.getResultSet();
-					if(rs.next())
+					rs2 = ps.getResultSet();
+					if(rs2.next())
 					{
 						tsb.setVolumesold(rs.getString("volumesold"));
 						tsb.setResult("WON");

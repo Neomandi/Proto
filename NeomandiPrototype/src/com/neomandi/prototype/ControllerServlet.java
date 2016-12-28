@@ -1282,10 +1282,9 @@ public class ControllerServlet extends HttpServlet {
 		//Order Status
 		if(uri.contains("OrderStatus"))
 		{
-			System.out.println("inside CS");
-			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
-			//System.out.println("time is "+sdf.format(new Date()));
+			//System.out.println("time is "+sdf.format(new Date()));s
 			System.out.println("***************************************************************************");
+			System.out.println("inside CS");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			try
@@ -1308,6 +1307,8 @@ public class ControllerServlet extends HttpServlet {
 			String pwd=tlbn.getTpwd();
 			Model m=new Model();
 			Myclass2 mc=(Myclass2)m.orderstatus(name,pwd);
+			HttpSession orderstatus=request.getSession();
+			orderstatus.setAttribute("msg", mc);
 			request.setAttribute("errmsg", mc);
 			rd=request.getRequestDispatcher("OrderStatus.jsp");
 			try 
@@ -1321,6 +1322,68 @@ public class ControllerServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		if(uri.contains("farmeracceptstatus"))
+		{
+				String lotnum=(String) request.getAttribute("lotnum");
+				String accno=(String) request.getAttribute("accno");
+				System.out.println("***************************************************************************");
+				HttpSession tlog=request.getSession(false);
+				TraderLoginBean tlbn=null;
+				try
+				{
+					tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+					tlbn.getTname();
+					tlbn.getTpwd();
+				}
+				catch(NullPointerException e)
+				{			
+					request.setAttribute("notlogged","not loggedin");
+					rd=request.getRequestDispatcher("OrderStatus.jsp");
+					try {
+						rd.forward(request, response);
+					} catch (ServletException | IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+				String name=tlbn.getTname();
+				String pwd=tlbn.getTpwd();
+				HttpSession farmerstatus=request.getSession(false); 
+				System.out.println("before farmerstatus.getAttribute()=null "+farmerstatus.getAttribute("msg"));
+				if(farmerstatus.getAttribute("msg").equals("accept"))
+				{
+					Model m=new Model();
+					m.farmeracceptstatus((String)farmerstatus.getAttribute("lotnum"),name,pwd,(String)farmerstatus.getAttribute("accountnumber"));
+				}
+				else if(farmerstatus.getAttribute("msg").equals("reject"))
+				{
+					request.setAttribute("lotnum",farmerstatus.getAttribute("lotnum"));
+					/* // rd=request.getRequestDispatcher("farmeracceptstatus.do");
+					try 
+					{
+						 	rd.forward(request, response);			
+						  }			
+						  catch (ServletException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						  }*/
+				}
+				else
+				{
+					System.out.println("farmerstatus.getAttribute()=null");
+				  	HttpSession orderstatus=request.getSession(false);
+				  	Myclass2 mc=(Myclass2)orderstatus.getAttribute("msg");
+					request.setAttribute("errmsg", mc);
+					rd=request.getRequestDispatcher("OrderStatus.jsp");
+					try 
+					{
+						rd.forward(request, response);			
+					}			
+					catch (ServletException | IOException e) {
+					e.printStackTrace();
+					} 
+				}				
 		}
 		/*else
 		{				
@@ -1402,34 +1465,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//Farmer Accept Status
-		if(uri.contains("farmeracceptstatus"))
-		{
-			 String lotnum=(String) request.getAttribute("lotnum");
-			 String accno=(String) request.getAttribute("accno");
-			 System.out.println("***************************************************************************");
-				HttpSession tlog=request.getSession(false);
-				TraderLoginBean tlbn=null;
-				try
-				{
-					tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-					if(tlbn.getTname()==null)
-					{}
-				}
-				catch(NullPointerException e)
-				{			
-					request.setAttribute("notlogged","not loggedin");
-					rd=request.getRequestDispatcher("OrderStatus.jsp");
-					try {
-						rd.forward(request, response);
-					} catch (ServletException | IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-				String name=tlbn.getTname();
-				String pwd=tlbn.getTpwd();
-				Model m=new Model();
-				m.farmeracceptstatus(lotnum,name,pwd,accno);
-		}
+		
 		
 		if(uri.contains("tradeSummary"))
 		{
@@ -1439,8 +1475,8 @@ public class ControllerServlet extends HttpServlet {
 			try
 			{
 				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-				if(tlbn.getTname()==null)
-				{}
+				tlbn.getTname();
+				tlbn.getTpwd();
 			}
 			catch(NullPointerException e)
 			{			
