@@ -190,10 +190,10 @@ public class AggregateAuctionAlogrithm {
 			
 			for(int i=0;i<resultl.size();i++)
 			{
-				pstmt.setInt(1, 0);
+				pstmt.setInt(1, li.get(0).getBidprice());
+				//System.out.println("Price: "+li.get(0).getBidprice());
+				pstmt.setInt(2, 0);
 				//System.out.println("Volume: "+0);
-				pstmt.setInt(2, li.get(0).getBidprice());
-				//System.out.println("Price: "+price1);
 				pstmt.setLong(3, resultl.get(i));
 				pstmt.executeUpdate();
 			}
