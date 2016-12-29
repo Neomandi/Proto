@@ -992,6 +992,19 @@ public class ControllerServlet extends HttpServlet {
 		{
 			String increment=request.getParameter("increment");
 			String lotnum=request.getParameter("lotnum");
+			int assigned=Integer.parseInt(request.getParameter("quantityassigned"));
+			int quantityneeded=Integer.parseInt(request.getParameter("quantityneeded"));
+			if(assigned==quantityneeded)
+			{
+				request.setAttribute("assigned","assigned");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try 
+				{
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 			System.out.println("lotnum is "+lotnum);
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
