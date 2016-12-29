@@ -265,6 +265,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}
 
+		//GetSummary
 		if(uri.contains("GetSummary")){
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
@@ -308,6 +309,8 @@ public class ControllerServlet extends HttpServlet {
 			
 			
 		}
+		
+		//AcceptSummary
 		if(uri.contains("AcceptSummary.do")){
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
@@ -351,6 +354,8 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 		}
+		
+		//RejectSummary
 		if(uri.contains("RejectSummary.do")){
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
