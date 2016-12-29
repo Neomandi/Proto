@@ -27,7 +27,7 @@ function Block() {
     if (ask) 
     {
         window.alert("This post was successfully deleted.");
-        document.location.href = "http://192.173.6.16:8080/NeomandiPrototype/TraderBlock.jsp";
+        document.location.href = "http://localhost:8080/NeomandiPrototype/TraderBlock.jsp";
     }
 }
 </script> 
