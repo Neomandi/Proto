@@ -83,7 +83,7 @@ public class AggregatingData {
 						maxvol = maxvol - li.get(i).getVol();
 						avg = avg + (li.get(i).getVol() * li.get(i).getPrice());
 						a.add(li.get(i).getTid());
-						//price1 = li.get(i).getPrice();
+						price1 = li.get(i).getPrice();
 						
 						pstmt.setInt(1, li.get(i).getVol());
 						System.out.println("Volume: "+li.get(i).getVol());

@@ -90,7 +90,7 @@ public class SchedulerServlet extends HttpServlet {
 		}
 		Date e1t = null;;
 		try {
-			e1t = format.parse(date+" "+"10:30:00.000");
+			e1t = format.parse(date+" "+"10:40:00.000");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
