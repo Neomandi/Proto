@@ -48,7 +48,7 @@ public class AggregateAuctionAlogrithm {
 			rs = stmt1.executeQuery(sql1);
 			//System.out.println(rs);
 			
-			String sql2 = "UPDATE traders_bid_price SET bestbid = ?, quantityassigned = ? WHERE aadharnumber = ? and lotnum = ?";
+			String sql2 = "UPDATE traders_bid_price SET bestbid = ?, quantityassigned = ? WHERE aadharnumber = ?";
 			pstmt = con.prepareStatement(sql2);
 			
 			while(rs.next())
@@ -104,8 +104,6 @@ public class AggregateAuctionAlogrithm {
 						System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
-						pstmt.setString(4, lotnum);
-						System.out.println("Lotnumber: "+lotnum);
 						pstmt.executeUpdate();
 						System.out.println();
 						
@@ -127,8 +125,6 @@ public class AggregateAuctionAlogrithm {
 								System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
-								pstmt.setString(4, lotnum);
-								System.out.println("Lotnumber: "+lotnum);
 								pstmt.executeUpdate();
 								System.out.println();
 							}
@@ -146,8 +142,6 @@ public class AggregateAuctionAlogrithm {
 								System.out.println("Quantity assigned: "+vol);
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
-								pstmt.setString(4, lotnum);
-								System.out.println("Lotnumber: "+lotnum);
 								pstmt.executeUpdate();
 								System.out.println();
 								
@@ -168,8 +162,6 @@ public class AggregateAuctionAlogrithm {
 						System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
-						pstmt.setString(4, lotnum);
-						System.out.println("Lotnumber: "+lotnum);
 						pstmt.executeUpdate();
 						System.out.println();
 					}
