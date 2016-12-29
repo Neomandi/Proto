@@ -1373,7 +1373,18 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 				{
 					quantitys=rs.getString("quantityneeded");					
 					System.out.println("quantity bidding for lot "+lotnumber+" is "+quantitys);
-				}				
+				}		
+				ps =con.prepareStatement("SELECT quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
+				ps.setString(1, aadharnumber);
+				ps.setString(2, lotnumber);
+				ps.execute();
+				rs = ps.getResultSet();	
+				String quantityassigned=null;
+				while(rs.next())
+				{
+					 quantityassigned = rs.getString("quantityassigned");					
+					System.out.println("quantity assigned is "+quantityassigned);
+				}		
 				int[] blockamount=new int[200];
 				ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 				ps.setString(1, aadharnumber);
@@ -1406,13 +1417,13 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					bidprice=rs.getInt("bidprice");	
 					System.out.println("biddng price the trader was ready to pay is "+bidprice);
 					int res =bidprice+1;	
-					quantity=Integer.parseInt(quantitys);
-					lotcost = res * quantity;
+					int quantityassignedint = Integer.parseInt(quantityassigned);
+					lotcost = res * quantityassignedint;
 					commission = (int) (lotcost*0.05);
 					marketcess = 1*10;
 					System.out.println("commisiion is "+commission);
 					System.out.println(" marketcess is "+marketcess);
-					System.out.println(" quantity needed is  is "+quantity);
+					System.out.println(" quantityassigned  is "+quantityassignedint);
 					System.out.println(" lotcost = "+res+" * "+quantity+"");
 					finalcost = lotcost +commission +marketcess + 3000;
 					System.out.println("lot cost the trader has to pay is "+lotcost);
@@ -2101,8 +2112,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		Connection con = null;
 		ResultSet rs = null;
 		String aadharnumber="";
+		String quantityassigneds=null;
 		String quantitys=null;
 		int quantity=0;
+		int quantityassigned=0;
 		String lotcosts="";
 		int lotcost;
 		String commissions="";
@@ -2133,7 +2146,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				while(rs.next())
 				{
 					aadharnumber=rs.getString("aadharnumber");
-					//System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 				}				
 				ps =con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
 				ps.setString(1, aadharnumber);
@@ -2143,8 +2155,18 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				while(rs.next())
 				{
 					quantitys=rs.getString("quantityneeded");					
-					System.out.println("quantity trader is bidding for lot "+lotnumber+" is "+quantitys +"Kg");
-				}				
+					System.out.println("quantity trader is bidding for lot "+lotnumber+" is "+ quantitys+"Kg");
+				}		
+				ps =con.prepareStatement("SELECT quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
+				ps.setString(1, aadharnumber);
+				ps.setString(2, lotnum);
+				ps.execute();
+				rs = ps.getResultSet();				
+				while(rs.next())
+				{
+					quantityassigneds = rs.getString("quantityassigned");							
+					System.out.println("quantity of "+lotnumber+" that is assigned is "+ quantityassigneds +"Kg");
+				}		
 				int[] blockamount=new int[200];
 				ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 				ps.setString(1, aadharnumber);
@@ -2175,15 +2197,17 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					bidprice=rs.getInt("bidprice");	
 					System.out.println("biddng price the trader was ready to pay is "+bidprice);
 					int res =bidprice+increment;	
-					System.out.println("biddng price the trader is ready to pay = bidprice before "+bidprice+"+ increment"+increment+"= "+res);
+					System.out.println("biddng price the trader is ready to pay = bidprice before "+bidprice+"+ increment "+increment+"= "+res);
 					quantity=Integer.parseInt(quantitys);
-					lotcost = res * quantity;
+					quantityassigned=Integer.parseInt(quantityassigneds);
+					//lotcost = res * quantity;
+					lotcost = res * quantityassigned;
 					commission = (int) (lotcost*0.05);
 					marketcess = 1*10;
 					System.out.println("commisiion is "+commission);
 					System.out.println(" marketcess is "+marketcess);
-					System.out.println(" quantity needed is "+quantity);
-					System.out.println(" lotcost = "+res+" * "+quantity+"");
+					System.out.println(" quantity assigned  is "+quantityassigned);
+					System.out.println(" lotcost = "+res+" * "+quantityassigned+"");
 					finalcost = lotcost +commission +marketcess + 3000;
 					System.out.println("lot cost the trader has to pay is "+lotcost);
 					System.out.println("traders final cost for lotnumber "+lotnumber+" is "+finalcost);
@@ -2234,8 +2258,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				else
 				{
 					System.out.println("lotnumber "+lotnumber+" is not there in traders_bid_price");
-					lotcost=increment*quantity;
-					System.out.println("lotcost=increment*quantity->"+lotcost);
+					lotcost=increment*quantityassigned;
+					System.out.println("lotcost=increment*quantityassigned->"+lotcost);
 					commission = (int) (lotcost*0.05);
 					System.out.println("commission="+commission);
 					marketcess = 1*10;
@@ -2326,7 +2350,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}						
 			con.commit();		
 		}
-		catch(SQLException e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 			

@@ -239,7 +239,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 
 <script>
 var Etime=document.getElementById("time").value;
-var Btime="2:08:00:00";
+var Btime="12:08:00:00";
 start = Etime.split(":");
 end =Btime.split(":");
 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -474,22 +474,42 @@ else
 <td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 <form id="form<%=tlb.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlb.getLotnum()%>" value="<%out.print(tlb.getLotnum());%>"></input>
-<td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" required></td>
-<td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" class=" more1">SUBMIT</a></td>
+<td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
+<td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" id="submit<%=tlb.getLotnum()%>"class=" more1">SUBMIT</a></td> 
 </form>
+<% 
+String quantityneededs=tlb.getQuantityneeded();
+int quantityneeded=Integer.parseInt(quantityneededs);
+String quantityassigneds=mfcb.getQuantityassigned();
+int quantityassigned=Integer.parseInt(quantityassigneds);%>
+<input type="hidden" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+<input type="hidden" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
 <script>
 function funct<%=tlb.getLotnum()%>()
 {
-	var lotnum=$("#lotnum<%=tlb.getLotnum()%>").val()
-	var valu=document.getElementById("number<%out.println(tlb.getLotnum());%>").value
-	console.log("increment is "+document.getElementById('number<%out.println(tlb.getLotnum());%>').value);
-    $( "form" ).on( "submit", function() {
-	event.preventDefault();
-	location.href='http://localhost:8080/NeomandiPrototype/increment.do?increment=' + value+' &&lotnum='+lotnum
-});	
-}
+	var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+	var assigned=new  Number(assigneds);
+	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+	var needed=new  Number(neededs);
+	console.log("volume assigned is "+assigned+"");
+	console.log("volume needed is "+needed+"");
+	if(assigned-needed==0)
+	{
+		console.log("assigned=needed");
+		document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
+		document.getElementById('number<%out.println(tlb.getLotnum());%>').disabled = true;
+	}
+	else
+	{
+		document.getElementById('form<%=tlb.getLotnum()%>').submit();
+		console.log("assigned!=needed");
+		var lotnum=$("#lotnum<%=tlb.getLotnum()%>").val();
+		var valu=document.getElementById("number<%out.println(tlb.getLotnum());%>").value;
+		window.location.href = 'http://localhost:8080/NeomandiPrototype/increment.do?increment=' + valu+' &&lotnum='+lotnum;
+	}
+	}
 </script>
-<td><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" id="submit1" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td> 
+<td><a href="SubmitIncrement1.do?lotnum=<%=tlb.getLotnum() %>" id="submit1<%=tlb.getLotnum() %>" onclick = "fun<%= tlb.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td> 
 <script>
 function fun<%=tlb.getLotnum() %>()
 {
@@ -503,12 +523,7 @@ function fun<%=tlb.getLotnum() %>()
 </script>
 <td align="center" width="160"><%= tlb.getQuantity()%> </td>	
 <td align="right"><%=tlb.getQuantityneeded() %></td>	
-<td><%String quantityneededs=tlb.getQuantityneeded();
-int quantityneeded=Integer.parseInt(quantityneededs);
-System.out.println("quantityneeded is "+quantityneededs+"");
-String quantityassigneds=mfcb.getQuantityassigned();
-int quantityassigned=Integer.parseInt(quantityassigneds);
-System.out.println(" assigned is "+quantityassigneds+" ");
+<td><%
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a><%}
 else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);}%></a></td>
@@ -516,19 +531,49 @@ else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>
 <td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 </form>
 <input type="hidden" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+<input type="hidden" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
 <script>
-var volume=document.getElementById("<%=tlb.getLotnum()%>").value;
-var block=new  Number(volume);
-console.log("volume assigned is "+block+"");
-console.log(block*1==1);
-if(block*1!=0)
+var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+var needed=new  Number(neededs);
+//console.log("volume assigned is "+assigned+"");
+//console.log("volume needed is "+needed+"");
+if(assigned-needed==0)
 {
-	console.log("inside block");
+	//console.log("assigned=needed");
+	document.getElementById('submit<%=tlb.getLotnum()%>').removeAttribute("href");
+	document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
+
+}
+else
+	//console.log("assigned!=needed");
+console.log(assigned*1==1);
+if(assigned*1!=0)
+{
+	//console.log("inside block");
 	$(document).ready(function(){
     $("#a<%=tlb.getLotnum() %>").attr("disabled","disabled");
 	    });
 	document.getElementById('a<%=tlb.getLotnum()%>').removeAttribute("href");
-}</script>
+}
+</script>
+<script>
+var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+var needed=new  Number(neededs);
+console.log("volume needed is "+needed);
+if(assigned==needed)
+	{
+		$(document).ready(function(){
+	    $("#submit<%=tlb.getLotnum()%>").attr("disabled","disabled");});
+		document.getElementById('submit<%=tlb.getLotnum()%>').removeAttribute("href");
+		$(document).ready(function(){
+		document.getElementById("#submit1<%=tlb.getLotnum() %>").attr("disabled","disabled");});
+		document.getElementById('submit1<%=tlb.getLotnum() %>').removeAttribute("href");
+	}
+</script>
 </tr>
 <%				 }
 			   }
@@ -591,7 +636,9 @@ if(block*1!=0)
 	});	
 	}
 </script>
-<form method="increment.do"><td><input type="number" min="0" ><td><input type="submit"></form></td><td><a href="SubmitIncrement1.do?lotnum=<%=tlbr.getLotnum() %>" onclick = "fun<%= tlbr.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
+<form method="increment.do"><td><input type="number" min="0" ><td><input type="submit">
+</form>
+</td><td><a href="SubmitIncrement1.do?lotnum=<%=tlbr.getLotnum() %>" onclick = "fun<%= tlbr.getLotnum() %>()" class=" moree"> BY 1 RUPEE</a></td>
 <script>
 function fun<%=tlbr.getLotnum() %>()
 {
@@ -635,10 +682,20 @@ if(block*1!=0)
 {
 	console.log("inside block");
 	$(document).ready(function(){
-    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
-	    });
+    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled"); });
 	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
-}</script>
+}
+if(assigned==needed)
+{
+	$(document).ready(function(){
+    $("#submit<%=tlbr.getLotnum()%>").attr("disabled","disabled");});
+	document.getElementById('submit<%=tlbr.getLotnum()%>').removeAttribute("href");
+	$(document).ready(function(){
+	document.getElementById("#submit1<%=tlbr.getLotnum() %>").attr("disabled","disabled");});
+	document.getElementById('submit1<%=tlbr.getLotnum() %>').removeAttribute("href");
+	document.getElementById('number<%out.println(tlbr.getLotnum());%>').readOnly = true;
+}
+</script>
 </tr><% 
 			}	
 		}	

@@ -987,7 +987,7 @@ public class ControllerServlet extends HttpServlet {
 		{
 			String increment=request.getParameter("increment");
 			String lotnum=request.getParameter("lotnum");
-			System.out.println("lotnum is"+lotnum);
+			System.out.println("lotnum is "+lotnum);
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
