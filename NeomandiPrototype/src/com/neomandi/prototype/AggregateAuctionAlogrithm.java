@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.neomandi.prototype.JDBCHelper;
 import com.neomandi.prototype.AggregateDataBean;
@@ -23,8 +24,8 @@ public class AggregateAuctionAlogrithm {
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
 		List<AggregateDataBean> li = new ArrayList<AggregateDataBean>();
-		//List<String> a = new ArrayList<String>();
-		//List<String> b = new ArrayList<String>();
+		List<Long> a = new ArrayList<Long>();
+		List<Long> b = new ArrayList<Long>();
 		double avg = 0;
 		String lotnum = "";
 		int maxvol = 0;
@@ -95,7 +96,7 @@ public class AggregateAuctionAlogrithm {
 						System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 						maxvol = maxvol - li.get(i).getQuantityneeded();
 						avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
-						//a.add(li.get(i).getAadharnumber());
+						a.add(li.get(i).getAadharnumber());
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
 						System.out.println("Best bid: "+li.get(0).getBidprice());
@@ -116,7 +117,7 @@ public class AggregateAuctionAlogrithm {
 							{
 								System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 								avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
-								//a.add(li.get(i).getAadharnumber());
+								a.add(li.get(i).getAadharnumber());
 								
 								pstmt.setInt(1, li.get(0).getBidprice());
 								System.out.println("Best bid: "+li.get(0).getBidprice());
@@ -133,7 +134,7 @@ public class AggregateAuctionAlogrithm {
 								avg = avg + (maxvol * li.get(i).getBidprice());
 								int vol = maxvol;
 								maxvol = maxvol * 0;
-								//a.add(li.get(i).getAadharnumber());
+								a.add(li.get(i).getAadharnumber());
 								
 								pstmt.setInt(1, li.get(0).getBidprice());
 								System.out.println("Best bid: "+li.get(0).getBidprice());
@@ -153,7 +154,7 @@ public class AggregateAuctionAlogrithm {
 						maxvol = maxvol - li.get(i).getQuantityneeded();
 						System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 						avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
-						//a.add(li.get(i).getAadharnumber());
+						a.add(li.get(i).getAadharnumber());
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
 						System.out.println("Best bid: "+li.get(0).getBidprice());
@@ -169,30 +170,33 @@ public class AggregateAuctionAlogrithm {
 			
 			avg = avg/maxavg;
 			
+			for(int i=0;i<li.size();i++)
+			{
+				b.add(li.get(i).getAadharnumber());
+			}
+			
 			System.out.println("----------------------");
 			System.out.println("Max vol remaining: "+maxvol);
 			System.out.println("The Average price: "+avg);
 			System.out.println("Best bid is: "+li.get(0).getBidprice());
 			System.out.println();
-			/*System.out.println(a);
-			System.out.println(b);*/
-			//Collection<String> result = CollectionUtils.subtract(b, a);
-			//List<String> resultl = (List<String>) result;
-			//System.out.println("Remaining List "+resultl);
+			System.out.println("List A: "+a);
+			System.out.println("List B: "+b);
+			Collection<Long> result = CollectionUtils.subtract(b, a);
+			List<Long> resultl =  (List<Long>) result;
+			System.out.println("Remaining List "+resultl);
 			System.out.println();
-			//System.out.println(result);
+			System.out.println(result);
 			
-			/*for(int i=0;i<resultl.size();i++)
+			for(int i=0;i<resultl.size();i++)
 			{
-				pstmt.setInt(1, 0);
+				pstmt.setInt(1, li.get(0).getBidprice());
+				//System.out.println("Price: "+li.get(0).getBidprice());
+				pstmt.setInt(2, 0);
 				//System.out.println("Volume: "+0);
-				pstmt.setInt(2, price1);
-				//System.out.println("Price: "+price1);
-				pstmt.setString(3, resultl.get(i));
-				//System.out.println("Tid: "+resultl.get(i));
-				//System.out.println("SQL: "+pstmt);
+				pstmt.setLong(3, resultl.get(i));
 				pstmt.executeUpdate();
-			}*/
+			}
 			
 			PreparedStatement pstmt3 = null;
 			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
