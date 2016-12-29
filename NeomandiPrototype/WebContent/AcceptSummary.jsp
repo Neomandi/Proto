@@ -190,18 +190,24 @@ th {
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
 	</ul>
+	<br/><br/>
  	<center>
- 		<font color="#C71585"><h1>Farmer Summary</h1></font>
+ 		<font color="#C71585"><h1></h1></font>
 	</center>
 	<center>
-		<form action = "" method = "get">
+		<!--<form action = "" method = "get">
 			From:  <input type = "date" id = "from" name="from"/><br/><br/>
  			To:    <input type = "date" id = "to" name="to"/><br/><br/>
 			<input type = "submit" value = "Get Summary"/> <br/><br/>
-		</form>
-		<%  
+		</form>-->
+		<% 
+		RequestDispatcher rd=null;
+		String m="";
+		HttpSession farmerstatus=request.getSession(false);
+		 m=(String)farmerstatus.getAttribute("msg");
+		 rd=request.getRequestDispatcher("AcceptSummary.jsp");
 		HttpSession hs=request.getSession(false);  
      	String pass=(String)hs.getAttribute("pass");  
     	System.out.println(" in getsummary password="+pass);
@@ -254,8 +260,7 @@ th {
 			<form>
 		 	<table  width="65%" height="70%" id = 'mytable' border>
 			<tr bgcolor = '#00FF00'>
-				<th width="10%" height="5%">From</th>
-				<th width="10%" height="5%">To</th>
+				
 				<th width="10%" height="5%">Lot number</th>
 				<th width="10%" height="5%">Lot size</th>
 		   		<th width="10%" height="5%">Quantity Sold </th>
@@ -265,8 +270,7 @@ th {
 		     	<th width="10%" height="5%">My Earnings</th>
 		   </tr>
 			<tr>
-				<td width="10%" height="5%"><%=request.getParameter("from") %></td>
-				<td width="10%" height="5%"><%=request.getParameter("to") %></td>
+				
 				<td width="10%" height="5%"><%=lotnumber %></td>
 				<td width="10%" height="5%"><%=lsize %></td>
 				<td width="10%" height="5%"><%=qs%></td>

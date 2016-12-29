@@ -45,6 +45,33 @@ $(document).ready(function(e){
 		});
 	});
 });
+function tableToJson(table) {
+    var data = [];
+
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+    data.push(headers);
+    // go through cells
+    for (var i=1; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+
+    return data;
+}
+
 </script>
 </head>
 <style>
@@ -195,12 +222,12 @@ th {
  	<center>
  		<font color="#C71585"><h1>Farmer Summary</h1></font>
 	</center>
-	<center>
+	 <center>
 		<form action = "" method = "get">
 			From:  <input type = "date" id = "from" name="from"/><br/><br/>
  			To:    <input type = "date" id = "to" name="to"/><br/><br/>
 			<input type = "submit" value = "Get Summary"/> <br/><br/>
-		</form>
+		</form> 
 		<%  
 			HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
@@ -273,7 +300,7 @@ th {
 				<td width="10%" height="5%"><%=qs%></td>
 				<td width="10%" height="5%"><%=aprice%></td>
 				<td width="10%" height="5%"><%= fprice%></td>
-				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
+				<font color="blue"><td width="40%" height="5%"><b><%= status %></b></td></font>
 				<td width="10%" height="5%"><%=myEarn %></td>
 			</tr>
 		</table><br/>
@@ -282,7 +309,25 @@ th {
 <br/>
 <br/>		
  <p align= "center"><b>Export Summary</b></p><br/>
-	<center><button id = "pdf">Export to PDF</button></center><br/>
+	<center><input type="button" value="Export to PDF" onclick="callme()" /></center><br/><br/>
+	<script>
+		function callme(){
+			var table = tableToJson($('#mytable').get(0));
+			var doc = new jsPDF('l','pt','letter',true);
+			$.each(table, function(i, row){
+				$.each(row, function(j,cell){
+			//	if(j=="Lot Number"){
+				 doc.cell(1,10,90,20,cell,i);	
+				//}
+				//else{
+					//doc.cell(1,10,90,20,cell,i);
+				//}
+				
+				});
+			});
+			doc.save('GetSummary.pdf');
+			}
+		</script>
 	<center><button id = "excel">Export to XLS</button></center><br/>
 	<center><button id = "word">Export to DOC</button></center>
 		

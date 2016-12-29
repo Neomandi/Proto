@@ -14,7 +14,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+		<!--<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">-->
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<!-- <meta http-equiv="refresh" content="5; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> -->
 		<title>Insert title here</title>
@@ -228,12 +228,22 @@
 				<%}else{ %>
 			<td><%=avg %></td>
 			<%} %>	
-			 <td><form action="FarmerAccept.jsp">
-			 <input  id="accept" type="submit" value="Accept " disabled ></form></td>
-			<td> <form action="FarmerReject.jsp">
+			 <td><form  method="post" action="AcceptSummary.do">
+			<input type="submit" id="accept" value="Accept"  disabled onclick="func()"/>
+			
+			</form></td>
+			<script>
+ 				function func(){
+ 				$( "#accept" ).click(function() {
+	 			alert("disabled");
+	 			$('#accept').prop('disabled', true);
+				});}
+ </script>
+			<td> <form   action="RejectSummary.do">
 			 <input  id="reject" type="submit" value="Reject" disabled></form></td>
 			
-			 <td width="30%" height="5%"><font color="blue" ><center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
+			 <td width="30%" height="5%"><font color="blue" >
+			 <center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
 				<div id="auction"></div>
 				<div id="auction1"></div>
 			</td>
@@ -731,11 +741,6 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }
  </script>
-<script>
- var s= setTimeout(refresh,diff-5000);
- 		function refresh(){
- 			 setTimeout(function() { window.location.reload(true); },5000); 
- 		}
- </script>
+ 
  </body>
 </html>
