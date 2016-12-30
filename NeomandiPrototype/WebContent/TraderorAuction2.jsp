@@ -473,19 +473,18 @@ else
 %>
 <tr>
 <td align="center"><%=tlb.getLotnum()%></td>
-<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ System.out.println("lotcost is "+mfcb.getLotcost()); out.println(" "+mfcb.getLotcost()+" ");} else{ System.out.println(""); System.out.println("");}%></td>
-<td align="center" width="180">3000</td>
-<td width="160"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("commission is "+mfcb.getCommission());  out.println(mfcb.getCommission());} %></td>
-<td align="center" width="100"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){System.out.println("marketcess"+mfcb.getMarketcess());  out.println(mfcb.getMarketcess());}%></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(" "+mfcb.getLotcost()+" ");}} else System.out.println("");%></td>
+<td align="center" width="180"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(" 3000 ");}} else System.out.println("");%></td>
+<td width="160"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else { out.println(mfcb.getCommission());}} %></td>
+<td align="center" width="100"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(mfcb.getMarketcess());}}%></td>
 <td align="center" width="110"><%= tlb.getMarketcode() %></td>
 <td align="center" width="90"><%= tlb.getProduce() %></td>
 <td align="center" width="110"><%= tlb.getQualitygrade() %></td>
-<td align="center" width="160"><% if(mfcb.getBestbid()==null)out.println("--"); else  out.println(mfcb.getBestbid()); %></td>
+<td align="center" width="160"><% if(mfcb.getBestbid()==null)out.println("--"); else{  out.println(mfcb.getBestbid());} %></td>
 <td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 <form id="form<%=tlb.getLotnum()%>" action="increment.do" method="post">
 <input type="hidden" name="lotnum" id="lotnum<%=tlb.getLotnum()%>" value="<%out.print(tlb.getLotnum());%>"></input>
-<td><input typ
-e="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
+<td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
 <td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" id="submit<%=tlb.getLotnum()%>"class=" more1">SUBMIT</a></td> 
 <% 
 String quantityneededs=tlb.getQuantityneeded();
@@ -508,7 +507,6 @@ function funct<%=tlb.getLotnum()%>()
 	{
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
-		document.getElementById('number<%out.println(tlb.getLotnum());%>').disabled = true;
 	}
 	else
 	{
@@ -538,7 +536,7 @@ function fun<%=tlb.getLotnum() %>()
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a><%}
 else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);}%></a></td>
-<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost());%></td>
+<td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getMyfinalcost());}}%></td>
 <td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 </form>
 <input type="hidden" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
@@ -576,7 +574,6 @@ var needed=new  Number(neededs);
 console.log("volume needed is "+needed);
 if(assigned==needed)
 	{
-	document.getElementById('number<%out.println(tlb.getLotnum());%>').disabled = true;
 	}
 </script>
 </tr>
@@ -609,10 +606,10 @@ if(assigned==needed)
  %>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getLotcost()); else out.println("");%></td>
-<td>3000</td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getCommission());%></td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMarketcess());%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(mfcb.getLotcost());}} else out.println("");%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println("3000");}} else out.println("");%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(mfcb.getCommission());}}%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(mfcb.getMarketcess());}}%></td>
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
@@ -674,10 +671,46 @@ if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a>
 <%}
 else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);} %></a></td>		
-<td><%if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum())) System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());  out.println(mfcb.getMyfinalcost());}%></td>
+<td><%if(request.getAttribute("smsg")==null) out.println(""); else{if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getMyfinalcost());}}}%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 <input type="hidden" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+<input type="hidden" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+<script>
+var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+var needed=new  Number(neededs);
+//console.log("volume assigned is "+assigned+"");
+//console.log("volume needed is "+needed+"");
+if(assigned-needed==0)
+{
+	//console.log("assigned=needed");
+	document.getElementById('submit<%=tlbr.getLotnum()%>').removeAttribute("onclick");
+	document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
+}
+else
+	//console.log("assigned!=needed");
+console.log(assigned*1==1);
+if(assigned*1!=0)
+{
+	//console.log("inside block");
+	$(document).ready(function(){
+    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
+	    });
+	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
+}
+</script>
+<script>
+var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+var needed=new  Number(neededs);
+console.log("volume needed is "+needed);
+if(assigned==needed)
+	{
+	}
+</script>
 <script>
 var volume=document.getElementById("<%=tlbr.getLotnum()%>").value;
 var block=new  Number(volume);
@@ -717,15 +750,15 @@ if(assigned==needed)
 %>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getLotcost()); else out.println("");%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getLotcost());}} else out.println("");%></td>
 <td>3000</td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getCommission());%></td>
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMarketcess());%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getCommission());}}%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getMarketcess());}}%></td>
 <td><%= tlbr.getMarketcode() %></td>
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
 <td align="center"><% if(mfcb.getBestbid()==null)out.println("-"); else  out.println(mfcb.getBestbid());  %></td>		
-<td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>			
+<td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getPrice());}}%> </td>			
 <input type="hidden" id="lotnum<%=tlbr.getLotnum()%>" values="<%out.println(tlbr.getLotnum());%>">
 <form id="form<%=tlbr.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlbr.getLotnum()%>" value="<%out.print(tlbr.getLotnum());%>"></input>
@@ -783,10 +816,46 @@ int quantityassigned=Integer.parseInt(quantityassigneds);
 if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a>	
 <%}else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);} %></a></td>	
-<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMyfinalcost()); System.out.println("tlbr ="+tlbr.getLotnum()+" mfcb"+mfcb.getLotnum());%></td>
+<td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getMyfinalcost());}}%></td>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 <input type="hidden" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+<input type="hidden" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+<script>
+var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+var needed=new  Number(neededs);
+//console.log("volume assigned is "+assigned+"");
+//console.log("volume needed is "+needed+"");
+if(assigned-needed==0)
+{
+	//console.log("assigned=needed");
+	document.getElementById('submit<%=tlbr.getLotnum()%>').removeAttribute("onclick");
+	document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
+}
+else
+	//console.log("assigned!=needed");
+console.log(assigned*1==1);
+if(assigned*1!=0)
+{
+	//console.log("inside block");
+	$(document).ready(function(){
+    $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
+	    });
+	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
+}
+</script>
+<script>
+var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+var assigned=new  Number(assigneds);
+var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+var needed=new  Number(neededs);
+console.log("volume needed is "+needed);
+if(assigned==needed)
+	{
+	}
+</script>
 <script>
 var volume=document.getElementById("<%=tlbr.getLotnum()%>").value;
 var block=new  Number(volume);
@@ -959,10 +1028,7 @@ function fun2<%=tlb.getLotnum() %>()
 <td><%out.println(" "); %>
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
-</tr><% 
-							}
-			}	
-		}	//txt file slot2aucton removed lot
+</tr><%}}}	//txt file slot2aucton removed lot
 		}}}}}}%>
 <tr>
 <th></th>

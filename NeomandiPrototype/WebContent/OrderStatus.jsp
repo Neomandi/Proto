@@ -137,6 +137,6 @@ STATUS:PENDING
 <td align="center"><output type="text" id="status"></td>
 </tr><%}}%>
 </table>
-<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/farmeracceptstatus.do">
+<meta http-equiv="refresh"content="1; URL=http://localhost:8080/NeomandiPrototype/farmeracceptstatus.do">
 </body>
 </html>

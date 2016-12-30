@@ -1363,41 +1363,19 @@ public class ControllerServlet extends HttpServlet {
 				}
 				String name=tlbn.getTname();
 				String pwd=tlbn.getTpwd();
-				HttpSession farmerstatus=request.getSession(false); 
-				System.out.println("before farmerstatus.getAttribute()=null "+farmerstatus.getAttribute("msg"));
-				if(farmerstatus.getAttribute("msg").equals("accept"))
+				HttpSession orderstatus=request.getSession();
+				Myclass2 mc=(Myclass2)orderstatus.getAttribute("msg");
+				Model m=new Model();
+				mc=(Myclass2)m.farmeracceptstatus(mc);
+				request.setAttribute("errmsg", mc);
+				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				try 
 				{
-					Model m=new Model();
-					m.farmeracceptstatus((String)farmerstatus.getAttribute("lotnum"),name,pwd,(String)farmerstatus.getAttribute("accountnumber"));
-				}
-				else if(farmerstatus.getAttribute("msg").equals("reject"))
-				{
-					request.setAttribute("lotnum",farmerstatus.getAttribute("lotnum"));
-					/* // rd=request.getRequestDispatcher("farmeracceptstatus.do");
-					try 
-					{
-						 	rd.forward(request, response);			
-						  }			
-						  catch (ServletException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						  }*/
-				}
-				else
-				{
-					System.out.println("farmerstatus.getAttribute()=null");
-				  	HttpSession orderstatus=request.getSession(false);
-				  	Myclass2 mc=(Myclass2)orderstatus.getAttribute("msg");
-					request.setAttribute("errmsg", mc);
-					rd=request.getRequestDispatcher("OrderStatus.jsp");
-					try 
-					{
-						rd.forward(request, response);			
-					}			
-					catch (ServletException | IOException e) {
-					e.printStackTrace();
-					} 
-				}				
+					rd.forward(request, response);			
+				}			
+				catch (ServletException | IOException e) {
+				e.printStackTrace();
+				} 		
 		}
 		/*else
 		{				
