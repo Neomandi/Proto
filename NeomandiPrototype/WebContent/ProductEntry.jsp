@@ -112,11 +112,11 @@ input[type=reset]
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>
-			<td><input type = "text"  name = "farmerid" id = "farmerid" placeholder = "Enter farmerid" style = "width: 235px;"/></td>
+			<td><input type = "text"  name = "farmerid" id = "farmerid" placeholder = "Enter farmerid" style = "width: 235px;" required/></td>
 		</tr>
 		<tr>
 			<th>Market Code</th>
-			<td><input type = "text" name = "marketcode" id = "marketcode" placeholder = "Enter the market code" style = "width: 235px;"/></td>
+			<td><input type = "text" name = "marketcode" id = "marketcode" placeholder = "Enter the market code" style = "width: 235px;" required/></td>
 		</tr>
 		<tr>
 			<th>Kind of produce</th>
@@ -136,7 +136,7 @@ input[type=reset]
 		</tr>
 		<tr> 
 			<th>Quality grade</th>
-			<td><select name = "quality" id = "quality" style = "width: 235px;">
+			<td><select required name = "quality" id = "quality" style = "width: 235px;">
 					<option></option>
 					<option>A</option>
 					<option>B</option>
@@ -146,11 +146,11 @@ input[type=reset]
 		</tr>
 		<tr>
 			<th>Quantity</th>
-			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity" style = "width: 235px;"/></td>
+			<td><input type = "text" name = "quantity" placeholder = "Enter the quantity" style = "width: 235px;" required/></td>
 		</tr>
 		<tr>
 			<th>Image</th>
-			<td><input type="file" name = "photo" onchange="readURL(this);" /></td>
+			<td><input type="file" name = "photo" onchange="readURL(this);" required/></td>
 		</tr>
 		<tr>
 			<th>Lot Number</th>
