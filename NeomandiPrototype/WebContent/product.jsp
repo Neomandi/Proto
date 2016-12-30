@@ -239,6 +239,7 @@ function populate(s1, s2)
   {
 	%>
 <p align = "right"></p>
+<center>
 <table align="center" border>
 
 						<tr>
@@ -301,5 +302,6 @@ function populate(s1, s2)
 						</tr>
 					<%}}}%>					
 </table>
+</center>
 </body>
 </html>

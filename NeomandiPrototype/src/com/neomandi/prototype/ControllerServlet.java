@@ -311,7 +311,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//AcceptSummary
-		if(uri.contains("AcceptSummary.do")){
+		if(uri.contains("AcceptSummary")){
+			
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -329,6 +330,7 @@ public class ControllerServlet extends HttpServlet {
 			String account=sb.getAccountnum();
 			String msg="Accept";
 			System.out.println(("in cs avg="+averageprice));
+			m.employeeAcceptResult(quantitysold,lotnumber);
 			
 			HttpSession hsr=request.getSession();
 			hsr.setAttribute("lotnumber",lotnumber);
@@ -336,11 +338,15 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("msg",msg);
-			rd=request.getRequestDispatcher("AcceptSummary.jsp");
+			
+			
+			
 			HttpSession farmerstatus=request.getSession();
 			farmerstatus.setAttribute("msg",msg);
 			farmerstatus.setAttribute("lotnumber",lotnumber);
 			farmerstatus.setAttribute("accountnumber", account);
+			m.TraderProductAccept(lotnumber,account);
+			rd=request.getRequestDispatcher("AcceptSummary.jsp");
 			try 
 			{
 				rd.forward(request, response);			
@@ -352,11 +358,10 @@ public class ControllerServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		
 		//RejectSummary
-		if(uri.contains("RejectSummary.do")){
+		if(uri.contains("RejectSummary")){
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -373,6 +378,58 @@ public class ControllerServlet extends HttpServlet {
 			String averageprice=sb.getAverageprice();
 			String finalprice=sb.getFinalprice();
 			String status=sb.getStatus();
+			String account=sb.getAccountnum();
+			System.out.println(("in cs avg="+averageprice));
+			String msg="reject";
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+			m.employeeRejectResult(lotnumber);
+			m.TraderProductReject();
+			rd=request.getRequestDispatcher("RejectSummary.jsp");
+			HttpSession farmerstatus=request.getSession();
+			 farmerstatus.setAttribute("msg",msg);
+			 farmerstatus.setAttribute("lotnumber",lotnumber);
+			farmerstatus.setAttribute("accountnumber", account);
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if(uri.contains("AfterAuctionSummary")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			String status="";
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			int lsize=Integer.parseInt(lotsize);
+			int qsold=Integer.parseInt(quantitysold);
+			
+			 status="Your Auction closed";
+			
 			System.out.println(("in cs avg="+averageprice));
 			String msg="reject";
 			HttpSession hsr=request.getSession();
@@ -383,7 +440,7 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("finalprice", finalprice);
 			hsr.setAttribute("status", status);
 			
-			rd=request.getRequestDispatcher("RejectSummary.jsp");
+			rd=request.getRequestDispatcher("AuctionSummary.jsp");
 			HttpSession farmerstatus=request.getSession();
 			 farmerstatus.setAttribute("msg",msg);
 			 farmerstatus.setAttribute("lotnumber",lotnumber);
@@ -399,8 +456,9 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			
+			
 		}
-		
 		//Employee Login
 		if(uri.contains("EmployeeLogin"))
 		{
