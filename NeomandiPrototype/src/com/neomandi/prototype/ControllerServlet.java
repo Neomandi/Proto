@@ -312,6 +312,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		//AcceptSummary
 		if(uri.contains("AcceptSummary.do")){
+			
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -336,6 +337,8 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("msg",msg);
+			
+			
 			rd=request.getRequestDispatcher("AcceptSummary.jsp");
 			HttpSession farmerstatus=request.getSession();
 			farmerstatus.setAttribute("msg",msg);
@@ -352,7 +355,6 @@ public class ControllerServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		
 		//RejectSummary

@@ -45,6 +45,33 @@ $(document).ready(function(e){
 		});
 	});
 });
+function tableToJson(table) {
+    var data = [];
+
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+    data.push(headers);
+    // go through cells
+    for (var i=1; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+
+    return data;
+}
+
 </script>
 </head>
 <style>
@@ -175,7 +202,7 @@ li a:hover:not(.active) {
 
 table {
     border-collapse: collapse;
-    width: 70%;
+    width: 50%;
 }
 
 th {
@@ -186,11 +213,12 @@ th {
 </style>
 
 <body>
+<%!int count=0; %>
 	<%@ include file="Fribbon.jsp" %><br><br>
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
 	</ul>
 	<br/><br/>
  	<center>
@@ -202,19 +230,38 @@ th {
  			To:    <input type = "date" id = "to" name="to"/><br/><br/>
 			<input type = "submit" value = "Get Summary"/> <br/><br/>
 		</form>-->
+		
 		<% 
+		
 		RequestDispatcher rd=null;
 		String m="";
 		HttpSession farmerstatus=request.getSession(false);
+		
 		 m=(String)farmerstatus.getAttribute("msg");
-		 rd=request.getRequestDispatcher("AcceptSummary.jsp");
+		 System.out.println("msg="+m);
+		 if(m.equals("Accept")){
+			 count++;
+			 if(count>1){
+		 rd=request.getRequestDispatcher("FarmerMaster1.jsp");
+			 
+		 try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 
+		 }
 		HttpSession hs=request.getSession(false);  
      	String pass=(String)hs.getAttribute("pass");  
-    	System.out.println(" in getsummary password="+pass);
+    	System.out.println(" in accept summary password="+pass);
 	    HttpSession hsr=request.getSession(false); 
 	    String lotnumber=(String)hsr.getAttribute("lotnumber");
 	    hsr.setAttribute("lotnumber", lotnumber);
-	    System.out.println(" in getsummary lotnumber="+lotnumber);
+	    System.out.println(" in accept summary lotnumber="+lotnumber);
 	    String lotsize=(String)hsr.getAttribute("lotsize");
 	    String quantitysold=(String)hsr.getAttribute("quantitysold");
 	    String averageprice=(String)hsr.getAttribute("averageprice");
@@ -238,7 +285,7 @@ th {
 	    myEarn=myEarn*100;
 	    myEarn=(int)myEarn;
 	    myEarn=myEarn/100;
-	    System.out.println("in getsummary lotsize="+lotsize);
+	    System.out.println("in accept summary lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
 		    String status="";
 		    if(lot==qsold)
@@ -258,34 +305,62 @@ th {
 	    %>
 		<center>
 			<form>
-		 	<table  width="65%" height="70%" id = 'mytable' border>
-			<tr bgcolor = '#00FF00'>
-				
-				<th width="10%" height="5%">Lot number</th>
-				<th width="10%" height="5%">Lot size</th>
-		   		<th width="10%" height="5%">Quantity Sold </th>
-		    	<th width="10%" height="5%">Average price</th>
-		    	<th width="10%" height="5%">Final price</th>
-		     	<th >Status</th>
-		     	<th width="10%" height="5%">My Earnings</th>
-		   </tr>
+		 	<table  id = 'mytable' border>
+			
 			<tr>
-				
-				<td width="10%" height="5%"><%=lotnumber %></td>
-				<td width="10%" height="5%"><%=lsize %></td>
-				<td width="10%" height="5%"><%=qs%></td>
-				<td width="10%" height="5%"><%=aprice%></td>
-				<td width="10%" height="5%"><%= fprice%></td>
-				<td width="40%" height="5%"><font color="blue"><b><%= status %></b></font></td>
-				<td width="10%" height="5%"><%=myEarn %></td>
+				<th  bgcolor = '#00FF00' height="5%">Lot number</th>
+				<td  ><%=lotnumber %></td>
 			</tr>
+			<tr>
+				<th bgcolor = '#00FF00' height="5%">Lot size</th>
+				<td  height="5%"><%=lsize %></td>
+			</tr>
+			<tr>
+		   		<th   bgcolor = '#00FF00' height="5%">Quantity Sold </th>
+		   		<td  height="5%"><%=qs%></td>
+		   	</tr>
+		   	<tr>
+		    	<th   bgcolor = '#00FF00' height="5%">Average price</th>
+		    	<td  height="5%"><%=aprice%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Final price</th>
+		    	<td  height="5%"><%= fprice%></td>
+		    </tr>
+		    <tr>
+		     	<th bgcolor = '#00FF00'>Status</th>
+		     	<font color="blue"><td  ><%= status %></td></font>
+			</tr>
+			<tr>
+		     	<th   bgcolor = '#00FF00' height="5%">My Earnings</th>
+		     	<td  height="5%"><%=myEarn %></td>
+		   </tr>
+			
 		</table><br/>
 	</form>
 </center>
 <br/>
 <br/>		
  <p align= "center"><b>Export Summary</b></p><br/>
-	<center><button id = "pdf">Export to PDF</button></center><br/>
+	<center><input type="button" value="Export to PDF" onclick="callme()" /></center><br/>
+	<script>
+		function callme(){
+			var table = tableToJson($('#mytable').get(0));
+			var doc = new jsPDF('l','pt','letter',true);
+			$.each(table, function(i, row){
+				$.each(row, function(j,cell){
+			//	if(j=="Lot Number"){
+				 doc.cell(1,10,340,20,cell,i);	
+				//}
+				//else{
+					//doc.cell(1,10,90,20,cell,i);
+				//}
+				
+				});
+			});
+			doc.save('GetSummary.pdf');
+			}
+		</script>
 	<center><button id = "excel">Export to XLS</button></center><br/>
 	<center><button id = "word">Export to DOC</button></center>
 		

@@ -202,7 +202,7 @@ li a:hover:not(.active) {
 
 table {
     border-collapse: collapse;
-    width: 70%;
+    width:50%;
 }
 
 th {
@@ -280,36 +280,51 @@ th {
 	    %>
 		<center>
 			<form>
-		 	<table  width="65%" height="70%" id = 'mytable' border>
-			<tr bgcolor = '#00FF00'>
-				<th width="10%" height="5%">From</th>
-				<th width="10%" height="5%">To</th>
-				<th width="10%" height="5%">Lot number</th>
-				<th width="10%" height="5%">Lot size</th>
-		   		<th width="10%" height="5%">Quantity Sold </th>
-		    	<th width="10%" height="5%">Average price</th>
-		    	<th width="10%" height="5%">Final price</th>
-		     	<th >Status</th>
-		     	<th width="10%" height="5%">My Earnings</th>
-		   </tr>
-			<tr>
-				<td width="10%" height="5%"><%=request.getParameter("from") %></td>
-				<td width="10%" height="5%"><%=request.getParameter("to") %></td>
-				<td width="10%" height="5%"><%=lotnumber %></td>
-				<td width="10%" height="5%"><%=lsize %></td>
-				<td width="10%" height="5%"><%=qs%></td>
-				<td width="10%" height="5%"><%=aprice%></td>
-				<td width="10%" height="5%"><%= fprice%></td>
-				<font color="blue"><td width="40%" height="5%"><b><%= status %></b></td></font>
-				<td width="10%" height="5%"><%=myEarn %></td>
+		 	<table  width="10%" height="%" id = 'mytable' border>
+			<tr >
+				<th width="5%" bgcolor = '#00FF00' height="5%">From</th>
+				<td width="5%" height="5%"><%=request.getParameter("from") %></td>
 			</tr>
+			<tr>
+				<th width="5%" bgcolor = '#00FF00' height="5%">To</th>
+				<td width="5%" height="5%"><%=request.getParameter("to") %></td>
+			</tr>
+			<tr>
+				<th width="5%"  bgcolor = '#00FF00' height="5%">Lot number</th>
+				<td width="5%" height="5%"><%=lotnumber %></td>
+			</tr>
+			<tr>
+				<th width="5%" bgcolor = '#00FF00' height="5%">Lot size</th>
+				<td width="5%" height="5%"><%=lsize %></td>
+			</tr>
+			<tr>
+		   		<th width="5%"  bgcolor = '#00FF00' height="5%">Quantity Sold </th>
+		   		<td width="5%" height="5%"><%=qs%></td>
+		   	</tr>
+		   	<tr>
+		    	<th width="5%"  bgcolor = '#00FF00' height="5%">Average price</th>
+		    	<td width="5%" height="5%"><%=aprice%></td>
+		    </tr>
+		    <tr>
+		    	<th width="5%" bgcolor = '#00FF00' height="5%">Final price</th>
+		    	<td width="5%" height="5%"><%= fprice%></td>
+		    </tr>
+		    <tr>
+		     	<th bgcolor = '#00FF00'>Status</th>
+		     	<font color="blue"><td width="10%" height="5%"><%= status %></td></font>
+			</tr>
+			<tr>
+		     	<th width="5%"  bgcolor = '#00FF00' height="5%">My Earnings</th>
+		     	<td width="5%" height="5%"><%=myEarn %></td>
+		   </tr>
+			
 		</table><br/>
 	</form>
 </center>
 <br/>
 <br/>		
  <p align= "center"><b>Export Summary</b></p><br/>
-	<center><input type="button" value="Export to PDF" onclick="callme()" /></center><br/><br/>
+	<center><input type="button" value="Export to PDF" onclick="callme()" /></center><br/>
 	<script>
 		function callme(){
 			var table = tableToJson($('#mytable').get(0));
@@ -317,7 +332,7 @@ th {
 			$.each(table, function(i, row){
 				$.each(row, function(j,cell){
 			//	if(j=="Lot Number"){
-				 doc.cell(1,10,90,20,cell,i);	
+				 doc.cell(1,10,340,20,cell,i);	
 				//}
 				//else{
 					//doc.cell(1,10,90,20,cell,i);

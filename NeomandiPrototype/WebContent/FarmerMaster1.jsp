@@ -132,7 +132,7 @@
 		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
 	</ul>
 	 <%	 	
-		 
+	 	
 	 		HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
@@ -234,7 +234,7 @@
 			<input type="submit" id="accept" value="Accept"  disabled />
 			
 			</form></td>
-				
+			
 			<td> <form   action="RejectSummary.do">
 			 <input  id="reject" type="submit" value="Reject" disabled></form></td>
 			
@@ -728,15 +728,7 @@ countdown(minutes,seconds,hours);
 			}
 			*/
 	</script>
-	 <script>
 	
-//console.log("time="+timedif);
- var t=setTimeout(auction,timedif);
- function auction(){
-	 document.getElementById("accept").disabled=false;
-	 document.getElementById("reject").disabled=false;
- }
- </script>
  
  </body>
 </html>
