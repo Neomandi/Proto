@@ -130,6 +130,7 @@
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="AfterAuctionSummary.do">Trade Summary</a></li>
+		<li><a href="FarmerProfile.jsp">My Profile</a>
 	</ul>
 	 <%	 	
 	 	
