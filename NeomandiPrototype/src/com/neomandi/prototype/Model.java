@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 public class Model {
 int count=0;
 String tradername=null;
@@ -60,8 +58,6 @@ public void setTraderpwd(String traderpwd) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		
-		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -438,7 +434,6 @@ public void setTraderpwd(String traderpwd) {
 		List<SummaryBean> al=new ArrayList<SummaryBean>();
 		String aadhar="";
 		String account="";
-		String lotnumber="";
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2154,7 +2149,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		String aadharnumber="";
 		String quantityassigneds=null;
 		String quantitys=null;
-		int quantity=0;
 		int quantityassigned=0;
 		String lotcosts="";
 		int lotcost;
@@ -2238,7 +2232,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					System.out.println("biddng price the trader was ready to pay is "+bidprice);
 					int res =bidprice+increment;	
 					System.out.println("biddng price the trader is ready to pay = bidprice before "+bidprice+"+ increment "+increment+"= "+res);
-					quantity=Integer.parseInt(quantitys);
 					quantityassigned=Integer.parseInt(quantityassigneds);
 					//lotcost = res * quantity;
 					lotcost = res * quantityassigned;
@@ -2569,6 +2562,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	}
 	public void TraderProductAccept(String lotnum,String accno)
 	{
+		System.out.println("***********************************************");
 		System.out.println("inside model->........farmer has accpeted the bid price for lot"+lotnum);
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -2576,12 +2570,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		ResultSet rs4 = null;
-		ResultSet rs5 = null;
-		ResultSet rs6 = null;
 		String tradername=getTradername();
 		String traderpwd=getTraderpwd();
-		List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();		
 		setFarmeracceptresult("accept");
+		int blockamount[]=new int[1000];
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2597,6 +2589,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				rs = ps.getResultSet();
 				if(rs.next())
 				{	//now if he has won the auction select volume assigned to him and hs bid price 
+					System.out.println("trader has won this lot");
 					ps =con.prepareStatement("select ar.volumesold,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.tradername=tr.name and tr.name=? and tr.pass=?");
 					ps.setString(1, tradername);
 					ps.setString(2, traderpwd);
@@ -2609,21 +2602,24 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						int volumesold=Integer.parseInt(volumesolds);
 						int bidprice1=Integer.parseInt(bidprice);
 						int lotcost=volumesold*bidprice1;
-						String lotcosts=String.valueOf(lotcost);
 						int commission = (int) (lotcost*0.05);
 						int marketcess = 1*10;
 						int myfinalcost=commission+marketcess+3000+lotcost;
-						String myfinalcosts=String.valueOf(myfinalcost);
 						int block=0;
 						ps =con.prepareStatement("select blockamount from traders_blocked_amount where tradername=?");
 						ps.setString(2, tradername);
 						ps.execute();
 						rs3 = ps.getResultSet();
+						int i=0;
 						while(rs3.next())
 						{
-							block=Integer.parseInt(rs3.getString("blockamount"));
+							blockamount[i]=Integer.parseInt(rs3.getString("blockamount"));
+							i++;
 						}
-						block=block-myfinalcost;
+						for(i=1;i<blockamount.length;i++)
+							blockamount[0]=blockamount[0]+blockamount[i];
+						System.out.println("total blocked amount is "+blockamount[0]);
+						block=blockamount[0]-myfinalcost;
 						String bloc=String.valueOf(block);
 						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where tradername=?");
 						ps.setString(1,bloc );
@@ -2637,6 +2633,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						while(rs4.next())
 						{
 							fbalance=Integer.parseInt(rs.getString("balance"));
+							System.out.println("balance available in farmer account is "+fbalance);
 						}
 						fbalance=fbalance+block;
 						ps =con.prepareStatement("update fbankaccount set balance=? where accountnumber=?");
