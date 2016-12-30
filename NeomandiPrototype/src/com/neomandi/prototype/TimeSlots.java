@@ -48,10 +48,10 @@ public class TimeSlots {
 		System.out.print(Hours.hoursBetween(dt1, dt2).getHours() % 24 + " hours, ");
 		System.out.print(Minutes.minutesBetween(dt1, dt2).getMinutes() % 60 + " minutes, ");
 		System.out.print(Seconds.secondsBetween(dt1, dt2).getSeconds() % 60 + " seconds.");*/
-		String s1 = "Slot1";
-		String s2 = "Slot2";
-		String s3 = "Slot3";
-		String s4 = "Slot4";
+		String s1 = "slot1";
+		String s2 = "slot2";
+		String s3 = "slot3";
+		String s4 = "slot4";
 		
 		System.out.println("The dt1: "+dt1);
 		System.out.println("The dst1: "+dst1);
@@ -59,22 +59,22 @@ public class TimeSlots {
 		
 		if(dt1.isBefore(dst1) || dt1.equals(dst1))
 		{
-			System.out.println("Belongs to Slot 1");
+			System.out.println("Belongs to slot 1");
 			return s1;
 		}
 		else if((dt1.isBefore(dst2) && dt1.isAfter(dst1)) || dt1.isEqual(dst2))
 		{
-			System.out.println("Belongs to Slot 2");
+			System.out.println("Belongs to slot 2");
 			return s2;
 		}
 		else if((dt1.isBefore(dst3) && dt1.isAfter(dst2)) || dt1.isEqual(dst3))
 		{
-			System.out.println("Belongs to Slot 3");
+			System.out.println("Belongs to slot 3");
 			return s3;
 		}
 		else if((dt1.isBefore(dst4) && dt1.isAfter(dst3)) || dt1.isEqual(dst4))
 		{
-			System.out.println("Belongs to Slot 4");
+			System.out.println("Belongs to slot 4");
 			return s4;
 		}
 		

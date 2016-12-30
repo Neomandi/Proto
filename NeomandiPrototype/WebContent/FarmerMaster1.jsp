@@ -264,7 +264,7 @@
 					System.out.println("Connection establish failed");
 				}
 					statement = con.createStatement();
-					String sql = "select Date,Time,Slots from productentry where farmerid='"+s+"' ";
+					String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
 					//System.out.println(sql);
 					resultSet = statement.executeQuery(sql);
 					while(resultSet.next()){
@@ -273,7 +273,7 @@
 <% 
 					date+=resultSet.getString("Date");
 					//time+=resultSet.getString("Time");
-					slot+=resultSet.getString("Slots");
+					slot+=resultSet.getString("slotnumber");
 					System.out.println("date="+date);
 					//System.out.println("time="+time);
 					System.out.println("slot="+slot);
@@ -295,17 +295,17 @@
 		<script>
 	
 			var Etime=document.getElementById("time").value;
-			var Slot=document.getElementById("slot").value;
+			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
-			var s1="Slot1";
-			var s2="Slot2";
-			var s3="Slot3";
-			var s4="Slot4";
+			var s1="slot1";
+			var s2="slot2";
+			var s3="slot3";
+			var s4="slot4";
 			var timedif;
 			var Btime1;
 			var diff;
 			//-----------------------for slot1-----------------------------------------------------------------------------
-			if(Slot==s1){
+			if(slot==s1){
 				var Etime=document.getElementById("time").value;
 				var Btime="10:30:00";
 				var Btime1="10:35:00";
@@ -376,7 +376,7 @@
 				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
-		else if(Slot==s2){
+		else if(slot==s2){
 			var Etime=document.getElementById("time").value;
 			var Btime="10:40:00";
 			var Btime1="10:45:00";
@@ -447,7 +447,7 @@
 			console.log("count"+timedif);
 	}
 	//-------------------------------for slot3-----------------------------------------------------------------
-		else if(Slot==s3){
+		else if(slot==s3){
 			var Etime=document.getElementById("time").value;
 			var Btime="10:50:00";
 			var Btime1="10:55:00";
@@ -520,7 +520,7 @@
 			
 	}
 	//----------------------------------for slot4---------------------------------------------------------------	
-		else if (Slot==s4){
+		else if (slot==s4){
 			var Etime=document.getElementById("time").value;
 			var Btime="11:00:00";
 			var Btime1="11:05:00";

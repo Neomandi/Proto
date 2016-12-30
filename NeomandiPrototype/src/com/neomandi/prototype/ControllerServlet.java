@@ -330,6 +330,7 @@ public class ControllerServlet extends HttpServlet {
 			String account=sb.getAccountnum();
 			String msg="Accept";
 			System.out.println(("in cs avg="+averageprice));
+			m.employeeAcceptResult(quantitysold,lotnumber);
 			
 			HttpSession hsr=request.getSession();
 			hsr.setAttribute("lotnumber",lotnumber);
@@ -339,11 +340,13 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("msg",msg);
 			
 			
-			rd=request.getRequestDispatcher("AcceptSummary.jsp");
+			
 			HttpSession farmerstatus=request.getSession();
 			farmerstatus.setAttribute("msg",msg);
 			farmerstatus.setAttribute("lotnumber",lotnumber);
 			farmerstatus.setAttribute("accountnumber", account);
+			m.traderProductAccept(lotnumber,account);
+			rd=request.getRequestDispatcher("AcceptSummary.jsp");
 			try 
 			{
 				rd.forward(request, response);			
@@ -375,6 +378,7 @@ public class ControllerServlet extends HttpServlet {
 			String averageprice=sb.getAverageprice();
 			String finalprice=sb.getFinalprice();
 			String status=sb.getStatus();
+			String account=sb.getAccountnum();
 			System.out.println(("in cs avg="+averageprice));
 			String msg="reject";
 			HttpSession hsr=request.getSession();
@@ -384,11 +388,13 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("finalprice", finalprice);
 			hsr.setAttribute("status", status);
-			
+			m.employeeRejectResult(lotnumber);
+			m.traderProductReject();
 			rd=request.getRequestDispatcher("RejectSummary.jsp");
 			HttpSession farmerstatus=request.getSession();
 			 farmerstatus.setAttribute("msg",msg);
 			 farmerstatus.setAttribute("lotnumber",lotnumber);
+			farmerstatus.setAttribute("accountnumber", account);
 			try 
 			{
 				rd.forward(request, response);			

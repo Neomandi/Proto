@@ -450,6 +450,7 @@ int count=0;
 				}
 				sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
+				
 				con.commit();
 			}
 		}
@@ -2773,8 +2774,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				
 				String sql2 = "UPDATE productentry SET slotnumber = ?, averageprice = '0', quantitybidfor = '0' WHERE lotnumber = ?";
 				pstmt1 = con.prepareStatement(sql2);
-				pstmt1.setString(2, slotnumber);
-				pstmt1.setString(3, lotnumber);
+				pstmt1.setString(1, slotnumber);
+				pstmt1.setString(2, lotnumber);
 				pstmt1.executeUpdate();
 				System.out.println("Lot has not accepted. Entry added for next slot.");
 				
