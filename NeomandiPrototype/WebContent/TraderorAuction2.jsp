@@ -27,7 +27,7 @@ function Block() {
     if (ask) 
     {
         window.alert("This post was successfully deleted.");
-        document.location.href = "http://192.173.6.16:8080/NeomandiPrototype/TraderBlock.jsp";
+        document.location.href = "http://localhost:8080/NeomandiPrototype/TraderBlock.jsp";
     }
 }
 </script> 
@@ -484,7 +484,8 @@ else
 <td align="center"><%if(tlb.getLotnum().equals(mfcb.getLotnum())){ out.println(mfcb.getPrice());}%> </td>
 <form id="form<%=tlb.getLotnum()%>" action="increment.do" method="post">
 <input type="hidden" name="lotnum" id="lotnum<%=tlb.getLotnum()%>" value="<%out.print(tlb.getLotnum());%>"></input>
-<td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
+<td><input typ
+e="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
 <td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" id="submit<%=tlb.getLotnum()%>"class=" more1">SUBMIT</a></td> 
 <% 
 String quantityneededs=tlb.getQuantityneeded();

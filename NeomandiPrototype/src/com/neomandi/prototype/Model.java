@@ -2628,4 +2628,177 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		{
 	e.printStackTrace();
 }
-		return al;}}
+		return al;}
+	
+	//If Farmer Accepts the lot. Changes to be made in product entry table
+	public void employeeAcceptResult(String quantitybidfor, String lotnumber)
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				System.out.println("Connection not established!");
+			}
+			else
+			{
+				con.setAutoCommit(false);
+				
+				String quantity = "";
+				int quantitynew = 0;
+				String slotnumber = "";
+				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, lotnumber);
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					quantity = rs.getString("quantity");
+					slotnumber = rs.getString("slotnumber");
+				}
+				quantitynew = Integer.parseInt(quantity) - Integer.parseInt(quantitybidfor);
+				
+				if(quantity.equals(quantitybidfor))
+				{
+					String sql1 = "DELETE FROM productentry WHERE lotnumber = ?";
+					pstmt1 = con.prepareStatement(sql1);
+					pstmt1.setString(1, lotnumber);
+					System.out.println("Lot has completely accepted. Entry will be removed: "+pstmt1.execute());
+				}
+				else
+				{
+					if(slotnumber.equals("slot1"))
+					{
+						slotnumber = "slot2";
+					}
+					else if(slotnumber.equals("slot2"))
+					{
+						slotnumber = "slot3";
+					}
+					else if(slotnumber.equals("slot3"))
+					{
+						slotnumber = "slot4";
+					}
+					else
+					{
+						slotnumber = "No slots available. Please try tomorrow";
+					}
+					
+					
+					String sql2 = "UPDATE productentry SET quantity = ?, slotnumber = ?, averageprice = '0', quantitybidfor = '0' WHERE lotnumber = ?";
+					pstmt1 = con.prepareStatement(sql2);
+					pstmt1.setInt(1, quantitynew);
+					pstmt1.setString(2, slotnumber);
+					pstmt1.setString(3, lotnumber);
+					pstmt1.executeUpdate();
+					System.out.println("Lot has partially accepted. Entry added for next slot.");
+				}
+				
+				con.commit();
+			}
+			
+		}
+		catch(SQLException e)
+		{
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCHelper.Close(rs);
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(pstmt1);
+			JDBCHelper.Close(con);
+		}
+	}
+	
+	//If Farmer Rejects the lot. Changes to be made in product entry table
+	public void employeeRejectResult(String lotnumber)
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				System.out.println("Connection not established!");
+			}
+			else
+			{
+				con.setAutoCommit(false);
+				
+				String slotnumber = "";
+				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, lotnumber);
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					slotnumber = rs.getString("slotnumber");
+				}
+				
+				if(slotnumber.equals("slot1"))
+				{
+					slotnumber = "slot2";
+				}
+				else if(slotnumber.equals("slot2"))
+				{
+					slotnumber = "slot3";
+				}
+				else if(slotnumber.equals("slot3"))
+				{
+					slotnumber = "slot4";
+				}
+				else
+				{
+					slotnumber = "No slots available. Please try tomorrow";
+				}
+				
+				String sql2 = "UPDATE productentry SET slotnumber = ?, averageprice = '0', quantitybidfor = '0' WHERE lotnumber = ?";
+				pstmt1 = con.prepareStatement(sql2);
+				pstmt1.setString(2, slotnumber);
+				pstmt1.setString(3, lotnumber);
+				pstmt1.executeUpdate();
+				System.out.println("Lot has not accepted. Entry added for next slot.");
+				
+				con.commit();
+			}
+		}
+		catch(SQLException e)
+		{
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCHelper.Close(rs);
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(pstmt1);
+			JDBCHelper.Close(con);
+		}
+	}
+
+}
