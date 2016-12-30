@@ -16,6 +16,43 @@ import javax.servlet.http.HttpSession;
 
 public class Model {
 int count=0;
+String tradername=null;
+String traderpwd=null;
+String farmeracceptresult=null;
+String lotnum=null;
+
+public String getLotnum() {
+	return lotnum;
+}
+
+public void setLotnum(String lotnum) {
+	this.lotnum = lotnum;
+}
+
+public String getFarmeracceptresult() {
+	return farmeracceptresult;
+}
+
+public void setFarmeracceptresult(String farmeracceptresult) {
+	this.farmeracceptresult = farmeracceptresult;
+}
+
+public String getTradername() {
+	return tradername;
+}
+
+public void setTradername(String tradername) {
+	this.tradername = tradername;
+}
+
+public String getTraderpwd() {
+	return traderpwd;
+}
+
+public void setTraderpwd(String traderpwd) {
+	this.traderpwd = traderpwd;
+}
+
 	@SuppressWarnings("resource")
 	public String employeeRegister(EmployeeRegisterBean erb) {
 		// TODO Auto-generated method stub
@@ -23,6 +60,7 @@ int count=0;
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		
 		
 		try
 		{
@@ -691,6 +729,9 @@ int count=0;
 			else
 			{
 				con.setAutoCommit(false);
+				setTradername(tlbn.getTname());
+				setTraderpwd(tlbn.getTpwd());
+				System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
 				ps.setString(1, tlbn.getTname());
 				ps.setString(2, tlbn.getTpwd());
@@ -842,12 +883,7 @@ int count=0;
 					tbb.setIfsc(rs.getString("ifsc"));
 					tbb.setBalance(rs.getInt("balance"));					
 					tbb.setMsg("SUCCESS");
-					/*}
-					else
-					{
-						System.out.println("");
-						tbb.setMsg("you dont have account in this bank...Please select other bank");
-					}	*/			
+					System.out.println("total balance amount is "+rs.getInt("balance"));		
 			    }	
 				int blockamount[]=new int[1000];
 				ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
@@ -2381,7 +2417,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		Myclass2 mc=new Myclass2();
-		List<OrderStatusBean> al=new ArrayList<OrderStatusBean>();				
+		List<OrderStatusBean> al=new ArrayList<OrderStatusBean>();		
+		setTradername(name);
+		setTraderpwd(pwd);
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2460,6 +2498,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							osbn.setVolumesold(rs.getString("volumesold")); 
 						}	
 						osbn.setResult("LOT HAS BEEN ASSIGNED");
+						osbn.setFarmeraccept("pending");
 						System.out.println("inside model-> nside osbn is "+osbn);
 						al.add(osbn);
 					}
@@ -2506,7 +2545,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							osbn1.setLotnum(rs3.getString("lotnum"));						
 						}	
 						osbn1.setVolumesold("0");
-						osbn1.setResult("LOT HAS NOT BEEEN ASSIGNED");					
+						osbn1.setResult("LOT HAS NOT BEEEN ASSIGNED");	
+						osbn1.setFarmeraccept("pending");
 						al.add(osbn1);
 					}
 					System.out.println("inside model indide al is "+al);
@@ -2520,13 +2560,25 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		}
 		return mc;
 	}
-
-	public void farmeracceptstatus(String lotnum, String tradername, String traderpwd,String accno)
+	public void TraderProductReject()
 	{
+		setFarmeracceptresult("reject");
+	}
+	public void TraderProductAccept(String lotnum,String accno)
+	{
+		System.out.println("inside model->........farmer has accpeted the bid price for lot"+lotnum);
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
+		ResultSet rs3 = null;
+		ResultSet rs4 = null;
+		ResultSet rs5 = null;
+		ResultSet rs6 = null;
+		String tradername=getTradername();
+		String traderpwd=getTraderpwd();
 		List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();		
+		setFarmeracceptresult("accept");
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2541,15 +2593,16 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				ps.execute();
 				rs = ps.getResultSet();
 				if(rs.next())
-				{	
+				{	//now if he has won the auction select volume assigned to him and hs bid price 
 					ps =con.prepareStatement("select ar.volumesold,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.tradername=tr.name and tr.name=? and tr.pass=?");
 					ps.setString(1, tradername);
 					ps.setString(2, traderpwd);
 					ps.execute();
-					if(rs.next())
+					rs2 = ps.getResultSet();
+					while(rs2.next())
 					{
-						String volumesolds=rs.getString("volumesold");
-						String bidprice=rs.getString("bidprice");
+						String volumesolds=rs2.getString("volumesold");
+						String bidprice=rs2.getString("bidprice");
 						int volumesold=Integer.parseInt(volumesolds);
 						int bidprice1=Integer.parseInt(bidprice);
 						int lotcost=volumesold*bidprice1;
@@ -2558,12 +2611,38 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						int marketcess = 1*10;
 						int myfinalcost=commission+marketcess+3000+lotcost;
 						String myfinalcosts=String.valueOf(myfinalcost);
-						
-					}
-					else
-					{
-					
-					}
+						int block=0;
+						ps =con.prepareStatement("select blockamount from traders_blocked_amount where tradername=?");
+						ps.setString(2, tradername);
+						ps.execute();
+						rs3 = ps.getResultSet();
+						while(rs3.next())
+						{
+							block=Integer.parseInt(rs3.getString("blockamount"));
+						}
+						block=block-myfinalcost;
+						String bloc=String.valueOf(block);
+						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where tradername=?");
+						ps.setString(1,bloc );
+						ps.setString(2, tradername);
+						ps.execute();
+						int fbalance=0;
+						ps =con.prepareStatement("select balance from fbankaccount where accountnumber=?");
+						ps.setString(1, accno);
+						ps.execute();
+						rs4 = ps.getResultSet();
+						while(rs4.next())
+						{
+							fbalance=Integer.parseInt(rs.getString("balance"));
+						}
+						fbalance=fbalance+block;
+						ps =con.prepareStatement("update fbankaccount set balance=? where accountnumber=?");
+						ps.setString(1,String.valueOf(fbalance));
+						ps.setString(2, accno);
+						ps.execute();
+						System.out.println("traders bid price is "+bidprice1+" his lot cost ="+bidprice1+" * "+volumesold+" his final cost is "+myfinalcost+" his blocked amount after deduction is "+bloc);
+						System.out.println("farmers balance after accepting is "+fbalance);						
+					}					
 				}	
 				else
 				{
@@ -2628,8 +2707,30 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		}catch(Exception e)
 		{
 	e.printStackTrace();
+	}
+	return al;
 }
-		return al;}
+
+	public Myclass2 farmeracceptstatus(Myclass2 mc) 
+	{
+		@SuppressWarnings("rawtypes")
+		List al=mc.getAl();
+		OrderStatusBean osbn=null;	
+		for(Object o:al)
+		{
+			osbn=(OrderStatusBean)o;
+			if(osbn.getLotnum().equals(getLotnum()))
+			{
+			 if(farmeracceptresult!=null)
+			 {
+	           osbn.setFarmeraccept(farmeracceptresult); 
+			 }
+			 else
+				 osbn.setFarmeraccept("pending");
+			}			
+		}
+		return mc;
+	}
 	
 	//If Farmer Accepts the lot. Changes to be made in product entry table
 	public void employeeAcceptResult(String quantitybidfor, String lotnumber)
@@ -2801,5 +2902,4 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			JDBCHelper.Close(con);
 		}
 	}
-
 }

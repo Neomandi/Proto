@@ -11,6 +11,13 @@ String lotcost;
 String bestbid;
 String bidprice;
 String myfinalcost;
+String farmeraccept;
+public String getFarmeraccept() {
+	return farmeraccept;
+}
+public void setFarmeraccept(String farmeraccept) {
+	this.farmeraccept = farmeraccept;
+}
 @Override
 public int hashCode() {
 	final int prime = 31;
