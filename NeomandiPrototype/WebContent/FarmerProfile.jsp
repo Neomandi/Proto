@@ -9,6 +9,111 @@
 <link rel="icon" type="image/png" href="Images/Neomandi1.png">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Farmer Profile</title>
+	
+		<style>
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: white;    
+		}
+		 li
+		{
+			display: inline;
+		    float: left;
+		    
+		}
+		li a:hover:not(.active) {
+		    color: white;
+		    
+		}
+		.active {
+		    border: 1px solid black;
+		    color: brown;
+		    background-color: white;
+		    bottom: -3px;    
+		    border-bottom: 2px solid white;
+		    
+		}
+		
+		 a
+		{
+		    text-align: center;
+		    border: 1px solid black;
+		      border-radius: 9px 9px 0 0;
+		    background-color: blue;   
+			display: inline;
+			display: block;
+		    color: white;
+			width: 100px;
+			text-decoration: none;
+			padding: 10px 20px;
+		}
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: white;
+		    border-radius: 9px 9px 0 0;    
+		}
+		
+		 li
+		{
+			display: inline;
+		    float: left;    
+		}
+		
+		li a:hover:not(.active) {
+		    color: white;
+		    
+		}
+		
+		.active {
+		    border: 1px solid black;
+		    color: brown;
+		    background-color: white;
+		    bottom: -3px;    
+		    border-bottom: 2px solid white;    
+		}
+		
+		 a
+		{
+		    text-align: center;
+		    background-color: blue;   
+			display: inline;
+			display: block;
+		    color: white;
+			width: 150px;
+			text-decoration: none;
+			padding: 10px 20px;
+		}
+		/*
+		#navigation_container {
+		   margin: 0 auto;
+		   width: 960px;
+		}
+		
+		.rectangle {
+			width: 1200px;
+		   color: white;
+		   text-align:center;
+		   background: #e5592e;
+		   height: 62px;
+		   position: relative;
+		   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+		   box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+		   -webkit-border-radius: 34px;
+		   -moz-border-radius: 3px;
+		   border-radius: 3px;
+		   z-index: 200; /* the stack order: foreground */
+		   margin: 3em 0;
+		   top: 0px;
+		}*/
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="script.js"></script>
 	<script src = "jspdf/jspdf.min.js"></script>
 	<script src = "html2canvas.js"></script>
 	<script>
@@ -44,6 +149,13 @@ td
 }
 </style>
 <body>
+	<%@ include file="Fribbon.jsp" %><br><br>	
+	<ul>
+	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
+	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
+		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a href="FarmerProfile.jsp" class="active">My Profile</a>
+	</ul>
 <div id = 'myProfile'>
 <br/><br/>
 <h1>Farmer Profile</h1>
