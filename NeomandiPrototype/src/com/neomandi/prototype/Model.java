@@ -431,6 +431,7 @@ public void setTraderpwd(String traderpwd) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
+		List<SummaryBean> al=new ArrayList<SummaryBean>();
 		String aadhar="";
 		String account="";
 		try
@@ -446,11 +447,13 @@ public void setTraderpwd(String traderpwd) {
 			{
 				con.setAutoCommit(false);
 				//aadharnum
-				ps =con.prepareStatement("select aadharnum,accountnum from freg where name = ? and pass=?");
+				ps =con.prepareStatement("select aadharnum,accountnum from freg where name = ?  and pass=?");
 				ps.setString(1, name);
 				ps.setString(2, pass);
+				
 				ps.execute();
 				rs = ps.getResultSet();
+				
 				while(rs.next())
 				{
 					aadhar=rs.getString("aadharnum");
@@ -464,7 +467,7 @@ public void setTraderpwd(String traderpwd) {
 				System.out.println("in cs farmerid="+farmerid);
 				
 				//getsummary details
-				ps = con.prepareStatement("select * from productentry where farmerid=?" );
+				ps = con.prepareStatement("select * from productentry where  farmerid=?" );
 				ps.setString(1,farmerid);
 				System.out.println(ps);
 				System.out.println("Execute"+ps.executeQuery());

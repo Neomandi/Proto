@@ -273,6 +273,8 @@ public class ControllerServlet extends HttpServlet {
 			String pass=(String) hs.getAttribute("pass");
 			System.out.println("in cs pass="+pass);
 			System.out.println("in cs name="+name);
+			String from=request.getParameter("from");
+			String to=request.getParameter("to");
 			Model m = new Model();
 			sb=m.getSummary(name, pass, sb);
 			
