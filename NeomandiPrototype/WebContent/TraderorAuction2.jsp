@@ -223,6 +223,8 @@ text-align:center
    pointer-events: none;
    cursor: default;
 }
+
+
 </style></head>
 <body>
  <%@ include file="TRibbon.jsp" %><br><br>
@@ -397,7 +399,7 @@ function countdown(minutes,seconds,hours)
 			countdown(minutes,seconds,hours);
 </script>
 <table id = "t1" border = "border">
-	<tr>
+	<tr bgcolor="#7cfc00">
 		<th>Lot Number</th>
 		<th>Lot_Cost</th>
 		<th>Transportation Charges</th>
