@@ -2764,6 +2764,82 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	return al;
 }
 
+	public List<FarmerHistoryBean> farmerHistory(String name,String pass,String from,String to){
+		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
+				PreparedStatement ps = null;
+				Connection con = null;
+				ResultSet rs = null;
+				ResultSet rs2 = null;
+				List<FarmerHistoryBean> al=new ArrayList<FarmerHistoryBean>();	
+				String aadharnum="";
+				try
+				{
+					con = JDBCHelper.getConnection();
+					
+					if(con == null)
+					{
+						
+					}
+					
+					else
+					{
+						con.setAutoCommit(false);
+						//aadharnum
+						ps =con.prepareStatement("select aadharnum from freg where name = ?  and pass=? ");
+						ps.setString(1, name);
+						ps.setString(2, pass);
+						
+						ps.execute();
+						rs = ps.getResultSet();
+						
+						while(rs.next())
+						{
+							aadharnum=rs.getString("aadharnum");
+							
+						}	
+						
+						//lotnumber
+						String farmerid=aadharnum;
+						System.out.println("in cs farmerid="+farmerid);
+						
+						//getsummary details
+						ps = con.prepareStatement("select * from productentry where farmerid=?  " );
+						ps.setString(1,farmerid);
+						//ps.setString(2,from);
+						//ps.setString(3,to);
+						System.out.println(ps);
+						System.out.println("Execute"+ps.executeQuery());
+						rs=ps.getResultSet();
+						System.out.println(rs+" "+ps.getResultSet());
+						FarmerHistoryBean fhb=null;
+						String deduction="";
+						while(rs!=null&&rs.next())
+						{
+							System.out.println("inside while()->rs is "+rs);
+							fhb=new FarmerHistoryBean();
+							fhb.setLotnumber(rs.getString("lotnumber"));
+							fhb.setQuantity(rs.getString("quantity"));
+							fhb.setAverageprice(rs.getString("averageprice"));
+							fhb.setDate(rs.getString("Date"));
+							 deduction="null";
+							fhb.setDeduction("deduction");
+							fhb.setEarnings(rs.getString("myearnings"));
+							fhb.setFinalprice(rs.getString("finalprice"));
+							fhb.setKindofpro(rs.getString("kindofpro"));
+							fhb.setQuantitybidfor(rs.getString("quantitybidfor"));
+							fhb.setProduce(rs.getString("produce"));
+							fhb.setSlotnumber(rs.getString("slotnumber"));
+							al.add(fhb);
+						}
+					}
+				}
+				catch(Exception e)
+				{
+			e.printStackTrace();
+			}
+			return al;
+		
+	}
 	public Myclass2 farmeracceptstatus(Myclass2 mc) 
 	{
 		@SuppressWarnings("rawtypes")
@@ -2791,8 +2867,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
+		PreparedStatement ps= null;
 		ResultSet rs = null;
-		
+		FarmerHistoryBean fhb=new FarmerHistoryBean();
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2804,21 +2881,53 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			else
 			{
 				con.setAutoCommit(false);
-				
+				ps=con.prepareStatement("insert into history values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
+				rs=ps.executeQuery();
+				while(rs.next()){
+					ps.setString(1,fhb.getFarmerid());
+					ps.setString(2,fhb.getLotnumber());
+					ps.setString(3,fhb.getMarketcode());
+					ps.setString(4,fhb.getKindofpro());
+					ps.setString(5,fhb.getProduce());
+					ps.setString(6,fhb.getGrade());
+					ps.setString(7,fhb.getQuantity());
+					ps.setString(8,fhb.getPhoto());
+					ps.setString(9,fhb.getDate());
+					ps.setString(10,fhb.getTime());
+					ps.setString(11,fhb.getSlotnumber());
+					ps.setString(12,fhb.getAverageprice());
+					ps.setString(13,fhb.getQuantitybidfor());
+					ps.setString(14,fhb.getFinalprice());
+					ps.setString(15,fhb.getStatus());
+					ps.setString(16,fhb.getEarnings());
+					ps.execute();
+					
+					
+				}
 				String quantity = "";
 				int quantitynew = 0;
 				String slotnumber = "";
+				
+				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, lotnumber);
 				rs = pstmt.executeQuery();
 				if(rs.next())
 				{
+					
 					quantity = rs.getString("quantity");
 					slotnumber = rs.getString("slotnumber");
 				}
 				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
+				//inserting into history table
+				
+				
+				
+				
+				
+				//
 				if(quantity.equals(quantitybidfor))
 				{
 					String sql1 = "DELETE FROM productentry WHERE lotnumber = ?";

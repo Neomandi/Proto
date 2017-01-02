@@ -1668,6 +1668,40 @@ public class ControllerServlet extends HttpServlet {
 				}	
 			}
 		}
+		if(uri.contains("FarmerHistory")){
+			System.out.println("***************************************************************************");
+			String from=request.getParameter("from");
+			String to=request.getParameter("to");
+	        System.out.println("from is "+from);
+	        System.out.println("to is "+to);
+	        HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			
+			Model m=new Model();
+			List<?> al=(List<?>)m.farmerHistory(name,pass,from,to);
+			if(al.size()==0)
+			{
+				request.setAttribute("farmerhistory","no");
+				rd=request.getRequestDispatcher("FarmerTradeSummary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else{
+				HttpSession farmerhistory=request.getSession();
+				farmerhistory.setAttribute("farmerhistory", al);
+				request.setAttribute("farmerhistory","success");
+				rd=request.getRequestDispatcher("FarmerTradeSummary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

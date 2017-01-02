@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean id="sb" class="com.neomandi.prototype.SummaryBean" scope="request">
- 		<jsp:setProperty name="sb" property="*"/>
+	<jsp:useBean id="fhbean" class="com.neomandi.prototype.FarmerHistoryBean" scope="request">
+ 		<jsp:setProperty name="fhbean" property="*"/>
  	</jsp:useBean>
- <jsp:forward page="FarmerTradeSummary.jsp"/>
+ <jsp:forward page="FarmerHistorys.do"/>
 </body>
 </html>

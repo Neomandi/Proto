@@ -684,6 +684,11 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }
  </script>
+ <br/>
+ <br/>
+ <form action="FarmerSummaryInt.jsp">
+ <input type="submit" value="History" />
  
+ </form>
  </body>
 </html>
