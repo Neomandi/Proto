@@ -20,6 +20,7 @@ li a {
 
 li a:hover {
     background-color: lightblue;
+    color: black;
 }
 li.dropdown {
     display: inline-block;
@@ -68,5 +69,3 @@ body {
 	bottom: 0;
 	left: 0;
 }
-
-

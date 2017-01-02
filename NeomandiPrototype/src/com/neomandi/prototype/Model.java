@@ -2869,6 +2869,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		PreparedStatement pstmt1 = null;
 		PreparedStatement ps= null;
 		ResultSet rs = null;
+		ResultSet rs1 = null;
 		FarmerHistoryBean fhb=new FarmerHistoryBean();
 		try
 		{
@@ -2881,6 +2882,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			else
 			{
 				con.setAutoCommit(false);
+				
 				ps=con.prepareStatement("insert into history values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
 				rs=ps.executeQuery();
 				while(rs.next()){
@@ -2912,12 +2914,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, lotnumber);
-				rs = pstmt.executeQuery();
+				rs1 = pstmt.executeQuery();
 				if(rs.next())
 				{
 					
-					quantity = rs.getString("quantity");
-					slotnumber = rs.getString("slotnumber");
+					quantity = rs1.getString("quantity");
+					slotnumber = rs1.getString("slotnumber");
 				}
 				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
@@ -2982,6 +2984,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		finally
 		{
 			JDBCHelper.Close(rs);
+			JDBCHelper.Close(rs1);
 			JDBCHelper.Close(pstmt);
 			JDBCHelper.Close(pstmt1);
 			JDBCHelper.Close(con);
