@@ -698,7 +698,7 @@ public void setTraderpwd(String traderpwd) {
 				ps.setBlob(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
-				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
+				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSSSSS");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				
@@ -1506,25 +1506,22 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					marketcesss=String.valueOf(marketcess);
 					bidprices=String.valueOf(res);
 					finalcosts=String.valueOf(finalcost);
+					SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
+					String date=sdf.format(new Date());
 					System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
-					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=? where aadharnumber=? and lotnum=?");
+					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=? ");
 					ps.setString(1,lotcosts);
 					ps.setInt(2,res);
 					ps.setString(3,commissions);
 					ps.setString(4,marketcesss);
 					ps.setString(5,finalcosts);
-					ps.setString(6,aadharnumber);
-					ps.setString(7,lotnumber);
+					ps.setString(6,date);
+					ps.setString(7,aadharnumber);
+					ps.setString(8,lotnumber);
+					System.out.println("current time is "+date);
 					ps.execute();
-					System.out.println("biddng price the trader is ready to pay now is "+res);
-					
-					/*ps =con.prepareStatement("select bidprice, lotnum, aadharnumber from traders_bid_price");
-					ps.execute();
-					rs = ps.getResultSet();				
-					while(rs.next())
-					{
-						System.out.println("bidprice after updating in traders_bid_price "+rs.getInt("bidprice")+" lotnum is "+rs.getString("lotnum")+" aadharnumber "+rs.getString("aadharnumber"));
-					}*/					
+					System.out.println("biddng price the trader is ready to pay at "+date+" is "+res);
+								
 					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 					ps.execute();
@@ -1538,6 +1535,7 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 						finalcosts=rs.getString("myfinalcost");
 						lotnumber=rs.getString("lotnum");
 						bidprice=rs.getInt("bidprice");
+						System.out.println("bid price is "+bidprice);
 						bidprices=String.valueOf(bidprice);
 						mfcb.setCommission(commissions);
 						mfcb.setLotcost(lotcosts);
@@ -1571,7 +1569,10 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?)");
+					SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss.SSSSSS");
+					String date=sdf.format(new Date());
+					
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,1);
@@ -1581,8 +1582,9 @@ System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadh
 					ps.setString(7,finalcosts);
 					ps.setString(8,"0");
 					ps.setString(9,"0");
+					ps.setString(10,date);
 					ps.execute();
-					
+					System.out.println("current time is "+date);
 					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
 				//	ps.setString(2,lotnumber );
@@ -2006,8 +2008,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				marketcesss=String.valueOf(marketcess);
 				bidprices=String.valueOf(res);
 				finalcosts=String.valueOf(finalcost);
+				SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss.SSSSSS");
+				String date=sdf.format(new Date());
 				System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
-				ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=? where aadharnumber=? and lotnum=?");
+				ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=? where aadharnumber=? and lotnum=?  and bid_time=?");
 				ps.setString(1,lotcosts);
 				ps.setInt(2,res);
 				ps.setString(3,commissions);
@@ -2015,7 +2019,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				ps.setString(5,finalcosts);
 				ps.setString(6,aadharnumber);
 				ps.setString(7,lotnumber);
+				ps.setString(8,date);
 				ps.execute();
+				System.out.println("current time is "+date);
 				System.out.println("biddng price the trader is ready to pay now is "+res);
 				mc.setBidprice(bidprices);
 				mc.setCommission(commissions);
@@ -2172,8 +2178,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	return mc;
 }
 	
-	
-	
 	@SuppressWarnings({ "resource", "finally" })
 	public Myclass Increment(String name, String pwd, String increments, String lotnum) 
 	{
@@ -2279,7 +2283,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					System.out.println(" marketcess is "+marketcess);
 					System.out.println(" quantity assigned  is "+quantityassigned);
 					System.out.println(" lotcost = "+res+" * "+quantityassigned+"");
-					finalcost = lotcost +commission +marketcess + 3000;
+					if(quantityassigned==0)						
+						finalcost=0;
+					else
+						finalcost = lotcost +commission +marketcess + 3000;
 					System.out.println("lot cost the trader has to pay is "+lotcost);
 					System.out.println("traders final cost for lotnumber "+lotnumber+" is "+finalcost);
 					commissions=String.valueOf(commission);
@@ -2287,15 +2294,20 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					marketcesss=String.valueOf(marketcess);
 					bidprices=String.valueOf(res);
 					finalcosts=String.valueOf(finalcost);
+					SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss.SSSSSS");
+					String date=sdf.format(new Date());
 					//System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
-					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=? where aadharnumber=? and lotnum=?");
+					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//
+					
 					ps.setString(1,lotcosts);
 					ps.setInt(2,res);
 					ps.setString(3,commissions);
 					ps.setString(4,marketcesss);
 					ps.setString(5,finalcosts);
-					ps.setString(6,aadharnumber);
-					ps.setString(7,lotnumber);
+					ps.setString(6,date);
+					ps.setString(7,aadharnumber);
+					ps.setString(8,lotnumber);
+					
 					ps.execute();									
 					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
 					ps.setString(1,aadharnumber);
@@ -2342,8 +2354,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					lotcosts=String.valueOf(lotcost);
 					marketcesss=String.valueOf(marketcess);
 					finalcosts=String.valueOf(finalcost);
+					SimpleDateFormat sdf=new SimpleDateFormat();
+					String date=sdf.format(new Date());
 					
-					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?)");
+					ps =con.prepareStatement("insert into traders_bid_price values(?,?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, aadharnumber);
 					ps.setString(2,lotnumber);
 					ps.setInt(3,1);
@@ -2353,6 +2367,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(7,finalcosts);
 					ps.setString(8,"0");
 					ps.setString(9,"0");
+					ps.setString(10,date);
 					ps.execute();
 					
 					ps =con.prepareStatement("select lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,bestbid,quantityassigned from traders_bid_price where aadharnumber=?");
