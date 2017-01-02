@@ -217,18 +217,12 @@ th {
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a  class="active" href="GetSummary.do"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 	</ul>
- 	<center>
- 		<font color="#C71585"><h1>Farmer Summary</h1></font>
-	</center>
-	 <center>
-		<form action = "" method = "get">
-			From:  <input type = "date" id = "from" name="from"/><br/><br/>
- 			To:    <input type = "date" id = "to" name="to"/><br/><br/>
-			<input type = "submit" value = "Get Summary"/> <br/><br/>
-		</form> 
+ 	<br/>
+ 	<br/>
+		
 		<%  
 			HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
@@ -260,14 +254,18 @@ th {
 		    myEarn=myEarn*100;
 		    myEarn=(int)myEarn;
 		    myEarn=myEarn/100;
+		    double deduction=TCharge;
+		    deduction=deduction*100;
+		    deduction=(int)deduction;
+		    deduction=deduction/100;
 		    System.out.println("in getsummary lotsize="+lotsize);
 		    double lot=Integer.parseInt(lotsize);
 		  
 		    String status="";
 		    if(lot==qsold)
-	    		status+="Fully executed .Waiting for your acceptance";
+	    		status+="Fully executed .Waiting for your approval";
 	    			else
-	    		status+="Partially executed.Waiting for your acceptance";
+	    		status+="Partially executed.Waiting for your approval";
 	    		String lotsize1=String.valueOf(lot);
 	    	 	double lsize=Double.parseDouble(lotsize1);
 	    	 	lsize=lsize*100;
@@ -282,14 +280,7 @@ th {
 		<center>
 			<form>
 		 	<table  width="10%" height="%" id = 'mytable' border>
-			<tr >
-				<th width="5%" bgcolor = '#00FF00' height="5%">From</th>
-				<td width="5%" height="5%"><%=request.getParameter("from") %></td>
-			</tr>
-			<tr>
-				<th width="5%" bgcolor = '#00FF00' height="5%">To</th>
-				<td width="5%" height="5%"><%=request.getParameter("to") %></td>
-			</tr>
+			
 			<tr>
 				<th width="5%"  bgcolor = '#00FF00' height="5%">Lot number</th>
 				<td width="5%" height="5%"><%=lotnumber %></td>
@@ -307,15 +298,19 @@ th {
 		    	<td width="5%" height="5%"><%=aprice%></td>
 		    </tr>
 		    <tr>
-		    	<th width="5%" bgcolor = '#00FF00' height="5%">Final price</th>
+		    	<th width="5%" bgcolor = '#00FF00' height="5%">Gross Earnings</th>
 		    	<td width="5%" height="5%"><%= fprice%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Deduction</th>
+		    	<td  height="5%">--</td>
 		    </tr>
 		    <tr>
 		     	<th bgcolor = '#00FF00'>Status</th>
 		     	<font color="blue"><td width="10%" height="5%"><%= status %></td></font>
 			</tr>
 			<tr>
-		     	<th width="5%"  bgcolor = '#00FF00' height="5%">My Earnings</th>
+		     	<th width="5%"  bgcolor = '#00FF00' height="5%">My Net Earnings</th>
 		     	<td width="5%" height="5%"><%=myEarn %></td>
 		   </tr>
 			

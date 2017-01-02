@@ -14,7 +14,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> 
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<!-- <meta http-equiv="refresh" content="5; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> -->
 		<title>Insert title here</title>
@@ -129,7 +129,7 @@
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a  class="classbeauty" id="ts" href="#"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 	</ul>
 	 <%	 	
@@ -350,28 +350,7 @@
 				console.log("differences in time is "+timedifference);
 				
 				countdown(minutes,seconds,hours);
-				//time progress-------------------------
-	    		var start = new Date();
-				var maxTime = diff;
-				var timeoutVal = Math.floor(maxTime/100);
-				animateUpdate();
-
-				function updateProgress(percentage) {
-				    $('#pbar_innerdiv').css("width", percentage + "%");
-				    $('#pbar_innertext').text(percentage + "%");
-				}
-
-				function animateUpdate() {
-				    var now = new Date();
-				    var timeDiff = now.getTime() - start.getTime();
-				    var perc = Math.round((timeDiff/maxTime)*100);
-				    console.log(perc);
-				      if (perc <= 100) {
-				       updateProgress(perc);
-				       setTimeout(animateUpdate, timeoutVal);
-				      }
-				}
-				//----------------------------------
+				
 				var five=300000;
 				timedif=diff+five;
 				console.log("count"+timedif);	
@@ -492,28 +471,7 @@
 			var idiff = parseInt("timedifference") + "<br>";
 			countdown(minutes,seconds,hours);
 
-			//time progress-------------------------
-    		var start = new Date();
-			var maxTime = diff;
-			var timeoutVal = Math.floor(maxTime/100);
-			animateUpdate();
-
-			function updateProgress(percentage) {
-			    $('#pbar_innerdiv').css("width", percentage + "%");
-			    $('#pbar_innertext').text(percentage + "%");
-			}
-
-			function animateUpdate() {
-			    var now = new Date();
-			    var timeDiff = now.getTime() - start.getTime();
-			    var perc = Math.round((timeDiff/maxTime)*100);
-			    console.log(perc);
-			      if (perc <= 100) {
-			       updateProgress(perc);
-			       setTimeout(animateUpdate, timeoutVal);
-			      }
-			}
-			//----------------------------------
+			
 
 			var five=300000;
 			timedif=diff+five;
@@ -564,29 +522,7 @@
 			console.log("differences in time is "+timedifference);
 			var idiff = parseInt("timedifference") + "<br>";
 			countdown(minutes,seconds,hours);
-			//time progress-------------------------
-    		var start = new Date();
-			var maxTime =diff;
-			var timeoutVal = Math.floor(maxTime/100);
-			animateUpdate();
-
-			function updateProgress(percentage) {
-			    $('#pbar_innerdiv').css("width", percentage + "%");
-			    $('#pbar_innertext').text(percentage + "%");
-			}
-
-			function animateUpdate() {
-			    var now = new Date();
-			    var timeDiff = now.getTime() - start.getTime();
-			    var perc = Math.round((timeDiff/maxTime)*100);
-			    console.log(perc);
-			      if (perc <= 100) {
-			       updateProgress(perc);
-			       setTimeout(animateUpdate, timeoutVal);
-			      }
-			}
-			//----------------------------------
-
+			
 			var five=300000;
 			timedif=diff+five;
 			console.log("count"+timedif);
@@ -596,6 +532,7 @@
 			
 function countdown(minutes,seconds,hours) 
 {
+		
 	 	var seconds =seconds;
 	    var mins = minutes
 	    var hour=hours;
@@ -606,19 +543,18 @@ function countdown(minutes,seconds,hours)
 		function tick() 
 		{
 	        var counter = document.getElementById("timer");
-	        /*if(seconds==0)
-	        {
-	        	var current_minutes = mins-1
-	        	seconds=59;
-	        }
-	        else*/
-	        	var current_minutes = mins
+	        var current_minutes = mins
     		seconds--;
 	        var hour=hours;
 	        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 	        if( seconds > 0 )
 	        {
 	            setTimeout(tick,1000);
+	            document.getElementById('ts').onclick = function() {
+		            	console.log("inside the count function");
+		            	//alert("Auction under progress");
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	}
 	        } 
 	        else 
      	{
@@ -662,6 +598,11 @@ function countdown(minutes,seconds,hours)
 		        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 		        		        if( seconds > 0 ) {
 		        		            setTimeout(tick,1000);
+		        		            document.getElementById('ts').onclick = function() {
+		        		            	console.log("inside the count function");
+		        		            	//alert("Auction under progress");
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	}
 		        		        } 
 		        		        else 
 		        		        {
@@ -684,6 +625,11 @@ function countdown(minutes,seconds,hours)
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
+						            	document.getElementById('ts').onclick = function() {
+			        		            	console.log("inside the count function");
+			        		            	//alert("Auction under progress");
+			        		            	   location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            	}
 						    			document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}

@@ -8,8 +8,9 @@ public class SummaryBean {
 	private String finalprice;
 	private String status;
 	private String accountnum;
+	private String myearning;
 	public SummaryBean(){
-		System.out.println("in summary bean no arg cons");
+		System.out.println("in summaryBean no arg cons");
 	}
 	public String getLotnumber() {
 		return lotnumber;
@@ -53,11 +54,17 @@ public class SummaryBean {
 	public void setAccountnum(String accountnum) {
 		this.accountnum = accountnum;
 	}
+	public String getMyearning() {
+		return myearning;
+	}
+	public void setMyearning(String myearning) {
+		this.myearning = myearning;
+	}
 	@Override
 	public String toString() {
 		return "SummaryBean [lotnumber=" + lotnumber + ", lotsize=" + lotsize + ", quantitysold=" + quantitysold
 				+ ", averageprice=" + averageprice + ", finalprice=" + finalprice + ", status=" + status
-				+ ", accountnum=" + accountnum + "]";
+				+ ", accountnum=" + accountnum + ", myearning=" + myearning + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -68,6 +75,7 @@ public class SummaryBean {
 		result = prime * result + ((finalprice == null) ? 0 : finalprice.hashCode());
 		result = prime * result + ((lotnumber == null) ? 0 : lotnumber.hashCode());
 		result = prime * result + ((lotsize == null) ? 0 : lotsize.hashCode());
+		result = prime * result + ((myearning == null) ? 0 : myearning.hashCode());
 		result = prime * result + ((quantitysold == null) ? 0 : quantitysold.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
@@ -106,6 +114,11 @@ public class SummaryBean {
 				return false;
 		} else if (!lotsize.equals(other.lotsize))
 			return false;
+		if (myearning == null) {
+			if (other.myearning != null)
+				return false;
+		} else if (!myearning.equals(other.myearning))
+			return false;
 		if (quantitysold == null) {
 			if (other.quantitysold != null)
 				return false;
@@ -119,7 +132,7 @@ public class SummaryBean {
 		return true;
 	}
 	public SummaryBean(String lotnumber, String lotsize, String quantitysold, String averageprice, String finalprice,
-			String status, String accountnum) {
+			String status, String accountnum, String myearning) {
 		super();
 		this.lotnumber = lotnumber;
 		this.lotsize = lotsize;
@@ -128,6 +141,8 @@ public class SummaryBean {
 		this.finalprice = finalprice;
 		this.status = status;
 		this.accountnum = accountnum;
+		this.myearning = myearning;
 	}
+	
 	
 }

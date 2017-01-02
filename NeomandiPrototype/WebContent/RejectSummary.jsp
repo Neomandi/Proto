@@ -218,7 +218,7 @@ th {
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a class="active" href="GetSummary.do">Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 	</ul>
 	<br/><br/>
@@ -284,13 +284,17 @@ th {
 	    myEarn=myEarn*100;
 	    myEarn=(int)myEarn;
 	    myEarn=myEarn/100;
+	    double deduction=TCharge;
+	    deduction=deduction*100;
+	    deduction=(int)deduction;
+	    deduction=deduction/100;
 	    System.out.println("in accept summary lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
 		    String status="";
 		    if(lot==qsold)
-	    		status+="Fully executed .Rejected by you";
+	    		status+="Fully executed .You have rejected the bid";
 	    			else
-	    		status+="Partially executed.Rejected by you";
+	    		status+="Partially executed.You have rejected the bid";
 	    	 	String lotsize1=String.valueOf(lot);
 	    	 	double lsize=Double.parseDouble(lotsize1);
 	    	 	lsize=lsize*100;
@@ -323,8 +327,12 @@ th {
 		    	<td  height="5%"><%=aprice%></td>
 		    </tr>
 		    <tr>
-		    	<th  bgcolor = '#00FF00' height="5%">Final price</th>
+		    	<th  bgcolor = '#00FF00' height="5%">Gross Earnings</th>
 		    	<td  height="5%"><%= fprice%></td>
+		    </tr>
+		     <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Deduction</th>
+		    	<td  height="5%"><%=deduction %></td>
 		    </tr>
 		    <tr>
 		     	<th bgcolor = '#00FF00'>Status</th>
@@ -332,7 +340,7 @@ th {
 			</tr>
 			<tr>
 		     	<th   bgcolor = '#00FF00'>My Earnings</th>
-		     	<td  ><%=myEarn %></td>
+		     	<td  >--</td>
 		   </tr>
 			
 		</table><br/>

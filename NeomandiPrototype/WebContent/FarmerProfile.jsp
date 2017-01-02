@@ -151,9 +151,9 @@ td
 <body>
 	<%@ include file="Fribbon.jsp" %><br><br>	
 	<ul>
-	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
+	   	<li><a  href="javascript:window.location = document.referrer;">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a href="GetSummary.do">Summary</a></li>
 		<li><a href="FarmerProfile.jsp" class="active">My Profile</a>
 	</ul>
 <div id = 'myProfile'>

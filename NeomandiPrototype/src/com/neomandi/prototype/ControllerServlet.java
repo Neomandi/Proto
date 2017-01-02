@@ -273,8 +273,7 @@ public class ControllerServlet extends HttpServlet {
 			String pass=(String) hs.getAttribute("pass");
 			System.out.println("in cs pass="+pass);
 			System.out.println("in cs name="+name);
-			String from=request.getParameter("from");
-			String to=request.getParameter("to");
+			
 			Model m = new Model();
 			sb=m.getSummary(name, pass, sb);
 			
@@ -285,6 +284,7 @@ public class ControllerServlet extends HttpServlet {
 			String averageprice=sb.getAverageprice();
 			String finalprice=sb.getFinalprice();
 			String status=sb.getStatus();
+			String myearnings=sb.getMyearning();
 			System.out.println(("in cs avg="+averageprice));
 			
 			HttpSession hsr=request.getSession();
@@ -410,6 +410,102 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 		}
+
+		if(uri.contains("BeforeAuction")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			String account=sb.getAccountnum();
+			System.out.println(("in cs avg="+averageprice));
+		
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+		
+		
+			rd=request.getRequestDispatcher("BeforeAuction.jsp");
+			HttpSession farmerstatus=request.getSession();
+			
+			 farmerstatus.setAttribute("lotnumber",lotnumber);
+			farmerstatus.setAttribute("accountnumber", account);
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if(uri.contains("DuringAuction")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			String account=sb.getAccountnum();
+			System.out.println(("in cs avg="+averageprice));
+		
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+		
+		
+			rd=request.getRequestDispatcher("DuringAuction.jsp");
+			HttpSession farmerstatus=request.getSession();
+			
+			 farmerstatus.setAttribute("lotnumber",lotnumber);
+			farmerstatus.setAttribute("accountnumber", account);
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
 		if(uri.contains("AfterAuctionSummary")){
 			System.out.println("in cs uri="+uri);
@@ -430,7 +526,7 @@ public class ControllerServlet extends HttpServlet {
 			int lsize=Integer.parseInt(lotsize);
 			int qsold=Integer.parseInt(quantitysold);
 			
-			 status="Your Auction closed";
+			
 			
 			System.out.println(("in cs avg="+averageprice));
 			String msg="reject";
@@ -440,7 +536,7 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("finalprice", finalprice);
-			hsr.setAttribute("status", status);
+		
 			
 			rd=request.getRequestDispatcher("AuctionSummary.jsp");
 			HttpSession farmerstatus=request.getSession();

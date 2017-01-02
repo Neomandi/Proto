@@ -431,9 +431,14 @@ public void setTraderpwd(String traderpwd) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		List<SummaryBean> al=new ArrayList<SummaryBean>();
+		
 		String aadhar="";
 		String account="";
+		String finalprice="";
+		String myearnings="";
+		String status="";
+		String averageprice="";
+		String quantitysold="";
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -467,7 +472,7 @@ public void setTraderpwd(String traderpwd) {
 				System.out.println("in cs farmerid="+farmerid);
 				
 				//getsummary details
-				ps = con.prepareStatement("select * from productentry where  farmerid=?" );
+				ps = con.prepareStatement("select * from productentry  where  farmerid=?" );
 				ps.setString(1,farmerid);
 				System.out.println(ps);
 				System.out.println("Execute"+ps.executeQuery());
@@ -482,12 +487,45 @@ public void setTraderpwd(String traderpwd) {
 					 sb.setQuantitysold(rs.getString("quantitybidfor"));
 					 sb.setAverageprice(rs.getString("averageprice"));
 					 sb.setAccountnum(account);
+					 sb.setMyearning("myearning");
 					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
 				sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
+				averageprice=sb.getAverageprice();
+				quantitysold=sb.getQuantitysold();
+				double aprice=Double.parseDouble(averageprice);
+			    aprice=aprice*100;
+			    aprice=(int)aprice;
+			    aprice=aprice/100;
+			    double qsold=Double.parseDouble(quantitysold);
+			    qsold=qsold*100;
+			    qsold=(int)qsold;
+			    qsold=qsold/100;
+			    double fprice=aprice*qsold;
+			    fprice=fprice*100;
+			    fprice=(int)fprice;
+			    fprice=fprice/100;
+				double MUCharge=1*fprice/100;
+				double PACharge=100;
+				double EPUCharge=100;
+				double TCharge=MUCharge+PACharge+EPUCharge;
+			    double myEarn=fprice-TCharge;
+			    myEarn=myEarn*100;
+			    myEarn=(int)myEarn;
+			    myEarn=myEarn/100;
+			    ps = con.prepareStatement("UPDATE  productentry  SET averageprice=?,quantitybidfor=?,finalprice=?,myearnings=? where  farmerid=?" );
+			    ps.setDouble(1,aprice);
+			    ps.setDouble(2,qsold);
+			    ps.setDouble(3, fprice);
+				ps.setDouble(4,myEarn);
+			    ps.setString(5,farmerid);
+			    System.out.println(ps);
+				System.out.println("Execute"+ps.executeUpdate());
+				rs=ps.getResultSet();
+				System.out.println(rs+" "+ps.getResultSet());
 				
-				con.commit();
+			    con.commit();
 			}
 		}
 		catch(SQLException e)
@@ -2764,7 +2802,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					quantity = rs.getString("quantity");
 					slotnumber = rs.getString("slotnumber");
 				}
-				quantitynew = Integer.parseInt(quantity) - Integer.parseInt(quantitybidfor);
+				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
 				if(quantity.equals(quantitybidfor))
 				{

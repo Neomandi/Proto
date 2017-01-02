@@ -7,7 +7,8 @@
 	javax.servlet.http.HttpServlet,
  	javax.servlet.http.HttpServletRequest,
 	javax.servlet.http.HttpServletResponse,
-	java.sql.SQLException"
+	java.sql.SQLException,java.text.SimpleDateFormat,
+	java.util.*"
  %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -150,8 +151,8 @@ li a:hover:not(.active) {
 
 <ul>
    	 <li><a href="FarmerMaster.jsp" >Auction</a></li>
- 	 <li><a class="active" href="Lotdetails.jsp">My Lots</a></li>
-	 <li><a  href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+ 	 <li><a class="active"  id="ld" href="Lotdetails.jsp">My Lots</a></li>
+	 <li><a class="classbeauty" id="ts" href="GetSummary.do"> Summary</a></li>
 	 <li><a href="FarmerProfile.jsp">My Profile</a>
 </ul>
 <%
@@ -215,5 +216,6 @@ li a:hover:not(.active) {
 }
 %>
 </table>
+
 </body>
 </html>

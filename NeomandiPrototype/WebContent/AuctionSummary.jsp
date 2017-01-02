@@ -217,7 +217,7 @@ th {
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a  class="active" href="FarmerTradeSummary.jsp">Trade Summary</a></li>
+		<li><a  class="active" href="FarmerTradeSummary.jsp"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 	</ul>
  	<center>
@@ -297,10 +297,10 @@ th {
 		    	<th width="5%" bgcolor = '#00FF00' height="5%">Final price</th>
 		    	<td width="5%" height="5%"><%= fprice%></td>
 		    </tr>
-		    <tr>
+		    <!--  <tr>
 		     	<th bgcolor = '#00FF00'>Status</th>
 		     	<font color="blue"><td width="10%" height="5%"><%= status %></td></font>
-			</tr>
+			</tr>-->
 			<tr>
 		     	<th width="5%"  bgcolor = '#00FF00' height="5%">My Earnings</th>
 		     	<td width="5%" height="5%"><%=myEarn %></td>
