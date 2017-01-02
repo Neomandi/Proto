@@ -2871,6 +2871,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		ResultSet rs = null;
 		ResultSet rs1 = null;
 		FarmerHistoryBean fhb=new FarmerHistoryBean();
+		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2903,13 +2904,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					ps.setString(15,fhb.getStatus());
 					ps.setString(16,fhb.getEarnings());
 					ps.execute();
-					
-					
 				}
+				
+				
 				String quantity = "";
 				int quantitynew = 0;
 				String slotnumber = "";
-				
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
@@ -2923,13 +2923,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				}
 				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
-				//inserting into history table
-				
-				
-				
-				
-				
-				//
 				if(quantity.equals(quantitybidfor))
 				{
 					String sql1 = "DELETE FROM productentry WHERE lotnumber = ?";
