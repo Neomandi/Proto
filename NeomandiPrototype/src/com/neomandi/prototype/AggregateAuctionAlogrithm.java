@@ -43,7 +43,7 @@ public class AggregateAuctionAlogrithm {
 			con.setAutoCommit(false);
 			
 			
-			String sql1 = "SELECT tl.lotnum, tb.aadharnumber, tb.bidprice, tl.quantityneeded, tb.bestbid FROM traders_bid_price tb, tradelist tl WHERE tb.lotnum = tl.lotnum and tb.aadharnumber = tl.aadharnumber ORDER BY tb.bidprice desc, tl.quantityneeded desc";
+			String sql1 = "SELECT tl.lotnum, tb.aadharnumber, tb.bidprice, tl.quantityneeded, tb.bestbid FROM traders_bid_price tb, tradelist tl WHERE tb.lotnum = tl.lotnum and tb.aadharnumber = tl.aadharnumber ORDER BY tb.bidprice desc, tl.quantityneeded desc, tb.bid_time";
 			stmt1 = con.createStatement();
 			rs = stmt1.executeQuery(sql1);
 			//System.out.println(rs);
