@@ -155,6 +155,7 @@ td
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="GetSummary.do">Summary</a></li>
 		<li><a href="FarmerProfile.jsp" class="active">My Profile</a>
+		<li><a href="FarmerSummaryInt.jsp">History</a></li>
 	</ul>
 <div id = 'myProfile'>
 <br/><br/>

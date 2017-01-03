@@ -154,6 +154,7 @@ li a:hover:not(.active) {
  	 <li><a class="active"  id="ld" href="Lotdetails.jsp">My Lots</a></li>
 	 <li><a class="classbeauty" id="ts" href="GetSummary.do"> Summary</a></li>
 	 <li><a href="FarmerProfile.jsp">My Profile</a>
+	 <li><a href="FarmerSummaryInt.jsp">History</a></li>
 </ul>
 <%
 	 

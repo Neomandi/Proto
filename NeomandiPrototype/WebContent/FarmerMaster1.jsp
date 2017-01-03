@@ -131,6 +131,7 @@
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
 		<li><a href="AfterAuctionSummary.do"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
+		<li><a href="FarmerSummaryInt.jsp">History</a></li>
 	</ul>
 	 <%	 	
 	 	
