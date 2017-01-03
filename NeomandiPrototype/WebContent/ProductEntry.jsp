@@ -50,6 +50,7 @@ td
 input[type = text]
 {
 	border: none;
+	font-size: 20px;
 }
 #pic
 {
@@ -99,6 +100,9 @@ input[type=reset]
 	border-radius: 4px;
 	height: 30px;
     width: 75px;
+}
+body{
+	background-color: rgb(192,192,192);
 }
 </style>
 </head>
