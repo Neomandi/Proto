@@ -1276,7 +1276,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//SubmitIncrement2
-		if(uri.contains("SubmitIncrement2"))
+		/*if(uri.contains("SubmitIncrement2"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
@@ -1332,7 +1332,7 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}
+		}*/
 		
 		//RemoveLotnumber
 		if(uri.contains("removelotnumber"))
