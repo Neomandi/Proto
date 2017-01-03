@@ -2803,10 +2803,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						System.out.println("in cs farmerid="+farmerid);
 						
 						//getsummary details
-						ps = con.prepareStatement("select * from productentry where farmerid=?  " );
-						ps.setString(1,farmerid);
-						//ps.setString(2,from);
-						//ps.setString(3,to);
+						ps = con.prepareStatement("select p.lotnumber, p.produce,p.quantity,p.quantitybidfor,p.averageprice,p.finalprice,p.myearnings,f.aadharnum  from productentry p,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and p.farmerid=f.aadharnum ;" );
+						ps.setString(1,name);
+						ps.setString(2,from);
+						ps.setString(3,to);
+						ps.setString(4,pass);
+
 						System.out.println(ps);
 						System.out.println("Execute"+ps.executeQuery());
 						rs=ps.getResultSet();
@@ -2881,26 +2883,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			else
 			{
 				con.setAutoCommit(false);
-				ps=con.prepareStatement("insert into history values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
-				rs=ps.executeQuery();
-				while(rs.next()){
-					ps.setString(1,fhb.getFarmerid());
-					ps.setString(2,fhb.getLotnumber());
-					ps.setString(3,fhb.getMarketcode());
-					ps.setString(4,fhb.getKindofpro());
-					ps.setString(5,fhb.getProduce());
-					ps.setString(6,fhb.getGrade());
-					ps.setString(7,fhb.getQuantity());
-					ps.setString(8,fhb.getPhoto());
-					ps.setString(9,fhb.getDate());
-					ps.setString(10,fhb.getTime());
-					ps.setString(11,fhb.getSlotnumber());
-					ps.setString(12,fhb.getAverageprice());
-					ps.setString(13,fhb.getQuantitybidfor());
-					ps.setString(14,fhb.getFinalprice());
-					ps.setString(15,fhb.getStatus());
-					ps.setString(16,fhb.getEarnings());
-					ps.execute();
+				
 					
 					
 				}
@@ -2965,7 +2948,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				}
 				
 				con.commit();
-			}
+			
 			
 		}
 		catch(SQLException e)
