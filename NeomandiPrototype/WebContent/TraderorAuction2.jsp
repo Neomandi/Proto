@@ -472,6 +472,7 @@ else
 					System.out.println("list of lotnum inside mfcb is "+mfcb);
 					if(mfcb.getLotnum().equals(tlb.getLotnum()))
 					{
+						System.out.println("lot cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
 <tr>
 <td align="center"><%=tlb.getLotnum()%></td>

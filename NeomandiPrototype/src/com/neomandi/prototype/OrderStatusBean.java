@@ -12,6 +12,9 @@ String bestbid;
 String bidprice;
 String myfinalcost;
 String farmeraccept;
+
+
+
 public String getFarmeraccept() {
 	return farmeraccept;
 }
