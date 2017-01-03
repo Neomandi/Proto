@@ -311,7 +311,7 @@ th {
 			</tr>
 			<tr>
 		     	<th width="5%"  bgcolor = '#00FF00' height="5%">My Net Earnings</th>
-		     	<td width="5%" height="5%"><%=myEarn %></td>
+		     	<td width="5%" height="5%">--</td>
 		   </tr>
 			
 		</table><br/>
