@@ -686,7 +686,7 @@ countdown(minutes,seconds,hours);
  </script>
  <br/>
  <br/>
- <form action="FarmerSummaryInt.jsp">
+  <form action="FarmerSummaryInt.jsp">
  <input type="submit" value="History" />
  
  </form>
