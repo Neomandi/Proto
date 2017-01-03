@@ -2928,7 +2928,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				double nfinalprice = finalprice;
 				double percentage = nfinalprice/100;
 				double myearnings = 0.0;
-				myearnings = finalprice - 100 - percentage;
+				myearnings = finalprice - 200 - percentage;
 				
 				String sql3 = "INSERT INTO history VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt2 = con.prepareStatement(sql3); 
@@ -2947,7 +2947,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				pstmt2.setString(13, quantitybidfor);
 				pstmt2.setDouble(14, finalprice);
 				pstmt2.setString(15, null);
-				pstmt2.setDouble(15, myearnings);
+				pstmt2.setDouble(16, myearnings);
 				pstmt2.execute();
 				
 				
