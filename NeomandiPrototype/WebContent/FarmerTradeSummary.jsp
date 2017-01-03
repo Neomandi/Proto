@@ -202,6 +202,14 @@ li a:hover:not(.active) {
 <%@ include file="Fribbon.jsp" %><br><br>
  
 
+ 	<ul>
+	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
+		<li><a href="Lotdetails.jsp">My Lots</a></li>
+		<li><a  href="GetSummary.do"> Summary</a></li>
+		<li><a href="FarmerProfile.jsp">My Profile</a>
+		<li><a href="FarmerSummaryInt.jsp" class="active">History</a></li>
+	</ul>
+ 	<br/>
  
 <center><font color="#C71585"><h1>Farmer Summary</h1></font></center>
 
