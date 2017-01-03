@@ -1,5 +1,6 @@
 package com.neomandi.prototype;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -2870,7 +2871,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		PreparedStatement ps= null;
 		ResultSet rs = null;
 		ResultSet rs1 = null;
-		FarmerHistoryBean fhb=new FarmerHistoryBean();
+		PreparedStatement pstmt2 = null;
 		
 		try
 		{
@@ -2884,32 +2885,22 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			{
 				con.setAutoCommit(false);
 				
-				ps=con.prepareStatement("insert into history values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
-				rs=ps.executeQuery();
-				while(rs.next()){
-					ps.setString(1,fhb.getFarmerid());
-					ps.setString(2,fhb.getLotnumber());
-					ps.setString(3,fhb.getMarketcode());
-					ps.setString(4,fhb.getKindofpro());
-					ps.setString(5,fhb.getProduce());
-					ps.setString(6,fhb.getGrade());
-					ps.setString(7,fhb.getQuantity());
-					ps.setString(8,fhb.getPhoto());
-					ps.setString(9,fhb.getDate());
-					ps.setString(10,fhb.getTime());
-					ps.setString(11,fhb.getSlotnumber());
-					ps.setString(12,fhb.getAverageprice());
-					ps.setString(13,fhb.getQuantitybidfor());
-					ps.setString(14,fhb.getFinalprice());
-					ps.setString(15,fhb.getStatus());
-					ps.setString(16,fhb.getEarnings());
-					ps.execute();
-				}
-				
-				
 				String quantity = "";
 				int quantitynew = 0;
 				String slotnumber = "";
+				String farmerid = "";
+				String marketcode = "";
+				String kindofpro = "";
+				String produce = "";
+				String qualitygrade = "";
+				double averageprice = 0;
+				InputStream photo = null;
+				
+				SimpleDateFormat dformat = new SimpleDateFormat("MM/dd/yyyy");
+				String date=dformat.format(new Date());
+				
+				SimpleDateFormat tformat = new SimpleDateFormat("HH:mm:ss.SSS");
+				String time=dformat.format(new Date());
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
@@ -2920,7 +2911,33 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					
 					quantity = rs1.getString("quantity");
 					slotnumber = rs1.getString("slotnumber");
+					farmerid = rs1.getString("farmerid");
+					marketcode = rs1.getString("marketcode");
+					kindofpro = rs1.getString("kindofpro");
+					produce = rs1.getString("produce");
+					qualitygrade = rs1.getString("qualitygrade");
+					averageprice = rs1.getDouble("averageprice");
+					photo = (InputStream) rs1.getBlob("photo");
 				}
+				
+				String sql3 = "INSERT INTO history VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				pstmt2 = con.prepareStatement(sql3); 
+				pstmt2.setString(1, farmerid);
+				pstmt2.setString(2, lotnumber);
+				pstmt2.setString(3, marketcode);
+				pstmt2.setString(4, kindofpro);
+				pstmt2.setString(5, produce);
+				pstmt2.setString(6, qualitygrade);
+				pstmt2.setString(7, quantity);
+				pstmt2.setBlob(8, photo);
+				pstmt2.setString(9,	date);
+				pstmt2.setString(10, time);
+				pstmt2.setString(11, slotnumber);
+				pstmt2.setDouble(12, averageprice);
+				pstmt2.setString(13, quantitybidfor);
+				pstmt2.execute();
+				
+				
 				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
 				if(quantity.equals(quantitybidfor))

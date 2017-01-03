@@ -1,5 +1,7 @@
 package com.neomandi.prototype;
 
+import java.io.InputStream;
+
 public class FarmerHistoryBean {
 	private String farmerid;
 	private String lotnumber;
@@ -17,34 +19,13 @@ public class FarmerHistoryBean {
 	private String earnings;
 	private String deduction;
 	private String status;
-	private String photo;
-	
-	
-	public FarmerHistoryBean(String farmerid, String lotnumber, String kindofpro, String produce, String quantity,
-			String date, String time, String grade, String marketcode, String slotnumber, String averageprice,
-			String quantitybidfor, String finalprice, String earnings, String deduction, String status, String photo) {
-		super();
-		this.farmerid = farmerid;
-		this.lotnumber = lotnumber;
-		this.kindofpro = kindofpro;
-		this.produce = produce;
-		this.quantity = quantity;
-		Date = date;
-		this.time = time;
-		this.grade = grade;
-		this.marketcode = marketcode;
-		this.slotnumber = slotnumber;
-		this.averageprice = averageprice;
-		this.quantitybidfor = quantitybidfor;
-		this.finalprice = finalprice;
-		this.earnings = earnings;
-		this.deduction = deduction;
-		this.status = status;
-		this.photo = photo;
+	private InputStream photo;
+	public String getFarmerid() {
+		return farmerid;
 	}
-	public FarmerHistoryBean(){
-		 System.out.println("inside no arg cons farmerhistorybean");
-	 }
+	public void setFarmerid(String farmerid) {
+		this.farmerid = farmerid;
+	}
 	public String getLotnumber() {
 		return lotnumber;
 	}
@@ -129,14 +110,19 @@ public class FarmerHistoryBean {
 	public void setDeduction(String deduction) {
 		this.deduction = deduction;
 	}
-	@Override
-	public String toString() {
-		return "FarmerHistoryBean [farmerid=" + farmerid + ", lotnumber=" + lotnumber + ", kindofpro=" + kindofpro
-				+ ", produce=" + produce + ", quantity=" + quantity + ", Date=" + Date + ", time=" + time + ", grade="
-				+ grade + ", marketcode=" + marketcode + ", slotnumber=" + slotnumber + ", averageprice=" + averageprice
-				+ ", quantitybidfor=" + quantitybidfor + ", finalprice=" + finalprice + ", earnings=" + earnings
-				+ ", deduction=" + deduction + ", status=" + status + ", photo=" + photo + "]";
+	public String getStatus() {
+		return status;
 	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public InputStream getPhoto() {
+		return photo;
+	}
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -256,24 +242,13 @@ public class FarmerHistoryBean {
 			return false;
 		return true;
 	}
-	
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-	public String getFarmerid() {
-		return farmerid;
-	}
-	public void setFarmerid(String farmerid) {
-		this.farmerid = farmerid;
+	@Override
+	public String toString() {
+		return "FarmerHistoryBean [farmerid=" + farmerid + ", lotnumber=" + lotnumber + ", kindofpro=" + kindofpro
+				+ ", produce=" + produce + ", quantity=" + quantity + ", Date=" + Date + ", time=" + time + ", grade="
+				+ grade + ", marketcode=" + marketcode + ", slotnumber=" + slotnumber + ", averageprice=" + averageprice
+				+ ", quantitybidfor=" + quantitybidfor + ", finalprice=" + finalprice + ", earnings=" + earnings
+				+ ", deduction=" + deduction + ", status=" + status + ", photo=" + photo + "]";
 	}
 	
 	
