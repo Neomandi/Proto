@@ -2908,7 +2908,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, lotnumber);
 				rs1 = pstmt.executeQuery();
-				if(rs.next())
+				while(rs1.next())
 				{
 					
 					quantity = rs1.getString("quantity");
