@@ -2804,10 +2804,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						System.out.println("in cs farmerid="+farmerid);
 						
 						//getsummary details
-						ps = con.prepareStatement("select * from productentry where farmerid=?  " );
-						ps.setString(1,farmerid);
-						//ps.setString(2,from);
-						//ps.setString(3,to);
+						ps = con.prepareStatement("select p.lotnumber, p.produce,p.quantity,p.quantitybidfor,p.averageprice,p.finalprice,p.myearnings,f.aadharnum  from productentry p,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and p.farmerid=f.aadharnum ;" );
+						ps.setString(1,name);
+						ps.setString(2,from);
+						ps.setString(3,to);
+						ps.setString(4,pass);
+
 						System.out.println(ps);
 						System.out.println("Execute"+ps.executeQuery());
 						rs=ps.getResultSet();
@@ -2884,7 +2886,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			else
 			{
 				con.setAutoCommit(false);
-				
+
 				String quantity = "";
 				int quantitynew = 0;
 				String slotnumber = "";
