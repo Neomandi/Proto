@@ -228,13 +228,13 @@ li a:hover:not(.active) {
   <table id = 'mytable' border style="width:60%">
   	<tr>
 		<th>Lot Number</th>
-		<th>Produce</th>
+		<!-- <th>Produce</th> -->
 		<th>Quantity </th>
 		<th>Quantity Bid for</th>
 		<th>Average Price</th>
-		<th>My Gross Earnings</th>
+		<th>Gross Earnings</th>
 		<th>Deduction</th>
-		<th>My Net Earnings</th>
+		<th>Net Earnings</th>
 		
 	</tr>
 	<tr>
@@ -245,14 +245,28 @@ li a:hover:not(.active) {
 		for(Object o:al)
 		{
 			FarmerHistoryBean fhb=(FarmerHistoryBean)o;%>
-			
+			<%String finalprice=fhb.getFinalprice();
+			double fprice=Double.parseDouble(finalprice);
+			double MUCharge=1*fprice/100;
+			double PACharge=100;
+			double EPUCharge=100;
+			double TCharge=MUCharge+PACharge+EPUCharge;
+		    double myEarn=fprice-TCharge;
+		    myEarn=myEarn*100;
+		    myEarn=(int)myEarn;
+		    myEarn=myEarn/100;
+		    double deduction=TCharge;
+		    deduction=deduction*100;
+		    deduction=(int)deduction;
+		    deduction=deduction/100;
+			 %>
 			<td><%=fhb.getLotnumber()  %></td>
-			<td><%=fhb.getProduce()%>
+			<!-- <td><%=fhb.getProduce()%> -->
 			<td><%=fhb.getQuantity() %></td>
 			<td><%=fhb.getQuantitybidfor() %></td>
 			<td><%=fhb.getAverageprice()%></td>
 			<td><%=fhb.getFinalprice() %></td>
-			<td><%=fhb.getDeduction() %></td>
+			<td><%=deduction %></td>
 			<td><%=fhb.getEarnings() %></td>
 	</tr>
 		<%
@@ -271,7 +285,7 @@ li a:hover:not(.active) {
 			$.each(table, function(i, row){
 				$.each(row, function(j,cell){
 			//	if(j=="Lot Number"){
-				 doc.cell(1,10,135,20,cell,i);	
+				 doc.cell(1,10,110,20,cell,i);	
 				//}
 				//else{
 					//doc.cell(1,10,90,20,cell,i);

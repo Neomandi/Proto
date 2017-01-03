@@ -2804,7 +2804,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						System.out.println("in cs farmerid="+farmerid);
 						
 						//getsummary details
-						ps = con.prepareStatement("select p.lotnumber, p.produce,p.quantity,p.quantitybidfor,p.averageprice,p.finalprice,p.myearnings,f.aadharnum  from productentry p,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and p.farmerid=f.aadharnum ;" );
+						ps = con.prepareStatement("select * from history h,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and h.farmerid=f.aadharnum ;" );
 						ps.setString(1,name);
 						ps.setString(2,from);
 						ps.setString(3,to);
@@ -2823,7 +2823,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							fhb.setLotnumber(rs.getString("lotnumber"));
 							fhb.setQuantity(rs.getString("quantity"));
 							fhb.setAverageprice(rs.getString("averageprice"));
-							fhb.setDate(rs.getString("Date"));
+							fhb.setDate(rs.getString("created_at"));
 							 deduction="null";
 							fhb.setDeduction("deduction");
 							fhb.setEarnings(rs.getString("myearnings"));
@@ -2897,12 +2897,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				String qualitygrade = "";
 				double averageprice = 0;
 				InputStream photo = null;
-				
-				SimpleDateFormat dformat = new SimpleDateFormat("MM/dd/yyyy");
-				String date=dformat.format(new Date());
-				
-				SimpleDateFormat tformat = new SimpleDateFormat("HH:mm:ss.SSS");
-				String time=tformat.format(new Date());
+			
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
@@ -2922,15 +2917,16 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					photo = (InputStream) rs1.getBlob("photo");
 				}
 				
+				System.out.println("avg="+averageprice);
 				double finalprice = 0.0;
 				finalprice =  averageprice * Double.parseDouble(quantitybidfor);
-				
+				System.out.println("avg="+averageprice+"qty="+quantitybidfor+"finalprice="+finalprice);
 				double nfinalprice = finalprice;
 				double percentage = nfinalprice/100;
 				double myearnings = 0.0;
-				myearnings = finalprice - 100 - percentage;
-				
-				String sql3 = "INSERT INTO history VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				myearnings = finalprice - 200 - percentage;
+				System.out.println("my earnings="+myearnings);
+				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity,photo,slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt2 = con.prepareStatement(sql3); 
 				pstmt2.setString(1, farmerid);
 				pstmt2.setString(2, lotnumber);
@@ -2940,14 +2936,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				pstmt2.setString(6, qualitygrade);
 				pstmt2.setString(7, quantity);
 				pstmt2.setBlob(8, photo);
-				pstmt2.setString(9,	date);
-				pstmt2.setString(10, time);
-				pstmt2.setString(11, slotnumber);
-				pstmt2.setDouble(12, averageprice);
-				pstmt2.setString(13, quantitybidfor);
-				pstmt2.setDouble(14, finalprice);
-				pstmt2.setString(15, null);
-				pstmt2.setDouble(15, myearnings);
+				pstmt2.setString(9, slotnumber);
+				pstmt2.setDouble(10, averageprice);
+				pstmt2.setString(11, quantitybidfor);
+				pstmt2.setDouble(12, finalprice);
+				pstmt2.setString(13, null);
+				pstmt2.setDouble(14, myearnings);
 				pstmt2.execute();
 				
 				

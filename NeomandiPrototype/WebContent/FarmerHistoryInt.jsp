@@ -10,6 +10,6 @@
 	<jsp:useBean id="fhbean" class="com.neomandi.prototype.FarmerHistoryBean" scope="request">
  		<jsp:setProperty name="fhbean" property="*"/>
  	</jsp:useBean>
- <jsp:forward page="FarmerHistorys.do"/>
+ <jsp:forward page="FarmerHistory.do"/>
 </body>
 </html>
