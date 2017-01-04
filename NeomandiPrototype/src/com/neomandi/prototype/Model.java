@@ -491,7 +491,7 @@ public void setTraderpwd(String traderpwd) {
 					 sb.setMyearning("myearning");
 					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
-				sb.setAccountnum(account);
+				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
 				averageprice=sb.getAverageprice();
 				quantitysold=sb.getQuantitysold();

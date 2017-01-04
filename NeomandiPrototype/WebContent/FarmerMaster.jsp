@@ -11,8 +11,8 @@
 	 java.sql.SQLException,
 	 java.text.SimpleDateFormat,
 	 java.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+     <html>
 	<head>
 		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> 
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -76,8 +76,7 @@
 		
 		li a:hover:not(.active) {
 		    color: white;
-		    
-		}
+		 }
 		
 		.active {
 		    border: 1px solid black;
