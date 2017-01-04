@@ -252,7 +252,8 @@ th {
 			double MUCharge=1*fprice/100;
 			double PACharge=100;
 			double EPUCharge=100;
-			double TCharge=MUCharge+PACharge+EPUCharge;
+			double Transport=500;
+			double TCharge=MUCharge+PACharge+EPUCharge+Transport;
 		    double myEarn=fprice-TCharge;
 		    myEarn=myEarn*100;
 		    myEarn=(int)myEarn;
