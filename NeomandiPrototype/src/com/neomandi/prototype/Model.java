@@ -491,7 +491,7 @@ public void setTraderpwd(String traderpwd) {
 					 sb.setMyearning("myearning");
 					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
-				sb.setAccountnum(account);
+				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
 				averageprice=sb.getAverageprice();
 				quantitysold=sb.getQuantitysold();
@@ -688,7 +688,7 @@ public void setTraderpwd(String traderpwd) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -2921,7 +2921,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					produce = rs1.getString("produce");
 					qualitygrade = rs1.getString("qualitygrade");
 					averageprice = rs1.getDouble("averageprice");
-					photo = (InputStream) rs1.getBlob("photo");
+					photo = rs1.getBlob("photo").getBinaryStream();
 				}
 				
 				System.out.println("avg="+averageprice);
@@ -2959,6 +2959,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				
 				quantitynew = (int) (Double.parseDouble(quantity) - Double.parseDouble(quantitybidfor));
 				
+				System.out.println("Quantity: "+quantity);
+				System.out.println("QuantityBidfor: "+quantitybidfor);
+				System.out.println(quantity.equals(quantitybidfor));
 				if(quantity.equals(quantitybidfor))
 				{
 					String sql1 = "DELETE FROM productentry WHERE lotnumber = ?";
