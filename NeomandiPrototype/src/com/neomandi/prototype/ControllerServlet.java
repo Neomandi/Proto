@@ -1148,9 +1148,7 @@ public class ControllerServlet extends HttpServlet {
 		{
 			String increment=request.getParameter("increment");
 			String lotnum=request.getParameter("lotnum");
-			int assigned=Integer.parseInt(request.getParameter("quantityassigned"));
-			int quantityneeded=Integer.parseInt(request.getParameter("quantityneeded"));
-			if(assigned==quantityneeded)
+			if(increment.isEmpty())
 			{
 				request.setAttribute("assigned","assigned");
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
@@ -1161,8 +1159,8 @@ public class ControllerServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 			}
-			System.out.println("lotnum is "+lotnum);
 			System.out.println("***************************************************************************");
+			System.out.println("lotnum is "+lotnum);
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			try

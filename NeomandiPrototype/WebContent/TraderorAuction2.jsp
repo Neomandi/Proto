@@ -430,49 +430,49 @@ if(msg1!=null)
 }
 else
 {
-String msg=(String)request.getAttribute("msg");
-if(msg!=null)
-{
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('your final coast has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
-  	 out.println("location='TraderBlock.do';");
- 	 out.println("</script>");
-}
-else
-{	
-	String msg2=(String)request.getAttribute("assigned");
-	if(msg2!=null)
+	String msg=(String)request.getAttribute("msg");
+	if(msg!=null)
 	{
-		out.println("<script type=\"text/javascript\">");
-	  	out.println("alert('since you are the best bidder you cant increase the bid');");
-	  	out.println("location='TradeorAuction.do';");
-	 	out.println("</script>");
+		 out.println("<script type=\"text/javascript\">");
+	  	 out.println("alert('your final coast has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	 out.println("location='TraderBlock.do';");
+	 	 out.println("</script>");
 	}
 	else
-	{
-	int i=0;
-	int finalcostlist=0;
-	int tradelist=0;
-	if(request.getAttribute("remove")==null)//not removed any row
-	{
-		HttpSession traderlistbean=request.getSession(false);
-		List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-		System.out.println("inside trderlist bean"+al);
-		for(Object o:al)
+	{	
+		String msg2=(String)request.getAttribute("assigned");
+		if(msg2!=null)
 		{
-			TradeListBean tlb=(TradeListBean)o;
-			System.out.println("we are bidding for "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
-			if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
-			{						
-				HttpSession MyFinalCost=request.getSession(false);
-				List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
-				for(Object m:l)
-				{	
-					MyFinalCostBean mfcb=(MyFinalCostBean)m;
-					System.out.println("list of lotnum inside mfcb is "+mfcb);
-					if(mfcb.getLotnum().equals(tlb.getLotnum()))
-					{
-						System.out.println("lot cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
+			out.println("<script type=\"text/javascript\">");
+		  	out.println("alert('You need to enter the number of bid to be increased before');");
+		  	out.println("location='TradeorAuction.do';");
+		 	out.println("</script>");
+		}
+		else
+		{
+			int i=0;
+			int finalcostlist=0;
+			int tradelist=0;
+			if(request.getAttribute("remove")==null)//not removed any row
+			{
+				HttpSession traderlistbean=request.getSession(false);
+				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
+				System.out.println("inside traderlist bean"+al);
+				for(Object o:al)
+				{
+					TradeListBean tlb=(TradeListBean)o;
+					System.out.println("we are bidding for "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
+					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
+					{						
+						HttpSession MyFinalCost=request.getSession(false);
+						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
+						for(Object m:l)
+						{	
+							MyFinalCostBean mfcb=(MyFinalCostBean)m;
+							System.out.println("list of lotnum inside mfcb is "+mfcb);
+							if(mfcb.getLotnum().equals(tlb.getLotnum()))
+							{
+								System.out.println("lot cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
 <tr>
 <td align="center"><%=tlb.getLotnum()%></td>
@@ -489,6 +489,11 @@ else
 <input type="hidden" name="lotnum" id="lotnum<%=tlb.getLotnum()%>" value="<%out.print(tlb.getLotnum());%>"></input>
 <td><input type="number" min="0" name="increment" id="number<%out.println(tlb.getLotnum());%>" ></td>
 <td><a href="#" onclick="document.getElementById('form<%=tlb.getLotnum()%>').submit();" id="submit<%=tlb.getLotnum()%>"class=" more1">SUBMIT</a></td> 
+<script>
+var number=document.getElementById(number<%out.println(tlb.getLotnum());%>);
+if(number.equals(null))
+	alert('You need to enter the number of bid to be increased before');
+</script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();
 int quantityneeded=Integer.parseInt(quantityneededs);
@@ -623,6 +628,11 @@ if(assigned==needed)
 <input type="hidden" name="lotnum" id="lotnum<%=tlbr.getLotnum()%>" value="<%out.print(tlbr.getLotnum());%>"></input>
 <td><input type="number" min="0" name="increment" id="number<%out.println(tlbr.getLotnum());%>"></td>
 <td><a href="#" onclick="document.getElementById('form<%=tlbr.getLotnum()%>').submit();" class=" more1">SUBMIT</a></td>
+<script>
+var number=document.getElementById(number<%out.println(tlbr.getLotnum());%>);
+if(number.equals(null))
+	alert('You need to enter the number of bid to be increased before');
+	</script>
 </form>
 <script>
 	function funct<%=tlbr.getLotnum()%>()
@@ -700,7 +710,7 @@ if(assigned*1!=0)
 	//console.log("inside block");
 	$(document).ready(function(){
     $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
-	    });
+});
 	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
 }
 </script>
@@ -829,16 +839,12 @@ var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
 var assigned=new  Number(assigneds);
 var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
 var needed=new  Number(neededs);
-//console.log("volume assigned is "+assigned+"");
-//console.log("volume needed is "+needed+"");
 if(assigned-needed==0)
 {
-	//console.log("assigned=needed");
 	document.getElementById('submit<%=tlbr.getLotnum()%>').removeAttribute("onclick");
 	document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 }
 else
-	//console.log("assigned!=needed");
 console.log(assigned*1==1);
 if(assigned*1!=0)
 {
@@ -871,7 +877,8 @@ if(block*1==1)
     $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
 	    });
 	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
-}</script>
+}
+</script>
 </tr>
 <% }}}}}}}%>
 <tr>
