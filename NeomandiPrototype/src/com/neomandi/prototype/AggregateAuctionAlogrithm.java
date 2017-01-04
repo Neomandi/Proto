@@ -51,6 +51,10 @@ public class AggregateAuctionAlogrithm {
 			String sql2 = "UPDATE traders_bid_price SET bestbid = ?, quantityassigned = ? WHERE aadharnumber = ?";
 			pstmt = con.prepareStatement(sql2);
 			
+			PreparedStatement pstmt4 = null;
+			String sql5 = "INSERT INTO auction_result(lotnumber,quantityassigned,aadharnumber) VALUES(?,?,?)";
+			pstmt4 = con.prepareStatement(sql5);
+			
 			while(rs.next())
 			{
 				AggregateDataBean ab = new AggregateDataBean();
@@ -107,6 +111,15 @@ public class AggregateAuctionAlogrithm {
 						pstmt.executeUpdate();
 						System.out.println();
 						
+						//Auction results data
+						pstmt4.setString(1, lotnum);
+						System.out.println("Auction_result lotnumber: "+lotnum);
+						pstmt4.setLong(2, li.get(i).getQuantityneeded());
+						System.out.println("Auction_result Quant needed: "+li.get(i).getQuantityneeded());
+						pstmt4.setLong(3, li.get(i).getAadharnumber());
+						System.out.println("Auction_result Aadharnum: "+li.get(i).getAadharnumber());
+						pstmt4.execute();
+						
 						break;
 					}
 					else if(li.get(i).getQuantityneeded() > maxvol)
@@ -127,6 +140,15 @@ public class AggregateAuctionAlogrithm {
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 								pstmt.executeUpdate();
 								System.out.println();
+								
+								//Auction results data
+								pstmt4.setString(1, lotnum);
+								System.out.println("Auction_result lotnumber: "+lotnum);
+								pstmt4.setLong(2, li.get(i).getQuantityneeded());
+								System.out.println("Auction_result Quant needed: "+li.get(i).getQuantityneeded());
+								pstmt4.setLong(3, li.get(i).getAadharnumber());
+								System.out.println("Auction_result Aadharnum: "+li.get(i).getAadharnumber());
+								pstmt4.execute();
 							}
 							else if(vmv1 < 0)
 							{
@@ -144,6 +166,15 @@ public class AggregateAuctionAlogrithm {
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 								pstmt.executeUpdate();
 								System.out.println();
+								
+								//Auction results data
+								pstmt4.setString(1, lotnum);
+								System.out.println("Auction_result lotnumber: "+lotnum);
+								pstmt4.setLong(2, li.get(i).getQuantityneeded());
+								System.out.println("Auction_result Quant needed: "+li.get(i).getQuantityneeded());
+								pstmt4.setLong(3, li.get(i).getAadharnumber());
+								System.out.println("Auction_result Aadharnum: "+li.get(i).getAadharnumber());
+								pstmt4.execute();
 								
 								break;
 							}
@@ -164,6 +195,15 @@ public class AggregateAuctionAlogrithm {
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 						pstmt.executeUpdate();
 						System.out.println();
+						
+						//Auction results data
+						pstmt4.setString(1, lotnum);
+						System.out.println("Auction_result lotnumber: "+lotnum);
+						pstmt4.setLong(2, li.get(i).getQuantityneeded());
+						System.out.println("Auction_result Quant needed: "+li.get(i).getQuantityneeded());
+						pstmt4.setLong(3, li.get(i).getAadharnumber());
+						System.out.println("Auction_result Aadharnum: "+li.get(i).getAadharnumber());
+						pstmt4.execute();
 					}
 				}	
 			}
