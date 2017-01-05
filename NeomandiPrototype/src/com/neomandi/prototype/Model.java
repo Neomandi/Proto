@@ -1006,106 +1006,90 @@ public void setTraderpwd(String traderpwd) {
 					msg[1]=null;								
 				}								
 				else								
-				{										
-					ps =con.prepareStatement("update tbankaccount set balance =? where  accountnumber= ?");									
-					ps.setInt(1, balance);										
-					ps.setString(2, accno);
-					ps.execute();
-					msg[0]=String.valueOf(balance);
-							
-						
-/*ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
-						
-ps.setString(1, accno);
-						
-ps.execute();
-						
-rs = ps.getResultSet();			
-						
-while(rs.next())
-							
-balance=rs.getInt("balance");
-						
-System.out.println("new balance according to DB "+balance);
-						
-System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);*/
-			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");
-			ps.setString(1, name);									
-			ps.execute();									
-			rs = ps.getResultSet();									
-			int blockamount=0;									
-			while(rs.next())										
-			blockamount=rs.getInt("blockamount");									
-			blockamount=blockamount+block;									
-			String blockamounts=String.valueOf(blockamount);
-			System.out.println("amount to be blocked now is  "+block);
-			System.out.println("total blocked amount is "+blockamount);		
-			msg[1]=blockamounts;
-												
-			ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");
-									
-			ps.setString(1, blockamounts);
-									
-			ps.setString(2, aadharnumber);
-									
-			ps.execute();
-									
-			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");
-									
-			ps.setString(1, name);
-									
-			ps.execute();
-									
-			rs = ps.getResultSet();			
-									
-									
-			while(rs.next())
+				{		
+					ps =con.prepareStatement("SELECT tradername FROM traders_blocked_amount where tradername=?");
+					ps.setString(1, name);									
+					ps.execute();									
+					rs = ps.getResultSet();		
+					if(rs.next())
+					{	
+						ps =con.prepareStatement("update tbankaccount set balance =? where  accountnumber= ?");									
+						ps.setInt(1, balance);										
+						ps.setString(2, accno);
+						ps.execute();
+						msg[0]=String.valueOf(balance);
+				/*ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
 										
-			blockamount=rs.getInt("blockamount");	
-									
-			System.out.println("after updating traders account, total blocked amount is "+blockamount);
-							
+				ps.setString(1, accno);
+										
+				ps.execute();
+										
+				rs = ps.getResultSet();			
+										
+				while(rs.next())
+											
+				balance=rs.getInt("balance");
+										
+				System.out.println("new balance according to DB "+balance);
+										
+				System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);*/
+						ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");
+						ps.setString(1, name);									
+						ps.execute();									
+						rs = ps.getResultSet();									
+						int blockamount=0;									
+						while(rs.next())										
+						blockamount=rs.getInt("blockamount");									
+						blockamount=blockamount+block;									
+						String blockamounts=String.valueOf(blockamount);
+						System.out.println("amount to be blocked now is  "+block);
+						System.out.println("total blocked amount is "+blockamount);		
+						msg[1]=blockamounts;
+															
+						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");											
+						ps.setString(1, blockamounts);											
+						ps.setString(2, aadharnumber);												
+						ps.execute();
+						
+						ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");												
+						ps.setString(1, name);												
+						ps.execute();												
+							rs = ps.getResultSet();											
+						while(rs.next())													
+							blockamount=rs.getInt("blockamount");													
+						System.out.println("after updating traders account, total blocked amount is "+blockamount);
+					}
+					else
+					{
+						ps =con.prepareStatement("insert into Traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
+						ps.setString(1, name);
+						ps.setString(2, aadharnumber);
+						ps.setString(3,String.valueOf(block));
+						ps.setString(4,bankname);						
+						ps.execute();									
+						rs = ps.getResultSet();		
+					}							
+			}								
+			con.commit();						
+			}				
+			}					
+			catch(SQLException e)					
+			{						
+			e.printStackTrace();						
+			try {							
+			con.rollback();						
 			}						
-						
-			con.commit();			
-						
-			}
-					
-			}
-					
-			catch(SQLException e)
-					
-			{
-						
-			e.printStackTrace();
-						
-			try {
-							
-			con.rollback();
-						
-			}
-						
-			catch (SQLException e1)
-						
-			{
-							
-			e1.printStackTrace();
-						
-			}
-					
-			}
-					
-			finally
-					
-			{
-						
+			catch (SQLException e1)						
+			{							
+			e1.printStackTrace();						
+			}					
+			}					
+			finally					
+			{						
 			JDBCHelper.Close(ps);
-			JDBCHelper.Close(con);
-					
-			}
-					
-			return msg;		
-				
+			JDBCHelper.Close(con);					
+			}					
+			return msg;			
 			}
 
 @SuppressWarnings({ "resource" })
@@ -2612,7 +2596,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	}
 	
 	public void TraderProductAccept(String lotnum,String accno)
-	{
+	{		
 		System.out.println("***********************************************");
 		System.out.println("inside model->........farmer has accpeted the bid price for lot"+lotnum);
 		PreparedStatement ps = null;
