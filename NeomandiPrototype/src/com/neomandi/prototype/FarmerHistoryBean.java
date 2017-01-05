@@ -20,6 +20,14 @@ public class FarmerHistoryBean {
 	private String deduction;
 	private String status;
 	private InputStream photo;
+	private String crdate;
+	
+	public String getCrdate() {
+		return crdate;
+	}
+	public void setCrdate(String crdate) {
+		this.crdate = crdate;
+	}
 	public String getFarmerid() {
 		return farmerid;
 	}
@@ -129,6 +137,7 @@ public class FarmerHistoryBean {
 		int result = 1;
 		result = prime * result + ((Date == null) ? 0 : Date.hashCode());
 		result = prime * result + ((averageprice == null) ? 0 : averageprice.hashCode());
+		result = prime * result + ((crdate == null) ? 0 : crdate.hashCode());
 		result = prime * result + ((deduction == null) ? 0 : deduction.hashCode());
 		result = prime * result + ((earnings == null) ? 0 : earnings.hashCode());
 		result = prime * result + ((farmerid == null) ? 0 : farmerid.hashCode());
@@ -164,6 +173,11 @@ public class FarmerHistoryBean {
 			if (other.averageprice != null)
 				return false;
 		} else if (!averageprice.equals(other.averageprice))
+			return false;
+		if (crdate == null) {
+			if (other.crdate != null)
+				return false;
+		} else if (!crdate.equals(other.crdate))
 			return false;
 		if (deduction == null) {
 			if (other.deduction != null)
@@ -248,7 +262,7 @@ public class FarmerHistoryBean {
 				+ ", produce=" + produce + ", quantity=" + quantity + ", Date=" + Date + ", time=" + time + ", grade="
 				+ grade + ", marketcode=" + marketcode + ", slotnumber=" + slotnumber + ", averageprice=" + averageprice
 				+ ", quantitybidfor=" + quantitybidfor + ", finalprice=" + finalprice + ", earnings=" + earnings
-				+ ", deduction=" + deduction + ", status=" + status + ", photo=" + photo + "]";
+				+ ", deduction=" + deduction + ", status=" + status + ", photo=" + photo + ", crdate=" + crdate + "]";
 	}
 	
 	

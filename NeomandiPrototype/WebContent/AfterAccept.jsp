@@ -221,7 +221,6 @@ th {
 		<li><a class="active" href="GetSummary.do"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 		<li><a href="FarmerSummaryInt.jsp">History</a></li>
-		
 	</ul>
 	<br/><br/>
  	<center>
@@ -236,7 +235,28 @@ th {
 		
 		<% 
 		
+		RequestDispatcher rd=null;
+		String m="";
+		HttpSession farmerstatus=request.getSession(false);
 		
+		 m=(String)farmerstatus.getAttribute("msg");
+		 System.out.println("msg="+m);
+		 if(m.equals("Accept")){
+			 count++;
+			 if(count>1){
+		 rd=request.getRequestDispatcher("FarmerMaster1.jsp");
+			 
+		 try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 
+		 }
 		HttpSession hs=request.getSession(false);  
      	String pass=(String)hs.getAttribute("pass");  
     	System.out.println(" in accept summary password="+pass);
@@ -268,13 +288,17 @@ th {
 	    myEarn=myEarn*100;
 	    myEarn=(int)myEarn;
 	    myEarn=myEarn/100;
+	    double deduction=TCharge;
+	    deduction=deduction*100;
+	    deduction=(int)deduction;
+	    deduction=deduction/100;
 	    System.out.println("in accept summary lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
 		    String status="";
-		    
-	    		status+="Auction yet to start";
-	    			
-	    		
+		    if(lot==qsold)
+	    		status+="Fully executed .You have accepted the bid";
+	    			else
+	    		status+="Partially executed.You have accepted the bid";
 	    	 	String lotsize1=String.valueOf(lot);
 	    	 	double lsize=Double.parseDouble(lotsize1);
 	    	 	lsize=lsize*100;
@@ -300,27 +324,40 @@ th {
 			</tr>
 			<tr>
 		   		<th   bgcolor = '#00FF00' height="5%">Quantity Sold </th>
-		   		<td  height="5%">--</td>
+		   		<td  height="5%"><%=qs%></td>
 		   	</tr>
 		   	<tr>
 		    	<th   bgcolor = '#00FF00' height="5%">Average price</th>
-		    	<td  height="5%">--</td>
+		    	<td  height="5%"><%=aprice%></td>
 		    </tr>
 		    <tr>
 		    	<th  bgcolor = '#00FF00' height="5%">Gross Earnings</th>
-		    	<td  height="5%">--</td>
+		    	<td  height="5%"><%= fprice%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Market Usage Charge</th>
+		    	<td  height="5%"><%=MUCharge%></td>
+		    </tr>
+		     <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">PVA Charge</th>
+		    	<td  height="5%"><%=PACharge%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">e-PU Charge</th>
+		    	<td  height="5%"><%=EPUCharge%></td>
+		    </tr>
+		     <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Transportation Charge</th>
+		    	<td  height="5%"><%=Transport%></td>
 		    </tr>
 		    <tr>
 		    	<th  bgcolor = '#00FF00' height="5%">Deduction</th>
-		    	<td  height="5%">--</td>
+		    	<td  height="5%"><%=deduction%></td>
 		    </tr>
-		    <tr>
-		     	<th bgcolor = '#00FF00'>Status</th>
-		     	<font color="blue"><td  ><%= status %></td></font>
-			</tr>
+		   
 			<tr>
 		     	<th   bgcolor = '#00FF00' height="5%">My Net Earnings</th>
-		     	<td  height="5%">--</td>
+		     	<td  height="5%"><%=myEarn %></td>
 		   </tr>
 			
 		</table><br/>

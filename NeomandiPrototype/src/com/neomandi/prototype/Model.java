@@ -2872,6 +2872,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							fhb.setQuantitybidfor(rs.getString("quantitybidfor"));
 							fhb.setProduce(rs.getString("produce"));
 							fhb.setSlotnumber(rs.getString("slotnumber"));
+							fhb.setCrdate(rs.getString("created_at"));
 							al.add(fhb);
 						}
 					}
