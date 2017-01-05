@@ -115,23 +115,24 @@ STATUS:PENDING
   int check=0;
   Myclass2 mc=(Myclass2)request.getAttribute("errmsg");
   List al=mc.getAl();
+
   for(Object o:al)
   {
 	OrderStatusBean osbn=(OrderStatusBean)o;
-	if(osbn.getSlotnumber()!=null && osbn.getSlotnumber().equals("slot1"))
-	{
+	if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
+	{		
 %>
 <tr>
-<td align="center"><%out.println(" "+osbn.getLotnum()+" ");%></td>
-<td align="center"><%System.out.println("lotcost"+osbn.getLotcost()); out.println(" "+osbn.getLotcost()+" ");%></td>
-<td align="center" width="110"><%= osbn.getMarketcode() %></td>
-<td align="center" width="90"><%= osbn.getProduce() %></td>
-<td align="center" width="110"><%= osbn.getQualitygrade() %></td>
-<td align="center" width="160"><% if(osbn.getBestbid()==null)out.println("--"); else out.println(osbn.getBestbid()); %></td>
-<td align="center"><%if(osbn.getBidprice()==null)out.println("--"); else out.println(osbn.getBidprice());%> </td>
-<td align="center"><%=osbn.getQuantityneeded()%></td>
+<td ><%out.println(osbn.getLotnum());%></td>
+<td ><%System.out.println("lotcost"+osbn.getLotcost()); out.println(" "+osbn.getLotcost()+" ");%></td>
+<td  width="110"><%= osbn.getMarketcode() %></td>
+<td  width="90"><%= osbn.getProduce() %></td>
+<td  width="110"><%= osbn.getQualitygrade() %></td>
+<td  width="160"><% if(osbn.getBestbid()==null)out.println("--"); else out.println(osbn.getBestbid()); %></td>
+<td ><%if(osbn.getBidprice()==null)out.println("--"); else out.println(osbn.getBidprice());%> </td>
+<td ><%=osbn.getQuantityneeded()%></td>
 <td><%=osbn.getVolumesold() %></td>
-<td align="center"><%=osbn.getMyfinalcost()%></td>
+<td ><%=osbn.getMyfinalcost()%></td>
 <td><%=osbn.getResult() %></td>
 <td>PENDING</td>
 <td align="center"><output type="text" id="status"></td>
