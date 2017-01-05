@@ -2961,8 +2961,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				
 				System.out.println("Quantity: "+quantity);
 				System.out.println("QuantityBidfor: "+quantitybidfor);
-				System.out.println(quantity.equals(quantitybidfor));
-				if(quantity.equals(quantitybidfor))
+				System.out.println(Double.parseDouble(quantity) == Double.parseDouble(quantitybidfor));
+				if(Double.parseDouble(quantity) == Double.parseDouble(quantitybidfor))
 				{
 					String sql1 = "DELETE FROM productentry WHERE lotnumber = ?";
 					pstmt1 = con.prepareStatement(sql1);
