@@ -2709,7 +2709,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						{
 							neomandibalance=Integer.parseInt(rs.getString("balance"));
 						}
-						neomandibalance=myfinalcost-marketcess-pmva-100;
+						neomandibalance=neomandibalance+myfinalcost-lotcost+marketcess+pmva+100;
 						System.out.println("balance available in neomandi account after transfering to farmer account is "+neomandibalance);
 						
 						ps =con.prepareStatement("update neomandibankaccount set balance=?");
@@ -2724,14 +2724,14 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							System.out.println("balance available "+neomandibalance);
 						}
 						
-						ps =con.prepareStatement("select balance from fbankaccount where accno="+accno);						
+						ps =con.prepareStatement("select balance from fbankaccount where accountnumber="+accno);						
 						rs5 = ps.getResultSet();
 						while(rs5.next())
 						{
 							fbalance=Integer.parseInt(rs.getString("balance"));
 						}
 						fbalance=fbalance+myfinalcost-marketcess-pmva-100;
-						ps =con.prepareStatement("update fbankaccount set balance=? where accno=?");
+						ps =con.prepareStatement("update fbankaccount set balance=? where accountnumber=?");
 						ps.setString(1,String.valueOf(fbalance));
 						ps.setString(2,accno);
 						ps.execute();
