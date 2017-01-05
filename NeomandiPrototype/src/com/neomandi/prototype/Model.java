@@ -2436,7 +2436,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		System.out.println("inside Model()->.....orderstatus");
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
-		PreparedStatement ps3 = null;
 		Connection con = null;
 		ResultSet rs = null;
 		ResultSet rs1 = null;
@@ -2633,8 +2632,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}
 			else
 			{		
-				ps =con.prepareStatement("select aadharnumber from treg where name=?");//this checks whether the trader has won in auction by checking his name in auction result table
+				ps =con.prepareStatement("select aadharnumber from treg where name=? and pass=?");//this checks whether the trader has won in auction by checking his name in auction result table
 				ps.setString(1,tradername);
+				ps.setString(2,traderpwd);
 				ps.execute();
 				rs = ps.getResultSet();
 				String aadharnumber=null;
@@ -2642,6 +2642,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				{
 					aadharnumber=rs.getString("aadharnumber");
 				}
+				
 				ps =con.prepareStatement("select quantityassigned from auction_result where aadharnumber=? and lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
 				ps.setString(1,aadharnumber);
 				ps.setString(2, lotnum);
@@ -2649,7 +2650,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				rs = ps.getResultSet();
 				if(rs.next())
 				{	//now if he has won the auction select volume assigned to him and hs bid price 
-					System.out.println("trader has won this lot");
+					System.out.println("trader has won the lot "+lotnum);
 					ps =con.prepareStatement("select ar.quantityassigned,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.aadharnumber=tr.aadharnumber and tr.aadharnumber=?");
 					ps.setString(1, aadharnumber);
 					ps.execute();
@@ -2708,8 +2709,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						{
 							neomandibalance=Integer.parseInt(rs.getString("balance"));
 						}
-						neomandibalance=neomandibalance-marketcess-pmva-100;
-						System.out.println("balance available in neomandi account after transfering to garmer account is "+neomandibalance);
+						neomandibalance=myfinalcost-marketcess-pmva-100;
+						System.out.println("balance available in neomandi account after transfering to farmer account is "+neomandibalance);
 						
 						ps =con.prepareStatement("update neomandibankaccount set balance=?");
 						ps.setString(1,String.valueOf(neomandibalance));
