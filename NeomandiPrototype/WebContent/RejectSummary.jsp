@@ -218,7 +218,7 @@ th {
  	<ul>
 	 	<li><a href="FarmerMaster.jsp">Auction</a></li>
 		<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a class="active" href="GetSummary.do">Summary</a></li>
+		<li><a class="active" href="FarmerSummaryInt.jsp">Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 		<li><a href="FarmerSummaryInt.jsp">History</a></li>
 	</ul>

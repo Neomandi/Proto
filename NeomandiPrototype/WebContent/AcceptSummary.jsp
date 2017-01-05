@@ -221,6 +221,7 @@ th {
 		<li><a class="active" href="GetSummary.do"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 		<li><a href="FarmerSummaryInt.jsp">History</a></li>
+		
 	</ul>
 	<br/><br/>
  	<center>
@@ -333,6 +334,22 @@ th {
 		    <tr>
 		    	<th  bgcolor = '#00FF00' height="5%">Gross Earnings</th>
 		    	<td  height="5%"><%= fprice%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Market Usage Charge</th>
+		    	<td  height="5%"><%=MUCharge%></td>
+		    </tr>
+		     <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">PVA Charge</th>
+		    	<td  height="5%"><%=PACharge%></td>
+		    </tr>
+		    <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">e-PU Charge</th>
+		    	<td  height="5%"><%=EPUCharge%></td>
+		    </tr>
+		     <tr>
+		    	<th  bgcolor = '#00FF00' height="5%">Transportation Charge</th>
+		    	<td  height="5%"><%=Transport%></td>
 		    </tr>
 		    <tr>
 		    	<th  bgcolor = '#00FF00' height="5%">Deduction</th>

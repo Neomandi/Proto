@@ -243,6 +243,7 @@ li a:hover:not(.active) {
 		<th>Gross Earnings</th>
 		<th>Deduction</th>
 		<th>Net Earnings</th>
+		<th>Date</th>
 		
 	</tr>
 	<tr>
@@ -276,6 +277,7 @@ li a:hover:not(.active) {
 			<td><%=fhb.getFinalprice() %></td>
 			<td><%=deduction %></td>
 			<td><%=fhb.getEarnings() %></td>
+			<td><%=fhb.getCrdate() %>
 	</tr>
 		<%
 		}%>

@@ -129,9 +129,9 @@
 	<ul>
 	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
 	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="AfterAuctionSummary.do"> Summary</a></li>
+		<li><a  id="ts" href="FarmerSummaryInt.jsp"> Summary</a></li>
 		<li><a href="FarmerProfile.jsp">My Profile</a>
-		<li><a href="FarmerSummaryInt.jsp">History</a></li>
+		
 	</ul>
 	 <%	 	
 	 	
@@ -672,6 +672,8 @@ function countdown(minutes,seconds,hours)
 			        			   }
 			        		       else
 			        		       {
+			        		    	   
+			        		            	}
 			        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
 			        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
 						            	var waitseconds = seconds;
@@ -686,6 +688,10 @@ function countdown(minutes,seconds,hours)
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
 						    			document.getElementById("auction1").innerHTML=str1;
+						    			document.getElementById('ts').onclick = function() {
+			        		            	console.log("inside the count function");
+			        		            	//alert("Auction under progress");
+			        		            	   location="http://localhost:8080/NeomandiPrototype/AfterAccept.do";
 			        		       }
 		        		    	}
 	        		     	}
