@@ -25,4 +25,15 @@
     <servlet-name>SchedulerServlet</servlet-name>
     <url-pattern>/SchedulerServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostAuctionOperationServlet</display-name>
+    <servlet-name>PostAuctionOperationServlet</servlet-name>
+    <servlet-class>com.neomandi.prototype.PostAuctionOperationServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostAuctionOperationServlet</servlet-name>
+    <url-pattern>/PostAuctionOperationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
