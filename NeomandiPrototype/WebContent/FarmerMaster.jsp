@@ -630,6 +630,11 @@ function countdown(minutes,seconds,hours)
 			        		            	//alert("Auction under progress");
 			        		            	   location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            	}
+						            	/*document.getElementById('accept').onclick = function() {
+			        		            	console.log("inside the count function");
+			        		            	//alert("Auction under progress");
+			        		            	   location="http://localhost:8080/NeomandiPrototype/AfterAccept.do";
+			        		            	}*/
 						    			document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}

@@ -292,7 +292,7 @@ th {
 	    deduction=deduction*100;
 	    deduction=(int)deduction;
 	    deduction=deduction/100;
-	    System.out.println("in accept summary lotsize="+lotsize);
+	    System.out.println("in afteraccept summary lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
 		    String status="";
 		    if(lot==qsold)
