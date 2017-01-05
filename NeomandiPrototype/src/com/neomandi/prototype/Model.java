@@ -2746,17 +2746,25 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			if(con == null)
 			{}
 			else
-			{		
+			{	
+				System.out.println("from-> "+from+" to->"+to );
+				String st[]=to.split("-");
+				int date=Integer.parseInt(st[2])+1;
+				st[2]=String.valueOf(date);
+				to=st[0]+"-"+st[1]+"-0"+st[2];
+				System.out.println(to);
 				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and `created_at` BETWEEN ? and ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 				ps.setString(1,name);
 				ps.setString(2,from);
 				ps.setString(3, to);
 				ps.setString(4,pwd);
 				ps.execute();
+				System.out.println(ps);
 				rs = ps.getResultSet();
 				TradeSummaryBean tsb=null;
 				while(rs.next())
 				{	
+					System.out.println("lotnum is "+rs.getString("lotnum"));
 					tsb=new TradeSummaryBean();
 					tsb.setBidprice(rs.getString("bidprice"));
 					tsb.setLotnum(rs.getString("lotnum"));
@@ -2764,9 +2772,9 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					tsb.setQuantity(rs.getString("quantity"));
 					tsb.setQuantityneeded(rs.getString("quantityneeded"));
 					
-					ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar where ar.tradername=? and ar.lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
-					ps.setString(1,name);
-					ps.setString(2,rs.getString("lotnum"));
+					ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table
+					ps.setString(2,name);
+					ps.setString(1,rs.getString("lotnum"));
 					ps.execute();
 					rs2 = ps.getResultSet();
 					if(rs2.next())
