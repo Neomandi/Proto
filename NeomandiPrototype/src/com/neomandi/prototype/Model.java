@@ -796,7 +796,6 @@ public void setTraderpwd(String traderpwd) {
 					qualitygrade = rs.getString("qualitygrade");
 					quantity = rs.getString("quantity");
 					slotnumber=rs.getString("slotnumber");
-					System.out.println("slotnumber before checking whether its null is "+slotnumber);
 				}			
 				String lot[]=new String[100];
 				int i=0;
@@ -804,7 +803,7 @@ public void setTraderpwd(String traderpwd) {
 				ps.setString(1,aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();
-				System.out.println("lotnum trader "+tlbn.getTname()+" ss bidding for is ");
+				System.out.println("lotnum trader "+tlbn.getTname()+" is bidding for is ");
 				while(rs.next())
 				{
 					lot[i]=rs.getString("lotnum");
@@ -2634,17 +2633,25 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}
 			else
 			{		
-				ps =con.prepareStatement("select quantityassigned from auction_result where tradername=? and lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
+				ps =con.prepareStatement("select aadharnumber from treg where name=?");//this checks whether the trader has won in auction by checking his name in auction result table
 				ps.setString(1,tradername);
+				ps.execute();
+				rs = ps.getResultSet();
+				String aadharnumber=null;
+				while(rs.next())
+				{
+					aadharnumber=rs.getString("aadharnumber");
+				}
+				ps =con.prepareStatement("select quantityassigned from auction_result where aadharnumber=? and lotnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
+				ps.setString(1,aadharnumber);
 				ps.setString(2, lotnum);
 				ps.execute();
 				rs = ps.getResultSet();
 				if(rs.next())
 				{	//now if he has won the auction select volume assigned to him and hs bid price 
 					System.out.println("trader has won this lot");
-					ps =con.prepareStatement("select ar.quantityassigned,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.tradername=tr.name and tr.name=? and tr.pass=?");
-					ps.setString(1, tradername);
-					ps.setString(2, traderpwd);
+					ps =con.prepareStatement("select ar.quantityassigned,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.aadharnumber=tr.aadharnumber and tr.aadharnumber=?");
+					ps.setString(1, aadharnumber);
 					ps.execute();
 					rs2 = ps.getResultSet();
 					while(rs2.next())
@@ -2655,8 +2662,12 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						int bidprice1=Integer.parseInt(bidprice);
 						int lotcost=volumesold*bidprice1;
 						int commission = (int) (lotcost*0.05);
-						int marketcess = 1*10;
-						int myfinalcost=commission+marketcess+3000+lotcost+100;
+						int marketcess = (int) (lotcost*0.01);
+						int pmva=100;
+						int eplatform=100;
+						int transportation=3000;
+						int myfinalcost=commission+marketcess+transportation+lotcost+eplatform;
+						
 						int block=0;
 						ps =con.prepareStatement("select blockamount from traders_blocked_amount where tradername=?");
 						ps.setString(2, tradername);
@@ -2665,43 +2676,64 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						int result=0;
 						while(rs3.next())
 							result= Integer.parseInt(rs3.getString("blockamount"));		
-						System.out.println("total blocked amount is "+result);
 						block=result-myfinalcost;
 						String bloc=String.valueOf(block);
-						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where tradername=?");
+						System.out.println("total blocked amount from trader is "+result+", after deduction block amount is "+bloc);
+						
+						//after deducting all the cost from blocked amount we are updating the traders_blocked_amount
+						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");
 						ps.setString(1,bloc );
-						ps.setString(2, tradername);
+						ps.setString(2, aadharnumber);
 						ps.execute();
+						
 						int fbalance=0;
-						ps =con.prepareStatement("select balance from fbankaccount where accountnumber=?");
-						ps.setString(1, accno);
+						int neomandibalance=0;
+						ps =con.prepareStatement("select balance from neomandibankaccount");						
 						ps.execute();
 						rs4 = ps.getResultSet();
 						while(rs4.next())
 						{
-							fbalance=Integer.parseInt(rs.getString("balance"));
-							System.out.println("balance available in farmer account is "+fbalance);
+							neomandibalance=Integer.parseInt(rs.getString("balance"));
+							System.out.println("balance available in neomandi account is "+neomandibalance+" money adding to neomandi account from traders blocked funds is "+myfinalcost);							
 						}
-						fbalance=fbalance+block-100;
-						ps =con.prepareStatement("update fbankaccount set balance=? where accountnumber=?");
-						ps.setString(1,String.valueOf(fbalance));
-						ps.setString(2, accno);
-						ps.execute();
+						neomandibalance=neomandibalance+myfinalcost;
 						
-						int newbalance=commission+marketcess+200;
-						ps =con.prepareStatement("select balance from neoamndibankaccount");						
+						ps =con.prepareStatement("update neomandibankaccount set balance=?");
+						ps.setString(1,String.valueOf(neomandibalance));
+						ps.execute();
+												
+						ps =con.prepareStatement("select balance from neomandibankaccount");						
 						ResultSet rs5 = ps.getResultSet();
-						int balance=0;
 						while(rs5.next())
 						{
-							balance=Integer.parseInt(rs.getString("balance"));
-							System.out.println("balance available in company account is "+balance);
+							neomandibalance=Integer.parseInt(rs.getString("balance"));
 						}
-						newbalance=newbalance+balance;
+						neomandibalance=neomandibalance-marketcess-pmva-100;
+						System.out.println("balance available in neomandi account after transfering to garmer account is "+neomandibalance);
+						
 						ps =con.prepareStatement("update neomandibankaccount set balance=?");
-						ps.setString(1,String.valueOf(newbalance));
+						ps.setString(1,String.valueOf(neomandibalance));
 						ps.execute();
 						
+						ps =con.prepareStatement("select balance from neomandibankaccount");						
+						ResultSet rs6 = ps.getResultSet();
+						while(rs6.next())
+						{
+							neomandibalance=Integer.parseInt(rs.getString("balance"));
+							System.out.println("balance available "+neomandibalance);
+						}
+						
+						ps =con.prepareStatement("select balance from fbankaccount where accno="+accno);						
+						rs5 = ps.getResultSet();
+						while(rs5.next())
+						{
+							fbalance=Integer.parseInt(rs.getString("balance"));
+						}
+						fbalance=fbalance+myfinalcost-marketcess-pmva-100;
+						ps =con.prepareStatement("update fbankaccount set balance=? where accno=?");
+						ps.setString(1,String.valueOf(fbalance));
+						ps.setString(2,accno);
+						ps.execute();
 						System.out.println("traders bid price is "+bidprice1+" his lot cost ="+bidprice1+" * "+volumesold+" his final cost is "+myfinalcost+" his blocked amount after deduction is "+bloc);
 						System.out.println("farmers balance after accepting is "+fbalance);						
 					}					

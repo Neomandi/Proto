@@ -4,7 +4,7 @@
 <html>
 <head>
 <!--  <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do"> -->
-<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">
+<!-- <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">-->
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> /*
@@ -462,7 +462,7 @@ else
 				for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;
-					System.out.println("we are bidding for "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
+					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
 					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
 					{						
 						HttpSession MyFinalCost=request.getSession(false);
@@ -470,10 +470,10 @@ else
 						for(Object m:l)
 						{	
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
-							System.out.println("list of lotnum inside mfcb is "+mfcb);
+							System.out.println("total number of lots trader is bidding for that comes in slot 1 is "+l.size());
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
-								System.out.println("lot cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
+								System.out.println("lot numbetr is->"+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
 <tr>
 <td align="center"><%=tlb.getLotnum()%></td>
