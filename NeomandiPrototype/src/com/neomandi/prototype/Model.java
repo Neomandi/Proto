@@ -2834,7 +2834,13 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						//lotnumber
 						String farmerid=aadharnum;
 						System.out.println("in cs farmerid="+farmerid);
-						
+
+						System.out.println("from-> "+from+" to->"+to );
+						String st[]=to.split("-");
+						int date=Integer.parseInt(st[2])+1;
+						st[2]=String.valueOf(date);
+						to=st[0]+"-"+st[1]+"-0"+st[2];
+						System.out.println(to);
 						//getsummary details
 						ps = con.prepareStatement("select * from history h,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and h.farmerid=f.aadharnum ;" );
 						ps.setString(1,name);
@@ -2957,7 +2963,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				double nfinalprice = finalprice;
 				double percentage = nfinalprice/100;
 				double myearnings = 0.0;
-				myearnings = finalprice - 200 - percentage;
+				myearnings = finalprice - 700 - percentage;
 
 				System.out.println("my earnings="+myearnings);
 				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity,slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
