@@ -439,7 +439,7 @@ if(uri.contains("AfterAccept")){
 			hsr.setAttribute("finalprice", finalprice);
 			hsr.setAttribute("status", status);
 			m.employeeRejectResult(lotnumber);
-			m.TraderProductReject();
+			m.TraderProductReject(lotnumber);
 			rd=request.getRequestDispatcher("RejectSummary.jsp");
 			HttpSession farmerstatus=request.getSession();
 			 farmerstatus.setAttribute("msg",msg);
