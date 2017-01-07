@@ -197,7 +197,24 @@ li a:hover:not(.active) {
    top: 0px;
 }
 </style>
+<style>
 
+ #mytable table, td, th {
+    border: 1px solid black;
+    text-align:center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th {
+    text-align:center;
+}
+}
+
+</style>
 <body>
 <%@ include file="Fribbon.jsp" %><br><br>
  
@@ -234,20 +251,7 @@ li a:hover:not(.active) {
   		} else if(request.getAttribute("farmerhistory").equals("success"))
   {%>
   <table id = 'mytable' border style="width:60%">
-  	<tr>
-		<th>Lot Number</th>
-		<!-- <th>Produce</th> -->
-		<th>Quantity </th>
-		<th>Quantity Bid for</th>
-		<th>Average Price</th>
-		<th>Gross Earnings</th>
-		<th>Deduction</th>
-		<th>Net Earnings</th>
-		<th>Date</th>
-		
-	</tr>
-	<tr>
-	<% 
+  <% 
 		HttpSession farmerhistory=request.getSession(false);
 		List al=(List)farmerhistory.getAttribute("farmerhistory");
 		//request.setAttribute("theList", al);
@@ -269,19 +273,45 @@ li a:hover:not(.active) {
 		    deduction=(int)deduction;
 		    deduction=deduction/100;
 			 %>
-			<td><%=fhb.getLotnumber()  %></td>
-			<!-- <td><%=fhb.getProduce()%> -->
-			<td><%=fhb.getQuantity() %></td>
-			<td><%=fhb.getQuantitybidfor() %></td>
-			<td><%=fhb.getAverageprice()%></td>
-			<td><%=fhb.getFinalprice() %></td>
-			<td><%=deduction %></td>
-			<td><%=fhb.getEarnings() %></td>
-			<td><%=fhb.getCrdate() %>
+  	<tr>
+		<th>Lot Number</th>
+		<td><%=fhb.getLotnumber()  %></td>
 	</tr>
-		<%
-		}%>
-  </table>
+	<tr>
+	    <th>Quantity </th>
+	    <td><%=fhb.getQuantity() %></td>
+	 </tr>
+	 <tr>
+		<th>Quantity Bid for</th>
+		<td><%=fhb.getQuantitybidfor() %></td>
+	</tr>
+	<tr>
+		<th>Average Price</th>
+		<td><%=fhb.getAverageprice()%></td>
+	</tr>
+	<tr>
+		<th>Gross Earnings</th>
+		<td><%=fhb.getFinalprice() %></td>
+	</tr>
+	<tr>
+		<th>Deduction</th>
+		<td><%=deduction %></td>
+	</tr>
+	<tr>
+		<th>Net Earnings</th>
+		<td><%=fhb.getEarnings() %></td>
+	<tr>
+		<th>Date</th>
+		<td><%=fhb.getCrdate() %>
+	</tr>
+	<tr bgcolor="lightgreen">
+	<th>-----</th>
+	<td>-----</td>
+	</tr>
+	<%
+		}%></table>
+	
+  
 <br/>
 <br/>		
 <p align= "center"><b>Export Summary</b></p>

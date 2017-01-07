@@ -1,6 +1,7 @@
 package com.neomandi.prototype;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -551,6 +552,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				String kproduce = psb.getKproduce();
+				System.out.println("in model kproduce="+kproduce);
 				kproduce=kproduce.trim();
 				String produce = psb.getProduce();
 				String quality = psb.getQuality();
@@ -561,7 +563,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println("inside if()->slot is "+slot);
 					if(slot.equals("slot3"))
 						slot=null;
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade,photo, quantity FROM productentry WHERE slotnumber=?");
+					System.out.println(pstmt);
 					pstmt.setString(1,slot);				
 					rs = pstmt.executeQuery();
 					ProductSearchResultBean psrb = null;
@@ -573,6 +576,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -581,7 +585,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
 					rs = pstmt.executeQuery();
@@ -594,6 +598,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -601,7 +606,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&!quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);					
@@ -615,13 +620,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
 				}
 				else
 				{
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);	
@@ -636,6 +642,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -2884,7 +2892,13 @@ public Myclass2 orderstatus(String name, String pwd)
 						//lotnumber
 						String farmerid=aadharnum;
 						System.out.println("in cs farmerid="+farmerid);
-						
+
+						System.out.println("from-> "+from+" to->"+to );
+						String st[]=to.split("-");
+						int date=Integer.parseInt(st[2])+1;
+						st[2]=String.valueOf(date);
+						to=st[0]+"-"+st[1]+"-0"+st[2];
+						System.out.println(to);
 						//getsummary details
 						ps = con.prepareStatement("select * from history h,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and h.farmerid=f.aadharnum ;" );
 						ps.setString(1,name);
@@ -3007,7 +3021,7 @@ public Myclass2 orderstatus(String name, String pwd)
 				double nfinalprice = finalprice;
 				double percentage = nfinalprice/100;
 				double myearnings = 0.0;
-				myearnings = finalprice - 200 - percentage;
+				myearnings = finalprice - 700 - percentage;
 
 				System.out.println("my earnings="+myearnings);
 				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity,photo,slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

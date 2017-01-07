@@ -61,7 +61,14 @@ public class AggregateAuctionAlogrithm {
 				ab.setBidprice(bidprice);
 				System.out.println("BidPrice: "+bidprice);
 				int quantityneeded = rs.getInt("quantityneeded");
-				ab.setQuantityneeded(quantityneeded);
+				if(bidprice != 0)
+				{
+					ab.setQuantityneeded(quantityneeded);
+				}
+				else
+				{
+					ab.setQuantityneeded(0);
+				}
 				System.out.println("QuantityNeeded: "+quantityneeded);
 				System.out.println("--------------------------------");
 				
@@ -100,7 +107,14 @@ public class AggregateAuctionAlogrithm {
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
 						System.out.println("Best bid: "+li.get(0).getBidprice());
-						pstmt.setInt(2, li.get(i).getQuantityneeded());
+						if(li.get(0).getBidprice() != 0)
+						{
+							pstmt.setInt(2, li.get(i).getQuantityneeded());
+						}
+						else
+						{
+							pstmt.setInt(2, 0);
+						}
 						System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
@@ -121,7 +135,14 @@ public class AggregateAuctionAlogrithm {
 								
 								pstmt.setInt(1, li.get(0).getBidprice());
 								System.out.println("Best bid: "+li.get(0).getBidprice());
-								pstmt.setInt(2, li.get(i).getQuantityneeded());
+								if(li.get(0).getBidprice() != 0)
+								{
+									pstmt.setInt(2, li.get(i).getQuantityneeded());
+								}
+								else
+								{
+									pstmt.setInt(2, 0);
+								}
 								System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
@@ -139,7 +160,14 @@ public class AggregateAuctionAlogrithm {
 								
 								pstmt.setInt(1, li.get(0).getBidprice());
 								System.out.println("Best bid: "+li.get(0).getBidprice());
-								pstmt.setInt(2, vol);
+								if(li.get(0).getBidprice() != 0)
+								{
+									pstmt.setInt(2, vol);
+								}
+								else
+								{
+									pstmt.setInt(2, 0);
+								}
 								System.out.println("Quantity assigned: "+vol);
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
@@ -159,7 +187,14 @@ public class AggregateAuctionAlogrithm {
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
 						System.out.println("Best bid: "+li.get(0).getBidprice());
-						pstmt.setInt(2, li.get(i).getQuantityneeded());
+						if(li.get(0).getBidprice() != 0)
+						{
+							pstmt.setInt(2, li.get(i).getQuantityneeded());
+						}
+						else
+						{
+							pstmt.setInt(2, 0);
+						}
 						System.out.println("Quantity assigned: "+li.get(i).getQuantityneeded());
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
