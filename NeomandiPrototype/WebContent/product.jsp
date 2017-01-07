@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
+    pageEncoding="ISO-8859-1" import="java.util.*,java.io.InputStream, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,7 +78,25 @@ table
 {
 float: center;
 }
+.pop_outer{
+background_color:rgba(0,0,0,0.5);
+position:fixed;
+top:0;
+left:0;
+height:100%;
+width:100%;
+}
+.pop_inner{
+background_color:#fff;
+
+padding:25px;
+height:300px;
+width:500px;
+margin:15% auto;
+}
 </style>
+
+</head>
 </head>
 <body>
 
@@ -240,6 +258,7 @@ function populate(s1, s2)
 	%>
 <p align = "right"></p>
 <center>
+<% InputStream photo=null;%>
 <table align="center" border>
 
 						<tr>
@@ -256,19 +275,47 @@ function populate(s1, s2)
 						{						
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
-							quantity=psr1.getQuantity();					
+							quantity=psr1.getQuantity();
+							photo=psr1.getPhoto();
 					%>
+						<input type="hidden" value="<%=photo %>" id="Picture1" />
 						<tr>
-						<td><% out.println(psr1.getLotnumber()); %></td>
+						<td>
+						
+						<input type="button"  class="open" id="myBtn" onclick="image()" value="<% out.println(psr1.getLotnumber()); %>"/>
+						<div style="display: none;" class="pop_outer">
+						<div class="pop_inner">
+    					<input type="button" class="close" />
+    					<p><img id="myPicture" src="#Picture1" ></p>
+  						</div>
+  						</div>
+						</td>
+						  <script type="text/javascript">
+						function image(){
+							$(document).ready(function(){
+								$(".open").click(function(){
+									$('pop_outer').fadeIn('slow');
+								});
+							$(".close").click(function(){
+								$('pop_outer').fadeOut('slow');
+							});
+							});
+						
+						}
+						 
+						
+						</script>
+						
+						
 						<td><% out.println(psr1.getMarketcode()); %></td>
 						<td><% out.println(psr1.getProduce()); %></td>
 						<td><% out.println(psr1.getQualitygrade()); %></td>
 						<td><% out.println(psr1.getQuantity());%></td>
-						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
+						<form></form><input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
 						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
 					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
-						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
+						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/></form>	
 						<script> 
 						function fun<%=psr1.getLotnumber() %>()
 						{							
@@ -302,6 +349,7 @@ function populate(s1, s2)
 						</tr>
 					<%}}}%>					
 </table>
+
 </center>
 </body>
 </html>

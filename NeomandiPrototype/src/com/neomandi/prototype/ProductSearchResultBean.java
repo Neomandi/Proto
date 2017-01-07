@@ -1,5 +1,6 @@
 package com.neomandi.prototype;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -9,40 +10,53 @@ public class ProductSearchResultBean implements Serializable {
 	private String produce;
 	private String qualitygrade;
 	private String quantity;
+	private InputStream photo;
+	public  ProductSearchResultBean(){
+		System.out.println("inside no arg cons ProductSearchResultBean ");
+	}
 	public String getLotnumber() {
 		return lotnumber;
 	}
 	public void setLotnumber(String lotnumber) {
 		this.lotnumber = lotnumber;
-		System.out.println("Lotnumber: "+lotnumber);
 	}
 	public String getMarketcode() {
 		return marketcode;
 	}
 	public void setMarketcode(String marketcode) {
 		this.marketcode = marketcode;
-		System.out.println("Marketcode: "+marketcode);
 	}
 	public String getProduce() {
 		return produce;
 	}
 	public void setProduce(String produce) {
 		this.produce = produce;
-		System.out.println("Produce: "+produce);
+		System.out.println("in psrb produce="+produce);
 	}
 	public String getQualitygrade() {
 		return qualitygrade;
 	}
 	public void setQualitygrade(String qualitygrade) {
 		this.qualitygrade = qualitygrade;
-		System.out.println("Qualitygrade: "+qualitygrade);
 	}
 	public String getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
-		System.out.println("Quantity: "+quantity);
+		System.out.println("inside psrb quantity="+quantity);
+	}
+	public InputStream getPhoto() {
+		return photo;
+	}
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
+		System.out.println("inside ProductSearchResultBean photo="+photo);
+	}
+	@Override
+	public String toString() {
+		return "ProductSearchResultBean [lotnumber=" + lotnumber + ", marketcode=" + marketcode + ", produce=" + produce
+				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + ", photo=" + photo + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -50,6 +64,7 @@ public class ProductSearchResultBean implements Serializable {
 		int result = 1;
 		result = prime * result + ((lotnumber == null) ? 0 : lotnumber.hashCode());
 		result = prime * result + ((marketcode == null) ? 0 : marketcode.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
 		result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 		result = prime * result + ((qualitygrade == null) ? 0 : qualitygrade.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
@@ -74,6 +89,11 @@ public class ProductSearchResultBean implements Serializable {
 				return false;
 		} else if (!marketcode.equals(other.marketcode))
 			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
 		if (produce == null) {
 			if (other.produce != null)
 				return false;
@@ -91,12 +111,15 @@ public class ProductSearchResultBean implements Serializable {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "ProductSearchResultBean [lotnumber=" + lotnumber + ", marketcode=" + marketcode + ", produce=" + produce
-				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + "]";
+	public ProductSearchResultBean(String lotnumber, String marketcode, String produce, String qualitygrade,
+			String quantity, InputStream photo) {
+		super();
+		this.lotnumber = lotnumber;
+		this.marketcode = marketcode;
+		this.produce = produce;
+		this.qualitygrade = qualitygrade;
+		this.quantity = quantity;
+		this.photo = photo;
 	}
-	
-	
 	
 }

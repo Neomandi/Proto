@@ -1,6 +1,7 @@
 package com.neomandi.prototype;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -566,6 +567,7 @@ public void setTraderpwd(String traderpwd) {
 			else
 			{
 				String kproduce = psb.getKproduce();
+				System.out.println("in model kproduce="+kproduce);
 				kproduce=kproduce.trim();
 				String produce = psb.getProduce();
 				String quality = psb.getQuality();
@@ -576,7 +578,8 @@ public void setTraderpwd(String traderpwd) {
 					System.out.println("inside if()->slot is "+slot);
 					if(slot.equals("slot3"))
 						slot=null;
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade,photo, quantity FROM productentry WHERE slotnumber=?");
+					System.out.println(pstmt);
 					pstmt.setString(1,slot);				
 					rs = pstmt.executeQuery();
 					ProductSearchResultBean psrb = null;
@@ -588,6 +591,7 @@ public void setTraderpwd(String traderpwd) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -596,7 +600,7 @@ public void setTraderpwd(String traderpwd) {
 				else if(slot.equals("Please Select")&&quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
 					rs = pstmt.executeQuery();
@@ -609,6 +613,7 @@ public void setTraderpwd(String traderpwd) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -616,7 +621,7 @@ public void setTraderpwd(String traderpwd) {
 				else if(slot.equals("Please Select")&&!quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);					
@@ -630,13 +635,14 @@ public void setTraderpwd(String traderpwd) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
 				}
 				else
 				{
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);	
@@ -651,6 +657,8 @@ public void setTraderpwd(String traderpwd) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
