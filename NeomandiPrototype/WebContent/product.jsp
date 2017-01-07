@@ -95,7 +95,13 @@ width:500px;
 margin:15% auto;
 }
 </style>
+<style>
 
+.img {
+    height:200px;
+    width:200px;
+}
+</style>
 </head>
 </head>
 <body>
@@ -279,39 +285,48 @@ function populate(s1, s2)
 						//	photo=psr1.getPhoto();
 					%>
 						<!-- <input type="hidden" value="" id="Picture1" /> -->
+
 						<tr>
+						
 						<td>
-						
-						<input type="button"  class="open" id="myBtn" onclick="image()" value="<% out.println(psr1.getLotnumber()); %>"/>
-						<div style="display: none;" class="pop_outer">
-						<div class="pop_inner">
-    					<input type="button" class="close" />
-    					<p><img id="myPicture" src="#Picture1" ></p>
-  						</div>
-  						</div>
+							
+							<link rel="stylesheet" href="image.css" />
+  							<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ 							 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+							<div id="dialog">
+  							<p></p>
+							</div>
+							<button id="opener"><% out.println(psr1.getLotnumber()); %></button>
+ 							<script>
+ 							$(function() {
+ 							    $( "#dialog" ).dialog({
+ 							      autoOpen: false,
+ 							      show: {
+ 							        effect: "blind",
+ 							        duration: 1000
+ 							      },
+ 							      hide: {
+ 							        effect: "explode",
+ 							        duration: 1000
+ 							      }
+ 							      
+ 							    });
+ 							 
+ 							    $( "#opener" ).click(function() {
+ 							      $( "#dialog" ).dialog( "open" );
+ 							    });
+ 							  });
+ 							
+ 							
+ 							</script>
 						</td>
-						  <script type="text/javascript">
-						function image(){
-							$(document).ready(function(){
-								$(".open").click(function(){
-									$('pop_outer').fadeIn('slow');
-								});
-							$(".close").click(function(){
-								$('pop_outer').fadeOut('slow');
-							});
-							});
-						
-						}
-						 
-						
-						</script>
-						
+							
 						
 						<td><% out.println(psr1.getMarketcode()); %></td>
 						<td><% out.println(psr1.getProduce()); %></td>
 						<td><% out.println(psr1.getQualitygrade()); %></td>
 						<td><% out.println(psr1.getQuantity());%></td>
-						<form></form><input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
+						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
 						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
 					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
