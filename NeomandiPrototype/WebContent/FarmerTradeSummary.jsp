@@ -268,7 +268,7 @@ th {
 		    myEarn=myEarn*100;
 		    myEarn=(int)myEarn;
 		    myEarn=myEarn/100;
-		    double deduction=TCharge;
+		    double deduction=TCharge+500;
 		    deduction=deduction*100;
 		    deduction=(int)deduction;
 		    deduction=deduction/100;
