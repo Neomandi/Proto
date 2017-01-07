@@ -258,7 +258,7 @@ function populate(s1, s2)
 	%>
 <p align = "right"></p>
 <center>
-<% InputStream photo=null;%>
+<% //InputStream photo=null;%>
 <table align="center" border>
 
 						<tr>
@@ -276,9 +276,9 @@ function populate(s1, s2)
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
-							photo=psr1.getPhoto();
+						//	photo=psr1.getPhoto();
 					%>
-						<input type="hidden" value="<%=photo %>" id="Picture1" />
+						<!-- <input type="hidden" value="" id="Picture1" /> -->
 						<tr>
 						<td>
 						
@@ -315,7 +315,7 @@ function populate(s1, s2)
 						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
 						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
 					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
-						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/></form>	
+						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
 						<script> 
 						function fun<%=psr1.getLotnumber() %>()
 						{							
