@@ -2419,7 +2419,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	
 	@SuppressWarnings({ })
 
-public Myclass2 orderstatus(String name, String pwd) 
+	public Myclass2 orderstatus(String name, String pwd) 
 	{
 		System.out.println("inside Model()->.....orderstatus");
 		PreparedStatement ps = null;
@@ -2434,7 +2434,7 @@ public Myclass2 orderstatus(String name, String pwd)
 		String volumes=null;
 		String lotnum=null;
 		int i=0; 
-		
+		String aadharnumber=null;
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -2465,7 +2465,7 @@ public Myclass2 orderstatus(String name, String pwd)
 							System.out.println("volume sold is "+volumes+" and lotnum is "+lotnum);
 						}	
 						
-						String aadharnumber=null;
+					
 						ps=con.prepareStatement("select aadharnumber from treg where name=?");
 						ps.setString(1, name);						
 						ps.execute();
@@ -2540,9 +2540,9 @@ public Myclass2 orderstatus(String name, String pwd)
 					return mc;
 				con.setAutoCommit(false);
 				
-				ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where tradername=?)");
+				ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where aadharnumber=?)");
 				ps.setString(1, name);
-				ps.setString(2, name);
+				ps.setString(2, aadharnumber);
 				ps.execute();
 				rs1 = ps.getResultSet();
 				while(rs1.next())
@@ -2725,12 +2725,12 @@ public Myclass2 orderstatus(String name, String pwd)
 							}
 										
 							List<String> al=new ArrayList<String>();
-							ps=con.prepareStatement("select lotnum from history");
+							ps=con.prepareStatement("select lotnumber from history");
 							ps.execute();
 							ResultSet rs17=ps.executeQuery();
 							while(rs17.next())
 							{
-								al.add(rs17.getString("lotnum"));
+								al.add(rs17.getString("lotnumber"));
 							}
 							String present;
 							if(al.contains(lotnum))
@@ -2780,13 +2780,8 @@ public Myclass2 orderstatus(String name, String pwd)
 						}					
 					}	
 					else
-					{
-						ps3 =con.prepareStatement("update auction_result set farmerstatus=? where aadharnumber=? and lotnumber=? ");
-						ps3.setString(2, aadharnumber[j]);
-						ps3.setString(1, "rejected");
-						ps3.setString(3, lotnum);
-						ps3.execute();
-						System.out.println("farmer has rejected the price ");
+					{						
+						System.out.println("trader has not been assigned any lot ");
 					}
 					j++;
 				}				
