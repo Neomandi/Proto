@@ -7,31 +7,7 @@
  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script> /*
-$(function(){
-  $("#header").load("Header.html"); 
-  $("#footer").load("Footer.html");
  
-});
-
-var timeInSecs;
-var ticker;
-
-function startTimer(secs){
-timeInSecs = parseInt(secs)-1;
-ticker = setInterval("tick()",1000);   // every second
-}
-*/
- 
-function Block() {
-    var ask = window.confirm("Your final cost has crossed blocked amount??..please enter more amount to continue");
-    if (ask) 
-    {
-        window.alert("This post was successfully deleted.");
-        document.location.href = "http://localhost:8080/NeomandiPrototype/TraderBlock.jsp";
-    }
-}
-</script> 
 <style type = "text/css">
 #biding
 {

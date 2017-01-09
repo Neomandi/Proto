@@ -1081,10 +1081,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			JDBCHelper.Close(con);					
 			}					
 			return msg;			
-			}
+	}
+	
 
-@SuppressWarnings({ "resource" })
-	public Mynewclass tradeOrAuction(String name, String pwd) 
+public Mynewclass tradeOrAuction(String name, String pwd) 
 	{
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -1121,8 +1121,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.execute();
 				rs = ps.getResultSet();				
 				while(rs.next())
-				{
-					
+				{					
 					tlb=new TradeListBean();
 					tlb.setLotnum(rs.getString("lotnum"));
 					tlb.setMarketcode(rs.getString("marketcode"));
@@ -1136,6 +1135,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				mc.setAl(al);
 				
+				int lotcost=0;
+				int commission=0;
+				int marketcess=0;
+				int myfinalcost=0;
 				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
@@ -1144,14 +1147,28 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{
 					int quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
 					int bidprice=Integer.parseInt(rs.getString("bidprice"));
-					int lotcost=bidprice*quantityassigned;
-					int commission=(int)(lotcost*0.05);
-					int marketcess=(int)(lotcost*0.01);
-					int myfinalcost=0;
+					lotcost=bidprice*quantityassigned;
+					commission=(int)(lotcost*0.05);
+					marketcess=(int)(lotcost*0.01);
 					if(quantityassigned==0)
 						myfinalcost=100;
 					else
 						myfinalcost=100+lotcost+commission+marketcess+3000;
+				}
+				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadaharnumber=? and lotnum=?" );
+				ps.setString(1,String.valueOf(lotcost));
+				ps.setString(2,String.valueOf(commission));
+				ps.setString(3,String.valueOf(marketcess));
+				ps.setString(4,String.valueOf(myfinalcost));
+				ps.setString(5,String.valueOf(aadharnumber));
+				ps.setString(6,lotnum);
+				
+				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=?");
+				ps.setString(1, aadharnumber);
+				ps.execute();
+				rs = ps.getResultSet();				
+				while(rs.next())
+				{
 					mfcb=new MyFinalCostBean();
 					mfcb.setCommission(String.valueOf(commission));
 					mfcb.setLotcost(String.valueOf(lotcost));
@@ -1163,9 +1180,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					mfcb.setLotnum(rs.getString("lotnum"));
 					mfcb.setBestbid(rs.getString("bestbid"));
 					mfcb.setQuantityassigned(rs.getString("quantityassigned"));
-					//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
-					bl.add(mfcb);
 				}
+					//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
+				bl.add(mfcb);
 				mc.setBl(bl);
 			}						
 			con.commit();		
@@ -2148,7 +2165,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 }
 	
 	@SuppressWarnings({ "resource", "finally" })
-	public Myclass Increment(String name, String pwd, String increments, String lotnum) 
+
+public Myclass Increment(String name, String pwd, String increments, String lotnum) 
 	{
 		int increment=0;
 		increments=increments.trim();
@@ -2416,10 +2434,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		return mc;		
 		}
 	}
-	
-	@SuppressWarnings({ })
 
-	public Myclass2 orderstatus(String name, String pwd) 
+public Myclass2 orderstatus(String name, String pwd) 
 	{
 		System.out.println("inside Model()->.....orderstatus");
 		PreparedStatement ps = null;
@@ -2464,8 +2480,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 							con.setAutoCommit(false);
 							System.out.println("volume sold is "+volumes+" and lotnum is "+lotnum);
 						}	
-						
-					
 						ps=con.prepareStatement("select aadharnumber from treg where name=?");
 						ps.setString(1, name);						
 						ps.execute();
@@ -2571,15 +2585,25 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 						rs3 = ps.getResultSet();
 						while(rs3.next())
 						{						
-								osbn1.setLotcost(rs3.getString("lotcost"));
+								osbn1.setLotcost("0");
 								osbn1.setBestbid(rs3.getString("bestbid"));
 								osbn1.setBidprice(rs3.getString("bidprice"));
-								osbn1.setMyfinalcost(rs3.getString("myfinalcost"));
+								osbn1.setMyfinalcost("0");
 								osbn1.setLotnum(rs3.getString("lotnum"));						
 						}	
 						osbn1.setVolumesold("0");
-						osbn1.setResult("LOT HAS NOT BEEEN ASSIGNED");	
-						osbn1.setFarmeraccept("pending");
+						osbn1.setResult("LOT HAS NOT BEEN ASSIGNED");
+						ps =con.prepareStatement("select farmerstatus from auction_result where lotnumber=?");
+						ps.setString(1, osbn1.getLotnum());
+						ps.execute();
+						rs3 = ps.getResultSet();
+						while(rs3.next())
+						{ 
+							if(rs3.getString("farmerstatus")==null||rs3.getString("farmerstatus").equals(""))
+								osbn1.setFarmeraccept("PENDING");
+							else
+								osbn1.setFarmeraccept(rs3.getString("farmerstatus"));
+						}
 						al.add(osbn1);
 				}
 				}
@@ -2594,6 +2618,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		return mc;
 	}
 	
+
 	public void TraderProductReject(String lotnum)
 	{
 		Connection con = null;
@@ -2618,7 +2643,8 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		}
 	}
 	
-	public void TraderProductAccept(String lotnum,String accno)
+
+public void TraderProductAccept(String lotnum,String accno)
 	{		
 		System.out.println("TraderProductAccept.do");
 		System.out.println("***********************************************");
@@ -3028,7 +3054,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 				myearnings = finalprice - 700 - percentage;
 
 				System.out.println("my earnings="+myearnings);
-				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity, slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity, slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 				pstmt2 = con.prepareStatement(sql3); 
 				pstmt2.setString(1, farmerid);
