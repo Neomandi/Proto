@@ -34,15 +34,18 @@ public class PostAuctionOperations {
 				rs = pstmt.executeQuery();
 				while(rs.next())
 				{
-					TraderPostAuctionBean tb = new TraderPostAuctionBean();
-					String aadharnumber = rs.getString("aadharnumber");
-					tb.setAadharnumber(aadharnumber);
-					String lotnum = rs.getString("lotnum");
-					tb.setLotnum(lotnum);
-					String quantityassigned = rs.getString("quantityassigned");
-					tb.setQuantityassigned(quantityassigned);
-					
-					ls.add(tb);
+					if(rs.getString("quantityassigned").equals("0"))
+					{
+						TraderPostAuctionBean tb = new TraderPostAuctionBean();
+						String aadharnumber = rs.getString("aadharnumber");
+						tb.setAadharnumber(aadharnumber);
+						String lotnum = rs.getString("lotnum");
+						tb.setLotnum(lotnum);
+						String quantityassigned = rs.getString("quantityassigned");
+						tb.setQuantityassigned(quantityassigned);
+						
+						ls.add(tb);
+					}
 				}
 				
 				System.out.println("The List: "+ls.toString());
