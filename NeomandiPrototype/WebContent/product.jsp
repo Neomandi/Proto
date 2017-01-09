@@ -264,7 +264,7 @@ function populate(s1, s2)
 	%>
 <p align = "right"></p>
 <center>
-<% InputStream photo=null;%>
+<% //InputStream photo=null;%>
 <table align="center" border>
 
 						<tr>
@@ -282,9 +282,10 @@ function populate(s1, s2)
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
-							photo=psr1.getPhoto();
+						//	photo=psr1.getPhoto();
 					%>
-						<div ><input type="hidden" value="<%=photo %>" id="picture" /></div>
+						<!-- <input type="hidden" value="" id="Picture1" /> -->
+
 						<tr>
 						
 						<td>

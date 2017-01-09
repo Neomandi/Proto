@@ -122,7 +122,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into freg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into freg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, frb.getFarmerName());
 				ps.setLong(2, frb.getFarmerMobile());
 				ps.setLong(3, frb.getFarmerAadharnum());
@@ -137,7 +137,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(12, frb.getFarmerBranch());
 				ps.setString(13, frb.getFarmerIfscCode());
 				ps.setString(14, null);
-				ps.setBlob(15, frb.getFarmerPhoto());
+				//ps.setBlob(15, frb.getFarmerPhoto());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -241,7 +241,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
 				ps.setLong(3, trb.getTraderAadharnum());
@@ -258,7 +258,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(14, trb.getTraderUid());
 				ps.setString(15, trb.getTraderLicenseNum());
 				ps.setString(16, trb.getTraderPwd());
-				ps.setBlob(17, trb.getTraderPhoto());
+				//ps.setBlob(17, trb.getTraderPhoto());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -563,7 +563,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println("inside if()->slot is "+slot);
 					if(slot.equals("slot3"))
 						slot=null;
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade,photo, quantity FROM productentry WHERE slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE slotnumber=?");
 					System.out.println(pstmt);
 					pstmt.setString(1,slot);				
 					rs = pstmt.executeQuery();
@@ -576,7 +576,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -585,7 +585,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
 					rs = pstmt.executeQuery();
@@ -598,7 +598,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						//psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -606,7 +606,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&!quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);					
@@ -620,14 +620,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
 				}
 				else
 				{
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);	
@@ -642,7 +642,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						//psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
@@ -681,7 +681,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -689,7 +689,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(5, peb.getProduce());
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
-				ps.setBlob(8, peb.getPhoto());
+			//	ps.setBlob(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
@@ -769,11 +769,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					 aadharnumber=rs.getString("aadharnumber");
 				}	
 				
-				ps =con.prepareStatement("insert into Trader_data values(?,?,?)");
-				ps.setString(1, tlbn.getTname());
-				ps.setString(2, tlbn.getTpwd());
-				ps.setString(3, aadharnumber);
-				ps.execute();
 				ps =con.prepareStatement("select * from productentry where lotnumber = ?");
 				ps.setString(1, lotnumber);
 				ps.execute();
@@ -1127,6 +1122,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				rs = ps.getResultSet();				
 				while(rs.next())
 				{
+					
 					tlb=new TradeListBean();
 					tlb.setLotnum(rs.getString("lotnum"));
 					tlb.setMarketcode(rs.getString("marketcode"));
@@ -1146,18 +1142,28 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				rs = ps.getResultSet();				
 				while(rs.next())
 				{
+					int quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
+					int bidprice=Integer.parseInt(rs.getString("bidprice"));
+					int lotcost=bidprice*quantityassigned;
+					int commission=(int)(lotcost*0.05);
+					int marketcess=(int)(lotcost*0.01);
+					int myfinalcost=0;
+					if(quantityassigned==0)
+						myfinalcost=100;
+					else
+						myfinalcost=100+lotcost+commission+marketcess+3000;
 					mfcb=new MyFinalCostBean();
-					mfcb.setCommission(rs.getString("commission"));
-					mfcb.setLotcost(rs.getString("lotcost"));
-					mfcb.setMarketcess(rs.getString("marketcess"));
-					mfcb.setMyfinalcost(rs.getString("myfinalcost"));
+					mfcb.setCommission(String.valueOf(commission));
+					mfcb.setLotcost(String.valueOf(lotcost));
+					mfcb.setMarketcess(String.valueOf(marketcess));
+					mfcb.setMyfinalcost(String.valueOf(myfinalcost));
 					int price=rs.getInt("bidprice");
 					String prices=String.valueOf(price);
 					mfcb.setPrice(prices);
 					mfcb.setLotnum(rs.getString("lotnum"));
 					mfcb.setBestbid(rs.getString("bestbid"));
 					mfcb.setQuantityassigned(rs.getString("quantityassigned"));
-					System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
+					//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 					bl.add(mfcb);
 				}
 				mc.setBl(bl);
@@ -1463,6 +1469,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println("biddng price the trader was ready to pay is "+bidprice);
 					int res =bidprice+1;	
 					int quantityassignedint = Integer.parseInt(quantityassigned);
+					System.out.println("quantity assigned is "+quantityassignedint);
 					lotcost = res * quantityassignedint;
 					commission = (int) (lotcost*0.05);
 					marketcess = 1*10;
@@ -2993,7 +3000,7 @@ public Myclass2 orderstatus(String name, String pwd)
 				String produce = "";
 				String qualitygrade = "";
 				double averageprice = 0;
-				InputStream photo = null;
+			//	InputStream photo = null;
 			
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
@@ -3011,9 +3018,10 @@ public Myclass2 orderstatus(String name, String pwd)
 					produce = rs1.getString("produce");
 					qualitygrade = rs1.getString("qualitygrade");
 					averageprice = rs1.getDouble("averageprice");
+
 					
-				   photo = rs1.getBlob("photo").getBinaryStream();
-				}
+				  // photo = rs1.getBlob("photo").getBinaryStream();
+		}
 				
 				System.out.println("avg="+averageprice);
 				double finalprice = 0.0;
@@ -3025,7 +3033,7 @@ public Myclass2 orderstatus(String name, String pwd)
 				myearnings = finalprice - 700 - percentage;
 
 				System.out.println("my earnings="+myearnings);
-				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity,photo,slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity, slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 				pstmt2 = con.prepareStatement(sql3); 
 				pstmt2.setString(1, farmerid);
@@ -3035,14 +3043,14 @@ public Myclass2 orderstatus(String name, String pwd)
 				pstmt2.setString(5, produce);
 				pstmt2.setString(6, qualitygrade);
 				pstmt2.setString(7, quantity);
-				pstmt2.setBlob(8, photo);
+				//pstmt2.setBlob(8, photo);
 
-				pstmt2.setString(9, slotnumber);
-				pstmt2.setDouble(10, averageprice);
-				pstmt2.setString(11, quantitybidfor);
-				pstmt2.setDouble(12, finalprice);
-				pstmt2.setString(13, null);
-				pstmt2.setDouble(14, myearnings);
+				pstmt2.setString(8, slotnumber);
+				pstmt2.setDouble(9, averageprice);
+				pstmt2.setString(10, quantitybidfor);
+				pstmt2.setDouble(11, finalprice);
+				pstmt2.setString(12, null);
+				pstmt2.setDouble(13, myearnings);
 
 				
 				pstmt2.execute();

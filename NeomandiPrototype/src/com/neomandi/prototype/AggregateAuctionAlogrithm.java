@@ -172,7 +172,7 @@ public class AggregateAuctionAlogrithm {
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 								pstmt.executeUpdate();
-								System.out.println();
+								System.out.println(pstmt);
 								
 								break;
 							}
@@ -199,7 +199,7 @@ public class AggregateAuctionAlogrithm {
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 						pstmt.executeUpdate();
-						System.out.println();
+						System.out.println(pstmt);
 					}
 				}	
 			}

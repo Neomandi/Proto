@@ -53,7 +53,7 @@ public class PostAuctionOperations {
 			          pstmt2.setString(1, ls.get(i).getLotnum());
 			          pstmt2.setString(2, ls.get(i).getQuantityassigned());
 			          pstmt2.setString(3, ls.get(i).getAadharnumber());
-			          System.out.println("Insert into auction result: "+pstmt2.executeUpdate());
+			          System.out.println("Insert into auction result: "+pstmt2);
 			      }  
 				
 				con.commit();
