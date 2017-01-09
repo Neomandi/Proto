@@ -90,7 +90,7 @@ public class AggregateAuctionAlogrithm {
 				maxvol = rs1.getInt("quantity");
 			}
 			
-			int maxavg = maxvol;
+			int maxavg = 0;
 			//System.out.println("The maxvol of "+lotnum+" is: "+maxvol);
 			//System.out.println("The maxavg: "+maxavg);
 			
@@ -103,6 +103,7 @@ public class AggregateAuctionAlogrithm {
 						System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 						maxvol = maxvol - li.get(i).getQuantityneeded();
 						avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
+						maxavg = maxavg + li.get(i).getQuantityneeded();
 						a.add(li.get(i).getAadharnumber());
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
@@ -131,6 +132,7 @@ public class AggregateAuctionAlogrithm {
 							{
 								System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 								avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
+								maxavg = maxavg + li.get(i).getQuantityneeded();
 								a.add(li.get(i).getAadharnumber());
 								
 								pstmt.setInt(1, li.get(0).getBidprice());
@@ -154,6 +156,7 @@ public class AggregateAuctionAlogrithm {
 							{
 								System.out.println(li.get(i).getAadharnumber()+" only "+maxvol+" is available "+Math.abs(vmv1)+" is pending.");
 								avg = avg + (maxvol * li.get(i).getBidprice());
+								maxavg = maxavg + maxvol;
 								int vol = maxvol;
 								maxvol = maxvol * 0;
 								a.add(li.get(i).getAadharnumber());
@@ -183,6 +186,7 @@ public class AggregateAuctionAlogrithm {
 						maxvol = maxvol - li.get(i).getQuantityneeded();
 						System.out.println(li.get(i).getQuantityneeded()+" assigned for "+li.get(i).getAadharnumber());
 						avg = avg + (li.get(i).getQuantityneeded() * li.get(i).getBidprice());
+						maxavg = maxavg + li.get(i).getQuantityneeded();
 						a.add(li.get(i).getAadharnumber());
 						
 						pstmt.setInt(1, li.get(0).getBidprice());
