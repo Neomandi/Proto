@@ -3013,8 +3013,10 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 					produce = rs1.getString("produce");
 					qualitygrade = rs1.getString("qualitygrade");
 					averageprice = rs1.getDouble("averageprice");
-					//photo = rs1.getBlob("photo").getBinaryStream();
-				}
+
+					
+				  // photo = rs1.getBlob("photo").getBinaryStream();
+		}
 				
 				System.out.println("avg="+averageprice);
 				double finalprice = 0.0;
