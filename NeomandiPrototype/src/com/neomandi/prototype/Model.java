@@ -3011,7 +3011,8 @@ public Myclass2 orderstatus(String name, String pwd)
 					produce = rs1.getString("produce");
 					qualitygrade = rs1.getString("qualitygrade");
 					averageprice = rs1.getDouble("averageprice");
-					photo = rs1.getBlob("photo").getBinaryStream();
+					
+				   photo = rs1.getBlob("photo").getBinaryStream();
 				}
 				
 				System.out.println("avg="+averageprice);
