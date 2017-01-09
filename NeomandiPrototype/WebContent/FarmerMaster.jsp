@@ -557,7 +557,7 @@ function countdown(minutes,seconds,hours)
 		            	}
 	        } 
 	        else 
-     	{
+     		{
 				if(mins > 0)
 				{
 					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);

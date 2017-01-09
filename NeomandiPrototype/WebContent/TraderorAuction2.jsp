@@ -234,7 +234,9 @@ text-align:center
   <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>
   <li><a href="TradeSummary.jsp">Trade Summary</a></li>
   <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br>
-<br><br><h2>AUCTION SLOT:1</h2><br>AUCTION STARTS IN<div id="timer"><input type="text" id="timer1"><br></div>
+<br><br><h2>AUCTION SLOT:1</h2><br><div id="timer"><input type="text" id="timer1"><br></div>
+<div id="auction"></div>
+				<div id="auction1"></div><br>
 <%
 SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
 %>
@@ -242,22 +244,21 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 
 <script>
 var Etime=document.getElementById("time").value;
-var Btime="12:08:00:00";
+var Btime="10:30:00";
+var Btime1="10:35:00";
+
 start = Etime.split(":");
 end =Btime.split(":");
 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-var diff = endDate.getTime() - startDate.getTime();
+ diff = endDate.getTime() - startDate.getTime();
 console.log("end time is "+Btime);
 console.log("current time is "+Etime);
-console.log("difference in milliseconds is "+diff);
 var hours = Math.floor(diff / 1000 / 60 / 60);
 //diff -= hours* 60 * 60;
 var seconds= Math.floor(diff /1000);
 var minutes = Math.floor(diff / 1000 / 60);
-var res3=0;
-console.log("differences in minutes before calc "+minutes);		
-console.log("differences in seconds before calc "+seconds);		
+var res3=0;	
 if(seconds>60)
 {
 		res1=seconds%60;
@@ -274,130 +275,166 @@ if(minutes>60)
 		hours=res3;
 		minutes=res1;
 }
+
 var timedifference=+hours+":"+minutes+":"+seconds;
-console.log("differences in time is "+timedifference);
-var idiff = parseInt("timedifference") + "<br>";
+
 countdown(minutes,seconds,hours);
-console.log(diff);
-diff=diff+300000;
-console.log(diff);
-var t=setTimeout(auction, diff);
-function auction()
+var five=300000;
+timedif=diff+five;	
+var t=setTimeout(nextPage,timedif);
+function nextPage()
 {
-	//window.location='http://localhost:8080/NeomandiPrototype/ProductBuyingScreen.html'
+	<% 
+		//out.println("<script type=\"text/javascript\">");
+		//out.println("alert('AUCTION IS OVER WE ARE DIRECTING YOU TO ORDER STATUS PAGE');");
+	//	out.println("location='OrderStatus.do';");
+	%>
 }
+	 
 
 
 ///---------------------for count down timer----------------------------------	
+			
 function countdown(minutes,seconds,hours) 
 {
-				    var seconds =seconds;
-				    var mins = minutes
-				    var hour=hours;
-				    var res1=0;
-				    var res2=0;
-				    var timedifference=+hours+":"+minutes+":"+seconds;
-				   		    
-			   		function tick() 
-			   		{
-				        var counter = document.getElementById("timer");
-				        /*if(seconds==0)
-				        {
-				        	var current_minutes = mins-1
-				        	seconds=59;
-				        }
-				        else*/
-				        	var current_minutes = mins
-			       		seconds--;
-				        var hour=hours;
-				        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-				        if( seconds > 0 )
-				        {
-				            setTimeout(tick,1000);
-				        } 
-				        else 
-			        	{
-			 				if(mins > 0)
-			 				{
-			 					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
-			 				}			 				
-							else
-							{
-								if(hour>1)
-								{
-				 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
-				 				}	
-								else
-								{
-					            	var str="<center><b><h4><font color='black'>Your Auction ends in</font></h4></b></center>";
-					            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
-					            //	var strCmd = "document.getElementById('auction').style.display = 'none'";
-					            	var waitseconds = seconds;
-					            	// Calculate time out period then execute the command
-					            	var timeOutPeriod = waitseconds * 1000;
-					            	//var hideTimer = setTimeout(strCmd, timeOutPeriod);
-					            	document.getElementById("timer").innerHTML=str;
-					            	function count(minutes,seconds1) 
-					            	{
-					            		console.log("minutes is"+minutes);
-					            		console.log("seconds is"+seconds1);
-					        		    var seconds =seconds1;
-					        		    var mins = minutes
-					        		    var timedifference=+hours+":"+minutes+":"+seconds;
-					        		    function tick() 
-					        		    {
-					        		        var counter = document.getElementById("hms");
-					        		        var current_minutes = mins
-					        		       	seconds--;
-					        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-					        		        if( seconds > 0 ) {
-					        		            setTimeout(tick,1000);
-					        		        } 
-					        		        else 
-					        		        {
-						        		       if(mins > 0)
-						        		       {
-						        		 		setTimeout(function () { count(mins - 1,60); },1000);
-						        			   }
-						        		       else
-						        		       {
-						        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
-						        		           	document.getElementById("auction1").innerHTML=str1;
-						        		       }
-					        		    	}
-				        		     	}
-				        		   	 	tick();
-				        			}		
-					            	var Etime1=document.getElementById("time").value;
-					            	var Btime1="02:13:00:00";
-					            	start1 = Etime1.split(":");
-					            	end1 =Btime1.split(":");
-					            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-					            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-					            	var diff1 = endDate1.getTime() - startDate1.getTime();					            	
-					            	var hours1 = Math.floor(diff1 / 1000 / 60 / 60);
-					            	var seconds1= Math.floor(diff1 /1000);
-					            	var minutes1 = Math.floor(diff1 / 1000 / 60);
-					            	var res1;
-					            	var res2;
-					            	if(seconds1>60)
-					            	{
-					            			res1=seconds1%60;
-					            			res2=Math.floor(seconds1/60);
-					            			seconds1=res1;
-					            			minutes1=res2;
-					            	}
-					            	console.log("auction ends at "+Btime1);
-					            	console.log("time is  "+Etime1);
-					            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-				        			count(minutes1,seconds1);				            	
-								}
-							}
-			 				}		       
-			    		}
-			    tick();
-			}
-			countdown(minutes,seconds,hours);
+		
+	 	var seconds =seconds;
+	    var mins = minutes
+	    var hour=hours;
+	    var res1=0;
+	    var res2=0;
+	    var timedifference=+hours+":"+minutes+":"+seconds;
+	   		    
+		function tick() 
+		{
+	        var counter = document.getElementById("timer");
+	        var current_minutes = mins
+    		seconds--;
+	        var hour=hours;
+	        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+	        if( seconds > 0 )
+	        {
+	            setTimeout(tick,1000);
+	           /* document.getElementById('ts').onclick = function() {
+		            	console.log("inside the count function");
+		            	//alert("Auction under progress");
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	}*/
+	        } 
+	        else 
+     		{
+				if(mins > 0)
+				{
+					setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
+				}			 				
+				else
+				{
+					if(hour>1)
+					{
+	 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
+	 				}	
+					else
+					{
+						
+		            	var str="<center><b><h4><font color='blue' ><div id='a1'> Auction has begun</div></font></h4></b></center>";
+		            	str+="<center><b><h4><font color='blue' ><div id='a2'> Auction will ends in</div></font></h4></b></center>";
+		            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
+		            	var strCmd = "document.getElementById('auction').style.display = 'none'";
+		            	var waitseconds = seconds;
+		            	var timeOutPeriod = waitseconds * 1000;
+		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+		            	var strCmd1 = "document.getElementById('msg').style.display = 'none'";
+		            	var waitseconds = seconds;
+		            	var timeOutPeriod = waitseconds * 1000;
+		            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
+		            	document.getElementById("timer").innerHTML=str;
+		            	function count(minutes1,seconds1) 
+		            	{
+		        		    var seconds =seconds1;
+		        		    var mins = minutes1
+		        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
+		        		    function tick() 
+		        		    {
+		        		        var counter = document.getElementById("hms");
+		        		        var current_minutes = mins
+		        		       	seconds--;
+		        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+		        		        if( seconds > 0 ) {
+		        		            setTimeout(tick,1000);
+		        		            /*document.getElementById('ts').onclick = function() {
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	}*/
+		        		        } 
+		        		        else 
+		        		        {
+			        		       if(mins > 0)
+			        		       {
+			        		 		setTimeout(function () { count(mins - 1,60); },1000);
+			        			   }
+			        		       else
+			        		       {
+			        		    	   console.log("aucton has enede");
+			        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
+			        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
+						            	var strCmd3 = "document.getElementById('a1').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
+						            	var strCmd4 = "document.getElementById('a2').style.display = 'none'";
+						            	var waitseconds = seconds;
+						            	var timeOutPeriod = waitseconds * 1000;
+						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
+						            //	document.getElementById('ts').onclick = function() {
+			        		            	
+			        		            	//alert("Auction under progress");
+			        		          //  	   location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            	//}
+						            	/*document.getElementById('accept').onclick = function() {
+			        		            	console.log("inside the count function");
+			        		            	//alert("Auction under progress");
+			        		            	   location="http://localhost:8080/NeomandiPrototype/AfterAccept.do";
+			        		            	}*/
+						    			document.getElementById("auction1").innerHTML=str1;
+			        		       }
+		        		    	}
+	        		     	}
+	        		   	 	tick();
+	        			}		
+		            	var Etime1=document.getElementById("time").value;
+		            	start1 = Etime1.split(":");
+		            	end1 =Btime1.split(":");
+		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+		            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+		            	var td = endDate1.getTime() - startDate1.getTime();					            	
+		            	var hours1 = Math.floor(td / 1000 / 60 / 60);
+		            	var seconds1= Math.floor(td /1000);
+		            	var minutes1 = Math.floor(td / 1000 / 60);
+		            	var res1;
+		            	var res2;
+		            	if(seconds1>60)
+		            	{
+		            			res1=seconds1%60;
+		            			res2=Math.floor(seconds1/60);
+		            					
+		            			seconds1=res1;
+		            			minutes1=res2;
+		            	}
+		            	console.log("auction ends at "+Btime1);
+		            	console.log("time is  "+Etime1);
+		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
+	        			count(minutes1,seconds1);
+	        			
+					}
+				}
+				}		       
+ 		}
+ tick();
+}
+countdown(minutes,seconds,hours);			   
+
 </script>
 <table id = "t1" border = "border">
 	<tr bgcolor="#7cfc00">

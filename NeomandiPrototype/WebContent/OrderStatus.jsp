@@ -134,7 +134,7 @@ STATUS:PENDING
 <td><%=osbn.getVolumesold() %></td>
 <td ><%=osbn.getMyfinalcost()%></td>
 <td><%=osbn.getResult() %></td>
-<td>PENDING</td>
+<td><%=osbn.getFarmeraccept() %></td>
 <td align="center"><output type="text" id="status"></td>
 </tr><%}}%>
 </table>
