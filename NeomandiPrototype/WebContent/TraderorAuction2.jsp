@@ -7,7 +7,6 @@
  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
- 
 <style type = "text/css">
 #biding
 {
@@ -63,7 +62,7 @@ a.more {
 }
 
 a.moree {
-text-align: center;
+	text-align: center;
     border: 1px solid black;
     border-radius: 9px 9px 9px 9px;
     background-color: green;   
@@ -200,7 +199,6 @@ text-align:center
    pointer-events: none;
    cursor: default;
 }
-
 
 </style></head>
 <body>

@@ -1740,6 +1740,23 @@ if(uri.contains("AfterAccept")){
 				}
 			}
 		}
+		
+		if(uri.contains("Dispatch"))
+		{
+			System.out.println("***************************************************************************");
+			System.out.println("inside CS");
+			Model m=new Model();
+			List al=m.Dispatch();
+			HttpSession dispatch=request.getSession();
+			dispatch.setAttribute("al",al);
+			rd=request.getRequestDispatcher("Dispatch.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException | IOException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
