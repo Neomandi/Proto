@@ -26,7 +26,15 @@ a
 	text-decoration: none;
 	padding: 10px 20px;
 }
-
+.logout
+{
+	text-decoration: none;
+	color: red;
+	position: absolute;
+	top: 6px;
+	right: 30px;
+	font-size: 32px;
+}
 table
 {
 	border-collapse: collapse;
@@ -73,6 +81,8 @@ body
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
 <%@ include file="ERibbon.jsp" %><br><br>
+<a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
+
 <ul>
 <li><a href="ProductEntry.jsp">Product Entry</a></li>
 <li><a href="ProductEntry.jsp">Revenue</a></li>
