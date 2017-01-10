@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -107,7 +107,9 @@ table
 <%
 	Connection con = null;
 	PreparedStatement pstmt = null;
+	PreparedStatement pstmt1 = null;
 	ResultSet rs = null;
+	ResultSet rs1 = null;
 	
 	try{
 	con = JDBCHelper.getConnection();
@@ -118,7 +120,7 @@ table
 	}
 	else
 	{
-		String sql = "select ar.lotnumber, ar.quantityassigned, ar.aadharnumber, tb.bidprice, tb.bestbid from traders_bid_price tb, auction_result ar where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber)";
+		String sql = "select ar.lotnumber, ar.quantityassigned, ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		while(rs.next())
@@ -130,6 +132,9 @@ table
 			int lotcost = quantityassigned*bestbid;
 			int commission = (int)(lotcost*0.05);
 			int marketcess = (int)(lotcost*0.01);
+			double averageprice = Double.parseDouble(rs.getString("averageprice"));
+			double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
+			int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
 
 %>
 	<tr>
@@ -140,7 +145,7 @@ table
 		<td bgcolor="#6FC3E8"><%= marketcess %></td>
 		<td bgcolor="#6FC3E8">100</td>
 		<td bgcolor="#D1DF4D">3000</td>
-		<td bgcolor="#D1DF4D">0</td>
+		<td bgcolor="#D1DF4D"><%= fmarketcess %></td>
 		<td bgcolor="#D1DF4D">200</td>
 		<td bgcolor="#D1DF4D">100</td>
 		<td bgcolor="#F2F2F2">1600</td>
