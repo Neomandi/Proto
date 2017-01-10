@@ -1746,9 +1746,9 @@ if(uri.contains("AfterAccept")){
 			System.out.println("***************************************************************************");
 			System.out.println("inside CS");
 			Model m=new Model();
-			List al=m.Dispatch();
+			OrderStatusResult osrb=m.Dispatch();
 			HttpSession dispatch=request.getSession();
-			dispatch.setAttribute("al",al);
+			dispatch.setAttribute("al",osrb);
 			rd=request.getRequestDispatcher("Dispatch.jsp");
 			try {
 				rd.forward(request, response);

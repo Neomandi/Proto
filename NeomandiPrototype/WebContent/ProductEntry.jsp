@@ -55,8 +55,8 @@ input[type = text]
 #pic
 {
 	position: absolute;
-	top: 500px;
-	left: 550px;
+	top: 400px;
+	left: 500px;
 }
 .bc
 {
@@ -101,63 +101,31 @@ input[type=reset]
 	height: 30px;
     width: 75px;
 }
-ul {		
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: white;    
-}
-li
-{
-	display: inline;
-    float: left;
-		    
+body{
+	background-color: white;
 }
 
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;
-		    
-		}
-		
-		 #menu
-		{
-		    text-align: center;
-		    border: 1px solid black;
-		    border-radius: 9px 9px 0 0;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 150px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;
-		    border-radius: 9px 9px 0 0;    
-		}
-		
-		 li
-		{
-			display: inline;
-		    float: left;    
-		}
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;    
-		}
+
+a.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;    
+}
+ #menu
+{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 0 0;
+    background-color: blue;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 160px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -249,8 +217,8 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#pic')
                 .attr('src', e.target.result)
-                .width(300)
-                .height(150);
+                .width(400)
+                .height(250);
         };
         reader.readAsDataURL(input.files[0]);
     }

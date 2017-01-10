@@ -3223,7 +3223,7 @@ public void TraderProductAccept(String lotnum,String accno)
 	}
 
 	@SuppressWarnings("resource")
-	public List<DispatchBean> Dispatch() {
+	public OrderStatusResult Dispatch() {
 		System.out.println("inside model");
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -3232,6 +3232,7 @@ public void TraderProductAccept(String lotnum,String accno)
 		ResultSet rs = null;
 		List<DispatchBean> al=new ArrayList<DispatchBean>();
 		HashMap<String, Integer> a=null;
+		OrderStatusResult osrb=new OrderStatusResult();
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -3242,12 +3243,13 @@ public void TraderProductAccept(String lotnum,String accno)
 			}
 			else
 			{
-				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber");
+				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber order by lotnumber");
 				ps.setString(1,"accepted");
 				rs=ps.executeQuery();
+				a=new HashMap<>();
 				while(rs.next())
 				{
-					a=new HashMap<>();
+					System.out.println("lotnum->"+rs.getString("lotnumber")+" count(*)->"+rs.getInt("count(*)"));
 					a.put(rs.getString("lotnumber"), rs.getInt("count(*)"));					
 				}
 				ps=con.prepareStatement("SELECT ar.lotnumber, ar.quantityassigned, ar. aadharnumber,tr.name  FROM auction_result ar, treg tr where ar.farmerstatus=? and ar.aadharnumber=tr.aadharnumber order by lotnumber");
@@ -3266,7 +3268,9 @@ public void TraderProductAccept(String lotnum,String accno)
 					else
 						System.out.println("no");*/
 				}
-				return al;
+				osrb.setA(a);
+				osrb.setAl(al);
+				return osrb;
 			}		
 		}
 		catch(SQLException e)
@@ -3286,6 +3290,6 @@ public void TraderProductAccept(String lotnum,String accno)
 			JDBCHelper.Close(pstmt1);
 			JDBCHelper.Close(con);
 		}
-		return al;
+		return osrb;
 	}
 }
