@@ -135,7 +135,7 @@ table
 			double averageprice = Double.parseDouble(rs.getString("averageprice"));
 			double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
 			int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
-
+			int nmr = commission + marketcess + 100 + 200 + fmarketcess;
 %>
 	<tr>
 		<td bgcolor="#F2F2F2"><%= lotnumber %></td>
@@ -148,7 +148,7 @@ table
 		<td bgcolor="#D1DF4D"><%= fmarketcess %></td>
 		<td bgcolor="#D1DF4D">200</td>
 		<td bgcolor="#D1DF4D">100</td>
-		<td bgcolor="#F2F2F2">1600</td>
+		<td bgcolor="#F2F2F2"><%= nmr %></td>
 	</tr>
 <%
 		}
