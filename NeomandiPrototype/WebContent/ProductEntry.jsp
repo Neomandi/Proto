@@ -133,7 +133,7 @@ a.active {
 <%@ include file="ERibbon.jsp" %><br><br>
 <ul>
 <li><a id="menu" class="active" href="ProductEntry.jsp">Product Entry</a></li>
-<li><a id="menu" href="ProductEntry.jsp">Revenue</a></li>
+<li><a id="menu" href="Revenue.jsp">Revenue</a></li>
 <li><a id="menu" href="Dispatch.do">Dispatch</a></li>
 </ul><br><br><br>
 <!-- <div id = "header"></div>  -->
