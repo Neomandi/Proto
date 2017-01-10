@@ -78,7 +78,11 @@ table
 {
 	border: border;
 	border-Collapse: collapse;
-	width: 100%;
+	width: 80%;
+}
+td
+{
+	text-align: center;
 }
 </style>
 <body>
@@ -89,6 +93,7 @@ table
 	<li><a id="menu" href="Dispatch.do">Dispatch</a></li>
 </ul><br><br><br>
 
+<center>
 <table border>
 	<tr>
 		<th bgcolor="#F2F2F2">Lot Number</th>
@@ -166,6 +171,7 @@ table
 	}
 %>
 </table>
+</center>
 
 <a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
 <pre><p style="position: fixed; bottom: 20px; left: 180px; font-size: 20px;">*Transportation/Loading Charges   #E-Platform Charges   $Pre-Market Value Addition Charges</p></pre>
