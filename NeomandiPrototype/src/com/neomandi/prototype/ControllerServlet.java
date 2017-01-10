@@ -46,8 +46,6 @@ public class ControllerServlet extends HttpServlet {
 	{
 		
 		RequestDispatcher rd=null;	
-		
-		RequestDispatcher rd2=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
 		//FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
@@ -57,9 +55,6 @@ public class ControllerServlet extends HttpServlet {
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
 		SummaryBean sb=(SummaryBean)request.getAttribute("sb");
-		
-		//ControllerServlet.setVal(atbean.getMaxvol()); 
-		
 		
 		String uri=request.getRequestURI();
 		
@@ -1636,9 +1631,6 @@ if(uri.contains("AfterAccept")){
 			if(flog!=null)
 			{ 
 				flog.invalidate();
-				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
-				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd2=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{
 					rd.forward(request, response);

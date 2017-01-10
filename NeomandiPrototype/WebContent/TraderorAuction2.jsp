@@ -1062,3 +1062,4 @@ function fun2<%=tlb.getLotnum() %>()
 </div>
 </body>
 </html>
+ 

@@ -1084,6 +1084,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 	
 
+@SuppressWarnings("resource")
 public Mynewclass tradeOrAuction(String name, String pwd) 
 	{
 		PreparedStatement ps = null;
