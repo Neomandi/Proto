@@ -840,6 +840,7 @@ if(uri.contains("AfterAccept")){
 			{
 				HttpSession psr=request.getSession();
 				psr.setAttribute("beans", msg);
+				
 				request.setAttribute("productsearchresult", "productsearchresult");
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
@@ -1756,6 +1757,24 @@ if(uri.contains("AfterAccept")){
 				e1.printStackTrace();
 			}
 			
+		}
+		if(uri.contains("ajax"))
+		{
+			    System.out.print(request.getParameter("y"));
+			    response.setContentType("text/plain");
+			    PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("lotnum:121");
+					out.println("finalcost:121212");
+					//response.getWriter().write("211");
+				   /* out.print(lot);
+				    out.flush();
+				    out.close();*/
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 	}
 
