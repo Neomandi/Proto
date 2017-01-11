@@ -57,7 +57,7 @@ th
 {text-align: center;
 	width: 200px;
 	height:40px;
-	color:white
+	color: black;
 }
 
 .logout
