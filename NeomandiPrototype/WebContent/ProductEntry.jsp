@@ -102,13 +102,40 @@ input[type=reset]
     width: 75px;
 }
 body{
-	background-color: rgb(192,192,192);
+	background-color: white;
+}
+
+
+a.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;    
+}
+ #menu
+{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 9px 9px 0 0;
+    background-color: blue;   
+	display: inline;
+	display: block;
+    color: white;
+	width: 160px;
+	text-decoration: none;
+	padding: 10px 20px;
 }
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
 <%@ include file="ERibbon.jsp" %><br><br>
+<ul>
+<li><a id="menu" class="active" href="ProductEntry.jsp">Product Entry</a></li>
+<li><a id="menu" href="Revenue.jsp">Revenue</a></li>
+<li><a id="menu" href="Dispatch.do">Dispatch</a></li>
+</ul><br><br><br>
 <!-- <div id = "header"></div>  -->
 <br/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
