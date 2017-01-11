@@ -316,8 +316,7 @@ function populate(s1, s2)
    											 });
 						</script>
 						<%
-						photo = new BufferedInputStream(new FileInputStream(" "));
-					    Image image = ImageIO.read(photo);
+		System.out.println(" photo");
 
 						%>
 						<div class="Table" style="display: table;" >
@@ -327,7 +326,7 @@ function populate(s1, s2)
 						<div data-role="popup" class="peter">
 							
 						
-							<img id="pic" src="<%=image %>"  width="70%" height="60%"></img>
+							<img id="pic" src="<%=photo %>"  width="70%" height="60%"></img>
 							<figcaption><%=lotnum%></figcaption>
 							</div>
 			</div>
