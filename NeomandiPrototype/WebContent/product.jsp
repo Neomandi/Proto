@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*,java.io.InputStream, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
+    pageEncoding="ISO-8859-1" import="java.util.*,java.io.InputStream,java.io.OutputStream, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -264,7 +264,9 @@ function populate(s1, s2)
 	%>
 <p align = "right"></p>
 <center>
-<% //InputStream photo=null;%>
+<% InputStream photo=null;
+	OutputStream os=null;
+%>
 <table align="center" border>
 
 						<tr>
@@ -282,43 +284,48 @@ function populate(s1, s2)
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
-						//	photo=psr1.getPhoto();
+							photo=psr1.getPhoto();
+							System.out.println("inside for loop of product.jsp");
+							
 					%>
-						<!-- <input type="hidden" value="" id="Picture1" /> -->
-
+						 
+						
 						<tr>
 						
 						<td>
+						<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+						<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+						<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+						<script>
+								$(document).ready(function(){
+  								$(".peter_pic").click(function(){
+   								 $( ".peter" ).dialog( "open" );
+  									}); 
+  								$( ".peter" ).dialog({ autoOpen: false });
+								});
+ 									$( window ).load(function() {
+        								$(".peter").hide();
+   											 });
+						</script>
+						<%
+						
+						
+						%>
+						<div class="Table" style="display: table;" >
+						<div style="display: table-row;">
+						<div style="display: table-cell;" class = "test">
+						<button class = "peter_pic"  ><%out.println(psr1.getLotnumber()); %></button>
+						<div data-role="popup" class="peter">
 							
-							<link rel="stylesheet" href="image.css" />
-  							<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- 							 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-							<div id="dialog">
-  							<p></p>
+						
+							<img id="pic" src="Images/Carrots.jpg"  width="70%" height="90%"></img>
+							<figcaption><%=lotnum%></figcaption>
 							</div>
-							<button id="opener"><% out.println(psr1.getLotnumber()); %></button>
- 							<script>
- 							$(function() {
- 							    $( "#dialog" ).dialog({
- 							      autoOpen: false,
- 							      show: {
- 							        effect: "blind",
- 							        duration: 1000
- 							      },
- 							      hide: {
- 							        effect: "explode",
- 							        duration: 1000
- 							      }
- 							      
- 							    });
- 							 
- 							    $( "#opener" ).click(function() {
- 							      $( "#dialog" ).dialog( "open" );
- 							    });
- 							  });
- 							
- 							
- 							</script>
+			</div>
+			</div>
+			</div>
+							
 						</td>
 							
 						

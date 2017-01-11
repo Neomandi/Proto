@@ -564,7 +564,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println("inside if()->slot is "+slot);
 					if(slot.equals("slot3"))
 						slot=null;
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE slotnumber=?");
 					System.out.println(pstmt);
 					pstmt.setString(1,slot);				
 					rs = pstmt.executeQuery();
@@ -577,7 +577,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -586,7 +586,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
 					rs = pstmt.executeQuery();
@@ -599,7 +599,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						//psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -607,7 +607,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("Please Select")&&!quality.equals("Please Select"))
 				{
 					System.out.println("inside else if()->");
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);					
@@ -621,14 +621,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
 				}
 				else
 				{
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);	
@@ -643,8 +643,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						//psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
-					//	psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
+						
+					    psrb.setPhoto(rs.getBlob("photo").getBinaryStream());
 						l.add(psrb);	
 					}
 					return l;
@@ -682,7 +682,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getLotnum());
 				ps.setString(3, peb.getMarketcode());
@@ -690,7 +690,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(5, peb.getProduce());
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
-			//	ps.setBlob(8, peb.getPhoto());
+				ps.setBlob(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
