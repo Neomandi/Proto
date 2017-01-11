@@ -505,6 +505,7 @@ else
 var number=document.getElementById(number<%out.println(tlb.getLotnum());%>);
 if(number.equals(null))
 	alert('You need to enter the number of bid to be increased before');
+	
 </script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();
