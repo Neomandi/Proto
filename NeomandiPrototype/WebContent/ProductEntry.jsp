@@ -55,7 +55,7 @@ input[type = text]
 #pic
 {
 	position: absolute;
-	top: 400px;
+	top: 500px;
 	left: 500px;
 }
 .bc
@@ -218,7 +218,7 @@ function readURL(input) {
             $('#pic')
                 .attr('src', e.target.result)
                 .width(400)
-                .height(250);
+                .height(150);
         };
         reader.readAsDataURL(input.files[0]);
     }

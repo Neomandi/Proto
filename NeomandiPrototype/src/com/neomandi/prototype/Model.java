@@ -565,8 +565,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					if(slot.equals("slot3"))
 						slot=null;
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE slotnumber=?");
-					System.out.println(pstmt);
+					
 					pstmt.setString(1,slot);				
+					System.out.println(pstmt);
 					rs = pstmt.executeQuery();
 					ProductSearchResultBean psrb = null;
 					while(rs.next())

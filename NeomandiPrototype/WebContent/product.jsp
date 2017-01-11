@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*,java.io.InputStream,java.io.OutputStream, com.neomandi.prototype.ProductSearchResultBean" errorPage="Error.jsp"%>
+    pageEncoding="ISO-8859-1" import="java.util.*,
+    java.io.InputStream,java.io.InputStreamReader,
+    java.io.Reader,java.io.OutputStream, 
+    com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
+    java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -266,6 +270,9 @@ function populate(s1, s2)
 <center>
 <% InputStream photo=null;
 	OutputStream os=null;
+	int rsz=0;
+	 int i;
+     char c;
 %>
 <table align="center" border>
 
@@ -309,8 +316,9 @@ function populate(s1, s2)
    											 });
 						</script>
 						<%
-						
-						
+						photo = new BufferedInputStream(new FileInputStream(" "));
+					    Image image = ImageIO.read(photo);
+
 						%>
 						<div class="Table" style="display: table;" >
 						<div style="display: table-row;">
@@ -319,13 +327,12 @@ function populate(s1, s2)
 						<div data-role="popup" class="peter">
 							
 						
-							<img id="pic" src="Images/Carrots.jpg"  width="70%" height="90%"></img>
+							<img id="pic" src="<%=image %>"  width="70%" height="60%"></img>
 							<figcaption><%=lotnum%></figcaption>
 							</div>
 			</div>
 			</div>
-			</div>
-							
+			</div>		
 						</td>
 							
 						
