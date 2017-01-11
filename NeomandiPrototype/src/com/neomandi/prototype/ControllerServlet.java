@@ -845,6 +845,7 @@ if(uri.contains("AfterAccept")){
 			{
 				HttpSession psr=request.getSession();
 				psr.setAttribute("beans", msg);
+				
 				request.setAttribute("productsearchresult", "productsearchresult");
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
