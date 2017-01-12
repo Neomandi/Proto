@@ -316,7 +316,7 @@ function populate(s1, s2)
    											 });
 						</script>
 						<%
-		System.out.println(" photo");
+							System.out.println(" photo");
 
 						%>
 						<div class="Table" style="display: table;" >
