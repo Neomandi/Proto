@@ -135,7 +135,7 @@ a.active {
 <li><a id="menu" class="active" href="ProductEntry.jsp">Product Entry</a></li>
 <li><a id="menu" href="Revenue.jsp">Revenue</a></li>
 <li><a id="menu" href="Dispatch.do">Dispatch</a></li>
-</ul><br><br><br>
+</ul><br>
 <!-- <div id = "header"></div>  -->
 <br/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
