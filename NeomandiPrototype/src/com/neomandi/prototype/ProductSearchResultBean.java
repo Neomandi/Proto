@@ -2,6 +2,7 @@ package com.neomandi.prototype;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.sql.Blob;
 
 @SuppressWarnings("serial")
 public class ProductSearchResultBean implements Serializable {
@@ -10,9 +11,9 @@ public class ProductSearchResultBean implements Serializable {
 	private String produce;
 	private String qualitygrade;
 	private String quantity;
-	private InputStream photo;
-	public  ProductSearchResultBean(){
-		System.out.println("inside no arg cons ProductSearchResultBean ");
+	private Blob photo;
+	public ProductSearchResultBean(){
+		System.out.println("inside no arg cons of psrb");
 	}
 	public String getLotnumber() {
 		return lotnumber;
@@ -31,7 +32,6 @@ public class ProductSearchResultBean implements Serializable {
 	}
 	public void setProduce(String produce) {
 		this.produce = produce;
-		System.out.println("in psrb produce="+produce);
 	}
 	public String getQualitygrade() {
 		return qualitygrade;
@@ -44,14 +44,13 @@ public class ProductSearchResultBean implements Serializable {
 	}
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
-		System.out.println("inside psrb quantity="+quantity);
 	}
-	public InputStream getPhoto() {
+	public Blob getPhoto() {
 		return photo;
 	}
-	public void setPhoto(InputStream photo) {
+	public void setPhoto(Blob photo) {
 		this.photo = photo;
-		System.out.println("inside ProductSearchResultBean photo="+photo);
+		System.out.println("in psrb photo="+photo);
 	}
 	@Override
 	public String toString() {
@@ -112,7 +111,7 @@ public class ProductSearchResultBean implements Serializable {
 		return true;
 	}
 	public ProductSearchResultBean(String lotnumber, String marketcode, String produce, String qualitygrade,
-			String quantity, InputStream photo) {
+			String quantity, Blob photo) {
 		super();
 		this.lotnumber = lotnumber;
 		this.marketcode = marketcode;
