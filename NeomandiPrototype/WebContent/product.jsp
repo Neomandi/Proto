@@ -3,7 +3,21 @@
     java.io.InputStream,java.io.InputStreamReader,
     java.io.Reader,java.io.OutputStream, 
     com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
-    java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO" errorPage="Error.jsp"%>
+    java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
+	  java.io.IOException,
+	 java.io.InputStream,
+	 java.sql.Blob,
+	 java.sql.Connection,
+	 java.sql.ResultSet,
+	 java.sql.SQLException,
+	 java.sql.Statement,
+	 java.awt.image.BufferedImage,
+ java.io.ByteArrayInputStream,
+ java.io.ByteArrayOutputStream,
+ java.io.File,
+ java.io.IOException,
+ java.io.InputStream,
+ javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -268,11 +282,14 @@ function populate(s1, s2)
 	%>
 <p align = "right"></p>
 <center>
-<% InputStream photo=null;
-	OutputStream os=null;
-	int rsz=0;
-	 int i;
-     char c;
+<% 
+
+Connection con = null;
+Statement stmt = null;
+ResultSet rs = null;
+Blob image = null;  
+byte[] imgData = null;
+OutputStream os=null;
 %>
 <table align="center" border>
 
@@ -291,9 +308,17 @@ function populate(s1, s2)
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
-							photo=psr1.getPhoto();
+							//image=psr1.getPhoto();
 							System.out.println("inside for loop of product.jsp");
-							
+							System.out.println("in for loop"+psr1.getPhoto());
+							image = psr1.getPhoto();  
+			            	/*imgData = image.getBytes(1, (int) image.length());
+			            	System.out.println("in for loop 3"+psr1.getPhoto());
+			            	response.setContentType("image/jpg");
+			            	System.out.println("in for loop 4"+psr1.getPhoto());
+			            	//os = response.getOutputStream(); 
+			            	System.out.println("in for loop 5"+psr1.getPhoto());*/
+			            	
 					%>
 						 
 						
@@ -303,30 +328,35 @@ function populate(s1, s2)
 						<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 						<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 						<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-
+						
 						<script>
+						
 								$(document).ready(function(){
-  								$(".peter_pic").click(function(){
-   								 $( ".peter" ).dialog( "open" );
+  								$(".mybtn").click(function(){
+   								 $( ".dialog" ).dialog( "open" );
   									}); 
-  								$( ".peter" ).dialog({ autoOpen: false });
+  								$( ".dialog" ).dialog({ autoOpen: false });
 								});
  									$( window ).load(function() {
-        								$(".peter").hide();
+        								$(".dialog").hide();
    											 });
 						</script>
 						<%
-		System.out.println(" photo");
+							System.out.println(" photo");
+						 
+					    	
+						
 
 						%>
 						<div class="Table" style="display: table;" >
 						<div style="display: table-row;">
 						<div style="display: table-cell;" class = "test">
-						<button class = "peter_pic"  ><%out.println(psr1.getLotnumber()); %></button>
-						<div data-role="popup" class="peter">
-							
+						<button class = "mybtn"  ><%out.println(psr1.getLotnumber()); %></button>
+						<div data-role="popup" class="dialog">
 						
-							<img id="pic" src="<%=photo %>"  width="70%" height="60%"></img>
+						
+							 <img id="pic" src="<%=image %>"  width="70%" height="60%"></img>
+							 
 							<figcaption><%=lotnum%></figcaption>
 							</div>
 			</div>

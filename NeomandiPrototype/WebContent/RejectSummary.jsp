@@ -334,7 +334,7 @@ th {
 		    </tr>
 		     <tr>
 		    	<th  bgcolor = '#00FF00' height="5%">Deduction</th>
-		    	<td  height="5%"><%=deduction %></td>
+		    	<td  height="5%">--</td>
 		    </tr>
 		    <tr>
 		     	<th bgcolor = '#00FF00'>Status</th>

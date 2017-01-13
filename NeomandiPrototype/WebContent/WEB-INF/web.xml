@@ -36,4 +36,15 @@
     <servlet-name>PostAuctionOperationServlet</servlet-name>
     <url-pattern>/PostAuctionOperationServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductImage</display-name>
+    <servlet-name>ProductImage</servlet-name>
+    <servlet-class>com.neomandi.prototype.ProductImage</servlet-class>
+     <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductImage</servlet-name>
+    <url-pattern>/ProductImage</url-pattern>
+  </servlet-mapping>
 </web-app>
