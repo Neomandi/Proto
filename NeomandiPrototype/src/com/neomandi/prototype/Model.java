@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class Model {
@@ -576,7 +577,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto((Blob) rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto( rs.getBlob("photo"));
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -598,7 +599,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto((Blob) rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto( rs.getBlob("photo"));
 						l.add(psrb);	
 					}
 					return l;
@@ -620,7 +621,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-						psrb.setPhoto((Blob) rs.getBlob("photo").getBinaryStream());
+						psrb.setPhoto( rs.getBlob("photo"));
 						l.add(psrb);	
 					}
 					return l;
@@ -643,7 +644,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
 						
-					    psrb.setPhoto((Blob) rs.getBlob("photo").getBinaryStream());
+					    psrb.setPhoto( rs.getBlob("photo"));
 						l.add(psrb);	
 					}
 					return l;
@@ -2624,6 +2625,7 @@ public Myclass2 orderstatus(String name, String pwd)
 		Connection con = null;
 		try
 		{
+			con = JDBCHelper.getConnection();
 			@SuppressWarnings("null")
 			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=REJECTED where lotnum=?");
 			ps.setString(1,lotnum);
@@ -3218,5 +3220,75 @@ public void TraderProductAccept(String lotnum,String accno)
 			JDBCHelper.Close(pstmt1);
 			JDBCHelper.Close(con);
 		}
+	}
+	
+	public OrderStatusResult Dispatch() {
+		System.out.println("inside model");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement ps= null;
+		ResultSet rs = null;
+		List<DispatchBean> al=new ArrayList<DispatchBean>();
+		HashMap<String, Integer> a=null;
+		OrderStatusResult osrb=new OrderStatusResult();
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				System.out.println("Connection not established!");
+			}
+			else
+			{
+				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber order by lotnumber");
+				ps.setString(1,"accepted");
+				rs=ps.executeQuery();
+				a=new HashMap<>();
+				while(rs.next())
+				{
+					System.out.println("lotnum->"+rs.getString("lotnumber")+" count(*)->"+rs.getInt("count(*)"));
+					a.put(rs.getString("lotnumber"), rs.getInt("count(*)"));					
+				}
+				ps=con.prepareStatement("SELECT ar.lotnumber, ar.quantityassigned, ar. aadharnumber,tr.name  FROM auction_result ar, treg tr where ar.farmerstatus=? and ar.aadharnumber=tr.aadharnumber order by lotnumber");
+				ps.setString(1,"accepted");
+				rs=ps.executeQuery();
+				while(rs.next())
+				{
+					DispatchBean dp=new DispatchBean();
+					dp.setLotnum(rs.getString("lotnumber"));
+					dp.setQuantityassigned(rs.getString("quantityassigned"));
+					dp.setAadharnumber(rs.getString("aadharnumber"));
+					dp.setName(rs.getString("name"));
+					al.add(dp);
+					/*if(al.contains(dp.getLotnum())) 
+						System.out.println("yes");
+					else
+						System.out.println("no");*/
+				}
+				osrb.setA(a);
+				osrb.setAl(al);
+				return osrb;
+			}		
+		}
+		catch(SQLException e)
+		{
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCHelper.Close(rs);
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(pstmt1);
+			JDBCHelper.Close(con);
+		}
+		return osrb;
 	}
 }

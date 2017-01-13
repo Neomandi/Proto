@@ -157,7 +157,7 @@ a.active {
 <!-- <div id = "header"></div>  -->
 <br/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
-<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + new Date().valueOf()">
+<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>
