@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.json.JSONObject;
+
 @MultipartConfig(maxFileSize = 16177215)
 /**
  * Servlet implementation class ControllerServlet
@@ -1190,9 +1192,9 @@ if(uri.contains("AfterAccept")){
 		//Increment
 		if(uri.contains("increment"))
 		{
-			String increment=request.getParameter("increment");
-			String lotnum=request.getParameter("lotnum");
-			if(increment.isEmpty())
+			String increment=request.getParameter("number");
+			String lotnum=request.getParameter("lotnumber");
+			if(increment==null)
 			{
 				request.setAttribute("assigned","assigned");
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
@@ -1302,7 +1304,7 @@ if(uri.contains("AfterAccept")){
 			{
 				@SuppressWarnings("rawtypes")
 				List al=mc.getAl();
-				HttpSession MyFinalCost=request.getSession(false);
+				HttpSession MyFinalCost=request.getSession();
 				MyFinalCost.setAttribute("MyFinalCost",al);
 				request.setAttribute("smsg", "success");				
 				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
@@ -1387,12 +1389,12 @@ if(uri.contains("AfterAccept")){
 			String pwd=tlbn.getTpwd();
 			System.out.println("inside CS()-> name is "+name+" "+pwd);
 			Model m=new Model();
-			List<TradeListBean> al=m.removeLotNumber(lotnumber,name,pwd);
+			Mynewclass mc=(Mynewclass)m.removeLotNumber(lotnumber,name,pwd);
 			HttpSession traderlistbean=request.getSession(false);
-			traderlistbean.setAttribute("tlb",al);
-			System.out.println("in CS->inside traderlistbean is "+al);
-			HttpSession remove=request.getSession();
-			remove.setAttribute("list", al);
+			traderlistbean.setAttribute("tlb",mc.getAl());
+			System.out.println("in CS->inside traderlistbean is "+mc.getAl());
+			HttpSession MyFinalCostBean=request.getSession();
+			MyFinalCostBean.setAttribute("MyFinalCostBean", mc.getBl());
 			request.setAttribute("remove","hi");
 			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
@@ -1758,23 +1760,101 @@ if(uri.contains("AfterAccept")){
 			}
 			
 		}
-		if(uri.contains("ajax"))
+		if(uri.contains("ajaxIncrement"))
 		{
-			    System.out.print(request.getParameter("y"));
-			    response.setContentType("text/plain");
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			String tname=null;
+			String tpwd=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				tname=tlbn.getTname();
+				tpwd=tlbn.getTpwd();
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("ajax2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String lotnumber=request.getParameter("lotnumber");
+			String newbid=request.getParameter("number");
+			System.out.println("new bid is"+newbid);
+			Model m=new Model();
+			Myajaxclass1 mc=(Myajaxclass1)m.ajaxIncrement(tname,tpwd,lotnumber,newbid);
+			if(mc.getMsg().matches(".*\\d+.*"))
+			{
+				RequestDispatcher rd2=null;
+				request.setAttribute("msg", mc.getMsg());
+				rd2=request.getRequestDispatcher("ajax2.jsp");
+				try {
+					rd2.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				MyFinalCostBean mfcb=mc.getMfcb();
+				response.setContentType("text/plain");
 			    PrintWriter out = null;
 				try {
 					out = response.getWriter();
-					out.println("lotnum:121");
-					out.println("finalcost:121212");
-					//response.getWriter().write("211");
-				   /* out.print(lot);
+					out.println("lotnumber"+mfcb.getLotnum()+"lotnumber lotcost"+mfcb.getLotcost()+"lotcost commission"+mfcb.getCommission()+"commission market"+mfcb.getMarketcess()+"market bestbid"+mfcb.getBestbid()+"bestbid mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned final"+mfcb.getMyfinalcost()+"final");
+				//	response.getWriter().write("211");
+				//    out.print(lot);
 				    out.flush();
-				    out.close();*/
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				    out.close();
 				}
+				 catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}			
+			
+		    System.out.println(request.getParameter("lotnumber"));
+		    System.out.println(request.getParameter("number"));
+		    response.setContentType("text/plain");
+		    PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.println("lotnumber"+request.getParameter("lotnumber")+" number "+request.getParameter("number")+" number");
+			//	response.getWriter().write("211");
+			//    out.print(lot);
+			    out.flush();
+			    out.close();
+			//} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			//}
+		 /*   response.setContentType("application/json");
+		    response.setCharacterEncoding("utf-8");
+		    PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			      //create Json Object
+		      JSONObject json = new JSONObject();
+			        // put some value pairs into the JSON object .
+		        json.put("lotnumber", 2002013);
+		        json.put("number", request.getParameter("number"));
+			        // finally output the json string       
+	        out.print(json.toString());*/
+	
+} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 	}
 

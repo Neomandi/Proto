@@ -14,6 +14,14 @@ String finalcosts;
 String lotnum;
 String bestbid;
 String quantityassigned;
+String quantityneeded;
+
+public String getQuantityneeded() {
+	return quantityneeded;
+}
+public void setQuantityneeded(String quantityneeded) {
+	this.quantityneeded = quantityneeded;
+}
 public String getQuantityassigned() {
 	return quantityassigned;
 }

@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!--  <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do"> -->
- <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">
+<!--  <meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do"> 
+ <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/TradeorAuction.do">-->
 <title>Bidding Screen</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <style type = "text/css">
@@ -481,10 +481,10 @@ else
 						for(Object m:l)
 						{	
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
-							System.out.println("total number of lots trader is bidding for that comes in slot 1 is "+l.size());
+							System.out.println("inside mfcb bean"+l);
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
-								System.out.println("lot numbetr is->"+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
+								System.out.println("lot number is->"+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
 <tr>
 <td align="center"><%=tlb.getLotnum()%></td>
@@ -784,7 +784,7 @@ if(assigned==needed)
 <td><%= tlbr.getProduce() %></td>
 <td><%= tlbr.getQualitygrade() %></td>
 <td align="center"><% if(mfcb.getBestbid()==null)out.println("-"); else  out.println(mfcb.getBestbid());  %></td>		
-<td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getPrice());}}%> </td>			
+<td align="center"><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println(mfcb.getPrice());} else{out.println(mfcb.getPrice());}}%> </td>			
 <input type="hidden" id="lotnum<%=tlbr.getLotnum()%>" values="<%out.println(tlbr.getLotnum());%>">
 <form id="form<%=tlbr.getLotnum()%>" action="increment.do">
 <input type="hidden" name="lotnum" id="lotnum<%=tlbr.getLotnum()%>" value="<%out.print(tlbr.getLotnum());%>"></input>
