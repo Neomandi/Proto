@@ -134,7 +134,9 @@ STATUS:PENDING
 <td><%=osbn.getVolumesold() %></td>
 <td ><%=osbn.getMyfinalcost()%></td>
 <td><%=osbn.getResult() %></td>
-<td><%if(osbn.getFarmeraccept()==null) out.println("PENDING"); else out.println(osbn.getFarmeraccept());%></td>
+<td><%if(osbn.getFarmeraccept()==null) {out.println("PENDING");
+%> <meta http-equiv="refresh"  content="1; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do"><%}else out.println(osbn.getFarmeraccept());%></td>
+}
 <td align="center"><output type="text" id="status"></td>
 </tr><%}}%>
 </table>

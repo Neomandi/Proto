@@ -422,9 +422,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		
 		String aadhar="";
 		String account="";
-		String finalprice="";
-		String myearnings="";
-		String status="";
 		String averageprice="";
 		String quantitysold="";
 		try
@@ -1212,7 +1209,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		return mc;
 	}
 
-	@SuppressWarnings({ "resource", "null" })
+	@SuppressWarnings({ "resource" })
 	public Mynewclass removeLotNumber(String lotnumber, String name, String pwd) 
 	{
 		PreparedStatement ps = null;
@@ -3000,7 +2997,6 @@ public void TraderProductAccept(String lotnum,String accno)
 						rs=ps.getResultSet();
 						System.out.println(rs+" "+ps.getResultSet());
 						FarmerHistoryBean fhb=null;
-						String deduction="";
 						while(rs!=null&&rs.next())
 						{
 							System.out.println("inside while()->rs is "+rs);
@@ -3009,8 +3005,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							fhb.setQuantity(rs.getString("quantity"));
 							fhb.setAverageprice(rs.getString("averageprice"));
 							fhb.setDate(rs.getString("created_at"));
-							 deduction="null";
-							fhb.setDeduction("deduction");
+							 fhb.setDeduction("deduction");
 							fhb.setEarnings(rs.getString("myearnings"));
 							fhb.setFinalprice(rs.getString("finalprice"));
 							fhb.setKindofpro(rs.getString("kindofpro"));
@@ -3056,7 +3051,6 @@ public void TraderProductAccept(String lotnum,String accno)
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
-		PreparedStatement ps= null;
 		ResultSet rs = null;
 		ResultSet rs1 = null;
 		PreparedStatement pstmt2 = null;
@@ -3281,6 +3275,7 @@ public void TraderProductAccept(String lotnum,String accno)
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public OrderStatusResult Dispatch() {
 		System.out.println("inside model");
 		Connection con = null;
@@ -3394,8 +3389,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				while(rs.next())
 				{
 					aadharnumber=rs.getString("aadharnumber");
-				}				
-				
+				}								
 				String quantityneededs=null;
 				ps =con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
 				ps.setString(1, aadharnumber);

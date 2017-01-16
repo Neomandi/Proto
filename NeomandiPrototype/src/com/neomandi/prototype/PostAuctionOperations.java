@@ -34,7 +34,7 @@ public class PostAuctionOperations {
 				rs = pstmt.executeQuery();
 				while(rs.next())
 				{
-					if(rs.getString("quantityassigned").equals("0"))
+					if(!rs.getString("quantityassigned").equals("0"))
 					{
 						TraderPostAuctionBean tb = new TraderPostAuctionBean();
 						String aadharnumber = rs.getString("aadharnumber");

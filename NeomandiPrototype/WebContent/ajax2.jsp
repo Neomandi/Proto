@@ -478,10 +478,10 @@ else
 					{						
 						HttpSession MyFinalCost=request.getSession(false);
 						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
-						System.out.println("inside myfinalcostbean "+l);
+						
 						for(Object m:l)
 						{	
-							System.out.println("myfinalcostbean list size"+l.size());
+							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
