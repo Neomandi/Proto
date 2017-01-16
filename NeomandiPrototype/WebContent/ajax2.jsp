@@ -204,13 +204,13 @@ text-align:center
 </style></head>
 <body>
  <%@ include file="TRibbon.jsp" %><br><br>
-<ul><li><a href="product.jsp">Product Search</a></li>
-  <li><a  href="TraderBlock.do">Hold Funds</a></li>
-  <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>
-  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br>
-<br><br><h2>AUCTION SLOT:1</h2><br><div id="timer"><input type="text" id="timer1"><br></div>
-<div id="auction"></div>
+	<ul><li><a href="product.jsp">Product Search</a></li>
+    <li><a  href="TraderBlock.do">Hold Funds</a></li>
+    <li><a class="active"  href="TradeorAuction.do">Trade/Auction</a></li>
+    <li><a href="TradeSummary.jsp">Trade Summary</a></li>
+    <li><a href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li></ul><br><br><br>
+    <br><br><h2>AUCTION SLOT:1</h2><br><div id="timer"><input type="text" id="timer1"><br></div>
+    <div id="auction"></div>
 				<div id="auction1"></div><br>
 <%
 SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
@@ -711,7 +711,6 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
 		    	 var string=xmlhttp.responseText;
 		  
-		      
 		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
 		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
 		         startlotnum=startlotnum+9;
@@ -743,9 +742,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		         var startfinal=xmlhttp.responseText.indexOf('final');
 		         var endfinal=xmlhttp.responseText.lastIndexOf('final');
 		         startfinal=startfinal+5;
-		//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
-				 //start=start1;
-				
+
 		         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 		         var assigned=string.substring(startassigned,endassigned);
 		         if(assigned=="0")
@@ -801,7 +798,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 <td><%if(quantityassigned==quantityneeded){%><a class="one" id="demo7<%= tlb.getLotnum() %>"><%=quantityassigned %></a><%}
 else if(quantityassigned!=0){%><a class="two" id="demo7<%= tlb.getLotnum() %>"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three" id="demo7<%= tlb.getLotnum() %>"><%out.println(quantityassigned);}%></a></td>
-<td><output id="demo8<%= tlb.getLotnum() %>"><%= mfcb.getMyfinalcost()%></output></td>
+<td><output id="demo8<%= tlb.getLotnum() %>"><%= mfcb.getMyfinalcost()%> </output></td>
 <td><a onclick="remove<%=tlb.getLotnum() %>()" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 <script>
 function remove<%=tlb.getLotnum()%>()
@@ -859,12 +856,8 @@ if(assigned==needed)
 	{
 	}
 </script>
-</tr><%				 }
-			   }
-			 }	
-		}
-	}
-	else//removed row
+</tr><%				 }}}}}
+			else//removed row
 	{	
 			int j=0;
 			HttpSession remove=request.getSession(false);
@@ -883,9 +876,7 @@ if(assigned==needed)
 			   			for(Object mm:ll)
 						{
 							MyFinalCostBean mfcb=(MyFinalCostBean)mm;						
-							System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());		
-							
- %>
+							System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());%>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
 <td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{ out.println(mfcb.getLotcost());}} else out.println("");%></td>

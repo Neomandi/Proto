@@ -85,12 +85,12 @@ a.more {
 </style>
 <body>
 <%@ include file="TRibbon.jsp" %><br><br>
-<ul><li><a  href="product.jsp">Product Search</a></li>
-  <li><a href="TraderBlock.do">Hold Funds</a></li>
-  <li><a href=" TradeorAuction.do">Trade/Auction</a></li>
-  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a class="active" href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li>
-  </ul><br><br><br><br><br><br><br>
+	<ul><li><a  href="product.jsp">Product Search</a></li>
+	<li><a href="TraderBlock.do">Hold Funds</a></li>
+  	<li><a href=" TradeorAuction.do">Trade/Auction</a></li>
+  	<li><a href="TradeSummary.jsp">Trade Summary</a></li>
+  	<li><a class="active" href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li>
+  	</ul><br><br><br><br><br><br><br>
 
 <h2>ORDER STATUS</h2><br><br>
 STATUS:PENDING
@@ -115,7 +115,6 @@ STATUS:PENDING
   int check=0;
   Myclass2 mc=(Myclass2)request.getAttribute("errmsg");
   List al=mc.getAl();
-
   for(Object o:al)
   {
 	OrderStatusBean osbn=(OrderStatusBean)o;
