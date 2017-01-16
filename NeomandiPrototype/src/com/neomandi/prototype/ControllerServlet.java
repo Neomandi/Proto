@@ -1269,7 +1269,7 @@ if(uri.contains("AfterAccept")){
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				rd=request.getRequestDispatcher("ajax2.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1282,7 +1282,8 @@ if(uri.contains("AfterAccept")){
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
 			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
-			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+			//rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+			rd=request.getRequestDispatcher("ajax2.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (ServletException | IOException e) 

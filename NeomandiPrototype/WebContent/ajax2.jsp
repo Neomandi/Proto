@@ -481,32 +481,33 @@ else
 						System.out.println("inside myfinalcostbean "+l);
 						for(Object m:l)
 						{	
+							System.out.println("myfinalcostbean list size"+l.size());
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
-	<tr>
-<td><output id="demo1"><%= tlb.getLotnum() %></output></td>
-<td><output id="demo2"><%= mfcb.getLotcost() %></output></td>
-<td><output id="transportation">3000</output></td>
-<td><output id="demo3"><%= mfcb.getCommission() %></output></td>
-<td><output id="demo4"><%= mfcb.getMarketcess() %></output></td>
+<tr>
+<td><output id="demo1<%= tlb.getLotnum() %>"><%= tlb.getLotnum() %></output></td>
+<td><output id="demo2<%= tlb.getLotnum() %>"><%= mfcb.getLotcost() %></output></td>
+<td><output id="transportation<%= tlb.getLotnum() %>">3000</output></td>
+<td><output id="demo3<%= tlb.getLotnum() %>"><%= mfcb.getCommission() %></output></td>
+<td><output id="demo4<%= tlb.getLotnum() %>"><%= mfcb.getMarketcess() %></output></td>
 <td><%= tlb.getMarketcode() %></td>
 <td><%= tlb.getProduce() %></td>
 <td><%= tlb.getQualitygrade() %></td>
-<td><output id="demo5"><%= mfcb.getBestbid()%></output></td>
-<td><output id="demo6"><%= mfcb.getPrice() %></output></td>
+<td><output id="demo5<%= tlb.getLotnum() %>"><%= mfcb.getBestbid()%></output></td>
+<td><output id="demo6<%= tlb.getLotnum() %>"><%= mfcb.getPrice() %></output></td>
 <input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
 <input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
 <td><input type="number" min="" name="increment" id="number<%out.print(tlb.getLotnum());%>" ></td>
 <script>
 var input = document.getElementById("number<%out.print(tlb.getLotnum());%>");
-var bid=new  Number(document.getElementById("demo6").value);
-console.log("while setting min value current bid is"+bid);
+var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+console.log("while setting min value current bid 2 is"+bid);
 bid=bid+1;
 input.setAttribute("min",bid);
-</script>
+</script> 
 <td><input type="submit" onclick="fun<%out.print(tlb.getLotnum());%>();" class="more1" value="SUBMIT"/></td>
 <script>
 
@@ -533,11 +534,11 @@ function fun<%out.print(tlb.getLotnum());%>()
 	else
 	{
 	  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
-	  var currentbid=document.getElementById("demo6").value;
+	  var currentbid=document.getElementById("demo6<%= tlb.getLotnum() %>").value;
 	  var currentbids=new Number(currentbid);
 	  var newbid=document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
 	  var newbids=new Number(newbid);
-	  console.log("current buid "+currentbids+" new bid "+newbids)
+	  console.log("current bid "+currentbids+" new bid "+newbids)
 	  if(currentbids>=newbids)
 	  {	  
 		  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
@@ -589,32 +590,51 @@ function fun<%out.print(tlb.getLotnum());%>()
 			//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
 					 //start=start1;
 					
-			         document.getElementById("demo1").innerHTML = string.substring(startlotnum,endlotnum);
+			         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 			         var assigned=string.substring(startassigned,endassigned);
 			         if(assigned=="0")
 			         {
 			        	 console.log("assigned =0");
-			        	 document.getElementById("demo2").innerHTML = 0;
-				         document.getElementById("demo3").innerHTML = 0;
-				         document.getElementById("demo4").innerHTML = 0;
-				         document.getElementById("transportation").innerHTML = 0;
-				         document.getElementById("demo5").innerHTML = string.substring(startbestbid,endbestbid);
-				         document.getElementById("demo6").innerHTML = string.substring(startmybid,endmybid);
-				         document.getElementById("demo7").innerHTML = string.substring(startassigned,endassigned);
-				         document.getElementById("demo8").innerHTML = 0;
+			        	 var symbol="-";
+			        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
+				         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
+				         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
+				         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
+				         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
+			        	 {console.log("best bid is null");
+				         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
+			        	 else
+			        		 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+				         console.log(string.substring(startbestbid,endbestbid));
+				         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+				         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+				         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
+				         var input = document.getElementById("number<%out.print(tlb.getLotnum());%>");
+				         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+				         var bid=new  Number(string.substring(startmybid,endmybid));
+				         bid=bid+1;
+				         input.setAttribute("min",bid);
 				     }
 			         else
 			         {
-				         document.getElementById("demo2").innerHTML = string.substring(startlotcost,endlotcost);
-				         document.getElementById("demo3").innerHTML = string.substring(startcommission,endcommission);
-				         document.getElementById("transportation").innerHTML = 3000;
-				         document.getElementById("demo4").innerHTML = string.substring(startmarket,endmarket);
-				         document.getElementById("demo5").innerHTML = string.substring(startbestbid,endbestbid);
-				         document.getElementById("demo6").innerHTML = string.substring(startmybid,endmybid);
-				         document.getElementById("demo7").innerHTML = string.substring(startassigned,endassigned);
-				         document.getElementById("demo8").innerHTML = string.substring(startfinal,endfinal);
+				         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+				         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+				         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+				         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
+				         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
+			    	    	 {console.log("best bid is null");
+					         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
+			     		 else
+			        		 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+				         console.log(string.substring(startbestbid,endbestbid));
+				         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+				         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+				         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
+				         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+				         var bid=new  Number(string.substring(startmybid,endmybid));
+				         bid=bid+1;
+				         input.setAttribute("min",bid);
 			         }
-			         
 			   }
 			  };
 			  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
@@ -726,36 +746,48 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
 				 //start=start1;
 				
-		         document.getElementById("demo1").innerHTML = string.substring(startlotnum,endlotnum);
+		         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 		         var assigned=string.substring(startassigned,endassigned);
 		         if(assigned=="0")
 		         {
-		        	 console.log("assigned =0");
-		        	 document.getElementById("demo2").innerHTML = 0;
-			         document.getElementById("demo3").innerHTML = 0;
-			         document.getElementById("demo4").innerHTML = 0;
-			         document.getElementById("transportation").innerHTML = 0;
-			         document.getElementById("demo5").innerHTML = string.substring(startbestbid,endbestbid);
-			         document.getElementById("demo6").innerHTML = string.substring(startmybid,endmybid);
-			         document.getElementById("demo7").innerHTML = string.substring(startassigned,endassigned);
-			         document.getElementById("demo8").innerHTML = 0;
+		        	 var symbol="-";
+		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
+			         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
+			        	 {console.log("best bid is null");
+				         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
+			         else
+			        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 			     }
 		         else
 		         {
-			         document.getElementById("demo2").innerHTML = string.substring(startlotcost,endlotcost);
-			         document.getElementById("demo3").innerHTML = string.substring(startcommission,endcommission);
-			         document.getElementById("transportation").innerHTML = 3000;
-			         document.getElementById("demo4").innerHTML = string.substring(startmarket,endmarket);
-			         document.getElementById("demo5").innerHTML = string.substring(startbestbid,endbestbid);
-			         document.getElementById("demo6").innerHTML = string.substring(startmybid,endmybid);
-			         document.getElementById("demo7").innerHTML = string.substring(startassigned,endassigned);
-			         document.getElementById("demo8").innerHTML = string.substring(startfinal,endfinal);
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
+			         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
+		        	 {console.log("best bid is null");
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
+		         else
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 		         }
 		         
 		   }
 		  };
 		  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
-		  var bid1=new  Number(document.getElementById("demo6").value);
+		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 		  console.log("current bid is "+bid1);
 		  bid1=bid1+1;
 		  xmlhttp.open("POST", "ajaxIncrement.do", true);
@@ -766,10 +798,10 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 </script>
 <td><%= tlb.getQuantity()%> </td>
 <td><%= tlb.getQuantityneeded()%> </td>	
-<td><%if(quantityassigned==quantityneeded){%><a class="one" id="demo7"><%=quantityassigned %></a><%}
-else if(quantityassigned!=0){%><a class="two" id="demo7"><%=quantityassigned %></a>	
-<%}else if(quantityassigned==0){%><a class="three" id="demo7"><%out.println(quantityassigned);}%></a></td>
-<td><output id="demo8"><%= mfcb.getMyfinalcost()%></output></td>
+<td><%if(quantityassigned==quantityneeded){%><a class="one" id="demo7<%= tlb.getLotnum() %>"><%=quantityassigned %></a><%}
+else if(quantityassigned!=0){%><a class="two" id="demo7<%= tlb.getLotnum() %>"><%=quantityassigned %></a>	
+<%}else if(quantityassigned==0){%><a class="three" id="demo7<%= tlb.getLotnum() %>"><%out.println(quantityassigned);}%></a></td>
+<td><output id="demo8<%= tlb.getLotnum() %>"><%= mfcb.getMyfinalcost()%></output></td>
 <td><a onclick="remove<%=tlb.getLotnum() %>()" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 <script>
 function remove<%=tlb.getLotnum()%>()
@@ -786,8 +818,8 @@ function remove<%=tlb.getLotnum()%>()
          var start=xmlhttp.responseText.indexOf('lotnumber');
          var end=xmlhttp.responseText.lastIndexOf('lotnumber');
 //         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
-         document.getElementById("demo1").innerHTML = string;
-         document.getElementById("demo3").innerHTML = string.substring(9,20);
+         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string;
+         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(9,20);
    }
   };
   xmlhttp.open("POST", "ajax.do", true);

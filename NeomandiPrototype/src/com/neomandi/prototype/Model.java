@@ -1179,14 +1179,16 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					String prices=String.valueOf(price);
 					mfcb.setPrice(prices);
 					mfcb.setLotnum(rs3.getString("lotnum"));
-					mfcb.setBestbid(rs3.getString("bestbid"));
+					if(rs3.getString("bestbid")==null)
+						mfcb.setBestbid("-");
+					else							
+						mfcb.setBestbid(rs3.getString("bestbid"));
 					mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
 					System.out.println("insidemodel lotnumber is"+mfcb.getLotnum());
-
+					bl.add(mfcb);
 				}
 					//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 
-				bl.add(mfcb);
 				mc.setBl(bl);
 			}						
 			con.commit();		
@@ -2684,7 +2686,6 @@ public Myclass2 orderstatus(String name, String pwd)
 		try
 		{
 			con = JDBCHelper.getConnection();
-			@SuppressWarnings("null")
 			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=REJECTED where lotnum=?");
 			ps.setString(1,lotnum);
 			ps.execute();
@@ -3499,7 +3500,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices);
 						mfcb.setLotnum(lotnumber);
-						mfcb.setBestbid(rs.getString("bestbid"));
+						if(rs.getString("bestbid")==null)
+							mfcb.setBestbid("-");
+						else							
+							mfcb.setBestbid(rs.getString("bestbid"));
 						mfcb.setQuantityassigned(rs.getString("quantityassigned"));
 						//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						//al.add(mfcb);
@@ -3562,7 +3566,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 						mfcb.setMyfinalcost(finalcosts);
 						mfcb.setPrice(bidprices); 
 						mfcb.setLotnum(lotnumber);
-						mfcb.setBestbid(rs.getString("bestbid"));
+						if(rs.getString("bestbid")==null)
+							mfcb.setBestbid("-");
+						else							
+							mfcb.setBestbid(rs.getString("bestbid"));
 						mfcb.setQuantityassigned(rs.getString("quantityassigned"));						
 						
 					}		
