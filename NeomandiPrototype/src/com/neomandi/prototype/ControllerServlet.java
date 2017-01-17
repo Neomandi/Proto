@@ -969,7 +969,8 @@ if(uri.contains("AfterAccept")){
 	          
 	          File file=new File(path);
 	          file.mkdir();
-	          String fileName = getFileName(filePart);
+	          //String fileName = getFileName(filePart);
+	          String nfilenName = lotnum + ".jpg";
 	          
 	          OutputStream out = null;
 	          
@@ -977,7 +978,11 @@ if(uri.contains("AfterAccept")){
 	            
 	            try {
 	        out = new FileOutputStream(new File(path + File.separator
-	                + fileName));
+	                + nfilenName));
+	        
+	        /*System.out.println(path);
+	        System.out.println(File.separator);
+	        System.out.println(nfilenName);*/
 	        
 	        filecontent = filePart.getInputStream();
 	     
@@ -988,7 +993,7 @@ if(uri.contains("AfterAccept")){
 	        while ((read = filecontent.read(bytes)) != -1) {
 	            out.write(bytes, 0, read);
 	            
-	            photo=path+"/"+fileName;
+	            photo=path+"/"+nfilenName;
 	            
 	         
 	        }
