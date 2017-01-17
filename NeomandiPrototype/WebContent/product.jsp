@@ -309,7 +309,7 @@ OutputStream os=null;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
 							//image=psr1.getPhoto();
-							System.out.println("inside for loop of product.jsp");
+						//	System.out.println("inside for loop of product.jsp");
 							System.out.println("in for loop"+psr1.getPhoto());
 							image = psr1.getPhoto();  
 			            	/*imgData = image.getBytes(1, (int) image.length());
@@ -319,11 +319,7 @@ OutputStream os=null;
 			            	//os = response.getOutputStream(); 
 			            	System.out.println("in for loop 5"+psr1.getPhoto());*/
 			            	
-					%>
-						 
-						
-						<tr>
-						
+					%>	<tr>						
 						<td>
 						<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 						<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -363,8 +359,6 @@ OutputStream os=null;
 			</div>
 			</div>		
 						</td>
-							
-						
 						<td><% out.println(psr1.getMarketcode()); %></td>
 						<td><% out.println(psr1.getProduce()); %></td>
 						<td><% out.println(psr1.getQualitygrade()); %></td>
@@ -372,7 +366,7 @@ OutputStream os=null;
 						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
 						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
-					  <!--  <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
+					    <!-- <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
 						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
 						<script> 
 						function fun<%=psr1.getLotnumber() %>()
