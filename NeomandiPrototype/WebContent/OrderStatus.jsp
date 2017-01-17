@@ -90,12 +90,9 @@ a.more {
   	<li><a href=" TradeorAuction.do">Trade/Auction</a></li>
   	<li><a href="TradeSummary.jsp">Trade Summary</a></li>
   	<li><a class="active" href = "OrderStatus.do">Order Status</a></li>  <li><a href="TraderProfile.jsp">Your Profile</a></li>
-  	</ul><br><br><br><br><br><br><br>
-
+  	</ul><br><br><br><br><br><br>
 <h2>ORDER STATUS</h2><br><br>
-STATUS:PENDING
-<br><br>
-<table id = "t1" border = "border" style="width:100%">
+<table id = "t1" border = "border" >
 	<tr>
 		<th>LOT NUMBER</th>
 		<th>LOT COST</th>
@@ -134,8 +131,7 @@ STATUS:PENDING
 <td ><%=osbn.getMyfinalcost()%></td>
 <td><%=osbn.getResult() %></td>
 <td><%if(osbn.getFarmeraccept()==null) {out.println("PENDING");
-%> <meta http-equiv="refresh"  content="1; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do"><%}else out.println(osbn.getFarmeraccept());%></td>
-}
+%> <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do"><%}else out.println(osbn.getFarmeraccept());%></td>
 <td align="center"><output type="text" id="status"></td>
 </tr><%}}%>
 </table>

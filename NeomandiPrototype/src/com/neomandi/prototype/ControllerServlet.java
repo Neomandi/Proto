@@ -1485,7 +1485,7 @@ if(uri.contains("AfterAccept")){
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass)m.removeLotNumber(lotnumber,name,pwd);
 			HttpSession remove=request.getSession(false);
-			remove.setAttribute("list",mc.getAl());
+			remove.setAttribute("list",mc.getAl()); 
 			System.out.println("in CS->inside traderlistbean is "+mc.getAl());
 			HttpSession MyFinalCost=request.getSession();
 			MyFinalCost.setAttribute("MyFinalCost", mc.getBl());
