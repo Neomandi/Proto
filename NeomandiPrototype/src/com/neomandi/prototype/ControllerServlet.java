@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +33,20 @@ import org.json.JSONObject;
  * Servlet implementation class ControllerServlet
  */
 public class ControllerServlet extends HttpServlet {
+	
+	private static String getFileName(final Part part) {
+	    @SuppressWarnings("unused")
+		final String partHeader = part.getHeader("content-disposition");
+	    
+	    for (String content : part.getHeader("content-disposition").split(";")) {
+	        if (content.trim().startsWith("filename")) {
+	            return content.substring(
+	                    content.indexOf('=') + 1).trim().replace("\"", "");
+	        }
+	    }
+	    return null;
+	}
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -937,36 +954,51 @@ if(uri.contains("AfterAccept")){
 			
 			//System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
 			
-			InputStream inputStream = null; // input stream of the upload file
-	        
-	        // obtains the upload file part in this multipart request
-	        Part filePart = null;
+			HttpSession session=request.getSession();
+            Part filePart = null;
 			try {
 				filePart = request.getPart("photo");
-			} catch (IllegalStateException | IOException | ServletException e1) {
+			} catch (IllegalStateException | IOException | ServletException e2) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e2.printStackTrace();
 			}
-	        
-			System.out.println(filePart);
-	        
-	        if (filePart != null) {
-	            // prints out some information for debugging
-	            System.out.println(filePart.getName());
-	            System.out.println(filePart.getSize());
-	            System.out.println(filePart.getContentType());
-	             
-	            // obtains input stream of the upload file
+          
+	          String photo="";
+	          String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	          //System.out.println("Path "+path);
+	          
+	          File file=new File(path);
+	          file.mkdir();
+	          String fileName = getFileName(filePart);
+	          
+	          OutputStream out = null;
+	          
+	            InputStream filecontent = null;
+	            
 	            try {
-					inputStream = filePart.getInputStream();
-				} catch (IOException e) {
+	        out = new FileOutputStream(new File(path + File.separator
+	                + fileName));
+	        
+	        filecontent = filePart.getInputStream();
+	     
+	 
+	        int read = 0;
+	        final byte[] bytes = new byte[1024];
+	 
+	        while ((read = filecontent.read(bytes)) != -1) {
+	            out.write(bytes, 0, read);
+	            
+	            photo=path+"/"+fileName;
+	            
+	         
+	        }
+	            } catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	        }
-	        System.out.println("Input Stream: "+inputStream);
+	        //System.out.println("Photo: "+photo);
 	        
-			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, inputStream);
+			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, photo);
 			
 			System.out.println("***************************************************************************");
 			System.out.println("in cs productentry pebean="+pebean);

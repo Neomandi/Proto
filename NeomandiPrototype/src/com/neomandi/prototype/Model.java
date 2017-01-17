@@ -1,7 +1,5 @@
 package com.neomandi.prototype;
 
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -686,7 +684,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(5, peb.getProduce());
 				ps.setString(6, peb.getQuality());
 				ps.setString(7, peb.getQuantity());
-				ps.setBlob(8, peb.getPhoto());
+				ps.setString(8, peb.getPhoto());
 				
 				SimpleDateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss.SSS");
