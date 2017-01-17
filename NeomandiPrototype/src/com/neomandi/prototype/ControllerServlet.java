@@ -1160,29 +1160,6 @@ if(uri.contains("AfterAccept")){
 				System.out.println("***************************************************************************");
 				String name=tlbn.getTname();
 				String pwd=tlbn.getTpwd();
-				/*if(request.getParameter("ICICI")!=null && request.getParameter("ICICI").equals("on"))
-				{
-					 bankname="ICICI";
-				}
-				else if(request.getParameter("SBI")!=null && request.getParameter("SBI").equals("on"))
-			
-				
-				{
-					 bankname="SBI";
-				}
-				else if(request.getParameter("HDFC")!=null && request.getParameter("HDFC").equals("on"))
-				{
-					 bankname="HDFC";
-				}
-				else if(request.getParameter("SBM")!=null && request.getParameter("SBM").equals("on"))
-				{
-					 bankname="SBM";
-				}
-				else if(request.getParameter("CITI")!=null && request.getParameter("CITI").equals("on"))
-				{
-					 bankname="CITI";
-				}
-				System.out.println("bankname "+bankname);*/
 				System.out.println("inside CS()-> inside method...");
 				Model m=new Model();
 				TraderBlockBean tbb=m.traderBlockBank(name,pwd);
@@ -1211,7 +1188,6 @@ if(uri.contains("AfterAccept")){
 					try {
 						rd.forward(request, response);
 					} catch (ServletException | IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}			
@@ -1395,7 +1371,7 @@ if(uri.contains("AfterAccept")){
 		}
 		
 		//SubmitIncrement1
-		if(uri.contains("SubmitIncrement1"))
+		/*if(uri.contains("SubmitIncrement1"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
@@ -1454,7 +1430,7 @@ if(uri.contains("AfterAccept")){
 		}
 		
 		//SubmitIncrement2
-		/*if(uri.contains("SubmitIncrement2"))
+		if(uri.contains("SubmitIncrement2"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
@@ -1516,21 +1492,37 @@ if(uri.contains("AfterAccept")){
 		if(uri.contains("removelotnumber"))
 		{
 			System.out.println("***************************************************************************");
-			String lotnumber=request.getParameter("lotnum");
 			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			TraderLoginBean tlbn=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String lotnumber=request.getParameter("lotnum");
 			String name=tlbn.getTname();
 			String pwd=tlbn.getTpwd();
-			System.out.println("inside CS()-> name is "+name+" "+pwd);
+			System.out.println("inside CS()-> name is "+name+""+pwd);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass)m.removeLotNumber(lotnumber,name,pwd);
-			HttpSession traderlistbean=request.getSession(false);
-			traderlistbean.setAttribute("tlb",mc.getAl());
+			HttpSession remove=request.getSession(false);
+			remove.setAttribute("list",mc.getAl()); 
 			System.out.println("in CS->inside traderlistbean is "+mc.getAl());
-			HttpSession MyFinalCostBean=request.getSession();
-			MyFinalCostBean.setAttribute("MyFinalCostBean", mc.getBl());
+			HttpSession MyFinalCost=request.getSession();
+			MyFinalCost.setAttribute("MyFinalCost", mc.getBl());
 			request.setAttribute("remove","hi");
-			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+			rd=request.getRequestDispatcher("ajax2.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (ServletException | IOException e) 
@@ -1667,7 +1659,6 @@ if(uri.contains("AfterAccept")){
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1786,9 +1777,6 @@ if(uri.contains("AfterAccept")){
 				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
 			}
 		}
-		
-		//Farmer Accept Status
-		
 		
 		if(uri.contains("tradeSummary"))
 		{

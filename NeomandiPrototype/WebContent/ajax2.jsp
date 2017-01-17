@@ -799,7 +799,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 else if(quantityassigned!=0){%><a class="two" id="demo7<%= tlb.getLotnum() %>"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three" id="demo7<%= tlb.getLotnum() %>"><%out.println(quantityassigned);}%></a></td>
 <td><output id="demo8<%= tlb.getLotnum() %>"><%= mfcb.getMyfinalcost()%> </output></td>
-<td><a onclick="remove<%=tlb.getLotnum() %>()" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
+<td><a href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>" id="a<%=tlb.getLotnum() %>"class="more"> REMOVE</a></td>
 <script>
 function remove<%=tlb.getLotnum()%>()
 {
@@ -939,7 +939,7 @@ function fun<%out.print(tlbr.getLotnum());%>()
 </script>
 <form method="increment.do"><td><input type="number" min="0" ><td><input type="submit">
 </form>
-</td><td><a onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="moree">BY 1 RUPEE</a></td>
+<td><a onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="moree">BY 1 RUPEE</a></td>
 <script>
 function submitbutton<%out.print(tlbr.getLotnum());%>()
 {
