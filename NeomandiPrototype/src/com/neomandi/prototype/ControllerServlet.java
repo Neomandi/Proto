@@ -221,7 +221,7 @@ public class ControllerServlet extends HttpServlet {
 				hs.setAttribute("time",date2);
 				hs.setAttribute("name", name);
 				hs.setAttribute("pass",pass);
-				rd=request.getRequestDispatcher("FarmerMaster.jsp");
+				rd=request.getRequestDispatcher("FarmerMaster.do");
 				try 
 				{
 					rd.forward(request, response);			
@@ -279,6 +279,55 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}
 
+		if(uri.contains("FarmerMaster")){
+			System.out.println("in cs uri="+uri);
+			HttpSession hs=request.getSession(false);
+			String name=(String) hs.getAttribute("name");
+			String pass=(String) hs.getAttribute("pass");
+			System.out.println("in cs pass="+pass);
+			System.out.println("in cs name="+name);
+			
+			Model m = new Model();
+			sb=m.getSummary(name, pass, sb);
+			
+			System.out.println(" in cs sb="+sb);
+			String lotnumber=sb.getLotnumber();
+			String lotsize=sb.getLotsize();
+			String quantitysold=sb.getQuantitysold();
+			String averageprice=sb.getAverageprice();
+			String finalprice=sb.getFinalprice();
+			String status=sb.getStatus();
+			String myearnings=sb.getMyearning();
+			String slot=sb.getSlot();
+			String aadhar=sb.getAadhar();
+			System.out.println(("in cs avg="+averageprice));
+			
+			HttpSession hsr=request.getSession();
+			hsr.setAttribute("lotnumber",lotnumber);
+			hsr.setAttribute("lotsize",lotsize);
+			hsr.setAttribute("quantitysold", quantitysold);
+			hsr.setAttribute("averageprice", averageprice);
+			hsr.setAttribute("finalprice", finalprice);
+			hsr.setAttribute("status", status);
+			hsr.setAttribute("aadhar", aadhar);
+			hsr.setAttribute("slot",slot);
+			rd=request.getRequestDispatcher("FarmerMaster.jsp");
+			
+		
+			try 
+			{
+				rd.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		//GetSummary
 		if(uri.contains("GetSummary")){
 			System.out.println("in cs uri="+uri);
@@ -957,7 +1006,7 @@ if(uri.contains("AfterAccept")){
 			}
           
 	          String photo="";
-	          String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	          String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
 	          //System.out.println("Path "+path);
 	          
 	          File file=new File(path);

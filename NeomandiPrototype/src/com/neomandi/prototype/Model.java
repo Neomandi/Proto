@@ -471,7 +471,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					 sb.setAverageprice(rs.getString("averageprice"));
 					 sb.setAccountnum(account);
 					 sb.setMyearning("myearning");
-					 System.out.println("lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
+					 sb.setAadhar(aadhar);
+					 sb.setSlot(rs.getString("slotnumber"));
+					 System.out.println(" adhar="+sb.getAadhar()+"lotnumber="+sb.getLotnumber()+",lotsize="+sb.getLotsize()+",quantitysold="+sb.getQuantitysold()+",finalprice="+sb.getFinalprice());
 				}
 				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
@@ -572,7 +574,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-
+						psrb.setPhoto(rs.getString("photo"));
+						System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 						System.out.println("inside ProductSearchResultBean"+psrb);
 					}
@@ -594,7 +597,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-
+						psrb.setPhoto(rs.getString("photo"));
+						System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
 					return l;
@@ -616,7 +620,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-
+						psrb.setPhoto(rs.getString("photo"));
+						System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
 					return l;
@@ -638,7 +643,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setProduce(rs.getString("produce"));
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
-
+						psrb.setPhoto(rs.getString("photo"));
+						System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
 					return l;

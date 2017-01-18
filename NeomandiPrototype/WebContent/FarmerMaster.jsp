@@ -132,55 +132,39 @@
 		<li><a href="FarmerProfile.jsp">My Profile</a>
 		<li><a href="FarmerSummaryInt.jsp">History</a></li>
 	</ul>
-	 <%	 	
-		 
+	 <%	 	Connection con = null;
+     		Statement statement = null;
+    		ResultSet resultSet = null;    
+     		ResultSet resultSet1 = null;    
+     		con = JDBCHelper.getConnection();
+     		String s="";
 	 		HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
-	     	// String time=(String)hs.getAttribute("time");
-	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
+	     	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
 	     	String time=df1.format(new Date());
 		 	System.out.println("password="+pass);
 			System.out.println("new time="+time);
 			HttpSession hs1=request.getSession(false);  
-	   	     hs1.setAttribute("pass",pass); 
-		     Connection con = null;
-		     Statement statement = null;
-		     ResultSet resultSet = null;    
-		     ResultSet resultSet1 = null;    
-		     con = JDBCHelper.getConnection();
-			//display aadhar number 
-		     String s="";
-			 String name="";
-		     try
-		     	{	
-		     	if(con == null)
-		     	{
-		     		System.out.println("Connection establish failed");
-		     	}
-		     	statement = con.createStatement();
-		     	String sql = "select aadharnum,name from freg where pass='"+pass+"' ";
-		     	//System.out.println(sql);
-		     	resultSet = statement.executeQuery(sql);
-		    	while(resultSet.next()){
+	   	    hs1.setAttribute("pass",pass); 
+	   		HttpSession hsr=request.getSession(false);
+	   		String aadharnumber=(String)hsr.getAttribute("aadhar");
+	   		String lotnumber=(String)hsr.getAttribute("lotnumber");
+	   		String lotsize=(String)hsr.getAttribute("lotsize");
+	   		String quantityBidFor=(String)hsr.getAttribute("quantitysold");
+	   		String averageprice=(String)hsr.getAttribute("averageprice");
+	   		String slot=(String)hsr.getAttribute("slot");
+	   		System.out.println(" in farmermaster aadharnumber="+aadharnumber);
+			 s+=aadharnumber;
+			 String avg="--";
 	%>
+	<!-- aadhar number -->
 	<table>
 		<tr>
-			<th><font color="blue" size="5">AadharNumber</font></th>
+			<th><font color="blue" size="5">AadharNumber </font></th>
 		</tr>
 		<tr>
-			<td background="pink"><%= resultSet.getString("aadharnum")%></td>
+			<td background="pink"><%=aadharnumber%></td>
 		</tr>
-		<% s+=resultSet.getString("aadharnum");
-		    name+=resultSet.getString("name");
-				}
-			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();	
-			}
-		     
-		%>
-	  
 	</table>
 	<!-- ------------------------------------------------------------------------------------------------- -->
 	<!-- display lotdetails -->
@@ -194,43 +178,27 @@
 		    <th></th>
 		    <th><font color="#C71585" size="5">Status</font></th>
 		</tr>
-		<%
-			//fetching lotnumber 
-			String lot="";
-			try{	
-				if(con == null)
-				{
-					System.out.println("Connection establish failed");
-				}
-				statement = con.createStatement();
-				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
-				//System.out.println(sql);
-				resultSet = statement.executeQuery(sql);
-				while(resultSet.next()){
-					String avg="--";
-		%>
+		
 		<tr>
-			 <td ><%=resultSet.getString("lotnumber")%></td>
-			<%  if(resultSet.getString("averageprice")!=null){%>
-			<div id="avg"><td><%String average=(String)resultSet.getString("averageprice");
-			                    double x=Double.parseDouble(average);
-			                    x=x*100;
-			                   x=(int)x;
-			                   x=x/100;
-			                    // double result= (double)nf.format( avg1 );
-			                  
-			                     
-			                     System.out.println("before"+average+" after"+x);
-			                     out.println(x);%></td></div>
+			 <td ><%=averageprice%></td>
+			<%  if(averageprice!=null){%>
+			<div id="avg"><td>
+				<%String average=averageprice;
+			       double x=Double.parseDouble(average);
+			       x=x*100;
+			       x=(int)x;
+			       x=x/100;
+			       System.out.println("before"+average+" after"+x);
+			       out.println(x);%></td></div>
 			<%}else{ %>
 			<td><%=avg %></td>
 			<%} %>
-			 <td><%=resultSet.getString("quantity") %></td>
-			 <%  if(resultSet.getString("quantitybidfor")!=null){%>
-			<div id="qty"><td><%=resultSet.getString("quantitybidfor") %></td></div> 
-				<%}else{ %>
+			 <td><%=lotsize %></td>
+			 <%  if(quantityBidFor!=null){%>
+			<div id="qty"><td><%=quantityBidFor %></td></div> 
+				<% }else{ %>
 			<td><%=avg %></td>
-			<%} %>	
+			<% } %>	
 			 <td><form  method="post" action="AcceptSummary.do">
 			<input type="submit" id="accept" value="Accept"  disabled />
 			
@@ -245,54 +213,14 @@
 				<div id="auction1"></div>
 			</td>
 		</tr>
-	<%
-		}
-	}
-	catch(SQLException e)
-	{
-		e.printStackTrace();	
-	}
-			
-%>
+	
 </table>		
-<%
-	//fetching date and time
-	String date="";
-	String slot="";
-	try{	
-			if(con == null)
-				{
-					System.out.println("Connection establish failed");
-				}
-					statement = con.createStatement();
-					String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
-					//System.out.println(sql);
-					resultSet = statement.executeQuery(sql);
-					while(resultSet.next()){
-%>
-	<font size="5" color="#9785f"></font>
-<% 
-					date+=resultSet.getString("Date");
-					//time+=resultSet.getString("Time");
-					slot+=resultSet.getString("slotnumber");
-					System.out.println("date="+date);
-					//System.out.println("time="+time);
-					System.out.println("slot="+slot);
-						}
-					}
-					catch(SQLException e)
-					{
-						e.printStackTrace();	
-					}
-					
-%>
-		  
-		  <!-- ---------------------------------------------------------------------------------------------- -->  
+
+ <!-- ---------------------------------------------------------------------------------------------- -->  
 		 <form>
 			<input type="hidden" value="<%=time %>" id="time" />
 			<input type="hidden" value="<%=slot %>" id="slot" />
-			<input type="hidden" value="<%=date %>" id="date" />
-		</form>
+			
 		<script>
 	
 			var Etime=document.getElementById("time").value;
