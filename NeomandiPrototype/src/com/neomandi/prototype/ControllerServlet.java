@@ -1898,8 +1898,6 @@ if(uri.contains("AfterAccept")){
 				try {
 					out = response.getWriter();
 					out.println("lotnumber"+mfcb.getLotnum()+"lotnumber lotcost"+mfcb.getLotcost()+"lotcost commission"+mfcb.getCommission()+"commission market"+mfcb.getMarketcess()+"market bestbid"+mfcb.getBestbid()+"bestbid mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned final"+mfcb.getMyfinalcost()+"final");
-				//	response.getWriter().write("211");
-				//    out.print(lot);
 				    out.flush();
 				    out.close();
 				}
@@ -1916,10 +1914,9 @@ if(uri.contains("AfterAccept")){
 			try {
 				out = response.getWriter();
 				out.println("lotnumber"+request.getParameter("lotnumber")+" number "+request.getParameter("number")+" number");
-			//	response.getWriter().write("211");
-			//    out.print(lot);
 			    out.flush();
 			    out.close();
+			    
 			//} catch (IOException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
@@ -1945,6 +1942,64 @@ if(uri.contains("AfterAccept")){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
+		
+		if(uri.contains("ajaxBlockfunds"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlbn.getTname()==null)
+			{
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{		
+				String name=tlbn.getTname();
+				String pwd=tlbn.getTpwd();
+				String block=request.getParameter("block");
+				String account=request.getParameter("account");
+				String bankname=request.getParameter("bank");
+				Model m=new Model();
+				String msg[]=m.traderblockamount(name,pwd,block,bankname,account);
+				System.out.println("message received by CS is msg[0]"+msg[0]+" msg1 "+msg[1]);
+				if(msg[1]==null)
+				{
+					System.out.println("msg[1]==null");
+					request.setAttribute("blockmsg",msg[0]);
+					rd=request.getRequestDispatcher("TraderBlock.jsp");
+					try {
+						rd.forward(request, response);
+					} catch (ServletException | IOException e) 
+					{
+						e.printStackTrace();
+					}	
+				}
+				else
+				{
+					System.out.println("msg[1]!=null");
+					int balance=Integer.parseInt(msg[0]);
+					int totalblocked=Integer.parseInt(msg[1]);
+					PrintWriter out = null;
+					try {
+						out = response.getWriter();
+						out.println("balance"+balance+"balance totalblocked"+totalblocked+"totalblocked z"+block+"z");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				}
 		}
 	}
 

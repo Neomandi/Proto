@@ -1006,21 +1006,21 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						ps.setString(2, accno);
 						ps.execute();
 						msg[0]=String.valueOf(balance);
-				/*ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
-										
-				ps.setString(1, accno);
-										
-				ps.execute();
-										
-				rs = ps.getResultSet();			
-										
-				while(rs.next())
-											
-				balance=rs.getInt("balance");
-										
-				System.out.println("new balance according to DB "+balance);
-										
-				System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);*/
+						/*ps =con.prepareStatement("select balance from tbankaccount  where  accountnumber= ?");
+												
+						ps.setString(1, accno);
+												
+						ps.execute();
+												
+						rs = ps.getResultSet();			
+												
+						while(rs.next())
+													
+						balance=rs.getInt("balance");
+												
+						System.out.println("new balance according to DB "+balance);
+												
+						System.out.println("inserting these into traders_blocked_amount  "+name+" "+aadharnumber+" "+msg+" "+amount);*/
 						ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");
 						ps.setString(1, name);									
 						ps.execute();									
