@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Product Entry</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css">  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -156,8 +156,9 @@ a.active {
 </ul><br>
 <!-- <div id = "header"></div>  -->
 <br/>
+<input type = "hidden" id = "nm" value = ""/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
-<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + 2013">
+<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + nm.value">
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>
@@ -241,6 +242,11 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+</script>
+<script>
+var num = Math.floor(Math.random() * 9999) + 1000;
+console.log("num: "+num);
+document.getElementById('nm').value = num;
 </script>
 </body>
 </html>

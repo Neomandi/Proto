@@ -115,32 +115,68 @@ else
 %>
 <font color="blue">
 <h3>Account Details:</h3><br/></font><font color="black" ><h5></font>
-BANK NAME: <input type="text" name="a2" value="<%=tbb.getDbbankname() %>" readonly/><br/><br/>
-ACCOUNT NUMBER: <input type="text" name="a1" value="<%=tbb.getAccountnumber() %>" readonly/><br/><br/>
-BANKS IFSC: <input type="text" name="a3" value="<%=tbb.getIfsc() %>"readonly /><br/><br/>
-BALANCE AVAILABLE: <input type="text" id="a5" name="a5" value="<%=tbb.getBalance() %>"readonly/><br/><br/>
-TOTAL AMOUNT BLOCKED:  <input type="text" id="a6" name="a5" value="<%if(request.getAttribute("totalblock")==null)out.println(tbb.getBlock()); else out.println(request.getAttribute("totalblock")); %>"readonly/><br/><br/>
-<form action="traderblockamount.do?accno=<%=acc %>&bank=<%=bank %>" method="post"><h4><font color="black">ENTER AMOUNT TO BE BLOCKED: <input type="number" id="block" min="1" name="block" required value="<%if(request.getParameter("block")!=null) out.println(request.getParameter("block")); %>"/> <br/><br/></font>
+<font size="3px">
+BANK NAME: <output type="text" id="a2"><%=tbb.getDbbankname() %></output><br/><br/>
+ACCOUNT NUMBER: <output type="text" name="a1" id="account" ><%=tbb.getAccountnumber() %></output><br/><br/>
+BANKS IFSC: <output type="text" name="a3"><%=tbb.getIfsc() %></output><br/><br/>
+BALANCE AVAILABLE: <output type="text" id="a5" name="a5" ><%=tbb.getBalance() %></output><br/><br/>
+TOTAL AMOUNT BLOCKED:  <output type="text" id="a6" name="a5"><%if(request.getAttribute("totalblock")==null)out.println(tbb.getBlock()); else out.println(request.getAttribute("totalblock")); %></output><br/><br/></font>
+<h4><font color="black">ENTER AMOUNT TO BE BLOCKED: <input type="number" id="block" min="1" name="block" required /> <br/><br/></font>
 </h4><br><br>
 <input type="submit" name="blockbutton" value="BLOCK" onclick="fun()"/><br/><br/>
 <script>
 function fun()
 { 	   
 	   var amount =document.getElementById("block").value;
-	 
-	   var block=new  Number(amount);
-	   
-	   var balance=document.getElementById("a5").value;
-	   
+	   var block=new  Number(amount);	   
+	   var balance=document.getElementById("a5").value;	   
 	   var bal=new Number(balance);
+	   var account=document.getElementById("account").value;	   
+	   var bank=document.getElementById("a2").value;	
+	   
 	   console.log("balance ="+balance);
 	   if(block==0||block<0)
 		   alert("Please enter valid amount to be blocked");	   
 	   console.log(" if(amount>balance)"+ block<balance);
-	   if(block>bal)  
-		   alert("you cant block more than available balance");
+	   if(block>bal)  {
+		   alert("YOU CANT BLOCK MORE THAN AVAILABLE BALANCE");
+		   location='TraderBlock.do';}
+	   var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+	   xmlhttp = new XMLHttpRequest();
+	   xmlhttp.onreadystatechange = function()
+	   {
+	   if(this.readyState == 4 && this.status == 200) 
+	   {
+	   			     // myObj = JSON.parse( );
+	   			      //document.getElementById("demo").innerHTML = xmlhttp.responseText;
+	   			      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
+	       			 var string=xmlhttp.responseText; 	   			      
+           			 var startbalance=xmlhttp.responseText.indexOf('balance');
+	         		 var endbalance=xmlhttp.responseText.lastIndexOf('balance');
+	         		 startbalance=startbalance+7;
+	   			         
+	   			         var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+	   			         var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+	   			         starttotalblocked=starttotalblocked+13;
+	   			         
+	   			         var startblock=xmlhttp.responseText.indexOf('z');
+	   			         var endblock=xmlhttp.responseText.lastIndexOf('z');
+	   			         startblock=startblock+1;
+	   					console.log(string.substring(startbalance,endbalance));
+	   					console.log(string.substring(starttotalblocked,endtotalblocked));
+	   					var balance=string.substring(startbalance,endbalance);
+	   					var blocked= string.substring(starttotalblocked,endtotalblocked);
+	   			         document.getElementById("a5").innerHTML = balance;
+	   			         document.getElementById("a6").innerHTML = blocked;
+	   			         alert('SUCCESSFULLY BLOCKED AMOUNT Rs.'+ block);
+	   			       
+	   			   }
+	   			  };
+	   			  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+	   			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	   			  xmlhttp.send("account=" + account+"&block="+block+"&bank="+bank);
 }
-</script></form>
+</script>
 <%}}%><font color="red">
 <% 
 if(msg1==null)
@@ -153,7 +189,8 @@ if(msg1!=null)
 	}
 	else if(request.getAttribute("blockamount")!=null)
 	{
-		out.println("Successfully blocked amount:"+request.getAttribute("blockamount"));
+		%><p>SUCCESSFULLY BLOCKED AMOUNT:</p><p id="a1"></p><script>var amount =document.getElementById("block").value;
+		   var block=new  Number(amount); document.getElementById("a1").innerHTML = block;</script>  <%
 //		out.println("Total Amount blocked from your account till now: ");+request.getAttribute("totalblock"));
 	}
 }
