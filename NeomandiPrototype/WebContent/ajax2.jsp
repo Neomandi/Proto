@@ -256,14 +256,10 @@ var timedifference=+hours+":"+minutes+":"+seconds;
 countdown(minutes,seconds,hours);
 var five=300000;
 timedif=diff+five;	
-var t=setTimeout(nextPage,timedif);
-function nextPage()
-{
-	<% 
-		//out.println("<script type=\"text/javascript\">");
-		//out.println("alert('AUCTION IS OVER WE ARE DIRECTING YOU TO ORDER STATUS PAGE');");
-	//	out.println("location='OrderStatus.do';");
-	%>
+var t=setTimeout(auction,timedif);
+function auction(){
+	 document.getElementById("accept").disabled=false;
+	 document.getElementById("reject").disabled=false;
 }
 	 
 
@@ -508,143 +504,123 @@ console.log("while setting min value current bid 2 is"+bid);
 bid=bid+1;
 input.setAttribute("min",bid);
 </script> 
-<td><input type="submit" onclick="fun<%out.print(tlb.getLotnum());%>();" class="more1" value="SUBMIT"/></td>
+<td><input type="submit" id="submit<%out.print(tlb.getLotnum());%>" onclick="fun<%out.print(tlb.getLotnum());%>();" class="more1" value="SUBMIT"/></td>
 <script>
-
 function fun<%out.print(tlb.getLotnum());%>()
 {
-	  var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
-	  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
-	  if(i==""||document.getElementById("number<%out.print(tlb.getLotnum());%>").value==null)
-	  { 
-		  alert('You need to enter the number of bid to be increased before');
-		}
-	else
-	{
-	var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
-	var assigned=new  Number(assigneds);
-	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
-	var needed=new  Number(neededs);
-	console.log("volume assigned is "+assigned+"");
-	console.log("volume needed is "+needed+"");
-	if(assigned-needed==0)
-	{
-		console.log("assigned=needed");
-	}
-	else
-	{
-	  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
-	  var currentbid=document.getElementById("demo6<%= tlb.getLotnum() %>").value;
-	  var currentbids=new Number(currentbid);
-	  var newbid=document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
-	  var newbids=new Number(newbid);
-	  console.log("current bid "+currentbids+" new bid "+newbids)
-	  if(currentbids>=newbids)
-	  {	  
-		  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
-		  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
-	  }
-	  else
-	  {
-			  xmlhttp = new XMLHttpRequest();
-			  xmlhttp.onreadystatechange = function() {
-			    if (this.readyState == 4 && this.status == 200) 
-			    {
-			     // myObj = JSON.parse( );
-			      //document.getElementById("demo").innerHTML = xmlhttp.responseText;
-			      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
-			    	 var string=xmlhttp.responseText;
-			  
-			      
-			         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
-			         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
-			         startlotnum=startlotnum+9;
-			         
-			         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
-			         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
-			         startlotcost=startlotcost+7;
-			         
-			         var startcommission=xmlhttp.responseText.indexOf('commission');
-			         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
-			         startcommission=startcommission+10;
-			         
-			         var startmarket=xmlhttp.responseText.indexOf('market');
-			         var endmarket=xmlhttp.responseText.lastIndexOf('market');
-			         startmarket=startmarket+6;
-			         
-			         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
-			         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
-			         startbestbid=startbestbid+7;
-			         
-			         var startmybid=xmlhttp.responseText.indexOf('mybid');
-			         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
-			         startmybid=startmybid+5;
-			         
-			         var startassigned=xmlhttp.responseText.indexOf('assigned');
-			         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
-			         startassigned=startassigned+8;
-			         
-			         var startfinal=xmlhttp.responseText.indexOf('final');
-			         var endfinal=xmlhttp.responseText.lastIndexOf('final');
-			         startfinal=startfinal+5;
-			//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
-					 //start=start1;
-					
-			         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
-			         var assigned=string.substring(startassigned,endassigned);
-			         if(assigned=="0")
-			         {
-			        	 console.log("assigned =0");
-			        	 var symbol="-";
-			        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
-				         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
-				         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
-				         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
-				         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
-			        	 {console.log("best bid is null");
-				         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
-			        	 else
-			        		 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
-				         console.log(string.substring(startbestbid,endbestbid));
-				         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-				         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-				         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
-				         var input = document.getElementById("number<%out.print(tlb.getLotnum());%>");
-				         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-				         var bid=new  Number(string.substring(startmybid,endmybid));
-				         bid=bid+1;
-				         input.setAttribute("min",bid);
-				     }
-			         else
-			         {
-				         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
-				         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
-				         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-				         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
-				         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
-			    	    	 {console.log("best bid is null");
-					         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
-			     		 else
-			        		 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
-				         console.log(string.substring(startbestbid,endbestbid));
-				         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-				         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-				         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
-				         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-				         var bid=new  Number(string.substring(startmybid,endmybid));
-				         bid=bid+1;
-				         input.setAttribute("min",bid);
-			         }
-			   }
-			  };
+	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
+		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
+		  if(i==""||document.getElementById("number<%out.print(tlb.getLotnum());%>").value==null)
+		  { 
+			  alert('You need to enter the number of bid to be increased before');
+		  }
+	      else
+		  {
+			var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+			var assigned=new  Number(assigneds);
+			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+			var needed=new  Number(neededs);
+			console.log("volume assigned is "+assigned+"");
+			console.log("volume needed is "+needed+"");
+			if(assigned-needed==0)
+			{
+				console.log("assigned=needed");
+			}
+			else
+			{
+			  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+			  var currentbid=document.getElementById("demo6<%= tlb.getLotnum() %>").value;
+			  var currentbids=new Number(currentbid);
+			  var newbid=document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
+			  var newbids=new Number(newbid);
+			  console.log("current bid "+currentbids+" new bid "+newbids)
+			  if(currentbids>=newbids)
+			  {	  
+				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+			  }
+			  else
+			  {
+					  xmlhttp = new XMLHttpRequest();
+					  xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {					     
+					    	 var string=xmlhttp.responseText;			  
+					      
+					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+					         startlotnum=startlotnum+9;
+					         
+					         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+					         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+					         startlotcost=startlotcost+7;
+					         
+					         var startcommission=xmlhttp.responseText.indexOf('commission');
+					         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+					         startcommission=startcommission+10;
+					         
+					         var startmarket=xmlhttp.responseText.indexOf('market');
+					         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+					         startmarket=startmarket+6;
+					         
+					         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+					         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+					         startbestbid=startbestbid+7;
+					         
+					         var startmybid=xmlhttp.responseText.indexOf('mybid');
+					         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+					         startmybid=startmybid+5;
+					         
+					         var startassigned=xmlhttp.responseText.indexOf('assigned');
+					         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+					         startassigned=startassigned+8;
+					         
+					         var startfinal=xmlhttp.responseText.indexOf('final');
+					         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+					         startfinal=startfinal+5;
+					         
+					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+					         var assigned=string.substring(startassigned,endassigned);
+					         if(assigned=="0")
+					         {
+					        	 console.log("assigned =0");
+					        	 var symbol="-";
+					        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
+						         var input = document.getElementById("number<%out.print(tlb.getLotnum());%>");
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         input.setAttribute("min",bid);
+						     }
+					         else
+					         {
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         input.setAttribute("min",bid);
+					         }}};
 			  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" + i+"&lotnumber="+j);
-	  }
-	}
-}
-}
+	  }}}}}
 </script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();
@@ -752,11 +728,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
-			         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
-			        	 {console.log("best bid is null");
-				         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
-			         else
-			        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
 			         console.log(string.substring(startbestbid,endbestbid));
 			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
@@ -769,10 +741,6 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
-			         if(string.substring(startbestbid,endbestbid)==""||string.substring(startbestbid,endbestbid)==null)
-		        	 {console.log("best bid is null");
-			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =symbol;}
-		         else
 		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
 			         console.log(string.substring(startbestbid,endbestbid));
 			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
