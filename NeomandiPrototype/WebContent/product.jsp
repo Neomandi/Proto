@@ -316,13 +316,13 @@ OutputStream os=null;
 						String photo=img[img.length-2]+"/"+img[img.length-1];
 						System.out.println("photo="+photo);
 					%>
-					<div class="tiptext"><%out.println(psr1.getLotnumber()); %>
+					<button><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
 					<div class="description"><img src="<%=photo %>" alt="cont display"/></div>
-					</div>
+					</div></button>
 					<script>
-					$(".tiptext").mouseover(function() {
+					$(".tiptext").click(function() {
 					    $(this).children(".description").show();
-					}).mouseout(function() {
+					}).load(function() {
 					    $(this).children(".description").hide();
 					});
 					
