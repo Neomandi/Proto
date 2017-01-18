@@ -1,7 +1,5 @@
 package com.neomandi.prototype;
 
-import java.io.InputStream;
-
 public class ProductEntryBean {
 	private String farmerid;
 	private String marketcode;
@@ -10,8 +8,7 @@ public class ProductEntryBean {
 	private String quality;
 	private String quantity;
 	private String lotnum;
-	private InputStream photo;
-	
+	private String photo;
 	public String getFarmerid() {
 		return farmerid;
 	}
@@ -54,22 +51,10 @@ public class ProductEntryBean {
 	public void setLotnum(String lotnum) {
 		this.lotnum = lotnum;
 	}
-	public InputStream getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(InputStream photo) {
-		this.photo = photo;
-	}
-	public ProductEntryBean(String farmerid, String marketcode, String kproduce, String produce, String quality,
-			String quantity, String lotnum, InputStream photo) {
-		super();
-		this.farmerid = farmerid;
-		this.marketcode = marketcode;
-		this.kproduce = kproduce;
-		this.produce = produce;
-		this.quality = quality;
-		this.quantity = quantity;
-		this.lotnum = lotnum;
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 	@Override
@@ -143,8 +128,18 @@ public class ProductEntryBean {
 				+ ", produce=" + produce + ", quality=" + quality + ", quantity=" + quantity + ", lotnum=" + lotnum
 				+ ", photo=" + photo + "]";
 	}
-	
-	
+	public ProductEntryBean(String farmerid, String marketcode, String kproduce, String produce, String quality,
+			String quantity, String lotnum, String photo) {
+		super();
+		this.farmerid = farmerid;
+		this.marketcode = marketcode;
+		this.kproduce = kproduce;
+		this.produce = produce;
+		this.quality = quality;
+		this.quantity = quantity;
+		this.lotnum = lotnum;
+		this.photo = photo;
+	}
 	
 	
 }
