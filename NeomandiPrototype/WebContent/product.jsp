@@ -95,31 +95,25 @@ a.more {
 table
 {
 float: center;
+text-align: center;
 }
-.pop_outer{
-background_color:rgba(0,0,0,0.5);
-position:fixed;
-top:0;
-left:0;
-height:100%;
-width:100%;
+.tiptext {
+    background:#ccc;
+    border: 1px #333 solid;
+    padding:5px;
+    width:100px;
 }
-.pop_inner{
-background_color:#fff;
+.description {
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    width:400px;
+    height:400px;
+}
 
-padding:25px;
-height:300px;
-width:500px;
-margin:15% auto;
-}
-</style>
-<style>
 
-.img {
-    height:200px;
-    width:200px;
-}
 </style>
+
 </head>
 </head>
 <body>
@@ -287,11 +281,12 @@ function populate(s1, s2)
 Connection con = null;
 Statement stmt = null;
 ResultSet rs = null;
-Blob image = null;  
+String image = null;  
 byte[] imgData = null;
 OutputStream os=null;
+
 %>
-<table align="center" border>
+	<table align="center" border>
 
 						<tr>
 						<th>Lot Number</th>
@@ -308,25 +303,39 @@ OutputStream os=null;
 							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 							lotnum=psr1.getLotnumber();		
 							quantity=psr1.getQuantity();
-							//image=psr1.getPhoto();
-						//	System.out.println("inside for loop of product.jsp");
 							System.out.println("in for loop"+psr1.getPhoto());
-							image = psr1.getPhoto();  
-			            	/*imgData = image.getBytes(1, (int) image.length());
-			            	System.out.println("in for loop 3"+psr1.getPhoto());
-			            	response.setContentType("image/jpg");
-			            	System.out.println("in for loop 4"+psr1.getPhoto());
-			            	//os = response.getOutputStream(); 
-			            	System.out.println("in for loop 5"+psr1.getPhoto());*/
+							
 			            	
 					%>	<tr>						
-						<td>
-						<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+						<td >
+						<%
+							System.out.println(" photo="+psr1);
+							System.out.println("image="+psr1.getPhoto());
+						image = psr1.getPhoto(); 
+						String img[]=image.split("/");
+						String photo=img[img.length-2]+"/"+img[img.length-1];
+						System.out.println("photo="+photo);
+					%>
+					<div class="tiptext"><%out.println(psr1.getLotnumber()); %>
+					<div class="description"><img src="<%=photo %>" alt="cont display"/></div>
+					</div>
+					<script>
+					$(".tiptext").mouseover(function() {
+					    $(this).children(".description").show();
+					}).mouseout(function() {
+					    $(this).children(".description").hide();
+					});
+					
+					</script>
+						
+						<!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 						<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 						<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 						
 						<script>
-						
+								
+									
+									
 								$(document).ready(function(){
   								$(".mybtn").click(function(){
    								 $( ".dialog" ).dialog( "open" );
@@ -336,28 +345,26 @@ OutputStream os=null;
  									$( window ).load(function() {
         								$(".dialog").hide();
    											 });
-						</script>
-						<%
-							System.out.println(" photo");
-						 
-					    	
+								
+									
+							
+						</script> 
 						
-
-						%>
-						<div class="Table" style="display: table;" >
+					  <div class="Table" style="display: table;" >
 						<div style="display: table-row;">
 						<div style="display: table-cell;" class = "test">
 						<button class = "mybtn"  ><%out.println(psr1.getLotnumber()); %></button>
 						<div data-role="popup" class="dialog">
 						
 						
-							 <img id="pic" src="<%=image %>"  width="70%" height="60%"></img>
+							 <img id="pic" src="<%=photo %>"  width="70%" height="60%"/>
 							 
 							<figcaption><%=lotnum%></figcaption>
 							</div>
+							
 			</div>
 			</div>
-			</div>		
+			</div>	 --> 
 						</td>
 						<td><% out.println(psr1.getMarketcode()); %></td>
 						<td><% out.println(psr1.getProduce()); %></td>

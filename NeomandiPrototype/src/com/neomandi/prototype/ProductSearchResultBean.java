@@ -11,7 +11,7 @@ public class ProductSearchResultBean implements Serializable {
 	private String produce;
 	private String qualitygrade;
 	private String quantity;
-	private Blob photo;
+	private String photo;
 	public ProductSearchResultBean(){
 		System.out.println("inside no arg cons of psrb");
 	}
@@ -45,17 +45,12 @@ public class ProductSearchResultBean implements Serializable {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 		System.out.println("in psrb photo="+photo);
-	}
-	@Override
-	public String toString() {
-		return "ProductSearchResultBean [lotnumber=" + lotnumber + ", marketcode=" + marketcode + ", produce=" + produce
-				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + ", photo=" + photo + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -110,8 +105,13 @@ public class ProductSearchResultBean implements Serializable {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "ProductSearchResultBean [lotnumber=" + lotnumber + ", marketcode=" + marketcode + ", produce=" + produce
+				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + ", photo=" + photo + "]";
+	}
 	public ProductSearchResultBean(String lotnumber, String marketcode, String produce, String qualitygrade,
-			String quantity, Blob photo) {
+			String quantity, String photo) {
 		super();
 		this.lotnumber = lotnumber;
 		this.marketcode = marketcode;
@@ -120,5 +120,5 @@ public class ProductSearchResultBean implements Serializable {
 		this.quantity = quantity;
 		this.photo = photo;
 	}
-	
+
 }

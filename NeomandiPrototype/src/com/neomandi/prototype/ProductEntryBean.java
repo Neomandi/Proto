@@ -1,5 +1,7 @@
 package com.neomandi.prototype;
 
+import java.io.InputStream;
+
 public class ProductEntryBean {
 	private String farmerid;
 	private String marketcode;
