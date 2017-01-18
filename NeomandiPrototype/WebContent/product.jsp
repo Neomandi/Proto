@@ -108,7 +108,7 @@ text-align: center;
     position:absolute;
     border:1px solid #000;
     width:400px;
-    height:400px;
+    height:300px;
 }
 
 
@@ -317,7 +317,7 @@ OutputStream os=null;
 						System.out.println("photo="+photo);
 					%>
 					<button><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
-					<div class="description"><img src="<%=photo %>" alt="cont display"/></div>
+					<div class="description"><img src="<%=photo %>" alt="cont display" width = "400" height = "300"/></div>
 					</div></button>
 					<script>
 					$(".tiptext").click(function() {
