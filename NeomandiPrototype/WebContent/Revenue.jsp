@@ -128,19 +128,21 @@ td
 		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		while(rs.next())
+		if(!rs.isBeforeFirst())
 		{
-			String lotnumber = rs.getString("lotnumber");
-			int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
-			String aadharnumber = rs.getString("bidprice");
-			int bestbid = Integer.parseInt(rs.getString("bestbid"));
-			double averageprice = Double.parseDouble(rs.getString("averageprice"));
-			int lotcost = (int)(quantityassigned*averageprice);
-			int commission = (int)(lotcost*0.05);
-			int marketcess = (int)(lotcost*0.01);
-			double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
-			int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
-			int nmr = commission + marketcess + 100 + 200 + fmarketcess;
+			while(rs.next())
+			{
+				String lotnumber = rs.getString("lotnumber");
+				int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
+				String aadharnumber = rs.getString("bidprice");
+				int bestbid = Integer.parseInt(rs.getString("bestbid"));
+				double averageprice = Double.parseDouble(rs.getString("averageprice"));
+				int lotcost = (int)(quantityassigned*averageprice);
+				int commission = (int)(lotcost*0.05);
+				int marketcess = (int)(lotcost*0.01);
+				double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
+				int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
+				int nmr = commission + marketcess + 100 + 200 + fmarketcess;
 %>
 	<tr>
 		<td bgcolor="#F2F2F2"><%= lotnumber %></td>
@@ -156,6 +158,11 @@ td
 		<td bgcolor="#F2F2F2"><%= nmr %></td>
 	</tr>
 <%
+			}
+		}
+		else
+		{
+			System.out.println("No revenues.");
 		}
 	}
 	}
