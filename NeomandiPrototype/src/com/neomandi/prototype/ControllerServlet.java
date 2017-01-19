@@ -1179,6 +1179,8 @@ if(uri.contains("AfterAccept")){
 				}
 			}
 				System.out.println("***************************************************************************");
+				name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
 				Model m=new Model();
 				TraderBlockBean tbb=m.traderBlockBank(name,pwd);
 				HttpSession traderblockbean=request.getSession();
@@ -2015,6 +2017,7 @@ if(uri.contains("AfterAccept")){
 				String block=request.getParameter("block");
 				String account=request.getParameter("account");
 				String bankname=request.getParameter("bank");
+				System.out.println("");
 				Model m=new Model();
 				String msg[]=m.traderblockamount(name,pwd,block,bankname,account);
 				System.out.println("message received by CS is msg[0]"+msg[0]+" msg1 "+msg[1]);
