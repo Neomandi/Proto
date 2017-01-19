@@ -134,6 +134,20 @@ li a:hover:not(.active) {
    margin: 3em 0;
    top: 0px;
 }
+
+.tiptext {
+    background:#ccc;
+   
+    padding:5px;
+    width:100px;
+}
+.description {
+    display:none;
+    position:absolute;
+   
+    width:400px;
+    height:400px;
+}
 </style>
 
 </head>
@@ -205,7 +219,27 @@ li a:hover:not(.active) {
 			while(resultSet.next()){
 %>
 		<tr>
-			<td><%= resultSet.getString("lotnumber")%></td>
+			<td>
+			<%String lotnumber=resultSet.getString("lotnumber");
+			 String imgsrc="ProductImages/"+lotnumber+".jpg";
+			%>
+			<button><div class="tiptext"><%=lotnumber %>
+					<div class="description"><img src="<%=imgsrc %>" alt="cont display" width = "400" height = "300"/></div>
+					</div></button>
+					<script>
+					$(".tiptext").mousehover(function() {
+					    $(this).children(".description").show();
+					}).mouseout(function() {
+					    $(this).children(".description").hide();
+					});
+					
+					</script>
+			 
+			 
+			 
+			 
+			
+			</td>
 			<td><%= resultSet.getString("produce")%> </td>
 			<td><%= resultSet.getString("kindofpro")%></td>
 			<td><%=resultSet.getString("qualitygrade")%></td>
