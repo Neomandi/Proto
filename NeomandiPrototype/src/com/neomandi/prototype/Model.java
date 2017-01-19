@@ -475,6 +475,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
 				averageprice=sb.getAverageprice();
+				
 				quantitysold=sb.getQuantitysold();
 				double aprice=Double.parseDouble(averageprice);
 			    aprice=aprice*100;

@@ -99,14 +99,14 @@ text-align: center;
 }
 .tiptext {
     background:#ccc;
-    border: 1px #333 solid;
+   
     padding:5px;
     width:100px;
 }
 .description {
     display:none;
     position:absolute;
-    border:1px solid #000;
+   
     width:400px;
     height:300px;
 }
@@ -322,7 +322,7 @@ OutputStream os=null;
 					<script>
 					$(".tiptext").click(function() {
 					    $(this).children(".description").show();
-					}).load(function() {
+					}).mouseout(function() {
 					    $(this).children(".description").hide();
 					});
 					
