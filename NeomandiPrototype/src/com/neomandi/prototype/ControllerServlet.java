@@ -211,7 +211,7 @@ public class ControllerServlet extends HttpServlet {
 				hs.setAttribute("time",date2);
 				hs.setAttribute("name", name);
 				hs.setAttribute("pass",pass);
-				rd=request.getRequestDispatcher("FarmerMaster.do");
+				rd=request.getRequestDispatcher("FarmerMaster.jsp");
 				try 
 				{
 					rd.forward(request, response);			

@@ -99,14 +99,14 @@ text-align: center;
 }
 .tiptext {
     background:#ccc;
-    border: 1px #333 solid;
+   
     padding:5px;
     width:100px;
 }
 .description {
     display:none;
     position:absolute;
-    border:1px solid #000;
+   
     width:400px;
     height:400px;
 }
@@ -317,12 +317,12 @@ OutputStream os=null;
 						System.out.println("photo="+photo);
 					%>
 					<button><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
-					<div class="description"><img src="<%=photo %>" alt="cont display"/></div>
+					<div class="description"><img src="<%=photo %>" alt="cont display" width = "400" height = "300"/></div>
 					</div></button>
 					<script>
 					$(".tiptext").click(function() {
 					    $(this).children(".description").show();
-					}).load(function() {
+					}).mouseout(function() {
 					    $(this).children(".description").hide();
 					});
 					
