@@ -136,45 +136,50 @@ function fun()
 	   
 	   console.log("balance ="+balance);
 	   if(block==0||block<0)
+		   {
 		   alert("Please enter valid amount to be blocked");	   
 	   console.log(" if(amount>balance)"+ block<balance);
-	   if(block>bal)  {
+		   }
+	   else if(block>bal)  {
 		   alert("YOU CANT BLOCK MORE THAN AVAILABLE BALANCE");
 		   location='TraderBlock.do';}
-	   var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
-	   xmlhttp = new XMLHttpRequest();
-	   xmlhttp.onreadystatechange = function()
-	   {
-	   if(this.readyState == 4 && this.status == 200) 
-	   {
-	   			     // myObj = JSON.parse( );
-	   			      //document.getElementById("demo").innerHTML = xmlhttp.responseText;
-	   			      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
-	       			 var string=xmlhttp.responseText; 	   			      
-           			 var startbalance=xmlhttp.responseText.indexOf('balance');
-	         		 var endbalance=xmlhttp.responseText.lastIndexOf('balance');
-	         		 startbalance=startbalance+7;
-	   			         
-	   			         var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-	   			         var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-	   			         starttotalblocked=starttotalblocked+13;
-	   			         
-	   			         var startblock=xmlhttp.responseText.indexOf('z');
-	   			         var endblock=xmlhttp.responseText.lastIndexOf('z');
-	   			         startblock=startblock+1;
-	   					console.log(string.substring(startbalance,endbalance));
-	   					console.log(string.substring(starttotalblocked,endtotalblocked));
-	   					var balance=string.substring(startbalance,endbalance);
-	   					var blocked= string.substring(starttotalblocked,endtotalblocked);
-	   			         document.getElementById("a5").innerHTML = balance;
-	   			         document.getElementById("a6").innerHTML = blocked;
-	   			         alert('SUCCESSFULLY BLOCKED AMOUNT Rs.'+ block);
-	   			       
-	   			   }
-	   			  };
-	   			  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
-	   			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	   			  xmlhttp.send("account=" + account+"&block="+block+"&bank="+bank);
+	   else
+		   {
+			   var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+			   xmlhttp = new XMLHttpRequest();
+			   xmlhttp.onreadystatechange = function()
+			   {
+			   if(this.readyState == 4 && this.status == 200) 
+			   {
+			   			     // myObj = JSON.parse( );
+			   			      //document.getElementById("demo").innerHTML = xmlhttp.responseText;
+			   			      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
+			       			 var string=xmlhttp.responseText; 	   			      
+		           			 var startbalance=xmlhttp.responseText.indexOf('balance');
+			         		 var endbalance=xmlhttp.responseText.lastIndexOf('balance');
+			         		 startbalance=startbalance+7;
+			   			         
+			   			         var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+			   			         var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+			   			         starttotalblocked=starttotalblocked+13;
+			   			         
+			   			         var startblock=xmlhttp.responseText.indexOf('z');
+			   			         var endblock=xmlhttp.responseText.lastIndexOf('z');
+			   			         startblock=startblock+1;
+			   					console.log(string.substring(startbalance,endbalance));
+			   					console.log(string.substring(starttotalblocked,endtotalblocked));
+			   					var balance=string.substring(startbalance,endbalance);
+			   					var blocked= string.substring(starttotalblocked,endtotalblocked);
+			   			         document.getElementById("a5").innerHTML = balance;
+			   			         document.getElementById("a6").innerHTML = blocked;
+			   			         alert('SUCCESSFULLY BLOCKED AMOUNT Rs.'+ block);
+			   			       
+			   			   }
+			   			  };
+			   			  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+			   			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			   			  xmlhttp.send("account=" + account+"&block="+block+"&bank="+bank);
+		   }
 }
 </script>
 <%}}%><font color="red">

@@ -808,13 +808,10 @@ if(uri.contains("AfterAccept")){
 			HttpSession tlog=request.getSession();
 			tlog.setAttribute("tlog",tlbn);
 			String name=tlbn.getTname();
-			System.out.println("trader name is "+name);
-			System.out.println("inside cs->if(..)");
 			Model m = new Model();
 			String msg = m.traderLogin(tlbn);
 			if(msg.equals("SUCCESS"))
 			{
-				System.out.println("trader has successfully logged in...:-D....");		
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
@@ -823,11 +820,10 @@ if(uri.contains("AfterAccept")){
 				hc.setAttribute("date", date);
 				hc.setAttribute("time",time);
 				hc.setAttribute("name", name);
-				System.out.println("dt is "+date+" time is "+time);
+//				System.out.println("dt is "+date+" time is "+time);
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
-					System.out.println("before forwarding");
 					rd.forward(request,response);			
 				}			
 				catch (ServletException e) {
@@ -1162,9 +1158,13 @@ if(uri.contains("AfterAccept")){
 		{
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn =null;
+			String name=null;
+			String pwd=null;
 			try
 			{
 				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+				tlbn.getTname();
+				tlbn.getTpwd();
 				if(tlbn.getTname()==null)
 				{}
 			}
@@ -1179,9 +1179,6 @@ if(uri.contains("AfterAccept")){
 				}
 			}
 				System.out.println("***************************************************************************");
-				String name=tlbn.getTname();
-				String pwd=tlbn.getTpwd();
-				System.out.println("inside CS()-> inside method...");
 				Model m=new Model();
 				TraderBlockBean tbb=m.traderBlockBank(name,pwd);
 				HttpSession traderblockbean=request.getSession();
@@ -1203,7 +1200,7 @@ if(uri.contains("AfterAccept")){
 				{
 					HttpSession hcs=request.getSession();
 					hcs.setAttribute("bean",tbb);
-					System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
+		//			System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
 					request.setAttribute("msg","you dont have account in this bank...Please select other bank");
 					rd=request.getRequestDispatcher("TraderBlock.jsp");
 					try {
@@ -1337,7 +1334,6 @@ if(uri.contains("AfterAccept")){
 				}
 			}
 			System.out.println("***************************************************************************");
-			System.out.println("lotnum is "+lotnum);
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			try
@@ -1928,7 +1924,6 @@ if(uri.contains("AfterAccept")){
 			}
 			String lotnumber=request.getParameter("lotnumber");
 			String newbid=request.getParameter("number");
-			System.out.println("new bid is"+newbid);
 			Model m=new Model();
 			Myajaxclass1 mc=(Myajaxclass1)m.ajaxIncrement(tname,tpwd,lotnumber,newbid);
 			if(mc.getMsg().matches(".*\\d+.*"))
