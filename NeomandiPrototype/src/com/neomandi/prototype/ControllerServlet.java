@@ -994,27 +994,47 @@ if(uri.contains("AfterAccept")){
 			}
          
 	          String photo="";
-	          String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
-	          //System.out.println("Path "+path);
+	          String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	          System.out.println("Path "+path);
 	          
 	          File file=new File(path);
 	          file.mkdir();
 	          //String fileName = getFileName(filePart);
-	          String nfilenName = lotnum + ".jpg";
+	          String nfileName = lotnum + ".jpg";
 	          
 	          OutputStream out = null;
 	          
 	            InputStream filecontent = null;
 	            
 	            try {
-					inputStream = filePart.getInputStream();
-				} catch (IOException e) {
+					PrintWriter writer = response.getWriter();
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
+	            try {
+	        out = new FileOutputStream(new File(path + File.separator
+	                + nfileName));
 	        
-	        System.out.println("Input Stream: "+inputStream);
-	        
+	        filecontent = filePart.getInputStream();
+	     
+	 
+	        int read = 0;
+	        final byte[] bytes = new byte[1024];
+	 
+	        while ((read = filecontent.read(bytes)) != -1) {
+	            out.write(bytes, 0, read);
+	           
+	            photo=path+"/"+nfileName;
+	            
+	            
+	        }
+	            }
+	            catch(Exception e)
+	            {
+	            	e.printStackTrace();
+	            }
+	        System.out.println("Photo: "+photo);
 			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, photo);
 			
 			System.out.println("***************************************************************************");
