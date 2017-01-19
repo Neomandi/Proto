@@ -2688,8 +2688,9 @@ public Myclass2 orderstatus(String name, String pwd)
 		try
 		{
 			con = JDBCHelper.getConnection();
-			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=REJECTED where lotnumber=?");
-			ps.setString(1,lotnum);
+			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=? where lotnumber=?");
+			ps.setString(1,"REJECTED");
+			ps.setString(2,lotnum);
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
