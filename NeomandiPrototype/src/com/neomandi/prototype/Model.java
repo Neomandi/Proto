@@ -2688,7 +2688,7 @@ public Myclass2 orderstatus(String name, String pwd)
 		try
 		{
 			con = JDBCHelper.getConnection();
-			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=REJECTED where lotnum=?");
+			PreparedStatement ps=con.prepareStatement("update auction_result set farmerstatus=REJECTED where lotnumber=?");
 			ps.setString(1,lotnum);
 			ps.execute();
 		} catch (SQLException e) {
