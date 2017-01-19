@@ -125,19 +125,19 @@ td
 	}
 	else
 	{
-		String sql = "select ar.lotnumber, ar.quantityassigned, ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
+		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		while(rs.next())
 		{
 			String lotnumber = rs.getString("lotnumber");
-			int quantityassigned = Integer.parseInt(rs.getString("quantityassigned"));
+			int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
 			String aadharnumber = rs.getString("bidprice");
 			int bestbid = Integer.parseInt(rs.getString("bestbid"));
-			int lotcost = quantityassigned*bestbid;
+			double averageprice = Double.parseDouble(rs.getString("averageprice"));
+			int lotcost = (int)(quantityassigned*averageprice);
 			int commission = (int)(lotcost*0.05);
 			int marketcess = (int)(lotcost*0.01);
-			double averageprice = Double.parseDouble(rs.getString("averageprice"));
 			double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
 			int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
 			int nmr = commission + marketcess + 100 + 200 + fmarketcess;
