@@ -108,7 +108,7 @@ text-align: center;
     position:absolute;
    
     width:400px;
-    height:400px;
+    height:300px;
 }
 
 
