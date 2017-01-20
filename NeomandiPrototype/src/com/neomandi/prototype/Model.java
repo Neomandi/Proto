@@ -3082,7 +3082,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				String produce = "";
 				String qualitygrade = "";
 				double averageprice = 0;
-			//	InputStream photo = null;
+				String photo = "";
 			
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
@@ -3100,10 +3100,8 @@ public void TraderProductAccept(String lotnum,String accno)
 					produce = rs1.getString("produce");
 					qualitygrade = rs1.getString("qualitygrade");
 					averageprice = rs1.getDouble("averageprice");
-
-					
-				  // photo = rs1.getBlob("photo").getBinaryStream();
-		}
+				    photo = rs1.getString("photo");
+				}
 				
 				System.out.println("avg="+averageprice);
 				double finalprice = 0.0;
@@ -3115,7 +3113,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				myearnings = finalprice - 700 - percentage;
 
 				System.out.println("my earnings="+myearnings);
-				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity, slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql3 = "INSERT INTO history(farmerid, lotnumber,marketcode,kindofpro, produce,qualitygrade,quantity,photo,slotnumber,averageprice,quantitybidfor,finalprice,status,myearnings) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 				pstmt2 = con.prepareStatement(sql3); 
 				pstmt2.setString(1, farmerid);
@@ -3125,14 +3123,14 @@ public void TraderProductAccept(String lotnum,String accno)
 				pstmt2.setString(5, produce);
 				pstmt2.setString(6, qualitygrade);
 				pstmt2.setString(7, quantity);
-				//pstmt2.setBlob(8, photo);
+				pstmt2.setString(8, photo);
 
-				pstmt2.setString(8, slotnumber);
-				pstmt2.setDouble(9, averageprice);
-				pstmt2.setString(10, quantitybidfor);
-				pstmt2.setDouble(11, finalprice);
-				pstmt2.setString(12, null);
-				pstmt2.setDouble(13, myearnings);
+				pstmt2.setString(9, slotnumber);
+				pstmt2.setDouble(10, averageprice);
+				pstmt2.setString(11, quantitybidfor);
+				pstmt2.setDouble(12, finalprice);
+				pstmt2.setString(13, null);
+				pstmt2.setDouble(14, myearnings);
 
 				
 				pstmt2.execute();
