@@ -975,7 +975,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					aadharnumber=rs.getString("aadharnumber");	
 				}		
 				Integer block=Integer.parseInt(amount);		
-				ps =con.prepareStatement("select ifsc,balance from tbankaccount where aadharnumber = ? and bankname=?");
+				ps =con.prepareStatement("select ifsc,balance from tbankaccount where aadharnumber = ? ");
 				ps.setString(1, aadharnumber);								
 				ps.setString(2, bankname);								
 				ps.execute();								
@@ -2864,7 +2864,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							
 							ps3 =con.prepareStatement("update auction_result set farmerstatus=? where aadharnumber=? and lotnumber=? ");
 							ps3.setString(2, aadharnumber[j]);
-							ps3.setString(1, "accepted");
+							ps3.setString(1, "ACCEPTED");
 							ps3.setString(3, lotnum);
 							ps3.execute();
 						}					
