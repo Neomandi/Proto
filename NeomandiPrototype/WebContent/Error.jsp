@@ -8,6 +8,6 @@
 </head>
 <body>
 Error occurred:
-<%=exception.getMessage()%>
+<center><%=exception.printStackTrace()%></center>
 </body>
 </html>
