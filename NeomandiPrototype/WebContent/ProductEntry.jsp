@@ -164,12 +164,16 @@ a.active {
 	text-decoration: none;
 	padding: 10px 20px;
 }
+#pentry
+{
+	background-color: white;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
 <%@ include file="ERibbon.jsp" %><br><br>
-<ul>
+<ul id = "pentry">
 <li><a id="menu" class="active" href="ProductEntry.jsp">Product Entry</a></li>
 <li><a id="menu" href="Revenue.jsp">Revenue</a></li>
 <li><a id="menu" href="Dispatch.do">Dispatch</a></li>
