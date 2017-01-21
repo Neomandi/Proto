@@ -325,7 +325,7 @@ th {
 			$.each(table, function(i, row){
 				$.each(row, function(j,cell){
 			//	if(j=="Lot Number"){
-				 doc.cell(1,10,110,20,cell,i);	
+				 doc.cell(1,10,180,20,cell,i);	
 				//}
 				//else{
 					//doc.cell(1,10,90,20,cell,i);

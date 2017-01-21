@@ -106,11 +106,13 @@ text-align: center;
 .description {
     display:none;
     position:absolute;
-   
+   top:400px;
     width:400px;
     height:300px;
 }
-
+.close{
+display:block;
+}
 
 </style>
 
@@ -316,55 +318,27 @@ OutputStream os=null;
 						String photo=img[img.length-2]+"/"+img[img.length-1];
 						System.out.println("photo="+photo);
 					%>
-					<button><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
-					<div class="description"><img src="<%=photo %>" alt="cont display" width = "400" height = "300"/></div>
+					<button id='hide'><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
+					<div class="description"><img  class='close' src="<%=photo %>" alt="cont display" style="width:540px; top:500px; width:400px;" align="bottom"/></div>
 					</div></button>
+					<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 					<script>
 					$(".tiptext").click(function() {
 					    $(this).children(".description").show();
 					}).mouseout(function() {
 					    $(this).children(".description").hide();
 					});
+					/*$(document).ready(function(){
+						$('.tiptext').click(function(){
+							$('div.description').toggle();
+						
+					});*/
+					
+					
 					
 					</script>
 						
-						<!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-						<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-						<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 						
-						<script>
-								
-									
-									
-								$(document).ready(function(){
-  								$(".mybtn").click(function(){
-   								 $( ".dialog" ).dialog( "open" );
-  									}); 
-  								$( ".dialog" ).dialog({ autoOpen: false });
-								});
- 									$( window ).load(function() {
-        								$(".dialog").hide();
-   											 });
-								
-									
-							
-						</script> 
-						
-					  <div class="Table" style="display: table;" >
-						<div style="display: table-row;">
-						<div style="display: table-cell;" class = "test">
-						<button class = "mybtn"  ><%out.println(psr1.getLotnumber()); %></button>
-						<div data-role="popup" class="dialog">
-						
-						
-							 <img id="pic" src="<%=photo %>"  width="70%" height="60%"/>
-							 
-							<figcaption><%=lotnum%></figcaption>
-							</div>
-							
-			</div>
-			</div>
-			</div>	 --> 
 						</td>
 						<td><% out.println(psr1.getMarketcode()); %></td>
 						<td><% out.println(psr1.getProduce()); %></td>
