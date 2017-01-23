@@ -160,7 +160,7 @@
 		     Connection con = null;
 		     Statement statement = null;
 		     ResultSet resultSet = null;    
-		     ResultSet resultSet1 = null;    
+		       
 		     con = JDBCHelper.getConnection();
 			//display aadhar number 
 		     String s="";
@@ -192,6 +192,7 @@
 			{
 				e.printStackTrace();	
 			}
+		    
 		     
 		%>
 	  
@@ -281,10 +282,11 @@
 	<%
 		}
 	}
-	catch(SQLException e)
+	catch(SQLException e)	
 	{
 		e.printStackTrace();	
 	}
+			
 			
 %>
 </table>		
@@ -317,6 +319,11 @@
 					{
 						e.printStackTrace();	
 					}
+	 finally
+		{resultSet.close();
+		statement.close();
+		con.close();
+		}
 					
 %>
 		  
