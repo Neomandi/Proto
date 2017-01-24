@@ -2716,6 +2716,7 @@ public Myclass2 orderstatus(String name, String pwd)
 	}
 	
 
+@SuppressWarnings("resource")
 public void TraderProductAccept(String lotnum,String accno)
 	{		
 		System.out.println("TraderProductAccept.do");
@@ -2966,6 +2967,7 @@ public void TraderProductAccept(String lotnum,String accno)
 	return al;
 }
 
+	@SuppressWarnings("resource")
 	public List<FarmerHistoryBean> farmerHistory(String name,String pass,String from,String to){
 		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 				PreparedStatement ps = null;

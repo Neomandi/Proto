@@ -41,7 +41,6 @@ a#active
 table
 {
 	border-collapse: collapse;
-	height: 250px;
 	text-align: left;
 	position: absoulte;
 }
