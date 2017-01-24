@@ -652,6 +652,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		finally
 		{
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(con);
 		}
 		return l;
 	}
@@ -2498,6 +2500,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 		}
 	}
 
+@SuppressWarnings("resource")
 public Myclass2 orderstatus(String name, String pwd) 
 	{
 		System.out.println("inside Model()->.....orderstatus");
@@ -2677,6 +2680,11 @@ public Myclass2 orderstatus(String name, String pwd)
 		catch(Exception e)
 		{
 			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
 		}
 		return mc;
 	}
@@ -2880,7 +2888,12 @@ public void TraderProductAccept(String lotnum,String accno)
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}		
+		}	
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
 	}
 
 	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) {
@@ -2945,6 +2958,11 @@ public void TraderProductAccept(String lotnum,String accno)
 		{
 	e.printStackTrace();
 	}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
 	return al;
 }
 
@@ -3027,6 +3045,11 @@ public void TraderProductAccept(String lotnum,String accno)
 				{
 			e.printStackTrace();
 			}
+				finally
+				{
+					JDBCHelper.Close(ps);
+					JDBCHelper.Close(con);
+				}
 			return al;
 		
 	}
