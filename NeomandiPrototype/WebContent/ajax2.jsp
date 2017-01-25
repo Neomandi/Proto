@@ -428,26 +428,26 @@ countdown(minutes,seconds,hours);
 		<th>Remove Lot</th>
 	</tr>
 	<%
-String msg1=(String)request.getAttribute("notlogged");
-if(msg1!=null)
-{
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-  	 out.println("location='TraderLogin.jsp';");
- 	 out.println("</script>");
-}
-else
-{
-	String msg=(String)request.getAttribute("msg");
-	if(msg!=null)
-	{
+	  String msg1=(String)request.getAttribute("notlogged");
+	  if(msg1!=null)
+      {
 		 out.println("<script type=\"text/javascript\">");
-	  	 out.println("alert('your final coast has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
-	  	 out.println("location='TraderBlock.do';");
+	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+	  	 out.println("location='TraderLogin.jsp';");
 	 	 out.println("</script>");
-	}
-	else
-	{	
+	  }
+	  else
+	  {
+	    String msg=(String)request.getAttribute("msg");
+	    if(msg!=null)
+	    {
+		  out.println("<script type=\"text/javascript\">");
+	  	  out.println("alert('your final coast has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("location='TraderBlock.do';");
+	 	  out.println("</script>");
+		}
+		else
+		{	
 		String msg2=(String)request.getAttribute("assigned");
 		if(msg2!=null)
 		{
@@ -1476,7 +1476,7 @@ function fun2<%=tlb.getLotnum() %>()
 </form>
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 </tr><%}}}	//txt file slot2aucton removed lot
-		}}}}}}%>
+}}}}}}%>
 <tr>
 <th></th>
 </table>
@@ -1485,7 +1485,7 @@ function fun2<%=tlb.getLotnum() %>()
 </div>
 </body>
 </html>
-
+   
 
 
 

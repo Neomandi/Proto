@@ -3108,15 +3108,13 @@ public void TraderProductAccept(String lotnum,String accno)
 				String qualitygrade = "";
 				double averageprice = 0;
 				String photo = "";
-			
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, lotnumber);
 				rs1 = pstmt.executeQuery();
 				while(rs1.next())
-				{
-					
+				{					
 					quantity = rs1.getString("quantity");
 					slotnumber = rs1.getString("slotnumber");
 					farmerid = rs1.getString("farmerid");
