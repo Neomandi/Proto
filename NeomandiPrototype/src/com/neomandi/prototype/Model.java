@@ -3323,6 +3323,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			}
 			else
 			{
+				con.setAutoCommit(false);
 				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber order by lotnumber");
 				ps.setString(1,"accepted");
 				rs=ps.executeQuery();
@@ -3350,6 +3351,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				}
 				osrb.setA(a);
 				osrb.setAl(al);
+				con.commit();
 				return osrb;
 			}		
 		}
