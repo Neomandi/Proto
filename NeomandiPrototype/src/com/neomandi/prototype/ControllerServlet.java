@@ -2072,6 +2072,45 @@ if(uri.contains("AfterAccept")){
 				}
 				}
 		}
+		/*if(uri.contains("TableRefresh"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				pwd=tlbn.getTpwd();
+				name=tlbn.getTname();
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("ajax2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			Model m=new Model();
+			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
+			HttpSession traderlistbean=request.getSession();
+			traderlistbean.setAttribute("tlb",mc.getAl());
+			HttpSession MyFinalCost=request.getSession(true);
+			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
+			rd=request.getRequestDispatcher("TableRefresh.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException | IOException e) 
+			{
+				e.printStackTrace();
+			}	
+		}*/
 	}
 
 
