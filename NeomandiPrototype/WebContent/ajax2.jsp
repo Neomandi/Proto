@@ -256,6 +256,7 @@ var timedifference=+hours+":"+minutes+":"+seconds;
 countdown(minutes,seconds,hours);
 var five=300000;
 timedif=diff+five;	
+console.log("time difference is "+timedif);
 var t=setTimeout(auction,timedif);
 function auction(){
 	 document.getElementById("accept").disabled=false;
@@ -508,6 +509,47 @@ input.setAttribute("min",bid);
 <script>
 function fun<%out.print(tlb.getLotnum());%>()
 {
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);
+	if(timedifference!=='0:0:0')
+		{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}
+	else
+		{
 	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
 		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
 		  if(i==""||document.getElementById("number<%out.print(tlb.getLotnum());%>").value==null)
@@ -520,8 +562,6 @@ function fun<%out.print(tlb.getLotnum());%>()
 			var assigned=new  Number(assigneds);
 			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
 			var needed=new  Number(neededs);
-			console.log("volume assigned is "+assigned+"");
-			console.log("volume needed is "+needed+"");
 			if(assigned-needed==0)
 			{
 				console.log("assigned=needed");
@@ -620,7 +660,7 @@ function fun<%out.print(tlb.getLotnum());%>()
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" + i+"&lotnumber="+j);
-	  }}}}
+	  }}}}}
 </script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();
@@ -657,6 +697,47 @@ function funct<%=tlb.getLotnum()%>()
 <script>
 function submitbutton<%out.print(tlb.getLotnum());%>()
 {
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference is "+timedifference);
+	if(timedifference!=='0:0:0')
+		{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}
+	else
+		{
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
     var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
@@ -759,6 +840,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("number="+bid1+"&lotnumber="+j);
 	}
+		}
 }
 </script>
 <td><%= tlb.getQuantity()%> </td>
@@ -864,6 +946,47 @@ if(assigned==needed)
 <script>
 function fun<%out.print(tlbr.getLotnum());%>()
 {
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);
+	if(timedifference!=='0:0:0')
+		{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}
+	else
+		{
 	var i= document.getElementById("number<%out.print(tlbr.getLotnum());%>").value;
 	  var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
 	  if(i==""||document.getElementById("number<%out.print(tlbr.getLotnum());%>").value==null)
@@ -976,7 +1099,7 @@ function fun<%out.print(tlbr.getLotnum());%>()
 		  xmlhttp.open("POST", "ajaxIncrement.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("number=" + i+"&lotnumber="+j);
-}}}}
+}}}}}
 	function funct<%=tlbr.getLotnum()%>()
 	{
 			var lotnum=$("#lotnum<%=tlbr.getLotnum()%>").val()
@@ -999,6 +1122,47 @@ function fun<%out.print(tlbr.getLotnum());%>()
 <script>
 function submitbutton<%out.print(tlbr.getLotnum());%>()
 {
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);
+	if(timedifference!=='0:0:0')
+		{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}
+	else
+		{
   var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
   var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
   xmlhttp = new XMLHttpRequest();
@@ -1019,7 +1183,7 @@ function submitbutton<%out.print(tlbr.getLotnum());%>()
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send("lotnumber=" +j+"&number=1");
 }
-
+}
 function fun<%=tlbr.getLotnum() %>()
 {
    var valu = parseInt(document.getElementById('<%= tlbr.getLotnum()%>').value, 10);
