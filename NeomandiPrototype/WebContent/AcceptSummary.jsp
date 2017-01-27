@@ -233,9 +233,16 @@ th {
  			To:    <input type = "date" id = "to" name="to"/><br/><br/>
 			<input type = "submit" value = "Get Summary"/> <br/><br/>
 		</form>-->
-		
 		<% 
-		
+		if(request.getAttribute("error").equals("error"))
+		{ 
+			out.println("<script type=\"text/javascript\">");
+  			out.println("alert('YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY');");
+		    out.println("location='FarmerProfile.jsp';");
+		    out.println("</script>");
+		}
+		else
+		{
 		RequestDispatcher rd=null;
 		String m="";
 		HttpSession farmerstatus=request.getSession(false);
@@ -364,7 +371,7 @@ th {
 		     	<td  height="5%"><%=myEarn %></td>
 		   </tr>
 			
-		</table><br/>
+		</table><br/><%} %>
 	</form>
 </center>
 <br/>
