@@ -9,6 +9,13 @@ ul {
 li {
     float: left;
 }
+.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;   
+}
 
 li a {
     display: block;

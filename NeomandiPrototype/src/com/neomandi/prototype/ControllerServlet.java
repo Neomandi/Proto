@@ -1214,39 +1214,39 @@ if(uri.contains("AfterAccept")){
 					e1.printStackTrace();
 				}
 			}
-				System.out.println("***************************************************************************");
-				name=tlbn.getTname();
-				pwd=tlbn.getTpwd();
-				Model m=new Model();
-				TraderBlockBean tbb=m.traderBlockBank(name,pwd);
-				HttpSession traderblockbean=request.getSession();
-				traderblockbean.setAttribute("tbb", tbb);
-				if(tbb.getMsg().contains("SUCCESS"))
-				{
-					HttpSession hcs=request.getSession();
-					hcs.setAttribute("bean",tbb);
-					System.out.println("msg sent is SUCCESS");
-					request.setAttribute("msg","SUCCESS");
-					rd=request.getRequestDispatcher("TraderBlock.jsp");
-					try {
-						rd.forward(request, response);
-					} catch (ServletException | IOException e) {
-						e.printStackTrace();
-					}
+			System.out.println("***************************************************************************");
+			name=tlbn.getTname();
+			pwd=tlbn.getTpwd();
+			Model m=new Model();
+			TraderBlockBean tbb=m.traderBlockBank(name,pwd);
+			HttpSession traderblockbean=request.getSession();
+			traderblockbean.setAttribute("tbb", tbb);
+			if(tbb.getMsg().contains("SUCCESS"))
+			{
+				HttpSession hcs=request.getSession();
+				hcs.setAttribute("bean",tbb);
+				System.out.println("msg sent is SUCCESS");
+				request.setAttribute("msg","SUCCESS");
+				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
 				}
-				else
-				{
-					HttpSession hcs=request.getSession();
-					hcs.setAttribute("bean",tbb);
-		//			System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
-					request.setAttribute("msg","you dont have account in this bank...Please select other bank");
-					rd=request.getRequestDispatcher("TraderBlock.jsp");
-					try {
-						rd.forward(request, response);
-					} catch (ServletException | IOException e) {
-						e.printStackTrace();
-					}
-				}			
+			}
+			else
+			{
+				HttpSession hcs=request.getSession();
+				hcs.setAttribute("bean",tbb);
+		//		System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
+				request.setAttribute("msg","you dont have account in this bank...Please select other bank");
+				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
+				}
+			}			
 		}
 		
 		//Trader Block Amount
@@ -1966,15 +1966,17 @@ if(uri.contains("AfterAccept")){
 			Myajaxclass1 mc=(Myajaxclass1)m.ajaxIncrement(tname,tpwd,lotnumber,newbid);
 			if(mc.getMsg().matches(".*\\d+.*"))
 			{
-				RequestDispatcher rd2=null;
-				request.setAttribute("msg", mc.getMsg());
-				rd2=request.getRequestDispatcher("ajax2.jsp");
-				try {
-					rd2.forward(request, response);
-				} catch (ServletException | IOException e) 
-				{
-					e.printStackTrace();
-				}
+				 PrintWriter out = null;
+					try {
+						out = response.getWriter();
+						out.println("block");
+						out.flush();
+					    out.close();
+					}
+					 catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			}
 			else
 			{

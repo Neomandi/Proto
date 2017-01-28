@@ -7,14 +7,13 @@
 <link rel="icon" type="image/png" href="Images/Neomandi1.png">
 <title>Farmer Registration</title>
 <meta charset="ISO-8859-1">
-<title>Farmer Registration</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
-  $("#header").load("Header.html"); 
-  $("#footer").load("Footer.html");
- 
+  //$("#header").load("Header.html"); 
+  $("#footer").load("Footer.html"); 
 });
+
 function populate(s1, s2)
 {
 	var s1 = document.getElementById(s1);
@@ -66,8 +65,7 @@ function validateFForm()
 	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
 	    return false;
-	}
-	
+	}	
 	//Aadhar number validation
 	var aval = aadharnum.value;
 	if (/^\d{12}$/.test(aval)) {
@@ -85,7 +83,7 @@ function validateFForm()
 		email.focus();
 		return false;
 	}
-	if (email.value.indexOf(".", 0) < 0)
+	if (email.value.indexOf(".com", 0) < 0)
     {
         window.alert("Please enter a valid e-mail address.");
         email.focus();
@@ -196,7 +194,34 @@ select
 	padding: 10px 10px;
 	margin: 8px 0;
 }
+.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;   
+}
 </style>
+<header style = "position: absolute; top: 0; left: 0; width: 100%;">
+<nav>
+	<ul>
+		<li><img alt="Can't display" src="Images/Neomandi1.png" width = "40" height = "43"></li>
+		<li><a href = "HomePage.html">About Us</a></li>
+		<li><a href = "Vision.html">Vision</a></li>
+		<li><a href = "Mission.html">Mission</a></li>
+		<li class = "dropdown">
+			<a href = "Howitworks.html" class = "dropbtn">How it works</a>
+			<div class = "dropdown-content">
+				<a href = "NeomandiFarmer.html">How Neomandi Works For A Farmer?</a>
+				<a href = "NeomandiTrader.html">How Neomandi Works For A Trader?</a>
+			</div>
+			</li>
+		<li><a href = "News.html">News</a></li>
+		<li><a href = "ContactUs.html">Contact Us</a></li>
+		<li><a class = "active" href = "Register.html">Register</a></li>
+		<li><a href = "Login.html">Login</a></li>
+	</ul>
+</nav>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
@@ -204,15 +229,16 @@ select
 <div id = "header"></div>
 <div id = "content">
 <br/>
+<h2 align="center">Welcome to NeoMandi's farmer registration page</h2>
 <form name = "fregform" action = "FarmerRegister.do" enctype='multipart/form-data' method = "post"  onsubmit = "return validateFForm();">
 	<fieldset>
 		<legend>Farmer Registration Page</legend>
 		<label for = "name">Name</label><br/>
 		<input type = "text" id = "name" name = "farmerName" placeholder = "Name" required/><br/>
 		<label for = "mob">Mobile Number</label><br/>
-		<input type = "text" id = "mob" name = "farmerMobile" placeholder = "Phone" required/><br/>
+		<input type = "number" id = "mob" min=0 maxlength="10" size="10" name = "farmerMobile" placeholder = "Phone" required/><br/>
 		<label for = "anum">Aadhar Number</label><br/>
-		<input type = "text" id = "anum" name = "farmerAadharnum" placeholder = "Aadhar Number" required/><br/>
+		<input type = "number" id = "anum" maxlength="12" size="12" name = "farmerAadharnum" placeholder = "Aadhar Number" required/><br/>
 		<label for = "email">Email</label><br/>
 		<input type = "text" id = "email" name = "farmerEmail" placeholder = "Email" required/><br/>
 		<label for = "state">State</label><br/>
@@ -266,21 +292,19 @@ select
 		<label for = "bankname">Bank Name</label><br/>
 		<input type = "text" id = "bankname" name = "farmerBankName" placeholder = "Bank Name" required/><br/>
 		<label for = "accountnum">Account Number</label><br/>
-		<input type = "text" id = "accountnum" name = "farmerAccountNum" placeholder = "Account Number" required/><br/>
+		<input type = "number" id = "accountnum" min=0 name = "farmerAccountNum" placeholder = "Account Number" required/><br/>
 		<label for = "branch">Branch</label><br/>
 		<input type = "text" id = "branch" name = "farmerBranch" placeholder = "Branch" required/><br/>
 		<label for = "ifsc">IFSC Code</label><br/>
-		<input type = "text" id = "ifsc" name = "farmerIfscCode" placeholder = "IFSC Code" required/><br/><br/>
+		<input type = "number" id = "ifsc" min=0 name = "farmerIfscCode" placeholder = "IFSC Code" required/><br/><br/>
 	</fieldset>
 	<br/>
 	<input type = "submit" value = "Register"/>&nbsp &nbsp
 	<input type = "reset" value = "Reset"/>
 </form>
 <br/>
-
 </div>
 <div id = "footer"></div>
 </div>
-
 </body>
 </html>

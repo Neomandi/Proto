@@ -475,7 +475,7 @@ else
 					TradeListBean tlb=(TradeListBean)o;
 					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
 					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
-					{						
+					{                                                                                                                                                                                                                                                                                 
 						HttpSession MyFinalCost=request.getSession(false);
 						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
 						for(Object m:l)
@@ -505,7 +505,6 @@ else
 var number=document.getElementById(number<%out.println(tlb.getLotnum());%>);
 if(number.equals(null))
 	alert('You need to enter the number of bid to be increased before');
-	
 </script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();

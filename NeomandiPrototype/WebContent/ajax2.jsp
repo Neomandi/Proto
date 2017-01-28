@@ -406,7 +406,6 @@ function countdown(minutes,seconds,hours)
 }
 countdown(minutes,seconds,hours);			   
 </script>
-
 <table id = "t1" border = "border">
 	<tr bgcolor="#7cfc00">
 		<th>Lot Number</th>
@@ -428,27 +427,29 @@ countdown(minutes,seconds,hours);
 		<th>My_Final_Cost</th>
 		<th>Remove Lot</th>
 	</tr>
-	<%
-	  String msg1=(String)request.getAttribute("notlogged");
-	  if(msg1!=null)
-      {
-		 out.println("<script type=\"text/javascript\">");
-	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-	  	 out.println("location='TraderLogin.jsp';");
-	 	 out.println("</script>");
-	  }
-	  else
-	  {
-	    String msg=(String)request.getAttribute("msg");
-	    if(msg!=null)
-	    {
+<%
+  String msg1=(String)request.getAttribute("notlogged");
+  if(msg1!=null)
+  {
+	 out.println("<script type=\"text/javascript\">");
+  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+  	 out.println("location='TraderLogin.jsp';");
+ 	 out.println("</script>");
+  }
+  else
+  {
+    String msg=(String)request.getAttribute("msg");
+    System.out.println("msg"+msg);
+    if(msg!=null)
+    {
 		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('your final coast has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
-	  	  out.println("location='TraderBlock.do';");
+	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
-		}
-		else
-		{	
+	}
+	else
+	{	
+        System.out.println("inside else()");
 		String msg2=(String)request.getAttribute("assigned");
 		if(msg2!=null)
 		{
@@ -472,7 +473,7 @@ countdown(minutes,seconds,hours);
 					TradeListBean tlb=(TradeListBean)o;
 					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
 					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
-					{						
+					{				
 						HttpSession MyFinalCost=request.getSession(false);
 						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
 						
@@ -544,17 +545,14 @@ function fun<%out.print(tlb.getLotnum());%>()
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
 	console.log("time difference isss "+timedifference);
-	if(timedifference!=='0:0:0')
-		{
-		alert('YOU CANT BID BEFORE AUCTION STARTS');
-		}
-	else
-		{
+	
+	if(timedifference.includes("-"))
+	{
 	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
 		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
 		  if(i==""||document.getElementById("number<%out.print(tlb.getLotnum());%>").value==null)
 		  { 
-			  alert('You need to enter the number of bid to be increased before');
+			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
 		  }
 	      else
 		  {
@@ -586,7 +584,13 @@ function fun<%out.print(tlb.getLotnum());%>()
 					    if (this.readyState == 4 && this.status == 200) 
 					    {					     
 					    	 var string=xmlhttp.responseText;			  
-					      
+					    	if(string.includes("block"))
+					    		{
+					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					  	  	       window.location='TraderBlock.do';
+					    		}
+					    	else
+					    	{	
 					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
 					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
 					         startlotnum=startlotnum+9;
@@ -655,12 +659,16 @@ function fun<%out.print(tlb.getLotnum());%>()
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
 						         input.setAttribute("min",bid);
-					         }}};
+					         }}}};
 			  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" + i+"&lotnumber="+j);
-	  }}}}}
+	  }}}}
+	else
+		{	console.log(!timedifference.includes("-"));
+			alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}}
 </script>
 <% 
 String quantityneededs=tlb.getQuantityneeded();
@@ -732,19 +740,17 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
 	console.log("time difference is "+timedifference);
-	if(timedifference!=='0:0:0')
-		{
+	if(!timedifference.includes("-"))
+	{
 		alert('YOU CANT BID BEFORE AUCTION STARTS');
-		}
+	}
 	else
-		{
+	{
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
     var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
 	var currentbids=new Number(currentbid);
-	//console.log("current bid is"+currentbids);
 	var result=currentbids+1;
-	//console.log("new bid is"+result);
     var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
 	var assigned=new  Number(assigneds);
 	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
@@ -763,11 +769,14 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		  xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
-		     // myObj = JSON.parse( );
-		      //document.getElementById("demo").innerHTML = xmlhttp.responseText;
-		      //values to be printed: lotnumber lotcost commission market bestbid mybid assigned final
 		    	 var string=xmlhttp.responseText;
-		  
+		    	 if(string.includes("block"))
+		    		{
+		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		  	  	       window.location='TraderBlock.do';
+		    		}
+		    	else
+		    	{	
 		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
 		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
 		         startlotnum=startlotnum+9;
@@ -828,10 +837,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
 			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-		         }
-		         
-		   }
-		  };
+		         }}}};
 		  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 		  console.log("current bid is "+bid1);
@@ -859,16 +865,12 @@ function remove<%=tlb.getLotnum()%>()
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) 
     {
-     // myObj = JSON.parse( );    
-   //   document.getElementById("demo").innerHTML = xmlhttp.responseText;
     	 var string=xmlhttp.responseText;
          var start=xmlhttp.responseText.indexOf('lotnumber');
          var end=xmlhttp.responseText.lastIndexOf('lotnumber');
-//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
          document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string;
          document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(9,20);
-   }
-  };
+   }};
   xmlhttp.open("POST", "ajax.do", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send("lotnumber=" +j);
@@ -895,8 +897,7 @@ if(assigned*1!=0)
 	    });
 	document.getElementById('a<%=tlb.getLotnum()%>').removeAttribute("href");
 }
-</script>
-<script>
+
 var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
 var assigned=new  Number(assigneds);
 var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
@@ -908,12 +909,12 @@ if(assigned==needed)
 </script>
 </tr><%				 }}}}}
 			else//removed row
-	{	
-			int j=0;
-			HttpSession remove=request.getSession(false);
-			List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
-		  	for(Object m:l)		
-		   	{
+            {	
+	 		  int j=0;
+	  		  HttpSession remove=request.getSession(false);
+			  List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
+		  	  for(Object m:l)		
+		   	  {
 		   		TradeListBean tlbr=(TradeListBean)m;
 		   		System.out.println("inside tlbr->"+tlbr);
 		   		if(tlbr.getSlotnumber()!=null && (tlbr.getSlotnumber().equals("slot1")||tlbr.getSlotnumber().equals("Slot1")))
@@ -980,7 +981,7 @@ function fun<%out.print(tlbr.getLotnum());%>()
 	}
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("time difference isss "+timedifference);
+	console.log("time difference is "+timedifference);
 	if(timedifference!=='0:0:0')
 		{
 		alert('YOU CANT BID BEFORE AUCTION STARTS');
@@ -1099,7 +1100,8 @@ function fun<%out.print(tlbr.getLotnum());%>()
 		  xmlhttp.open("POST", "ajaxIncrement.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("number=" + i+"&lotnumber="+j);
-}}}}}
+    }}}}}
+    
 	function funct<%=tlbr.getLotnum()%>()
 	{
 			var lotnum=$("#lotnum<%=tlbr.getLotnum()%>").val()
@@ -1265,8 +1267,7 @@ console.log("volume needed is "+needed);
 if(assigned==needed)
 	{
 	}
-</script>
-<script>
+
 var volume=document.getElementById("<%=tlbr.getLotnum()%>").value;
 var block=new  Number(volume);
 console.log("volume assigned is "+block+"");
@@ -1302,8 +1303,7 @@ if(assigned==needed)
 				MyFinalCostBean mfcb=(MyFinalCostBean)mm;						
 				System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());	
 				if(mfcb.getLotnum().equals(tlbr.getLotnum()))
-				{
-%>
+				{%>
 <tr>
 <td><%out.println(tlbr.getLotnum());%></td>
 <td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())) {if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getLotcost());}} else out.println("");%></td>
@@ -1344,8 +1344,7 @@ function fun<%out.print(tlbr.getLotnum());%>()
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send("number=" + i+"&lotnumber="+j);
 }
-</script>
-<script>
+
 function funct<%=tlbr.getLotnum()%>()
 {
 					var lotnum=$("#lotnum<%=tlbr.getLotnum()%>").val()
@@ -1360,7 +1359,7 @@ function funct<%=tlbr.getLotnum()%>()
 				   location.href='http://localhost:8080/NeomandiPrototype/increment.do?increment=' + value+'&&lotnum='+lotnum
 				   console.log("value is " + value+"&&lotnum="+lotnum)
 				   });	
-				}
+}					
 </script>
 <td><a onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="moree">BY 1 RUPEE</a></td>
 <script>
@@ -1372,12 +1371,9 @@ function submitbutton<%out.print(tlbr.getLotnum());%>()
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) 
     {
-     // myObj = JSON.parse( );    
-   //   document.getElementById("demo").innerHTML = xmlhttp.responseText;
     	 var string=xmlhttp.responseText;
          var start=xmlhttp.responseText.indexOf('lotnumber');
          var end=xmlhttp.responseText.lastIndexOf('lotnumber');
-//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
          document.getElementById("demo1").innerHTML = string;
          document.getElementById("demo3").innerHTML = string.substring(9,20);
    }
@@ -1396,7 +1392,6 @@ function fun<%=tlbr.getLotnum() %>()
 	   document.getElementById('<%= tlbr.getLotnum() %>').value =valu;
 }
 </script>
-
 <td><%=tlbr.getQuantity()%> </td>	
 <td><%=tlbr.getQuantityneeded() %></td>		
 <td><%String quantityneededs=tlbr.getQuantityneeded();
@@ -1407,7 +1402,6 @@ if(quantityassigned==quantityneeded){%><a class="one"><%=quantityassigned %></a>
 <%}else if(quantityassigned!=0){%><a class="two"><%=quantityassigned %></a>	
 <%}else if(quantityassigned==0){%><a class="three"><%out.println(quantityassigned);} %></a></td>	
 <td><%if(tlbr.getLotnum().equals(mfcb.getLotnum())){if(mfcb.getQuantityassigned().equals("0")) {out.println("0");} else{out.println(mfcb.getMyfinalcost());}}%></td>
-
 <td><a href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>" class="more"> REMOVE</a></td>
 <script>
 function remove<%=tlbr.getLotnum()%>()
@@ -1418,12 +1412,9 @@ function remove<%=tlbr.getLotnum()%>()
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) 
     {
-     // myObj = JSON.parse( );    
-   //   document.getElementById("demo").innerHTML = xmlhttp.responseText;
     	 var string=xmlhttp.responseText;
          var start=xmlhttp.responseText.indexOf('lotnumber');
          var end=xmlhttp.responseText.lastIndexOf('lotnumber');
-//         int end=xmlhttp.responseText.lastindexOf("lotnumber",1);
          document.getElementById("demo1").innerHTML = string;
          document.getElementById("demo3").innerHTML = string.substring(9,20);
    }
@@ -1449,14 +1440,12 @@ else
 console.log(assigned*1==1);
 if(assigned*1!=0)
 {
-	//console.log("inside block");
 	$(document).ready(function(){
     $("#a<%=tlbr.getLotnum() %>").attr("disabled","disabled");
 	    });
 	document.getElementById('a<%=tlbr.getLotnum()%>').removeAttribute("href");
 }
-</script>
-<script>
+
 var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
 var assigned=new  Number(assigneds);
 var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
@@ -1576,7 +1565,7 @@ function fun<%=tlb.getLotnum() %>()
    if(valu==1){}
    else	   
    	valu++;
-   document.getElementById('<%= tlb.getLotnum() %>').value =valu;
+   document.getElementById('<%= tlb.getLotnum()%>').value =valu;
 }
 </script>
 <td></td>
@@ -1622,10 +1611,11 @@ function fun2<%=tlb.getLotnum() %>()
 							System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());		
 							if(tlbr.getLotnum().equals(mfcb.getLotnum()))
 							{
- %>
+%>
 <tr>
 <td><%=tlbr.getLotnum()%></td>
-<td><output name = "lotcost" id = "lotcost" ><!-- value="<%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getLotcost()); else out.println("");%>">--></output></td>
+<td><output name = "lotcost" id = "lotcost" >
+</output></td>
 <td>3000</td>
 <td><output type="text" name = "commission" id = "commission"></output></td>
 <td><output type="text" name = "marketcess" id = "marketcess" ><!-- value="<%if(tlbr.getLotnum().equals(mfcb.getLotnum()))  out.println(mfcb.getMarketcess());%>">--></output></td>
@@ -1642,14 +1632,9 @@ function fun2<%=tlb.getLotnum() %>()
 </tr><%}}}	//txt file slot2aucton removed lot
 }}}}}}%>
 <tr>
-<th></th>
 </table>
 <br/>
 <br/>
 </div>
 </body>
 </html>
-   
-
-
-

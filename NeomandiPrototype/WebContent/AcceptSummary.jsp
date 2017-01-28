@@ -371,7 +371,7 @@ th {
 		     	<td  height="5%"><%=myEarn %></td>
 		   </tr>
 			
-		</table><br/><%} %>
+		</table><br/><%}%>
 	</form>
 </center>
 <br/>

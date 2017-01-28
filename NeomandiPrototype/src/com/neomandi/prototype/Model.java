@@ -121,7 +121,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into freg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, frb.getFarmerName());
 				ps.setLong(2, frb.getFarmerMobile());
 				ps.setLong(3, frb.getFarmerAadharnum());
@@ -137,10 +137,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(13, frb.getFarmerIfscCode());
 				ps.setString(14, null);
 				//ps.setBlob(15, frb.getFarmerPhoto());
-				ps.execute();
-				
-				msg = "SUCCESS";
-				
+				ps.execute();				
+				msg = "SUCCESS";				
 				con.commit();
 			}
 		}
@@ -819,6 +817,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else
 				{
+					
 					SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy"); 
 				//	System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
 					ps = con.prepareStatement("insert into tradelist(lotnum,marketcode,produce,qualitygrade,quantity,aadharnumber,price,slotnumber,quantityneeded) values(?,?,?,?,?,?,?,?,?)");
@@ -2708,7 +2707,6 @@ public Myclass2 orderstatus(String name, String pwd)
 			ps.setString(2,lotnum);
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally
@@ -2716,7 +2714,6 @@ public Myclass2 orderstatus(String name, String pwd)
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -2794,7 +2791,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							System.out.println("lotcost           = "+volumesold+" + "+bidprice+" = "+lotcost);
 							System.out.println("commission        = "+lotcost+" * 0.05 = "+commission);
 							System.out.println("market cess       = "+lotcost+" * 0.01 = "+marketcess);
-							System.out.println("final cost = "+lotcost+" + "+commission+" + "+marketcess+" +  3000 +  eplatfrom charges");
+							System.out.println("final cost        = "+lotcost+" + "+commission+" + "+marketcess+" +  3000 +  eplatfrom charges");
 							System.out.println("traders final cost="+myfinalcost);
 							int block=0;
 							ps4 =con.prepareStatement("select blockamount from traders_blocked_amount where tradername=?");
