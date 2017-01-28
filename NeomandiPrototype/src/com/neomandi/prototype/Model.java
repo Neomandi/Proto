@@ -165,8 +165,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		//System.out.println(elbn.getEname());
-		//System.out.println(elbn.getEpwd());
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -289,8 +287,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	
 	//Trader Login
 	public String traderLogin(TraderLoginBean tlbn)
-	{
-		System.out.println("inside model->traderLogin()");
+	{		
 		String msg = "";
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -357,8 +354,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		//System.out.println(flbn.getFname());
-		//System.out.println(flbn.getFpwd());
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -372,12 +367,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				con.setAutoCommit(false);
 				
 				ps = con.prepareStatement("select pass from freg where name = ?");
-				ps.setString(1, flbn.getFname());
-				
-				ps.executeQuery();
-				
-				rs = ps.getResultSet();
-				
+				ps.setString(1, flbn.getFname());				
+				ps.executeQuery();				
+				rs = ps.getResultSet();				
 				if(rs.next())
 				{
 					String npwd = rs.getString("pass");
@@ -410,9 +402,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		return msg;
 		
 	}
-	//farmer trade summary
 	
-	@SuppressWarnings({ "resource", "null" })
+	//farmer trade summary	
+	@SuppressWarnings({ "resource" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -821,10 +813,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 				}
 				else
-				{
-					
-					SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy"); 
-				//	System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
+				{					
+					//	System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
 					ps = con.prepareStatement("insert into tradelist(lotnum,marketcode,produce,qualitygrade,quantity,aadharnumber,price,slotnumber,quantityneeded) values(?,?,?,?,?,?,?,?,?)");
 					ps.setString(1, lotnum);
 					ps.setString(2, marketcode);
