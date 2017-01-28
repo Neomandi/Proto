@@ -729,10 +729,17 @@ if(uri.contains("AfterAccept")){
 			String traderIfscCode = request.getParameter("traderIfscCode");
 			String traderUid = request.getParameter("traderUid");
 			String traderLicenseNum = request.getParameter("traderLicenseNum");
-			String traderPwd = request.getParameter("traderPwd");
+			String traderPwd = request.getParameter("traderPassword");
+			String dateOfRegistration = request.getParameter("traderDateOfRegistration");
+			String placeOfRegistration = request.getParameter("traderPlaceOfRegistration");
+			String address = request.getParameter("traderAddress");
+			String licenseState = request.getParameter("traderLicenseState");
+			String licenseDistrict = request.getParameter("traderLiscenseDistrict");
+			String licenseTaluk = request.getParameter("traderLicenseTaluk");
+			String licensePin = request.getParameter("traderLicensePin");
 			
 			
-			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode);
+			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode+" Date of Reg"+dateOfRegistration+" Place of Reg"+placeOfRegistration+" lstate "+licenseState+" ldistrict "+licenseDistrict+" ltaluk "+licenseTaluk+" lpin "+licensePin);
 			
 			InputStream traderPhoto = null; // input stream of the upload file
 
@@ -763,7 +770,7 @@ if(uri.contains("AfterAccept")){
 			System.out.println(filePart);
 			System.out.println(traderPhoto);
 			
-			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto);
+			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto, dateOfRegistration, placeOfRegistration, address, licenseState, licenseDistrict, licenseTaluk, licensePin);
 			
 			Model m = new Model();
 			String msg = m.traderRegister(tbean);
