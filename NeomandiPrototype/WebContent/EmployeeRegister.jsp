@@ -13,221 +13,166 @@ $(function(){
   $("#footer").load("Footer.html");
  
 });
-function populate(s1, s2)
+
+
+function validateTForm()a
 {
-	var s1 = document.getElementById(s1);
-	var s2 = document.getElementById(s2);
-	s2.innerHTML = "";
-	if(s1.value == "Karnataka")
-	{
-		var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];	
-	}
-	for(var option in optionArray)
-	{
-		var pair = optionArray[option].split("|");
-		var newOption = document.createElement("option");
-		newOption.value = pair[0];
-		newOption.innerHTML = pair[1];
-		s2.options.add(newOption);
-	}
-}
-function validateTForm()
-{
-	var name = document.tregform.employeename;
-	var mob = document.tregform.employeemob;
-	var aadharnum = document.tregform.employeeaadharnum;
-	var email = document.tregform.employeeemail;
-	var uid = document.tregform.employeeuid;
-	var pwd = document.tregform.employeepwd;
+	
+	var mob = document.Eregform.employeemob;
+	var name = document.Eregform.employeename;
+	var pwd = document.Eregform.employeepwd;
+	var cpwd = document.Eregform.cemployeepwd;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
-	if(!name.value.match(letters))
-	{
-		window.alert("Please enter only alphtabets.");
+	console.log("inside name validation");
+	if(name.value==""){
+		alert("Please enter your name.");
 		name.focus();
+		return false;
+	}
+	if(!isNaN(name.value)){
+		window.alert("Your name should contain  only alphtabets.");
+		document.Eregform.employeename.focus();
+		return false;
+	}
+	
+	if ((name.value.length < 1) || (name.value.length > 20)){
+		alert("Your Character must be 1 to 20 Character");
+		
+		document.Eregform.employeename.focus();
+	//	name.focus();
 		return false;
 	}
 	
 	//Mobile number validation
 	var val = mob.value;
+	if(val==""){
+		alert("Please enter your mobile number");
+		 mob.focus();
+		    return false;
+	}
+	if(isNaN(val)){
+		alert("Enter the valid Mobile Number(Like : 9566137117)");
+		mob.focus();
+		return false;
+	}
+	if((val.length < 1) || (val.length > 10)){
+		
+		alert(" Your Mobile Number must be 1 to 10 Integers");
+		mob.focus();
+		return false;
+	}
+	var val = mob.value;
 	if (/^\d{10}$/.test(val)) {
+		
 	    // value is ok, use it
 	} else {
 	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
 	    return false;
 	}
+	//password validation
 	
-	//Aadhar number validation
-	var aval = aadharnum.value;
-	if (/^\d{12}$/.test(aval)) {
-	    // value is ok, use it
-	} else {
-	    alert("Invalid aadhar number, must be twelve digits");
-	    aadharnum.focus();
-	    return false;
+	
+	if( cpwd.value!=pwd.value){
+		 alert("passwords do not match");
+		 cpwd.focus();
+		    return false;
 	}
 	
-	//Email validation
-	if(email.value.indexOf("@", 0) < 0)
-	{
-		window.alert("Please enter a valid email id");
-		email.focus();
-		return false;
-	}
-	if (email.value.indexOf(".", 0) < 0)
-    {
-        window.alert("Please enter a valid e-mail address.");
-        email.focus();
-        return false;
-    }
 }
 </script> 
 <style type = "text/css">
-fieldset
-{
-	text-align: left;
-	vertical-align:middle;
+
+	#password{
+		
+	border-left: 20px solid rgb(189,209,2);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
+	
+	}
+	#details{
+		border-left: 20px solid rgb(20,157,218);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
+	
+	}
+	h2{
+	color: white;
 }
-legend 
-{
- 	font-size: 1.4em;
- 	margin-bottom: 10px;
-}
-form 
-{
-      max-width: 300px;
-	  margin: 10px auto;
-	  padding: 10px 20px;
-	  background: rgb(30,115,119);
-	  border-radius: 8px;
-}
-label
-{
-	font-size: 20px;
-}
-input[type=text]
-{
-	padding: 10px 10px;
-	margin: 8px 0;
+p{
+	font-size: 24px;
 }
 input[type=submit]
 {
-	color: blue;
-	padding: 12px 20px;
-}
-input[type=submit]:hover 
-{
-    background-color: lightblue;
+	color: white;
+	background-color: rgb(20,157,218);
+	width: 80px;
+	height: 30px;
 }
 input[type=reset]
 {
-	color: blue;
-	padding: 12px 20px;
+	color: white;
+	background-color: rgb(20,157,218);
+	width: 80px;
+	height: 30px;
 }
-input[type=reset]:hover
-{
-	background-color: lightblue;
+#head{
+	color:#00008B; 
 }
-input[type=password]
-{
-	padding: 12px 20px;
-	margin: 8px 0;
-}
-select
-{
-	padding: 10px 10px;
-	margin: 8px 0;
-}
-button
-{
-	color: blue;
-	padding: 12px 20px;
-}
+	
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
 <div id = "wrapper">
 <div id = "header"></div>
+
 <div id = "content">
 <br/>
+<center><p id="head"><b><i>Welcome to NeoMandi's Employee registration page</i></b></p></center>
 <form name = "Eregform" action = "EmployeeRegisterInt.jsp" method = "post" onsubmit = "return validateTForm();">
-	<div style = "align-content: center;">
-	<fieldset>
-		<legend>Employee Registration Page</legend>
+<div id="details" >	
+		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Details</h2></div>
 		<label for = "name">Name</label><br />
-		<input type = "text" id = "name" name = "employeename" placeholder = "Name" required/><br/>
+		<input type = "text" id = "name" name = "employeename" placeholder = "Name" required/><br/><br/>
 		<label for = "mob">Mobile Number</label><br />
-		<input type = "text" id = "mob" name = "employeemob" placeholder = "Mobile Number" required/><br/>
-		<label for = "anum">Aadhar Number</label><br />
-		<input type = "text" id = "anum" name = "employeeaadharnum" placeholder = "Aadhar Number" required/><br/>
-		<label for = "email">Email</label><br />
-		<input type = "text" id = "email" name = "employeeemail" placeholder = "Email" required/><br/>
-		<label for = "state">State</label><br />
-		<select id = "state" name = "employeestate" onchange = "populate('state','district')">
-			<option value = ""></option>
-			<option value = "Andhra Pradesh">Andhra Pradesh</option>
-			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
-			<option value = "Assam">Assam</option>
-			<option value = "Bihar">Bihar</option>
-			<option value = "Chhattisgarh">Chhattisgarh</option>
-			<option value = "Goa">Goa</option>
-			<option value = "Gujarat">Gujarat</option>
-			<option value = "Haryana">Haryana</option>
-			<option value = "Himachal Pradesh">Himachal Pradesh</option>
-			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
-			<option value = "Jharkhand">Jharkhand</option>
-			<option value = "Karnataka">Karnataka</option>
-			<option value = "Kerala">Kerala</option>
-			<option value = "Madhya Pradesh">Madhya Pradesh</option>
-			<option value = "Maharashtra">Maharashtra</option>
-			<option value = "Manipur">Manipur</option>
-			<option value = "Meghalaya">Meghalaya</option>
-			<option value = "Mizoram">Mizoram</option>
-			<option value = "Nagaland">Nagaland</option>
-			<option value = "Odisha">Odisha</option>
-			<option value = "Punjab">Punjab</option>
-			<option value = "Rajasthan">Rajasthan</option>
-			<option value = "Sikkim">Sikkim</option>
-			<option value = "Tamil Nadu">Tamil Nadu</option>
-			<option value = "Telangana">Telangana</option>
-			<option value = "Tripura">Tripura</option>
-			<option value = "Uttar Pradesh">Uttar Pradesh</option>
-			<option value = "Uttarakhand">Uttarakhand</option>
-			<option value = "West Bengal">West Bengal</option>
-		</select><br/>
-		<label for = "district">District</label><br />
-		<select id = "district" name = "employeedistrict">
-		</select><br/>
-	</fieldset>
+		<input type = "text" id = "mob" name = "employeemob" placeholder = "Mobile Number" required/><br/><br/>
+</div>
 	<br/>
-	<fieldset>
-		<legend>User ID</legend>
-		<label for = "uid">Preferred User ID</label><br />
-		<input type = "text" id = "uid" name = "employeeuid" placeholder = "User ID" required/><br/>
-		<label for = "password">Password</label><br />
-		<input type = "password" id = "password" name = "employeepwd" placeholder = "Password" required/><br/><br/>
-	</fieldset>
-	</div>
-	<br />
-	<input type = "submit" value = "Register"/>&nbsp &nbsp
-	<input type = "reset" value = "Reset"/>
-</form>
-<br/>
 
-<!--  <form action = "EmployeeLogin.html" name = "f2">
-<p>Already Registered? Click here to login.</p><br/>
-<input type = "submit" value = "Login"/>
-</form> -->
 
-<% String msg = (String)request.getAttribute("errmsg");  %>
+
+<div id="password">
+	
+		 <div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Password</h2></div>
+		<label for = "pwd">Enter Password</label><br />
+		<input type = "password" id = "pwd" name = "employeepwd" placeholder = "Password" required/><br/><br/>
+		<label for = "cpwd">Confirm Password</label><br />
+		<input type = "password" id = "cpwd" name = "cemployeepwd" placeholder = " Retype Password" required/><br/><br/><br/>
+		<label for = "otp">Enter OTP</label><br />
+		<input type = "text" id = "otp" name = "empOTP" placeholder = "OTP" required/><br/><br/>
+		<input type = "checkbox" name="v" value="Terms and Condtions" required>I accept Terms and Conditions<br/><br/>
+		
+</div>&nbsp;&nbsp;
+	<img src="Images/emp.jpg" >&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type = "submit" name = "submit" value = "Register">&nbsp;&nbsp;
+		<input type = "reset" value = "Reset"/>
+
+	</form>
+	<% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b><% if(msg != null)
 							out.print(msg);
-									%></b></p>
+						%></b></p>
+</div>
+
 </div>
 <div id = "footer"></div>
-</div>
+
 </body>
 </html>
