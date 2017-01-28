@@ -33,24 +33,25 @@ function populate(s1, s2)
 }
 function validateTForm()
 {
-	var name = document.tregform.tradername;
-	var mob = document.tregform.tradermob;
-	var aadharnum = document.tregform.traderaadharnum;
-	var email = document.tregform.traderemail;
-	var taluk = document.tregform.tradertaluk;
-	var hobli = document.tregform.traderhobli;
-	var village = document.tregform.tradervillage;
-	var bankname = document.tregform.traderbankname;
-	var accnum = document.tregform.traderaccountnum;
-	var branch = document.tregform.traderbranch;
-	var ifsc = document.tregform.traderifsc;
-	var uid = document.tregform.traderuid;
-	var license = document.tregform.traderlicensenum;
-	var pwd = document.tregform.traderpwd;
+	var name = document.getElementById("name").value;
+	var mob = document.getElementById("mob").value;
+	var aadhar = document.getElementById("anum").value;
+	var email = document.getElementById("email").value;
+	var taluk = document.getElementById("taluk").value;
+	var hobli = document.getElementById("hobli").value;
+	var village = document.getElementById("village").value;
+	var pin = document.getElementById("pin").value;
+	var bankname = document.getElementById("bankname").value;
+	var accountnum = document.getElementById("accountnum").value;
+	var branch = document.getElementById("branch").value;
+	var ifsc = document.getElementById("ifsc").value;
+	var licensenumber = document.getElementById("licensenumber").value;
+	var dateofregistration = document.getElementById("dateofregistration").value;
+	var placeofregistration = document.getElementById("placeofregistration").value;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
-	if(!name.value.match(letters))
+	if(!name.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		name.focus();
@@ -58,7 +59,7 @@ function validateTForm()
 	}
 	
 	//Mobile number validation
-	var val = mob.value;
+	var val = mob;
 	if (/^\d{10}$/.test(val)) {
 	    // value is ok, use it
 	} else {
@@ -68,23 +69,23 @@ function validateTForm()
 	}
 	
 	//Aadhar number validation
-	var aval = aadharnum.value;
+	var aval = aadhar;
 	if (/^\d{12}$/.test(aval)) {
 	    // value is ok, use it
 	} else {
 	    alert("Invalid aadhar number, must be twelve digits");
-	    aadharnum.focus();
+	    aadhar.focus();
 	    return false;
 	}
 	
 	//Email validation
-	if(email.value.indexOf("@", 0) < 0)
+	if(email.indexOf("@", 0) < 0)
 	{
 		window.alert("Please enter a valid email id");
 		email.focus();
 		return false;
 	}
-	if (email.value.indexOf(".", 0) < 0)
+	if (email.indexOf(".", 0) < 0)
     {
         window.alert("Please enter a valid e-mail address.");
         email.focus();
@@ -92,7 +93,7 @@ function validateTForm()
     }
 	
 	//Taluk name validation
-	if(!taluk.value.match(letters))
+	if(!taluk.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		taluk.focus();
@@ -100,7 +101,7 @@ function validateTForm()
 	}
 	
 	//Hobli name validation
-	if(!hobli.value.match(letters))
+	if(!hobli.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		hobli.focus();
@@ -108,7 +109,7 @@ function validateTForm()
 	}
 	
 	//Village name validation
-	if(!village.value.match(letters))
+	if(!village.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		village.focus();
@@ -116,7 +117,7 @@ function validateTForm()
 	}
 	
 	//Bank name validation
-	if(!bankname.value.match(letters))
+	if(!bankname.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		bankname.focus();
@@ -124,7 +125,7 @@ function validateTForm()
 	}
 	
 	//Account Branch name validation
-	if(!branch.value.match(letters))
+	if(!branch.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		branch.focus();
@@ -132,7 +133,7 @@ function validateTForm()
 	}
 	
 	//IFSC Code validation
-	var ifscval = ifsc.value;
+	var ifscval = ifsc;
 	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
 	{
 		//value is ok
@@ -147,66 +148,47 @@ function validateTForm()
 </script> 
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
-<style type = "text/css">
-fieldset
-{
-	text-align: left;
-	vertical-align:middle;
+<style>
+#div1{
+	border-left: 20px solid rgb(20,157,218);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
 }
-legend 
-{
- 	font-size: 1.4em;
- 	margin-bottom: 10px;
+#div2{
+	border-left: 20px solid rgb(20,157,218);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
 }
-form 
-{
-   	  max-width: 300px;
-	  margin: 10px auto;
-	  padding: 10px 20px;
-	  background: rgb(30,115,119);
-	  border-radius: 8px;
+#div3{
+	border-left: 20px solid rgb(189,209,2);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
 }
-label
-{
-	font-size: 20px;
+#div5{
+	border-left: 20px solid rgb(189,209,2);
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	background-color: rgb(242,242,242);
 }
-input[type=text]
-{
-	padding: 10px 10px;
-	margin: 8px 0;
+h2{
+	color: white;
+}
+p{
+	font-size: 24px;
 }
 input[type=submit]
 {
-	color: blue;
-	padding: 12px 20px;
-}
-input[type=submit]:hover 
-{
-    background-color: lightblue;
-}
-input[type=reset]
-{
-	color: blue;
-	padding: 12px 20px;
-}
-input[type=reset]:hover
-{
-	background-color: lightblue;
-}
-input[type=password]
-{
-	padding: 12px 20px;
-	margin: 8px 0;
-}
-select
-{
-	padding: 10px 10px;
-	margin: 8px 0;
-}
-button
-{
-	color: blue;
-	padding: 12px 20px;
+	color: white;
+	background-color: rgb(20,157,218);
+	width: 80px;
+	height: 30px;
 }
 </style>
 <body>
@@ -214,10 +196,11 @@ button
 <div id = "header"></div>
 <div id = "content">
 <br/>
-<form name = "tregform" action = "TraderRegister.do" method = "post" enctype = 'multipart/form-data' onSubmit = "return validateTForm();">
-	<div style = "align-content: center;">
-	<fieldset>
-		<legend>Trader Registration Page</legend>
+<center><p><b><i>Welcome to NeoMandi's Trader registration page</i></b></p></center>
+<form name = "tregform" action = "TraderRegister.do" method = "post" enctype = 'multipart/form-data' onsubmit = "return validateTForm();">
+	<div id = "div1">
+		<div id = "b1">
+		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Details</h2></div>
 		<label for = "name">Name</label><br />
 		<input type = "text" id = "name" name = "traderName" placeholder = "Name" required/><br/>
 		<label for = "mob">Mobile Number</label><br />
@@ -267,13 +250,15 @@ button
 		<label for = "hobli">Hobli</label><br />
 		<input type = "text" id = "hobli" name = "traderHobli" placeholder = "Hobli" required/><br/>
 		<label for = "village">Village</label><br />
-		<input type = "text" id = "village" name = "traderVillage" placeholder = "Village" required/><br/><br/>
+		<input type = "text" id = "village" name = "traderVillage" placeholder = "Village" required/><br/>
 		<label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "traderPhoto"/> <!-- Use (enctype = 'multipart/form-data') in form -->
-	</fieldset>
-	<br/>
-	<fieldset>
-		<legend>Bank Account Details</legend>
+		<input type = "file" id = "photo" name = "traderPhoto"/><br/> <!-- Use (enctype = 'multipart/form-data') in form -->
+		<label for = "pin">PIN</label><br />
+		<input type = "text" id = "pin" name = "traderPin" placeholder = "PIN" required/>
+		</div>
+	</div>
+	<div id = "div2">
+		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Bank Account Details</h2></div>
 		<label for = "bankname">Bank Name</label><br />
 		<input type = "text" id = "bankname" name = "traderBankName" placeholder = "Bank Name" required/><br/>
 		<label for = "accountnum">Account Number</label><br />
@@ -281,24 +266,74 @@ button
 		<label for = "branch">Branch</label><br />
 		<input type = "text" id = "branch" name = "traderBranch" placeholder = "Branch" required/><br/>
 		<label for = "ifsc">IFSC Code</label><br />
-		<input type = "text" id = "ifsc" name = "traderIfscCode" placeholder = "IFSC Code" required/><br/><br/>
-	</fieldset>
-	<br/>
-	<fieldset>
-		<legend>User ID</legend>
-		<label for = "uid">Preferred User ID</label><br />
-		<input type = "text" id = "uid" name = "traderUid" placeholder = "User ID" required/><br/>
-		<label for = "licensenum">License Number</label><br />
-		<input type = "text" id = "licensenum" name = "traderLicenseNum" placeholder = "License Number" required/><br/>
-		<label for = "password">Password</label><br />
-		<input type = "password" id = "password" name = "traderPwd" placeholder = "Password" required/><br/><br/>
-	</fieldset>
+		<input type = "text" id = "ifsc" name = "traderIfscCode" placeholder = "IFSC Code" required/><br/>
 	</div>
-	<br />
-	<input type = "submit" value = "Register"/>&nbsp &nbsp
-	<input type = "reset" value = "Reset"/>
+	<div id = "div3">
+		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My License Details</h2></div>
+		<label for = "licensenumber">Trader License Number</label><br />
+		<input type = "text" id = "licensenumber" name = "traderLicenseNum" placeholder = "License Number" required/><br/>
+		<label for = "dateofregistration">Date of Registration</label><br />
+		<input type = "date" id = "dateofregistration" name = "traderDateOfRegistration" required/><br/>
+		<label for = "placeofregistration">Place of Registration</label><br />
+		<input type = "text" id = "placeofregistration" name = "traderPlaceOfRegistration" placeholder = "Place Of Registration" required/><br/>
+		<label for = "address">Address</label><br />
+		<input type = "text" id = "address" name = "traderAddress" placeholder = "Address" required/><br/>
+		<label for = "state">State</label><br />
+		<select id = "lstate" name = "traderLicenseState" onchange = "populate('state','district')">
+			<option value = ""></option>
+			<option value = "Andhra Pradesh">Andhra Pradesh</option>
+			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value = "Assam">Assam</option>
+			<option value = "Bihar">Bihar</option>
+			<option value = "Chhattisgarh">Chhattisgarh</option>
+			<option value = "Goa">Goa</option>
+			<option value = "Gujarat">Gujarat</option>
+			<option value = "Haryana">Haryana</option>
+			<option value = "Himachal Pradesh">Himachal Pradesh</option>
+			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
+			<option value = "Jharkhand">Jharkhand</option>
+			<option value = "Karnataka">Karnataka</option>
+			<option value = "Kerala">Kerala</option>
+			<option value = "Madhya Pradesh">Madhya Pradesh</option>
+			<option value = "Maharashtra">Maharashtra</option>
+			<option value = "Manipur">Manipur</option>
+			<option value = "Meghalaya">Meghalaya</option>
+			<option value = "Mizoram">Mizoram</option>
+			<option value = "Nagaland">Nagaland</option>
+			<option value = "Odisha">Odisha</option>
+			<option value = "Punjab">Punjab</option>
+			<option value = "Rajasthan">Rajasthan</option>
+			<option value = "Sikkim">Sikkim</option>
+			<option value = "Tamil Nadu">Tamil Nadu</option>
+			<option value = "Telangana">Telangana</option>
+			<option value = "Tripura">Tripura</option>
+			<option value = "Uttar Pradesh">Uttar Pradesh</option>
+			<option value = "Uttarakhand">Uttarakhand</option>
+			<option value = "West Bengal">West Bengal</option>
+		</select><br/>
+		<label for = "district">District</label><br />
+		<select id = "ldistrict" name = "traderLiscenseDistrict">
+		</select><br/>
+		<label for = "taluk">Taluk</label><br />
+		<input type = "text" id = "ltaluk" name = "traderLicenseTaluk" placeholder = "Taluk" required/><br/>
+		<label for = "pin">PIN</label><br />
+		<input type = "text" id = "lpin" name = "traderLicensePin" placeholder = "PIN" required/><br/>
+	</div>
+	<br/><div id = "div4"><img src = "Images/TraderPic.png" alt = "can't display"/></div>
+	<div id = "div5">
+		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Password</h2></div>
+		<label for = "password">Enter a Password</label><br />
+		<input type = "password" id = "password" name = "traderPassword" placeholder = "Password" required/><br/>
+		<label for = "confirmpassword">Confirm Password</label><br />
+		<input type = "password" id = "confirmpassword" name = "traderConfirmPassword" placeholder = "Confirm Password" required/><br/>
+		<label for = "otp">Enter OTP</label><br />
+		<input type = "text" id = "otp" name = "traderOTP" placeholder = "OTP" required/><br/><br/>
+		<input type = "checkbox" name="vehicle" value="Terms and Condtions" required>I accept Terms and Conditions<br><br/>
+		<input type = "submit" name = "submit" value = "Register">
+	</div>
 </form>
-<br/>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 </div>
 <div id = "footer"></div>

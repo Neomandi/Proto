@@ -135,6 +135,6 @@ a.more {
 <td align="center"><output type="text" id="status"></td>
 </tr><%}}%>
 </table>
-<!--  <meta http-equiv="refresh"content="1; URL=http://localhost:8080/NeomandiPrototype/farmeracceptstatus.do">-->
+<meta http-equiv="refresh"content="4; URL=http://localhost:8080/NeomandiPrototype/farmeracceptstatus.do">
 </body>
 </html>

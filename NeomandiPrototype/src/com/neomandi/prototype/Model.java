@@ -118,7 +118,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into freg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into freg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, frb.getFarmerName());
 				ps.setLong(2, frb.getFarmerMobile());
 				ps.setLong(3, frb.getFarmerAadharnum());
@@ -133,7 +133,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(12, frb.getFarmerBranch());
 				ps.setString(13, frb.getFarmerIfscCode());
 				ps.setString(14, null);
-				//ps.setBlob(15, frb.getFarmerPhoto());
+				ps.setBlob(15, frb.getFarmerPhoto());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -237,7 +237,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
 				ps.setLong(3, trb.getTraderAadharnum());
@@ -253,8 +253,15 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(13, trb.getTraderIfscCode());
 				ps.setString(14, trb.getTraderUid());
 				ps.setString(15, trb.getTraderLicenseNum());
-				ps.setString(16, trb.getTraderPwd());
-				//ps.setBlob(17, trb.getTraderPhoto());
+				ps.setString(16, trb.getTraderPassword());
+				ps.setBlob(17, trb.getTraderPhoto());
+				ps.setString(18, trb.getTraderDateOfRegistration());
+				ps.setString(19, trb.getTraderPlaceOfRegistration());
+				ps.setString(20, trb.getTraderAddress());
+				ps.setString(21, trb.getTraderLicenseState());
+				ps.setString(22, trb.getTraderLiscenseDistrict());
+				ps.setString(23, trb.getTraderLicenseTaluk());
+				ps.setString(24, trb.getTraderLicensePin());
 				ps.execute();
 				
 				msg = "SUCCESS";
@@ -406,7 +413,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 	//farmer trade summary
 	
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "null" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -471,6 +478,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
+				if(sb==null)
+				{			
+					System.out.println("sb is null");
+					sb=new SummaryBean();
+					sb.setStatus("fail");
+					return sb;
+				}
 				averageprice=sb.getAverageprice();
 				
 				quantitysold=sb.getQuantitysold();
@@ -649,6 +663,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		finally
 		{
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(con);
 		}
 		return l;
 	}
@@ -2495,6 +2511,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 		}
 	}
 
+@SuppressWarnings("resource")
 public Myclass2 orderstatus(String name, String pwd) 
 	{
 		System.out.println("inside Model()->.....orderstatus");
@@ -2675,6 +2692,11 @@ public Myclass2 orderstatus(String name, String pwd)
 		{
 			e.printStackTrace();
 		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
 		return mc;
 	}
 	
@@ -2705,6 +2727,7 @@ public Myclass2 orderstatus(String name, String pwd)
 	}
 	
 
+@SuppressWarnings("resource")
 public void TraderProductAccept(String lotnum,String accno)
 	{		
 		System.out.println("TraderProductAccept.do");
@@ -2877,7 +2900,12 @@ public void TraderProductAccept(String lotnum,String accno)
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}		
+		}	
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
 	}
 
 	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) {
@@ -2942,9 +2970,15 @@ public void TraderProductAccept(String lotnum,String accno)
 		{
 	e.printStackTrace();
 	}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
 	return al;
 }
 
+	@SuppressWarnings("resource")
 	public List<FarmerHistoryBean> farmerHistory(String name,String pass,String from,String to){
 		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 				PreparedStatement ps = null;
@@ -3024,6 +3058,11 @@ public void TraderProductAccept(String lotnum,String accno)
 				{
 			e.printStackTrace();
 			}
+				finally
+				{
+					JDBCHelper.Close(ps);
+					JDBCHelper.Close(con);
+				}
 			return al;
 		
 	}
@@ -3080,15 +3119,13 @@ public void TraderProductAccept(String lotnum,String accno)
 				String qualitygrade = "";
 				double averageprice = 0;
 				String photo = "";
-			
 				
 				String sql = "SELECT * FROM productentry WHERE lotnumber = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, lotnumber);
 				rs1 = pstmt.executeQuery();
 				while(rs1.next())
-				{
-					
+				{					
 					quantity = rs1.getString("quantity");
 					slotnumber = rs1.getString("slotnumber");
 					farmerid = rs1.getString("farmerid");
@@ -3297,6 +3334,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			}
 			else
 			{
+				con.setAutoCommit(false);
 				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber order by lotnumber");
 				ps.setString(1,"accepted");
 				rs=ps.executeQuery();
@@ -3324,6 +3362,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				}
 				osrb.setA(a);
 				osrb.setAl(al);
+				con.commit();
 				return osrb;
 			}		
 		}

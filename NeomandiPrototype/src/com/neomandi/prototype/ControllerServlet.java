@@ -331,6 +331,22 @@ public class ControllerServlet extends HttpServlet {
 			sb=m.getSummary(name, pass, sb);
 			
 			System.out.println(" in cs sb="+sb);
+			if(sb.getStatus().equals("fail"))
+			{
+				request.setAttribute("error","error");
+				rd=request.getRequestDispatcher("AcceptSummary.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 			String lotnumber=sb.getLotnumber();
 			String lotsize=sb.getLotsize();
 			String quantitysold=sb.getQuantitysold();
@@ -729,10 +745,17 @@ if(uri.contains("AfterAccept")){
 			String traderIfscCode = request.getParameter("traderIfscCode");
 			String traderUid = request.getParameter("traderUid");
 			String traderLicenseNum = request.getParameter("traderLicenseNum");
-			String traderPwd = request.getParameter("traderPwd");
+			String traderPwd = request.getParameter("traderPassword");
+			String dateOfRegistration = request.getParameter("traderDateOfRegistration");
+			String placeOfRegistration = request.getParameter("traderPlaceOfRegistration");
+			String address = request.getParameter("traderAddress");
+			String licenseState = request.getParameter("traderLicenseState");
+			String licenseDistrict = request.getParameter("traderLiscenseDistrict");
+			String licenseTaluk = request.getParameter("traderLicenseTaluk");
+			String licensePin = request.getParameter("traderLicensePin");
 			
 			
-			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode);
+			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode+" Date of Reg"+dateOfRegistration+" Place of Reg"+placeOfRegistration+" lstate "+licenseState+" ldistrict "+licenseDistrict+" ltaluk "+licenseTaluk+" lpin "+licensePin);
 			
 			InputStream traderPhoto = null; // input stream of the upload file
 
@@ -763,7 +786,7 @@ if(uri.contains("AfterAccept")){
 			System.out.println(filePart);
 			System.out.println(traderPhoto);
 			
-			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto);
+			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto, dateOfRegistration, placeOfRegistration, address, licenseState, licenseDistrict, licenseTaluk, licensePin);
 			
 			Model m = new Model();
 			String msg = m.traderRegister(tbean);
@@ -2072,6 +2095,45 @@ if(uri.contains("AfterAccept")){
 				}
 				}
 		}
+		/*if(uri.contains("TableRefresh"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				pwd=tlbn.getTpwd();
+				name=tlbn.getTname();
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("ajax2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			Model m=new Model();
+			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
+			HttpSession traderlistbean=request.getSession();
+			traderlistbean.setAttribute("tlb",mc.getAl());
+			HttpSession MyFinalCost=request.getSession(true);
+			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
+			rd=request.getRequestDispatcher("TableRefresh.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException | IOException e) 
+			{
+				e.printStackTrace();
+			}	
+		}*/
 	}
 
 

@@ -11,6 +11,9 @@ public class SummaryBean {
 	private String myearning;
 	private String aadhar;
 	private String slot;
+	
+	
+	
 	public SummaryBean(){
 		System.out.println("in summaryBean no arg cons");
 	}
