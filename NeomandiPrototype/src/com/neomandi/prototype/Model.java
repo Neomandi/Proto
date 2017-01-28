@@ -55,23 +55,20 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				
-				ps = con.prepareStatement("select aadharnum from ereg where mobile = ? ");
-				ps.setLong(1, erb.getEmployeemob());
+				ps = con.prepareStatement("select mobile from ereg where mobile = ? ");
+				ps.setString(1, erb.getEmployeemob());
 				ps.execute();
 				rs = ps.getResultSet();
 				if(!rs.next())
 				{
 					con.setAutoCommit(false);
 					
-					ps = con.prepareStatement("insert into ereg values(?,?,?,?,?,?,?,?)");
+					ps = con.prepareStatement("insert into ereg values(?,?,?,?)");
 					ps.setString(1, erb.getEmployeename());
-					ps.setLong(2, erb.getEmployeemob());
-					ps.setLong(3, erb.getEmployeeaadharnum());
-					ps.setString(4, erb.getEmployeeemail());
-					ps.setString(5, erb.getEmployeestate());
-					ps.setString(6, erb.getEmployeedistrict());
-					ps.setString(7, erb.getEmployeeuid());
-					ps.setString(8, erb.getEmployeepwd());
+					ps.setString(2, erb.getEmployeemob());
+					
+					ps.setString(3, erb.getEmployeepwd());
+					ps.setString(4, erb.getCemployeepwd());
 					
 					ps.execute();
 					
@@ -3033,7 +3030,7 @@ public void TraderProductAccept(String lotnum,String accno)
 						System.out.println(ps);
 						System.out.println("Execute"+ps.executeQuery());
 						rs=ps.getResultSet();
-						System.out.println(rs+" "+ps.getResultSet());
+						System.out.println( "in famerhistory"+rs+" "+ps.getResultSet());
 						FarmerHistoryBean fhb=null;
 						while(rs!=null&&rs.next())
 						{

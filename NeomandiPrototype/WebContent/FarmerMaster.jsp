@@ -167,10 +167,10 @@
 			 String name="";
 		     try
 		     	{	
-		     	if(con == null)
+		     	/*if(con == null)
 		     	{
 		     		System.out.println("Connection establish failed");
-		     	}
+		     	}*/
 		     	statement = con.createStatement();
 		     	String sql = "select aadharnum,name from freg where pass='"+pass+"' ";
 		     	//System.out.println(sql);
@@ -213,10 +213,10 @@
 			//fetching lotnumber 
 			String lot="";
 			try{	
-				if(con == null)
+				/*if(con == null)
 				{
 					System.out.println("Connection establish failed");
-				}
+				}*/
 				statement = con.createStatement();
 				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				//System.out.println(sql);
@@ -294,15 +294,17 @@
 	//fetching date and time
 	String date="";
 	String slot="";
+	String s1="";
 	try{	
-			if(con == null)
+			/*if(con == null)
 				{
 					System.out.println("Connection establish failed");
-				}
+				}*/
 					statement = con.createStatement();
 					String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
 					//System.out.println(sql);
 					resultSet = statement.executeQuery(sql);
+					List<String> l=new ArrayList<String>();
 					while(resultSet.next()){
 %>
 	<font size="5" color="#9785f"></font>
@@ -310,15 +312,20 @@
 					date+=resultSet.getString("Date");
 					//time+=resultSet.getString("Time");
 					slot+=resultSet.getString("slotnumber");
+					l.add(slot);
 					System.out.println("date="+date);
 					//System.out.println("time="+time);
 					System.out.println("slot="+slot);
-						}
-					}
-					catch(SQLException e)
-					{
-						e.printStackTrace();	
-					}
+					 for(String obj:l)  {
+						 s1=obj;
+						 
+					 }
+				}
+			}
+		catch(SQLException e)
+		{
+			e.printStackTrace();	
+		}
 	 finally
 		{resultSet.close();
 		statement.close();
@@ -330,7 +337,7 @@
 		  <!-- ---------------------------------------------------------------------------------------------- -->  
 		 <form>
 			<input type="hidden" value="<%=time %>" id="time" />
-			<input type="hidden" value="<%=slot %>" id="slot" />
+			<input type="hidden" value="<%=s1 %>" id="slot" />
 			<input type="hidden" value="<%=date %>" id="date" />
 		</form>
 		<script>
@@ -412,7 +419,7 @@
 			//diff -= hours* 60 * 60;
 			var seconds= Math.floor(diff /1000);
 			var minutes = Math.floor(diff / 1000 / 60);
-			var res3=0;
+			var res3=0; 
 			console.log("differences in minutes before calc "+minutes);		
 			console.log("differences in seconds before calc "+seconds);		
 			if(seconds>60)
