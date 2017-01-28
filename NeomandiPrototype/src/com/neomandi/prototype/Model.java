@@ -122,6 +122,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				con.setAutoCommit(false);
 				
 				ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
 				ps.setString(1, frb.getFarmerName());
 				ps.setLong(2, frb.getFarmerMobile());
 				ps.setLong(3, frb.getFarmerAadharnum());
@@ -238,7 +239,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
 				ps.setLong(3, trb.getTraderAadharnum());
@@ -254,8 +255,15 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(13, trb.getTraderIfscCode());
 				ps.setString(14, trb.getTraderUid());
 				ps.setString(15, trb.getTraderLicenseNum());
-				ps.setString(16, trb.getTraderPwd());
-				//ps.setBlob(17, trb.getTraderPhoto());
+				ps.setString(16, trb.getTraderPassword());
+				ps.setBlob(17, trb.getTraderPhoto());
+				ps.setString(18, trb.getTraderDateOfRegistration());
+				ps.setString(19, trb.getTraderPlaceOfRegistration());
+				ps.setString(20, trb.getTraderAddress());
+				ps.setString(21, trb.getTraderLicenseState());
+				ps.setString(22, trb.getTraderLiscenseDistrict());
+				ps.setString(23, trb.getTraderLicenseTaluk());
+				ps.setString(24, trb.getTraderLicensePin());
 				ps.execute();
 				
 				msg = "SUCCESS";
