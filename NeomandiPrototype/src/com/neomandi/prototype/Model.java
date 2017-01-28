@@ -416,7 +416,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 	//farmer trade summary
 	
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "null" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -481,6 +481,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
+				if(sb==null)
+				{			
+					System.out.println("sb is null");
+					sb=new SummaryBean();
+					sb.setStatus("fail");
+					return sb;
+				}
 				averageprice=sb.getAverageprice();
 				
 				quantitysold=sb.getQuantitysold();

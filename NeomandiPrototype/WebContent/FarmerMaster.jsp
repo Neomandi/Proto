@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  import=" com.neomandi.prototype.JDBCHelper,  java.text.DecimalFormat,
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import=" com.neomandi.prototype.JDBCHelper,  java.text.DecimalFormat,
      java.io.PrintWriter,
      java.sql.Connection,
      java.sql.ResultSet,
