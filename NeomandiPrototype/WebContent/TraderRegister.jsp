@@ -31,6 +31,24 @@ function populate(s1, s2)
 		s2.options.add(newOption);
 	}
 }
+function populate1(s1, s2)
+{
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+	s2.innerHTML = "";
+	if(s1.value == "Karnataka")
+	{
+		var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];	
+	}
+	for(var option in optionArray)
+	{
+		var pair = optionArray[option].split("|");
+		var newOption = document.createElement("option");
+		newOption.value = pair[0];
+		newOption.innerHTML = pair[1];
+		s2.options.add(newOption);
+	}
+}
 function validateTForm()
 {
 	var name = document.getElementById("name").value;
@@ -142,6 +160,19 @@ function validateTForm()
 	{
 		window.alert("Please enter valid IFSC Code.");
 		ifsc.focus();
+		return false;
+	}
+	
+	//PIN Code validation
+	var pinval = pin;
+	if(/^[0-9]{6}$/.test(pinval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		pin.focus();
 		return false;
 	}
 }
@@ -279,7 +310,7 @@ input[type=submit]
 		<label for = "address">Address</label><br />
 		<input type = "text" id = "address" name = "traderAddress" placeholder = "Address" required/><br/>
 		<label for = "state">State</label><br />
-		<select id = "lstate" name = "traderLicenseState" onchange = "populate('state','district')">
+		<select id = "lstate" name = "traderLicenseState" onchange = "populate1('lstate','ldistrict')">
 			<option value = ""></option>
 			<option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
