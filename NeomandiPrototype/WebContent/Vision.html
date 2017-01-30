@@ -7,27 +7,50 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
-  $("#header").load("Header.html"); 
   $("#footer").load("Footer.html"); 
 });
-</script> 
+</script>
+<style>.active {
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;
+}
+p{
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
-
-
-<div id = "header"></div>
+<nav>
+	<ul>
+		<li><img alt="Can't display" src="Images/Neomandi1.png" width = "40" height = "43"></li>
+		<li><a  href = "HomePage.html">About Us</a></li>
+		<li><a class="active" href = "Vision.html">Vision</a></li>
+		<li><a href = "Mission.html">Mission</a></li>
+		<li class = "dropdown">
+			<a href = "Howitworks.html" class = "dropbtn">How it works</a>
+			<div class = "dropdown-content">
+				<a href = "NeomandiFarmer.html">How Neomandi Works For A Farmer?</a>
+				<a href = "NeomandiTrader.html">How Neomandi Works For A Trader?</a>
+			</div>
+			</li>
+		<li><a href = "News.html">News</a></li>
+		<li><a href = "ContactUs.html">Contact Us</a></li>
+		<li><a  href = "Register.html">Register</a></li>
+		<li><a href = "Login.html">Login</a></li>
+	</ul>
+</nav>
 
 <div id = "content">
 <br/><br/>
 <h1>Vision</h1>
-
 <p align = "justify">
 Neomandi's vision is to be a leading corporation in providing an ecosystem of advanced technologies to help farmers in marketing their produce for a fair price discovered in a transparent and competitive environment.
 </p>
 </div>
-
 <div id = "footer"></div>
-
 </body>
 </html>

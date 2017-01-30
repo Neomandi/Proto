@@ -7,20 +7,55 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
-  $("#header").load("Header.html"); 
   $("#footer").load("Footer.html");
 });
 </script> 
+
+<style>
+p.ex1 {
+    margin-left: 8%;
+     margin-right: 8%;
+}
+.active 
+{
+    border: 1px solid black;
+    color: brown;
+    background-color: white;
+    bottom: -3px;    
+    border-bottom: 2px solid white;
+}
+p{
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 <body>
+<nav>
+	<ul>
+		<li><img alt="Can't display" src="Images/Neomandi1.png" width = "40" height = "43"></li>
+		<li><a href = "HomePage.html">About Us</a></li>
+		<li><a href = "Vision.html">Vision</a></li>
+		<li><a href = "Mission.html">Mission</a></li>
+		<li class = "dropdown">
+			<a href = "Howitworks.html" class = "dropbtn">How it works</a>
+			<div class = "dropdown-content">
+				<a href = "NeomandiFarmer.html">How Neomandi Works For A Farmer?</a>
+				<a href = "NeomandiTrader.html">How Neomandi Works For A Trader?</a>
+			</div>
+			</li>
+		<li><a class = "active" href = "News.html">News</a></li>
+		<li><a href = "ContactUs.html">Contact Us</a></li>
+		<li><a  href = "Register.html">Register</a></li>
+		<li><a href = "Login.html">Login</a></li>
+	</ul>
+</nav>
 <div id = "wrapper">
 <div id = "header"></div>
 <div id = "content">
 <br/><br/>
-<h1>News</h1>
-
-<p align = "justify">
+<h1 style="margin-left: 49%;">News</h1>
+<p align = "justify" class="ex1">
 Our Bangalore
 19 August 2016
 Startup of the week.
@@ -32,20 +67,20 @@ APMCs with very less income after selling their produce.
 The  only  way  ahead,  he  feels,  is  going  transparent  and  going  online.  With  the  introduction   of   their   online   platform   NeoMandi,  Aravinda  and  the  other  co-founders  Narendra,  Naveen  Kumar, Prashanth Kumar  and  Sunil   Kumar   Gowda   are   creating an ecosystem  of  e-auction  platform,  e-payment,  logistics  support,  state  of  the  art scientific storages, grading and pre-market value addition facilities, in the form of market yards. Hailing from the villages around Chikkabalapur,   these   young   entrepreneurs felt  the  need  to  help  farmers  across  India. That is when the idea of Neo Mandi struck,  and  then  they  headed  towards our city to join other start ups.
 </p>
 
-<h3>What is NeoMandi?</h3>
+<h3 style="margin-left: 8%;">What is NeoMandi?</h3>
 
-<p align = "justify">
+<p align = "justify"  class="ex1">
 Neo Mandi is a private Agricultural Produce  Market  Committee  that  will  take  auctioning  of  whole  sale  agro  produces  online  and  bridge  the  gap  between  the  trader and the farmer. Though this gap is currently filled by the broker lobby, NeoMandi is making efforts to make the entire transaction transparent and the process less complicated.
 </p>
 
-<h3>How Neo Mandi works for farmers?</h3>
+<h3 style="margin-left:8%;">How Neo Mandi works for farmers?</h3>
 
-<p align = "justify">
+<p align = "justify"  class="ex1">
 The farmer raises a request to sell his produce on the NeoMandi website, or simply  calls  them  on  their  toll  free  number.  The team then reaches out to the farmer and  transports  his/her  produce  to  their  nearest market yard. In  the  market  yard,  the  produce  is assayed  for  the quality and graded accordingly  by  quality  professionals  and  a  unique  lot  number  is  provided  to  the  farmer.  The  lot  number  along with  images  of  the  produce  will  then  be displayed on Neo Mandi's electronic auction platform. Traders  from  all  over  the  country  will  participate   in   the   electronic   auction,   which ends at a stipulated time for a given lot. The best price is brought to the notice of the farmer on whose concurrence the price is finalized. This entire process happens  under  the  watch  of  the  farmer through  the  smart  phone  app.  Farmers  receive money for the auctioned produce after a deduction of service charges into their bank account.
 Aravinda   says,   "This   platform   is   a  quintessential  need  for  this  generation'sfarmer. Almost every family in village today owns a smart phone. Then why not put it to some good use. This is why NeoMandi was started." As  a  company,  NeoMandi  is  aiming to  be  a  billion  dollar  start  up.  "Well  this is a 100 billion dollar market that we are concerned  with.  Keeping  in  mind  the vastness of the agricultural industry with 60% of us being directly or indirectly depended  on  it,  we  would  like  to  achieve  the target of being a unicorn start up by 2020," he says.
 Bangalore,  being  the  IT  capital  of  India,  has  influenced  the  culture  across the  country  in  many  ways.  It  surely  has showed these entrepreneurs from Chikkabalapur,  the  need  for  something  like  NeoMandi. "The ecosystem for startups here  is  just  brilliant.  We  get  to  interact  with  many  of  them  and  get  our  issues  resolved.  And  at  the  same  time,  help  out  others  when  needed.  If  the  spirit  of bringing  up  start  ups  help  every  bit  our society, then it surly is a beautiful place to be," says Aravinda.
 While the challenges NeoMandi faces are many, Aravinda feels that, its crossing these hurdles that could put NeoMandi on the success curve.
-</p><br/><br/>
+</p>
 </div>
 <div id = "footer"></div>
 </div>

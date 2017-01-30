@@ -32,6 +32,7 @@ function populate(s1, s2)
 		s2.options.add(newOption);
 	}
 }
+
 function validateFForm()
 {
 	var name = document.fregform.farmerName;
@@ -238,7 +239,7 @@ select
 		<label for = "mob">Mobile Number</label><br/>
 		<input type = "number" id = "mob" min=0 maxlength="10" size="10" name = "farmerMobile" placeholder = "Phone" required/><br/>
 		<label for = "anum">Aadhar Number</label><br/>
-		<input type = "number" id = "anum" maxlength="12" size="12" name = "farmerAadharnum" placeholder = "Aadhar Number" required/><br/>
+		<input type = "number" id = "anum" maxlength="12" min=0 size="12" name = "farmerAadharnum" placeholder = "Aadhar Number" required/><br/>
 		<label for = "email">Email</label><br/>
 		<input type = "text" id = "email" name = "farmerEmail" placeholder = "Email" required/><br/>
 		<label for = "state">State</label><br/>

@@ -1,7 +1,6 @@
 package com.neomandi.prototype;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +9,6 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,14 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-//import sun.util.logging.PlatformLogger.Level;
-
-import org.json.JSONObject;
-
 @MultipartConfig(maxFileSize = 16177215)
-/**
- * Servlet implementation class ControllerServlet
- */
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -1005,41 +995,34 @@ if(uri.contains("AfterAccept")){
 			
 			//System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
 			
-			InputStream inputStream = null; // input stream of the upload file
-	        
-	        // obtains the upload file part in this multipart request
+			// obtains the upload file part in this multipart request
 	        Part filePart = null;
 			try {
 				filePart = request.getPart("photo");
 			} catch (IllegalStateException | IOException | ServletException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}         
+	        String photo="";
+	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        System.out.println("Path "+path);
+	        File file=new File(path);
+	        file.mkdir();
+	         //String fileName = getFileName(filePart);
+	        String nfileName = lotnum + ".jpg";  
+	        OutputStream out = null;	          
+	        InputStream filecontent = null;    
+	        try
+	        {
+				PrintWriter writer = response.getWriter();
 			}
-         
-	          String photo="";
-	          String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
-	          System.out.println("Path "+path);
-	          
-	          File file=new File(path);
-	          file.mkdir();
-	          //String fileName = getFileName(filePart);
-	          String nfileName = lotnum + ".jpg";
-	          
-	          OutputStream out = null;
-	          
-	            InputStream filecontent = null;
-	            
-	            try {
-					PrintWriter writer = response.getWriter();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	            try {
-	        out = new FileOutputStream(new File(path + File.separator
-	                + nfileName));
-	        
-	        filecontent = filePart.getInputStream();
+	        catch (IOException e1) 
+	        {
+			  e1.printStackTrace();
+			}
+	        try
+	        {
+	         out = new FileOutputStream(new File(path + File.separator + nfileName));
+	         filecontent = filePart.getInputStream();
 	     
 	 
 	        int read = 0;
@@ -1102,14 +1085,10 @@ if(uri.contains("AfterAccept")){
 					e.printStackTrace();
 				}
 			}			
-		}
-		
-		
+		}	
 		
 		/*if(uri.contains("ImageInsert")){
-
-		    response.setContentType("text/html;charset=UTF-8");
-
+		 *  response.setContentType("text/html;charset=UTF-8");
 		    // Create path components to save the file
 		    final String path = request.getParameter("destination");
 		    Part filePart = null;
@@ -1188,12 +1167,6 @@ if(uri.contains("AfterAccept")){
 		        }
 		    }
 		    return null;
-			
-			
-			
-			
-			
-			
 		}*/
 				
 		//Trader Block Bank
@@ -2011,27 +1984,6 @@ if(uri.contains("AfterAccept")){
 				out.println("lotnumber"+request.getParameter("lotnumber")+" number "+request.getParameter("number")+" number");
 			    out.flush();
 			    out.close();
-			    
-			//} catch (IOException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			//}
-		 /*   response.setContentType("application/json");
-		    response.setCharacterEncoding("utf-8");
-		    PrintWriter out = null;
-			try {
-				out = response.getWriter();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			      //create Json Object
-		      JSONObject json = new JSONObject();
-			        // put some value pairs into the JSON object .
-		        json.put("lotnumber", 2002013);
-		        json.put("number", request.getParameter("number"));
-			        // finally output the json string       
-	        out.print(json.toString());*/
 	
 } catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -2091,7 +2043,6 @@ if(uri.contains("AfterAccept")){
 					    out.close();
 					}
 					catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
