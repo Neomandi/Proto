@@ -9,6 +9,10 @@ input[type=submit]
 {
 	color: red;
 }
+.ex1 {
+    margin-left: 8%;
+    margin-right: 8%;
+}
 .active 
 {
     border: 1px solid black;
@@ -52,16 +56,16 @@ $(function(){
 <div id = "content">
 
 
-<h1>Contact Us</h1>
+<h1 class = "ex1">Contact Us</h1>
 
-<p align = "justify">
+<p align = "justify" class = "ex1">
 Customer feedback is the lifeblood of our business. Tell us what's on your mind, good or bad.
 We respond to all customer feedback and look forward to hearing from you!
 You can fill in the form below or email us at contactus@neomandi.com
 </p>
 
 <pre>
-<form action="contact" method = "post">
+<form action="contact" method = "post" class = "ex1">
  Name*    <input type = "text" name = "name" placeholder = "Name" required/><br/><br/><br/>
  Email*   <input type = "text" name = "email" placeholder = "Email" required/><br/><br/><br/>
  phone*   <input type = "text" name = "phone" placeholder = "Phone" required/><br/><br/><br/>
