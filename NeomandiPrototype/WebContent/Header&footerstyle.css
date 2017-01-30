@@ -73,7 +73,7 @@ body {
 	width: 100%;
 	height:auto;
 	left: 0;
-	position: relative;
+	position: absolute;
 	bottom:0;
 	
 }
