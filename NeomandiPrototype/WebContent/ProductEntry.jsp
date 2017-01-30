@@ -17,6 +17,45 @@ $(function(){
 	  $("#footer").load("Footer.html");
 	});
 
+function ProductEntry(){
+	
+	var farmerid=document.ProductEntryForm.farmerid;
+	var quantity=document.ProductEntryForm.quantity;
+	var marketcode=document.ProductEntryForm.marketcode;
+	
+	//farmerid validation
+	if(isNaN(farmerid.value)){
+		alert("Enter the valid farmerid ");
+		farmerid.focus();
+		return false;
+	}
+	if((farmerid.value.length < 1) || (farmerid.value.length > 12)){
+		
+		alert(" Your farmerid must contain 12 digits");
+		farmerid.focus();
+		return false;
+	}
+	
+	//marketcode validation
+	var letters = /^[0-9a-zA-Z]+$/;
+	if(!marketcode.value.match(letters)){
+		alert('Your marketcode should contain alphanumeric characters only');
+		marketcode.focus();
+		return false;
+	}
+	
+	//quantity validation
+	if(isNaN(quantity.value)){
+		alert("Enter the valid quantity value ");
+		quantity.focus();
+		return false;
+	}
+	if(quantity.value==0){
+		alert("please enter atleast minimum 1 kg");
+		quantity.focus();
+		return false;
+	}
+}
 $( function() {
     var marketcode = [
       "KLR563101",
@@ -182,7 +221,7 @@ a.active {
 <br/>
 <input type = "hidden" id = "nm" value = ""/>
 <center><h2>Market Yard Window: Product Entry Screen</h2></center><br/>
-<center><form action = "ProductEntry.do" method = "post" enctype="multipart/form-data" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + nm.value">
+<center><form name = "ProductEntryForm" action = "ProductEntry.do" method = "post" enctype="multipart/form-data" onsubmit = "return ProductEntry();" oninput = "lotnum.value = farmerid.value.substring(0,3) + produce.value.substring(0,3) + quality.value + nm.value">
 	<table border = '2'>
 		<tr>
 			<th>Farmer ID</th>

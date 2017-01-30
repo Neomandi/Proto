@@ -177,7 +177,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("select pass from ereg where userid = ?");
+				ps = con.prepareStatement("select pass from ereg where name = ?");
 				ps.setString(1, elbn.getEname());
 				
 				ps.executeQuery();
