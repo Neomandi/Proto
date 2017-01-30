@@ -107,8 +107,7 @@ body
 	<th>AADHAR NUMBER</th>
 	<th>QUANTITY ASSIGNED(kg)</th>
 	</tr>
-	<%
-	    LinkedList<String> ls=new LinkedList<String>();
+	<%  LinkedList<String> ls=new LinkedList<String>();
 		HttpSession dispatch=request.getSession();
 		OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 		HashMap<String, Integer> a=osrb.getA();
@@ -145,7 +144,7 @@ body
 	  <td><%out.println(dp.getAadharnumber()); %></td>
       <td><%out.println(dp.getQuantityassigned()); %></td>
       <%}%></tr>
-      <%}} %>
+      <%}}%>
 </table></center>
 </body>
 </html>
