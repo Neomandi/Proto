@@ -162,6 +162,19 @@ function validateTForm()
 		ifsc.focus();
 		return false;
 	}
+	
+	//PIN Code validation
+	var pinval = pin;
+	if(/^[0-9]{6}$/.test(pinval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		pin.focus();
+		return false;
+	}
 }
 </script> 
 </head>
