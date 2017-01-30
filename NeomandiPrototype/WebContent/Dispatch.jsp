@@ -87,7 +87,6 @@ body
 <body>
 <%@ include file="ERibbon.jsp" %><br><br>
 <a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
-
 <ul>
 <li><a class="menu" href="ProductEntry.jsp">Product Entry</a></li>
 <li><a class="menu" href="Revenue.jsp">Revenue</a></li>
@@ -103,7 +102,7 @@ body
  </colgroup>
 <tr bgcolor="blue">
 	<th>LOT NUMBER</th>
-	<th> TRADER NAME </th>
+	<th>TRADER NAME </th>
 	<th>AADHAR NUMBER</th>
 	<th>QUANTITY ASSIGNED(kg)</th>
 	</tr>
