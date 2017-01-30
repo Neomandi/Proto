@@ -980,7 +980,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				Integer block=Integer.parseInt(amount);		
 				ps =con.prepareStatement("select ifsc,balance from tbankaccount where aadharnumber = ? ");
 				ps.setString(1, aadharnumber);								
-				ps.setString(2, bankname);								
+
 				ps.execute();								
 				rs = ps.getResultSet();				
 				while(rs.next())				

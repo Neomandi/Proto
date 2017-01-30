@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.OrderStatusResult, com.neomandi.prototype.DispatchBean"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="com.neomandi.prototype.OrderStatusResult, com.neomandi.prototype.DispatchBean"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +52,8 @@ td
 }
 
 th
-{text-align: center;
+{
+    text-align: center;
 	width: 200px;
 	height:40px;
 	color: black;
@@ -69,15 +69,18 @@ th
 	font-size: 32px;
 }
 
-.blue {
+.blue 
+{
   background-color: #ADD8E6;
 }
-.green {
+.green 
+{
   background-color: #32CD32;
 }
 body
 {
-  background-color: white;}
+  background-color: white;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -105,7 +108,7 @@ body
 	<th>QUANTITY ASSIGNED(kg)</th>
 	</tr>
 	<%
-	  LinkedList<String> ls=new LinkedList<String>();
+	    LinkedList<String> ls=new LinkedList<String>();
 		HttpSession dispatch=request.getSession();
 		OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 		HashMap<String, Integer> a=osrb.getA();
@@ -120,28 +123,29 @@ body
 	       System.out.println(ls);
 	       if(ls.contains(dp.getLotnum()))
 	       {
-	%> <tr> <% for(int i=1;i<size;i++)
-       {
-    	System.out.println(i);%>
-	<td><%out.println(dp.getName()); %></td>
-	<td><%out.println(dp.getAadharnumber()); %></td>
-    <td><%out.println(dp.getQuantityassigned()); %></td>
-    <%}%></tr>
-    <%}
-	  else
-	  {   System.out.println("insde else "+dp.getLotnum());
-		  ls.add(dp.getLotnum());
-		  System.out.println("inside ls"+ls);%>
-	<tr>
-    <th rowspan=<%=size%>><%=dp.getLotnum()%></th>
-    <% for(int i=0;i<1;i++)
-       {
-    	System.out.println(i);%>
-	<td><%out.println(dp.getName()); %></td>
-	<td><%out.println(dp.getAadharnumber()); %></td>
-    <td><%out.println(dp.getQuantityassigned()); %></td>
-    <%}%></tr>
-   <%}} %>
-	</table></center>
+	  %><tr> <% for(int i=1;i<size;i++)
+	       {
+	    	  System.out.println(i);%>
+	  <td><%out.println(dp.getName()); %></td>
+	  <td><%out.println(dp.getAadharnumber()); %></td>
+      <td><%out.println(dp.getQuantityassigned()); %></td>
+      <%}%></tr>
+      <%}
+	    else
+	    {   
+	    	System.out.println("insde else "+dp.getLotnum());
+		    ls.add(dp.getLotnum());
+		    System.out.println("inside ls"+ls);%>
+	  <tr>
+      <th rowspan=<%=size%>><%=dp.getLotnum()%></th>
+      <% for(int i=0;i<1;i++)
+         {
+    	  System.out.println(i);%>
+	  <td><%out.println(dp.getName()); %></td>
+	  <td><%out.println(dp.getAadharnumber()); %></td>
+      <td><%out.println(dp.getQuantityassigned()); %></td>
+      <%}%></tr>
+      <%}} %>
+</table></center>
 </body>
 </html>
