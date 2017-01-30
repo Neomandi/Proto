@@ -15,7 +15,7 @@ $(function(){
 });
 
 
-function validateTForm()a
+function validateTForm()
 {
 	
 	var mob = document.Eregform.employeemob;
