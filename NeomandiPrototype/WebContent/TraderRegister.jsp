@@ -66,6 +66,8 @@ function validateTForm()
 	var licensenumber = document.getElementById("licensenumber").value;
 	var dateofregistration = document.getElementById("dateofregistration").value;
 	var placeofregistration = document.getElementById("placeofregistration").value;
+	var password = document.getElementById("password").value;
+	var rpassword = document.getElementById("repeatpassword").value;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
@@ -175,7 +177,12 @@ function validateTForm()
 		pin.focus();
 		return false;
 	}
-	
+	//Password validation
+	if(password != rpassword)
+	{
+		window.alert("Please check the password.")
+		return false;
+	}
 	return true;
 }
 </script> 
