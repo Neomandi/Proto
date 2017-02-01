@@ -29,7 +29,7 @@ function ProductEntry(){
 		farmerid.focus();
 		return false;
 	}
-	if((farmerid.value.length < 1) || (farmerid.value.length > 12)){
+	if(farmerid.value.length !=12){
 		
 		alert(" Your farmerid must contain 12 digits");
 		farmerid.focus();

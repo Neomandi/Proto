@@ -51,9 +51,9 @@ function populate1(s1, s2)
 }
 function validateTForm()
 {
-	var name = document.getElementById("name").value;
-	var mob = document.getElementById("mob").value;
-	var aadhar = document.getElementById("anum").value;
+	var name = document.tregform.traderName;
+	var mob = document.tregform.traderMobile;
+	var aadhar = document.tregform.traderAadharnum;
 	var email = document.getElementById("email").value;
 	var taluk = document.getElementById("taluk").value;
 	var hobli = document.getElementById("hobli").value;
@@ -71,7 +71,7 @@ function validateTForm()
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
-	if(!name.match(letters))
+	if(!name.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		name.focus();
@@ -79,24 +79,53 @@ function validateTForm()
 	}
 	
 	//Mobile number validation
-	var val = mob;
+	var val = mob.value;
+	if(val==""){
+		alert("Please enter your mobile number");
+		 mob.focus();
+		    return false;
+	}
+	if(isNaN(val)){
+		alert("Enter the valid Mobile Number(Like : 9566137117)");
+		mob.focus();
+		return false;
+	}
+	if((val.length < 1) || (val.length > 10)){
+		
+		alert(" Your Mobile Number must be 1 to 10 Integers");
+		mob.focus();
+		return false;
+	}
+	var val = mob.value;
 	if (/^\d{10}$/.test(val)) {
+		
 	    // value is ok, use it
 	} else {
-	    window.alert("Invalid mobile number, must be ten digits");
+	    alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
 	    return false;
 	}
 	
 	//Aadhar number validation
-	var aval = aadhar;
-	if (/^\d{12}$/.test(aval)) {
-	    // value is ok, use it
-	} else {
-	    window.alert("Invalid aadhar number, must be twelve digits");
-	    aadhar.focus();
-	    return false;
+	var aval = aadhar.value;
+	if(aval==""){
+		alert("Please enter your Aadhar number");
+		aadhar.focus();
+		    return false;
 	}
+	if(isNaN(aval)){
+		alert("Enter the valid Aadhar Number");
+		aadhar.focus();
+		return false;
+	}
+	if(aval.length!=12){
+		
+		alert(" Your Aadhar number must be 12 digits");
+		aadhar.focus();
+		return false;
+	}
+	
+	
 	
 	//Email validation
 	if(email.indexOf("@", 0) < 0)
