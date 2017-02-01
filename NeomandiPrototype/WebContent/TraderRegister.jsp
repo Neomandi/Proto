@@ -81,7 +81,7 @@ function validateTForm()
 	if (/^\d{10}$/.test(val)) {
 	    // value is ok, use it
 	} else {
-	    alert("Invalid mobile number, must be ten digits");
+	    window.alert("Invalid mobile number, must be ten digits");
 	    mob.focus();
 	    return false;
 	}
@@ -91,7 +91,7 @@ function validateTForm()
 	if (/^\d{12}$/.test(aval)) {
 	    // value is ok, use it
 	} else {
-	    alert("Invalid aadhar number, must be twelve digits");
+	    window.alert("Invalid aadhar number, must be twelve digits");
 	    aadhar.focus();
 	    return false;
 	}
@@ -175,6 +175,8 @@ function validateTForm()
 		pin.focus();
 		return false;
 	}
+	
+	return true;
 }
 </script> 
 </head>

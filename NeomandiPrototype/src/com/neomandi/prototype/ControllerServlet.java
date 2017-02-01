@@ -1013,14 +1013,6 @@ if(uri.contains("AfterAccept")){
 	        InputStream filecontent = null;    
 	        try
 	        {
-				PrintWriter writer = response.getWriter();
-			}
-	        catch (IOException e1) 
-	        {
-			  e1.printStackTrace();
-			}
-	        try
-	        {
 	         out = new FileOutputStream(new File(path + File.separator + nfileName));
 	         filecontent = filePart.getInputStream();
 	     
@@ -1700,8 +1692,6 @@ if(uri.contains("AfterAccept")){
 		
 		if(uri.contains("farmeracceptstatus"))
 		{
-				String lotnum=(String) request.getAttribute("lotnum");
-				String accno=(String) request.getAttribute("accno");
 				System.out.println("***************************************************************************");
 				HttpSession tlog=request.getSession(false);
 				TraderLoginBean tlbn=null;
@@ -1721,8 +1711,6 @@ if(uri.contains("AfterAccept")){
 						e1.printStackTrace();
 					}
 				}
-				String name=tlbn.getTname();
-				String pwd=tlbn.getTpwd();
 				HttpSession orderstatus=request.getSession();
 				Myclass2 mc=(Myclass2)orderstatus.getAttribute("msg");
 				Model m=new Model();
