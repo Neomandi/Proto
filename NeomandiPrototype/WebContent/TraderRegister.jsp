@@ -54,20 +54,19 @@ function validateTForm()
 	var name = document.tregform.traderName;
 	var mob = document.tregform.traderMobile;
 	var aadhar = document.tregform.traderAadharnum;
-	var email = document.getElementById("email").value;
-	var taluk = document.getElementById("taluk").value;
-	var hobli = document.getElementById("hobli").value;
-	var village = document.getElementById("village").value;
-	var pin = document.getElementById("pin").value;
-	var bankname = document.getElementById("bankname").value;
-	var accountnum = document.getElementById("accountnum").value;
-	var branch = document.getElementById("branch").value;
-	var ifsc = document.getElementById("ifsc").value;
-	var licensenumber = document.getElementById("licensenumber").value;
-	var dateofregistration = document.getElementById("dateofregistration").value;
-	var placeofregistration = document.getElementById("placeofregistration").value;
-	var password = document.getElementById("password").value;
-	var rpassword = document.getElementById("repeatpassword").value;
+	var email = document.tregform.traderEmail;
+	var taluk = document.tregform.traderTaluk;
+	var hobli = document.tregform.traderHobli;
+	var village = document.tregform.traderVillage;
+	var pin = document.tregform.traderPin;
+	var bankname = document.tregform.traderBankName;
+	var accountnum = document.tregform.traderAccountNum;
+	var branch = document.tregform.traderBranch;
+	var ifsc = document.tregform.traderIfscCode;
+	var licensenumber = document.tregform.traderLicenseNum;
+	var placeofregistration = document.tregform.traderPlaceOfRegistration;
+	var password = document.tregform.traderPassword;
+	var rpassword = document.tregform.traderConfirmPassword;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
@@ -128,13 +127,13 @@ function validateTForm()
 	
 	
 	//Email validation
-	if(email.indexOf("@", 0) < 0)
+	if(email.value.indexOf("@", 0) < 0)
 	{
 		window.alert("Please enter a valid email id");
 		email.focus();
 		return false;
 	}
-	if (email.indexOf(".", 0) < 0)
+	if (email.value.indexOf(".", 0) < 0)
     {
         window.alert("Please enter a valid e-mail address.");
         email.focus();
@@ -142,7 +141,7 @@ function validateTForm()
     }
 	
 	//Taluk name validation
-	if(!taluk.match(letters))
+	if(!taluk.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		taluk.focus();
@@ -150,7 +149,7 @@ function validateTForm()
 	}
 	
 	//Hobli name validation
-	if(!hobli.match(letters))
+	if(!hobli.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		hobli.focus();
@@ -158,7 +157,7 @@ function validateTForm()
 	}
 	
 	//Village name validation
-	if(!village.match(letters))
+	if(!village.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		village.focus();
@@ -166,7 +165,7 @@ function validateTForm()
 	}
 	
 	//Bank name validation
-	if(!bankname.match(letters))
+	if(!bankname.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		bankname.focus();
@@ -174,7 +173,7 @@ function validateTForm()
 	}
 	
 	//Account Branch name validation
-	if(!branch.match(letters))
+	if(!branch.value.match(letters))
 	{
 		window.alert("Please enter only alphtabets.");
 		branch.focus();
@@ -182,7 +181,7 @@ function validateTForm()
 	}
 	
 	//IFSC Code validation
-	var ifscval = ifsc;
+	var ifscval = ifsc.value;
 	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
 	{
 		//value is ok
@@ -195,7 +194,7 @@ function validateTForm()
 	}
 	
 	//PIN Code validation
-	var pinval = pin;
+	var pinval = pin.value;
 	if(/^[0-9]{6}$/.test(pinval))
 	{
 		//value is ok
@@ -207,7 +206,7 @@ function validateTForm()
 		return false;
 	}
 	//Password validation
-	if(password != rpassword)
+	if(password.value != rpassword.value)
 	{
 		window.alert("Please check the password.")
 		return false;
