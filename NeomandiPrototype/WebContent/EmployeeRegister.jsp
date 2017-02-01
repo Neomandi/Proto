@@ -125,6 +125,7 @@ input[type=reset]
 #head{
 	color:#00008B; 
 }
+
 	
 </style>
 </head>
@@ -159,7 +160,9 @@ input[type=reset]
 		<input type = "text" id = "otp" name = "empOTP" placeholder = "OTP" required/><br/><br/>
 		<input type = "checkbox" name="v" value="Terms and Condtions" required>I accept Terms and Conditions<br/><br/>
 		
-</div>&nbsp;&nbsp;
+</div>
+
+		
 	<img src="Images/emp.jpg" >&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type = "submit" name = "submit" value = "Register">&nbsp;&nbsp;
 		<input type = "reset" value = "Reset"/>
