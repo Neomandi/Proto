@@ -75,7 +75,7 @@ function validateTForm()
 	//Name validation
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for name.");
 		name.focus();
 		return false;
 	}
@@ -94,7 +94,7 @@ function validateTForm()
 	}
 	if((val.length < 1) || (val.length > 10)){
 		
-		alert(" Your Mobile Number must be 1 to 10 Integers");
+		alert(" Your Mobile Number must be 0 to 9 Integers");
 		mob.focus();
 		return false;
 	}
@@ -127,8 +127,6 @@ function validateTForm()
 		return false;
 	}
 	
-	
-	
 	//Email validation
 	if(email.value.indexOf("@", 0) < 0)
 	{
@@ -146,7 +144,7 @@ function validateTForm()
 	//Taluk name validation
 	if(!taluk.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for taluk name.");
 		taluk.focus();
 		return false;
 	}
@@ -154,7 +152,7 @@ function validateTForm()
 	//Hobli name validation
 	if(!hobli.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for hobli name.");
 		hobli.focus();
 		return false;
 	}
@@ -162,37 +160,8 @@ function validateTForm()
 	//Village name validation
 	if(!village.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for village name.");
 		village.focus();
-		return false;
-	}
-	
-	//Bank name validation
-	if(!bankname.value.match(letters))
-	{
-		window.alert("Please enter only alphabets.");
-		bankname.focus();
-		return false;
-	}
-	
-	//Account Branch name validation
-	if(!branch.value.match(letters))
-	{
-		window.alert("Please enter only alphabets.");
-		branch.focus();
-		return false;
-	}
-	
-	//IFSC Code validation
-	var ifscval = ifsc.value;
-	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
-	{
-		//value is ok
-	}
-	else
-	{
-		window.alert("Please enter valid IFSC Code.");
-		ifsc.focus();
 		return false;
 	}
 	
@@ -208,23 +177,12 @@ function validateTForm()
 		pin.focus();
 		return false;
 	}
-	//PIN Code validation
-	var pinval1 = traderlpin.value;
-	if(/^[0-9]{6}$/.test(pinval1))
-	{
-		//value is ok
-	}
-	else
-	{
-		window.alert("Please enter valid PIN Code.");
-		traderlpin.focus();
-		return false;
-	}
 	
-	//Password validation
-	if(password.value != rpassword.value)
+	//Bank name validation
+	if(!bankname.value.match(letters))
 	{
-		window.alert("Please check the password.")
+		window.alert("Please enter only alphabets for bank name.");
+		bankname.focus();
 		return false;
 	}
 	
@@ -247,38 +205,69 @@ function validateTForm()
 		return false;
 	}
 	
+	//Account Branch name validation
+	if(!branch.value.match(letters))
+	{
+		window.alert("Please enter only alphabets for branch name.");
+		branch.focus();
+		return false;
+	}
+	
+	//IFSC Code validation
+	var ifscval = ifsc.value;
+	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid IFSC Code.");
+		ifsc.focus();
+		return false;
+	}
+	
 	//license validation
 	var license=licensenumber.value;
 	if(isNaN(license)){
-		alert("Enter the valid Account Number");
+		alert("Enter the valid License Number");
 		licensenumber.focus();
 		return false;
 	}
+	
 	//place of registration
 	var placereg=placeofregistration.value;
 	if(!placeofregistration.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for place of registration.");
 		placeofregistration.focus();
 		return false;
 	}
 	
-	//
+	//LTaluk Validation
 	if(!ltaluk.value.match(letters))
 	{
-		window.alert("Please enter only alphabets.");
+		window.alert("Please enter only alphabets for taluk.");
 		ltaluk.focus();
 		return false;
 	}
-	var lpinval = lpin.value;
-	if(/^[0-9]{6}$/.test(lpinval))
+	
+	//PIN Code validation
+	var pinval1 = traderlpin.value;
+	if(/^[0-9]{6}$/.test(pinval1))
 	{
 		//value is ok
 	}
 	else
 	{
 		window.alert("Please enter valid PIN Code.");
-		lpin.focus();
+		traderlpin.focus();
+		return false;
+	}
+	
+	//Password validation
+	if(password.value != rpassword.value)
+	{
+		window.alert("Password does not match.")
 		return false;
 	}
 	return true;
