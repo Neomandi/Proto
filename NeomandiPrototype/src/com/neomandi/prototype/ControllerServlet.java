@@ -42,8 +42,7 @@ public class ControllerServlet extends HttpServlet {
     }
 	
 	public static void process(HttpServletRequest request,HttpServletResponse response)
-	{
-		
+	{		
 		RequestDispatcher rd=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
@@ -53,13 +52,11 @@ public class ControllerServlet extends HttpServlet {
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
-		SummaryBean sb=(SummaryBean)request.getAttribute("sb");
-		
-		String uri=request.getRequestURI();
-		
-		System.out.println(uri);
-		
+		SummaryBean sb=(SummaryBean)request.getAttribute("sb");		
+		String uri=request.getRequestURI();		
+		System.out.println(uri);		
 		//Employee Registration
+		
 		if(uri.contains("EmployeeRegister"))
 		{
 			Model m = new Model();
