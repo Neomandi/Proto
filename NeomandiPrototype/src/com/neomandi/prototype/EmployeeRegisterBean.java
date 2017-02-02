@@ -17,7 +17,7 @@ public class EmployeeRegisterBean {
 
 	public void setEmployeename(String employeename) {
 		this.employeename = employeename;
-		System.out.println("Ename: "+employeename);
+		//System.out.println("Ename: "+employeename);
 	}
 
 	public String getEmployeemob() {
@@ -26,7 +26,7 @@ public class EmployeeRegisterBean {
 
 	public void setEmployeemob(String employeemob) {
 		this.employeemob = employeemob;
-		System.out.println("Emob: "+employeemob);
+		//System.out.println("Emob: "+employeemob);
 	}
 
 	public String getEmployeepwd() {
@@ -35,6 +35,7 @@ public class EmployeeRegisterBean {
 
 	public void setEmployeepwd(String employeepwd) {
 		this.employeepwd = employeepwd;
+		//System.out.println("pass: "+employeepwd);
 	}
 
 	public String getCemployeepwd() {
@@ -43,6 +44,7 @@ public class EmployeeRegisterBean {
 
 	public void setCemployeepwd(String cemployeepwd) {
 		this.cemployeepwd = cemployeepwd;
+		//System.out.println("cpass: "+cemployeepwd);
 	}
 
 	@Override

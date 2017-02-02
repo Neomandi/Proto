@@ -30,6 +30,7 @@ public class ControllerServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     static int maxvol = 0;
+	private static String traderPin;
     
     private static void setVal(int maxvol2) {
 		maxvol = maxvol2;
@@ -46,8 +47,13 @@ public class ControllerServlet extends HttpServlet {
 		RequestDispatcher rd=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
+
+		//FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
+		TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
+
 		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
 		//TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
+
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
@@ -66,7 +72,8 @@ public class ControllerServlet extends HttpServlet {
 			
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("EmployeeRegister.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -719,7 +726,8 @@ if(uri.contains("AfterAccept")){
 		//Trader Registration
 		if(uri.contains("TraderRegister"))
 		{
-			String traderName = request.getParameter("traderName");
+			System.out.println("in cs uri="+uri);
+			/*String traderName = request.getParameter("traderName");
 			long traderMobile = Long.valueOf(request.getParameter("traderMobile")).longValue();
 			long traderAadharnum = Long.valueOf(request.getParameter("traderAadharnum")).longValue();
 			String traderEmail = request.getParameter("traderEmail");
@@ -742,14 +750,19 @@ if(uri.contains("AfterAccept")){
 			String licenseDistrict = request.getParameter("traderLiscenseDistrict");
 			String licenseTaluk = request.getParameter("traderLicenseTaluk");
 			String licensePin = request.getParameter("traderLicensePin");
+			String bstate=request.getParameter("bstate");
+			String bDistrict=request.getParameter("bDistrict");
+			String bTaluk=request.getParameter("bTaluq");
+			String bPin=request.getParameter("bPin");
 			
 			
-			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode+" Date of Reg"+dateOfRegistration+" Place of Reg"+placeOfRegistration+" lstate "+licenseState+" ldistrict "+licenseDistrict+" ltaluk "+licenseTaluk+" lpin "+licensePin);
+			
+			System.out.println("The fname: "+traderName+" The mobile: "+traderMobile+" The Aadhar number: "+traderAadharnum+" The Email: "+traderEmail+" The state: "+traderState+" The district: "+traderDistrict+" The taluk: "+traderTaluk+" The hobli: "+traderHobli+" The village: "+traderVillage+" The bankname: "+traderBankName+" The accountnum: "+traderAccountNum+" The branchname: "+traderBranch+" The IFSC code: "+traderIfscCode+" Date of Reg"+dateOfRegistration+" Place of Reg"+placeOfRegistration+" lstate "+licenseState+" ldistrict "+licenseDistrict+" ltaluk "+licenseTaluk+" lpin "+licensePin);*/
 			
 			InputStream traderPhoto = null; // input stream of the upload file
 
 			// obtains the upload file part in this multipart request
-	        Part filePart = null;;
+	        Part filePart = null;
 			try {
 				filePart = request.getPart("traderPhoto");
 			} catch (IllegalStateException | IOException | ServletException e1) {
@@ -772,13 +785,13 @@ if(uri.contains("AfterAccept")){
 				}
 	        }
 	        
-			System.out.println(filePart);
-			System.out.println(traderPhoto);
+			//System.out.println(filePart);
+			//System.out.println(traderPhoto);
 			
-			TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto, dateOfRegistration, placeOfRegistration, address, licenseState, licenseDistrict, licenseTaluk, licensePin);
+			//TraderRegisterBean tbean = new TraderRegisterBean(traderName, traderMobile, traderAadharnum, traderEmail, traderState, traderDistrict, traderTaluk, traderHobli, traderVillage, traderBankName, traderAccountNum, traderBranch, traderIfscCode, traderUid, traderLicenseNum, traderPwd, traderPhoto, dateOfRegistration, placeOfRegistration, address, licenseState, licenseDistrict, licenseTaluk, licensePin,bstate,bDistrict,bTaluk,bPin,);
 			
 			Model m = new Model();
-			String msg = m.traderRegister(tbean);
+			String msg = m.traderRegister(trb);
 			if(msg.equals("SUCCESS"))
 			{
 				rd=request.getRequestDispatcher("Success.jsp");
