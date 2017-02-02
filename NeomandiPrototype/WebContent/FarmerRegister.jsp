@@ -8,7 +8,6 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -100,7 +99,7 @@
       <tr><td><label for="name">Account Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="farmeraccountnum" id="acc" required></td></tr>
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmerbankname" id="bank" required></td></tr>
+	  <tr><td><input type="text" class="form-control" name="farmerbankname" id="farmerbank" required></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="branch" name="farmerbranch" required></td></tr>	  
       <tr><td><label for="address">IFSC</label></td></tr>
@@ -147,18 +146,18 @@
   </form>
   </div>  
   <table align="center">
-  <tr><td><label><input type="checkbox" onclick="terms(this)">I accept Terms and Condition</label></td></tr>
-  <table align="center"><tr><td><a onclick="register()" id="reg" class="reg" disabled>Register</a></td></tr></table>
+  <tr><td><label><input type="checkbox" id="terms" >I accept Terms and Condition</label></td></tr>
+  <table align="center"><tr><td><a onclick="register()" id="reg" class="reg" disabled >Register</a></td></tr></table>
   <script>
-  function terms(element)
-  {
-	  if(element.checked)
-		  {
-		     document.getElementById("reg")disabled=false;
-		  }
-  }
   function register()
   {
+	    console.log( document.getElementById("terms").checked ==true);
+	  	if((document.getElementById("terms").checked==false))
+  		{
+	  		alert("PLEASE AGREE WITH OUR TERMS AND CONDITIONS BEFORE REGISTERING");
+	  	}
+	  	else
+	  	{
 	    var msg="";
 	    var regex=/^[a-zA-Z]+$/;
         if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
@@ -174,7 +173,7 @@
 	       	if(!(document.getElementById("name").value.match(regex)))
 	    	{
 	    		window.alert("DONT ENTER NUMBERS FOR NAME");
-	    		document.getElementById("name").focus();
+	    	//	document.getElementById("name").focus();
 	    		return false;
 	    	}	
         }
@@ -190,7 +189,7 @@
 	    		    // value is ok, use it
 	    		} else {
 	    		    alert("AADHARNUMBER NUMBER MUST BE 12 DIGITS");
-	    		    document.getElementById("aadharnumber").focus();
+	    		//    document.getElementById("aadharnumber").focus();
 	    		    return false
 	    		}
         	}
@@ -207,7 +206,7 @@
     		} else {
     			
     		    alert("MOBILE NUMBER MUST BE 10 DIGITS");
-    		    document.getElementById("mob").focus();
+    		  //  document.getElementById("mob").focus();
     		    return false
     		}
         	}
@@ -221,13 +220,13 @@
         	if(document.getElementById("email").value.indexOf("@", 0) < 0)        		
         	{
         			window.alert("ENTER VALID EMAIL ID");
-        			document.getElementById("email").focus();
+        		//	document.getElementById("email").focus();
         			return false;
         	}        		
         	if (document.getElementById("email").value.indexOf(".", 0) < 0)
         	    {
         		    window.alert("ENTER VALID EMAIL ID");
-        		    document.getElementById("email").focus();
+        		//    document.getElementById("email").focus();
         	        return false;
         	    }
         }
@@ -235,7 +234,7 @@
         {
         	//window.alert("ENTER PIN CODE");
         	msg=msg+" PINCODE";
-        	document.getElementById("pin").focus();
+        	//document.getElementById("pin").focus();
         }
         else
         	{
@@ -249,7 +248,7 @@
         {
         	//window.alert("ENTER ACCOUNT NUMBER");
         	msg=msg+" ACCOUNT NUMBER";
-        	document.getElementById("acc").focus();
+        	//document.getElementById("acc").focus();
         }
         else
         	{
@@ -260,17 +259,18 @@
 	    			return false;
 	    		}
         	}
-        if(document.getElementById("bank").value==null|| document.getElementById("bank").value === undefined || document.getElementById("bank").value === "")
+        if(document.getElementById("farmerbank").value==null|| document.getElementById("farmerbank").value === undefined || document.getElementById("farmerbank").value === "")
         {
         	//window.alert("ENTER BANK NAME");
+        	console.log("bank name is"+document.getElementById("farmerbank").value);
         	msg=msg+" BANK NAME";
         }
         else
         	{
-        		if(!(document.getElementById("bank").value.match(regex)))
+        		if(!(document.getElementById("farmerbank").value.match(regex)))
     			{ 
 	    			window.alert("DONT ENTER NUMBERS FOR BANK NAME")
-	    			document.getElementById("bank").focus();
+	    		//	document.getElementById("bank").focus();
 	    			return false;
 	    		}
         	}
@@ -284,7 +284,7 @@
         		if(!(document.getElementById("branch").value.match(regex)))
 				{ 
 	    			window.alert("DONT ENTER NUMBERS FOR BANK BRANCH")
-	    			document.getElementById("branch").focus();
+	    		//	document.getElementById("branch").focus();
 	    			return false;
 	    		}
         	}
@@ -295,15 +295,15 @@
         }
         else
         	{
-        	console.log("ifsc is defined");
-		        	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
+        			console.log(document.getElementById("ifsc").value);
+		        	//if(/^[A-Za-z]{4}0[0-9]{6}$/.test(document.getElementById("ifsc").value))
 		    		{
 		    			//value is ok
 		    		}
-		    		else
+		    		//else
 		    		{
-		    			window.alert("ENTER ONLY NUMBERS FOR IFSC")
-		    			ifsc.focus();			
+		    			//window.alert("ENTER ONLY NUMBERS FOR IFSC")
+		    			//ifsc.focus();			
 		    		}
         	}
         if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
@@ -314,12 +314,17 @@
         if(document.getElementById("cpwd").value==null|| document.getElementById("cpwd").value === undefined || document.getElementById("cpwd").value === "")
         {
         	//window.alert("ENTER CONFIRM PASSWORD");
-        	
+        	if(document.getElementById("pwd").value!=document.getElementById("cpwd").value)
+        	alert("PASSWORD DOESNOT MATCH");
         }
-        if(msg!=null)
-	        window.alert("PLEASE ENTER "+msg);
-	    var name = document.bank.name;
-		var mob = document.bank.farmermobile;
+        console.log(msg);
+        if(msg.length==0)
+        	 document.getElementById("bank").submit();
+        else
+        	window.alert("PLEASE ENTER "+msg);
+        
+	//    var name = document.bank.name;
+	/*	var mob = document.bank.farmermobile;
 		var aadharnum = document.bank.farmeraadharnum;
 	    var email = document.bank.farmeremail;
 		var taluk = document.bank.name;
@@ -364,9 +369,8 @@
 		//	village.focus();
 			return false;
 		}
-		var ifscval = ifsc.value;
-		
-	  document.getElementById("bank").submit();
+		var ifscval = ifsc.value;*/	 
+	  	}
   }
   </script>
   </table>
@@ -376,6 +380,5 @@
 <!---my detail form end----->
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/owl.carousel.min.js" type="text/javascript"></script>
 </body>
 </html>
