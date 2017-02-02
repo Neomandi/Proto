@@ -100,7 +100,18 @@
 </div>
 </form>
 </div>
-</div>
+</div><br/><br/><br/>
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
+							{
+								out.print(msg);
+								out.print("<br/><a href='Login.html'>Click here to login</a>");
+							}
+							else if(msg != null)
+							{
+								out.print(msg);
+							}
+									%></b></p>
 <script>
 function submitform(){
 	document.EregForm1.submit();

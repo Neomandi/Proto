@@ -69,6 +69,11 @@
 </div>
 </div>
 </div>
+<br/>
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b><% if(msg != null)
+							out.print(msg);
+									%></b></p>
 <script>
 function submitform(){
 	document.EmployeeLoginform.submit();
