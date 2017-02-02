@@ -77,11 +77,11 @@
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd" required></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd" required></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-<tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
+	  <tr><td><input type="password" class="form-control" id="pwd" required></td></tr>	  
 
     </table>
   
@@ -104,7 +104,7 @@
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
 							{
-								out.print(msg);
+								out.print("Registration Successfull");
 								out.print("<br/><a href='Login.html'>Click here to login</a>");
 							}
 							else if(msg != null)
