@@ -120,19 +120,19 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-				ps.setString(1, frb.getFarmerName());
-				ps.setLong(2, frb.getFarmerMobile());
-				ps.setLong(3, frb.getFarmerAadharnum());
-				ps.setString(4,frb.getFarmerEmail());
-				ps.setString(5,frb.getFarmerState());
-				ps.setString(6, frb.getFarmerDistrict());
-				ps.setString(7, frb.getFarmerTaluk());
-				ps.setString(8, frb.getFarmerHobli());
-				ps.setString(9, frb.getFarmerVillage());
-				ps.setString(10, frb.getFarmerBankName());
-				ps.setLong(11, frb.getFarmerAccountNum());
-				ps.setString(12, frb.getFarmerBranch());
-				ps.setString(13, frb.getFarmerIfscCode());
+				ps.setString(1, frb.getFarmername());
+				ps.setLong(2, frb.getFarmermobile());
+				ps.setLong(3, frb.getFarmeraadharnum());
+				ps.setString(4,frb.getFarmeremail());
+				ps.setString(5,frb.getFarmerstate());
+				ps.setString(6, frb.getFarmerdistrict());
+				ps.setString(7, frb.getFarmertaluk());
+				ps.setString(8, frb.getFarmerhobli());
+				ps.setString(9, frb.getFarmervillage());
+				ps.setString(10, frb.getFarmerbankbame());
+				ps.setLong(11, frb.getFarmeraccountnum());
+				ps.setString(12, frb.getFarmerbranch());
+				ps.setString(13, frb.getFarmerifsccode());
 				ps.setString(14, null);
 				//ps.setBlob(15, frb.getFarmerPhoto());
 				ps.execute();				

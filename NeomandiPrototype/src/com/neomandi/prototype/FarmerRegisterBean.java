@@ -4,145 +4,133 @@ import java.io.InputStream;
 
 public class FarmerRegisterBean {
 	
-	private String farmerName;
-	private long farmerMobile;
-	private long farmerAadharnum;
-	private String farmerEmail;
-	private String farmerState;
-	private String farmerDistrict;
-	private String farmerTaluk;
-	private String farmerHobli;
-	private String farmerVillage;
-	private String farmerBankName;
-	private long farmerAccountNum;
-	private String farmerBranch;
-	private String farmerIfscCode;
-	private InputStream farmerPhoto;
-	
-	
-	
-	public FarmerRegisterBean(String farmerName, long farmerMobile, long farmerAadharnum, String farmerEmail,
-			String farmerState, String farmerDistrict, String farmerTaluk, String farmerHobli, String farmerVillage,
-			String farmerBankName, long farmerAccountNum, String farmerBranch, String farmerIfscCode,
-			InputStream farmerPhoto) {
-		super();
-		this.farmerName = farmerName;
-		this.farmerMobile = farmerMobile;
-		this.farmerAadharnum = farmerAadharnum;
-		this.farmerEmail = farmerEmail;
-		this.farmerState = farmerState;
-		this.farmerDistrict = farmerDistrict;
-		this.farmerTaluk = farmerTaluk;
-		this.farmerHobli = farmerHobli;
-		this.farmerVillage = farmerVillage;
-		this.farmerBankName = farmerBankName;
-		this.farmerAccountNum = farmerAccountNum;
-		this.farmerBranch = farmerBranch;
-		this.farmerIfscCode = farmerIfscCode;
-		this.farmerPhoto = farmerPhoto;
+	private String farmername;
+	private long farmermobile;
+	private long farmeraadharnum;
+	private String farmeremail;
+	private String farmerstate;
+	private String farmerdistrict;
+	private String farmertaluk;
+	private String farmerhobli;
+	private String farmervillage;
+	private String farmerbankname;
+	private long farmeraccountnum;
+	private String farmerbranch;
+	private String farmerifsccode;
+	private InputStream farmerphoto;
+	public String getFarmername() {
+		return farmername;
 	}
-	public String getFarmerName() {
-		return farmerName;
+	public void setFarmername(String farmername) {
+		this.farmername = farmername;
+		System.out.println("inside set fname"+farmername);
 	}
-	public void setFarmerName(String farmerName) {
-		this.farmerName = farmerName;
+	public long getFarmermobile() {
+		return farmermobile;
 	}
-	public long getFarmerMobile() {
-		return farmerMobile;
+	public void setFarmermobile(long farmermobile) {
+		this.farmermobile = farmermobile;
+		System.out.println("inside set fname"+farmermobile);
 	}
-	public void setFarmerMobile(long farmerMobile) {
-		this.farmerMobile = farmerMobile;
+	public long getFarmeraadharnum() {
+		return farmeraadharnum;
 	}
-	public long getFarmerAadharnum() {
-		return farmerAadharnum;
+	public void setFarmeraadharnum(long farmeraadharnum) {
+		this.farmeraadharnum = farmeraadharnum;
 	}
-	public void setFarmerAadharnum(long farmerAadharnum) {
-		this.farmerAadharnum = farmerAadharnum;
+	public String getFarmeremail() {
+		return farmeremail;
 	}
-	public String getFarmerEmail() {
-		return farmerEmail;
+	public void setFarmeremail(String farmeremail) {
+		this.farmeremail = farmeremail;
 	}
-	public void setFarmerEmail(String farmerEmail) {
-		this.farmerEmail = farmerEmail;
+	public String getFarmerstate() {
+		return farmerstate;
 	}
-	public String getFarmerState() {
-		return farmerState;
+	public void setFarmerstate(String farmerstate) {
+		this.farmerstate = farmerstate;
 	}
-	public void setFarmerState(String farmerState) {
-		this.farmerState = farmerState;
+	public String getFarmerdistrict() {
+		return farmerdistrict;
 	}
-	public String getFarmerDistrict() {
-		return farmerDistrict;
+	public void setFarmerdistrict(String farmerdistrict) {
+		this.farmerdistrict = farmerdistrict;
 	}
-	public void setFarmerDistrict(String farmerDistrict) {
-		this.farmerDistrict = farmerDistrict;
+	public String getFarmertaluk() {
+		return farmertaluk;
 	}
-	public String getFarmerTaluk() {
-		return farmerTaluk;
+	public void setFarmertaluk(String farmertaluk) {
+		this.farmertaluk = farmertaluk;
 	}
-	public void setFarmerTaluk(String farmerTaluk) {
-		this.farmerTaluk = farmerTaluk;
+	public String getFarmerhobli() {
+		return farmerhobli;
 	}
-	public String getFarmerHobli() {
-		return farmerHobli;
+	public void setFarmerhobli(String farmerhobli) {
+		this.farmerhobli = farmerhobli;
 	}
-	public void setFarmerHobli(String farmerHobli) {
-		this.farmerHobli = farmerHobli;
+	public String getFarmervillage() {
+		return farmervillage;
 	}
-	public String getFarmerVillage() {
-		return farmerVillage;
+	public void setFarmervillage(String farmervillage) {
+		this.farmervillage = farmervillage;
 	}
-	public void setFarmerVillage(String farmerVillage) {
-		this.farmerVillage = farmerVillage;
+	public String getFarmerbankbame() {
+		return farmerbankname;
 	}
-	public String getFarmerBankName() {
-		return farmerBankName;
+	public void setFarmerbankbame(String farmerbankbame) {
+		this.farmerbankname = farmerbankbame;
 	}
-	public void setFarmerBankName(String farmerBankName) {
-		this.farmerBankName = farmerBankName;
+	public long getFarmeraccountnum() {
+		return farmeraccountnum;
 	}
-	public long getFarmerAccountNum() {
-		return farmerAccountNum;
+	public void setFarmeraccountnum(long farmeraccountnum) {
+		this.farmeraccountnum = farmeraccountnum;
 	}
-	public void setFarmerAccountNum(long farmerAccountNum) {
-		this.farmerAccountNum = farmerAccountNum;
+	public String getFarmerbranch() {
+		return farmerbranch;
 	}
-	public String getFarmerBranch() {
-		return farmerBranch;
+	public void setFarmerbranch(String farmerbranch) {
+		this.farmerbranch = farmerbranch;
 	}
-	public void setFarmerBranch(String farmerBranch) {
-		this.farmerBranch = farmerBranch;
+	public String getFarmerifsccode() {
+		return farmerifsccode;
 	}
-	public String getFarmerIfscCode() {
-		return farmerIfscCode;
+	public void setFarmerifsccode(String farmerifsccode) {
+		this.farmerifsccode = farmerifsccode;
 	}
-	public void setFarmerIfscCode(String farmerIfscCode) {
-		this.farmerIfscCode = farmerIfscCode;
+	public InputStream getFarmerphoto() {
+		return farmerphoto;
 	}
-	public InputStream getFarmerPhoto() {
-		return farmerPhoto;
+	public void setFarmerphoto(InputStream farmerphoto) {
+		this.farmerphoto = farmerphoto;
 	}
-	public void setFarmerPhoto(InputStream farmerPhoto) {
-		this.farmerPhoto = farmerPhoto;
+	@Override
+	public String toString() {
+		return "FarmerRegisterBean [farmername=" + farmername + ", farmermobile=" + farmermobile + ", farmeraadharnum="
+				+ farmeraadharnum + ", farmeremail=" + farmeremail + ", farmerstate=" + farmerstate
+				+ ", farmerdistrict=" + farmerdistrict + ", farmertaluk=" + farmertaluk + ", farmerhobli=" + farmerhobli
+				+ ", farmervillage=" + farmervillage + ", farmerbankbame=" + farmerbankname + ", farmeraccountnum="
+				+ farmeraccountnum + ", farmerbranch=" + farmerbranch + ", farmerifsccode=" + farmerifsccode
+				+ ", farmerphoto=" + farmerphoto + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (farmerAadharnum ^ (farmerAadharnum >>> 32));
-		result = prime * result + (int) (farmerAccountNum ^ (farmerAccountNum >>> 32));
-		result = prime * result + ((farmerBankName == null) ? 0 : farmerBankName.hashCode());
-		result = prime * result + ((farmerBranch == null) ? 0 : farmerBranch.hashCode());
-		result = prime * result + ((farmerDistrict == null) ? 0 : farmerDistrict.hashCode());
-		result = prime * result + ((farmerEmail == null) ? 0 : farmerEmail.hashCode());
-		result = prime * result + ((farmerHobli == null) ? 0 : farmerHobli.hashCode());
-		result = prime * result + ((farmerIfscCode == null) ? 0 : farmerIfscCode.hashCode());
-		result = prime * result + (int) (farmerMobile ^ (farmerMobile >>> 32));
-		result = prime * result + ((farmerName == null) ? 0 : farmerName.hashCode());
-		result = prime * result + ((farmerPhoto == null) ? 0 : farmerPhoto.hashCode());
-		result = prime * result + ((farmerState == null) ? 0 : farmerState.hashCode());
-		result = prime * result + ((farmerTaluk == null) ? 0 : farmerTaluk.hashCode());
-		result = prime * result + ((farmerVillage == null) ? 0 : farmerVillage.hashCode());
+		result = prime * result + (int) (farmeraadharnum ^ (farmeraadharnum >>> 32));
+		result = prime * result + (int) (farmeraccountnum ^ (farmeraccountnum >>> 32));
+		result = prime * result + ((farmerbankname == null) ? 0 : farmerbankname.hashCode());
+		result = prime * result + ((farmerbranch == null) ? 0 : farmerbranch.hashCode());
+		result = prime * result + ((farmerdistrict == null) ? 0 : farmerdistrict.hashCode());
+		result = prime * result + ((farmeremail == null) ? 0 : farmeremail.hashCode());
+		result = prime * result + ((farmerhobli == null) ? 0 : farmerhobli.hashCode());
+		result = prime * result + ((farmerifsccode == null) ? 0 : farmerifsccode.hashCode());
+		result = prime * result + (int) (farmermobile ^ (farmermobile >>> 32));
+		result = prime * result + ((farmername == null) ? 0 : farmername.hashCode());
+		result = prime * result + ((farmerphoto == null) ? 0 : farmerphoto.hashCode());
+		result = prime * result + ((farmerstate == null) ? 0 : farmerstate.hashCode());
+		result = prime * result + ((farmertaluk == null) ? 0 : farmertaluk.hashCode());
+		result = prime * result + ((farmervillage == null) ? 0 : farmervillage.hashCode());
 		return result;
 	}
 	@Override
@@ -154,77 +142,68 @@ public class FarmerRegisterBean {
 		if (getClass() != obj.getClass())
 			return false;
 		FarmerRegisterBean other = (FarmerRegisterBean) obj;
-		if (farmerAadharnum != other.farmerAadharnum)
+		if (farmeraadharnum != other.farmeraadharnum)
 			return false;
-		if (farmerAccountNum != other.farmerAccountNum)
+		if (farmeraccountnum != other.farmeraccountnum)
 			return false;
-		if (farmerBankName == null) {
-			if (other.farmerBankName != null)
+		if (farmerbankname == null) {
+			if (other.farmerbankname != null)
 				return false;
-		} else if (!farmerBankName.equals(other.farmerBankName))
+		} else if (!farmerbankname.equals(other.farmerbankname))
 			return false;
-		if (farmerBranch == null) {
-			if (other.farmerBranch != null)
+		if (farmerbranch == null) {
+			if (other.farmerbranch != null)
 				return false;
-		} else if (!farmerBranch.equals(other.farmerBranch))
+		} else if (!farmerbranch.equals(other.farmerbranch))
 			return false;
-		if (farmerDistrict == null) {
-			if (other.farmerDistrict != null)
+		if (farmerdistrict == null) {
+			if (other.farmerdistrict != null)
 				return false;
-		} else if (!farmerDistrict.equals(other.farmerDistrict))
+		} else if (!farmerdistrict.equals(other.farmerdistrict))
 			return false;
-		if (farmerEmail == null) {
-			if (other.farmerEmail != null)
+		if (farmeremail == null) {
+			if (other.farmeremail != null)
 				return false;
-		} else if (!farmerEmail.equals(other.farmerEmail))
+		} else if (!farmeremail.equals(other.farmeremail))
 			return false;
-		if (farmerHobli == null) {
-			if (other.farmerHobli != null)
+		if (farmerhobli == null) {
+			if (other.farmerhobli != null)
 				return false;
-		} else if (!farmerHobli.equals(other.farmerHobli))
+		} else if (!farmerhobli.equals(other.farmerhobli))
 			return false;
-		if (farmerIfscCode == null) {
-			if (other.farmerIfscCode != null)
+		if (farmerifsccode == null) {
+			if (other.farmerifsccode != null)
 				return false;
-		} else if (!farmerIfscCode.equals(other.farmerIfscCode))
+		} else if (!farmerifsccode.equals(other.farmerifsccode))
 			return false;
-		if (farmerMobile != other.farmerMobile)
+		if (farmermobile != other.farmermobile)
 			return false;
-		if (farmerName == null) {
-			if (other.farmerName != null)
+		if (farmername == null) {
+			if (other.farmername != null)
 				return false;
-		} else if (!farmerName.equals(other.farmerName))
+		} else if (!farmername.equals(other.farmername))
 			return false;
-		if (farmerPhoto == null) {
-			if (other.farmerPhoto != null)
+		if (farmerphoto == null) {
+			if (other.farmerphoto != null)
 				return false;
-		} else if (!farmerPhoto.equals(other.farmerPhoto))
+		} else if (!farmerphoto.equals(other.farmerphoto))
 			return false;
-		if (farmerState == null) {
-			if (other.farmerState != null)
+		if (farmerstate == null) {
+			if (other.farmerstate != null)
 				return false;
-		} else if (!farmerState.equals(other.farmerState))
+		} else if (!farmerstate.equals(other.farmerstate))
 			return false;
-		if (farmerTaluk == null) {
-			if (other.farmerTaluk != null)
+		if (farmertaluk == null) {
+			if (other.farmertaluk != null)
 				return false;
-		} else if (!farmerTaluk.equals(other.farmerTaluk))
+		} else if (!farmertaluk.equals(other.farmertaluk))
 			return false;
-		if (farmerVillage == null) {
-			if (other.farmerVillage != null)
+		if (farmervillage == null) {
+			if (other.farmervillage != null)
 				return false;
-		} else if (!farmerVillage.equals(other.farmerVillage))
+		} else if (!farmervillage.equals(other.farmervillage))
 			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "FarmerRegisterBean [farmerName=" + farmerName + ", farmerMobile=" + farmerMobile + ", farmerAadharnum="
-				+ farmerAadharnum + ", farmerEmail=" + farmerEmail + ", farmerState=" + farmerState
-				+ ", farmerDistrict=" + farmerDistrict + ", farmerTaluk=" + farmerTaluk + ", farmerHobli=" + farmerHobli
-				+ ", farmerVillage=" + farmerVillage + ", farmerBankName=" + farmerBankName + ", farmerAccountNum="
-				+ farmerAccountNum + ", farmerBranch=" + farmerBranch + ", farmerIfscCode=" + farmerIfscCode
-				+ ", farmerPhoto=" + farmerPhoto + "]";
 	}
 	
 	
