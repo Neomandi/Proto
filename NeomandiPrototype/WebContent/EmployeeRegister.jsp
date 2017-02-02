@@ -23,6 +23,8 @@ function validateEForm()
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
 	var cpwd = document.EregForm1.cemployeepwd;
+	var otp = document.EregForm1.employeeotp;
+	var tc = document.EregForm1.empt;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
@@ -75,10 +77,53 @@ function validateEForm()
 	}
 	
 	//password validation
+	if(pwd.value == "")
+	{
+		alert("Please enter your password");
+		pwd.focus();
+		return false;
+	}
+	if(cpwd.value == "")
+	{
+		alert("Please enter your password");
+		cpwd.focus();
+		return false;	
+	}
 	if( cpwd.value!=pwd.value){
 		 alert("passwords do not match");
 		 cpwd.focus();
 		    return false;
+	}
+	
+	//OTP validation
+	var otpval = otp.value;
+	if(otp.value == "")
+	{
+		alert("Please enter your OTP");
+		otp.focus();
+		return false;
+	}
+	if(isNaN(otpval)){
+		alert("Enter the valid OTP number");
+		otp.focus();
+		return false;
+	}
+	if (/^\d{6}$/.test(otpval)) {
+		
+	    // value is ok, use it
+	} else {
+	    alert("Invalid OTP number, must be six digits");
+	    otp.focus();
+	    return false;
+	}
+	
+	//Terms & condn validation
+	console.log("TC: "+tc.value);
+	if(tc.value == "")
+	{
+		alert("Please check T & C");
+	    tc.focus();
+	    return false;
 	}
 	return true;
 }
@@ -124,7 +169,7 @@ function validateEForm()
 <!---my detail form----->
 <div class="container">
 <div class="row emp">
-<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp" onclick = "return validateEForm();">
+<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
@@ -149,13 +194,13 @@ function validateEForm()
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd" required></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" required></td></tr>	  
+	  <tr><td><input type="password" class="form-control" id="pwd" name="employeeotp" required></td></tr>	  
 
     </table>
   
   </div>
   <table align="center">
-  <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
+  <tr><td><label><input type="checkbox" name="empt">I accept Terms and Condition</label></td></tr>
   
   </table>
 </div>
@@ -182,7 +227,13 @@ function validateEForm()
 									%></b></p>
 <script>
 function submitform(){
-	document.EregForm1.submit();
+	var bool = validateEForm();
+	console.log("Bool: "+bool);
+	console.log()
+	if(bool == true)
+	{
+		document.EregForm1.submit();
+	}
 }
 </script>
 <!---my detail form end----->
