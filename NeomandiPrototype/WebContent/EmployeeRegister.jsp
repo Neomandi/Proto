@@ -57,10 +57,12 @@ function validateTForm()
 		mob.focus();
 		return false;
 	}
-	if((val.length < 1) || (val.length > 10)){
+	if(val.length!=10){
 		
-		alert(" Your Mobile Number must be 1 to 10 Integers");
-		mob.focus();
+		alert(" Your Mobile Number must be  10 digits");
+		
+		//mob.focus();
+		 document.getElementById("mob").className = 'error';
 		return false;
 	}
 	var val = mob.value;
@@ -125,7 +127,9 @@ input[type=reset]
 #head{
 	color:#00008B; 
 }
-
+.error{
+	 border:4px solid red;
+}
 	
 </style>
 </head>
