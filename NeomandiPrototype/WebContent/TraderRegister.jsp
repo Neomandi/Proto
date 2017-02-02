@@ -5,9 +5,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="icon" type="image/png" href="Images/Neomandi1.png">
+
 <title>Trader Registration</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
+
+
+function register(){
+	document.getElementById("personal").submit();
+	
+}
 $(function(){
   $("#header").load("Header.html"); 
   $("#footer").load("Footer.html");
@@ -275,71 +286,67 @@ function validateTForm()
 </script> 
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
-<style>
-#div1{
-	border-left: 20px solid rgb(20,157,218);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-}
-#div2{
-	border-left: 20px solid rgb(20,157,218);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-}
-#div3{
-	border-left: 20px solid rgb(189,209,2);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-}
-#div5{
-	border-left: 20px solid rgb(189,209,2);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-}
-h2{
-	color: white;
-}
-p{
-	font-size: 24px;
-}
-input[type=submit]
-{
-	color: white;
-	background-color: rgb(20,157,218);
-	width: 80px;
-	height: 30px;
-}
-</style>
-<body>
-<div id = "wrapper">
-<div id = "header"></div>
-<div id = "content">
-<br/>
-<center><p><b><i>Welcome to NeoMandi's Trader registration page</i></b></p></center>
-<form name = "tregform" action = "TraderRegister.do" method = "post" enctype = 'multipart/form-data' onsubmit = "return validateTForm();">
-	<div id = "div1">
-		<div id = "b1">
-		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Details</h2></div>
-		<label for = "name">Name</label><br />
-		<input type = "text" id = "name" name = "traderName" placeholder = "Name" required/><br/>
-		<label for = "mob">Mobile Number</label><br />
-		<input type = "text" id = "mob" name = "traderMobile" placeholder = "Mobile Number" required/><br/>
-		<label for = "anum">Aadhar Number</label><br />
-		<input type = "text" id = "anum" name = "traderAadharnum" placeholder = "Aadhar Number" required/><br/>
-		<label for = "email">Email</label><br />
-		<input type = "text" id = "email" name = "traderEmail" placeholder = "Email" required/><br/>
-		<label for = "state">State</label><br />
-		<select id = "state" name = "traderState" onchange = "populate('state','district')">
-			<option value = ""></option>
-			<option value = "Andhra Pradesh">Andhra Pradesh</option>
+
+
+<body class="">
+<!---menu bar------>
+
+ <nav class="navbar navbar-inverse menu">
+  <div class="container-fluid">
+    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">About Us</a></li>
+        <li><a href="#">Vision</a></li>
+        <li><a href="#">Mission</a></li>
+		<li><a href="#">How it works</a></li>
+        <li><a href="#">News</a></li>
+		<li><a href="#">Contact Us</a></li>
+		<li class="dropdown">
+          <a class="dropdown-toggle" href="registermain.html">Register</a>
+          
+        </li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</nav> 
+<!-----menu bar end------>
+
+<div class="container  register">
+<h4>Welcome to NeoMandi's Trader registration page</h4>
+</div>
+<!---my detail form----->
+<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform" >
+<div class="container">
+<div class="row">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det">
+<h4>My Details</h4>
+<div class="detail">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderName" required></td></tr>
+      <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name = "traderAadharnum" required></td></tr>
+      <tr><td><label for="mobno">Mobile Number</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"  name = "traderMobile" required></td></tr>	  
+      <tr><td><label for="email">Email:</label></td></tr>
+      <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" required></td></tr>
+      <tr><td><label for="address">Address</label></td></tr>
+	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" required></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><select class="form-control" id="sel1" name="traderState">
+        <option>State</option>
+        <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value = "Assam">Assam</option>
 			<option value = "Bihar">Bihar</option>
@@ -368,102 +375,136 @@ input[type=submit]
 			<option value = "Uttar Pradesh">Uttar Pradesh</option>
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
-		</select><br/>
-		<label for = "district">District</label><br />
-		<select id = "district" name = "traderDistrict">
-		</select><br/>
-		<label for = "taluk">Taluk</label><br />
-		<input type = "text" id = "taluk" name = "traderTaluk" placeholder = "Taluk" required/><br/>
-		<label for = "hobli">Hobli</label><br />
-		<input type = "text" id = "hobli" name = "traderHobli" placeholder = "Hobli" required/><br/>
-		<label for = "village">Village</label><br />
-		<input type = "text" id = "village" name = "traderVillage" placeholder = "Village" required/><br/>
-		<label for = "photo">Photo</label><br/>
-		<input type = "file" id = "photo" name = "traderPhoto"/><br/> <!-- Use (enctype = 'multipart/form-data') in form -->
-		<label for = "pin">PIN</label><br />
-		<input type = "text" id = "pin" name = "traderPin" placeholder = "PIN" required/>
-		</div>
-	</div>
-	<div id = "div2">
-		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Bank Account Details</h2></div>
-		<label for = "bankname">Bank Name</label><br />
-		<input type = "text" id = "bankname" name = "traderBankName" placeholder = "Bank Name" required/><br/>
-		<label for = "accountnum">Account Number</label><br />
-		<input type = "text" id = "accountnum" name = "traderAccountNum" placeholder = "Account Number" required/><br/>
-		<label for = "branch">Branch</label><br />
-		<input type = "text" id = "branch" name = "traderBranch" placeholder = "Branch" required/><br/>
-		<label for = "ifsc">IFSC Code</label><br />
-		<input type = "text" id = "ifsc" name = "traderIfscCode" placeholder = "IFSC Code" required/><br/>
-	</div>
-	<div id = "div3">
-		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My License Details</h2></div>
-		<label for = "licensenumber">Trader License Number</label><br />
-		<input type = "text" id = "licensenumber" name = "traderLicenseNum" placeholder = "License Number" required/><br/>
-		<label for = "dateofregistration">Date of Registration</label><br />
-		<input type = "date" id = "dateofregistration" name = "traderDateOfRegistration" required/><br/>
-		<label for = "placeofregistration">Place of Registration</label><br />
-		<input type = "text" id = "placeofregistration" name = "traderPlaceOfRegistration" placeholder = "Place Of Registration" required/><br/>
-		<label for = "address">Address</label><br />
-		<input type = "text" id = "address" name = "traderAddress" placeholder = "Address" required/><br/>
-		<label for = "state">State</label><br />
-		<select id = "lstate" name = "traderLicenseState" onchange = "populate1('lstate','ldistrict')">
-			<option value = ""></option>
-			<option value = "Andhra Pradesh">Andhra Pradesh</option>
-			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
-			<option value = "Assam">Assam</option>
-			<option value = "Bihar">Bihar</option>
-			<option value = "Chhattisgarh">Chhattisgarh</option>
-			<option value = "Goa">Goa</option>
-			<option value = "Gujarat">Gujarat</option>
-			<option value = "Haryana">Haryana</option>
-			<option value = "Himachal Pradesh">Himachal Pradesh</option>
-			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
-			<option value = "Jharkhand">Jharkhand</option>
-			<option value = "Karnataka">Karnataka</option>
-			<option value = "Kerala">Kerala</option>
-			<option value = "Madhya Pradesh">Madhya Pradesh</option>
-			<option value = "Maharashtra">Maharashtra</option>
-			<option value = "Manipur">Manipur</option>
-			<option value = "Meghalaya">Meghalaya</option>
-			<option value = "Mizoram">Mizoram</option>
-			<option value = "Nagaland">Nagaland</option>
-			<option value = "Odisha">Odisha</option>
-			<option value = "Punjab">Punjab</option>
-			<option value = "Rajasthan">Rajasthan</option>
-			<option value = "Sikkim">Sikkim</option>
-			<option value = "Tamil Nadu">Tamil Nadu</option>
-			<option value = "Telangana">Telangana</option>
-			<option value = "Tripura">Tripura</option>
-			<option value = "Uttar Pradesh">Uttar Pradesh</option>
-			<option value = "Uttarakhand">Uttarakhand</option>
-			<option value = "West Bengal">West Bengal</option>
-		</select><br/>
-		<label for = "district">District</label><br />
-		<select id = "ldistrict" name = "traderLiscenseDistrict">
-		</select><br/>
-		<label for = "taluk">Taluk</label><br />
-		<input type = "text" id = "ltaluk" name = "traderLicenseTaluk" placeholder = "Taluk" required/><br/>
-		<label for = "pin">PIN</label><br />
-		<input type = "text" id = "lpin" name = "traderLicensePin" placeholder = "PIN" required/><br/>
-	</div>
-	<br/><div id = "div4"><img src = "Images/TraderPic.png" alt = "can't display"/></div>
-	<div id = "div5">
-		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Password</h2></div>
-		<label for = "password">Enter a Password</label><br />
-		<input type = "password" id = "password" name = "traderPassword" placeholder = "Password" required/><br/>
-		<label for = "confirmpassword">Confirm Password</label><br />
-		<input type = "password" id = "confirmpassword" name = "traderConfirmPassword" placeholder = "Confirm Password" required/><br/>
-		<label for = "otp">Enter OTP</label><br />
-		<input type = "text" id = "otp" name = "traderOTP" placeholder = "OTP" required/><br/><br/>
-		<input type = "checkbox" name="vehicle" value="Terms and Condtions" required>I accept Terms and Conditions<br><br/>
-		<input type = "submit" name = "submit" value = "Register">
-	</div>
-</form>
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
+      </select></td></tr>
+      <!-- id = "district" -->
+	  <tr><td>
+	  		<select class="form-control" id="sel1" name="traderDistrict">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select>
+		
+	  <tr><td>
+	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" required/><br/>
+        
+    </td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderPin "></td></tr>
+    </table>
+ </form>
+  </div>
 </div>
-<div id = "footer"></div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank">
+<h4>My Bank Account Details</h4>
+<div class="bankacc">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Account Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderAccountNum"></td></tr>
+      <tr><td><label for="aadhar">Bank Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName"></td></tr>
+      <tr><td><label for="mobno">Branch</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr" name="traderBranch "></td></tr>	  
+
+      <tr><td><label for="address">IFSC</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode "></td></tr>
+      
+       <tr><td><select class="form-control" id="sel1" name="bState ">
+        <option>State</option>
+        <option>TamilNadu</option>
+        <option>Karnataka</option>
+        <option>Andhra Pradesh</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1" name="bDistrict">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1" name="bTaluk">
+        <option>Taluk</option>
+        <option>ottanchadiram taluk</option>
+        <option>palani taluk</option>
+        <option>Vadamadurai taluk</option>
+      </select></td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="bPin"></td></tr>
+    </table>
+  </form>
+  </div>
 </div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass">
+<h4>My License Details</h4>
+<div class="detail1">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Trader License Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum "></td></tr>
+      <tr><td><label for="aadhar">Date of Registration</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderDateOfRegistration "></td></tr>
+      <tr><td><label for="mobno">Place of Registration</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration "></td></tr>	  
+      <tr><td><label for="address">Address</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress"></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseState"></td></tr>
+       <tr><td><select class="form-control" id="sel1">
+        <option>State</option>
+        <option>TamilNadu</option>
+        <option>Karnataka</option>
+        <option>Andhra Pradesh</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1" name="traderLicenseDistrict ">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1" name="traderLicensTaluk">
+        <option>Taluk</option>
+        <option>ottanchadiram taluk</option>
+        <option>palani taluk</option>
+        <option>Vadamadurai taluk</option>
+      </select></td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin"></td></tr>
+    </table>
+  </form>
+  </div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
+<div class="pass1">
+<h4>My Password</h4>
+<div class="password">
+   <form><table class="table">
+	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword"></td></tr>
+      <tr><td><label for="pwd">Confirm Password</label></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+      <tr><td><label for="pwd">Enter OTP</label></td></tr>
+<tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
+
+    </table>
+  </form>
+  </div>
+  </div>
+  <table align="center">
+  <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
+  <table align="center"><tr><td><a href="#" class="reg" onclick="register()">Register</a></td></tr></table>
+  </table>
+</div>
+</div>
+</div>
+ </form>
+<!---my detail form end----->
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/owl.carousel.min.js" type="text/javascript"></script>
+
+ 
+
+
 </body>
+
 </html>
