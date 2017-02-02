@@ -67,12 +67,14 @@ function validateTForm()
 	var placeofregistration = document.tregform.traderPlaceOfRegistration;
 	var password = document.tregform.traderPassword;
 	var rpassword = document.tregform.traderConfirmPassword;
+	var ltaluk=document.tregform.traderLicenseTaluk;
+	var lpin=document.tregform.traderLicensePin;
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		name.focus();
 		return false;
 	}
@@ -143,7 +145,7 @@ function validateTForm()
 	//Taluk name validation
 	if(!taluk.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		taluk.focus();
 		return false;
 	}
@@ -151,7 +153,7 @@ function validateTForm()
 	//Hobli name validation
 	if(!hobli.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		hobli.focus();
 		return false;
 	}
@@ -159,7 +161,7 @@ function validateTForm()
 	//Village name validation
 	if(!village.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		village.focus();
 		return false;
 	}
@@ -167,7 +169,7 @@ function validateTForm()
 	//Bank name validation
 	if(!bankname.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		bankname.focus();
 		return false;
 	}
@@ -175,7 +177,7 @@ function validateTForm()
 	//Account Branch name validation
 	if(!branch.value.match(letters))
 	{
-		window.alert("Please enter only alphtabets.");
+		window.alert("Please enter only alphabets.");
 		branch.focus();
 		return false;
 	}
@@ -209,6 +211,60 @@ function validateTForm()
 	if(password.value != rpassword.value)
 	{
 		window.alert("Please check the password.")
+		return false;
+	}
+	
+	//accountnumber validation
+	var acc = accountnum.value;
+	if(acc==""){
+		alert("Please enter your Account number");
+		accountnum.focus();
+		    return false;
+	}
+	if(isNaN(acc)){
+		alert("Enter the valid Account Number");
+		accountnum.focus();
+		return false;
+	}
+	if(acc.length!=12){
+		
+		alert(" Your Account number must be 12 digits");
+		accountnum.focus();
+		return false;
+	}
+	
+	//license validation
+	var license=licensenumber.value;
+	if(isNaN(license)){
+		alert("Enter the valid Account Number");
+		licensenumber.focus();
+		return false;
+	}
+	//place of registration
+	var placereg=placeofregistration.value;
+	if(!placeofregistration.value.match(letters))
+	{
+		window.alert("Please enter only alphabets.");
+		placeofregistration.focus();
+		return false;
+	}
+	
+	//
+	if(!ltaluk.value.match(letters))
+	{
+		window.alert("Please enter only alphabets.");
+		ltaluk.focus();
+		return false;
+	}
+	var lpinval = lpin.value;
+	if(/^[0-9]{6}$/.test(lpinval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		lpin.focus();
 		return false;
 	}
 	return true;

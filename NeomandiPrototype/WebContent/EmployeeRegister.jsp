@@ -32,7 +32,7 @@ function validateTForm()
 		return false;
 	}
 	if(!isNaN(name.value)){
-		window.alert("Your name should contain  only alphtabets.");
+		window.alert("Your name should contain  only alphabets.");
 		document.Eregform.employeename.focus();
 		return false;
 	}
