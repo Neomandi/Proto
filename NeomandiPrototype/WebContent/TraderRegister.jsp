@@ -64,6 +64,7 @@ function validateTForm()
 	var branch = document.tregform.traderBranch;
 	var ifsc = document.tregform.traderIfscCode;
 	var licensenumber = document.tregform.traderLicenseNum;
+	var traderlpin = document.tregform.traderLicensePin;
 	var placeofregistration = document.tregform.traderPlaceOfRegistration;
 	var password = document.tregform.traderPassword;
 	var rpassword = document.tregform.traderConfirmPassword;
@@ -207,6 +208,19 @@ function validateTForm()
 		pin.focus();
 		return false;
 	}
+	//PIN Code validation
+	var pinval1 = traderlpin.value;
+	if(/^[0-9]{6}$/.test(pinval1))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		traderlpin.focus();
+		return false;
+	}
+	
 	//Password validation
 	if(password.value != rpassword.value)
 	{
