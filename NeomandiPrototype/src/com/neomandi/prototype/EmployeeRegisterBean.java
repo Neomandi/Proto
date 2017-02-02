@@ -4,7 +4,6 @@ public class EmployeeRegisterBean {
 	
 	private String employeename;
 	private String employeemob;
-	
 	private String employeepwd;
 	private String cemployeepwd;
 	 

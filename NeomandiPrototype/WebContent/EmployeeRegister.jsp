@@ -59,7 +59,7 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
-<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
+<form name = "EregForm1" method = "get" action = "EmployeeRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
@@ -72,7 +72,7 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
-<form name = "EregForm2" method = "post" action = "EmployeeRegisterInt.jsp">
+<form name = "EregForm2" method = "get" action = "EmployeeRegisterInt.jsp">
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
@@ -92,10 +92,7 @@
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td> <img src="images/employeeori.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
-
-
-
-  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
+<table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
 </div>
 </div>
 </div>

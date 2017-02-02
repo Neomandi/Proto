@@ -62,7 +62,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(!rs.next())
 				{
 					con.setAutoCommit(false);
-					
+					System.out.println("bean "+erb.getEmployeename()+"mobile "+erb.getEmployeemob());
 					ps = con.prepareStatement("insert into ereg values(?,?,?,?)");
 					ps.setString(1, erb.getEmployeename());
 					ps.setString(2, erb.getEmployeemob());
@@ -348,16 +348,15 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 	
 	//Farmer Login
-	public String farmerLogin(FarmerLoginBean flbn) {
-		
+	public String farmerLogin(String name,String pass) 
+	{		
 		String msg = "";
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
 		try
 		{
-			con = JDBCHelper.getConnection();
-			
+			con = JDBCHelper.getConnection();			
 			if(con == null)
 			{
 				return msg + "Connection not established.";
@@ -367,20 +366,19 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				con.setAutoCommit(false);
 				
 				ps = con.prepareStatement("select pass from freg where name = ?");
-				ps.setString(1, flbn.getFname());				
+				ps.setString(1, name);				
 				ps.executeQuery();				
 				rs = ps.getResultSet();				
 				if(rs.next())
 				{
 					String npwd = rs.getString("pass");
-					if(npwd.equals(flbn.getFpwd()))
+					if(npwd.equals(pass))
 						msg = msg + "SUCCESS";
 					else
 						msg = msg + "Your password does not match. Please provide correct password.";
 				}
 				else
-					msg = msg + "Register first and then login.";
-				
+					msg = msg + "Register first and then login.";				
 				con.commit();
 			}
 		}
@@ -399,8 +397,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
 		}
-		return msg;
-		
+		return msg;		
 	}
 	
 	//farmer trade summary	

@@ -59,8 +59,11 @@ public class ControllerServlet extends HttpServlet {
 		
 		if(uri.contains("EmployeeRegister"))
 		{
+			System.out.println("********************************************");
 			Model m = new Model();
+			System.out.println(erb);
 			String msg = m.employeeRegister(erb);
+			
 			if(msg.equals("SUCCESS"))
 			{
 				rd=request.getRequestDispatcher("Success.jsp");
@@ -97,7 +100,8 @@ public class ControllerServlet extends HttpServlet {
 		//Farmer Registration
 		if(uri.contains("FarmerRegister"))
 		{
-			String farmerName = request.getParameter("farmername");
+			System.out.println("**********************************************************");
+			/*String farmerName = request.getParameter("farmername");
 			long farmerMobile = Long.valueOf(request.getParameter("farmermobile")).longValue();
 			long farmerAadharnum = Long.valueOf(request.getParameter("farmeraadharnum")).longValue();
 			String farmerEmail = request.getParameter("farmeremail");
@@ -140,13 +144,11 @@ public class ControllerServlet extends HttpServlet {
 	        }
 	        
 			System.out.println(filePart);
-			System.out.println(farmerPhoto);
+			System.out.println(farmerPhoto);*/
 			
-			
-			FarmerRegisterBean fbean = new FarmerRegisterBean();
-	        
 			Model m = new Model();
-			String msg = m.farmerRegister(fbean);
+			System.out.println(frb);
+			String msg = m.farmerRegister(frb);
 			if(msg.equals("SUCCESS"))
 			{
 				rd=request.getRequestDispatcher("Success.jsp");
@@ -183,10 +185,10 @@ public class ControllerServlet extends HttpServlet {
 		//Farmer Login
 		if(uri.contains("FarmerLogin"))
 		{
-			String name=flbn.getFname();
-			String pass=flbn.getFpwd();
+			String name=request.getParameter("name");
+			String pass=request.getParameter("pwd");
 			Model m = new Model();
-			String msg = m.farmerLogin(flbn);
+			String msg = m.farmerLogin(name,pass);
 			if(msg.equals("SUCCESS"))
 			{
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
@@ -213,7 +215,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-				request.setAttribute("errmsg", msg);
+				request.setAttribute("errmsg", "fail");
 			    rd=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{
