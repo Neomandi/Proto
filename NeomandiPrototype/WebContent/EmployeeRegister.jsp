@@ -1,185 +1,111 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<title>Employee Registration</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script> 
-$(function(){
-  $("#header").load("Header.html"); 
-  $("#footer").load("Footer.html");
- 
-});
-
-
-function validateTForm()
-{
-	
-	var mob = document.Eregform.employeemob;
-	var name = document.Eregform.employeename;
-	var pwd = document.Eregform.employeepwd;
-	var cpwd = document.Eregform.cemployeepwd;
-	var letters = /^[A-Za-z ]+$/;
-	
-	//Name validation
-	console.log("inside name validation");
-	if(name.value==""){
-		alert("Please enter your name.");
-		name.focus();
-		return false;
-	}
-	if(!isNaN(name.value)){
-		window.alert("Your name should contain  only alphabets.");
-		document.Eregform.employeename.focus();
-		return false;
-	}
-	
-	if ((name.value.length < 1) || (name.value.length > 20)){
-		alert("Your Character must be 1 to 20 Character");
-		
-		document.Eregform.employeename.focus();
-	//	name.focus();
-		return false;
-	}
-	
-	//Mobile number validation
-	var val = mob.value;
-	if(val==""){
-		alert("Please enter your mobile number");
-		 mob.focus();
-		    return false;
-	}
-	if(isNaN(val)){
-		alert("Enter the valid Mobile Number(Like : 9566137117)");
-		mob.focus();
-		return false;
-	}
-	if(val.length!=10){
-		
-		alert(" Your Mobile Number must be  10 digits");
-		
-		//mob.focus();
-		 document.getElementById("mob").className = 'error';
-		return false;
-	}
-	var val = mob.value;
-	if (/^\d{10}$/.test(val)) {
-		
-	    // value is ok, use it
-	} else {
-	    alert("Invalid mobile number, must be ten digits");
-	    mob.focus();
-	    return false;
-	}
-	//password validation
-	
-	
-	if( cpwd.value!=pwd.value){
-		 alert("passwords do not match");
-		 cpwd.focus();
-		    return false;
-	}
-	
-}
-</script> 
-<style type = "text/css">
-
-	#password{
-		
-	border-left: 20px solid rgb(189,209,2);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-	
-	}
-	#details{
-		border-left: 20px solid rgb(20,157,218);
-	padding: 20px;
-	margin: 10px;
-	float: left;
-	background-color: rgb(242,242,242);
-	
-	}
-	h2{
-	color: white;
-}
-p{
-	font-size: 24px;
-}
-input[type=submit]
-{
-	color: white;
-	background-color: rgb(20,157,218);
-	width: 80px;
-	height: 30px;
-}
-input[type=reset]
-{
-	color: white;
-	background-color: rgb(20,157,218);
-	width: 80px;
-	height: 30px;
-}
-#head{
-	color:#00008B; 
-}
-.error{
-	 border:4px solid red;
-}
-	
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<link rel="stylesheet" href="Header&footerstyle.css">
-<body>
-<div id = "wrapper">
-<div id = "header"></div>
 
-<div id = "content">
-<br/>
-<center><p id="head"><b><i>Welcome to NeoMandi's Employee registration page</i></b></p></center>
-<form name = "Eregform" action = "EmployeeRegisterInt.jsp" method = "post" onsubmit = "return validateTForm();">
-<div id="details" >	
-		<div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Details</h2></div>
-		<label for = "name">Name</label><br />
-		<input type = "text" id = "name" name = "employeename" placeholder = "Name" required/><br/><br/>
-		<label for = "mob">Mobile Number</label><br />
-		<input type = "text" id = "mob" name = "employeemob" placeholder = "Mobile Number" required/><br/><br/>
+<body class="">
+<!---menu bar------>
+
+ <nav class="navbar navbar-inverse menu">
+  <div class="container-fluid">
+    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">About Us</a></li>
+        <li><a href="#">Vision</a></li>
+        <li><a href="#">Mission</a></li>
+		<li><a href="#">How it works</a></li>
+        <li><a href="#">News</a></li>
+		<li><a href="#">Contact Us</a></li>
+		<li class="dropdown">
+          <a class="dropdown-toggle" href="registermain.html">Register</a>
+          
+        </li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</nav> 
+<!-----menu bar end------>
+
+<div class="container  register">
+<h4>Welcome to NeoMandi's Employee registration page</h4>
 </div>
-	<br/>
-
-
-
-<div id="password">
-	
-		 <div style="background-color: rgb(191,191,191); text-align: center;"><h2>My Password</h2></div>
-		<label for = "pwd">Enter Password</label><br />
-		<input type = "password" id = "pwd" name = "employeepwd" placeholder = "Password" required/><br/><br/>
-		<label for = "cpwd">Confirm Password</label><br />
-		<input type = "password" id = "cpwd" name = "cemployeepwd" placeholder = " Retype Password" required/><br/><br/><br/>
-		<label for = "otp">Enter OTP</label><br />
-		<input type = "text" id = "otp" name = "empOTP" placeholder = "OTP" required/><br/><br/>
-		<input type = "checkbox" name="v" value="Terms and Condtions" required>I accept Terms and Conditions<br/><br/>
-		
+<!---my detail form----->
+<div class="container">
+<div class="row emp">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
+<h4>My Details</h4>
+<div class="detail">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Employee Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+         </table>
+  </form>
+  </div>
 </div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<h4>My Password</h4>
+<div class="password">
+<form>
+    <table class="table">
+	 
+      <tr><td><label for="pwd">Enter a Password</label></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+      <tr><td><label for="pwd">Confirm Password</label></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+      <tr><td><label for="pwd">Enter OTP</label></td></tr>
+<tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
 
-		
-	<img src="Images/emp.jpg" >&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type = "submit" name = "submit" value = "Register">&nbsp;&nbsp;
-		<input type = "reset" value = "Reset"/>
-
-	</form>
-	<% String msg = (String)request.getAttribute("errmsg");  %>
-<p align = "center"><b><% if(msg != null)
-							out.print(msg);
-						%></b></p>
+    </table>
+  </form>
+  </div>
+  <table align="center">
+  <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
+  
+  </table>
 </div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<table><tr><td> <img src="images/employeeori.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 
+
+
+  <table align="center"><tr><td><a href="#" class="reg">Register</a></td></tr></table>
 </div>
-<div id = "footer"></div>
+</div>
+</div>
+<!---my detail form end----->
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/owl.carousel.min.js" type="text/javascript"></script>
+
+  
+
 
 </body>
 </html>
