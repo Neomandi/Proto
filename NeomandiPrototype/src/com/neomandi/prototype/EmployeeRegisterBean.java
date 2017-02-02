@@ -18,6 +18,7 @@ public class EmployeeRegisterBean {
 
 	public void setEmployeename(String employeename) {
 		this.employeename = employeename;
+		System.out.println("Ename: "+employeename);
 	}
 
 	public String getEmployeemob() {
@@ -26,6 +27,7 @@ public class EmployeeRegisterBean {
 
 	public void setEmployeemob(String employeemob) {
 		this.employeemob = employeemob;
+		System.out.println("Emob: "+employeemob);
 	}
 
 	public String getEmployeepwd() {
