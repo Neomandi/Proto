@@ -42,7 +42,7 @@
           <a class="dropdown-toggle" href="Register.html">Register</a>
           
         </li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="Login.html">Login</a></li>
       </ul>
       
     </div>
@@ -56,23 +56,24 @@
 <!---my detail form----->
 <div class="container">
 <div class="row emp">
+<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
-<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
+
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
       <tr><td><label for="aadhar">Employee Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob"></td></tr>
          </table>
-  </form>
+  
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
-<form name = "EregForm2" method = "post" action = "EmployeeRegisterInt.jsp">
+
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
@@ -83,7 +84,7 @@
 <tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
 
     </table>
-  </form>
+  
   </div>
   <table align="center">
   <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
@@ -97,12 +98,12 @@
 
   <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
 </div>
+</form>
 </div>
 </div>
 <script>
 function submitform(){
 	document.EregForm1.submit();
-	document.EregForm2.submit();
 }
 </script>
 <!---my detail form end----->

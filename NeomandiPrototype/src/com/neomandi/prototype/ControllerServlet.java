@@ -63,7 +63,8 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.employeeRegister(erb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("EmployeeRegister.jsp");
 				try 
 				{
 					rd.forward(request, response);			
