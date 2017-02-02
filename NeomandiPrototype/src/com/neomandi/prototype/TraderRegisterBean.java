@@ -3,7 +3,9 @@ package com.neomandi.prototype;
 import java.io.InputStream;
 
 public class TraderRegisterBean {
-	
+	public TraderRegisterBean(){
+		System.out.println("inside traderRegisterBean");
+	}
 	
 	private String traderName;
 	private long traderMobile;
@@ -29,48 +31,25 @@ public class TraderRegisterBean {
 	private String traderLiscenseDistrict;
 	private String traderLicenseTaluk;
 	private String traderLicensePin;
-	public TraderRegisterBean(String traderName, long traderMobile, long traderAadharnum, String traderEmail,
-			String traderState, String traderDistrict, String traderTaluk, String traderHobli, String traderVillage,
-			String traderBankName, long traderAccountNum, String traderBranch, String traderIfscCode, String traderUid,
-			String traderLicenseNum, String traderPassword, InputStream traderPhoto, String traderDateOfRegistration,
-			String traderPlaceOfRegistration, String traderAddress, String traderLicenseState,
-			String traderLiscenseDistrict, String traderLicenseTaluk, String traderLicensePin) {
-		super();
-		this.traderName = traderName;
-		this.traderMobile = traderMobile;
-		this.traderAadharnum = traderAadharnum;
-		this.traderEmail = traderEmail;
-		this.traderState = traderState;
-		this.traderDistrict = traderDistrict;
-		this.traderTaluk = traderTaluk;
-		this.traderHobli = traderHobli;
-		this.traderVillage = traderVillage;
-		this.traderBankName = traderBankName;
-		this.traderAccountNum = traderAccountNum;
-		this.traderBranch = traderBranch;
-		this.traderIfscCode = traderIfscCode;
-		this.traderUid = traderUid;
-		this.traderLicenseNum = traderLicenseNum;
-		this.traderPassword = traderPassword;
-		this.traderPhoto = traderPhoto;
-		this.traderDateOfRegistration = traderDateOfRegistration;
-		this.traderPlaceOfRegistration = traderPlaceOfRegistration;
-		this.traderAddress = traderAddress;
-		this.traderLicenseState = traderLicenseState;
-		this.traderLiscenseDistrict = traderLiscenseDistrict;
-		this.traderLicenseTaluk = traderLicenseTaluk;
-		this.traderLicensePin = traderLicensePin;
-	}
+	private String traderPin;
+	private String traderLicenseAddress;
+	
+	private String bState;
+	private String bDistrict;
+	private String bTaluq;
+	private String bPin;
 	public String getTraderName() {
 		return traderName;
 	}
 	public void setTraderName(String traderName) {
 		this.traderName = traderName;
+		System.out.println("traderName="+traderName);
 	}
 	public long getTraderMobile() {
 		return traderMobile;
 	}
 	public void setTraderMobile(long traderMobile) {
+		System.out.println("trader mobile="+traderMobile); 
 		this.traderMobile = traderMobile;
 	}
 	public long getTraderAadharnum() {
@@ -205,10 +184,66 @@ public class TraderRegisterBean {
 	public void setTraderLicensePin(String traderLicensePin) {
 		this.traderLicensePin = traderLicensePin;
 	}
+	public String getTraderPin() {
+		return traderPin;
+	}
+	public void setTraderPin(String traderPin) {
+		this.traderPin = traderPin;
+	}
+	public String getTraderLicenseAddress() {
+		return traderLicenseAddress;
+	}
+	public void setTraderLicenseAddress(String traderLicenseAddress) {
+		this.traderLicenseAddress = traderLicenseAddress;
+	}
+	public String getbState() {
+		return bState;
+	}
+	public void setbState(String bState) {
+		this.bState = bState;
+	}
+	public String getbDistrict() {
+		return bDistrict;
+	}
+	public void setbDistrict(String bDistrict) {
+		this.bDistrict = bDistrict;
+	}
+	public String getbTaluq() {
+		return bTaluq;
+	}
+	public void setbTaluq(String bTaluq) {
+		this.bTaluq = bTaluq;
+	}
+	public String getbPin() {
+		return bPin;
+	}
+	public void setbPin(String bPin) {
+		this.bPin = bPin;
+	}
+	@Override
+	public String toString() {
+		return "TraderRegisterBean [traderName=" + traderName + ", traderMobile=" + traderMobile + ", traderAadharnum="
+				+ traderAadharnum + ", traderEmail=" + traderEmail + ", traderState=" + traderState
+				+ ", traderDistrict=" + traderDistrict + ", traderTaluk=" + traderTaluk + ", traderHobli=" + traderHobli
+				+ ", traderVillage=" + traderVillage + ", traderBankName=" + traderBankName + ", traderAccountNum="
+				+ traderAccountNum + ", traderBranch=" + traderBranch + ", traderIfscCode=" + traderIfscCode
+				+ ", traderUid=" + traderUid + ", traderLicenseNum=" + traderLicenseNum + ", traderPassword="
+				+ traderPassword + ", traderPhoto=" + traderPhoto + ", traderDateOfRegistration="
+				+ traderDateOfRegistration + ", traderPlaceOfRegistration=" + traderPlaceOfRegistration
+				+ ", traderAddress=" + traderAddress + ", traderLicenseState=" + traderLicenseState
+				+ ", traderLiscenseDistrict=" + traderLiscenseDistrict + ", traderLicenseTaluk=" + traderLicenseTaluk
+				+ ", traderLicensePin=" + traderLicensePin + ", traderPin=" + traderPin + ", traderLicenseAddress="
+				+ traderLicenseAddress + ", bState=" + bState + ", bDistrict=" + bDistrict + ", bTaluq=" + bTaluq
+				+ ", bPin=" + bPin + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((bDistrict == null) ? 0 : bDistrict.hashCode());
+		result = prime * result + ((bPin == null) ? 0 : bPin.hashCode());
+		result = prime * result + ((bState == null) ? 0 : bState.hashCode());
+		result = prime * result + ((bTaluq == null) ? 0 : bTaluq.hashCode());
 		result = prime * result + (int) (traderAadharnum ^ (traderAadharnum >>> 32));
 		result = prime * result + (int) (traderAccountNum ^ (traderAccountNum >>> 32));
 		result = prime * result + ((traderAddress == null) ? 0 : traderAddress.hashCode());
@@ -219,6 +254,7 @@ public class TraderRegisterBean {
 		result = prime * result + ((traderEmail == null) ? 0 : traderEmail.hashCode());
 		result = prime * result + ((traderHobli == null) ? 0 : traderHobli.hashCode());
 		result = prime * result + ((traderIfscCode == null) ? 0 : traderIfscCode.hashCode());
+		result = prime * result + ((traderLicenseAddress == null) ? 0 : traderLicenseAddress.hashCode());
 		result = prime * result + ((traderLicenseNum == null) ? 0 : traderLicenseNum.hashCode());
 		result = prime * result + ((traderLicensePin == null) ? 0 : traderLicensePin.hashCode());
 		result = prime * result + ((traderLicenseState == null) ? 0 : traderLicenseState.hashCode());
@@ -228,6 +264,7 @@ public class TraderRegisterBean {
 		result = prime * result + ((traderName == null) ? 0 : traderName.hashCode());
 		result = prime * result + ((traderPassword == null) ? 0 : traderPassword.hashCode());
 		result = prime * result + ((traderPhoto == null) ? 0 : traderPhoto.hashCode());
+		result = prime * result + ((traderPin == null) ? 0 : traderPin.hashCode());
 		result = prime * result + ((traderPlaceOfRegistration == null) ? 0 : traderPlaceOfRegistration.hashCode());
 		result = prime * result + ((traderState == null) ? 0 : traderState.hashCode());
 		result = prime * result + ((traderTaluk == null) ? 0 : traderTaluk.hashCode());
@@ -244,6 +281,26 @@ public class TraderRegisterBean {
 		if (getClass() != obj.getClass())
 			return false;
 		TraderRegisterBean other = (TraderRegisterBean) obj;
+		if (bDistrict == null) {
+			if (other.bDistrict != null)
+				return false;
+		} else if (!bDistrict.equals(other.bDistrict))
+			return false;
+		if (bPin == null) {
+			if (other.bPin != null)
+				return false;
+		} else if (!bPin.equals(other.bPin))
+			return false;
+		if (bState == null) {
+			if (other.bState != null)
+				return false;
+		} else if (!bState.equals(other.bState))
+			return false;
+		if (bTaluq == null) {
+			if (other.bTaluq != null)
+				return false;
+		} else if (!bTaluq.equals(other.bTaluq))
+			return false;
 		if (traderAadharnum != other.traderAadharnum)
 			return false;
 		if (traderAccountNum != other.traderAccountNum)
@@ -288,6 +345,11 @@ public class TraderRegisterBean {
 				return false;
 		} else if (!traderIfscCode.equals(other.traderIfscCode))
 			return false;
+		if (traderLicenseAddress == null) {
+			if (other.traderLicenseAddress != null)
+				return false;
+		} else if (!traderLicenseAddress.equals(other.traderLicenseAddress))
+			return false;
 		if (traderLicenseNum == null) {
 			if (other.traderLicenseNum != null)
 				return false;
@@ -330,6 +392,11 @@ public class TraderRegisterBean {
 				return false;
 		} else if (!traderPhoto.equals(other.traderPhoto))
 			return false;
+		if (traderPin == null) {
+			if (other.traderPin != null)
+				return false;
+		} else if (!traderPin.equals(other.traderPin))
+			return false;
 		if (traderPlaceOfRegistration == null) {
 			if (other.traderPlaceOfRegistration != null)
 				return false;
@@ -357,19 +424,44 @@ public class TraderRegisterBean {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "TraderRegisterBean [traderName=" + traderName + ", traderMobile=" + traderMobile + ", traderAadharnum="
-				+ traderAadharnum + ", traderEmail=" + traderEmail + ", traderState=" + traderState
-				+ ", traderDistrict=" + traderDistrict + ", traderTaluk=" + traderTaluk + ", traderHobli=" + traderHobli
-				+ ", traderVillage=" + traderVillage + ", traderBankName=" + traderBankName + ", traderAccountNum="
-				+ traderAccountNum + ", traderBranch=" + traderBranch + ", traderIfscCode=" + traderIfscCode
-				+ ", traderUid=" + traderUid + ", traderLicenseNum=" + traderLicenseNum + ", traderPassword="
-				+ traderPassword + ", traderPhoto=" + traderPhoto + ", traderDateOfRegistration="
-				+ traderDateOfRegistration + ", traderPlaceOfRegistration=" + traderPlaceOfRegistration
-				+ ", traderAddress=" + traderAddress + ", traderLicenseState=" + traderLicenseState
-				+ ", traderLiscenseDistrict=" + traderLiscenseDistrict + ", traderLicenseTaluk=" + traderLicenseTaluk
-				+ ", traderLicensePin=" + traderLicensePin + "]";
+	public TraderRegisterBean(String traderName, long traderMobile, long traderAadharnum, String traderEmail,
+			String traderState, String traderDistrict, String traderTaluk, String traderHobli, String traderVillage,
+			String traderBankName, long traderAccountNum, String traderBranch, String traderIfscCode, String traderUid,
+			String traderLicenseNum, String traderPassword, InputStream traderPhoto, String traderDateOfRegistration,
+			String traderPlaceOfRegistration, String traderAddress, String traderLicenseState,
+			String traderLiscenseDistrict, String traderLicenseTaluk, String traderLicensePin, String traderPin,
+			String traderLicenseAddress, String bState, String bDistrict, String bTaluq, String bPin) {
+		super();
+		this.traderName = traderName;
+		this.traderMobile = traderMobile;
+		this.traderAadharnum = traderAadharnum;
+		this.traderEmail = traderEmail;
+		this.traderState = traderState;
+		this.traderDistrict = traderDistrict;
+		this.traderTaluk = traderTaluk;
+		this.traderHobli = traderHobli;
+		this.traderVillage = traderVillage;
+		this.traderBankName = traderBankName;
+		this.traderAccountNum = traderAccountNum;
+		this.traderBranch = traderBranch;
+		this.traderIfscCode = traderIfscCode;
+		this.traderUid = traderUid;
+		this.traderLicenseNum = traderLicenseNum;
+		this.traderPassword = traderPassword;
+		this.traderPhoto = traderPhoto;
+		this.traderDateOfRegistration = traderDateOfRegistration;
+		this.traderPlaceOfRegistration = traderPlaceOfRegistration;
+		this.traderAddress = traderAddress;
+		this.traderLicenseState = traderLicenseState;
+		this.traderLiscenseDistrict = traderLiscenseDistrict;
+		this.traderLicenseTaluk = traderLicenseTaluk;
+		this.traderLicensePin = traderLicensePin;
+		this.traderPin = traderPin;
+		this.traderLicenseAddress = traderLicenseAddress;
+		this.bState = bState;
+		this.bDistrict = bDistrict;
+		this.bTaluq = bTaluq;
+		this.bPin = bPin;
 	}
 	
 	

@@ -217,7 +217,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 
 	public String traderRegister(TraderRegisterBean trb) {
-		
+		System.out.println("in tradeRegister()");
 		String msg = null;
 		PreparedStatement ps = null;
 		Connection con = null;
