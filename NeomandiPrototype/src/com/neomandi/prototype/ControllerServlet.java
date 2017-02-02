@@ -47,8 +47,13 @@ public class ControllerServlet extends HttpServlet {
 		RequestDispatcher rd=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
 		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
+
 		//FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
 		TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
+
+		FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
+		//TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
+
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
@@ -64,7 +69,8 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.employeeRegister(erb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("EmployeeRegister.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -98,19 +104,19 @@ public class ControllerServlet extends HttpServlet {
 		//Farmer Registration
 		if(uri.contains("FarmerRegister"))
 		{
-			String farmerName = request.getParameter("farmerName");
-			long farmerMobile = Long.valueOf(request.getParameter("farmerMobile")).longValue();
-			long farmerAadharnum = Long.valueOf(request.getParameter("farmerAadharnum")).longValue();
-			String farmerEmail = request.getParameter("farmerEmail");
-			String farmerState = request.getParameter("farmerState");
-			String farmerDistrict = request.getParameter("farmerDistrict");
-			String farmerTaluk = request.getParameter("farmerTaluk");
-			String farmerHobli = request.getParameter("farmerHobli");
-			String farmerVillage = request.getParameter("farmerVillage");
-			String farmerBankName = request.getParameter("farmerBankName");
-			long farmerAccountNum = Long.valueOf(request.getParameter("farmerAccountNum")).longValue();
-			String farmerBranch = request.getParameter("farmerBranch");
-			String farmerIfscCode = request.getParameter("farmerIfscCode");
+			String farmerName = request.getParameter("farmername");
+			long farmerMobile = Long.valueOf(request.getParameter("farmermobile")).longValue();
+			long farmerAadharnum = Long.valueOf(request.getParameter("farmeraadharnum")).longValue();
+			String farmerEmail = request.getParameter("farmeremail");
+			String farmerState = request.getParameter("farmerstate");
+			String farmerDistrict = request.getParameter("farmerdistrict");
+			String farmerTaluk = request.getParameter("farmertaluk");
+			String farmerHobli = request.getParameter("farmerhobli");
+			String farmerVillage = request.getParameter("farmervillage");
+			String farmerBankName = request.getParameter("farmerbankname");
+			long farmerAccountNum = Long.valueOf(request.getParameter("farmeraccountnum")).longValue();
+			String farmerBranch = request.getParameter("farmerbranch");
+			String farmerIfscCode = request.getParameter("farmerifsccode");
 			
 			System.out.println("The fname: "+farmerName+" The mobile: "+farmerMobile+" The Aadhar number: "+farmerAadharnum+" The Email: "+farmerEmail+" The state: "+farmerState+" The district: "+farmerDistrict+" The taluk: "+farmerTaluk+" The hobli: "+farmerHobli+" The village: "+farmerVillage+" The bankname: "+farmerBankName+" The accountnum: "+farmerAccountNum+" The branchname: "+farmerBranch+" The IFSC code: "+farmerIfscCode);
 			
@@ -144,7 +150,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println(farmerPhoto);
 			
 			
-			FarmerRegisterBean fbean = new FarmerRegisterBean(farmerName, farmerMobile, farmerAadharnum, farmerEmail, farmerState, farmerDistrict, farmerTaluk, farmerHobli, farmerVillage, farmerBankName, farmerAccountNum, farmerBranch, farmerIfscCode, farmerPhoto);
+			FarmerRegisterBean fbean = new FarmerRegisterBean();
 	        
 			Model m = new Model();
 			String msg = m.farmerRegister(fbean);
