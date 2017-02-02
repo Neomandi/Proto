@@ -32,14 +32,14 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">About Us</a></li>
-        <li><a href="#">Vision</a></li>
-        <li><a href="#">Mission</a></li>
-		<li><a href="#">How it works</a></li>
-        <li><a href="#">News</a></li>
-		<li><a href="#">Contact Us</a></li>
-		<li class="dropdown">
-          <a class="dropdown-toggle" href="registermain.html">Register</a>
+        <li><a href="HomePage.html">About Us</a></li>
+        <li><a href="Vision.html">Vision</a></li>
+        <li><a href="Mission.html">Mission</a></li>
+		<li><a href="Howitworks.html">How it works</a></li>
+        <li><a href="News.html">News</a></li>
+		<li><a href="ContactUs.html">Contact Us</a></li>
+		<li class="active" class="dropdown">
+          <a class="dropdown-toggle" href="Register.html">Register</a>
           
         </li>
         <li><a href="login.html">Login</a></li>
@@ -59,12 +59,12 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
-<form>
+<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
       <tr><td><label for="aadhar">Employee Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob"></td></tr>
          </table>
   </form>
   </div>
@@ -72,13 +72,13 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
-<form>
+<form name = "EregForm2" method = "post" action = "EmployeeRegisterInt.jsp">
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd"></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
 
@@ -95,10 +95,16 @@
 
 
 
-  <table align="center"><tr><td><a href="#" class="reg">Register</a></td></tr></table>
+  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
 </div>
 </div>
 </div>
+<script>
+function submitform(){
+	document.EregForm1.submit();
+	document.EregForm2.submit();
+}
+</script>
 <!---my detail form end----->
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
