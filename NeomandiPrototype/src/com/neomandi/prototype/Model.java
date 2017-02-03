@@ -226,12 +226,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		return msg;
 	}
 
+	@SuppressWarnings("resource")
 	public String traderRegister(TraderRegisterBean trb) {
 		System.out.println("in tradeRegister()");
-		String msg = null;
+		String msg ="";
 		PreparedStatement ps = null;
 		Connection con = null;
-		
+		ResultSet rs = null;
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -242,8 +243,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			}
 			else
 			{
-				con.setAutoCommit(false);
 				
+
+				ps = con.prepareStatement("select aadharnumber from treg where aadharnumber = ? ");
+				ps.setLong(1, trb.getTraderAadharnum());
+				ps.execute();
+				rs = ps.getResultSet();
+				if(!rs.next()){
+				con.setAutoCommit(false);
 				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
@@ -273,6 +280,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				msg = "SUCCESS";
 				
 				con.commit();
+				}
+				else{
+					
+						msg =  "Already Registered. Please try to login.";
+				}
 			}
 		}
 		catch(SQLException e)

@@ -21,219 +21,87 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product Search</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style>
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: white;
-}
- li
-{
-	display: inline;
-    float: left;
-}
-li a:hover:not(.active) {
-    color: white;    
-}
-.active {
-    border: 1px solid black;
-    color: brown;
-    background-color: white;
-    bottom: -3px;    
-    border-bottom: 2px solid white;    
-}
- a
-{
-    text-align: center;
-    border: 1px solid black;
-      border-radius: 9px 9px 0 0;
-    background-color: blue;   
-	display: inline;
-	display: block;
-    color: white;
-	width: 160px;
-	text-decoration: none;
-	padding: 10px 20px;
-}
-
-a.moree {
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 9px 9px 9px 9px;
-    background-color: red;   
-	display: inline;
-	display: block;
-    color: white;
-	width: 110px;
-	text-decoration: none;
-	padding: 10px 20px;
-}
-
-a.more {
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 9px 9px 9px 9px;
-    background-color: red;   
-	display: inline;
-	display: block;
-    color: white;
-	width: 60px;
-	text-decoration: none;
-	padding: 10px 20px;
-}
-
-#search {
-    width: 90px;  height: 2em;
-}
-table
-{
-float: center;
-text-align: center;
-}
-.tiptext {
-    background:#ccc;
-   
-    padding:5px;
-    width:100px;
-}
-.description {
-    display:none;
-    position:absolute;
-   top:400px;
-    width:400px;
-    height:300px;
-}
-.close{
-display:block;
-}
-
-</style>
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-</head>
-<body>
 
-<%@ include file="TRibbon.jsp" %>
+<body class="" >
 
-<%
-String lotnum="null";
-String quantity="null";
-String msg1=(String)request.getAttribute("notlogged");
-String msg2=(String)request.getAttribute("productsearchresult");
-String msg3=(String)request.getAttribute("errmsg");
-String msg4=(String)request.getAttribute("quantity");
+<div class="logo_relative">
+<div class="col-lg-1 col-md-1  hidden-sm hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="container-fluid headertop">
+<div class="container">
 
-if(msg1!=null)
-{
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-  	 out.println("location='TraderLogin.jsp';");
- 	 out.println("</script>");
-}
-else
-{
-	HttpSession psr=request.getSession(false);
-	List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
- %>
-  <br><br>
-  <ul><li><a class="active" href="product.jsp">Product Search</a></li>
-  <li><a href="TraderBlock.do">Hold Funds</a></li>
-  <li><a href="TradeorAuction.do">Trade/Auction</a></li>
-  <li><a href="TradeSummary.jsp">Trade Summary</a></li>
-  <li><a href="OrderStatus.do">Order Status</a></li>
-  <li><a href="TraderProfile.jsp">Your Profile</a></li>
-  </ul><br>
-<form action="ProductSearchInt.jsp" method = "post">
-<center>
-	<table border style="float:center" width="300">
-		<tr>
-			<th>Kind of Produce</th>
-			<td><select name = "kproduce" id = "kproduce">
-					<option selected value = "base">Select Produce</option> 
-					<option value = "Vegetable">VEGETABLES</option>
-					<option value = "FRUITS">FRUITS</option>
-					<option value = "GRAINS">GRAINS</option>
-					<option value = "PULSES">PULSES</option>
-				</select></td>
-		</tr>
-		<tr>
-			<th>Produce</th>
-			<td><select name = "produce" id = "produce" >
-					<option>Choose Produce first</option>
-				</select>
-		</tr>		
-		<tr>
-			<th>Quality Grade</th>
-			<td><select name = "quality" id = "quality" >
-					<option selected>Please Select</option>
-					<option value = "A">A</option>
-					<option value = "B">B</option>
-					<option value = "C">C</option>
-				</select>
-		</tr>
-		<!-- <tr>
-			<th>State</th>
-			<td><select id = "state" onchange = "populate('state','district');">
-					<option selected value = "base">Please Select</option>
-					<option value = "andhra Pradesh">Andhra Pradesh</option>
-					<option value = "arunachal Pradesh">Arunachal Pradesh</option>
-					<option value = "assam">Assam</option>
-					<option value = "bihar">Bihar</option>
-					<option value = "chhattisgarh">Chhattisgarh</option>
-					<option value = "goa">Goa</option>
-					<option value = "gujarat">Gujarat</option>
-					<option value = "haryana">Haryana</option>
-					<option value = "himachal Pradesh">Himachal Pradesh</option>
-					<option value = "jammu & Kashmir">Jammu & Kashmir</option>
-					<option value = "jharkhand">Jharkhand</option>
-					<option value = "karnataka">Karnataka</option>
-					<option value = "kerala">Kerala</option>
-					<option value = "madhya Pradesh">Madhya Pradesh</option>
-					<option value = "maharashtra">Maharashtra</option>
-					<option value = "manipur">Manipur</option>
-					<option value = "meghalaya">Meghalaya</option>
-					<option value = "mizoram">Mizoram</option>
-					<option value = "nagaland">Nagaland</option>
-					<option value = "odisha">Odisha</option>
-					<option value = "punjab">Punjab</option>
-					<option value = "rajasthan">Rajasthan</option>
-					<option value = "sikkim">Sikkim</option>
-					<option value = "tamil Nadu">Tamil Nadu</option>
-					<option value = "telangana">Telangana</option>
-					<option value = "tripura">Tripura</option>
-					<option value = "uttar Pradesh">Uttar Pradesh</option>
-					<option value = "uttarakhand">Uttarakhand</option>
-					<option value = "west Bengal">West Bengal</option>
-				</select></td>
-		</tr>
-		<tr>
-			<th>District</th>
-			<td><select id = "district">
-					
-				</select></td>
-		</tr> -->
-		<tr>
-			<th>Auction Slot</th>
-			<td><select name = "slot" id = "slot" >
-					<option selected>Please Select</option>
-					<option value = "slot1" >Slot 1 (10:30-10:35)</option>
-					<option value = "slot2">Slot 2 (10:40-10:45)</option>
-					<option value = "slot3">Slot 3 (10:50-10:55)</option>
-				</select>
-		</tr>
-	</table></center>
-	<br/>
-	<input type = "submit" value = "SEARCH" onclick="fun()" style="float: center;margin-right:18px;"/>
-	<input type = "reset" value = "RESET" style="float: center;margin-right:14px;"/>
-</form>
-<br><br><br>
+<div class="col-lg-10 col-sm-10 col-md-10 col-xs-10 far"><h1>Trade1 ,welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 power"><i class="fa fa-power-off" aria-hidden="true"></i></div>
+</div>
+</div>
+
+<div class="container-fluid tradtab">
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="product.jsp">Product Search</a></li>
+    <li><a data-toggle="tab" href="TraderBlock.do">Hold Funds</a></li>
+    <li><a data-toggle="tab" href="TradeorAuction.do">Trade/Auction</a></li>
+    <li><a data-toggle="tab" href="TradeSummary.jsp">Trade Summary</a></li>
+<li><a data-toggle="tab" href="OrderStatus.do">Order Status</a></li>
+    <li><a data-toggle="tab" href="TraderProfile.jsp">My Profile</a></li>
+
+  </ul>
+
+
+</div>
+</div>
+</div>
+<div class="aution">
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+       <div class="container-fluid psearch">
+<div class="container release">
+<table class="table">
+<tr>
+<td><select class="form-control" name = "kproduce" id = "kproduce" selected value = "base">
+        <option >Kind of produce</option> 
+        <option value = "Vegetable">VEGETABLES</option>
+		<option value = "FRUITS">FRUITS</option>
+		<option value = "GRAINS">GRAINS</option>
+		<option value = "PULSES">PULSES</option>
+      </select></td>
+<td><select class="form-control"   name = "produce" id = "produce">
+        <option> Produce</option>
+        <option>Choose Produce first</option>
+      </select></td>
+<td><select class="form-control"  name = "quality" id = "quality">
+        <option>Quality Grade</option>
+        
+		<option value = "A">A</option>
+		<option value = "B">B</option>
+		<option value = "C">C</option>
+      </select></td>
+<td><select class="form-control" name = "slot" id = "slot">
+        <option>Auction Slot</option>
+       
+		<option value = "slot1" >Slot 1 (10:30-10:35)</option>
+		<option value = "slot2">Slot 2 (10:40-10:45)</option>
+		<option value = "slot3">Slot 3 (10:50-10:55)</option>
+      </select></td>
+<td><a href="javascript: fun()" class="reg">Search</a></td>
+</tr>
+</table>
+</div>
+</div>
 <script>
 function fun()
 {
@@ -251,138 +119,585 @@ $("#kproduce").change(function() {
 	   console.log("ProduceData/" + $(this).val()+ ".txt");
 	});
 </script>
-<script>
-function populate(s1, s2)
-{
-	var s1 = document.getElementById(s1);
-	var s2 = document.getElementById(s2);
-	s2.innerHTML = "";
-	if(s1.value == "karnataka")
-	{
-		var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];	
-	}
-	for(var option in optionArray)
-	{
-		var pair = optionArray[option].split("|");
-		var newOption = document.createElement("option");
-		newOption.value = pair[0];
-		newOption.innerHTML = pair[1];
-		s2.options.add(newOption);
-	}
-}
-</script>
-<%		
-  System.out.println("msg2="+msg2);
-  if(msg2!=null||msg3!=null)
-  {
-	%>
-<p align = "right"></p>
-<center>
-<% 
+<div class="container tabin">
+<div class="pstable">
+	  <table class="table pstab">
+<thead><tr align="center">
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Market Code</h4></td>
+	  <td><h4>Produce</h4></td>
+	  <td><h4>Grade</h4></td>
+	  <td><h4>Quantity Available</h4></td>
+	  <td><h4></h4></td>
+	  <td><h4></h4></td>
+	  </tr></thead>
+	  <tbody>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td><a href="#" class="reg">Add to Trade List</a></td></tr>
+<tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  </tbody>
+	  </table>
+</div>
+	  </div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <div class="container">
+	  <br><br>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<h4>My Account Details</h4>
+<div class="detail">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Bank Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Account Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="mobno">IFSC</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+      <tr><td><label for="branch">Bank Branch</label></td></tr>
+      <tr><td><input type="text" class="form-control" id="email" ></td></tr>
+      <tr><td><label for="address">Available Balance</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr> 
+ <table align="center"><tr><td><a href="#" class="reg">Get Balance</a></td></tr></table>
+    </table>
+  </form><br><br>
+  </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hold">
+<h4>Hold Funds</h4>
+<div class="bankacc">
+<br><br>
+<form>
+    <table class="table">      
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	   <table align="center"><tr><td><a href="#" class="reg">Hold</a></td></tr></table>
+    </table>
+  </form><br><br>
+  </div>
+</div>
 
-Connection con = null;
-Statement stmt = null;
-ResultSet rs = null;
-String image = null;  
-byte[] imgData = null;
-OutputStream os=null;
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
+<h4>Release Funds</h4>
+<div class="password">
+<form>
+    <table class="table">   
+<tr><td><label for="name">Fund Utilized</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  
+	  <table align="center"><tr><td><a href="#" class="reg">Release</a></td></tr></table>
+    </table>
+  </form><br><br>
+  </div>
 
-%>
-	<table align="center" border>
+</div>
+</div>
+</div>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+        <!----row1--->
+	<div class="one">
+<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-1 col-md-1 col-sm-2 hidden-xs text-center"><h1>1</h1></div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-9 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-5 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 inc release">
+	<table align="center"><tr><td><a href="#" class="reg">Increment by 1</a></td></tr></table><br>
+				 <table align="center"><tr><td><a href="#" class="reg">Submit</a></td></tr></table></div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 sec">
+	<table align="center"><tbody><tr><td><br><br><a href="#" class="reg">Remove a lot</a><br><br></td></tr></tbody></table>
+	</div>
+	</div>
+	</div></div><!-----row1 end----->
+<!---second row--->
 
-						<tr>
-						<th>Lot Number</th>
-						<th>Market Code</th>
-						<th>Produce</th>
-						<th>Quality Grade</th>
-						<th>Quantity Available</th>
-						<th>Quantity Needed</th>
-						<th></th>
-						</tr>						
-					<%
-						for(Object o:l)
-						{						
-							ProductSearchResultBean psr1=(ProductSearchResultBean)o;
-							lotnum=psr1.getLotnumber();		
-							quantity=psr1.getQuantity();
-							System.out.println("in for loop"+psr1.getPhoto());
-							
-			            	
-					%>	<tr>						
-						<td >
-						<%
-							System.out.println(" photo="+psr1);
-							System.out.println("image="+psr1.getPhoto());
-						image = psr1.getPhoto(); 
-						String img[]=image.split("/");
-						String photo=img[img.length-2]+"/"+img[img.length-1];
-						System.out.println("photo="+photo);
-					%>
-					<button id='hide'><div class="tiptext"><%out.println(psr1.getLotnumber()); %>
-					<div class="description"><img  class='close' src="<%=photo %>" alt="cont display" style="width:540px; top:500px; width:400px;" align="bottom"/></div>
-					</div></button>
-					<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-					<script>
-					$(".tiptext").click(function() {
-					    $(this).children(".description").show();
-					}).mouseout(function() {
-					    $(this).children(".description").hide();
-					});
-					/*$(document).ready(function(){
-						$('.tiptext').click(function(){
-							$('div.description').toggle();
-						
-					});*/
-					
-					
-					
-					</script>
-						
-						
-						</td>
-						<td><% out.println(psr1.getMarketcode()); %></td>
-						<td><% out.println(psr1.getProduce()); %></td>
-						<td><% out.println(psr1.getQualitygrade()); %></td>
-						<td><% out.println(psr1.getQuantity());%></td>
-						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
-						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
-						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
-					    <!-- <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> -->
-						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
-						<script> 
-						function fun<%=psr1.getLotnumber() %>()
-						{							
-							var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
-							var totals=parseInt(total);
-							var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-							var neededs=parseInt(needed);
-							console.log("QUANTITY needed IS needed="+needed);
-							console.log("total is "+totals)
-							var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
-							console.log(product);
-							var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-							if(neededs>totals)
-							{
-								alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-							}
-							else if(isNaN(neededs))
-							{
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-								alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
-							}
-							else 
-							{
-								alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-								window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs
-							}													
-						}
-						</script></td>
-						</tr>
-					<%}}}%>					
+	<div class="one">
+<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-1 col-md-1 col-sm-2 hidden-xs text-center"><h1>2</h1></div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-9 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-5 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 inc release">
+	<table align="center"><tr><td><a href="#" class="reg">Increment by 1</a></td></tr></table><br>
+				 <table align="center"><tr><td><a href="#" class="reg">Submit</a></td></tr></table></div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 sec">
+	<table align="center"><tbody><tr><td><br><br><a href="#" class="reg">Remove a lot</a><br><br></td></tr></tbody></table>
+	</div>
+	</div>
+	</div></div>
+<!---second row end--->
+<!---third row--->
+
+	<div class="one">
+<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-1 col-md-1 col-sm-2 hidden-xs text-center"><h1>3</h1></div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-9 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-5 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-5 col-sm-5 col-xs-12 inc release">
+	<table align="center"><tr><td><a href="#" class="reg">Increment by 1</a></td></tr></table><br>
+				 <table align="center"><tr><td><a href="#" class="reg">Submit</a></td></tr></table></div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 sec">
+	<table align="center"><tbody><tr><td><br><br><a href="#" class="reg">Remove a lot</a><br><br></td></tr></tbody></table>
+	</div>
+	</div>
+	</div></div>
+<!---third row end--->
+    </div>
+    <div id="menu3" class="tab-pane fade">
+	<!----row1--->
+	<div class="one">
+<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+        <tr><td><h4></h4></td><td></td></tr>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 second">
+	<table align="center"><tbody><tr><h4>Auction Complete. Waiting for Farmer's Acceptance.</h4></tr></tbody></table>
+	</div>
+	</div>
+	</div></div><!-----row1 end----->
+	<!----row2----->
+	<div class="two">
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+        <tr><td><h4></h4></td><td><h4></h4></td></tr>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 second">
+	<table><tbody><tr><h4>Auction Complete. Waiting for Farmer's Acceptance.</h4></tr></tbody></table>
+	</div>
+	</div>
+	</div></div><!----row2 end--->
+	<!----row 3----->
+	<div class="one">
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+        <tr><td><h4></h4></td><td><h4></h4></td></tr>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 second">
+	<table align="center"><tbody><tr><h4>Auction Complete. Waiting for Farmer's Acceptance.</h4></tr></tbody></table>
+	</div>
+	</div>
+	</div></div><!---row 3 end--->
+	<!----row 4---->
+	<div class="two">
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 fir">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 sec">
+	<table align="center">
+	<tbody>
+         <tr><td><h4></h4></td><td><h4></h4></td></tr>
+	<tr><td><h4>Lost Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+	
+	
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><input type="text" class="form-control" id="usr"></td><td><input type="text" class="form-control" id="usr"></td></tr>
+	</tbody>
+	</table>
+	</div> 
+	<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 second">
+	<table align="center"><tbody><tr><h4>Auction Complete. Waiting for Farmer's Acceptance.</h4></tr></tbody></table>
+	</div>
+	</div>
+	</div></div><!----row4 end--->
+</div>
+<div id="menu4" class="tab-pane fade">
+       <div class="container-fluid today">
+<div class="container"><h2>Today's Summary</h2></div>
+</div>
+<div class="container-fluid sum1">
+	  <div class="container tabin tsum">
+	  <div class="row tfrom">
+	  <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+<div class="sum1tab table-responsive">
+	  <table class="table sum1table">
+<thead><tr>
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Lot Size</h4></td>
+	  <td><h4>Quantity</h4></td>
+	  <td><h4>Avg Price</h4></td>
+	  <td><h4>Gross Earnings</h4></td>
+	  <td><h4>TLC*</h4></td>
+<td><h4>Market Cess</h4></td>
+<td><h4>EPC</h4></td>
+<td><h4>PMVA</h4></td>
+<td><h4>Deductions</h4></td>
+<td><h4>My Net Earnings</h4></td>
+	  </tr></thead>
+	  <tbody>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
+	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
+	  </tbody>
+	  </table>
+</div></div>
+<div class="col-lg-3 col-md-5 col-sm-5 col-xs-12 from">
+<table class="table" align="center">
+<tr>
+
+   <td></td>
+   <td></td>
+<td><a href="#" class="reg">Get Summary</a></td>
+
+</tr>
 </table>
+<table class="table" align="center">
+<tr>
 
-</center>
-</body>
+   <td></td>
+   <td></td>
+<td></td>
+<td><a href="#" class="reg">Export as PDF</a></td>
+</tr>
+</table>
+</div>
+</div>
+	  </div>
+	  </div>
+<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
+<div class="container-fluid tfrom">
+<div class="container tsum from">
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+<table align="center">
+<tr>
+
+   <td><span>From</span></td>
+   <td><span>To</span></td>
+<td><a href="#" class="reg">Get Summary</a></td>
+<td><a href="#" class="reg">Export as PDF</a></td>
+</tr>
+</table></div>
+</div></div>
+    </div>
+<div id="menu5" class="tab-pane fade">
+      <div class="container">
+	  <br><br>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<h4>My Details</h4>
+<div class="detail">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="mobno">Mobile Number</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+      <tr><td><label for="email">Email:</label></td></tr>
+      <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email"></td></tr>
+      <tr><td><label for="address">Address</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><select class="form-control" id="sel1">
+        <option>State</option>
+        <option>TamilNadu</option>
+        <option>Karnataka</option>
+        <option>Andhra Pradesh</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>Taluk</option>
+        <option>ottanchadiram taluk</option>
+        <option>palani taluk</option>
+        <option>Vadamadurai taluk</option>
+      </select></td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+    </table>
+  </form>
+  </div>
+ 
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
+<h4>My License Details</h4>
+<div class="bankacc">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Trade License Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Date of Registration</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="mobno">Place of Registration</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+
+      <tr><td><label for="address">Address</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><select class="form-control" id="sel1">
+        <option>State</option>
+        <option>TamilNadu</option>
+        <option>Karnataka</option>
+        <option>Andhra Pradesh</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>Taluk</option>
+        <option>ottanchadiram taluk</option>
+        <option>palani taluk</option>
+        <option>Vadamadurai taluk</option>
+      </select></td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+    </table>
+  </form>
+  </div><br>
+ <table align="center"><tr><td><a href="#" class="reg">Export as PDF</a></td></tr></table>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<h4>My Account Details</h4>
+<div class="password">
+<form>
+    <table class="table"> 
+  <tr><td><label for="name">Bank Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Account Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="mobno">IFSC</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+
+      <tr><td><label for="address">Bank Branch</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+    </table>
+  </form>
+  </div>
+</div>
+</div>
+</div>
+
+    </div>
+
+</div>
+</div>
+    
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+
 </html>
