@@ -62,6 +62,7 @@ function populate1(s1, s2)
 }
 function validateTForm()
 {
+	console.log("inside validateTForm()");
 	var name = document.tregform.traderName;
 	var mob = document.tregform.traderMobile;
 	var aadhar = document.tregform.traderAadharnum;
@@ -325,13 +326,13 @@ function validateTForm()
 <h4>Welcome to NeoMandi's Trader registration page</h4>
 </div>
 <!---my detail form----->
-<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform" >
+<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
 <div class="container">
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
-<form>
+
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderName" required></td></tr>
@@ -390,25 +391,25 @@ function validateTForm()
         
     </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderPin "></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderPin"></td></tr>
     </table>
- </form>
+ 
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank">
 <h4>My Bank Account Details</h4>
 <div class="bankacc">
-<form>
+
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderAccountNum"></td></tr>
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName"></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="traderBranch "></td></tr>	  
+<tr><td><input type="text" class="form-control" id="usr" name="traderBranch"></td></tr>	  
 
       <tr><td><label for="address">IFSC</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode "></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode"></td></tr>
       
        <tr><td><select class="form-control" id="sel1" name="bState ">
         <option>State</option>
@@ -431,36 +432,36 @@ function validateTForm()
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="bPin"></td></tr>
     </table>
-  </form>
+  
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass">
 <h4>My License Details</h4>
 <div class="detail1">
-<form>
+
     <table class="table">
       <tr><td><label for="name">Trader License Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum "></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum"></td></tr>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderDateOfRegistration "></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderDateOfRegistration"></td></tr>
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration "></td></tr>	  
+<tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress"></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseState"></td></tr>
-       <tr><td><select class="form-control" id="sel1">
+       <tr><td><input type="text" class="form-control" id="usr" ></td></tr>
+       <tr><td><select class="form-control" id="sel1" name="traderLicenseState"> 
         <option>State</option>
         <option>TamilNadu</option>
         <option>Karnataka</option>
         <option>Andhra Pradesh</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="traderLicenseDistrict ">
+	  <tr><td><select class="form-control" id="sel1" name="traderLiscenseDistrict">
         <option>District</option>
         <option>Dindigul</option>
         <option>Chennai</option>
         <option>Madurai</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="traderLicensTaluk">
+	  <tr><td><select class="form-control" id="sel1" name="traderLicenseTaluk">
         <option>Taluk</option>
         <option>ottanchadiram taluk</option>
         <option>palani taluk</option>
@@ -469,7 +470,7 @@ function validateTForm()
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin"></td></tr>
     </table>
-  </form>
+  
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -477,7 +478,7 @@ function validateTForm()
 <div class="pass1">
 <h4>My Password</h4>
 <div class="password">
-   <form><table class="table">
+   <table class="table">
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword"></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
@@ -486,7 +487,7 @@ function validateTForm()
 <tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
 
     </table>
-  </form>
+  
   </div>
   </div>
   <table align="center">

@@ -172,7 +172,11 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
+<<<<<<< HEAD
+<form name = "EregForm1" method = "get" action = "EmployeeRegisterInt.jsp">
+=======
 
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
@@ -185,7 +189,11 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
+<<<<<<< HEAD
+<form name = "EregForm2" method = "get" action = "EmployeeRegisterInt.jsp">
+=======
 
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
@@ -205,10 +213,7 @@ function validateEForm()
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td> <img src="images/employeeori.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
-
-
-
-  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
+<table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
 </div>
 </form>
 </div>
