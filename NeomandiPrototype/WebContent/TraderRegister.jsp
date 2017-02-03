@@ -10,15 +10,12 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 
 
-function register(){
-	document.getElementById("personal").submit();
-	
-}
+
 $(function(){
   $("#header").load("Header.html"); 
   $("#footer").load("Footer.html");
@@ -64,27 +61,47 @@ function validateTForm()
 {
 	console.log("inside validateTForm()");
 	var name = document.tregform.traderName;
-	var mob = document.tregform.traderMobile;
 	var aadhar = document.tregform.traderAadharnum;
+	var mob = document.tregform.traderMobile;
 	var email = document.tregform.traderEmail;
+	var address=document.tregform.traderAddress;
+	var state=document.tregform.traderState;
+	var district=document.tregform.traderDistrict;
 	var taluk = document.tregform.traderTaluk;
-	var hobli = document.tregform.traderHobli;
-	var village = document.tregform.traderVillage;
 	var pin = document.tregform.traderPin;
+	
 	var bankname = document.tregform.traderBankName;
 	var accountnum = document.tregform.traderAccountNum;
 	var branch = document.tregform.traderBranch;
 	var ifsc = document.tregform.traderIfscCode;
+	var bstate=document.tregform.bState;
+	var bdistrict=document.tregform.bDistrict;
+	var btaluk=document.tregform.bTaluk;
+	var bpin=document.tregform.bPin;
 	var licensenumber = document.tregform.traderLicenseNum;
-	var traderlpin = document.tregform.traderLicensePin;
+	var registerdate=document.tregform.traderDateOfRegistration;
+	
 	var placeofregistration = document.tregform.traderPlaceOfRegistration;
-	var password = document.tregform.traderPassword;
-	var rpassword = document.tregform.traderConfirmPassword;
+	var ltraderAddress=document.tregform.ltraderAddress;
+	var lstate=document.tregform.traderLicenseState;
+	var ldistrict=document.tregform.traderLiscenseDistrict;
 	var ltaluk=document.tregform.traderLicenseTaluk;
 	var lpin=document.tregform.traderLicensePin;
+	var password = document.tregform.traderPassword;
+	var rpassword = document.tregform.traderConfirmPassword;
+	var otp=document.tregform.traderOTP;
+	
+	
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
+	if(name.value==""){
+		alert("Please enter your name");
+		name.focus();
+		    return false;
+	}
+	
+	
 	if(!name.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for name.");
@@ -92,6 +109,24 @@ function validateTForm()
 		return false;
 	}
 	
+	//Aadhar number validation
+	var aval = aadhar.value;
+	if(aval==""){
+		alert("Please enter your Aadhar number");
+		aadhar.focus();
+		    return false;
+	}
+	if(isNaN(aval)){
+		alert("Enter the valid Aadhar Number");
+		aadhar.focus();
+		return false;
+	}
+	if(aval.length!=12){
+		
+		alert(" Your Aadhar number must be 12 digits");
+		aadhar.focus();
+		return false;
+	}
 	//Mobile number validation
 	var val = mob.value;
 	if(val==""){
@@ -120,26 +155,14 @@ function validateTForm()
 	    return false;
 	}
 	
-	//Aadhar number validation
-	var aval = aadhar.value;
-	if(aval==""){
-		alert("Please enter your Aadhar number");
-		aadhar.focus();
-		    return false;
-	}
-	if(isNaN(aval)){
-		alert("Enter the valid Aadhar Number");
-		aadhar.focus();
-		return false;
-	}
-	if(aval.length!=12){
-		
-		alert(" Your Aadhar number must be 12 digits");
-		aadhar.focus();
-		return false;
-	}
+	
 	
 	//Email validation
+	if(email.value==""){
+		window.alert("Please enter your email id");
+		email.focus();
+		return false;
+	}
 	if(email.value.indexOf("@", 0) < 0)
 	{
 		window.alert("Please enter a valid email id");
@@ -152,8 +175,35 @@ function validateTForm()
         email.focus();
         return false;
     }
+	//address validation
+	if(address.value==""){
+		window.alert("Please enter your address");
+		address.focus();
+		return false;
+	}
+	
+	//state validation
+	if(state.value==""){
+		window.alert("Please enter state");
+		state.focus();
+		return false;
+	}
+	
+	
+	//district validation
+	
+	if(district.value==""){
+		window.alert("Please enter district ");
+		district.focus();
+		return false;
+	}
 	
 	//Taluk name validation
+	if(taluk.value==""){
+		window.alert("Please enter your taluk name");
+		taluk.focus();
+		return false;
+	}
 	if(!taluk.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for taluk name.");
@@ -161,23 +211,14 @@ function validateTForm()
 		return false;
 	}
 	
-	//Hobli name validation
-	if(!hobli.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for hobli name.");
-		hobli.focus();
-		return false;
-	}
 	
-	//Village name validation
-	if(!village.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for village name.");
-		village.focus();
-		return false;
-	}
 	
 	//PIN Code validation
+	if(pin.value==""){
+		window.alert("Please enter your pincode");
+		pin.focus();
+		return false;
+	}
 	var pinval = pin.value;
 	if(/^[0-9]{6}$/.test(pinval))
 	{
@@ -187,14 +228,6 @@ function validateTForm()
 	{
 		window.alert("Please enter valid PIN Code.");
 		pin.focus();
-		return false;
-	}
-	
-	//Bank name validation
-	if(!bankname.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for bank name.");
-		bankname.focus();
 		return false;
 	}
 	
@@ -217,7 +250,27 @@ function validateTForm()
 		return false;
 	}
 	
+	//Bank name validation
+	if(bankname.value==""){
+		window.alert("Please enter your Bank name");
+		backname.focus();
+		return false;
+	}
+	if(!bankname.value.match(letters))
+	{
+		window.alert("Please enter only alphabets for bank name.");
+		bankname.focus();
+		return false;
+	}
+	
+
+	
 	//Account Branch name validation
+	if(branch.value==""){
+		window.alert("Please enter your Branch name");
+		branch.focus();
+		return false;
+	}
 	if(!branch.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for branch name.");
@@ -226,6 +279,12 @@ function validateTForm()
 	}
 	
 	//IFSC Code validation
+	if(ifsc.value==""){
+		window.alert("Please enter your IFSC code");
+		ifsc.focus();
+		return false;
+	}
+	
 	var ifscval = ifsc.value;
 	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
 	{
@@ -238,11 +297,69 @@ function validateTForm()
 		return false;
 	}
 	
+	//state bank validation
+	
+	 if( bstate.value==""){
+			window.alert("Please enter statee");
+			 bstate.focus();
+			return false;
+		}
+	
+	//district bank validation
+	
+	if( bdistrict.value==""){
+		window.alert("Please enter district");
+		bdistrict.focus();
+		return false;
+	}
+	
+	
+	//taluk bank validation
+	if( btaluk.value==""){
+		window.alert("Please enter  taluk");
+		 btaluk.focus();
+		return false;
+	}
+	
+	
+	// bank pinncode validation
+	if(bpin.value==""){
+		window.alert("Please enter your pincode");
+		bpin.focus();
+		return false;
+	}
+	var bpinval = bpin.value;
+	if(/^[0-9]{6}$/.test(bpinval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		bpin.focus();
+		return false;
+	}
+	
 	//license validation
 	var license=licensenumber.value;
+	if(licensenumber.value==""){
+		window.alert("Please enter your License number code");
+		licensenumber.focus();
+		return false;
+	}
+	
+	
+	
 	if(isNaN(license)){
 		alert("Enter the valid License Number");
 		licensenumber.focus();
+		return false;
+	}
+	// date of registraion
+	
+	if(registerdate.value==""){
+		window.alert("Please enter date");
+		registerdate.focus();
 		return false;
 	}
 	
@@ -254,8 +371,34 @@ function validateTForm()
 		placeofregistration.focus();
 		return false;
 	}
+	//license address
+	
+	if(ltraderAddress.value==""){
+		window.alert("Please enter address");
+		ltraderAddress.focus();
+		return false;
+	}
+	//lstate validation
+	
+	if(lstate.value==""){
+		window.alert("Please enter state");
+		lstate.focus();
+		return false;
+	}
+	//ldistrict validation
+	
+	if(ldistrict.value==""){
+		window.alert("Please enter district");
+		ldistrict.focus();
+		return false;
+	}
 	
 	//LTaluk Validation
+	if(ltaluk.value==""){
+		window.alert("Please enter taluk");
+		ltaluk.focus();
+		return false;
+	}
 	if(!ltaluk.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for taluk.");
@@ -263,8 +406,14 @@ function validateTForm()
 		return false;
 	}
 	
-	//PIN Code validation
-	var pinval1 = traderlpin.value;
+	//lPIN Code validation
+	if(lpin.value==""){
+		window.alert("Please enter pincode");
+		lpin.focus();
+		return false;
+	}
+	
+	var pinval1 =lpin.value;
 	if(/^[0-9]{6}$/.test(pinval1))
 	{
 		//value is ok
@@ -277,11 +426,55 @@ function validateTForm()
 	}
 	
 	//Password validation
+	if(password.value==""){
+		window.alert("Please enter your password");
+		password.focus();
+		return false;
+	}
+	
+if (/^\d{8}$/.test(password.value)) {
+		
+	    // value is ok, use it
+	} else {
+	    alert("Invalid password, must be 8 digits");
+	    password.focus();
+	    return false;
+	}
+	if(rpassword.value==""){
+		window.alert("Please enter your password again");
+		rpassword.focus();
+		return false;
+	}
+	
 	if(password.value != rpassword.value)
 	{
 		window.alert("Password does not match.")
 		return false;
 	}
+	
+	//otp validation
+	var otpval = otp.value;
+	if(otp.value == "")
+	{
+		alert("Please enter your OTP");
+		otp.focus();
+		return false;
+	}
+	if(isNaN(otpval)){
+		alert("Enter the valid OTP number");
+		otp.focus();
+		return false;
+	}
+	if (/^\d{6}$/.test(otpval)) {
+		
+	    // value is ok, use it
+	} else {
+	    alert("Invalid OTP number, must be six digits");
+	    otp.focus();
+	    return false;
+	}
+	
+	
 	return true;
 }
 </script> 
@@ -379,11 +572,11 @@ function validateTForm()
       </select></td></tr>
       <!-- id = "district" -->
 	  <tr><td>
-	  		<select class="form-control" id="sel1" name="traderDistrict">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
+	  
+	  <label for = "district">District</label><br />
+		<select id = "district" name = "traderDistrict" class="form-control">
+		</select><br/>
+	  	
       </select>
 		
 	  <tr><td>
@@ -482,9 +675,9 @@ function validateTForm()
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword"></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-<tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
+<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP"></td></tr>	  
 
     </table>
   
@@ -492,16 +685,39 @@ function validateTForm()
   </div>
   <table align="center">
   <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
-  <table align="center"><tr><td><a href="#" class="reg" onclick="register()">Register</a></td></tr></table>
+  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
   </table>
 </div>
 </div>
 </div>
  </form>
 <!---my detail form end----->
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b>
+<% if(msg != null && msg.equals("SUCCESS"))
+	{
+		out.print("Registration Successfull");
+		out.print("<br/><a href='Login.html'>Click here to login</a>");
+	}
+	else if(msg != null)
+	{
+		out.print(msg);
+	}
+%></b></p>
+<script>
+function submitform(){
+	var bool = validateTForm();
+	console.log("Bool: "+bool);
+	console.log()
+	if(bool == true)
+	{
+		document.tregform.submit();
+	}
+}
+</script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/owl.carousel.min.js" type="text/javascript"></script>
+
 
  
 
