@@ -10,7 +10,7 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 
@@ -65,24 +65,43 @@ function validateTForm()
 	var mob = document.tregform.traderMobile;
 	var email = document.tregform.traderEmail;
 	var address=document.tregform.traderAddress;
+	var state=document.tregform.traderState;
+	var district=document.tregform.traderDistrict;
 	var taluk = document.tregform.traderTaluk;
-	var hobli = document.tregform.traderHobli;
-	var village = document.tregform.traderVillage;
 	var pin = document.tregform.traderPin;
+	
 	var bankname = document.tregform.traderBankName;
 	var accountnum = document.tregform.traderAccountNum;
 	var branch = document.tregform.traderBranch;
 	var ifsc = document.tregform.traderIfscCode;
+	var bstate=document.tregform.bState;
+	var bdistrict=document.tregform.bDistrict;
+	var btaluk=document.tregform.bTaluk;
+	var bpin=document.tregform.bPin;
 	var licensenumber = document.tregform.traderLicenseNum;
-	var traderlpin = document.tregform.traderLicensePin;
+	var registerdate=document.tregform.traderDateOfRegistration;
+	
 	var placeofregistration = document.tregform.traderPlaceOfRegistration;
-	var password = document.tregform.traderPassword;
-	var rpassword = document.tregform.traderConfirmPassword;
+	var ltraderAddress=document.tregform.ltraderAddress;
+	var lstate=document.tregform.traderLicenseState;
+	var ldistrict=document.tregform.traderLiscenseDistrict;
 	var ltaluk=document.tregform.traderLicenseTaluk;
 	var lpin=document.tregform.traderLicensePin;
+	var password = document.tregform.traderPassword;
+	var rpassword = document.tregform.traderConfirmPassword;
+	var otp=document.tregform.traderOTP;
+	
+	
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
+	if(name.value==""){
+		alert("Please enter your name");
+		name.focus();
+		    return false;
+	}
+	
+	
 	if(!name.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for name.");
@@ -160,6 +179,22 @@ function validateTForm()
 	if(address.value==""){
 		window.alert("Please enter your address");
 		address.focus();
+		return false;
+	}
+	
+	//state validation
+	if(state.value==""){
+		window.alert("Please enter state");
+		state.focus();
+		return false;
+	}
+	
+	
+	//district validation
+	
+	if(district.value==""){
+		window.alert("Please enter district ");
+		district.focus();
 		return false;
 	}
 	
@@ -262,11 +297,69 @@ function validateTForm()
 		return false;
 	}
 	
+	//state bank validation
+	
+	 if( bstate.value==""){
+			window.alert("Please enter statee");
+			 bstate.focus();
+			return false;
+		}
+	
+	//district bank validation
+	
+	if( bdistrict.value==""){
+		window.alert("Please enter district");
+		bdistrict.focus();
+		return false;
+	}
+	
+	
+	//taluk bank validation
+	if( btaluk.value==""){
+		window.alert("Please enter  taluk");
+		 btaluk.focus();
+		return false;
+	}
+	
+	
+	// bank pinncode validation
+	if(bpin.value==""){
+		window.alert("Please enter your pincode");
+		bpin.focus();
+		return false;
+	}
+	var bpinval = bpin.value;
+	if(/^[0-9]{6}$/.test(bpinval))
+	{
+		//value is ok
+	}
+	else
+	{
+		window.alert("Please enter valid PIN Code.");
+		bpin.focus();
+		return false;
+	}
+	
 	//license validation
 	var license=licensenumber.value;
+	if(licensenumber.value==""){
+		window.alert("Please enter your License number code");
+		licensenumber.focus();
+		return false;
+	}
+	
+	
+	
 	if(isNaN(license)){
 		alert("Enter the valid License Number");
 		licensenumber.focus();
+		return false;
+	}
+	// date of registraion
+	
+	if(registerdate.value==""){
+		window.alert("Please enter date");
+		registerdate.focus();
 		return false;
 	}
 	
@@ -278,8 +371,34 @@ function validateTForm()
 		placeofregistration.focus();
 		return false;
 	}
+	//license address
+	
+	if(ltraderAddress.value==""){
+		window.alert("Please enter address");
+		ltraderAddress.focus();
+		return false;
+	}
+	//lstate validation
+	
+	if(lstate.value==""){
+		window.alert("Please enter state");
+		lstate.focus();
+		return false;
+	}
+	//ldistrict validation
+	
+	if(ldistrict.value==""){
+		window.alert("Please enter district");
+		ldistrict.focus();
+		return false;
+	}
 	
 	//LTaluk Validation
+	if(ltaluk.value==""){
+		window.alert("Please enter taluk");
+		ltaluk.focus();
+		return false;
+	}
 	if(!ltaluk.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for taluk.");
@@ -287,8 +406,14 @@ function validateTForm()
 		return false;
 	}
 	
-	//PIN Code validation
-	var pinval1 = traderlpin.value;
+	//lPIN Code validation
+	if(lpin.value==""){
+		window.alert("Please enter pincode");
+		lpin.focus();
+		return false;
+	}
+	
+	var pinval1 =lpin.value;
 	if(/^[0-9]{6}$/.test(pinval1))
 	{
 		//value is ok
@@ -301,11 +426,55 @@ function validateTForm()
 	}
 	
 	//Password validation
+	if(password.value==""){
+		window.alert("Please enter your password");
+		password.focus();
+		return false;
+	}
+	
+if (/^\d{8}$/.test(password.value)) {
+		
+	    // value is ok, use it
+	} else {
+	    alert("Invalid password, must be 8 digits");
+	    password.focus();
+	    return false;
+	}
+	if(rpassword.value==""){
+		window.alert("Please enter your password again");
+		rpassword.focus();
+		return false;
+	}
+	
 	if(password.value != rpassword.value)
 	{
 		window.alert("Password does not match.")
 		return false;
 	}
+	
+	//otp validation
+	var otpval = otp.value;
+	if(otp.value == "")
+	{
+		alert("Please enter your OTP");
+		otp.focus();
+		return false;
+	}
+	if(isNaN(otpval)){
+		alert("Enter the valid OTP number");
+		otp.focus();
+		return false;
+	}
+	if (/^\d{6}$/.test(otpval)) {
+		
+	    // value is ok, use it
+	} else {
+	    alert("Invalid OTP number, must be six digits");
+	    otp.focus();
+	    return false;
+	}
+	
+	
 	return true;
 }
 </script> 
@@ -506,9 +675,9 @@ function validateTForm()
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword"></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-<tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
+<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP"></td></tr>	  
 
     </table>
   
@@ -548,7 +717,7 @@ function submitform(){
 </script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/owl.carousel.min.js" type="text/javascript"></script>
+
 
  
 
