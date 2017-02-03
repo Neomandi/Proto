@@ -90,7 +90,7 @@ function validateTForm()
 	var password = document.tregform.traderPassword;
 	var rpassword = document.tregform.traderConfirmPassword;
 	var otp=document.tregform.traderOTP;
-	
+	var tc=document.tregform.tc;
 	
 	var letters = /^[A-Za-z ]+$/;
 	
@@ -182,21 +182,21 @@ function validateTForm()
 		return false;
 	}
 	
-	//state validation
+	/*state validation
 	if(state.value==""){
-		window.alert("Please enter state");
+		window.alert("Please enter state name");
 		state.focus();
 		return false;
 	}
 	
 	
-	//district validation
+	district validation
 	
 	if(district.value==""){
 		window.alert("Please enter district ");
 		district.focus();
 		return false;
-	}
+	}*/
 	
 	//Taluk name validation
 	if(taluk.value==""){
@@ -253,7 +253,7 @@ function validateTForm()
 	//Bank name validation
 	if(bankname.value==""){
 		window.alert("Please enter your Bank name");
-		backname.focus();
+		bankname.focus();
 		return false;
 	}
 	if(!bankname.value.match(letters))
@@ -296,7 +296,7 @@ function validateTForm()
 		ifsc.focus();
 		return false;
 	}
-	
+	/*
 	//state bank validation
 	
 	 if( bstate.value==""){
@@ -313,10 +313,10 @@ function validateTForm()
 		return false;
 	}
 	
-	
+	*/
 	//taluk bank validation
 	if( btaluk.value==""){
-		window.alert("Please enter  taluk");
+		window.alert("Please enter taluk of your bank");
 		 btaluk.focus();
 		return false;
 	}
@@ -343,7 +343,7 @@ function validateTForm()
 	//license validation
 	var license=licensenumber.value;
 	if(licensenumber.value==""){
-		window.alert("Please enter your License number code");
+		window.alert("Please enter your License number ");
 		licensenumber.focus();
 		return false;
 	}
@@ -358,7 +358,7 @@ function validateTForm()
 	// date of registraion
 	
 	if(registerdate.value==""){
-		window.alert("Please enter date");
+		window.alert("Please enter date of registration");
 		registerdate.focus();
 		return false;
 	}
@@ -378,6 +378,7 @@ function validateTForm()
 		ltraderAddress.focus();
 		return false;
 	}
+	/*
 	//lstate validation
 	
 	if(lstate.value==""){
@@ -392,7 +393,7 @@ function validateTForm()
 		ldistrict.focus();
 		return false;
 	}
-	
+	*/
 	//LTaluk Validation
 	if(ltaluk.value==""){
 		window.alert("Please enter taluk");
@@ -421,7 +422,7 @@ function validateTForm()
 	else
 	{
 		window.alert("Please enter valid PIN Code.");
-		traderlpin.focus();
+		lpin.focus();
 		return false;
 	}
 	
@@ -473,7 +474,14 @@ if (/^\d{8}$/.test(password.value)) {
 	    otp.focus();
 	    return false;
 	}
-	
+	//Terms & condn validation
+	console.log("TC: "+tc.value);
+	if(tc.value == "")
+	{
+		alert("Please check T & C");
+	    tc.focus();
+	    return false;
+	}
 	
 	return true;
 }
@@ -497,17 +505,17 @@ if (/^\d{8}$/.test(password.value)) {
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">About Us</a></li>
-        <li><a href="#">Vision</a></li>
-        <li><a href="#">Mission</a></li>
-		<li><a href="#">How it works</a></li>
-        <li><a href="#">News</a></li>
-		<li><a href="#">Contact Us</a></li>
+        <li ><a href="HomePage.html">About Us</a></li>
+        <li><a href="Vision.html">Vision</a></li>
+        <li><a href="Mission.html">Mission</a></li>
+		<li><a href="Howitworks.html">How it works</a></li>
+        <li><a href="News.html">News</a></li>
+		<li><a href="ContactUs.html">Contact Us</a></li>
 		<li class="dropdown">
-          <a class="dropdown-toggle" href="registermain.html">Register</a>
+          <a class="dropdown-toggle" href="registermain.html" class="active">Register</a>
           
         </li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="Login.html">Login</a></li>
       </ul>
       
     </div>
@@ -528,7 +536,7 @@ if (/^\d{8}$/.test(password.value)) {
 
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderName" required></td></tr>
+	  <tr><td><input type="text" class="form-control" id="name" name="traderName" required></td></tr>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
@@ -538,7 +546,7 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" required></td></tr>
        <tr><td><input type="text" class="form-control" id="usr"></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderState">
+       <tr><td><select class="form-control" id="sel1" name="traderState" onchange = "populate('state','district')">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -572,13 +580,10 @@ if (/^\d{8}$/.test(password.value)) {
       </select></td></tr>
       <!-- id = "district" -->
 	  <tr><td>
-	  
 	  <label for = "district">District</label><br />
-		<select id = "district" name = "traderDistrict" class="form-control">
+		<select id = "district" name = "traderDistrict">
 		</select><br/>
-	  	
-      </select>
-		
+	  
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" required/><br/>
         
@@ -604,24 +609,47 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><label for="address">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode"></td></tr>
       
-       <tr><td><select class="form-control" id="sel1" name="bState ">
+       <tr><td><select class="form-control" id="sel1" name="bState " onchange = "populate('state','district')">
         <option>State</option>
-        <option>TamilNadu</option>
-        <option>Karnataka</option>
-        <option>Andhra Pradesh</option>
+        <option value = "Andhra Pradesh">Andhra Pradesh</option>
+			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value = "Assam">Assam</option>
+			<option value = "Bihar">Bihar</option>
+			<option value = "Chhattisgarh">Chhattisgarh</option>
+			<option value = "Goa">Goa</option>
+			<option value = "Gujarat">Gujarat</option>
+			<option value = "Haryana">Haryana</option>
+			<option value = "Himachal Pradesh">Himachal Pradesh</option>
+			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
+			<option value = "Jharkhand">Jharkhand</option>
+			<option value = "Karnataka">Karnataka</option>
+			<option value = "Kerala">Kerala</option>
+			<option value = "Madhya Pradesh">Madhya Pradesh</option>
+			<option value = "Maharashtra">Maharashtra</option>
+			<option value = "Manipur">Manipur</option>
+			<option value = "Meghalaya">Meghalaya</option>
+			<option value = "Mizoram">Mizoram</option>
+			<option value = "Nagaland">Nagaland</option>
+			<option value = "Odisha">Odisha</option>
+			<option value = "Punjab">Punjab</option>
+			<option value = "Rajasthan">Rajasthan</option>
+			<option value = "Sikkim">Sikkim</option>
+			<option value = "Tamil Nadu">Tamil Nadu</option>
+			<option value = "Telangana">Telangana</option>
+			<option value = "Tripura">Tripura</option>
+			<option value = "Uttar Pradesh">Uttar Pradesh</option>
+			<option value = "Uttarakhand">Uttarakhand</option>
+			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
+     
 	  <tr><td><select class="form-control" id="sel1" name="bDistrict">
         <option>District</option>
         <option>Dindigul</option>
         <option>Chennai</option>
         <option>Madurai</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="bTaluk">
-        <option>Taluk</option>
-        <option>ottanchadiram taluk</option>
-        <option>palani taluk</option>
-        <option>Vadamadurai taluk</option>
-      </select></td></tr>
+	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" />
+        </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="bPin"></td></tr>
     </table>
@@ -636,17 +664,43 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><label for="name">Trader License Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum"></td></tr>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderDateOfRegistration"></td></tr>
+	  <tr><td><input type="date" class="form-control" id = "dateofregistration" name="traderDateOfRegistration"></td></tr>
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress"></td></tr>
        <tr><td><input type="text" class="form-control" id="usr" ></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderLicenseState"> 
-        <option>State</option>
-        <option>TamilNadu</option>
-        <option>Karnataka</option>
-        <option>Andhra Pradesh</option>
+       <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')"> 
+         <option>State</option>
+        <option value = "Andhra Pradesh">Andhra Pradesh</option>
+			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value = "Assam">Assam</option>
+			<option value = "Bihar">Bihar</option>
+			<option value = "Chhattisgarh">Chhattisgarh</option>
+			<option value = "Goa">Goa</option>
+			<option value = "Gujarat">Gujarat</option>
+			<option value = "Haryana">Haryana</option>
+			<option value = "Himachal Pradesh">Himachal Pradesh</option>
+			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
+			<option value = "Jharkhand">Jharkhand</option>
+			<option value = "Karnataka">Karnataka</option>
+			<option value = "Kerala">Kerala</option>
+			<option value = "Madhya Pradesh">Madhya Pradesh</option>
+			<option value = "Maharashtra">Maharashtra</option>
+			<option value = "Manipur">Manipur</option>
+			<option value = "Meghalaya">Meghalaya</option>
+			<option value = "Mizoram">Mizoram</option>
+			<option value = "Nagaland">Nagaland</option>
+			<option value = "Odisha">Odisha</option>
+			<option value = "Punjab">Punjab</option>
+			<option value = "Rajasthan">Rajasthan</option>
+			<option value = "Sikkim">Sikkim</option>
+			<option value = "Tamil Nadu">Tamil Nadu</option>
+			<option value = "Telangana">Telangana</option>
+			<option value = "Tripura">Tripura</option>
+			<option value = "Uttar Pradesh">Uttar Pradesh</option>
+			<option value = "Uttarakhand">Uttarakhand</option>
+			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
 	  <tr><td><select class="form-control" id="sel1" name="traderLiscenseDistrict">
         <option>District</option>
@@ -654,12 +708,8 @@ if (/^\d{8}$/.test(password.value)) {
         <option>Chennai</option>
         <option>Madurai</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="traderLicenseTaluk">
-        <option>Taluk</option>
-        <option>ottanchadiram taluk</option>
-        <option>palani taluk</option>
-        <option>Vadamadurai taluk</option>
-      </select></td></tr>
+	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" />
+        </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin"></td></tr>
     </table>
@@ -684,8 +734,8 @@ if (/^\d{8}$/.test(password.value)) {
   </div>
   </div>
   <table align="center">
-  <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
-  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
+  <tr><td><label><input type="checkbox" name="tc">I accept Terms and Condition</label></td></tr>
+  <table align="center"><tr><td><a href="javascript: submitform()" class="reg" >Register</a></td></tr></table>
   </table>
 </div>
 </div>

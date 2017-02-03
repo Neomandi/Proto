@@ -177,6 +177,7 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
+
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
@@ -189,6 +190,7 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
+
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>

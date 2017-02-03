@@ -55,6 +55,7 @@ public class ControllerServlet extends HttpServlet {
 		//TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
 
 		FarmerLoginBean flbn = (FarmerLoginBean) request.getAttribute("flbean");
+		//TraderLoginBean tlbn=(TraderLoginBean) request.getAttribute("tlbean");
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
@@ -796,9 +797,10 @@ if(uri.contains("AfterAccept")){
 			String msg = m.traderRegister(trb);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				rd=request.getRequestDispatcher("TraderRegister.jsp");
 				try 
 				{
+					request.setAttribute("errmsg",msg);
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
@@ -815,6 +817,7 @@ if(uri.contains("AfterAccept")){
 			    rd=request.getRequestDispatcher("TraderRegister.jsp");
 				try 
 				{
+			
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
