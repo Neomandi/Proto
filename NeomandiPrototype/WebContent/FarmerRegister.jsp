@@ -78,28 +78,31 @@ else
 <!---my detail form----->
 <div class="container">
 <div class="row">
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det" id="myclass">
-<h4>My Details</h4>
-<div class="detail">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
+<h4 id="h1">My Details</h4>
+<div class="detail" id="d1">
 <form id="bank" method="get" action="FarmerRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" onselect="fun()" value="Your name" name="farmername" id="name" required></td></tr>
+	  <tr><td><input type="text" class="form-control" onclick="fun()" placeholder="Your name" name="farmername" id="name" required></td></tr>
 	  <script>
 	  function fun(){
-		  console.log("selected ");
-		  $("#myclass").css("box-shadow","0px 0px 3px black");
-		  $("#mclass").css("box-shadow","0px 0px 0px black");
+		  $("#d1").css("box-shadow","0px 1px 7px black");
+		  $("#h1").css("box-shadow","0px -1px 7px black");
+		  $("#h2").css("box-shadow","0px 0px 0px black");
+		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 0px 0px black");
 	  }</script>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmeraadharnum" id="aadharnumber" required></td></tr>
+	  <tr><td><input type="text" class="form-control" onclick="fun()" placeholder="Your name" name="farmeraadharnum" id="aadharnumber" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmermobile" id="mob" required></td></tr>	  
+	  <tr><td><input type="text" class="form-control" onclick="fun()" placeholder="Your Mobile Number" name="farmermobile" id="mob" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
-      <tr><td><input type="email" class="form-control" id="email" name="farmeremail" placeholder="Enter email" required></td></tr>
+      <tr><td><input type="email" class="form-control" onclick="fun()" placeholder="Your Email" id="email" name="farmeremail" placeholder="Enter email" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" required></td></tr>
-      <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr" required></td></tr>
+      <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr"></td></tr>
       <tr><td><select class="form-control" id="sel1">
         <option>State</option>
         <option>TamilNadu</option>
@@ -119,30 +122,33 @@ else
         <option>Vadamadurai taluk</option>
       </select></td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="pin" required></td></tr>
+	  <tr><td><input type="text" onclick="fun()" class="form-control" id="pin" required></td></tr>
     </table>
   </form>
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank"  >
-<h4 id="hclass">My Bank Account Details</h4>
-<div class="bankacc" id="mclass">
+<h4 id="h2">My Bank Account Details</h4>
+<div class="bankacc" id="d2">
 <form id="bank" method="get" action="FarmerRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" value="account number" onselect="fun1()" name="farmeraccountnum" id="acc" required></td></tr>
+	  <tr><td><input type="text" class="form-control" placeholder="account number" onclick="fun1()" name="farmeraccountnum" id="acc" required></td></tr>
       <script>
 	  function fun1(){		  
-		  $("#mclass").css("box-shadow","0px 2px 5px black");
-		  $("#hclass").css("box-shadow","0px -1px 5px black");
-		  $("#myclass").css("box-shadow","0px 0px 0px black");
+		  $("#d2").css("box-shadow","0px 1px 7px black");
+		  $("#h2").css("box-shadow","0px -1px 7px black");
+		  $("#h1").css("box-shadow","0px 0px 0px black");
+		  $("#d1").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 0px 0px black");
 	  }</script>
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmerbankname" id="farmerbank" required></td></tr>
+	  <tr><td><input type="text" class="form-control" onclick="fun1()" placeholder="Your Bank name" name="farmerbankname" id="farmerbank" required></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="branch" name="farmerbranch" required></td></tr>	  
+	  <tr><td><input type="text" class="form-control" id="branch" onclick="fun1()" placeholder="Your branch name" name="farmerbranch" required></td></tr>	  
       <tr><td><label for="address">IFSC</label></td></tr>
-      <tr><td><input type="text" class="form-control" id="ifsc" name="farmerifsc" required></td></tr>
+      <tr><td><input type="text" class="form-control" id="ifsc" onclick="fun1()" placeholder="Bank IFSC" name="farmerifsc" required></td></tr>
       <tr><td><select class="form-control" id="sel1">
        <option>State</option>
        <option>TamilNadu</option>
@@ -162,7 +168,7 @@ else
         <option>Vadamadurai taluk</option>
       </select></td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" required></td></tr>
+	  <tr><td><input type="text" class="form-control" onclick="fun1()" placeholder="Pin" id="usr" required></td></tr>
     </table>
   </form>
   </div>
@@ -171,17 +177,26 @@ else
 <table><tr><td> <img src="images/farmerori.png" class="img-responsive" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass" id="class">
-<h4>My Bank Account Details</h4>
-<div class="password">
+<h4 id="h3">My Bank Account Details</h4>
+<div class="password" id="d3">
 <form>
     <table class="table">	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" required></td></tr>
+	  <tr><td><input type="password" class="form-control" onclick="fun2()" placeholder="" id="pwd" required></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="cpwd" required></td></tr>
+	  <tr><td><input type="password" class="form-control" onclick="fun2()" placeholder="" id="cpwd" required></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd"></td></tr>	  
+	  <tr><td><input type="password" class="form-control" onclick="fun2()" placeholder="" id="pwd"></td></tr>	  
     </table>
+    <script>
+	  function fun2(){		  
+		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h2").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px 0px black");
+		  $("#d1").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 1px 7px black");
+		  $("#h3").css("box-shadow","0px -1px 7px black");
+	  }</script>
   </form>
   </div>  
   <table align="center">
