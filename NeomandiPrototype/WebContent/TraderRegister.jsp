@@ -486,6 +486,18 @@ if (/^\d{8}$/.test(password.value)) {
 	return true;
 }
 </script> 
+<style>
+#myclass1
+{
+	margin-right: 5px;
+	float: left;
+	box-shadow: 0px 0px 2px black;
+}
+#class1
+{
+	float:right;
+}
+</style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
 
@@ -527,26 +539,35 @@ if (/^\d{8}$/.test(password.value)) {
 <h4>Welcome to NeoMandi's Trader registration page</h4>
 </div>
 <!---my detail form----->
-<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
+
 <div class="container">
 <div class="row">
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " id="myclass">
 <h4>My Details</h4>
 <div class="detail">
-
+<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="name" name="traderName" required></td></tr>
+	  <tr><td><input type="text" class="form-control" id="name"   onclick="fun()" name="traderName" required></td></tr>
+	   <script>
+	  function fun(){
+		  console.log("selected ");
+		  $("#myclass").css("box-shadow","0px 0px 3px black");
+		  $("#pclass").css("box-shadow","0px 0px 0px black");
+		  $("#lclass").css("box-shadow","0px 0px 0px black");
+		   $("#mclass").css("box-shadow","0px 0px 0px black");
+			  $("#hclass").css("box-shadow","0px -1px 0px black");
+	  }</script>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name = "traderAadharnum" required></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-	<tr><td><input type="text" class="form-control" id="usr"  name = "traderMobile" required></td></tr>	  
+	<tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
-      <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" required></td></tr>
+      <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" onclick="fun()" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" required></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderState" onchange = "populate('state','district')">
+	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()" required></td></tr>
+       <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()"></td></tr>
+       <tr><td><select class="form-control" id="sel1" name="traderState" onclick="fun()" onchange = "populate('state','district')">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -581,35 +602,44 @@ if (/^\d{8}$/.test(password.value)) {
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "district" name = "traderDistrict">
+		<select id = "district" name = "traderDistrict" onclick="fun()">
 		</select><br/>
 	  
 	  <tr><td>
-	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" required/><br/>
+	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
         
     </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderPin"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"   onclick="fun()" name="traderPin"></td></tr>
     </table>
  
   </div>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank">
-<h4>My Bank Account Details</h4>
-<div class="bankacc">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" id="mclass">
+<h4 id="hclass">My Bank Account Details</h4>
+<div class="bankacc" >
 
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderAccountNum"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderAccountNum"  onclick="fun1()"></td></tr>
+	  
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName" onclick="fun1()"></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="traderBranch"></td></tr>	  
+<tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
+	  function fun1(){	
+		  $("#myclass").css("box-shadow","0px 0px 0px black");
+		  $("#pclass").css("box-shadow","0px 0px 0px black");
+		  $("#lclass").css("box-shadow","0px 0px 0px black");
+		   $("#mclass").css("box-shadow","0px 0px 3px black");
+			 $("#hclass").css("box-shadow","0px -1px 0px black");
+		  
+	  }</script>
 
       <tr><td><label for="address">IFSC</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode" onclick="fun1()"></td></tr>
       
-       <tr><td><select class="form-control" id="sel1" name="bState " onchange = "populate('state','district')">
+       <tr><td><select class="form-control" id="sel1" name="bState " onchange = "populate('state','district')" onclick="fun1()">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -642,35 +672,44 @@ if (/^\d{8}$/.test(password.value)) {
 			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
      
-	  <tr><td><select class="form-control" id="sel1" name="bDistrict">
+	  <tr><td><select class="form-control" id="sel1" name="bDistrict" onclick="fun1()">
         <option>District</option>
         <option>Dindigul</option>
         <option>Chennai</option>
         <option>Madurai</option>
       </select></td></tr>
-	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" />
+	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" onclick="fun1()"/>
         </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="bPin"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="bPin" onclick="fun1()"></td></tr>
     </table>
   
   </div>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" id="lclass">
 <h4>My License Details</h4>
 <div class="detail1">
 
     <table class="table">
       <tr><td><label for="name">Trader License Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum" onclick="fun2()"></td></tr>
+	  <script>
+	  function fun2(){
+	  $("#lclass").css("box-shadow","0px 2px 5px black");
+	   $("#mclass").css("box-shadow","0px 0px 0px black");
+		  $("#hclass").css("box-shadow","0px -1px 0px black");
+		  $("#myclass").css("box-shadow","0px 0px 0px black");
+		  $("#pclass").css("box-shadow","0px 0px 0px black");
+	  }
+		  </script>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
-	  <tr><td><input type="date" class="form-control" id = "dateofregistration" name="traderDateOfRegistration"></td></tr>
+	  <tr><td><input type="date" class="form-control" id = "dateofregistration" name="traderDateOfRegistration" onclick="fun2()"></td></tr>
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration"></td></tr>	  
+<tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration" onclick="fun2()"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()"></td></tr>
        <tr><td><input type="text" class="form-control" id="usr" ></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')"> 
+       <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')" onclick="fun2()"> 
          <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -702,32 +741,41 @@ if (/^\d{8}$/.test(password.value)) {
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="traderLiscenseDistrict">
+	  <tr><td><select class="form-control" id="sel1" name="traderLiscenseDistrict" onclick="fun2()">
         <option>District</option>
         <option>Dindigul</option>
         <option>Chennai</option>
         <option>Madurai</option>
       </select></td></tr>
-	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" />
+	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" onclick="fun2()"/>
         </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin" onclick="fun2()"></td></tr>
     </table>
   
   </div>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
 <table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
-<div class="pass1">
-<h4>My Password</h4>
+<div class="pass1" id="pclass">
+<h4 >My Password</h4>
 <div class="password">
    <table class="table">
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword" onclick="fun3()"></td></tr>
+	   <script>
+	  function fun3(){
+		  $("#pclass").css("box-shadow","0px 2px 5px black");
+	  $("#lclass").css("box-shadow","0px 0px 0px black");
+	   $("#mclass").css("box-shadow","0px 0px 0px black");
+		  $("#hclass").css("box-shadow","0px -1px 0px black");
+		  $("#myclass").css("box-shadow","0px 0px 0px black");
+	  }
+		  </script>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword"></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword" onclick="fun3()"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP"></td></tr>	  
+<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP" onclick="fun3()"></td></tr>	  
 
     </table>
   
@@ -737,10 +785,11 @@ if (/^\d{8}$/.test(password.value)) {
   <tr><td><label><input type="checkbox" name="tc">I accept Terms and Condition</label></td></tr>
   <table align="center"><tr><td><a href="javascript: submitform()" class="reg" >Register</a></td></tr></table>
   </table>
+  </form>
 </div>
 </div>
 </div>
- </form>
+ 
 <!---my detail form end----->
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b>
