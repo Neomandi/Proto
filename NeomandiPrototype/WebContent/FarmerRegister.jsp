@@ -15,6 +15,18 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD9ECA30-3AD0-9445-B7F7-37B6DC12D43A/main.js" charset="UTF-8"></script>
+<style>
+#myclass1
+{
+	margin-right: 5px;
+	float: left;
+	box-shadow: 0px 0px 2px black;
+}
+#class1
+{
+	float:right;
+}
+</style>
 </head>
 <body class="">
 <%if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("FAIL")))
@@ -24,14 +36,15 @@
 	 out.println("location='FarmerLogin.jsp';");
      out.println("</script>");
 }
-else{
-if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("success")))
-{    
-	 out.println("<script type=\"text/javascript\">");
-	 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
-     out.println("</script>");
-}%>
-
+else
+{
+	if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("success")))
+	{    
+		 out.println("<script type=\"text/javascript\">");
+		 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
+    	 out.println("</script>");
+	}
+%>
 <!---menu bar------>
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -65,13 +78,19 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
 <!---my detail form----->
 <div class="container">
 <div class="row">
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det" id="myclass">
 <h4>My Details</h4>
 <div class="detail">
 <form id="bank" method="get" action="FarmerRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmername" id="name" required></td></tr>
+	  <tr><td><input type="text" class="form-control" onselect="fun()" value="Your name" name="farmername" id="name" required></td></tr>
+	  <script>
+	  function fun(){
+		  console.log("selected ");
+		  $("#myclass").css("box-shadow","0px 0px 3px black");
+		  $("#mclass").css("box-shadow","0px 0px 0px black");
+	  }</script>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="farmeraadharnum" id="aadharnumber" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
@@ -80,8 +99,8 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
       <tr><td><input type="email" class="form-control" id="email" name="farmeremail" placeholder="Enter email" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" required></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
-       <tr><td><select class="form-control" id="sel1">
+      <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><select class="form-control" id="sel1">
         <option>State</option>
         <option>TamilNadu</option>
         <option>Karnataka</option>
@@ -105,13 +124,19 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
   </form>
   </div>
 </div>
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
-<h4>My Bank Account Details</h4>
-<div class="bankacc">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank"  >
+<h4 id="hclass">My Bank Account Details</h4>
+<div class="bankacc" id="mclass">
 <form id="bank" method="get" action="FarmerRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" name="farmeraccountnum" id="acc" required></td></tr>
+	  <tr><td><input type="text" class="form-control" value="account number" onselect="fun1()" name="farmeraccountnum" id="acc" required></td></tr>
+      <script>
+	  function fun1(){		  
+		  $("#mclass").css("box-shadow","0px 2px 5px black");
+		  $("#hclass").css("box-shadow","0px -1px 5px black");
+		  $("#myclass").css("box-shadow","0px 0px 0px black");
+	  }</script>
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="farmerbankname" id="farmerbank" required></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
@@ -145,7 +170,7 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td> <img src="images/farmerori.png" class="img-responsive" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass" id="class">
 <h4>My Bank Account Details</h4>
 <div class="password">
 <form>
@@ -177,7 +202,6 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
         if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
         {
         	console.log(document.getElementById("name").value.match(regex));
-        	//window.alert("ENTER NAME");
         	msg="NAME";
         }
         else
@@ -193,17 +217,16 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
         }
         if(document.getElementById("aadharnumber").value==null|| document.getElementById("aadharnumber").value === undefined || document.getElementById("aadharnumber").value === "")
         {
-        	//window.alert("ENTER AADHARNUMBER");
         	msg=msg+" AADHARNUMBER";
         }
         else
         	{
         		console.log(document.getElementById("aadharnumber").value+"+");
 	        	if (/^\d{12}$/.test(document.getElementById("aadharnumber").value)) {
-	    		    // value is ok, use it
-	    		} else {
+	    		}
+	        	else
+	        	{
 	    		    alert("AADHARNUMBER NUMBER MUST BE 12 DIGITS");
-	    		//    document.getElementById("aadharnumber").focus();
 	    		    return false
 	    		}
         	}
@@ -339,9 +362,8 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
         if(msg.length==0)
         	 document.getElementById("bank").submit();
         else
-        	window.alert("PLEASE ENTER "+msg);
-        
-	//    var name = document.bank.name;
+        	window.alert("PLEASE ENTER "+msg);        
+	//  var name = document.bank.name;
 	/*	var mob = document.bank.farmermobile;
 		var aadharnum = document.bank.farmeraadharnum;
 	    var email = document.bank.farmeremail;
@@ -354,10 +376,8 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
 		var ifsc = document.bank.farmerifsc;
 		//var uid = document.fregform.farmeruid;
 		//var pwd = document.fregform.farmerpwd;
-		var letters = /^[A-Za-z ]+$/;
-		
-		var val = mob.value;
-		
+		var letters = /^[A-Za-z ]+$/;		
+		var val = mob.value;		
 		var val = aadharnum.value;
 		if (/^\d{12}$/.test(val)) 
 		{
@@ -373,8 +393,7 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
 			window.alert("DONT ENTER NUMBERS FOR TALUK")
 		//	taluk.focus();
 			return false;
-		}
-		
+		}		
 		if(!hobli.value.match(letters))
 		{
 			window.alert("DONT ENTER NUMBERS FOR HOBLI")
@@ -388,7 +407,7 @@ if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equal
 			return false;
 		}
 		var ifscval = ifsc.value;*/	 
-	  	}
+	  }
   }
   </script>
   </table>
