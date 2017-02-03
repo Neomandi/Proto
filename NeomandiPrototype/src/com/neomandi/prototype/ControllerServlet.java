@@ -159,9 +159,10 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("msg is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				rd=request.getRequestDispatcher("FarmerRegister.jsp");
 				try 
 				{
+					request.setAttribute("errmsg", "success");
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {

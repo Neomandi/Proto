@@ -24,7 +24,14 @@
 	 out.println("location='FarmerLogin.jsp';");
      out.println("</script>");
 }
-else{%>
+else{
+if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("success")))
+{    
+	 out.println("<script type=\"text/javascript\">");
+	 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
+     out.println("</script>");
+}%>
+
 <!---menu bar------>
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -34,8 +41,7 @@ else{%>
         <span class="icon-bar"></span>                       
       </button>
       <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
-    </div>
-    
+    </div>    
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="HomePage.html">About Us</a></li>

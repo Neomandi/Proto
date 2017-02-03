@@ -28,7 +28,7 @@ else{
 if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Your password does not match")))
 {    
 	 out.println("<script type=\"text/javascript\">");
-	 out.println("confirm('YOUR PASSWORD DOESNOT MATCH!! PLEASE ENTER CORRECT PASSWORD');");
+	 out.println("confirm('YOUR PASSWORD IS WRONG!! PLEASE ENTER CORRECT PASSWORD');");
      out.println("</script>");
 }%>
 <!---menu bar------>
@@ -53,7 +53,7 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.html">Register</a>          
         </li>
-        <li><a href="Login.html" class="active">Login</a></li>
+        <li class="active"><a href="Login.html" >Login</a></li>
       </ul>      
     </div>
   </div>
