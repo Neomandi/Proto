@@ -14,6 +14,11 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+.error {
+    border:2px solid red;
+}
+</style>
 <script>
 function validateEForm()
 {
@@ -172,11 +177,6 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
 <div class="detail">
-<<<<<<< HEAD
-<form name = "EregForm1" method = "get" action = "EmployeeRegisterInt.jsp">
-=======
-
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
@@ -189,11 +189,6 @@ function validateEForm()
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Password</h4>
 <div class="password">
-<<<<<<< HEAD
-<form name = "EregForm2" method = "get" action = "EmployeeRegisterInt.jsp">
-=======
-
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
@@ -222,7 +217,7 @@ function validateEForm()
 <p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
 							{
 								out.print("Registration Successfull");
-								out.print("<br/><a href='Login.html'>Click here to login</a>");
+								out.print("<br/><a href='EmployeeLogin.jsp'>Click here to login</a>");
 							}
 							else if(msg != null)
 							{
