@@ -123,7 +123,7 @@ function validateEForm()
 	
 	//Terms & condn validation
 	console.log("TC: "+tc.value);
-	if(tc.value == "")
+	if(tc.checked == false)
 	{
 		alert("Please check T & C");
 	    tc.focus();
