@@ -23,7 +23,7 @@
 <script>
 function validateEForm()
 {
-
+	
 	var mob = document.EregForm1.employeemob;
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
@@ -173,33 +173,31 @@ function validateEForm()
 </div>
 <!---my detail form----->
 <div class="container">
-<div class="row emp" style="box-shadow: 0 0 5px #000;"><!-- style="box-shadow: 0 0 10px #000;" -->
+<div class="row emp"><!-- style="box-shadow: 0 0 10px #000;" -->
 <form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
-<h4>My Details</h4>
-<div class="detail">
-
+<h4 id="h1">My Details</h4>
+<div class="detail" id="d1">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="employeename"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="employeename" onclick="fun()"></td></tr>
       <tr><td><label for="aadhar">Employee Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob" onclick="fun()"></td></tr>
          </table>
   
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4>My Password</h4>
-<div class="password">
-
+<h4 id="h2">My Password</h4>
+<div class="password" id="d2">
     <table class="table">
 	 
       <tr><td><label for="pwd">Enter a Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd" required></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd" onclick="fun1()"></td></tr>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd" required></td></tr>
+	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd" onclick="fun1()"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-	  <tr><td><input type="password" class="form-control" id="pwd" name="employeeotp" required></td></tr>	  
+	  <tr><td><input type="password" class="form-control" id="pwd" name="employeeotp" onclick="fun1()"></td></tr>	  
 
     </table>
   
@@ -235,6 +233,20 @@ function submitform(){
 	{
 		document.EregForm1.submit();
 	}
+}
+function fun(){
+	  console.log("selected ");
+	  $("#d1").css("box-shadow","0px 0px 3px black");
+	  $("#h1").css("box-shadow","0px 0px 3px black");
+	  $("#d2").css("box-shadow","0px 0px 0px black");
+	  $("#h2").css("box-shadow","0px 0px 0px black");
+}
+function fun1(){
+	  console.log("selected ");
+	  $("#d2").css("box-shadow","0px 0px 3px black");
+	  $("#h2").css("box-shadow","0px 0px 3px black");
+	  $("#d1").css("box-shadow","0px 0px 0px black");
+	  $("#h1").css("box-shadow","0px 0px 0px black");
 }
 </script>
 <!---my detail form end----->
