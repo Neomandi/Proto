@@ -57,24 +57,50 @@
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-6 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" action="TraderLogin.do" method = "post"  name = "TraderLoginform">
+<form id="login" action="TraderLoginInt.jsp" method = "post"  name = "TraderLoginform">
 <table class="table login">
 <tbody>
 <tr><td><h2>Trader Login</h2></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="name" placeholder="User name"></td></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="password" placeholder="Password"></td></td></tr>
-<tr align="center"><td><a onclick="login()" class="log">Login</a></td></tr><br>
+<tr><td><input type="text" class="form-control" id="name" name="tname" placeholder="User name"></td></td></tr>
+<tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
+<tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br>
 <tr align="center"><td><a href="#" class"frgt">Forgot password?</a></td></tr>
 </tbody></table>
 </form>
-<script>function login()
-{
-  document.getElementById("login").submit();	
+
+
+
+</div>
+</div>
+</div>
+<br/>
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b><% if(msg != null)
+							out.print(msg);
+									%></b></p>
+<script>
+function submitform(){
+	var msg="";
+	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
+    {
+    	console.log(document.getElementById("name").value);
+    	//window.alert("ENTER USERNAME");
+    	msg="USER NAME ";
+    }	
+	if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
+    {
+    	console.log(document.getElementById("name").value);
+    	//window.alert("ENTER USERNAME");
+    	msg=msg+"PASSWORD";
+    }	
+	console.log(msg.length);
+	if(msg.length!=0)
+		window.alert("PLEASE ENTER "+msg);
+	
+	else
+	document.TraderLoginform.submit();
 }
 </script>
-</div>
-</div>
-</div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/owl.carousel.min.js" type="text/javascript"></script>

@@ -316,7 +316,7 @@ function validateTForm()
 	*/
 	//taluk bank validation
 	if( btaluk.value==""){
-		window.alert("Please enter  taluk");
+		window.alert("Please enter taluk of your bank");
 		 btaluk.focus();
 		return false;
 	}
@@ -343,7 +343,7 @@ function validateTForm()
 	//license validation
 	var license=licensenumber.value;
 	if(licensenumber.value==""){
-		window.alert("Please enter your License number code");
+		window.alert("Please enter your License number ");
 		licensenumber.focus();
 		return false;
 	}
@@ -358,7 +358,7 @@ function validateTForm()
 	// date of registraion
 	
 	if(registerdate.value==""){
-		window.alert("Please enter date");
+		window.alert("Please enter date of registration");
 		registerdate.focus();
 		return false;
 	}
@@ -536,7 +536,7 @@ if (/^\d{8}$/.test(password.value)) {
 
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="traderName" required></td></tr>
+	  <tr><td><input type="text" class="form-control" id="name" name="traderName" required></td></tr>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
