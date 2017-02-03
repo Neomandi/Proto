@@ -157,11 +157,13 @@ public class ControllerServlet extends HttpServlet {
 			Model m = new Model();
 			System.out.println(frb);
 			String msg = m.farmerRegister(frb);
+			System.out.println("msg is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
-				rd=request.getRequestDispatcher("Success.jsp");
+				rd=request.getRequestDispatcher("FarmerRegister.jsp");
 				try 
 				{
+					request.setAttribute("errmsg", "success");
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
@@ -223,7 +225,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-				request.setAttribute("errmsg", "fail");
+				request.setAttribute("errmsg", msg);
 			    rd=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
 				{

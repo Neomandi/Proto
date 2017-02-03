@@ -99,13 +99,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		return msg;
 	}
 
+	@SuppressWarnings("resource")
 	public String farmerRegister(FarmerRegisterBean frb) {
 		// TODO Auto-generated method stub
 		
 		String msg = null;
 		PreparedStatement ps = null;
 		Connection con = null;
-		
+		ResultSet rs=null;
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -117,27 +118,36 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				con.setAutoCommit(false);
-				
-				ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-				ps.setString(1, frb.getFarmername());
-				ps.setLong(2, frb.getFarmermobile());
-				ps.setLong(3, frb.getFarmeraadharnum());
-				ps.setString(4,frb.getFarmeremail());
-				ps.setString(5,frb.getFarmerstate());
-				ps.setString(6, frb.getFarmerdistrict());
-				ps.setString(7, frb.getFarmertaluk());
-				ps.setString(8, frb.getFarmerhobli());
-				ps.setString(9, frb.getFarmervillage());
-				ps.setString(10, frb.getFarmerbankbame());
-				ps.setLong(11, frb.getFarmeraccountnum());
-				ps.setString(12, frb.getFarmerbranch());
-				ps.setString(13, frb.getFarmerifsccode());
-				ps.setString(14, null);
-				//ps.setBlob(15, frb.getFarmerPhoto());
-				ps.execute();				
-				msg = "SUCCESS";				
-				con.commit();
+				ps = con.prepareStatement("select * from freg where aadharnum=?");
+				ps.setLong(1, frb.getFarmeraadharnum());
+				ps.executeQuery();				
+				rs = ps.getResultSet();				
+				if(rs.next())
+				{
+					msg="FAIL";
+				}
+				else
+				{
+					ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");	
+					ps.setString(1, frb.getFarmername());
+					ps.setLong(2, frb.getFarmermobile());
+					ps.setLong(3, frb.getFarmeraadharnum());
+					ps.setString(4,frb.getFarmeremail());
+					ps.setString(5,frb.getFarmerstate());
+					ps.setString(6, frb.getFarmerdistrict());
+					ps.setString(7, frb.getFarmertaluk());
+					ps.setString(8, frb.getFarmerhobli());
+					ps.setString(9, frb.getFarmervillage());
+					ps.setString(10, frb.getFarmerbankbame());
+					ps.setLong(11, frb.getFarmeraccountnum());
+					ps.setString(12, frb.getFarmerbranch());
+					ps.setString(13, frb.getFarmerifsccode());
+					ps.setString(14, null);
+					//ps.setBlob(15, frb.getFarmerPhoto());
+					ps.execute();				
+					msg = "SUCCESS";				
+					con.commit();
+				}
 			}
 		}
 		catch(SQLException e)

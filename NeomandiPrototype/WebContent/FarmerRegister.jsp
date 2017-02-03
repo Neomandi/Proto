@@ -17,6 +17,21 @@
 <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD9ECA30-3AD0-9445-B7F7-37B6DC12D43A/main.js" charset="UTF-8"></script>
 </head>
 <body class="">
+<%if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("FAIL")))
+{    
+	 out.println("<script type=\"text/javascript\">");
+	 out.println("alert('THIS AADHARNUMBER HAS ALREADY BEEN REGISTERED');");
+	 out.println("location='FarmerLogin.jsp';");
+     out.println("</script>");
+}
+else{
+if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("success")))
+{    
+	 out.println("<script type=\"text/javascript\">");
+	 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
+     out.println("</script>");
+}%>
+
 <!---menu bar------>
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -26,8 +41,7 @@
         <span class="icon-bar"></span>                       
       </button>
       <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
-    </div>
-    
+    </div>    
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="HomePage.html">About Us</a></li>
@@ -168,14 +182,14 @@
         }
         else
         {
-        	console.log(document.getElementById("name").value);
+        	/*console.log(document.getElementById("name").value);
         	//console.log(document.getElementById("name").value.match(regex));
 	       	if(!(document.getElementById("name").value.match(regex)))
 	    	{
 	    		window.alert("DONT ENTER NUMBERS FOR NAME");
 	    	//	document.getElementById("name").focus();
 	    		return false;
-	    	}	
+	    	}	*/
         }
         if(document.getElementById("aadharnumber").value==null|| document.getElementById("aadharnumber").value === undefined || document.getElementById("aadharnumber").value === "")
         {
@@ -313,10 +327,14 @@
         }
         if(document.getElementById("cpwd").value==null|| document.getElementById("cpwd").value === undefined || document.getElementById("cpwd").value === "")
         {
-        	//window.alert("ENTER CONFIRM PASSWORD");
+        	window.alert("ENTER CONFIRM PASSWORD");
+        }
+        else
+        {
         	if(document.getElementById("pwd").value!=document.getElementById("cpwd").value)
         	alert("PASSWORD DOESNOT MATCH");
-        }
+        }	  	
+        console.log(document.getElementById("pwd").value+" "+document.getElementById("cpwd").value);
         console.log(msg);
         if(msg.length==0)
         	 document.getElementById("bank").submit();
@@ -379,6 +397,6 @@
 </div>
 <!---my detail form end----->
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script><%} %>
 </body>
 </html>
