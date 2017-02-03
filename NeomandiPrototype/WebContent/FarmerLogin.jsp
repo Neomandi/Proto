@@ -8,7 +8,6 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -17,14 +16,21 @@
 <![endif]-->
 </head>
 <body class="">
-<%if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("fail")))
+<%
+if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Register first ")))
 {    
 	 out.println("<script type=\"text/javascript\">");
-	 out.println("alert('YOU HAVE NOT REGISTERED PLEASE REGISTER ');");
+	 out.println("alert('YOUR HAVE NOT REGISTERED PLEASE REGISTER BEFORE LOGGING IN');");
 	 out.println("location='FarmerRegister.jsp';");
      out.println("</script>");
 }
-else{%>
+else{
+if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Your password does not match")))
+{    
+	 out.println("<script type=\"text/javascript\">");
+	 out.println("confirm('YOUR PASSWORD DOESNOT MATCH!! PLEASE ENTER CORRECT PASSWORD');");
+     out.println("</script>");
+}%>
 <!---menu bar------>
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -61,22 +67,38 @@ else{%>
 <table class="table login">
 <tbody>
 <tr><td><h2>Farmer Login</h2></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="name" placeholder="User name"></td></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="pwd" placeholder="Password"></td></td></tr>
+<tr><td><input type="text" class="form-control" id="name" name="name" placeholder="User name"></td></td></tr>
+<tr><td><input type="text" class="form-control" id="pwd" name="pwd" placeholder="Password"></td></td></tr>
 <tr align="center"><td><a onclick="login()" class="log">Login</a></td></tr><br>
 <tr align="center"><td><a href="" class="frgt">Forgot password?</a></td></tr>
 </tbody></table>
 </form>
 <script>function login()
 {
-  document.getElementById("login").submit();	
+	var msg="";
+	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
+    {
+    	console.log(document.getElementById("name").value);
+    	//window.alert("ENTER USERNAME");
+    	msg="USER NAME ";
+    }	
+	if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
+    {
+    	console.log(document.getElementById("name").value);
+    	//window.alert("ENTER USERNAME");
+    	msg=msg+"PASSWORD";
+    }	
+	console.log(msg.length);
+	if(msg.length!=0)
+		window.alert("PLEASE ENTER "+msg);
+	else
+	  document.getElementById("login").submit();	
 }
 </script>
 </div>
 </div>
 </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/owl.carousel.min.js" type="text/javascript"></script><%} %>
+<script src="js/bootstrap.js" type="text/javascript"></script><%} %>
 </body>
 </html>
