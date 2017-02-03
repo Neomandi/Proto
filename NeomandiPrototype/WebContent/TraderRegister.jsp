@@ -512,7 +512,7 @@ if (/^\d{8}$/.test(password.value)) {
         <li><a href="News.html">News</a></li>
 		<li><a href="ContactUs.html">Contact Us</a></li>
 		<li class="dropdown">
-          <a class="dropdown-toggle" href="registermain.html" class="active">Register</a>
+          <a class="dropdown-toggle" href="Register.html" class="active">Register</a>
           
         </li>
         <li><a href="Login.html">Login</a></li>
