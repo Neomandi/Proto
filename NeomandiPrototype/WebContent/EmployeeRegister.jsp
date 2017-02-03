@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="Images1/Neomandi1.png">
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
 <script>
 function validateEForm()
 {
-	
+
 	var mob = document.EregForm1.employeemob;
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
@@ -122,7 +123,7 @@ function validateEForm()
 	}
 	
 	//Terms & condn validation
-	console.log("TC: "+tc.value);
+	//console.log("TC: "+tc.value);
 	if(tc.checked == false)
 	{
 		alert("Please check T & C");
@@ -172,7 +173,7 @@ function validateEForm()
 </div>
 <!---my detail form----->
 <div class="container">
-<div class="row emp">
+<div class="row emp" style="box-shadow: 0 0 5px #000;"><!-- style="box-shadow: 0 0 10px #000;" -->
 <form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <h4>My Details</h4>
@@ -227,8 +228,7 @@ function validateEForm()
 <script>
 function submitform(){
 	var bool = validateEForm();
-	console.log("Bool: "+bool);
-	console.log()
+	//console.log("Bool: "+bool);
 	if(bool == true)
 	{
 		document.EregForm1.submit();
