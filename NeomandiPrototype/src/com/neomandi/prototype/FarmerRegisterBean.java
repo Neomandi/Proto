@@ -30,40 +30,46 @@ public class FarmerRegisterBean {
 	}
 	public void setFarmermobile(long farmermobile) {
 		this.farmermobile = farmermobile;
-		System.out.println("inside set fname"+farmermobile);
+		System.out.println("inside set fmob"+farmermobile);
 	}
 	public long getFarmeraadharnum() {
 		return farmeraadharnum;
 	}
 	public void setFarmeraadharnum(long farmeraadharnum) {
 		this.farmeraadharnum = farmeraadharnum;
+		System.out.println("inside set fmob"+farmeraadharnum);
 	}
 	public String getFarmeremail() {
 		return farmeremail;
 	}
 	public void setFarmeremail(String farmeremail) {
 		this.farmeremail = farmeremail;
+		System.out.println("inside set fmob"+farmeremail);
 	}
 	public String getFarmerstate() {
 		return farmerstate;
 	}
 	public void setFarmerstate(String farmerstate) {
 		this.farmerstate = farmerstate;
+		System.out.println("inside set fmob"+farmerstate);
 	}
 	public String getFarmerdistrict() {
 		return farmerdistrict;
 	}
 	public void setFarmerdistrict(String farmerdistrict) {
 		this.farmerdistrict = farmerdistrict;
+		System.out.println("inside set fmob"+farmerdistrict);
 	}
 	public String getFarmertaluk() {
 		return farmertaluk;
 	}
 	public void setFarmertaluk(String farmertaluk) {
 		this.farmertaluk = farmertaluk;
+		System.out.println("inside set fmob"+farmertaluk);
 	}
 	public String getFarmerhobli() {
 		return farmerhobli;
+		
 	}
 	public void setFarmerhobli(String farmerhobli) {
 		this.farmerhobli = farmerhobli;

@@ -1,146 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<title>Farmer Login</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<style>
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+<body class="">
+<%if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("fail")))
+{    
+	 out.println("<script type=\"text/javascript\">");
+	 out.println("alert('YOU HAVE NOT REGISTERED PLEASE REGISTER ');");
+	 out.println("location='FarmerRegister.jsp';");
+     out.println("</script>");
 }
-
-body {
-	background: #448ed3 ;
-	font-family: "Lato" ;
-}
-.wrap {
-	width:250px;
-	height: auto;
-	margin: auto;
-	margin-top: 10%;
-}
-.avatar {
-	width: 100%;
-	margin: auto;
-	width: 65px;
-	border-radius: 100px;
-	height: 65px;
-	background: #448ed3 ;
-	position: relative;
-	bottom: -15px;
-}
-.avatar img {
-	width: 55px;
-	height: 55px;
-	border-radius: 100px;
-	margin: auto;
-	border:3px solid #fff;
-	display: block;
-}
-.wrap input {
-	border: none;
-	background: #fff;
-  font-family:Lato ;
-  font-weight:700 ;
-	display: block;
-	height: 40px;
-	outline: none;
-	width: calc(100% - 24px) ;
-	margin: auto;
-	padding: 6px 12px 6px 12px;
-}
-.bar {
-	width: 100%;
-	height: 1px;
-	background: #fff ;
-}
-.bar i {
-	width: 95%;
-	margin: auto;
-	height: 1px ;
-	display: block;
-	background: #d1d1d1;
-}
-.wrap input[type="text"] {
-	border-radius: 7px 7px 0px 0px ;
-}
-.wrap input[type="password"] {
-	border-radius: 0px 0px 7px 7px ;
-}
-.wrap input[type="submit"] {
-	border-radius: 0px 0px 7px 7px ;
-	background-color: rgb(100, 237, 29);
-}
-.forgot_link {
-	color: #83afdf ;
-	color: #83afdf;
-	text-decoration: none;
-	font-size: 11px;
-	position: relative;
-	left: 193px;
-	top: -36px;
-}
-.wrap button {
-	width: 100%;
-	border-radius: 7px;
-	background: #b6ee65;
-	text-decoration: center;
-	border: none;
-	color: #51771a;
-  margin-top:-5px;
-	padding-top: 14px;
-	padding-bottom: 14px;
-	outline: none;
-	font-size: 13px;	
-	border-bottom: 3px solid #307d63;
-	cursor: pointer;
-}
-h1
-{
-	position: absolute;
-	left: 589px;
-	top: 40px;
-}
-#one
-{
-	display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-</style>
-<body>
-<h1>Farmer Login</h1>
-<form action="FarmerLoginInt.jsp" method="post" name = "FarmerLoginform">
-	<div class="wrap">
-		<div class="avatar">
-      <img src="Images/Neomandi.png">
-		</div>
-		<input type="text" placeholder="username" name = "fname" required>
-		<div class="bar">
-			<i></i>
-		</div>
-		<input type="password" placeholder="password" name = "fpwd" required>
-		<!-- <a href="" class="forgot_link">forgot ?</a>  --><br/>
-		<input type = "submit" value = "Login"/>
-		<a id = "one" href = "HomePage.html">Home</a>
-	</div>
-<script src="js/index.js"></script>
+else{%>
+<!---menu bar------>
+ <nav class="navbar navbar-inverse menu">
+  <div class="container-fluid">
+    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="HomePage.html">About Us</a></li>
+        <li><a href="Vission.html">Vision</a></li>
+        <li><a href="Mission.html">Mission</a></li>
+		<li><a href="Howitworks.html">How it works</a></li>
+        <li><a href="News.html">News</a></li>
+		<li><a href="ContactUs.html">Contact Us</a></li>
+		<li class="dropdown">
+          <a class="dropdown-toggle" href="Register.html">Register</a>          
+        </li>
+        <li><a href="Login.html" class="active">Login</a></li>
+      </ul>      
+    </div>
+  </div>
+</nav> 
+<!-----menu bar end------>
+<div class="container-fluid farmlog pad">
+<div class="row">
+<div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%" ></div>
+<div class="col-lg-offset-6 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
+<form id="login" method="post" action="FarmerLogin.do">
+<table class="table login">
+<tbody>
+<tr><td><h2>Farmer Login</h2></td></tr>
+<tr><td><input type="text" class="form-control" id="usr" name="name" placeholder="User name"></td></td></tr>
+<tr><td><input type="text" class="form-control" id="usr" name="pwd" placeholder="Password"></td></td></tr>
+<tr align="center"><td><a onclick="login()" class="log">Login</a></td></tr><br>
+<tr align="center"><td><a href="" class="frgt">Forgot password?</a></td></tr>
+</tbody></table>
 </form>
-<% String msg = (String)request.getAttribute("errmsg");  %>
-<p align = "center"><b><% if(msg != null)
-							out.print(msg);
-									%></b></p>
+<script>function login()
+{
+  document.getElementById("login").submit();	
+}
+</script>
+</div>
+</div>
+</div>
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/owl.carousel.min.js" type="text/javascript"></script><%} %>
 </body>
 </html>
