@@ -540,7 +540,7 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr"  name = "traderMobile" required></td></tr>	  
+	<tr><td><input type="text" class="form-control" id="usr"  name = "traderMobile" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
