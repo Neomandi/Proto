@@ -15,10 +15,7 @@
 <script> 
 
 
-function register(){
-	document.getElementById("personal").submit();
-	
-}
+
 $(function(){
   $("#header").load("Header.html"); 
   $("#footer").load("Footer.html");
@@ -64,9 +61,10 @@ function validateTForm()
 {
 	console.log("inside validateTForm()");
 	var name = document.tregform.traderName;
-	var mob = document.tregform.traderMobile;
 	var aadhar = document.tregform.traderAadharnum;
+	var mob = document.tregform.traderMobile;
 	var email = document.tregform.traderEmail;
+	var address=document.tregform.traderAddress;
 	var taluk = document.tregform.traderTaluk;
 	var hobli = document.tregform.traderHobli;
 	var village = document.tregform.traderVillage;
@@ -92,6 +90,24 @@ function validateTForm()
 		return false;
 	}
 	
+	//Aadhar number validation
+	var aval = aadhar.value;
+	if(aval==""){
+		alert("Please enter your Aadhar number");
+		aadhar.focus();
+		    return false;
+	}
+	if(isNaN(aval)){
+		alert("Enter the valid Aadhar Number");
+		aadhar.focus();
+		return false;
+	}
+	if(aval.length!=12){
+		
+		alert(" Your Aadhar number must be 12 digits");
+		aadhar.focus();
+		return false;
+	}
 	//Mobile number validation
 	var val = mob.value;
 	if(val==""){
@@ -120,26 +136,14 @@ function validateTForm()
 	    return false;
 	}
 	
-	//Aadhar number validation
-	var aval = aadhar.value;
-	if(aval==""){
-		alert("Please enter your Aadhar number");
-		aadhar.focus();
-		    return false;
-	}
-	if(isNaN(aval)){
-		alert("Enter the valid Aadhar Number");
-		aadhar.focus();
-		return false;
-	}
-	if(aval.length!=12){
-		
-		alert(" Your Aadhar number must be 12 digits");
-		aadhar.focus();
-		return false;
-	}
+	
 	
 	//Email validation
+	if(email.value==""){
+		window.alert("Please enter your email id");
+		email.focus();
+		return false;
+	}
 	if(email.value.indexOf("@", 0) < 0)
 	{
 		window.alert("Please enter a valid email id");
@@ -152,8 +156,19 @@ function validateTForm()
         email.focus();
         return false;
     }
+	//address validation
+	if(address.value==""){
+		window.alert("Please enter your address");
+		address.focus();
+		return false;
+	}
 	
 	//Taluk name validation
+	if(taluk.value==""){
+		window.alert("Please enter your taluk name");
+		taluk.focus();
+		return false;
+	}
 	if(!taluk.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for taluk name.");
@@ -161,23 +176,14 @@ function validateTForm()
 		return false;
 	}
 	
-	//Hobli name validation
-	if(!hobli.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for hobli name.");
-		hobli.focus();
-		return false;
-	}
 	
-	//Village name validation
-	if(!village.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for village name.");
-		village.focus();
-		return false;
-	}
 	
 	//PIN Code validation
+	if(pin.value==""){
+		window.alert("Please enter your pincode");
+		pin.focus();
+		return false;
+	}
 	var pinval = pin.value;
 	if(/^[0-9]{6}$/.test(pinval))
 	{
@@ -187,14 +193,6 @@ function validateTForm()
 	{
 		window.alert("Please enter valid PIN Code.");
 		pin.focus();
-		return false;
-	}
-	
-	//Bank name validation
-	if(!bankname.value.match(letters))
-	{
-		window.alert("Please enter only alphabets for bank name.");
-		bankname.focus();
 		return false;
 	}
 	
@@ -217,7 +215,27 @@ function validateTForm()
 		return false;
 	}
 	
+	//Bank name validation
+	if(bankname.value==""){
+		window.alert("Please enter your Bank name");
+		backname.focus();
+		return false;
+	}
+	if(!bankname.value.match(letters))
+	{
+		window.alert("Please enter only alphabets for bank name.");
+		bankname.focus();
+		return false;
+	}
+	
+
+	
 	//Account Branch name validation
+	if(branch.value==""){
+		window.alert("Please enter your Branch name");
+		branch.focus();
+		return false;
+	}
 	if(!branch.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for branch name.");
@@ -226,6 +244,12 @@ function validateTForm()
 	}
 	
 	//IFSC Code validation
+	if(ifsc.value==""){
+		window.alert("Please enter your IFSC code");
+		ifsc.focus();
+		return false;
+	}
+	
 	var ifscval = ifsc.value;
 	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
 	{
@@ -379,11 +403,11 @@ function validateTForm()
       </select></td></tr>
       <!-- id = "district" -->
 	  <tr><td>
-	  		<select class="form-control" id="sel1" name="traderDistrict">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
+	  
+	  <label for = "district">District</label><br />
+		<select id = "district" name = "traderDistrict" class="form-control">
+		</select><br/>
+	  	
       </select>
 		
 	  <tr><td>
@@ -492,13 +516,36 @@ function validateTForm()
   </div>
   <table align="center">
   <tr><td><label><input type="checkbox">I accept Terms and Condition</label></td></tr>
-  <table align="center"><tr><td><a href="#" class="reg" onclick="register()">Register</a></td></tr></table>
+  <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
   </table>
 </div>
 </div>
 </div>
  </form>
 <!---my detail form end----->
+<% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b>
+<% if(msg != null && msg.equals("SUCCESS"))
+	{
+		out.print("Registration Successfull");
+		out.print("<br/><a href='Login.html'>Click here to login</a>");
+	}
+	else if(msg != null)
+	{
+		out.print(msg);
+	}
+%></b></p>
+<script>
+function submitform(){
+	var bool = validateTForm();
+	console.log("Bool: "+bool);
+	console.log()
+	if(bool == true)
+	{
+		document.tregform.submit();
+	}
+}
+</script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/owl.carousel.min.js" type="text/javascript"></script>
