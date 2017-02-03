@@ -234,7 +234,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
 				ps.setLong(3, trb.getTraderAadharnum());
@@ -242,23 +242,22 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(5, trb.getTraderState());
 				ps.setString(6, trb.getTraderDistrict());
 				ps.setString(7, trb.getTraderTaluk());
-				ps.setString(8, trb.getTraderHobli());
-				ps.setString(9, trb.getTraderVillage());
-				ps.setString(10, trb.getTraderBankName());
-				ps.setLong(11, trb.getTraderAccountNum());
-				ps.setString(12, trb.getTraderBranch());
-				ps.setString(13, trb.getTraderIfscCode());
-				ps.setString(14, trb.getTraderUid());
-				ps.setString(15, trb.getTraderLicenseNum());
-				ps.setString(16, trb.getTraderPassword());
-				ps.setBlob(17, trb.getTraderPhoto());
-				ps.setString(18, trb.getTraderDateOfRegistration());
-				ps.setString(19, trb.getTraderPlaceOfRegistration());
-				ps.setString(20, trb.getTraderAddress());
-				ps.setString(21, trb.getTraderLicenseState());
-				ps.setString(22, trb.getTraderLiscenseDistrict());
-				ps.setString(23, trb.getTraderLicenseTaluk());
-				ps.setString(24, trb.getTraderLicensePin());
+				
+				ps.setString(8, trb.getTraderBankName());
+				ps.setLong(9, trb.getTraderAccountNum());
+				ps.setString(10, trb.getTraderBranch());
+				ps.setString(11, trb.getTraderIfscCode());
+				
+				ps.setString(12, trb.getTraderLicenseNum());
+				ps.setString(13, trb.getTraderPassword());
+				ps.setBlob(14, trb.getTraderPhoto());
+				ps.setString(15, trb.getTraderDateOfRegistration());
+				ps.setString(16, trb.getTraderPlaceOfRegistration());
+				ps.setString(17, trb.getTraderAddress());
+				ps.setString(18, trb.getTraderLicenseState());
+				ps.setString(19, trb.getTraderLiscenseDistrict());
+				ps.setString(20, trb.getTraderLicenseTaluk());
+				ps.setString(21, trb.getTraderLicensePin());
 				ps.execute();
 				
 				msg = "SUCCESS";
