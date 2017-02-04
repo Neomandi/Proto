@@ -580,7 +580,7 @@ if(!(password.value.length >8)){
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-	<tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
+	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" onclick="fun()" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
@@ -622,15 +622,8 @@ if(!(password.value.length >8)){
      <br/>
 	  <tr><td>
 	  <label for = "district">District</label><br />
-<<<<<<< HEAD
 		<select id = "district" name = "traderDistrict" onclick="fun()">
-		</select><br/>	  
-=======
-		<select id = "tdistrict" name = "traderDistrict" class="form-control">
-		</select><br/>
-		</td></tr>
-       
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+		</select><br/>	  t
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
     </td></tr>

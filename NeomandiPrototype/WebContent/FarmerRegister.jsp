@@ -48,8 +48,7 @@ else
 		 out.println("<script type=\"text/javascript\">");
 		 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
     	 out.println("</script>");
-	}
-%>
+	}%>
 <!---menu bar------>
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -220,7 +219,6 @@ else
   </div>
   </div>
 </div>
-
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td> <img src="images/farmerori.png" class="img-responsive" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 </div>
@@ -252,8 +250,8 @@ else
   <script>
   function populate(s1, s2)
   {
-  	var s1 = document.getElementById("s1");
-  	var s2 = document.getElementById("s2");
+  	var s1 = document.getElementById(s1);
+  	var s2 = document.getElementById(s2);
   	s2.innerHTML = "";
   	if(s1.value == "Karnataka")
   	{
@@ -488,8 +486,7 @@ else
 			return false;
 		}
 		var ifscval = ifsc.value;*/	 
-	  }
-  }
+	  }}
   </script>
   </table>
 </div>
