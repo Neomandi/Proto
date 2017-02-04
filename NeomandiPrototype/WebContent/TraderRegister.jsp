@@ -139,12 +139,7 @@ function validateTForm()
 		mob.focus();
 		return false;
 	}
-	if((val.length < 1) || (val.length > 10)){
-		
-		alert(" Your Mobile Number must be 0 to 9 Integers");
-		mob.focus();
-		return false;
-	}
+	
 	var val = mob.value;
 	if (/^\d{10}$/.test(val)) {
 		
@@ -355,6 +350,14 @@ function validateTForm()
 		licensenumber.focus();
 		return false;
 	}
+	
+	
+if(!(license.length >1) && (license.length < 10)){
+		
+		alert(" Your License number must be greater than 1 digit and less than 10 digit");
+		licensenumber.focus();
+		return false;
+	}
 	// date of registraion
 	
 	if(registerdate.value==""){
@@ -368,6 +371,12 @@ function validateTForm()
 	if(!placeofregistration.value.match(letters))
 	{
 		window.alert("Please enter only alphabets for place of registration.");
+		placeofregistration.focus();
+		return false;
+	}
+	
+	if(placeofregistration.value==""){
+		window.alert("Please enter place of registration");
 		placeofregistration.focus();
 		return false;
 	}
@@ -433,13 +442,11 @@ function validateTForm()
 		return false;
 	}
 	
-if (/^\d{8}$/.test(password.value)) {
+if(!(password.value.length >8)){
 		
-	    // value is ok, use it
-	} else {
-	    alert("Invalid password, must be 8 digits");
-	    password.focus();
-	    return false;
+		alert(" Your password must be greater than 8 digits");
+		password.focus();
+		return false;
 	}
 	if(rpassword.value==""){
 		window.alert("Please enter your password again");
@@ -569,7 +576,7 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" onclick="fun()" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()" required></td></tr>
-       <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()"></td></tr>
+       <tr><td><input type="text" class="form-control"  id="usr" onclick="fun()"></td></tr>
        <tr><td><select class="form-control" id="sel1" name="traderState" onclick="fun()" onchange = "populate('state','district')">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
@@ -718,7 +725,7 @@ if (/^\d{8}$/.test(password.value)) {
 <tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration" onclick="fun2()"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()"></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()" ></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr"  onclick="fun2()" ></td></tr>
        <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')" onclick="fun2()"> 
          <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
