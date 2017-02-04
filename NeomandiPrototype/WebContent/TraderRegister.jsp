@@ -87,7 +87,6 @@ function validateTForm()
 	var district=document.tregform.traderDistrict;
 	var taluk = document.tregform.traderTaluk;
 	var pin = document.tregform.traderPin;
-	
 	var bankname = document.tregform.traderBankName;
 	var accountnum = document.tregform.traderAccountNum;
 	var branch = document.tregform.traderBranch;
@@ -98,7 +97,6 @@ function validateTForm()
 	var bpin=document.tregform.bPin;
 	var licensenumber = document.tregform.traderLicenseNum;
 	var registerdate=document.tregform.traderDateOfRegistration;
-	
 	var placeofregistration = document.tregform.traderPlaceOfRegistration;
 	var ltraderAddress=document.tregform.ltraderAddress;
 	var lstate=document.tregform.traderLicenseState;
@@ -109,7 +107,6 @@ function validateTForm()
 	var rpassword = document.tregform.traderConfirmPassword;
 	var otp=document.tregform.traderOTP;
 	var tc=document.tregform.tc;
-	
 	var letters = /^[A-Za-z ]+$/;
 	
 	//Name validation
@@ -118,7 +115,6 @@ function validateTForm()
 		name.focus();
 		    return false;
 	}
-	
 	
 	if(!name.value.match(letters))
 	{
