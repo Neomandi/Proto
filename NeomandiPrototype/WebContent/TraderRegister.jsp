@@ -542,9 +542,9 @@ if (/^\d{8}$/.test(password.value)) {
 
 <div class="container">
 <div class="row">
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " id="myclass">
-<h4>My Details</h4>
-<div class="detail">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " >
+<h4 id="h1">My Details</h4>
+<div class="detail" id="d1">
 <form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
@@ -552,11 +552,14 @@ if (/^\d{8}$/.test(password.value)) {
 	   <script>
 	  function fun(){
 		  console.log("selected ");
-		  $("#myclass").css("box-shadow","0px 0px 3px black");
-		  $("#pclass").css("box-shadow","0px 0px 0px black");
-		  $("#lclass").css("box-shadow","0px 0px 0px black");
-		   $("#mclass").css("box-shadow","0px 0px 0px black");
-			  $("#hclass").css("box-shadow","0px -1px 0px black");
+		  $("#d1").css("box-shadow","0px 1px 7px black");
+		  $("#h1").css("box-shadow","0px -1px 7px black");
+		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h2").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 0px black");
+		  $("#d4").css("box-shadow","0px 0px 0px black");
+		  $("#h4").css("box-shadow","0px 0px 0px black");
 	  }</script>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderAadharnum" required></td></tr>
@@ -615,9 +618,9 @@ if (/^\d{8}$/.test(password.value)) {
  
   </div>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" id="mclass">
-<h4 id="hclass">My Bank Account Details</h4>
-<div class="bankacc" >
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" >
+<h4 id="h2">My Bank Account Details</h4>
+<div class="bankacc" id="d2">
 
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
@@ -628,11 +631,14 @@ if (/^\d{8}$/.test(password.value)) {
       <tr><td><label for="mobno">Branch</label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
 	  function fun1(){	
-		  $("#myclass").css("box-shadow","0px 0px 0px black");
-		  $("#pclass").css("box-shadow","0px 0px 0px black");
-		  $("#lclass").css("box-shadow","0px 0px 0px black");
-		   $("#mclass").css("box-shadow","0px 0px 3px black");
-			 $("#hclass").css("box-shadow","0px -1px 0px black");
+		  $("#d1").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px px black");
+		  $("#d2").css("box-shadow","0px 1px 7px black");
+		  $("#h2").css("box-shadow","0px -1px 7px black");
+		  $("#d3").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 0px black");
+		  $("#d4").css("box-shadow","0px 0px 0px black");
+		  $("#h4").css("box-shadow","0px 0px 0px black");
 		  
 	  }</script>
 
@@ -686,20 +692,24 @@ if (/^\d{8}$/.test(password.value)) {
   
   </div>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" id="lclass">
-<h4>My License Details</h4>
-<div class="detail1">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" >
+<h4 id="h3">My License Details</h4>
+<div class="detail1" id="d3">
 
     <table class="table">
       <tr><td><label for="name">Trader License Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum" onclick="fun2()"></td></tr>
 	  <script>
 	  function fun2(){
-	  $("#lclass").css("box-shadow","0px 2px 5px black");
-	   $("#mclass").css("box-shadow","0px 0px 0px black");
-		  $("#hclass").css("box-shadow","0px -1px 0px black");
-		  $("#myclass").css("box-shadow","0px 0px 0px black");
-		  $("#pclass").css("box-shadow","0px 0px 0px black");
+		  $("#d1").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px px black");
+		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h2").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 1px 7px black");
+		  $("#h3").css("box-shadow","0px -1px 7px black");
+		  $("#d4").css("box-shadow","0px 0px 0px black");
+		  $("#h4").css("box-shadow","0px 0px 0px black");
+	  
 	  }
 		  </script>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
@@ -708,7 +718,7 @@ if (/^\d{8}$/.test(password.value)) {
 <tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration" onclick="fun2()"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()"></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr" ></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()" ></td></tr>
        <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')" onclick="fun2()"> 
          <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
@@ -757,19 +767,23 @@ if (/^\d{8}$/.test(password.value)) {
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
 <table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
-<div class="pass1" id="pclass">
-<h4 >My Password</h4>
-<div class="password">
+<div class="pass1" id="d4" >
+<h4 id="h4">My Password</h4>
+<div class="password" >
    <table class="table">
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword" onclick="fun3()"></td></tr>
 	   <script>
 	  function fun3(){
-		  $("#pclass").css("box-shadow","0px 2px 5px black");
-	  $("#lclass").css("box-shadow","0px 0px 0px black");
-	   $("#mclass").css("box-shadow","0px 0px 0px black");
-		  $("#hclass").css("box-shadow","0px -1px 0px black");
-		  $("#myclass").css("box-shadow","0px 0px 0px black");
+		  $("#d1").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px px black");
+		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h2").css("box-shadow","0px 0px 0px black");
+		  $("#d3").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 0px black");
+		  $("#d4").css("box-shadow","0px 1px 7px black");
+		  $("#h4").css("box-shadow","0px -1px 7px black");
+		 
 	  }
 		  </script>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
