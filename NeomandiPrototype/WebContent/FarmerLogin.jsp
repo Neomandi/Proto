@@ -79,13 +79,11 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.alert("ENTER USERNAME");
     	msg="USER NAME ";
     }	
 	if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.alert("ENTER USERNAME");
     	msg=msg+"PASSWORD";
     }	
 	console.log(msg.length);
