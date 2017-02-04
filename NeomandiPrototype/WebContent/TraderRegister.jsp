@@ -614,12 +614,12 @@ if(!(password.value.length >8)){
 			<option value = "Uttar Pradesh">Uttar Pradesh</option>
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
-      </select></td></tr><br/>
-     <br/>
+      </select></td></tr>
+     
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "district" name = "traderDistrict" onclick="fun()">
-		</select><br/>	  t
+		<select id = "tdistrict" name = "traderDistrict" onclick="fun()" class="form-control">
+		</select><br/>	  
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
     </td></tr>
