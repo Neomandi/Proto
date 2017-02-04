@@ -105,7 +105,7 @@ else
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr" required></td></tr>
       <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr"></td></tr>
-      <tr><td><select class="form-control" id="s1" name="farmerState" onclick="fun()" onchange = "populate('state','district')">
+      <tr><td><select class="form-control" id="state1" name="farmerState" onclick="fun()" onchange = "populate1('state1','district1')">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -140,7 +140,7 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "d1" name = "traderDistrict" onclick="fun()">
+		<select id = "district1" name = "traderDistrict" onclick="fun()">
 		</select><br/>	  
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
@@ -248,7 +248,7 @@ else
   <tr><td><label><input type="checkbox" id="terms" >I accept Terms and Condition</label></td></tr>
   <table align="center"><tr><td><a onclick="register()" id="reg" class="reg">Register</a></td></tr></table>
   <script>
-  function populate(s1, s2)
+  function populate1(s1, s2)
   {
   	var s1 = document.getElementById(s1);
   	var s2 = document.getElementById(s2);
