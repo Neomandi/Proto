@@ -44,10 +44,8 @@ function validateEForm()
 		document.Eregform.employeename.focus();
 		return false;
 	}
-	
 	if ((name.value.length < 1) || (name.value.length > 20)){
 		alert("Your Character must be 1 to 20 Character");
-		
 		document.Eregform.employeename.focus();
 	//	name.focus();
 		return false;
@@ -176,18 +174,21 @@ function validateEForm()
 <div class="row emp"><!-- style="box-shadow: 0 0 10px #000;" -->
 <form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
+<div id="d1">
 <h4 id="h1">My Details</h4>
-<div class="detail" id="d1">
+<div class="detail">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="employeename" onclick="fun()"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="name" name="employeename" onclick="fun()"></td></tr>
       <tr><td><label for="aadhar">Employee Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob" onclick="fun()"></td></tr>
          </table>
   
   </div>
+  </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
+<div id="d2">
 <h4 id="h2">My Password</h4>
 <div class="password" id="d2">
     <table class="table">
@@ -201,6 +202,7 @@ function validateEForm()
 
     </table>
   
+  </div>
   </div>
   <table align="center">
   <tr><td><label><input type="checkbox" name="empt">I accept Terms and Condition</label></td></tr>
@@ -235,18 +237,14 @@ function submitform(){
 	}
 }
 function fun(){
-	  console.log("selected ");
-	  $("#d1").css("box-shadow","0px 0px 3px black");
-	  $("#h1").css("box-shadow","0px 0px 3px black");
+	  //console.log("selected ");
+	  $("#d1").css("box-shadow","0px 0px 10px black");
 	  $("#d2").css("box-shadow","0px 0px 0px black");
-	  $("#h2").css("box-shadow","0px 0px 0px black");
 }
 function fun1(){
-	  console.log("selected ");
-	  $("#d2").css("box-shadow","0px 0px 3px black");
-	  $("#h2").css("box-shadow","0px 0px 3px black");
+	  //console.log("selected ");
+	  $("#d2").css("box-shadow","0px 0px 10px black");
 	  $("#d1").css("box-shadow","0px 0px 0px black");
-	  $("#h1").css("box-shadow","0px 0px 0px black");
 }
 </script>
 <!---my detail form end----->
