@@ -16,7 +16,7 @@ $(function(){
   $("#footer").load("Footer.html");
  
 });
-function populate(s1, s2)
+function populate1(s1, s2)
 {
 	var s1 = document.getElementById(s1);
 	var s2 = document.getElementById(s2);
@@ -34,7 +34,25 @@ function populate(s1, s2)
 		s2.options.add(newOption);
 	}
 }
-function populate1(s1, s2)
+function populate2(s1, s2)
+{
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+	s2.innerHTML = "";
+	if(s1.value == "Karnataka")
+	{
+		var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];	
+	}
+	for(var option in optionArray)
+	{
+		var pair = optionArray[option].split("|");
+		var newOption = document.createElement("option");
+		newOption.value = pair[0];
+		newOption.innerHTML = pair[1];
+		s2.options.add(newOption);
+	}
+}
+function populate3(s1, s2)
 {
 	var s1 = document.getElementById(s1);
 	var s2 = document.getElementById(s2);
@@ -477,14 +495,12 @@ if(!(password.value.length >8)){
 	    return false;
 	}
 	//Terms & condn validation
-	console.log("TC: "+tc.value);
-	if(tc.value == "")
+	if(tc.checked == false)
 	{
 		alert("Please check T & C");
 	    tc.focus();
 	    return false;
 	}
-	
 	return true;
 }
 </script> 
@@ -545,7 +561,8 @@ if(!(password.value.length >8)){
 <div class="container">
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " >
-<h4 id="h1">My Details</h4>
+<div id="h1">
+<h4 >My Details</h4>
 <div class="detail" id="d1">
 <form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
     <table class="table">
@@ -554,13 +571,9 @@ if(!(password.value.length >8)){
 	   <script>
 	  function fun(){
 		  console.log("selected ");
-		  $("#d1").css("box-shadow","0px 1px 7px black");
-		  $("#h1").css("box-shadow","0px -1px 7px black");
-		  $("#d2").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px 14px black");
 		  $("#h2").css("box-shadow","0px 0px 0px black");
-		  $("#d3").css("box-shadow","0px 0px 0px black");
 		  $("#h3").css("box-shadow","0px 0px 0px black");
-		  $("#d4").css("box-shadow","0px 0px 0px black");
 		  $("#h4").css("box-shadow","0px 0px 0px black");
 	  }
 	  </script>
@@ -573,7 +586,8 @@ if(!(password.value.length >8)){
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()" required></td></tr>
        <tr><td><input type="text" class="form-control"  id="usr" onclick="fun()"></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderState" onclick="fun()" onchange = "populate('state','district')">
+       <tr><td>
+       <select class="form-control" id="tstate" name="traderState" onchange = "populate1('tstate','tdistrict')" onclick="fun()">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -604,12 +618,19 @@ if(!(password.value.length >8)){
 			<option value = "Uttar Pradesh">Uttar Pradesh</option>
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
-      </select></td></tr>
-      <!-- id = "district" -->
+      </select></td></tr><br/>
+     <br/>
 	  <tr><td>
 	  <label for = "district">District</label><br />
+<<<<<<< HEAD
 		<select id = "district" name = "traderDistrict" onclick="fun()">
 		</select><br/>	  
+=======
+		<select id = "tdistrict" name = "traderDistrict" class="form-control">
+		</select><br/>
+		</td></tr>
+       
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
     </td></tr>
@@ -617,9 +638,11 @@ if(!(password.value.length >8)){
 	  <tr><td><input type="text" class="form-control" id="usr"   onclick="fun()" name="traderPin"></td></tr>
     </table> 
   </div>
+  </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" >
-<h4 id="h2">My Bank Account Details</h4>
+<div id="h2">
+<h4 >My Bank Account Details</h4>
 <div class="bankacc" id="d2">
 
     <table class="table">
@@ -631,13 +654,9 @@ if(!(password.value.length >8)){
       <tr><td><label for="mobno">Branch</label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
 	  function fun1(){	
-		  $("#d1").css("box-shadow","0px 0px 0px black");
-		  $("#h1").css("box-shadow","0px 0px px black");
-		  $("#d2").css("box-shadow","0px 1px 7px black");
-		  $("#h2").css("box-shadow","0px -1px 7px black");
-		  $("#d3").css("box-shadow","0px 0px 0px black");
+		  $("#h2").css("box-shadow","0px 0px 14px black");
+		  $("#h1").css("box-shadow","0px 0px 0px black");
 		  $("#h3").css("box-shadow","0px 0px 0px black");
-		  $("#d4").css("box-shadow","0px 0px 0px black");
 		  $("#h4").css("box-shadow","0px 0px 0px black");
 		  
 	  }</script>
@@ -645,7 +664,7 @@ if(!(password.value.length >8)){
       <tr><td><label for="address">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode" onclick="fun1()"></td></tr>
       
-       <tr><td><select class="form-control" id="sel1" name="bState " onchange = "populate('state','district')" onclick="fun1()">
+       <tr><td><select class="form-control" id="bstate" name="bState " onchange = "populate2('bstate','bdistrict')" onclick="fun1()">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -678,12 +697,11 @@ if(!(password.value.length >8)){
 			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
      
-	  <tr><td><select class="form-control" id="sel1" name="bDistrict" onclick="fun1()">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
-      </select></td></tr>
+	  <tr><td>
+	  <label for = "district">District</label><br />
+		<select id = "bdistrict" name = "bdistrict" class="form-control">
+		</select><br/>
+		</td></tr>
 	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" onclick="fun1()"/>
         </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
@@ -691,9 +709,11 @@ if(!(password.value.length >8)){
     </table>
   
   </div>
+  </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" >
-<h4 id="h3">My License Details</h4>
+<div id="h3">
+<h4 >My License Details</h4>
 <div class="detail1" id="d3">
 
     <table class="table">
@@ -701,13 +721,9 @@ if(!(password.value.length >8)){
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum" onclick="fun2()"></td></tr>
 	  <script>
 	  function fun2(){
-		  $("#d1").css("box-shadow","0px 0px 0px black");
-		  $("#h1").css("box-shadow","0px 0px px black");
-		  $("#d2").css("box-shadow","0px 0px 0px black");
 		  $("#h2").css("box-shadow","0px 0px 0px black");
-		  $("#d3").css("box-shadow","0px 1px 7px black");
-		  $("#h3").css("box-shadow","0px -1px 7px black");
-		  $("#d4").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px 0px black");
+		  $("#h3").css("box-shadow","0px 0px 14px black");
 		  $("#h4").css("box-shadow","0px 0px 0px black");
 	  
 	  }
@@ -719,7 +735,7 @@ if(!(password.value.length >8)){
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()"></td></tr>
        <tr><td><input type="text" class="form-control" id="usr"  onclick="fun2()" ></td></tr>
-       <tr><td><select class="form-control" id="sel1" name="traderLicenseState" onchange = "populate('state','district')" onclick="fun2()"> 
+       <tr><td><select class="form-control" id="lstate" name="traderLicenseState" onchange = "populate3('lstate','ldistrict')" onclick="fun2()"> 
          <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -751,12 +767,11 @@ if(!(password.value.length >8)){
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1" name="traderLiscenseDistrict" onclick="fun2()">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
-      </select></td></tr>
+	  <tr><td>
+	  <label for = "district">District</label><br />
+		<select id = "ldistrict" name = "traderLiscenseDistrict" class="form-control">
+		</select><br/>
+		</td></tr>
 	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" onclick="fun2()"/>
         </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
@@ -764,25 +779,23 @@ if(!(password.value.length >8)){
     </table>
   
   </div>
+  </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
 <table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
-<div class="pass1" id="d4" >
-<h4 id="h4">My Password</h4>
+<div id="h4">
+<div class="pass1"  >
+<h4 >My Password</h4>
 <div class="password" >
    <table class="table">
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword" onclick="fun3()"></td></tr>
 	   <script>
 	  function fun3(){
-		  $("#d1").css("box-shadow","0px 0px 0px black");
-		  $("#h1").css("box-shadow","0px 0px px black");
-		  $("#d2").css("box-shadow","0px 0px 0px black");
 		  $("#h2").css("box-shadow","0px 0px 0px black");
-		  $("#d3").css("box-shadow","0px 0px 0px black");
+		  $("#h1").css("box-shadow","0px 0px 0px black");
 		  $("#h3").css("box-shadow","0px 0px 0px black");
-		  $("#d4").css("box-shadow","0px 1px 7px black");
-		  $("#h4").css("box-shadow","0px -1px 7px black");
+		  $("#h4").css("box-shadow","0px 0px 14px black");
 		 
 	  }
 		  </script>
@@ -790,15 +803,18 @@ if(!(password.value.length >8)){
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword" onclick="fun3()"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="traderOTP" onclick="fun3()"></td></tr>	  
-
+	
     </table>
   
   </div>
   </div>
+  </div>
+  
+ <br/>
   <table align="center">
-  <tr><td><label><input type="checkbox" name="tc">I accept Terms and Condition</label></td></tr>
+  <tr><td><label><input type="checkbox" name="tc">I accept Terms and Condition</label></td></tr> </table><br/> 
   <table align="center"><tr><td><a href="javascript: submitform()" class="reg" >Register</a></td></tr></table>
-  </table>
+ 
   </form>
 </div>
 </div>
