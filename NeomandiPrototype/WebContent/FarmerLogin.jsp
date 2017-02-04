@@ -68,8 +68,8 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 <tbody>
 <tr><td><h2>Farmer Login</h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="name" placeholder="User name"></td></td></tr>
-<tr><td><input type="text" class="form-control" id="pwd" name="pwd" placeholder="Password"></td></td></tr>
-<tr align="center"><td><a onclick="login()" class="log">Login</a></td></tr><br>
+<tr><td><input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password"></td></td></tr>
+<tr align="center"><td><button onclick="login()" class="log" name="login">Login</button></td></tr><br>
 <tr align="center"><td><a href="" class="frgt">Forgot password?</a></td></tr>
 </tbody></table>
 </form>
@@ -99,6 +99,6 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 </div>
 </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script><%} %>
+<script src="js/bootstrap.js" type="text/javascript"></script><%}%>
 </body>
 </html>
