@@ -26,6 +26,11 @@
 {
 	float:right;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 </style>
 </head>
 <body class="">
@@ -101,24 +106,46 @@ else
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr" required></td></tr>
       <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr"></td></tr>
-      <tr><td><select class="form-control" id="sel1">
+      <tr><td><select class="form-control" id="s1" name="farmerState" onclick="fun()" onchange = "populate('state','district')">
         <option>State</option>
-        <option>TamilNadu</option>
-        <option>Karnataka</option>
-        <option>Andhra Pradesh</option>
+        <option value = "Andhra Pradesh">Andhra Pradesh</option>
+			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value = "Assam">Assam</option>
+			<option value = "Bihar">Bihar</option>
+			<option value = "Chhattisgarh">Chhattisgarh</option>
+			<option value = "Goa">Goa</option>
+			<option value = "Gujarat">Gujarat</option>
+			<option value = "Haryana">Haryana</option>
+			<option value = "Himachal Pradesh">Himachal Pradesh</option>
+			<option value = "Jammu & Kashmir">Jammu & Kashmir</option>
+			<option value = "Jharkhand">Jharkhand</option>
+			<option value = "Karnataka">Karnataka</option>
+			<option value = "Kerala">Kerala</option>
+			<option value = "Madhya Pradesh">Madhya Pradesh</option>
+			<option value = "Maharashtra">Maharashtra</option>
+			<option value = "Manipur">Manipur</option>
+			<option value = "Meghalaya">Meghalaya</option>
+			<option value = "Mizoram">Mizoram</option>
+			<option value = "Nagaland">Nagaland</option>
+			<option value = "Odisha">Odisha</option>
+			<option value = "Punjab">Punjab</option>
+			<option value = "Rajasthan">Rajasthan</option>
+			<option value = "Sikkim">Sikkim</option>
+			<option value = "Tamil Nadu">Tamil Nadu</option>
+			<option value = "Telangana">Telangana</option>
+			<option value = "Tripura">Tripura</option>
+			<option value = "Uttar Pradesh">Uttar Pradesh</option>
+			<option value = "Uttarakhand">Uttarakhand</option>
+			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
-      </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1">
-        <option>Taluk</option>
-        <option>ottanchadiram taluk</option>
-        <option>palani taluk</option>
-        <option>Vadamadurai taluk</option>
-      </select></td></tr>
+      <!-- id = "district" -->
+	  <tr><td>
+	  <label for = "district">District</label><br />
+		<select id = "d1" name = "traderDistrict" onclick="fun()">
+		</select><br/>	  
+	  <tr><td>
+	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
+    </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="number" onclick="fun()" class="form-control" placeholder="Pin" id="pin" required></td></tr>
     </table>
@@ -146,24 +173,46 @@ else
 	  <tr><td><input type="text" class="form-control" id="branch" onclick="fun1()" placeholder="Branch name" name="farmerbranch" required></td></tr>	  
       <tr><td><label for="address">IFSC</label></td></tr>
       <tr><td><input type="number" class="form-control" id="ifsc" onclick="fun1()" placeholder="Bank IFSC" name="farmerifsc" required></td></tr>
-      <tr><td><select class="form-control" id="sel1">
-       <option>State</option>
-       <option>TamilNadu</option>
-       <option>Karnataka</option>
-       <option>Andhra Pradesh</option>
+      <tr><td><select class="form-control" id="s2" name="farmerState" onclick="fun1()" onchange = "populate('state','district')">
+        <option>State</option>
+        <option value = "Andhra Pradesh">Andhra Pradesh</option>
+			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value = "Assam">Assam</option>
+			<option value = "Bihar">Bihar</option>
+			<option value = "Chhattisgarh">Chhattisgarh</option>
+			<option value = "Goa">Goa</option>
+			<option value = "Gujarat">Gujarat</option>
+			<option value = "Haryana">Haryana</option>
+			<option value = "Himachal Pradesh">Himachal Pradesh</option>
+			<option value = "Jammu & Kashmir">Jammu And Kashmir</option>
+			<option value = "Jharkhand">Jharkhand</option>
+			<option value = "Karnataka">Karnataka</option>
+			<option value = "Kerala">Kerala</option>
+			<option value = "Madhya Pradesh">Madhya Pradesh</option>
+			<option value = "Maharashtra">Maharashtra</option>
+			<option value = "Manipur">Manipur</option>
+			<option value = "Meghalaya">Meghalaya</option>
+			<option value = "Mizoram">Mizoram</option>
+			<option value = "Nagaland">Nagaland</option>
+			<option value = "Odisha">Odisha</option>
+			<option value = "Punjab">Punjab</option>
+			<option value = "Rajasthan">Rajasthan</option>
+			<option value = "Sikkim">Sikkim</option>
+			<option value = "Tamil Nadu">Tamil Nadu</option>
+			<option value = "Telangana">Telangana</option>
+			<option value = "Tripura">Tripura</option>
+			<option value = "Uttar Pradesh">Uttar Pradesh</option>
+			<option value = "Uttarakhand">Uttarakhand</option>
+			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1">
-        <option>District</option>
-        <option>Dindigul</option>
-        <option>Chennai</option>
-        <option>Madurai</option>
-      </select></td></tr>
-	  <tr><td><select class="form-control" id="sel1">
-        <option>Taluk</option>
-        <option>ottanchadiram taluk</option>
-        <option>palani taluk</option>
-        <option>Vadamadurai taluk</option>
-      </select></td></tr>
+      <!-- id = "district" -->
+	  <tr><td>
+	  <label for = "district">District</label><br />
+		<select id = "d2" name = "traderDistrict" onclick="fun1()">
+		</select><br/>	  
+	  <tr><td>
+	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun1()" required/><br/>
+    </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="number" class="form-control" onclick="fun1()" placeholder="Pin" id="usr" required></td></tr>
     </table>
@@ -171,6 +220,7 @@ else
   </div>
   </div>
 </div>
+
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td> <img src="images/farmerori.png" class="img-responsive" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 </div>
@@ -198,8 +248,27 @@ else
   </div>  
   <table align="center">
   <tr><td><label><input type="checkbox" id="terms" >I accept Terms and Condition</label></td></tr>
-  <table align="center"><tr><td><a onclick="register()" id="reg" class="reg" disabled >Register</a></td></tr></table>
+  <table align="center"><tr><td><a onclick="register()" id="reg" class="reg">Register</a></td></tr></table>
   <script>
+  function populate(s1, s2)
+  {
+  	var s1 = document.getElementById("s1");
+  	var s2 = document.getElementById("s2");
+  	s2.innerHTML = "";
+  	if(s1.value == "Karnataka")
+  	{
+  		var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];	
+  	}
+  	for(var option in optionArray)
+  	{
+  		var pair = optionArray[option].split("|");
+  		var newOption = document.createElement("option");
+  		newOption.value = pair[0];
+  		newOption.innerHTML = pair[1];
+  		s2.options.add(newOption);
+  	}
+  }
+  
   function register()
   {
 	    console.log( document.getElementById("terms").checked ==true);
@@ -362,7 +431,7 @@ else
         }
         if(document.getElementById("cpwd").value==null|| document.getElementById("cpwd").value === undefined || document.getElementById("cpwd").value === "")
         {
-        	window.alert("ENTER CONFIRM PASSWORD");
+        	//window.alert("ENTER CONFIRM PASSWORD");
         }
         else
         {
