@@ -591,8 +591,7 @@ if(!(password.value.length >8)){
 	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()" required></td></tr>
        <tr><td><input type="text" class="form-control"  id="usr" onclick="fun()"></td></tr>
        <tr><td>
-       <label for = "state">State</label><br />
-       <select class="form-control" id="state" name="traderState" onclick="fun()" onchange = "populate1('state','district')">
+       <select class="form-control" id="tstate" name="traderState" onchange = "populate1('tstate','tdistrict')" onclick="fun()">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
@@ -623,13 +622,14 @@ if(!(password.value.length >8)){
 			<option value = "Uttar Pradesh">Uttar Pradesh</option>
 			<option value = "Uttarakhand">Uttarakhand</option>
 			<option value = "West Bengal">West Bengal</option>
-      </select></td></tr>
-      <!-- id = "district" -->
+      </select></td></tr><br/>
+     <br/>
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "district" name = "traderDistrict" onclick="fun()">
+		<select id = "tdistrict" name = "traderDistrict" class="form-control">
 		</select><br/>
-	  
+		</td></tr>
+       
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
         
@@ -700,7 +700,7 @@ if(!(password.value.length >8)){
      
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "bdistrict" name = "traderDistrict" class="form-control">
+		<select id = "bdistrict" name = "bdistrict" class="form-control">
 		</select><br/>
 		</td></tr>
 	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" onclick="fun1()"/>
@@ -770,7 +770,7 @@ if(!(password.value.length >8)){
       </select></td></tr>
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "ldistrict" name = "traderDistrict" class="form-control">
+		<select id = "ldistrict" name = "traderLiscenseDistrict" class="form-control">
 		</select><br/>
 		</td></tr>
 	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" onclick="fun2()"/>
