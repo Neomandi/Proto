@@ -5,17 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="icon" type="image/png" href="Images/Neomandi1.png">
-
 <title>Trader Registration</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
-
-
-
 $(function(){
   $("#header").load("Header.html"); 
   $("#footer").load("Footer.html");
@@ -576,11 +571,12 @@ if(!(password.value.length >8)){
 		  $("#h2").css("box-shadow","0px 0px 0px black");
 		  $("#h3").css("box-shadow","0px 0px 0px black");
 		  $("#h4").css("box-shadow","0px 0px 0px black");
-	  }</script>
+	  }
+	  </script>
       <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderAadharnum" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-	<tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
+	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" onclick="fun()" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
@@ -622,18 +618,14 @@ if(!(password.value.length >8)){
      <br/>
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "tdistrict" name = "traderDistrict" class="form-control">
-		</select><br/>
-		</td></tr>
-       
+		<select id = "district" name = "traderDistrict" onclick="fun()">
+		</select><br/>	  t
 	  <tr><td>
 	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
-        
     </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr"   onclick="fun()" name="traderPin"></td></tr>
-    </table>
- 
+    </table> 
   </div>
   </div>
 </div>
