@@ -140,17 +140,8 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-<<<<<<< HEAD
 		<select class="form-control" id = "district1" name = "traderDistrict" onclick="fun()">
-=======
-<<<<<<< HEAD
-		<select id = "d1" name = "traderDistrict" onclick="fun()">
-	    </select><br/>	  
-=======
-		<select id = "district1" name = "traderDistrict" onclick="fun()">
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 		</select><br/>	  
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
       </td></tr>
@@ -216,7 +207,7 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "d2" name = "traderDistrict" onclick="fun1()">
+		<select class="form-control" id = "d2" name = "traderDistrict" onclick="fun1()">
 		</select><br/>	  
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun1()" required/><br/>
