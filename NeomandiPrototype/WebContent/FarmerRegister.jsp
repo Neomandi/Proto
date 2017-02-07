@@ -140,7 +140,7 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "district1" name = "traderDistrict" onclick="fun()">
+		<select class="form-control" id = "district1" name = "traderDistrict" onclick="fun()">
 		</select><br/>	  
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
