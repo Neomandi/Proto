@@ -27,7 +27,8 @@
 	float:right;
 }
 input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-outer-spin-button 
+ { 
   -webkit-appearance: none; 
   margin: 0; 
 }
@@ -38,7 +39,6 @@ input[type=number]::-webkit-outer-spin-button {
 {    
 	 out.println("<script type=\"text/javascript\">");
 	 out.println("alert('THIS AADHARNUMBER HAS ALREADY BEEN REGISTERED');");
-	 out.println("location='FarmerLogin.jsp';");
      out.println("</script>");
 }
 else
@@ -97,9 +97,9 @@ else
 		  $("#h3").css("box-shadow","0px 0px 0px black");
 	  }</script>
       <tr><td><label for="number">Aadhar Number</label></td></tr>
-	  <tr><td><input type="number" class="form-control" onclick="fun()" placeholder="Aadharnumber" name="farmeraadharnum" id="aadharnumber" required></td></tr>
+	  <tr><td><input type="number" class="form-control" min="0" onclick="fun()" placeholder="Aadharnumber" name="farmeraadharnum" id="aadharnumber" required></td></tr>
       <tr><td><label for="mobno">Mobile Number</label></td></tr>
-	  <tr><td><input type="number" class="form-control" onclick="fun()" placeholder="Mobile Number" name="farmermobile" id="mob" required></td></tr>	  
+	  <tr><td><input type="number" class="form-control" min="0" onclick="fun()" placeholder="Mobile Number" name="farmermobile" id="mob" required></td></tr>	  
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" onclick="fun()" placeholder="Email-Id" id="email" name="farmeremail" placeholder="Enter email" required></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
@@ -140,13 +140,22 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
+<<<<<<< HEAD
 		<select class="form-control" id = "district1" name = "traderDistrict" onclick="fun()">
+=======
+<<<<<<< HEAD
+		<select id = "d1" name = "traderDistrict" onclick="fun()">
+	    </select><br/>	  
+=======
+		<select id = "district1" name = "traderDistrict" onclick="fun()">
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 		</select><br/>	  
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
-    </td></tr>
+      </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="number" onclick="fun()" class="form-control" placeholder="Pin" id="pin" required></td></tr>
+	  <tr><td><input type="number" onclick="fun()" min="0" class="form-control" placeholder="Pin" id="pin" required></td></tr>
     </table>
   </form>
   </div>
@@ -159,7 +168,7 @@ else
 <form id="bank" method="get" action="FarmerRegisterInt.jsp">
     <table class="table">
       <tr><td><label for="name">Account Number</label></td></tr>
-	  <tr><td><input type="number" class="form-control" placeholder="account number" onclick="fun1()" name="farmeraccountnum" id="acc" required></td></tr>
+	  <tr><td><input type="number" min="0" class="form-control" placeholder="account number" onclick="fun1()" name="farmeraccountnum" id="acc" required></td></tr>
       <script>
 	  function fun1(){		  
 		  $("#h2").css("box-shadow","0px 0px 14px black");
@@ -268,14 +277,7 @@ else
   }
   
   function register()
-  {
-	    console.log( document.getElementById("terms").checked ==true);
-	  	if((document.getElementById("terms").checked==false))
-  		{
-	  		alert("PLEASE AGREE WITH OUR TERMS AND CONDITIONS BEFORE REGISTERING");
-	  	}
-	  	else
-	  	{
+  {	  	  
 	    var msg="";
 	    var regex=/^[a-zA-Z]+$/;
         if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
@@ -431,13 +433,21 @@ else
         {
         	//window.alert("ENTER CONFIRM PASSWORD");
         }
-        else
+        else 
         {
         	if(document.getElementById("pwd").value!=document.getElementById("cpwd").value)
         	alert("PASSWORD DOESNOT MATCH");
         }	  	
         console.log(document.getElementById("pwd").value+" "+document.getElementById("cpwd").value);
+        console.log( document.getElementById("terms").checked ==true);
+	  	if((document.getElementById("terms").checked==false))
+  		{
+	  		msg=msg+" TERMS AND CONDITION";
+	  	}
         console.log(msg);
+        document.getElementById("terms").focus();
+        document.getElementById("name").focus();
+        document.getElementById("pwd").focus();
         if(msg.length==0)
         	 document.getElementById("bank").submit();
         else
@@ -486,7 +496,7 @@ else
 			return false;
 		}
 		var ifscval = ifsc.value;*/	 
-	  }}
+	  }
   </script>
   </table>
 </div>
