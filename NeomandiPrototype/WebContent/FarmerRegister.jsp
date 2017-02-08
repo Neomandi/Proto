@@ -105,15 +105,9 @@ else
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr" required></td></tr>
       <tr><td><input type="text" class="form-control"  onclick="fun()" id="usr"></td></tr>
-<<<<<<< HEAD
-      <tr><td><select class="form-control" id="s1" name="farmerState" onclick="fun()" onchange = "populate('state','district')">
-        	<option>State</option>
-       		<option value = "Andhra Pradesh">Andhra Pradesh</option>
-=======
       <tr><td><select class="form-control" id="state1" name="farmerState" onclick="fun()" onchange = "populate1('state1','district1')">
         <option>State</option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value = "Assam">Assam</option>
 			<option value = "Bihar">Bihar</option>
@@ -146,13 +140,8 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-<<<<<<< HEAD
-		<select id = "d1" name = "traderDistrict" onclick="fun()">
-	    </select><br/>	  
-=======
-		<select id = "district1" name = "traderDistrict" onclick="fun()">
+		<select class="form-control" id = "district1" name = "traderDistrict" onclick="fun()">
 		</select><br/>	  
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
       </td></tr>
@@ -218,7 +207,7 @@ else
       <!-- id = "district" -->
 	  <tr><td>
 	  <label for = "district">District</label><br />
-		<select id = "d2" name = "traderDistrict" onclick="fun1()">
+		<select class="form-control" id = "d2" name = "traderDistrict" onclick="fun1()">
 		</select><br/>	  
 	  <tr><td>
 	  <input type = "text" id = "sell" name = "farmerTaluk" class="form-control" placeholder = "Taluk" onclick="fun1()" required/><br/>
