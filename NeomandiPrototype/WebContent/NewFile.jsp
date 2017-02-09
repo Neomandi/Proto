@@ -32,6 +32,7 @@ margin-top:0px;
 .autable .table tbody tr td, .lottable .table tbody tr td, .pstable .table tbody tr td, .sum2tab .table tbody tr td {
 border-top:2px solid #fff !important;
 }
+
 </style>
 <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD9ECA30-3AD0-9445-B7F7-37B6DC12D43A/main.js" charset="UTF-8"></script></head>
 <body class="" >
@@ -102,17 +103,15 @@ border-top:2px solid #fff !important;
 	  <td><h4></h4></td>
 	  <td><h4></h4></td>
 	  </tr></thead>
-	  <tbody>
-	  <tr><button class="btn">NUMBER</button></tr>
-	  <tr class="gradeX"><td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0' class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
-	  <tr class="gradeX"><td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0'class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
-	  <tr class="gradeX"><td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" class="form-control" min='0' id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
-	  <tr class="gradeX"><td><button type="button" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tbody>	  
+	  <tr class="gradeX"><td><button type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0' class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><button type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0'class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><button type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" class="form-control" min='0' id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><button type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
 	  </tbody>
 	  </table>
 </div>
-	  </div>
-    
+
 <!---------modal image--------------->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
