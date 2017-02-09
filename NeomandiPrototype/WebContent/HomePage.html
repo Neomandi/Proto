@@ -23,6 +23,23 @@ p,a{
 	font-family: Arial, Helvetica, sans-serif;
 	line-height:200%;
 }
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+    padding: 25px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -77,7 +94,7 @@ farmers with its world class infrastructure and internet technology which empowe
 enables the traders to face the debilitating challenges of markets consequently bringing a smile on the end consumer's face, creating a happy nation.
 </p>
 </div>
-<div id = "footer"></div>
+<footer><div id = "footer"></div></footer>
 
 </body>
 </html>
