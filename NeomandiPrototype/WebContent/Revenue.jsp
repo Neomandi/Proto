@@ -1,186 +1,187 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Revenue</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMandi</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 <style>
-.logout
-{
-	text-decoration: none;
-	color: red;
-	position: absolute;
-	top: 6px;
-	right: 30px;
-	font-size: 32px;
+html {
+    position: relative;
+    min-height: 100%;
 }
-ul {		
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: white;    
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+    padding: 0px;
 }
-li
-{
-	display: inline;
-    float: left;
-		    
-}
-
-			.active {
-			    border: 1px solid black;
-			    color: brown;
-			    background-color: white;
-			    bottom: -3px;    
-			    border-bottom: 2px solid white;
-			    
-			}
-		
-		 #menu
-		{
-		    text-align: center;
-		    border: 1px solid black;
-		    border-radius: 9px 9px 0 0;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 150px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;
-		    border-radius: 9px 9px 0 0;    
-		}
-		
-		 li
-		{
-			display: inline;
-		    float: left;    
-		}
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;    
-		}
-table
-{
-	border: border;
-	border-Collapse: collapse;
-	width: 80%;
-}
-td
-{
-	text-align: center;
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 76px;
+    width: 100%;
+    overflow:hidden;
 }
 </style>
-<body>
-<%@ include file="ERibbon.jsp" %><br><br>
-<ul>
-	<li><a id="menu" href="ProductEntry.jsp">Product Entry</a></li>
-	<li><a id="menu" class="active" href="Revenue.jsp">Revenue</a></li>
-	<li><a id="menu" href="Dispatch.do">Dispatch</a></li>
-</ul><br><br><br>
+<body class="">
+    <div class="logo_relative">
+        <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+        <div class="container-fluid headertop">
+            <div class="">
 
-<center>
-<table border>
-	<tr>
-		<th bgcolor="#F2F2F2">Lot Number</th>
-		<th bgcolor="#F2F2F2">Lot Cost</th>
-		<th bgcolor="#6FC3E8">TLC*</th>
-		<th bgcolor="#6FC3E8">Commission</th>
-		<th bgcolor="#6FC3E8">Market Cess</th>
-		<th bgcolor="#6FC3E8">EPC#</th>
-		<th bgcolor="#D1DF4D">TLC*</th>
-		<th bgcolor="#D1DF4D">Market Cess</th>
-		<th bgcolor="#D1DF4D">EPC#</th>
-		<th bgcolor="#D1DF4D">PMVA$</th>
-		<th bgcolor="#F2F2F2">NeoMandi Revenue</th>
-	</tr>
+                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
+                    <h1>Employee1 ,welcome to e-aution at Neomandi.</h1></div>
+                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="logout.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+            </div>
+        </div>
 
-<%
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	PreparedStatement pstmt1 = null;
-	ResultSet rs = null;
-	ResultSet rs1 = null;
-	
-	try{
-	con = JDBCHelper.getConnection();
-	
-	if(con == null)
-	{
-		System.out.println("Connection not established.");
-	}
-	else
-	{
-		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
-		pstmt = con.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		if(!rs.isBeforeFirst())
-		{
-			while(rs.next())
-			{
-				String lotnumber = rs.getString("lotnumber");
-				int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
-				String aadharnumber = rs.getString("bidprice");
-				int bestbid = Integer.parseInt(rs.getString("bestbid"));
-				double averageprice = Double.parseDouble(rs.getString("averageprice"));
-				int lotcost = (int)(quantityassigned*averageprice);
-				int commission = (int)(lotcost*0.05);
-				int marketcess = (int)(lotcost*0.01);
-				double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
-				int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
-				int nmr = commission + marketcess + 100 + 100 + fmarketcess;
-%>
-	<tr>
-		<td bgcolor="#F2F2F2"><%= lotnumber %></td>
-		<td bgcolor="#F2F2F2"><%= lotcost %></td>
-		<td bgcolor="#6FC3E8">3000</td>
-		<td bgcolor="#6FC3E8"><%= commission %></td>
-		<td bgcolor="#6FC3E8"><%= marketcess %></td>
-		<td bgcolor="#6FC3E8">100</td>
-		<td bgcolor="#D1DF4D">3000</td>
-		<td bgcolor="#D1DF4D"><%= fmarketcess %></td>
-		<td bgcolor="#D1DF4D">100</td>
-		<td bgcolor="#D1DF4D">100</td>
-		<td bgcolor="#F2F2F2"><%= nmr %></td>
-	</tr>
-<%
-			}
-		}
-		else
-		{
-			System.out.println("No revenues.");
-		}
-	}
-	}
-	catch(SQLException e)
-	{
-		e.printStackTrace();
-	}
-	finally
-	{
-		JDBCHelper.Close(rs);
-		JDBCHelper.Close(pstmt);
-		JDBCHelper.Close(con);
-	}
-%>
-</table>
-</center>
+        <div class="container-fluid tradtab">
+            <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 pad">
+                <ul class="nav nav-tabs">
+                    <li><a href="ProductEntry.jsp">Product Entry</a></li>
+                    <li class="active"><a href="Revenue.jsp">Revenue</a></li>
+                    <li><a href="dispatch.html">Dispatch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid lots">
+        <div class="container tabin">
+            <div class="revtab">
+                <table class="table rtable">
+                    <thead>
+                        <tr>
+                            <td>
+                                <h4>Lot Number</h4></td>
+                            <td>
+                                <h4>Lot Cost</h4></td>
+                            <td>
+                                <h4>TLC<sup>*</sup></h4></td>
+                            <td>
+                                <h4>Commision</h4></td>
+                            <td>
+                                <h4>Market Cess</h4></td>
+                            <td>
+                                <h4>EPC<sup>#</sup></h4></td>
+                            <td>
+                                <h4>TLC<sup>*</sup></h4></td>
+                            <td>
+                                <h4>Market Cess</h4></td>
+                            <td>
+                                <h4>EPC<sup>#</sup></h4></td>
+                            <td>
+                                <h4>PMVA<sup>$</sup></h4></td>
+                            <td>
+                                <h4>NeoMandi Revenue</h4></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gradeX">
+                            <td>
+                                <h4>123456789</h4></td>
+                            <td>
+                                <h4>20,000</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>1600</h4></td>
+                        </tr>
+                        <tr class="gradeX">
+                            <td>
+                                <h4>123456789</h4></td>
+                            <td>
+                                <h4>20,000</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>1600</h4></td>
+                        </tr>
+                        <tr class="gradeX">
+                            <td>
+                                <h4>123456789</h4></td>
+                            <td>
+                                <h4>20,000</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>3000</h4></td>
+                            <td>
+                                <h4>1000</h4></td>
+                            <td>
+                                <h4>200</h4></td>
+                            <td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4>1600</h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="grad1"></div>
+        <div class="container charge">
+            <table class="table">
+                <tr>
+                    <td>
+                        <h4>*Transportation / Loading Charges</h4></td>
+                    <td>
+                        <h4> #E-Platform Charges</h4></td>
+                    <td>
+                        <h4>$ Pre-Market Value Addition Charges</h4></td>
+                </tr>
+            </table>
 
-<a class = 'logout' href = "ELogout.do"><b><i>Logout</i></b></a>
-<pre><p style="position: fixed; bottom: 20px; left: 180px; font-size: 20px;">*Transportation/Loading Charges   #E-Platform Charges   $Pre-Market Value Addition Charges</p></pre>
+        </div>
+        <div class="bottom"></div>
+    </footer>
+    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
 </body>
 </html>

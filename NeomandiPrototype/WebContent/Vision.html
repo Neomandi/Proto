@@ -22,6 +22,23 @@ p,a{
 	font-family: Arial, Helvetica, sans-serif;
 	line-height:200%;
 }
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+    padding: 25px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+}
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -63,6 +80,6 @@ p,a{
 NeoMandi's vision is to be a leading corporation in providing an ecosystem of advanced technologies to help farmers in marketing their produce for a fair price discovered in a transparent and competitive environment.
 </p>
 </div>
-<div id = "footer"></div>
+<footer><div id = "footer"></div></footer>
 </body>
 </html>
