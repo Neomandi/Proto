@@ -114,9 +114,11 @@
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="script.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
 	<script src = "jspdf/jspdf.min.js"></script>
 	<script src = "html2canvas.js"></script>
 	<script>
+	
 		function genPDF(){
 			html2canvas(document.getElementById('myProfile'),{
 				onrendered: function(canvas){
@@ -127,6 +129,7 @@
 				}
 			});
 		}
+		
 	</script>
 </head>
 <style>

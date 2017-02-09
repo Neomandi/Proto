@@ -10,148 +10,36 @@
 	java.sql.SQLException,java.text.SimpleDateFormat,
 	java.util.*"
  %>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<style>
-table
-{
-	border-collapse: collapse;
-}
-#ext
-{
-	position: absolute;
-	left: 625px;
-}
-#export
-{
-	position: absolute;
-	left: 690px;
-}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: white;    
-}
- li
-{
-	display: inline;
-    float: left;
-    
-}
-li a:hover:not(.active) {
-    color: white;
-    
-}
-.active {
-    border: 1px solid black;
-    color: brown;
-    background-color: white;
-    bottom: -3px;    
-    border-bottom: 2px solid white;
-    
-}
-
- a
-{
-    text-align: center;
-    border: 1px solid black;
-      border-radius: 9px 9px 0 0;
-    background-color: blue;   
-	display: inline;
-	display: block;
-    color: white;
-	width: 100px;
-	text-decoration: none;
-	padding: 10px 20px;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: white;
-    border-radius: 9px 9px 0 0;    
-}
-
- li
-{
-	display: inline;
-    float: left;    
-}
-
-li a:hover:not(.active) {
-    color: white;
-    
-}
-
-.active {
-    border: 1px solid black;
-    color: brown;
-    background-color: white;
-    bottom: -3px;    
-    border-bottom: 2px solid white;    
-}
-
- a
-{
-    text-align: center;
-    background-color: blue;   
-	display: inline;
-	display: block;
-    color: white;
-	width: 150px;
-	text-decoration: none;
-	padding: 10px 20px;
-}
-
-#navigation_container {
-   margin: 0 auto;
-   width: 960px;
-}
-
-.rectangle {
-	width: 1200px;
-   color: white;
-   text-align:center;
-   background: #e5592e;
-   height: 62px;
-   position: relative;
-   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-   box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-   -webkit-border-radius: 34px;
-   -moz-border-radius: 3px;
-   border-radius: 3px;
-   z-index: 200; /* the stack order: foreground */
-   margin: 3em 0;
-   top: 0px;
-}
-.tiptext {
-    background:#ccc;
-   
-    padding:5px;
-    width:100px;
-}
-.description {
-    display:none;
-    position:absolute;
-   
-    width:400px;
-    height:400px;
-}
-
-</style>
-
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body>
+
+<body class="" >
+<div class="logo_relative">
+<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="container-fluid headertop">
+<div class="">
+
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+</div>
+</div>
 <%
 	
 	 HttpSession hs1=request.getSession(false);  
@@ -161,17 +49,15 @@ li a:hover:not(.active) {
      ResultSet resultSet = null;    
      con = JDBCHelper.getConnection();
 %>
-<%@ include file="Fribbon.jsp" %><br><br>
-
-<ul>
-   	 <li><a href="FarmerMaster.jsp" >Auction</a></li>
- 	 <li><a class="active"  id="ld" href="Lotdetails.jsp">My Lots</a></li>
-	 <li><a class="classbeauty" id="ts" href="GetSummary.do"> Summary</a></li>
-	 <li><a href="FarmerProfile.jsp">My Profile</a>
-	 <li><a href="FarmerSummaryInt.jsp">History</a></li>
-	
-</ul>
-<%
+<div class="container-fluid tradtab">
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+  <ul class="nav nav-tabs">
+    <li ><a href="FarmerMaster.jsp">Auction</a></li>
+    <li class="active"><a  href="Lotdetails.jsp" >My Lots</a></li>
+    <li><a class="classbeauty" id="ts" href="#">Summary</a></li>
+    <li><a href="FarmerProfile.jsp">My Profile</a></li>
+  </ul>
+  <%
 	 
      String s="";
      try{	
@@ -194,61 +80,94 @@ li a:hover:not(.active) {
 		e.printStackTrace();	
 	}
 %>
-  <br/><br/>
-  <table  width="65%" height="50%" border="2" bgcolor="ADFF2F">
-		<tr>
-			<h2><b>
-				<th>Lotnumber</th>		
-				<th>Produce</th>
-				<th>Product</th>
-				<th>Grade</th>
-				<th>Quantity</th>
-			</b></h2>
-		</tr>						
-<%
+</div>
+</div>
+</div>
+
+<div class="container-fluid lots pad">
+<div class="tabin">
+<div class="lottable">
+<table class="table ltable">
+<thead><tr>
+          <td></td>
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Produce</h4></td>
+	  <td><h4>Product</h4></td>
+	  <td><h4>Grade</h4></td>
+	  <td><h4>Quantity</h4></td>
+	  <td></td><td></td>
+	  </tr></thead>
+	  <%
 //fetching lotdetails
+	String imgsrc="";
 	try{	
-		if(con == null)
-			{
-				System.out.println("Connection establish failed");
-			}
+		
 			statement = con.createStatement();
 			String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
 			System.out.println(sql5);		
 			resultSet = statement.executeQuery(sql5);
 			while(resultSet.next()){
+				String lotnumber=resultSet.getString("lotnumber");
+				  imgsrc="ProductImages/"+lotnumber+".jpg";
 %>
-		<tr>
-			<td>
-			 <%String lotnumber=resultSet.getString("lotnumber");
-			 String imgsrc="ProductImages/"+lotnumber+".jpg";
-			%>
-			<button><div class="tiptext"><%=lotnumber %>
-					<div class="description"><img src="<%=imgsrc %>" alt="cont display" width = "400" height = "300"/></div>
-					</div></button>
-					<script>
-					$(".tiptext").click(function() {
-					    $(this).children(".description").show();
-					}).mouseout(function() {
-					    $(this).children(".description").hide();
-					});
-					
-					</script>
-			 
-			 
-			</td>
-			<td><%= resultSet.getString("produce")%> </td>
-			<td><%= resultSet.getString("kindofpro")%></td>
-			<td><%=resultSet.getString("qualitygrade")%></td>
-			<td><%= resultSet.getString("quantity")%></td>
-		</tr>						
+	  <tbody>
+	  <tr class="gradeX">
+	  <td></td>
+	  <td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"><%=lotnumber %></button></td>
+	  <td><h4><%= resultSet.getString("produce")%></h4></td>
+	  <td><h4><%= resultSet.getString("kindofpro")%></h4></td>
+	  <td><h4><%=resultSet.getString("qualitygrade")%></h4></td>
+	  <td><h4><%= resultSet.getString("quantity")%></h4></td>
+	  <td></td>
+	  </tr>			
 <% 	
-		}
-	} catch (Exception e) {
+			}
+		} catch (Exception e) {
 		e.printStackTrace();
-}
+	}
+	  finally{
+		  resultSet.close();
+			statement.close();
+			con.close();
+	  }
 %>
-</table>
+	  </tbody>
+	  </table>
+</div>
+	  </div>
+	  </div>
+    
+  
+  <!---------modal image--------------->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Product Image</h4>
+        </div>
+        <div class="modal-body">
+          <img src="<%=imgsrc%>" class="img-responsive trad">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!--------modal image end------------>   
+  
+
+
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+
+
+     
 
 </body>
 </html>
