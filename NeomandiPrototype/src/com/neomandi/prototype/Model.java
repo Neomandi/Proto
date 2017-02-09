@@ -1112,8 +1112,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		MyFinalCostBean mfcb=null;
 		List<TradeListBean> al=new ArrayList<TradeListBean>();
 		List<MyFinalCostBean> bl=new ArrayList<MyFinalCostBean>();
-		Mynewclass mc=new Mynewclass();
-		
+		Mynewclass mc=new Mynewclass();		
 		try
 		{
 			con = JDBCHelper.getConnection();
@@ -1151,11 +1150,10 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					tlb.setQuantityneeded(rs.getString("quantityneeded"));
 					al.add(tlb);
 					lotnumber.add(rs.getString("lotnum"));
-					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanityt"+rs.getString("quantityneeded"));
+					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
 				}
-				mc.setAl(al);
-				
-				
+				mc.setAl(al);	
+				System.out.println("model "+mc.getAl()+lotnumber.size());
 				for(int i=0;i<lotnumber.size();i++)
 				{
 					int lotcost=0;
@@ -1165,10 +1163,12 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnumber.get(i));
+					System.out.println(lotnumber.get(i));
 					ps.execute();
 					rs = ps.getResultSet();				
 					while(rs.next())
 					{
+						System.out.println("inside while()");
 						int quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
 						int bidprice=Integer.parseInt(rs.getString("bidprice"));
 						lotcost=bidprice*quantityassigned;
@@ -1179,13 +1179,14 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						else
 							myfinalcost=100+lotcost+commission+marketcess+3000;
 					}
-					ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadaharnumber=? and lotnum=?" );
+					ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 					ps.setString(1,String.valueOf(lotcost));
 					ps.setString(2,String.valueOf(commission));
 					ps.setString(3,String.valueOf(marketcess));
 					ps.setString(4,String.valueOf(myfinalcost));
 					ps.setString(5,String.valueOf(aadharnumber));
 					ps.setString(6,lotnumber.get(i));
+					ps.execute();
 					
 					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 					ps.setString(1, aadharnumber);
@@ -1208,7 +1209,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						else							
 							mfcb.setBestbid(rs3.getString("bestbid"));
 						mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
-						System.out.println("insidemodel lotnumber is"+mfcb.getLotnum()+"lotcost is"+mfcb.getLotcost());
+						System.out.println("inside model lotnumber is"+mfcb.getLotnum()+"lotcost is"+mfcb.getLotcost());
 						bl.add(mfcb);
 					}//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						mc.setBl(bl);
