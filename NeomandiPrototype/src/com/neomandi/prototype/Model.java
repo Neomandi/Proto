@@ -424,6 +424,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	//farmer trade summary	
 	@SuppressWarnings({ "resource" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
+
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -487,16 +488,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				//sb.setAccountnum(account);
 				System.out.println("in model bean="+sb);
-				if(sb==null)
-				{			
-					System.out.println("sb is null");
-					sb=new SummaryBean();
-					sb.setStatus("fail");
-					return sb;
-				}
 				averageprice=sb.getAverageprice();
 				
 				quantitysold=sb.getQuantitysold();
+				if(averageprice!=null){
 				double aprice=Double.parseDouble(averageprice);
 			    aprice=aprice*100;
 			    aprice=(int)aprice;
@@ -527,7 +522,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				System.out.println("Execute"+ps.executeUpdate());
 				rs=ps.getResultSet();
 				System.out.println(rs+" "+ps.getResultSet());
-				
+				}
+				else{
+					averageprice="--";
+				}
 			    con.commit();
 			}
 		}

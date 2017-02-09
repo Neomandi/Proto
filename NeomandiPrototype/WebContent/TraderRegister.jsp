@@ -630,6 +630,7 @@ if(!(password.value.length >8)){
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" >
+
 <div id="h2">
 <h4 >My Bank Account Details</h4>
 <div class="bankacc" id="d2">
