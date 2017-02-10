@@ -236,7 +236,162 @@ border-top:0px solid #fff !important;}
 	</tbody>
 	</table>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<% 
+	String quantityneededs=tlb.getQuantityneeded();
+	int quantityneeded=Integer.parseInt(quantityneededs);
+	String quantityassigneds=mfcb.getQuantityassigned();
+	int quantityassigned=Integer.parseInt(quantityassigneds);%>
+	<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
+	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
+	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
+	<script>
+function submitbutton<%out.print(tlb.getLotnum());%>()
+{
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference is "+timedifference);
+	/*if(!timedifference.includes("-"))
+	{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+	}*/
+	//else
+	{
+    var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+    var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
+    var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
+	var currentbids=new Number(currentbid);
+	var result=currentbids+1;
+    var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+	var assigned=new  Number(assigneds);
+	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+	var needed=new  Number(neededs);
+	console.log("volume assigned is "+assigned+"");
+	console.log("volume needed is "+needed+"");
+	if(assigned-needed==0)
+	{
+		console.log("assigned=needed");
+		document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
+	}
+	else
+	{
+		console.log("assigned!=needed");
+		 xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	 var string=xmlhttp.responseText;
+		    	 if(string.includes("block"))
+		    		{
+		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		  	  	       window.location='TraderBlock.do';
+		    		}
+		    	else
+		    	{	
+		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+		         startlotnum=startlotnum+9;
+		         
+		         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+		         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+		         startlotcost=startlotcost+7;
+		         
+		         var startcommission=xmlhttp.responseText.indexOf('commission');
+		         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+		         startcommission=startcommission+10;
+		         
+		         var startmarket=xmlhttp.responseText.indexOf('market');
+		         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+		         startmarket=startmarket+6;
+		         
+		         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+		         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+		         startbestbid=startbestbid+7;
+		         
+		         var startmybid=xmlhttp.responseText.indexOf('mybid');
+		         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+		         startmybid=startmybid+5;
+		         
+		         var startassigned=xmlhttp.responseText.indexOf('assigned');
+		         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+		         startassigned=startassigned+8;
+		         
+		         var startfinal=xmlhttp.responseText.indexOf('final');
+		         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+		         startfinal=startfinal+5;
+
+		         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+		         var assigned=string.substring(startassigned,endassigned);
+		         if(assigned=="0")
+		         {
+		        	 var symbol="-";
+		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			     }
+		         else
+		         {
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+		         }}}};
+		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+		  console.log("current bid is "+bid1);
+		  bid1=bid1+1;
+		  xmlhttp.open("POST", "ajaxIncrement.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("number="+bid1+"&lotnumber="+j);
+	}
+		}
+}
+</script>
 	<tr><td><br><a href="#" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
@@ -244,8 +399,7 @@ border-top:0px solid #fff !important;}
 	<%
 SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
 %>
-<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>
-	
+<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
 	<script>
 	function fun<%=tlb.getLotnum()%>(){
 	var Etime=document.getElementById("time").value;
@@ -283,7 +437,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
 	console.log("time difference isss "+timedifference);	
-	if(timedifference.includes("-"))
+	//if(timedifference.includes("-"))
 	{
 	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
 		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
@@ -401,10 +555,10 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" + i+"&lotnumber="+j);
 	  }}}}
-	else
+	/*else
 		{	console.log(!timedifference.includes("-"));
 			alert('YOU CANT BID BEFORE AUCTION STARTS');
-		}}
+		}*/}
 	</script>
 	</tbody></table></div>
 	</div>
