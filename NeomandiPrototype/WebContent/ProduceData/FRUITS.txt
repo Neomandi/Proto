@@ -1,1 +1,0 @@
-<option>APPLE</option><option>MANGO</option><option>PAPAYA</option><option>BANANA</option><option>ORANGE</option>
