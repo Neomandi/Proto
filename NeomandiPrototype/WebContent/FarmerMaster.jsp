@@ -11,142 +11,47 @@
 	 java.sql.SQLException,
 	 java.text.SimpleDateFormat,
 	 java.util.*"%>
-     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-     <html>
-	<head>
-		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> 
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<!-- <meta http-equiv="refresh" content="5; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp"> -->
-		<title>Insert title here</title>
-		
-		<style>
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;    
-		}
-		 li
-		{
-			display: inline;
-		    float: left;
-		    
-		}
-		li a:hover:not(.active) {
-		    color: white;
-		    
-		}
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;
-		    
-		}
-		
-		 a
-		{
-		    text-align: center;
-		    border: 1px solid black;
-		      border-radius: 9px 9px 0 0;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 100px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;
-		    border-radius: 9px 9px 0 0;    
-		}
-		
-		 li
-		{
-			display: inline;
-		    float: left;    
-		}
-		
-		li a:hover:not(.active) {
-		    color: white;
-		 }
-		
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;    
-		}
-		
-		 a
-		{
-		    text-align: center;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 150px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		/*
-		#navigation_container {
-		   margin: 0 auto;
-		   width: 960px;
-		}
-		
-		.rectangle {
-			width: 1200px;
-		   color: white;
-		   text-align:center;
-		   background: #e5592e;
-		   height: 62px;
-		   position: relative;
-		   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-		   box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-		   -webkit-border-radius: 34px;
-		   -moz-border-radius: 3px;
-		   border-radius: 3px;
-		   z-index: 200; /* the stack order: foreground */
-		   margin: 3em 0;
-		   top: 0px;
-		}*/
-		
-		.tiptext {
-    background:#ccc;
-   
-    padding:5px;
-    width:100px;
-}
-.description {
-    display:none;
-    position:absolute;
-   
-    width:400px;
-    height:400px;
-}
-		</style>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="script.js"></script>		
-	</head>
-<body>
-	 <%@ include file="Fribbon.jsp" %><br><br>	
-	<ul>
-	   	<li><a  href="javascript:window.location = document.referrer;" class="active">Auction</a></li>
-	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a  class="classbeauty" id="ts" href="#"> Summary</a></li>
-		<li><a href="FarmerProfile.jsp">My Profile</a>
-		<li><a href="FarmerSummaryInt.jsp">History</a></li>
-	</ul>
-	 <%	 	
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="" >
+<div class="logo_relative">
+<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="container-fluid headertop">
+<div class="">
+
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+</div>
+</div>
+
+<div class="container-fluid tradtab">
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="FarmerMaster.jsp">Auction</a></li>
+    <li><a href="Lotdetails.jsp">My Lots</a></li>
+    <li><a class="classbeauty" id="ts" href="#">Summary</a></li>
+    <li><a href="FarmerProfile.jsp">My Profile</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<%	 	
 		 
 	 		HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
@@ -167,56 +72,43 @@
 			 String name="";
 		     try
 		     	{	
-		     	/*if(con == null)
-		     	{
-		     		System.out.println("Connection establish failed");
-		     	}*/
+		     
 		     	statement = con.createStatement();
 		     	String sql = "select aadharnum,name from freg where pass='"+pass+"' ";
 		     	//System.out.println(sql);
 		     	resultSet = statement.executeQuery(sql);
 		    	while(resultSet.next()){
-	%>
-	<table>
-		<tr>
-			<th><font color="blue" size="5">AadharNumber</font></th>
-		</tr>
-		<tr>
-			<td background="pink"><%= resultSet.getString("aadharnum")%></td>
-		</tr>
-		<% s+=resultSet.getString("aadharnum");
-		    name+=resultSet.getString("name");
+		    		s+=resultSet.getString("aadharnum");
+				    name+=resultSet.getString("name");
+						}
 				}
-			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();	
-			}
-		    
-		     
-		%>
-	  
-	</table>
-	<!-- ------------------------------------------------------------------------------------------------- -->
-	<!-- display lotdetails -->
-	<table border="1" id="mytable">
-		<tr>
-			<th><font color="#C71585" size="5">Lot number</font></th>
-		    <th><font color="#C71585" size="5">Average price</font></th>
-		    <th><font color="#C71585" size="5">Lot size</font></th>
-		    <th><font color="#C71585" size="5">Quantity bid for</font></th>
-		    <th></th>
-		    <th></th>
-		    <th><font color="#C71585" size="5">Status</font></th>
-		</tr>
-		<%
+				catch(SQLException e)
+				{
+					e.printStackTrace();	
+				}
+		    	
+	%>
+<div class="container-fluid pad auct">
+<div class="tabin1">
+<div class="autable">
+<table class="table atable">
+<thead><tr>
+          <td></td>
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Lot Size</h4></td>
+	  <td><h4>Quantity</h4></td>
+	  <td><h4>Avg Price</h4></td>
+	  <td><h4>Accept</h4></td>
+	  <td><h4>Reject</h4></td>
+	  <td><h4>Status</h4></td>
+          <td></td>
+	  </tr></thead>
+	    <%
 			//fetching lotnumber 
 			String lot="";
+	    	String imgsrc="";
 			try{	
-				/*if(con == null)
-				{
-					System.out.println("Connection establish failed");
-				}*/
+				
 				statement = con.createStatement();
 				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				//System.out.println(sql);
@@ -224,122 +116,140 @@
 				while(resultSet.next()){
 					String avg="--";
 		%>
-		<tr>
-			 <td >
-			 <%String lotnumber=resultSet.getString("lotnumber");
-			 String imgsrc="ProductImages/"+lotnumber+".jpg";
-			%>
-			<button><div class="tiptext"><%=lotnumber %>
-					<div class="description"><img src="<%=imgsrc %>" alt="cont display" width = "400" height = "300"/></div>
-					</div></button>
-					<script>
-					$(".tiptext").click(function() {
-					    $(this).children(".description").show();
-					}).mouseout(function() {
-					    $(this).children(".description").hide();
-					});
-					
-					</script>
-			 
-			 
-			 
-			 
-			 </td>
-			<%  if(resultSet.getString("averageprice")!=null){%>
-			<div id="avg"><td><%String average=(String)resultSet.getString("averageprice");
-			                    double x=Double.parseDouble(average);
-			                    x=x*100;
-			                   x=(int)x;
-			                   x=x/100;
-			                    // double result= (double)nf.format( avg1 );
-			                  
-			                     
-			                     System.out.println("before"+average+" after"+x);
-			                     out.println(x);%></td></div>
-			<%}else{ %>
-			<td><%=avg %></td>
-			<%} %>
-			 <td><%=resultSet.getString("quantity") %></td>
-			 <%  if(resultSet.getString("quantitybidfor")!=null){%>
-			<div id="qty"><td><%=resultSet.getString("quantitybidfor") %></td></div> 
-				<%}else{ %>
-			<td><%=avg %></td>
-			<%} %>	
-			 <td><form  method="post" action="AcceptSummary.do">
-			<input type="submit" id="accept" value="Accept"  disabled />
+	  <tbody>
+	  <tr class="gradeX"><td></td>
+	  <td>
+	  	<%String lotnumber=resultSet.getString("lotnumber");
+		   imgsrc="ProductImages/"+lotnumber+".jpg";
+		%>
+	  <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
+	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
+	  <%
+	  	String qty="--"; 
+	  	if(resultSet.getString("quantitybidfor")!=null){
+			String quantity =(String)resultSet.getString("quantitybidfor");
+			double y=Double.parseDouble(quantity);
+		    y=y*100;
+			y=(int)y;
+			y=y/100;
+			System.out.println("before"+quantity+" after"+y);
+          	%>  
+          	<td><h4><%=y%></h4></td> 
+          	<% }
+	  		else{ %>              
 			
-			</form></td>
-				
-			<td> <form   action="RejectSummary.do">
-			 <input  id="reject" type="submit" value="Reject" disabled></form></td>
+	  	
+	  <td><h4><%=qty %></h4></td><%} %>
+	  <%  
+	  		
+	  		if(resultSet.getString("averageprice")!=null){
+			String average=(String)resultSet.getString("averageprice");
+			double x=Double.parseDouble(average);
+		    x=x*100;
+			x=(int)x;
+			x=x/100;
+			System.out.println("before"+average+" after"+x);
+                              
 			
-			 <td width="30%" height="5%"><font color="blue" >
-			 <center><h4><div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4></center></font>
-				<div id="auction"></div>
-				<div id="auction1"></div>
-			</td>
-		</tr>
-	<%
+	  		%>
+	  		<td><h4><%=x%></h4></td>
+	  		<%}else{ %>
+	  		
+	  
+	  <td><h4><%=avg %></h4></td><%} %>
+	  
+	  <td>
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled>Accept</button>
+	  		
+	  </td>
+	  
+	  <td>
+	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled>Reject</button>
+	  			  </td>
+	  <td class="clsnowrap"><h4>
+	  	<div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4>
+	  	<div id="auction"></div>
+		<div id="auction1"></div>
+	  	</td></tr>
+	 
+	  <%
 		}
 	}
 	catch(SQLException e)	
 	{
 		e.printStackTrace();	
-	}
-			
-			
+	}			
 %>
-</table>		
+	  </tbody>
+	  </table>
+</div>
+	  </div>
+	  </div>
+   
+  <!---------modal image--------------->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Product Image</h4>
+        </div>
+        <div class="modal-body">
+          <img src="<%=imgsrc%>" class="img-responsive trad">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!--------modal image end------------>
 <%
 	//fetching date and time
 	String date="";
 	String slot="";
 	String s1="";
-	try{	
-			/*if(con == null)
-				{
-					System.out.println("Connection establish failed");
-				}*/
-					statement = con.createStatement();
-					String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
-					//System.out.println(sql);
-					resultSet = statement.executeQuery(sql);
-					List<String> l=new ArrayList<String>();
-					while(resultSet.next()){
-%>
-	<font size="5" color="#9785f"></font>
-<% 
-					date+=resultSet.getString("Date");
-					//time+=resultSet.getString("Time");
-					slot+=resultSet.getString("slotnumber");
-					l.add(slot);
-					System.out.println("date="+date);
-					//System.out.println("time="+time);
-					System.out.println("slot="+slot);
-					 for(String obj:l)  {
-						 s1=obj;
-						 
-					 }
+	try
+	{	
+		statement = con.createStatement();
+		String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
+		resultSet = statement.executeQuery(sql);
+		List<String> l=new ArrayList<String>();
+		while(resultSet.next()){
+			date+=resultSet.getString("Date");
+			slot+=resultSet.getString("slotnumber");
+			l.add(slot);
+			System.out.println("date="+date);
+			System.out.println("slot="+slot);
+			for(String obj:l)  {
+				 s1=obj;
 				}
 			}
+		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();	
 		}
-	 finally
-		{resultSet.close();
-		statement.close();
-		con.close();
+	 	finally
+		{
+	 		resultSet.close();
+			statement.close();
+			con.close();
 		}
 					
 %>
-		  
-		  <!-- ---------------------------------------------------------------------------------------------- -->  
-		 <form>
-			<input type="hidden" value="<%=time %>" id="time" />
-			<input type="hidden" value="<%=s1 %>" id="slot" />
-			<input type="hidden" value="<%=date %>" id="date" />
-		</form>
+
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<form>
+	<input type="hidden" value="<%=time %>" id="time" />
+	<input type="hidden" value="<%=s1 %>" id="slot" />
+	<input type="hidden" value="<%=date %>" id="date" />
+</form>
 		<script>
 	
 			var Etime=document.getElementById("time").value;
@@ -735,8 +645,18 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("accept").disabled=false;
 	 document.getElementById("reject").disabled=false;
  }
+ function accept(){
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+ }
+ function reject(){
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+    }
  </script>
- <br/>
- <br/>  
- </body>
+
+    <script>
+    
+    
+    </script> 
+
+</body>
 </html>

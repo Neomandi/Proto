@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*,
-    java.io.InputStream,java.io.InputStreamReader,
-    java.io.Reader,java.io.OutputStream, 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1" import="java.util.*,
+    java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
     com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
     java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
 	  java.io.IOException,
@@ -26,7 +24,6 @@
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,49 +49,43 @@ margin-top:0px;
 border-top:2px solid #fff !important;
 }
 </style>
-<script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD9ECA30-3AD0-9445-B7F7-37B6DC12D43A/main.js" charset="UTF-8"></script></head>
+</head>
 <body class="" >
 <div class="logo_relative">
-<div class="col-lg-1 col-md-1  hidden-sm hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-	<% 		HttpSession tlog=request.getSession(false);
+<% 		    HttpSession tlog=request.getSession(false);
 			if((String)tlog.getAttribute("name")==null)
 			{    out.println("<script type=\"text/javascript\">");
 			  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 			  	 out.println("location='TraderLogin.jsp';");
 			 	 out.println("</script>");
 			}
-	%>			
+%>			
 <div class="col-lg-offset-3 col-lg-8 col-sm-10 col-md-10 col-xs-10 far"><h1><%=(String)tlog.getAttribute("name")%> ,welcome to e-aution at Neomandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="container">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="border-bottom: 1px solid #ddd;">
     <li class="active"><a href="productsearch.html">Product Search</a></li>
     <li><a href="TraderBlock.do">Hold Funds</a></li>
-  <li><a href="TradeorAuction.do">Trade</a></li>
-  <li><a href="TradeSummary.jsp">Summary</a></li>
-  <li><a href="OrderStatus.do">Status</a></li>
-  <li><a href="TraderProfile.jsp">My Profile</a></li>  
-  <!-- 
-    <li><a href="holdfunds.html">Hold Funds</a></li>
-    <li><a href="auction.html">Trade</a></li>
-    <li><a href="orderstatus.html">Status</a></li>
-    <li><a href="tradesummary.html">Summary</a></li>
-    <li><a href="traderprofile.html">My Profile</a></li> -->
+    <li><a href="TradeorAuction.do">Trade</a></li>
+    <li><a href="OrderStatus.do">Status</a></li>
+    <li><a href="TradeSummary.jsp">Summary</a></li>
+    <li><a href="TraderProfile.jsp">My Profile</a></li> 
   </ul>
 </div>
 </div>
 </div>  
     <div id="home" class="tab-pane fade in active">
-       <div class="container-fluid psearch">
+       <div class="container-fluid psearch" style="border-top: 1px solid white;">
 <div class="container release">
 <table class="table">
 <tr>
-<td><select class="form-control" id="kproduce" name = "kproduce" >
+<td><select class="form-control" id="kproduce" name = "kproduce" style="border-top: -4px solid #ddd;" >
        <option selected value = "base">Select Category</option> 
 					<option value = "Vegetable">VEGETABLES</option>
 					<option value = "FRUITS">FRUITS</option>
@@ -131,13 +122,15 @@ function fun()
 		//window.location.href='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp'
 	}
 }
-	
-$$("#kproduce").change(function() {
+$("#kproduce").change(function() {
 	   $("#produce").load("ProduceData/" + $(this).val() + ".txt");
 	   console.log("ProduceData/" + $(this).val()+ ".txt");
 	});
 </script></div><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </div>
+<% // if(msg2!=null||msg3!=null)
+  {}
+	%>
 <div class="container tabin">
 <div class="pstable">
 	  <table class="table pstab">
@@ -151,14 +144,14 @@ $$("#kproduce").change(function() {
 	  <td><h4></h4></td>
 	  </tr></thead>
 	  <tbody>	  
-	  <tr class="gradeX"><td><button onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0' class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
+	  <tr class="gradeX"><td><button onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0' class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
 	  <tr class="gradeX"><td><button onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" min='0'class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
 	  <tr class="gradeX"><td><button onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="number" class="form-control" min='0' id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
 	  <tr class="gradeX"><td><button onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button></td><td><h4>CBPCARA0173</h4></td><td><h4>Carrot</h4></td><td><h4>A</h4></td><td><h4>2500</h4></td><td><input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity"></td><td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td></tr>
 	  </tbody>
 	  </table>
 </div>
-
+</div>    
 <!---------modal image--------------->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -183,12 +176,5 @@ $$("#kproduce").change(function() {
    </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/moment.js" type="text/javascript"></script><!--  
-<script src="js/datepicker.js" type="text/javascript"></script>
-   <script>
-jQuery('#idfrom').datepicker();
-jQuery('#idto').datepicker();
-</script>
--->
 </body>
 </html>

@@ -475,8 +475,7 @@ countdown(minutes,seconds,hours);
 					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
 					{				
 						HttpSession MyFinalCost=request.getSession(false);
-						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
-						
+						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 						
 						for(Object m:l)
 						{	
 							System.out.println("myfinalcostbean list size"+l.size()+l);
@@ -544,8 +543,7 @@ function fun<%out.print(tlb.getLotnum());%>()
 	}
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("time difference isss "+timedifference);
-	
+	console.log("time difference isss "+timedifference);	
 	if(timedifference.includes("-"))
 	{
 	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
@@ -571,7 +569,6 @@ function fun<%out.print(tlb.getLotnum());%>()
 			  var currentbids=new Number(currentbid);
 			  var newbid=document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
 			  var newbids=new Number(newbid);
-			  console.log("current bid "+currentbids+" new bid "+newbids)
 			  if(currentbids>=newbids)
 			  {	  
 				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
