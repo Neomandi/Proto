@@ -1,0 +1,2327 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../fonts/OpenSansRegular.eot');
+    src: url('../fonts/OpenSansRegular.eot') format('embedded-opentype'),
+         url('../fonts/OpenSansRegular.woff2') format('woff2'),
+         url('../fonts/OpenSansRegular.woff') format('woff'),
+         url('../fonts/OpenSansRegular.ttf') format('truetype'),
+         url('../fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
+}
+/**sree**/
+a:hover, a:focus {
+  text-decoration: none;
+}
+.from {
+    margin-top: 10px;
+}
+.btn.accept {
+    padding: 1px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    background: #bdd102;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+.btn.reject {
+    padding: 1px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    background: #ff0000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+.farmlogcls .log {
+    background: #b6e41f;
+}
+.auct .atable tbody tr td:nth-child(2), .ltable tbody tr td:nth-child(2), .sum1tab .last farmer login styles                                                                                                      tbody tr td:nth-child(2), .sum2tab .last tbody tr td:nth-child(12) {
+    padding-left: 0px !important;
+}
+.auct .atable tbody tr td:nth-child(8), .ltable tbody tr td:nth-child(6),  .sum1tab .last tbody tr td:nth-child(2), .sum2tab .last tbody tr td:nth-child(13) {
+    padding-right: 0px !important;
+}
+.last thead tr td {
+    width: 5%;
+}
+.navbar-brand img{
+height:50px !important;
+width:auto !important;
+}
+.clsactive{
+color:#1d73be;
+background-color:#ffffff;
+}
+.clsactive a{
+color:#1d73be !important;
+font-weight:bold;
+
+}
+.last tbody tr td:nth-child(1), .last tbody tr td:last-child {
+    border-top: 0px!important;
+}
+.last tbody tr:nth-child(1) td {
+   border-top: 0px!important;
+}
+.lottable .table tbody tr td:nth-child(1), .lottable .table tbody tr td:last-child {
+width: 20%;
+    border-top: 0px;
+}
+.rtable tbody tr td:last-child h4 {
+    background: #f2f2f2!important;
+    color: #3c4da0!important;
+    border: 1px solid #000;
+}
+.one .second, .two .second, .three .second {
+  position: relative;
+}
+.second h4 {
+    text-align: center !important;
+    margin: auto 12% !important;
+}
+.wback table tr td {
+    padding: 0px 5px;
+    border-top: 0px;
+}
+.cback table thead th {
+    padding: 0px;
+}
+.cback .table {
+  margin-bottom: 0px!important;
+}
+.container-fluid.slot{
+    background: #3c4da0;
+    color: #fff;
+margin-top: 10px;
+}
+.table {
+ margin-bottom:0px;
+}
+.sub::after {
+    content: "";
+    border-top: 22px solid transparent !important;
+    border-bottom: 22px solid transparent !important;
+    border-left: 16px solid #bdd102;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.sub {
+    display: block;
+    float: left;
+    background: #bdd102;
+    text-align: center;
+    padding: 13px 21px !important;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px !important;
+    text-decoration: none;
+    color: #3c4da0;
+font-weight:bold;
+}
+.lotbtn {
+background: #ff0000;
+border-color: #ff0000;
+border-radius: 2px;
+}
+.lotbtn:hover {
+    background: #3c4da0;
+    border-color: #3c4da0;
+    border-radius: 2px;
+}
+.bid tr td h4 {
+    text-align: center !important;
+}
+table tr .inp input {
+    height: 40px;
+}
+/**modal***/
+.pstab tbody tr td .btn {
+    padding: 1px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    background: #cccccc;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+/**modal****/
+.head .table {
+    margin-bottom: 0px;
+
+}
+.ltable tbody tr td:nth-child(1), .ltable tbody tr td:nth-child(2) {
+    
+    border-top: 0px;
+}
+.ltable tbody tr:nth-child(1) td {
+    border-top: 0px !important;
+}
+.hcolor  {
+background: #149dda;
+}
+.today h4 {
+    margin: 5px auto;
+    color: #fff;
+font-size: 16px;
+}
+.sum1table tr td h4 {
+    margin: 5px auto;
+    font-size: 16px;
+text-align: center;
+}
+.status input {
+    height: 20px;
+    margin-bottom: 5px;
+padding: 0px;
+margin-top:5px;
+}
+.clspad0{
+padding-left:0px !important;
+}
+.clspadr0{
+padding-right:0px !important;
+}
+.clspad10{
+padding-right:10px;
+padding-top:0px;
+}
+.clspadt5{
+padding-top:0px;
+}
+.clsheight{
+height:25px !important;;
+}
+.clspadr0 h4{
+background-color:#BDD102 !important;
+}
+tr td h4 span {
+    color: #d81e5d;
+    padding: 0px 5px;
+    font-weight: bold;
+}
+.autable .table thead tr:nth-child(1) td {
+    width: 8%;
+}
+.autable .table tbody tr:nth-child(1) td {
+border-top: 0px !important;
+}
+.autable .table tbody tr td:nth-child(1) {
+    width: 8%;
+    border-top: 0px !important;
+}
+.autable .table tbody tr:nth-child(4) td, .autable .table tbody tr:nth-child(5) td, .autable .table tbody tr:nth-child(6) td {
+    border-top: 0px;
+}
+.autable .table tbody tr td:first-child, .lottable .table tbody tr td:first-child, .sum1tab .table tbody tr td:first-child, .sum2tab .table tbody tr td:first-child {
+    padding-left: 5px;
+}
+.autable .table tbody tr td:last-child, .lottable .table tbody tr td:last-child, .sum1tab .table tbody tr td:last-child, .sum2tab .table tbody tr td:last-child {
+    padding-right: 5px;
+}
+/***table color***/
+.atable thead tr td, .ltable thead tr td, .sum1table thead tr td, .sum2table thead tr td {
+    padding: 0px;
+}
+.atable tbody tr td h4, .sum1table tbody tr td h4, .sum2table tbody tr td h4 {
+    margin: 0px;
+    padding: 5px 8px !important;
+}
+.ltable tbody tr td h4 {
+    padding: 5px 25px !important;
+    margin: 0px;
+    text-align: center;
+    font-weight: bold;
+}
+.autable .table tbody tr td, .lottable .table tbody tr td, .sum1tab .table tbody tr td, .sum2tab .table tbody tr td {
+    border-top: 2px solid #4a7ebb;
+padding: 5px 10px;
+}
+.tradtab .nav.nav-tabs {
+    margin-top: 2px;
+}
+.revtab .table tr td {
+    border-top: 0px;
+padding: 6px;
+}
+.login tr td h2 {
+   margin: 2px auto;
+color: #1f497d;
+text-align: center;
+font-size: 18px;
+font-weight:bold;
+}
+.login tr td .head, .login tr td a {
+ color: #fff;
+}
+button.btn.popup {
+    padding: 1px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    background: #cccccc;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+form table tr td select {
+    border-radius: 0px !important;
+margin-bottom: 3px;
+}
+.charge h4{
+margin-top:0px !important;
+margin-bottom:0px !important;
+}
+.clsnowrap{
+white-space:nowrap !important;
+}
+form table tr td {
+    padding: 1px !important;
+}
+.psearch table tr td select {
+    border-radius: 0px!important;
+}
+.psearch table tbody tr td {
+    padding: 0px 8px;
+     border-top: 0px;
+}
+.pstab tr td h4 {
+    margin: 0px auto;
+    padding: 3px !important;
+    font-size: 14px;
+}
+.pstab tr td {
+    vertical-align: middle !important;
+    padding: 0px 8px!important;
+}
+
+.loginlogo {
+    position: absolute;
+    top: 0px;
+    background: #fff;
+    left: 0px;
+    bottom: 0px;
+}
+.last tr {
+    background: transparent !important;
+}
+.tabin .last tbody tr td:last-child h4 {
+    background: #bdd102;
+}
+.ltable thead {
+    background: #f01c41 !important;
+}
+
+table tbody tr td input {
+    border-radius: 0px !important;
+    margin-bottom: 10px;
+}
+
+.farmlogcls table tbody tr td input, .emplog  table tbody tr td input {
+    border-radius: 0px !important;
+    margin-bottom: 0px !important;
+}
+.rtable tr td:nth-child(1), .rtable tr td:nth-child(2), .rtable tr td:nth-child(11) {
+    background: #f2f2f2;
+border-bottom: 3px solid #f2f2f2;
+}
+.rtable tr td:nth-child(3), .rtable tr td:nth-child(4), .rtable tr td:nth-child(5), .rtable tr td:nth-child(6) {
+    background: #6fc3e8;
+    border-bottom: 3px solid #6fc3e8;
+}
+.rtable tr td:nth-child(7), .rtable tr td:nth-child(8), .rtable tr td:nth-child(9), .rtable tr td:nth-child(10) {
+    background: #d1df4d;
+border-bottom: 3px solid #d1df4d;
+}
+
+.rtable thead tr td h4 {
+    color: #3c4da0 !important;
+    font-weight: bold;
+}
+.rtable tbody tr:nth-child(2n) td {
+    background: #d99694 !important;
+}
+.rtable tbody tr:nth-child(n) td {
+    background: #feb858;
+}
+.cback table thead tr th:nth-child(2) h4 {
+    background: #fff;
+    padding: 0px;
+}
+.cback table thead tr th h4 {
+    color: #1f497d;
+    font-size: 15px;
+}
+.cback {
+    background: #f2f2f2;
+}
+.wback .table thead tr th {
+    border: 0px !important;
+}
+.rtable tr td h4 {
+    margin: 0px auto;
+    padding: 3px !important;
+    font-size: 16px;
+}
+.wback table tr td h4 {
+    background: #fff;
+padding: 1px 10px;
+margin: 3px auto;
+font-size: 14px;
+white-space: nowrap;
+}
+.tabin1 .table > tbody > tr > td:nth-child(5) h4 {
+    background: #ffc000;
+    color: #149dda;
+    font-weight: bold;
+}
+.tabin1 .table > tbody > tr > td:nth-child(6) h4 {
+    background: #bdd102;
+}
+.tabin1 .table > tbody > tr > td:nth-child(7) h4 {
+    background: #ff0000;
+    color: #fff;
+    font-weight: bold;
+}
+/***table color***/
+.mainreg a:hover {
+    color: #1d73be;
+    background: #fff;
+    text-decoration: none;
+    border: 1px solid #1d73be;
+}
+.img-responsive.lap {
+    padding: 10px 20%;
+}
+.tdfit{
+ width:1%;
+    white-space:nowrap;
+}
+.fir h4{
+font-weight:bold !important;
+}
+.clswidth{
+width:auto !important;
+}
+/*******strip********/
+ .det, .bank, .pass, .pass1 {
+   position: relative;
+} 
+.detail::before  {
+    border-left: 17px solid #149dda;
+    content: " ";
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    height: 70%;
+    width: 10px;
+}
+
+.bankacc::before {
+    border-left: 17px solid #149dda;
+    content: " ";
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    height: 50%;
+    width: 10px;
+}
+
+.password::before, .password::before {
+    border-left: 17px solid #bdd102;
+    content: " ";
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    height: 50%;
+    width: 10px;
+}
+.pass1 .password::before {
+    border-left: 17px solid #bdd102;
+    content: " ";
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    height: 50%;
+    width: 10px;
+}
+.detail1::before, .password::before {
+    border-left: 17px solid #bdd102;
+    content: " ";
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    height: 50%;
+    width: 10px;
+}
+/*******strip*********/
+.sum1table tbody tr:nth-child(n) {
+    background: #feb858;
+}
+.sum1table tbody tr:nth-child(2n) {
+    background: #d99694;
+}
+.navbar-brand img {
+    height: 100%;
+    width: 100%;
+}
+.navbar-brand {
+    padding: 0px 15px;
+}
+.mainreg img {
+    margin: auto;
+}
+.mainreg a {
+    padding: 10px;
+    color: #fff;
+    background: #1d73be;
+}
+
+.trad {
+    padding: 0px !important;
+}
+.am {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset  4px #e1e1e1,  1px transparent;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.am:hover, .am:focus, .am:active {
+ box-shadow: inset 0 0 0 2px #ececec, 0 0 1px transparent;
+opacity: 0.8;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.am {
+ padding: 10px;
+}
+.status .inc {
+    background: #f2f2f2;
+    padding: 35px 5px;
+}
+.second h4 {
+    text-align: center;
+    margin: 10% 20px;
+font-size: 12px;
+}
+.one .status, .three .status {
+    background: #bfbfbf;
+	border-left: 20px solid #149dda;
+}
+.one .second::before {
+        content: "";
+    border-top: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-left: 54px solid #ffc000;
+    position: absolute;
+    top: 0px;
+    left : 0%;
+
+}
+.three .second::before {
+        content: "";
+    border-top: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-left: 54px solid red;
+    position: absolute;
+    top: 0px;
+    left : 0%;
+
+}
+.two .second::before {
+    content: "";
+    border-top: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-left: 60px solid #92d050;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.two .status {
+    background: #bfbfbf;
+	border-left: 20px solid #bdd102;
+}
+.one, .two, .three {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.status h4 {
+   font-weight: 500;
+}
+.status .form-control {
+    border-radius: 0px;
+	border-color: #f2f2f2;
+}
+.status table tr td h4 {
+   color: #1f497d;
+ }
+.status .fir h4, .status .sec h4,.fir1 h4 {
+   text-align: right;
+margin-right: 10px !important;
+margin: 0px;
+font-size: 12px;
+
+
+}
+.status .first, .status .fir, .status .fir1 {
+    background: #f2f2f2;
+    padding: 0px;
+
+}
+
+.status .first {
+    padding: 15px 10px;
+}
+.status .first h4 {
+    text-align: center;
+font-size: 12px;
+}
+.status .second, .status .sec {
+    background: #bfbfbf;
+padding-top: 5px;
+
+}
+/**sree**/
+body
+{
+    font-family: 'OpenSansRegular';
+}
+.pstable table tbody tr:nth-child(n) {
+    background: #feb858;
+}
+.pstable table tbody tr:nth-child(2n) {
+    background: #d99694;
+}
+.pstable {
+    background: #f2f2f2;
+    padding: 10px 10px 4%;
+}
+.pstab h4 {
+    color: #3c4da0;
+    font-weight: bold;
+}
+.pstab .reg {
+    background: #bdd102;
+
+}
+.pstable table tr td input {
+   margin: 4px auto;
+border-radius: 0px;
+border: 1px solid #000;
+padding: 0px 12px;
+height: 28px;
+}
+.psearch select {
+    color: #3c4da0 !important;
+    font-weight: bold;
+    background: #bfbfbf;
+}
+.psearch {
+    margin-top: 10px;
+    background: #3c4da0;
+}
+.psearch .table  {
+    margin-bottom : 0px;
+}
+.tfrom .from .table > tbody > tr > td {
+     border-top: 0px;
+}
+.container.tabin.tsum {
+    width: 1350px;
+}
+.gen .bankacc {
+    height: 250px;
+}
+.charge h4 {
+    font-size: 18px;
+    color: #3c4da0;
+}
+.bottom {
+     height : 10px;
+	 background: #bbcee5;
+}
+.bankacc1 {
+    height: 220px;
+	 background: #fff;
+text-align:center;
+vertical-align:middle;
+}
+#grad1 {
+    height: 30px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#fcfdfe, #bbcee5); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#fcfdfe, #bbcee5); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#fcfdfe, #bbcee5); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#fcfdfe, #bbcee5); /* Standard syntax (must be last) */
+}
+.from .pad .export {
+    background: #00bea4;
+    color: #000;
+    font-size: 14px;
+position: relative;
+padding: 7px 10px;
+top: 7px;
+text-align: center;
+}
+.from .pad .get {
+    background: #d81e5d;
+color: #fff;
+font-size: 16px;
+position: relative;
+padding: 5px 10px;
+}
+.tfrom .from .get1 {
+    background: #bdd102;
+	 color: #000;
+}
+.greenarrowcls {
+    background: #bdd102;
+	 color: #000;
+padding: 5px 5px;
+
+font-size: 14px;
+position: relative;
+}
+.greenarrowcls::before {
+    content: "";
+    border-top: 15px solid #bdd102;
+    border-bottom: 14px solid #bdd102;
+    border-left: 16px solid transparent;
+    position: absolute;
+    left: -16px;
+    top: 0;
+}
+.greenarrowcls::after {
+    content: "";
+    border-top: 15px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 16px solid #bdd102;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+} 
+.greencls {
+    background: #00bea4;
+	 color: #000;
+padding: 5px 5px;
+
+font-size: 14px;
+position: relative;
+}
+.greencls::before {
+    content: "";
+    border-top: 15px solid #00bea4;
+    border-bottom: 14px solid #00bea4;
+    border-left: 16px solid transparent;
+    position: absolute;
+    left: -16px;
+    top: 0;
+}
+.greencls::after {
+    content: "";
+    border-top: 15px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 16px solid #00bea4;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+} 
+
+
+.from .pad .get::before {
+    content: "";
+border-top: 16px solid #d81e5d;
+border-bottom: 17px solid #d81e5d;
+border-left: 16px solid transparent;
+position: absolute;
+left: -16px;
+top: 0;
+}
+.tfrom .from .get1::before {
+    content: "";
+    border-top: 18px solid #bdd102!important;
+    border-bottom: 18px solid #bdd102;
+    border-left: 16px solid transparent;
+    position: absolute;
+    left: -16px;
+    top: 0;
+}
+.from .pad .export::before {
+    content: "";
+    border-top: 17px solid #00bea4;
+    border-bottom: 17px solid #00bea4;
+    border-left: 16px solid transparent;
+    position: absolute;
+    left: -16px;
+    top: 0;
+}
+.from .pad .get::after {
+    content: "";
+border-top: 17px solid transparent;
+border-bottom: 16px solid transparent;
+border-left: 16px solid #d81e5d;
+position: absolute;
+right: -16px;
+top: 0px;
+}
+
+.tfrom .from .get1::after {
+    content: "";
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 16px solid #bdd102;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.tsum .from table tr td:nth-child(3) a::after {
+    content: "";
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 16px solid #bdd102;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.from .pad .export::after {
+    content: "";
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 16px solid #00bea4!important;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+/**.from table tr td span {
+    color: #000;
+    
+
+    background: #ccc;
+    font-size: 14px;
+}**/
+#showtext{
+height:220px;  line-height: 220px;
+}
+.history {
+    background: #bdd102;
+margin-top: 10px;
+}
+/**#idfrom, #idto, #from, #to {
+line-height:28px;
+margin-top:5px;
+background-color:#feb858;
+color:#fff;
+font-weight:bold;
+padding-left:5px;
+}**/
+.from ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+.from ::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+.from :-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+.from :-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+.sum1, .sum2 {
+    margin-top: 10px;
+}
+.clsm10{
+    margin-top: 10px;
+}
+.clsmr10{
+    padding-right: 25px;
+}
+.sum1 .table thead {
+    background: #149dda;
+}
+.clspt{
+cursor:pointer;
+}
+.sum2 .table thead {
+  background:#3c4da0;
+}
+.history h2 {
+margin: 8px;
+color: #1f497d;
+font-size: 16px;
+font-weight:bold;
+}
+.today h2 {
+    margin: 8px;
+color: #fff;
+font-size: 16px;
+font-weight:bold;
+}
+.pad {
+	padding: 0px;
+}
+.auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
+   color: #fff;
+font-size: 16px;
+margin: 5px auto; 
+}
+.auct .table, .lots .table {
+    margin: 0px;
+}
+
+.today {
+   background: #3c4da0;
+ margin-top: 10px;
+}
+.menu {
+    background: #1d73be;
+	border-color: #1d73be;
+	border-radius: 0px;
+	margin: 0px;
+border: 0px;
+}
+.menu .navbar-nav > li > a {
+    color: #fff;
+}
+.tabin .table > tbody > tr > td h4, .tabin1 .table > tbody > tr > td h4  {
+     text-align: center;
+background: #cccccc;
+padding: 10px;
+color: #fff;
+font-size: 14px;
+}
+.auct .table > thead > tr > td, .lots .table > thead > tr > td, .sum1 .table > thead > tr > td, .sum2 .table > thead > tr > td {
+    border: 0px;
+	text-align: center;
+}
+.auct .table thead {
+   background: #3c4da0;
+}
+.lots .table thead {
+  background: transparent;
+}
+.auct, .lots {
+    /*background: #3c4da0;*/
+	margin-top: 10px;
+}
+.detail .table > tbody > tr > td, .detail1 .table > tbody > tr > td, .bankacc .table > tbody > tr > td, .password .table > tbody > tr > td {
+  border-top: 0px;
+  padding: 4px;
+}
+.emplog .table tbody tr td{
+border-top: 0px;
+  padding: 8px;
+}
+.farmlog .table tbody tr td {
+border-top: 0px;
+  padding: 8px;
+}
+.farmlogcls .table tbody tr td, .farmlog .table tbody tr td {
+border-top: 0px;
+  padding: 8px;
+}
+
+.detail .form-control, .detail1 .form-control,  .bankacc .form-control, .password .form-control {
+    border-radius: 0px;
+    border-color: #fff;
+    box-shadow: none;
+	-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+.det h4, .bank h4, .pass h4, .aut h4, .hold h4, .release h4, .gen h4, .pass1 h4 {
+    background: #bfbfbf;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+	margin-bottom: 0px;
+}
+.from table {
+    margin-top: 5px;
+}
+.detail, .detail1, .bankacc, .password {
+    background: #f2f2f2;
+    padding: 2px 11%;
+}
+.detail label, .detail1 label, .bankacc label, .password label{
+    color: #1f497d;
+margin-bottom: 0px;
+}
+.pass table {
+    margin-top: 2%;
+}
+.pass table input[type="checkbox"] {
+    padding: 10px;
+    background: #111;
+    margin: 4px 4px 0px !important;
+}
+.register h4 {
+    color: #002060;
+}
+.get, .get1 {
+    position: relative;
+padding: 8px 10px;
+color: #000;
+font-size: 14px;
+font-weight:bold;
+top: 7px;
+text-align: center;
+}
+.reg {
+padding: 8px 10px;
+color: #000;
+font-size: 14px;
+font-weight:bold;
+
+text-align: center;
+}
+.regi {
+    background: #149dda;
+padding: 5px 5px;
+color: #fff;
+font-size: 14px;
+position: relative;
+}
+.regi::after {
+    content: "";
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 16px solid #149dda;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.reg:hover {
+    text-decoration: none;
+}
+.pass table tr td a::after, .bank table tr td a::after {
+    content: "";
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 16px solid #149dda;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.aut table tr td a::after {
+    content: "";
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 16px solid #149dda;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.gen table tr td a::after {
+    content: "";
+    border-top: 37px solid transparent;
+    border-bottom: 37px solid transparent;
+    border-left: 35px solid #149dda;
+    position: absolute;
+    right: -35px;
+    top: 0px;
+}
+.hold table tr td a::after {
+    content: "";
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 16px solid #3c4da0;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.release table tr td a::after {
+    content: "";
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 16px solid #bdd102;
+    position: absolute;
+    right: -16px;
+    top: 0px;
+}
+.pass table tr td a, .aut table tr td a, .from table tr td a, .gen table tr td a, .bank table tr td a {
+    display: block;
+   
+    background: #149dda;
+    text-align: center;
+    padding: 7px 21px;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+.hold table tr td a {
+    display: block;
+    float: left;
+    background: #3c4da0;
+    text-align: center;
+    padding: 7px 21px;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+.release table tr td a {
+    display: block;
+    float: left;
+    background: #bdd102;
+    text-align: center;
+    padding: 7px 21px;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #3c4da0;
+}
+.reg1 {
+    color: #fff !important;
+}
+.pass table tbody tr td label {
+    color: #1f497d;
+}
+.register {
+    margin-top: 10px;
+padding-left:7%;
+}
+.bank {
+    margin-bottom: 10%;
+}
+.emp .detail {
+    padding: 1% 11% 17%;
+}
+.row.login {
+    margin-top: 13%;
+}
+.login img {
+    width: 266px;
+    text-align: center;
+    margin: auto;
+}
+.login .logbtn {
+    background: #1d73be;
+    color: #fff;
+    padding: 5px 10px;
+}
+.emplog {
+    border: 0px;
+    border-left: 30px solid #149dda;
+	border-right: 30px solid #149dda;
+	background: #bdd102;
+	margin-top: 11%;
+position: relative;
+}
+.farmlogcls {
+    border: 0px;
+    border-left: 30px solid #b6e41f;
+	border-right: 30px solid #b6e41f;
+	background: #1D73BE;
+	margin-top: 11%;
+position: relative;
+}
+.farmlog {
+    border: 0px;
+    border-left: 30px solid #b6e41f;
+	border-right: 30px solid #b6e41f;
+	background: #1d73be;
+	margin-top: 11%;
+position: relative;
+}
+
+.dispatch {
+    border: 0px;
+    border-left: 30px solid #149dda;
+	border-right: 30px solid #149dda;
+	background: #bfbfbf;
+	margin-top: 10px;
+}
+.dispatchgreen {
+    border-left: 30px solid #BDD102 !important;
+	border-right: 30px solid #BDD102 !important;
+
+
+}
+.farmlog .pad img {
+    margin-left: 0px;
+}
+.emplog .pad img {
+  margin-left: 0px;
+}
+.farmlogcls .pad img {
+  margin-left: 0px;
+}
+ 
+.log {
+    background: #149dda;
+    padding: 2px 15px;
+    color: #ddd9c3;
+    font-size: 18px;
+}
+.log:hover {
+    background: #ddd9c3;
+    
+    color: #149dda;
+    
+    text-decoration: none;
+} 
+
+.emplog .table h3 {
+    text-align: center;
+    color: #3c4da0;
+}  
+.farmlogcls .table h3 {
+    text-align: center;
+    color: #3c4da0;
+} 
+
+.farmlog .table h2 {
+    text-align: center;
+    color: #fff;
+}
+.farmlog .log {
+    background: #b6e41f;
+    color: #fff;
+    
+}
+.farmlog a {
+    font-size: 14px;
+    color: #fff;
+}
+/***seetha***/
+
+.container-fluid.headertop {
+    background: #149dda;
+}
+.headertop h1 {
+    color: white;
+text-transform: capitalize;
+font-size: 16px;
+margin-bottom: 5px;
+margin-top: 5px;
+}
+.logo_relative {
+    position: relative;
+}
+.logo {
+   position: absolute;
+top:0px;
+left: -2px;
+font-size: 18px;
+z-index: 9;
+}
+.tabdi, .tradtab {
+    background: #bdd102;
+}
+.far {
+    padding: 0;
+}
+.fa.fa-power-off {
+    color: red;
+background: white;
+padding: 3px 6px;
+font-size: 20px;
+}
+.power {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.tabdi a {
+    background: #d81e5d;
+    color: white;
+    font-size: 22px;
+    padding: 5px 25px !important;
+	font-weight: bold;
+}
+.tradtab a {
+   padding: 1px 10px !important;
+background: #d81e5d;
+color: white;
+font-size: 14px;
+border-radius: 0px !important;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+      color: #1f497d;
+    cursor: pointer;
+    background-color: #fff;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #1f497d;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 10px;
+}
+.table input:focus {
+    outline: none !important;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #719ECE;
+}
+.view {
+   width: 300px;
+   height: auto;
+   margin: 10px;
+   float: left;
+   border: 10px solid #fff;
+   overflow: hidden;
+   position: relative;
+   text-align: center;
+   -webkit-box-shadow: 1px 1px 2px #e6e6e6;
+   -moz-box-shadow: 1px 1px 2px #e6e6e6;
+   box-shadow: 1px 1px 2px #e6e6e6;
+   cursor: default;
+   background: #fff url(../images/bgimg.jpg) no-repeat center center;
+}
+.view .mask,.view .content {
+   width: 300px;
+   height: 400px;
+   position: absolute;
+   overflow: hidden;
+   top: 0;
+   left: 0;
+}
+.view img {
+   display: block;
+   position: relative;
+}
+.view h2 {
+   text-transform: uppercase;
+   color: #fff;
+   text-align: center;
+   position: relative;
+   font-size: 17px;
+   padding: 10px;
+   background: rgba(0, 0, 0, 0.8);
+   margin: 20px 0 0 0;
+}
+.view p {
+   font-family: Georgia, serif;
+   font-style: italic;
+   font-size: 12px;
+   position: relative;
+   color: #fff;
+   padding: 10px 20px 20px;
+   text-align: center;
+}
+.view a.info {
+   display: inline-block;
+   text-decoration: none;
+   padding: 7px 14px;
+   background: #000;
+   color: #fff;
+   text-transform: uppercase;
+   -webkit-box-shadow: 0 0 1px #000;
+   -moz-box-shadow: 0 0 1px #000;
+   box-shadow: 0 0 1px #000;
+}
+.view a.info: hover {
+   -webkit-box-shadow: 0 0 5px #000;
+   -moz-box-shadow: 0 0 5px #000;
+   box-shadow: 0 0 5px #000;
+}
+.view-sixth img {
+   -webkit-transition: all 0.4s ease-in-out 0.5s;
+   -moz-transition: all 0.4s ease-in-out 0.5s;
+   -o-transition: all 0.4s ease-in-out 0.5s;
+   -ms-transition: all 0.4s ease-in-out 0.5s;
+   transition: all 0.4s ease-in-out 0.5s;
+}
+.view-sixth .mask {
+   background-color: rgba(187,204,28,0.5);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.3s ease-in 0.4s;
+   -moz-transition: all 0.3s ease-in 0.4s;
+   -o-transition: all 0.3s ease-in 0.4s;
+   -ms-transition: all 0.3s ease-in 0.4s;
+   transition: all 0.3s ease-in 0.4s;
+}
+.view-sixth h2 {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+   background: transparent;
+   margin: 46px 40px 39px 40px;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.1s;
+   -moz-transition: all 0.3s ease-in-out 0.1s;
+   -o-transition: all 0.3s ease-in-out 0.1s;
+   -ms-transition: all 0.3s ease-in-out 0.1s;
+   transition: all 0.3s ease-in-out 0.1s;
+}
+.view-sixth p {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.2s;
+   -moz-transition: all 0.3s ease-in-out 0.2s;
+   -o-transition: all 0.3s ease-in-out 0.2s;
+   -ms-transition: all 0.3s ease-in-out 0.2s;
+   transition: all 0.3s ease-in-out 0.2s;
+}
+.view-sixth a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: translateY(100px);
+   -moz-transform: translateY(100px);
+   -o-transform: translateY(100px);
+   -ms-transform: translateY(100px);
+   transform: translateY(100px);
+   -webkit-transition: all 0.3s ease-in-out 0.1s;
+   -moz-transition: all 0.3s ease-in-out 0.1s;
+   -o-transition: all 0.3s ease-in-out 0.1s;
+   -ms-transition: all 0.3s ease-in-out 0.1s;
+   transition: all 0.3s ease-in-out 0.1s;
+}
+.view-sixth:hover .mask {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
+}
+.view-sixth:hover img {
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
+}
+.view-sixth:hover h2 {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -webkit-transition-delay: 0.1s;
+   -moz-transition-delay: 0.1s;
+   -o-transition-delay: 0.1s;
+   -ms-transition-delay: 0.1s;
+   transition-delay: 0.1s;
+}
+.view-sixth:hover p {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -webkit-transition-delay: 0.2s;
+   -moz-transition-delay: 0.2s;
+   -o-transition-delay: 0.2s;
+   -ms-transition-delay: 0.2s;
+   transition-delay: 0.2s;
+}
+.view-sixth:hover a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: translateY(0px);
+   -moz-transform: translateY(0px);
+   -o-transform: translateY(0px);
+   -ms-transform: translateY(0px);
+   transform: translateY(0px);
+   -webkit-transition-delay: 0.3s;
+   -moz-transition-delay: 0.3s;
+   -o-transition-delay: 0.3s;
+   -ms-transition-delay: 0.3s;
+   transition-delay: 0.3s;
+}
+/**************media query*****************/
+@media only screen and (max-width: 381px) {
+	.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 1px!important;
+}	
+.tabdi a {
+    background: #d81e5d;
+    color: white;
+    font-size: 12px!important;
+    padding: 10px 4px !important;
+}
+.tradtab a{
+    background: #d81e5d;
+    color: white;
+    font-size: 9px!important;
+    padding: 10px 2 !important;
+}
+.from table tr td a {
+    margin: 0 5px 0 0!important;
+}
+.from table tr td span {
+    margin-right: 5px!important;
+	font-size: 14px!important;
+	
+}
+.dispatch {
+    border: 0px;
+    border-left: 5px solid #149dda;
+    border-right: 5px solid #149dda;
+    background: #bfbfbf;
+    margin-top: 5%;
+}
+.wback .re {
+    padding: 0px;
+}
+.datetable {
+    width: 100%;
+}
+.clsmr10 {
+    padding-right: 3px;
+}
+}
+@media only screen and (min-width: 382px) and (max-width: 480px) {
+.from table tr td a {
+    margin: 0 5px 0 0!important;
+}
+.from table tr td span {
+    margin-right: 5px!important;
+	font-size: 14px!important;
+	padding: 5px 15px!important;
+}
+.charge h4 {
+    font-size: 14px;
+}
+.dispatch {
+    border: 0px;
+    border-left: 5px solid #149dda;
+    border-right: 5px solid #149dda;
+    background: #bfbfbf;
+    margin-top: 5%;
+}
+.wback .re {
+    padding: 0px;
+}
+.tabdi a {
+    background: #d81e5d;
+    color: white;
+    font-size: 12px;
+    padding: 10px 0px !important;
+}
+.tradtab .nav.nav-tabs, .tabdi .nav.nav-tabs {
+    /**margin-left: 2%!important;**/
+}
+.clsmr10 {
+    padding-right: 3px;
+}
+}
+ @media only screen and  (max-width: 767px) {
+/**dispatch**/
+.cback table thead tr th h4 {
+    color: #1f497d;
+    font-size: 14px;
+}
+.wback table tr td h4 {
+    background: #fff;
+    padding: 3px 9%;
+    font-size: 15px;
+white-space: nowrap;
+}
+.cback {
+    background: #f2f2f2;
+    padding: 0px;
+}
+
+.cback table thead tr th:nth-child(2) h4 {
+    background: #fff;
+    padding: 0px;
+    font-size: 12px;
+}
+/**dispatch**/
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 5px;
+}	
+.tradtab .nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 2px;
+}	 
+.logo {
+    position: relative;
+    top: 8px;
+    left: -2px;
+    font-size: 18px;
+    z-index: 9;
+}
+.tabdi a {
+    background: #d81e5d;
+    color: white;
+    font-size: 12px;
+    padding: 10px 2px !important;
+}
+.tradtab a {
+    background: #d81e5d;
+    color: white;
+    font-size: 10px;
+    padding: 5px 0 !important;
+}
+.pass table tr td a, .aut table tr td a, .from table tr td a, .gen table tr td a {
+    display: block;
+    float: left;
+    background: #149dda;
+    text-align: center;
+    padding: 7px 5px;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.from .pad .get {
+    background: #d81e5d;
+    color: #fff;
+    font-size: 14px;
+}
+.from .pad .export {
+    background: #00bea4;
+    color: #000;
+    font-size: 14px;
+position: relative;
+padding: 7px 10px;
+top: 7px;
+text-align: center;
+}
+.from .pad .export::before, .from .pad .get::before, .from .pad .export::after, .from .pad .get::after {
+    display: none;
+}
+ .pstab tr td {
+    vertical-align: middle !important;
+    padding: 8px!important;
+} 
+.tradtab a {
+    padding: 2px 3px !important;
+    background: #d81e5d;
+    color: white;
+    font-size: 12px!important;
+    font-weight: bold;
+}  
+.one .second::before {
+display :none;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.tabdi a, .tradtab a {
+    background: #d81e5d;
+    color: white;
+    font-size: 15px;
+    padding: 10px !important;
+}
+.pass table tr td a, .aut table tr td a, .from table tr td a {
+    display: block;
+    float: left;
+    background: #149dda;
+    text-align: center;
+    padding: 7px 5px;
+    position: relative;
+    margin: 0 42px 0 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+/**.from table tr td span {
+    color: #000;
+    
+    background: #ccc;
+    font-size: 20px;
+}**/
+.pstab tr td {
+    vertical-align: middle !important;
+    padding: 8px!important;
+}
+.tradtab a {
+    padding: 2px 5px !important;
+    background: #d81e5d;
+    color: white;
+    font-size: 12px!important;
+    font-weight: bold;
+}
+.one .second::before {
+display :none;
+}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+.loginlogo {
+    position: absolute;
+    top: 0px;
+    background: #fff;
+    right: 79%;
+    bottom: 0px;
+    width: 29% !important;
+}
+.loginlogo img {
+    top: 17px;
+    position: absolute;
+    height: 200px;
+    width: 100%;
+}
+.tradtab a {
+    padding: 2px 5px !important;
+    background: #d81e5d;
+    color: white;
+    font-size: 14px!important;
+    font-weight: bold;
+}
+.one .second::before {
+    content: "";
+    border-top: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-left: 54px solid #ffc000;
+    position: absolute;
+    top: 0px;
+    right: 20.4%;
+}
+}
+@media only screen and (max-width: 1199px) {
+     .gen table tr td a::after {
+        display : none;
+}
+.tradtab a {
+    padding: 2px 5px ;
+    background: #d81e5d;
+    color: white;
+    font-size: 10px!important;
+    font-weight: bold;
+}
+.pstab tr td a {
+    background: #bdd102;
+    font-size: 12px;
+    padding: 5px 2px;
+}
+.tfrom .from .table tr td:nth-child(3) a::before {
+   display: none;
+}
+.tfrom .from .table tr td:nth-child(4) a::before {
+   display: none;
+}
+.tfrom .from .table tr td:nth-child(3) a::after {
+   display: none;
+}
+.tfrom .from .table tr td:nth-child(4) a::after {
+   display: none;
+}
+
+}
+
+@media only screen and (max-width: 1364px) {
+.container.tabin.tsum {
+    width: auto!important;
+}
+.headertop h1 {
+    color: white;
+    text-transform: capitalize;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    
+}
+.tradtab .nav.nav-tabs, .tabdi .nav.nav-tabs {
+    /**margin-left: 8%;**/
+}
+
+}
+@media only screen and (max-width: 1630px) {
+.login tr td h2 {
+    margin-top: 2px !important;
+    font-size: 20px;
+color: #1f497d;
+font-weight:bold;
+}
+.loginlogo {
+    position: absolute;
+    top: 0px;
+    background: #fff;
+    right: 79%;
+    bottom: 0px;
+    width: 23%;
+}
+.loginlogo img {
+    top: 0px;
+    position: absolute;
+    height: 200px;
+    width: 100%;
+}
+}
+/*Auction*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+.autable tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.autable table, .autable thead, .autable tbody, .autable th, .autable td, .autable tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.autable thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.autable td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.autable td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.autable .table-bordered {
+    border: none !important;
+}
+.autable tbody {
+    /*padding-top: 48%;*/
+}
+.autable .gradeX a {
+    padding: 2px !important;
+}
+.autable .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+                .atable td:nth-of-type(1):before { content: "     "; color: #7a7676; font-weight: bold;}
+		.atable td:nth-of-type(2):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.atable td:nth-of-type(3):before { content: "Lot Size"; color: #7a7676; font-weight: bold;}
+                .atable td:nth-of-type(4):before { content: "Quantity"; color: #7a7676; font-weight: bold;}
+		.atable td:nth-of-type(5):before { content: "Avg Price"; color: #7a7676; font-weight: bold; }
+                .atable td:nth-of-type(6):before { content: "Accept";color: #7a7676; font-weight: bold; }
+                .atable td:nth-of-type(7):before { content: "Reject";color: #7a7676; font-weight: bold; }
+.atable td:nth-of-type(8):before { content: "State";color: #7a7676; font-weight: bold; }
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*Auction*/
+/*my lots*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+.lottable tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.lottable table, .lottable thead, .lottable tbody, .lottable th, .lottable td, .lottable tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.lottable thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.lottable td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.lottable td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.lottable .table-bordered {
+    border: none !important;
+}
+.lottable tbody {
+    /*padding-top: 48%;*/
+}
+.lottable .gradeX a {
+    padding: 2px !important;
+}
+.lottable .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+                .ltable td:nth-of-type(1):before { content: "     "; color: #7a7676; font-weight: bold;}
+		.ltable td:nth-of-type(2):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.ltable td:nth-of-type(3):before { content: "Produce"; color: #7a7676; font-weight: bold;}
+                .ltable td:nth-of-type(4):before { content: "Product"; color: #7a7676; font-weight: bold;}
+		.ltable td:nth-of-type(5):before { content: "Grade"; color: #7a7676; font-weight: bold; }
+                .ltable td:nth-of-type(6):before { content: "Quantity";color: #7a7676; font-weight: bold; }
+                
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*my lots*/
+/*summary*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1199px)  {
+.sum1tab tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.sum1tab table, .sum1tab thead, .sum1tab tbody, .sum1tab th, .sum1tab td, .sum1tab tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.sum1tab thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.sum1tab td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.sum1tab td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.sum1tab .table-bordered {
+    border: none !important;
+}
+.sum1tab tbody {
+    /*padding-top: 48%;*/
+}
+.sum1tab .gradeX a {
+    padding: 2px !important;
+}
+.sum1tab .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+                 .sum1table td:nth-of-type(1):before { content: "        ";color: #7a7676; font-weight: bold; }
+		.sum1table td:nth-of-type(2):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.sum1table td:nth-of-type(3):before { content: "Lot Size"; color: #7a7676; font-weight: bold;}
+                .sum1table td:nth-of-type(4):before { content: "Quantity"; color: #7a7676; font-weight: bold;}
+		.sum1table td:nth-of-type(5):before { content: "Avg Price"; color: #7a7676; font-weight: bold; }
+                .sum1table td:nth-of-type(6):before { content: "Gross Earnings";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(7):before { content: "TLC*";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(8):before { content: "Market Cess";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(9):before { content: "EPC";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(10):before { content: "PMVA";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(11):before { content: "Deductions";color: #7a7676; font-weight: bold; }
+.sum1table td:nth-of-type(12):before { content: "My Net Earnings";color: #7a7676; font-weight: bold; }
+                
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*summary*/
+/*summary2*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1199px)  {
+.sum2tab tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.sum2tab table, .sum2tab thead, .sum2tab tbody, .sum2tab th, .sum2tab td, .sum2tab tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.sum2tab thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.sum2tab td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.sum2tab td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.sum2tab .table-bordered {
+    border: none !important;
+}
+.sum2tab tbody {
+    /*padding-top: 48%;*/
+}
+.sum2tab .gradeX a {
+    padding: 2px !important;
+}
+.sum2tab .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+.sum2table td:nth-of-type(1):before { content: "    "; color: #7a7676; font-weight: bold;}
+.sum2table td:nth-of-type(2):before { content: "Date"; color: #7a7676; font-weight: bold;}
+		.sum2table td:nth-of-type(3):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.sum2table td:nth-of-type(4):before { content: "Lot Size"; color: #7a7676; font-weight: bold;}
+                .sum2table td:nth-of-type(5):before { content: "Quantity"; color: #7a7676; font-weight: bold;}
+		.sum2table td:nth-of-type(6):before { content: "Avg Price"; color: #7a7676; font-weight: bold; }
+                .sum1table td:nth-of-type(7):before { content: "Gross Earnings";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(8):before { content: "TLC*";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(9):before { content: "Market Cess";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(10):before { content: "EPC";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(11):before { content: "PMVA";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(12):before { content: "Deductions";color: #7a7676; font-weight: bold; }
+.sum2table td:nth-of-type(13):before { content: "My Net Earnings";color: #7a7676; font-weight: bold; }
+                
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*summary2*/
+/*my revenue*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+.revtab tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.revtab table, .revtab thead, .revtab tbody, .revtab th, .revtab td, .revtab tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.revtab thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.revtab td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.revtab td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.revtab .table-bordered {
+    border: none !important;
+}
+.revtab tbody {
+    /*padding-top: 48%;*/
+}
+.revtab .gradeX a {
+    padding: 2px !important;
+}
+.revtab .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+		.rtable td:nth-of-type(1):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.rtable td:nth-of-type(2):before { content: "Lot Cost"; color: #7a7676; font-weight: bold;}
+                .rtable td:nth-of-type(3):before { content: "TLC"; color: #7a7676; font-weight: bold;}
+		.rtable td:nth-of-type(4):before { content: "Commision"; color: #7a7676; font-weight: bold; }
+                .rtable td:nth-of-type(5):before { content: "Market Cess";color: #7a7676; font-weight: bold; }
+                .rtable td:nth-of-type(6):before { content: "EPC";color: #7a7676; font-weight: bold; }
+				.rtable td:nth-of-type(7):before { content: "TLC";color: #7a7676; font-weight: bold; }
+				.rtable td:nth-of-type(8):before { content: "Market Cess";color: #7a7676; font-weight: bold; }
+				.rtable td:nth-of-type(9):before { content: "EPC";color: #7a7676; font-weight: bold; }
+				.rtable td:nth-of-type(10):before { content: "PMVA";color: #7a7676; font-weight: bold; }
+				.rtable td:nth-of-type(11):before { content: "NeoMandi Revenue";color: #7a7676; font-weight: bold; }
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*my revenue*/
+/*Auction*/
+
+	@media
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+.pstable tfoot {
+    display: none;
+}
+		/* Force table to not be like tables anymore */
+.pstable table, .pstable thead, .pstable tbody, .pstable th, .pstable td, .pstable tr{
+	
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.pstable thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		/*tr { border: 1px solid #ccc; }*/
+
+		.pstable td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 58% !important;
+		}
+
+		.pstable td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+.pstable .table-bordered {
+    border: none !important;
+}
+.pstable tbody {
+    /*padding-top: 48%;*/
+}
+.pstable .gradeX a {
+    padding: 2px !important;
+}
+.pstable .gradeX {
+    padding-top: 5%;
+}
+		/*
+		Label the data
+		*/
+		.pstab td:nth-of-type(1):before { content: "Lot Number"; color: #7a7676; font-weight: bold;}
+		.pstab td:nth-of-type(2):before { content: "Market Code"; color: #7a7676; font-weight: bold;}
+                .pstab td:nth-of-type(3):before { content: "Produce"; color: #7a7676; font-weight: bold;}
+		.pstab td:nth-of-type(4):before { content: "Grade"; color: #7a7676; font-weight: bold; }
+                .pstab td:nth-of-type(5):before { content: "Quantity Available";color: #7a7676; font-weight: bold; }
+                .pstab td:nth-of-type(6):before { content: "";color: #7a7676; font-weight: bold; }
+.pstab td:nth-of-type(7):before { content: "";color: #7a7676; font-weight: bold; }
+                
+		/*td:nth-of-type(9):before { content: "GPA"; }
+		td:nth-of-type(10):before { content: "Arbitrary Data"; }*/
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			/*width: 320px; */}
+
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			/*width: 495px;*/
+		}
+	}
+	
+/*Auction*/
