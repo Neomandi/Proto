@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!doctype html>
 <html>
 <head>
@@ -42,7 +44,7 @@ footer {
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
                     <h1>Employee1 ,welcome to e-aution at Neomandi.</h1></div>
-                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="logout.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
 
@@ -87,78 +89,86 @@ footer {
                         </tr>
                     </thead>
                     <tbody>
+<%
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	PreparedStatement pstmt1 = null;
+	ResultSet rs = null;
+	ResultSet rs1 = null;
+	
+	try{
+	con = JDBCHelper.getConnection();
+	
+	if(con == null)
+	{
+		System.out.println("Connection not established.");
+	}
+	else
+	{
+		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		//System.out.println(rs);
+		if(!rs.isBeforeFirst())
+		{
+			while(rs.next())
+			{
+				String lotnumber = rs.getString("lotnumber");
+				int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
+				String aadharnumber = rs.getString("bidprice");
+				int bestbid = Integer.parseInt(rs.getString("bestbid"));
+				double averageprice = Double.parseDouble(rs.getString("averageprice"));
+				int lotcost = (int)(quantityassigned*averageprice);
+				int commission = (int)(lotcost*0.05);
+				int marketcess = (int)(lotcost*0.01);
+				double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
+				int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
+				int nmr = commission + marketcess + 100 + 100 + fmarketcess;
+%>
                         <tr class="gradeX">
                             <td>
-                                <h4>123456789</h4></td>
+                                <h4><%= lotnumber %></h4></td>
                             <td>
-                                <h4>20,000</h4></td>
+                                <h4><%= lotcost %></h4></td>
                             <td>
                                 <h4>3000</h4></td>
                             <td>
-                                <h4>1000</h4></td>
+                                <h4><%= commission %></h4></td>
                             <td>
-                                <h4>200</h4></td>
+                                <h4><%= marketcess %></h4></td>
                             <td>
                                 <h4>100</h4></td>
                             <td>
                                 <h4>3000</h4></td>
                             <td>
-                                <h4>1000</h4></td>
-                            <td>
-                                <h4>200</h4></td>
+                                <h4><%= fmarketcess %></h4></td>
                             <td>
                                 <h4>100</h4></td>
                             <td>
-                                <h4>1600</h4></td>
+                                <h4>100</h4></td>
+                            <td>
+                                <h4><%= nmr %></h4></td>
                         </tr>
-                        <tr class="gradeX">
-                            <td>
-                                <h4>123456789</h4></td>
-                            <td>
-                                <h4>20,000</h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4>1000</h4></td>
-                            <td>
-                                <h4>200</h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4>1000</h4></td>
-                            <td>
-                                <h4>200</h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>1600</h4></td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>
-                                <h4>123456789</h4></td>
-                            <td>
-                                <h4>20,000</h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4>1000</h4></td>
-                            <td>
-                                <h4>200</h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4>1000</h4></td>
-                            <td>
-                                <h4>200</h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>1600</h4></td>
-                        </tr>
+                        <%
+			}
+		}
+		else
+		{
+			System.out.println("No revenues.");
+		}
+	}
+	}
+	catch(SQLException e)
+	{
+		e.printStackTrace();
+	}
+	finally
+	{
+		JDBCHelper.Close(rs);
+		JDBCHelper.Close(pstmt);
+		JDBCHelper.Close(con);
+	}
+%>
                     </tbody>
                 </table>
             </div>

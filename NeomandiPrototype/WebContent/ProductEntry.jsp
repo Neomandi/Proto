@@ -1,15 +1,14 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
     <title>NeoMandi</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -140,35 +139,35 @@
     	return true;
     }
     
-//     $( function() {
-//         var availableTags = [
-//           "ActionScript",
-//           "AppleScript",
-//           "Asp",
-//           "BASIC",
-//           "C",
-//           "C++",
-//           "Clojure",
-//           "COBOL",
-//           "ColdFusion",
-//           "Erlang",
-//           "Fortran",
-//           "Groovy",
-//           "Haskell",
-//           "Java",
-//           "JavaScript",
-//           "Lisp",
-//           "Perl",
-//           "PHP",
-//           "Python",
-//           "Ruby",
-//           "Scala",
-//           "Scheme"
-//         ];
-//         $( "#marketcode" ).autocomplete({
-//           source: availableTags
-//         });
-//       } );
+    $(function() {
+        var availableTags = [
+          "ABC563101",
+          "BAC578455",
+          "CAC578455",
+          "DAC578455",
+          "EAC578455",
+          "FAC578455",
+          "GAC578455",
+          "HAC578455",
+          "IAC578455",
+          "JJC578455",
+          "KAC578455",
+          "LAC578455",
+          "MAC578455",
+          "NAC578455",
+          "OAC578455",
+          "PAC578455",
+          "QAC578455",
+          "RAC578455",
+          "SAC578455",
+          "TAC578455",
+          "UAC578455",
+          "VAC578455"
+        ];
+        $("#marketcode").autocomplete({
+          source: availableTags
+        });
+      } );
     </script>
 </head>
 <body class="">
@@ -179,7 +178,7 @@
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
                     <h1>Employee1, welcome to e-auction at NeoMandi.</h1></div>
-                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
 
@@ -275,7 +274,7 @@
                             <div id="showtext">click here to upload image</div>
 
                             <img id="blah" src="#" style="display:none">
-                            <input type="file" id="fileID" style="display: none;" onchange="readURL(this);" />
+                            <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" />
                         </div>
 
                         <br>
@@ -346,11 +345,17 @@
                 </form>
             </div>
         </div>
-
+	<% String msg = (String)request.getAttribute("errmsg");  %>
+	<br/><br/><br/><p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
+							{
+								out.print("ProductEntry Successfull");
+							}
+							else if(msg != null)
+							{
+								out.print(msg);
+							}
+									%></b></p>
     </div>
-
-    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
     <script>
         function readURL(input) {
             $('#blah').show();
@@ -406,7 +411,5 @@
         	}
         }
     </script>
-    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
 </body>
 </html>

@@ -955,9 +955,9 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("ProductEntry"))
 		{			
 			String farmerid = request.getParameter("farmerid");
-			String lotnum = request.getParameter("lotnum");
+			String lotnumber = request.getParameter("lotnumber");
 			String marketcode = request.getParameter("marketcode");
-			String kproduce = request.getParameter("kproduce");
+			String kproduce = request.getParameter("category");
 			String produce = request.getParameter("produce");
 			String quality = request.getParameter("quality");
 			String quantity = request.getParameter("quantity");
@@ -967,17 +967,18 @@ public class ControllerServlet extends HttpServlet {
 			// obtains the upload file part in this multipart request
 	        Part filePart = null;
 			try {
-				filePart = request.getPart("photo");
+				filePart = request.getPart("fileID");
+				//System.out.println(filePart);
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
 	        String photo="";
-	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();
 	         //String fileName = getFileName(filePart);
-	        String nfileName = lotnum + ".jpg";  
+	        String nfileName = lotnumber + ".jpg";  
 	        OutputStream out = null;	          
 	        InputStream filecontent = null;    
 	        try
@@ -1002,7 +1003,7 @@ public class ControllerServlet extends HttpServlet {
 	            	e.printStackTrace();
 	            }
 	        System.out.println("Photo: "+photo);
-			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, photo);
+			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnumber, photo);
 			
 			System.out.println("***************************************************************************");
 			System.out.println("in cs productentry pebean="+pebean);
@@ -1013,21 +1014,14 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
-				//System.out.println("Sending msg "+msg);
-				request.setAttribute("errmsg", msg);
-				//rd=request.getRequestDispatcher("ProductEntry.jsp");
-				try 
-				{
+				try {
 					pw = response.getWriter();
-					pw.println("<script>");
-					pw.println("alert('Your lot number is: "+lotnum+"');");
-					pw.println("location = 'ProductEntry.jsp';");
-					pw.println("</script>");
-				}			
-				catch (IOException e) {
+					pw.println("<script>alert('Product Entry Successfull');");
+					pw.println("location = 'ProductEntry.jsp';</script>");
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					}
+				}
 			}
 			else
 			{
@@ -1512,7 +1506,6 @@ public class ControllerServlet extends HttpServlet {
 			String lotnumber=request.getParameter("lotnum");
 			String name=tlbn.getTname();
 			String pwd=tlbn.getTpwd();
-			System.out.println("inside CS()-> name is "+name+""+pwd);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass)m.removeLotNumber(lotnumber,name,pwd);
 			HttpSession remove=request.getSession(false);
@@ -1521,7 +1514,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession MyFinalCost=request.getSession();
 			MyFinalCost.setAttribute("MyFinalCost", mc.getBl());
 			request.setAttribute("remove","hi");
-			rd=request.getRequestDispatcher("ajax2.jsp");
+			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (ServletException | IOException e) 

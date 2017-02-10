@@ -699,7 +699,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
-				ps.setString(2, peb.getLotnum());
+				ps.setString(2, peb.getlotnumber());
 				ps.setString(3, peb.getMarketcode());
 				ps.setString(4, peb.getKproduce());
 				ps.setString(5, peb.getProduce());
@@ -3519,9 +3519,9 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					ps.setString(5,finalcosts);
 					ps.setString(6,date);
 					ps.setString(7,aadharnumber);
-					ps.setString(8,lotnumber);
+					ps.setString(8,lotnumber);					
+					ps.execute();				
 					
-					ps.execute();									
 					ps =con.prepareStatement("select tb.lotnum,tb.bidprice,tb.lotcost,tb.commission,tb.marketcess,tb.myfinalcost,tb.bestbid,tb.quantityassigned,tl.quantityneeded from traders_bid_price tb,tradelist tl where tb.aadharnumber=? and tb.lotnum=? and tb.aadharnumber=tl.aadharnumber and tl.lotnum=? ");
 					ps.setString(1,aadharnumber);
 					ps.setString(2,lotnum);
