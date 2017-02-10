@@ -1889,7 +1889,7 @@ if(uri.contains("AfterAccept")){
 			if(al.size()==0)
 			{
 				request.setAttribute("farmerhistory","no");
-				rd=request.getRequestDispatcher("FarmerTradeSummary.jsp");
+				rd=request.getRequestDispatcher("AcceptSummary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
