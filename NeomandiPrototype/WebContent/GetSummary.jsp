@@ -30,6 +30,25 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+    padding: 0px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 76px;
+    width: 100%;
+    overflow:hidden;
+}
+</style>
 </head>
 
 <body class="" >
@@ -50,6 +69,7 @@
     <li ><a  href="Lotdetails.jsp" >My Lots</a></li>
     <li class="active"><a class="classbeauty" id="ts" href="#">Summary</a></li>
     <li><a href="FarmerProfile.jsp">My Profile</a></li>
+    <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
 </div>
 </div>
@@ -161,70 +181,16 @@
 </div>
 	  </div>
 	  </div>
-<div class="container-fluid  history"><div class="container"><h2>History</h2></div></div>
-<div class="container from">
-<div class="datetable" align="center">
-
-
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='from'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div></div>
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='to'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><div><a href="#" class="get">Get Summary</a></div></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" class="export">Export as PDF</a></div>
-
-</div>
-</div>
-
-<!---table2-->
-<div class="container-fluid sum2 pad">
-	  <div class="tabin">
-<div class="sum2tab table-responsive">
-	  <table class="table sum2table last">
-<thead><tr>
-<td></td>
-<td><h4>Date</h4></td>
-	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Lot Size</h4></td>
-	  <td><h4>Quantity</h4></td>
-	  <td><h4>Avg Price</h4></td>
-	  <td><h4>Gross Earnings</h4></td>
-	  <td><h4>TLC*</h4></td>
-<td><h4>Market Cess</h4></td>
-<td><h4>EPC</h4></td>
-<td><h4>PMVA</h4></td>
-<td><h4>Deductions</h4></td>
-<td><h4>My Net Earnings</h4></td>
-<td></td>
-	  </tr></thead>
-	  <tbody>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
-	  </tbody>
-	  </table>
-</div>
-	  </div>
-	  </div><!---table2 end-->
+<footer>
 	  <div id="grad1"></div>
+	 
 	  <div class="container charge">
 	  <table class="table"><tr><td><h4>*Transportation / Loading Charges</h4></td><td><h4> #E-Platform Charges</h4></td><td><h4>$ Pre-Market Value Addition Charges</h4></td></tr></table>
 
     </div>
-	<div class="bottom"></div>
     
- 
-
-
-
+	<div class="bottom"></div>
+	</footer>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/moment.js" type="text/javascript"></script>

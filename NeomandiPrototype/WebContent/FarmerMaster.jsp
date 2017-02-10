@@ -47,6 +47,7 @@
     <li><a href="Lotdetails.jsp">My Lots</a></li>
     <li><a class="classbeauty" id="ts" href="#">Summary</a></li>
     <li><a href="FarmerProfile.jsp">My Profile</a></li>
+    <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
 </div>
 </div>
@@ -122,7 +123,7 @@
 	  	<%String lotnumber=resultSet.getString("lotnumber");
 		   imgsrc="ProductImages/"+lotnumber+".jpg";
 		%>
-	  <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
+	  <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;"><%=lotnumber %></button></td>
 	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
 	  <%
 	  	String qty="--"; 
@@ -166,10 +167,11 @@
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled>Reject</button>
 	  			  </td>
-	  <td class="clsnowrap" width="30%"><h4>
-	  	<div id="msg" >Auction will begins in</div><div id="timer"></div></h4>
-	  	<div id="auction"></div>
-		<div id="auction1"></div>
+	  <td class="clsnowrap" ><h4>
+	 
+	  <div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
+	  	<div id="auction" style="display:inline;"></div>
+		<div id="auction1" style="display:inline;"></div>
 	  	</td></tr>
 	 
 	  <%
@@ -528,14 +530,14 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<center><b><h4><font color='blue' ><div id='a1'>Auction has begun ,Auction will ends in</div></font></h4></b></center>";
-		            	str+="<center><b><h4><font color='blue' ><div id='a2'></div></font></h4></b></center>";
-		            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
-		            	var strCmd = "document.getElementById('auction').style.display = 'none'";
+		            	var str="<h4><div id='a1' style='display:inline;'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms'style='display:inline;' > 5:00</div></h4>";
+		            	
+		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
+		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
-		            	var strCmd1 = "document.getElementById('msg').style.display = 'none'";
+		            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
@@ -570,15 +572,15 @@ function countdown(minutes,seconds,hours)
 			        		       else
 			        		       {
 			        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
-			        		           	var strCmd2 = "document.getElementById('hms').style.display = 'none'";
+			        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
-						            	var strCmd3 = "document.getElementById('a1').style.display = 'none'";
+						            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
-						            	var strCmd4 = "document.getElementById('a2').style.display = 'none'";
+						            	var strCmd4 = "document.getElementById('a2').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
