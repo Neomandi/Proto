@@ -1322,12 +1322,13 @@ if(uri.contains("AfterAccept")){
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("ajax2.jsp");
-				try {
-					rd.forward(request, response);
+				//rd=request.getRequestDispatcher("ajax2.jsp");
+			//	rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				/*try {
+				//	rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
 					e1.printStackTrace();
-				}
+				}*/
 			}
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
@@ -1335,9 +1336,11 @@ if(uri.contains("AfterAccept")){
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
 			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
-			rd=request.getRequestDispatcher("ajax2.jsp");
+			System.out.println("inside mfcb in CS"+MyFinalCost.getAttribute("MyFinalCost"));
+			//rd=request.getRequestDispatcher("ajax2.jsp");
+			RequestDispatcher rd1 = request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
-				rd.forward(request, response);
+				rd1.forward(request, response);
 			} catch (ServletException | IOException e) 
 			{
 				e.printStackTrace();
@@ -1352,10 +1355,10 @@ if(uri.contains("AfterAccept")){
 			if(increment==null)
 			{
 				request.setAttribute("assigned","assigned");
-				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				RequestDispatcher rd2 = request.getRequestDispatcher("TraderorAuction2.jsp");
 				try 
 				{
-					rd.forward(request, response);
+					rd2.forward(request, response);
 				} catch (ServletException | IOException e1) {
 					e1.printStackTrace();
 				}
