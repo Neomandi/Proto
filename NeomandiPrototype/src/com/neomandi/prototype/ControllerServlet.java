@@ -330,10 +330,10 @@ public class ControllerServlet extends HttpServlet {
 			sb=m.getSummary(name, pass, sb);
 			
 			System.out.println(" in cs sb="+sb);
-			if(sb.getStatus().equals("fail"))
-			{
+			/*if(sb.getStatus().equals("fail"))
+			{*/
 				request.setAttribute("error","error");
-				rd=request.getRequestDispatcher("AcceptSummary.jsp");
+				rd=request.getRequestDispatcher("GetSummary.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -345,7 +345,7 @@ public class ControllerServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
-			}
+			//}
 			String lotnumber=sb.getLotnumber();
 			String lotsize=sb.getLotsize();
 			String quantitysold=sb.getQuantitysold();

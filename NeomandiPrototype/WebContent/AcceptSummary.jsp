@@ -153,7 +153,7 @@
 	  	<td><h4><%=PACharge%></h4></td>
 	  	<td><h4><%=deduction%></h4></td>
 	  	<td  class="clspadr0"><h4><%=myEarn %></h4></td>
-	  	<td><h4><%=status%></h4></td>
+	  	<td width="25%"><h4><%=status%></h4></td>
 	  	<td></td></tr>
 	  
 	  </tbody>
@@ -178,7 +178,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><div><a href="#" class="get">Get Summary</a></div></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><div><a href="FarmerSummaryInt.jsp" class="get">Get Summary</a></div></div>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" class="export">Export as PDF</a></div>
 
 </div>
