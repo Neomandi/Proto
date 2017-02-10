@@ -11,9 +11,6 @@
          url('../fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
 }
 /**sree**/
-.padleft {
-padding-left: 10px;
-}
 a:hover, a:focus {
   text-decoration: none;
 }
@@ -1223,7 +1220,7 @@ margin-top: 5px;
 .logo {
    position: absolute;
 top:0px;
-left: 15px;
+left: -2px;
 font-size: 18px;
 z-index: 9;
 }
