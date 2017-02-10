@@ -26,7 +26,7 @@
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,20 +209,20 @@ border-top:0px solid #fff !important;}
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>" readonly></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>" readonly></td></tr>
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" ></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>" ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" ></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>" ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>" readonly></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" value="3000" readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" ></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" ></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>" ></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
@@ -247,16 +247,18 @@ border-top:0px solid #fff !important;}
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
 	<script>
-function submitbutton<%out.print(tlb.getLotnum());%>()
-{
-	var Etime=document.getElementById("time").value;
-	var Btime="10:30:00";
-	var Btime1="10:35:00";
-
-	start = Etime.split(":");
-	end =Btime.split(":");
-	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+	bid=bid+1;
+	function submitbutton<%out.print(tlb.getLotnum());%>()
+	{
+	 var Etime=document.getElementById("time").value;
+	 var Btime="10:30:00";
+	 var Btime1="10:35:00";
+   	 start = Etime.split(":");
+	 end =Btime.split(":");
+	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
 	console.log("end time is "+Btime);
 	console.log("current time is "+Etime);
@@ -357,6 +359,7 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 		         var assigned=string.substring(startassigned,endassigned);
 		         if(assigned=="0")
 		         {
+		        	 console.log("assigned =0");
 		        	 var symbol="-";
 		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
@@ -371,7 +374,8 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 			     }
 		         else
 		         {
-			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+			        // document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = "lotcost";			        
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
@@ -380,7 +384,8 @@ function submitbutton<%out.print(tlb.getLotnum());%>()
 			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
-			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			    //     console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
 		         }}}};
 		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 		  console.log("current bid is "+bid1);
@@ -1138,11 +1143,9 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
 </td></tr>
@@ -1158,7 +1161,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
  
 <script>
 var tt = $( window ).height();
-
 $(".maindiv").height(parseInt(tt)-60);
 </script>
 </body>
