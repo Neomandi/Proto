@@ -38,14 +38,10 @@
 <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
-
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
-
 </div>
 </div>
-
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
@@ -143,12 +139,9 @@
           	%>  
           	<td><h4><%=y%></h4></td> 
           	<% }
-	  		else{ %>              
-			
-	  	
-	  <td><h4><%=qty %></h4></td><%} %>
-	  <%  
-	  		
+	  		else{ %>         
+	  	<td><h4><%=qty %></h4></td><%} %>
+	  	<%  	
 	  		if(resultSet.getString("averageprice")!=null){
 			String average=(String)resultSet.getString("averageprice");
 			double x=Double.parseDouble(average);
@@ -156,30 +149,21 @@
 			x=(int)x;
 			x=x/100;
 			System.out.println("before"+average+" after"+x);
-                              
-			
 	  		%>
 	  		<td><h4><%=x%></h4></td>
 	  		<%}else{ %>
-	  		
-	  
 	  <td><h4><%=avg %></h4></td><%} %>
-	  
 	  <td>
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
-	  		
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>	  		
 	  </td>
-	  
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
-	  <td class="clsnowrap" ><h4>
-	 
+	  <td class="clsnowrap"><h4>
 	  <div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
 	  	<div id="auction" style="display:inline;"></div>
 		<div id="auction1" style="display:inline;"></div>
 	  	</td></tr>
-	 
 	  <%
 		}
 	}
@@ -193,11 +177,9 @@
 </div>
 	  </div>
 	  </div>
-   
-  <!---------modal image--------------->
+  <!-----------------------------------------------------modal image----------------------------------------------->
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
+    <div class="modal-dialog">    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -210,8 +192,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-      </div>
-      
+      </div>      
     </div>
   </div>
 <!--------modal image end------------>
@@ -246,20 +227,16 @@
 	 		resultSet.close();
 			statement.close();
 			con.close();
-		}
-					
+		}					
 %>
-
-
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <form>
-	<input type="hidden" value="<%=time %>" id="time" />
-	<input type="hidden" value="<%=s1 %>" id="slot" />
-	<input type="hidden" value="<%=date %>" id="date" />
+	<input type="hidden" value="<%=time%>" id="time" />
+	<input type="hidden" value="<%=s1%>" id="slot" />
+	<input type="hidden" value="<%=date%>" id="date" />
 </form>
-		<script>
-	
+		<script>	
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -271,7 +248,8 @@
 			var Btime1;
 			var diff;
 			//-----------------------for slot1-----------------------------------------------------------------------------
-			if(slot==s1){
+			if(slot==s1)
+			{
 				var Etime=document.getElementById("time").value;
 				var Btime="10:30:00";
 				var Btime1="10:35:00";
@@ -321,7 +299,8 @@
 				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
-		else if(slot==s2){
+		else if(slot==s2)
+		{
 			var Etime=document.getElementById("time").value;
 			var Btime="10:40:00";
 			var Btime1="10:45:00";
@@ -392,7 +371,8 @@
 			console.log("count"+timedif);
 	}
 	//-------------------------------for slot3-----------------------------------------------------------------
-		else if(slot==s3){
+		else if(slot==s3)
+		{
 			var Etime=document.getElementById("time").value;
 			var Btime="10:50:00";
 			var Btime1="10:55:00";
@@ -444,7 +424,8 @@
 			
 	}
 	//----------------------------------for slot4---------------------------------------------------------------	
-		else if (slot==s4){
+		else if (slot==s4)
+		{
 			var Etime=document.getElementById("time").value;
 			var Btime="11:00:00";
 			var Btime1="11:05:00";
@@ -536,7 +517,7 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<h4><div id='a1'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
+		            	var str="<h4><div id='a1'>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
@@ -630,8 +611,7 @@ function countdown(minutes,seconds,hours)
  		}
  tick();
 }
-countdown(minutes,seconds,hours);			   
-			
+countdown(minutes,seconds,hours);		   
 //console.log("time="+timedif);
  var t=setTimeout(auction,timedif);
  function auction(){
@@ -644,12 +624,6 @@ countdown(minutes,seconds,hours);
  function reject(){
    	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
- </script>
-
-    <script>
-    
-    
-    </script> 
-
+  </script> 
 </body>
 </html>

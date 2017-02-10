@@ -106,7 +106,8 @@ body
 	<th>AADHAR NUMBER</th>
 	<th>QUANTITY ASSIGNED(kg)</th>
 	</tr>
-	<%  LinkedList<String> ls=new LinkedList<String>();
+	<%  
+	    LinkedList<String> ls=new LinkedList<String>();
 		HttpSession dispatch=request.getSession();
 		OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 		HashMap<String, Integer> a=osrb.getA();
@@ -116,12 +117,12 @@ body
 	    {
 	 	   DispatchBean dp=(DispatchBean)o;
 	       int size= a.get(dp.getLotnum());
-	     
+	       System.out.println("size is"+size);
 	       System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
 	       System.out.println(ls);
 	       if(ls.contains(dp.getLotnum()))
 	       {
-	  %><tr> <% for(int i=1;i<size;i++)
+	   %><tr><% for(int i=1;i<size;i++)
 	       {
 	    	  System.out.println(i);%>
 	  <td><%out.println(dp.getName()); %></td>
