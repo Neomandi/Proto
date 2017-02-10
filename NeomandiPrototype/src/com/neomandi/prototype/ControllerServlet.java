@@ -1003,9 +1003,9 @@ if(uri.contains("AfterAccept")){
 		if(uri.contains("ProductEntry"))
 		{			
 			String farmerid = request.getParameter("farmerid");
-			String lotnum = request.getParameter("lotnum");
+			String lotnumber = request.getParameter("lotnumber");
 			String marketcode = request.getParameter("marketcode");
-			String kproduce = request.getParameter("kproduce");
+			String kproduce = request.getParameter("category");
 			String produce = request.getParameter("produce");
 			String quality = request.getParameter("quality");
 			String quantity = request.getParameter("quantity");
@@ -1015,17 +1015,18 @@ if(uri.contains("AfterAccept")){
 			// obtains the upload file part in this multipart request
 	        Part filePart = null;
 			try {
-				filePart = request.getPart("photo");
+				filePart = request.getPart("fileID");
+				//System.out.println(filePart);
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
 	        String photo="";
-	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();
 	         //String fileName = getFileName(filePart);
-	        String nfileName = lotnum + ".jpg";  
+	        String nfileName = lotnumber + ".jpg";  
 	        OutputStream out = null;	          
 	        InputStream filecontent = null;    
 	        try
@@ -1050,7 +1051,7 @@ if(uri.contains("AfterAccept")){
 	            	e.printStackTrace();
 	            }
 	        System.out.println("Photo: "+photo);
-			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnum, photo);
+			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnumber, photo);
 			
 			System.out.println("***************************************************************************");
 			System.out.println("in cs productentry pebean="+pebean);
@@ -1061,21 +1062,14 @@ if(uri.contains("AfterAccept")){
 			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
-				//System.out.println("Sending msg "+msg);
-				request.setAttribute("errmsg", msg);
-				//rd=request.getRequestDispatcher("ProductEntry.jsp");
-				try 
-				{
+				try {
 					pw = response.getWriter();
-					pw.println("<script>");
-					pw.println("alert('Your lot number is: "+lotnum+"');");
-					pw.println("location = 'ProductEntry.jsp';");
-					pw.println("</script>");
-				}			
-				catch (IOException e) {
+					pw.println("<script>alert('Product Entry Successfull');");
+					pw.println("location = 'ProductEntry.jsp';</script>");
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					}
+				}
 			}
 			else
 			{

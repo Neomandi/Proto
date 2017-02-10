@@ -699,7 +699,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
-				ps.setString(2, peb.getLotnum());
+				ps.setString(2, peb.getlotnumber());
 				ps.setString(3, peb.getMarketcode());
 				ps.setString(4, peb.getKproduce());
 				ps.setString(5, peb.getProduce());

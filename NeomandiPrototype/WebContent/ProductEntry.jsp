@@ -275,7 +275,7 @@
                             <div id="showtext">click here to upload image</div>
 
                             <img id="blah" src="#" style="display:none">
-                            <input type="file" id="fileID" style="display: none;" onchange="readURL(this);" />
+                            <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" />
                         </div>
 
                         <br>
@@ -346,7 +346,16 @@
                 </form>
             </div>
         </div>
-
+	<% String msg = (String)request.getAttribute("errmsg");  %>
+	<br/><br/><br/><p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
+							{
+								out.print("ProductEntry Successfull");
+							}
+							else if(msg != null)
+							{
+								out.print(msg);
+							}
+									%></b></p>
     </div>
 
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>

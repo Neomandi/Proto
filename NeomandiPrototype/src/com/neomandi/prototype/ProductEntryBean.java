@@ -1,7 +1,5 @@
 package com.neomandi.prototype;
 
-import java.io.InputStream;
-
 public class ProductEntryBean {
 	private String farmerid;
 	private String marketcode;
@@ -9,7 +7,7 @@ public class ProductEntryBean {
 	private String produce;
 	private String quality;
 	private String quantity;
-	private String lotnum;
+	private String lotnumber;
 	private String photo;
 	public String getFarmerid() {
 		return farmerid;
@@ -47,11 +45,11 @@ public class ProductEntryBean {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-	public String getLotnum() {
-		return lotnum;
+	public String getlotnumber() {
+		return lotnumber;
 	}
-	public void setLotnum(String lotnum) {
-		this.lotnum = lotnum;
+	public void setlotnumber(String lotnumber) {
+		this.lotnumber = lotnumber;
 	}
 	public String getPhoto() {
 		return photo;
@@ -65,7 +63,7 @@ public class ProductEntryBean {
 		int result = 1;
 		result = prime * result + ((farmerid == null) ? 0 : farmerid.hashCode());
 		result = prime * result + ((kproduce == null) ? 0 : kproduce.hashCode());
-		result = prime * result + ((lotnum == null) ? 0 : lotnum.hashCode());
+		result = prime * result + ((lotnumber == null) ? 0 : lotnumber.hashCode());
 		result = prime * result + ((marketcode == null) ? 0 : marketcode.hashCode());
 		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
 		result = prime * result + ((produce == null) ? 0 : produce.hashCode());
@@ -92,10 +90,10 @@ public class ProductEntryBean {
 				return false;
 		} else if (!kproduce.equals(other.kproduce))
 			return false;
-		if (lotnum == null) {
-			if (other.lotnum != null)
+		if (lotnumber == null) {
+			if (other.lotnumber != null)
 				return false;
-		} else if (!lotnum.equals(other.lotnum))
+		} else if (!lotnumber.equals(other.lotnumber))
 			return false;
 		if (marketcode == null) {
 			if (other.marketcode != null)
@@ -127,11 +125,11 @@ public class ProductEntryBean {
 	@Override
 	public String toString() {
 		return "ProductEntryBean [farmerid=" + farmerid + ", marketcode=" + marketcode + ", kproduce=" + kproduce
-				+ ", produce=" + produce + ", quality=" + quality + ", quantity=" + quantity + ", lotnum=" + lotnum
+				+ ", produce=" + produce + ", quality=" + quality + ", quantity=" + quantity + ", lotnumber=" + lotnumber
 				+ ", photo=" + photo + "]";
 	}
 	public ProductEntryBean(String farmerid, String marketcode, String kproduce, String produce, String quality,
-			String quantity, String lotnum, String photo) {
+			String quantity, String lotnumber, String photo) {
 		super();
 		this.farmerid = farmerid;
 		this.marketcode = marketcode;
@@ -139,7 +137,7 @@ public class ProductEntryBean {
 		this.produce = produce;
 		this.quality = quality;
 		this.quantity = quantity;
-		this.lotnum = lotnum;
+		this.lotnumber = lotnumber;
 		this.photo = photo;
 	}
 	
