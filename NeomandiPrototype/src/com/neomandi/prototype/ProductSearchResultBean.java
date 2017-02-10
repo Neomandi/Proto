@@ -13,7 +13,7 @@ public class ProductSearchResultBean implements Serializable {
 	private String quantity;
 	private String photo;
 	public ProductSearchResultBean(){
-		System.out.println("inside no arg cons of psrb");
+//		System.out.println("inside no arg cons of psrb");
 	}
 	public String getLotnumber() {
 		return lotnumber;

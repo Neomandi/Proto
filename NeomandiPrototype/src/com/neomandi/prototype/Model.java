@@ -564,15 +564,16 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			}
 			else
 			{
-				String kproduce = psb.getKproduce();
+				String kproduce = psb.getCategory();
 				kproduce=kproduce.trim();
 				String produce = psb.getProduce();
-				String quality = psb.getQuality();
+				String quality = psb.getGrade();
 				String slot=psb.getSlot();
-				if(kproduce.equals("base"))
+				System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
+				if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
-					if(slot.equals("slot3"))
+					if(slot!=null&&slot.equals("slot3"))
 						slot=null;
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE slotnumber=?");
 					//System.out.println(pstmt);
@@ -594,7 +595,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 					return l;
 				}
-				else if(slot.equals("Please Select")&&quality.equals("Please Select"))
+				else if(slot.equals("base")&&quality.equals("base"))
 				{
 			//		System.out.println("inside else if()->");
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
@@ -616,7 +617,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 					return l;
 				}
-				else if(slot.equals("Please Select")&&!quality.equals("Please Select"))
+				else if(slot.equals("base")&&!quality.equals("base"))
 				{
 					//System.out.println("inside else if()->");
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");

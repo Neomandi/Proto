@@ -948,7 +948,8 @@ if(uri.contains("AfterAccept")){
 			try
 			{
 				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
-				if(tlbn.getTname()==null)
+				System.out.println(tlbn.getTname());
+				if(tlbn.getTname().equals("ki"))
 				{}
 			}
 			catch(NullPointerException e)

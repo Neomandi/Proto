@@ -72,15 +72,6 @@ $(#ICICI).click(function(){$("#form0").submit();})
 <font color="red"><br><br><br>
 <h2><u>Hold Funds</u></h2><br><br>
 </font>
-<!-- <form name="form0" action="traderblockbank.do" method="post">
-<font color="green"> <h3>Choose Bank:<br><br>
-	<input type="radio"  name="ICICI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>ICICI
-	<input type="radio"  name="SBI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBI
-	<input type="radio"  name="HDFC" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>HDFC
-	<input type="radio"  name="SBM" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>SBM
-	<input type="radio"  name="CITI" id="radio" onclick ="this.form.submit()" onClick="resetMeIfChecked()"/>CITI
-  <br>
-</form> -->
 <% 
 
 String msg3=(String)request.getAttribute("notlogged");
