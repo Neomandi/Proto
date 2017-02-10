@@ -330,21 +330,7 @@ public class ControllerServlet extends HttpServlet {
 			sb=m.getSummary(name, pass, sb);
 			
 			System.out.println(" in cs sb="+sb);
-			/*if(sb.getStatus().equals("fail"))
-			{*/
-				request.setAttribute("error","error");
-				rd=request.getRequestDispatcher("GetSummary.jsp");
-				try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
+			
 			//}
 			String lotnumber=sb.getLotnumber();
 			String lotsize=sb.getLotsize();
@@ -367,7 +353,10 @@ public class ControllerServlet extends HttpServlet {
 		
 			try 
 			{
-				rd.forward(request, response);			
+				
+				rd.forward(request, response);
+				
+				
 			}			
 			catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -1622,8 +1611,8 @@ public class ControllerServlet extends HttpServlet {
 		//EmployeeLogout
 		if(uri.contains("ELogout"))
 		{
-			System.out.println("Inside Elogout");
-			RequestDispatcher rd1=null;
+			System.out.println("Inside ELogout");
+			RequestDispatcher rde=null;
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)
 			{ 
@@ -1632,10 +1621,10 @@ public class ControllerServlet extends HttpServlet {
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd1=request.getRequestDispatcher("EmployeeLogin.jsp");
+				rde=request.getRequestDispatcher("Login.html");
 				try 
 				{
-					rd1.forward(request, response);	
+					rde.forward(request, response);	
 					return;
 				}			
 				catch (ServletException e) {

@@ -43,7 +43,7 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+      <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -65,20 +65,22 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 <!-----menu bar end------>
 <div class="container-fluid farmlogcls pad">
 <div class="row">
-<div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
+<div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
 <form id="login" method="post" action="FarmerLogin.do">
 <table class="table login">
+
+
 <tbody>
                                 <tr>
                                     <td>
-                                        <h2>Farmer Login</h2></td>
+                                        <h2 class="head">Farmer Login</h2></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="User name">
                                     </td>
-                                    </td>
+                                   
                                 </tr>
                                 <tr>
                                     <td>
@@ -88,7 +90,8 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
                                 </tr>
                                 <tr align="center">
                                     <td>
-                                        <button onclick="login()" class="log" name="login">Login</button>
+                                    <a href="javascript:login()" class="log">Login</a>
+                                       
                                     </td>
                                 </tr>
                                 <br>
@@ -96,7 +99,7 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
                                     <td><a href="" class="frgt">Forgot password?</a></td>
                                 </tr>
                             </tbody>
-</table>
+</tbody></table>
 </form>
 <script>
                         function login() {

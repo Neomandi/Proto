@@ -1,85 +1,95 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<title>Vision | NeoMandi</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<script> 
-$(function(){
-  $("#footer").load("Footer.html"); 
-});
-</script>
-<style>
-.ex1 {
-    margin-left: 12%;
-    margin-right: 12%;
-}
-p,a{
-	font-family: Arial, Helvetica, sans-serif;
-	line-height:200%;
-}
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    margin: 0 0 100px;
-    /* bottom = footer height */
-    padding: 25px;
-}
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    overflow:hidden;
-}
-</style>
+    <meta charset="ISO-8859-1">
+    <link rel="icon" type="image/png" href="Images/Neomandi1.png">
+    <title>Vision | NeoMandi</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <script>
+        $(function() {
+            $("#footer").load("Footer.html");
+        });
+    </script>
+    <style>
+        .ex1 {
+            margin-left: 12%;
+            margin-right: 12%;
+        }
+        
+        p,
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 200%;
+        }
+        
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        
+        body {
+            margin: 0 0 100px;
+            /* bottom = footer height */
+            padding: 25px;
+        }
+        
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
-<body>
-<!---menu bar------>
 
- <nav class="navbar navbar-inverse menu">
-  <div class="container-fluid">
-    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/logo.jpg" class="img-responsive"></a>
+<body>
+    <!---menu bar------>
+
+    <nav class="navbar navbar-inverse menu">
+        <div class="container-fluid">
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="HomePage.html">About Us</a></li>
+                    <li class="active"><a href="Vision.html">Vision</a></li>
+                    <li><a href="Mission.html">Mission</a></li>
+                    <li><a href="Howitworks.html">How it works</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="ContactUs.html">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="Register.html">Register</a>
+
+                    </li>
+                    <li><a href="Login.html">Login</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-----menu bar end------>
+    <div id="content">
+        <h1 class="ex1">Vision</h1>
+        <p align="justify" class="ex1">
+            NeoMandi's vision is to be a leading corporation in providing an ecosystem of advanced technologies to help farmers in marketing their produce for a fair price discovered in a transparent and competitive environment.
+        </p>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="HomePage.html">About Us</a></li>
-        <li class="active"><a href="Vision.html">Vision</a></li>
-        <li><a href="Mission.html">Mission</a></li>
-		<li><a href="Howitworks.html">How it works</a></li>
-        <li><a href="News.html">News</a></li>
-		<li><a href="ContactUs.html">Contact Us</a></li>
-		<li class="dropdown">
-          <a class="dropdown-toggle" href="Register.html">Register</a>
-          
-        </li>
-        <li><a href="Login.html">Login</a></li>
-      </ul>
-      
-    </div>
-  </div>
-</nav> 
-<!-----menu bar end------>
-<div id = "content">
-<h1 class = "ex1">Vision</h1>
-<p align = "justify" class = "ex1">
-NeoMandi's vision is to be a leading corporation in providing an ecosystem of advanced technologies to help farmers in marketing their produce for a fair price discovered in a transparent and competitive environment.
-</p>
-</div>
-<footer><div id = "footer"></div></footer>
+    <footer>
+        <div id="footer"></div>
+    </footer>
 </body>
+
 </html>

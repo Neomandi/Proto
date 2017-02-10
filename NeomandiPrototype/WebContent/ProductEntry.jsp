@@ -169,16 +169,30 @@
         });
       } );
     </script>
+    <style>
+    	.img-responsive {
+		    height: 60px;
+		    width: 65px;
+		}
+    </style>
 </head>
 <body class="">
+    <% 
+		HttpSession elog = request.getSession(false);
+	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
+	    {
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='Login.html';</script>");
+	    }
+	%>
     <div class="logo_relative">
-        <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+        <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <h1>Employee1, welcome to e-auction at NeoMandi.</h1></div>
-                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                    <h1><%= (String)elog.getAttribute("name")%>, Welcome to E-Auction at NeoMandi.</h1></div>
+                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
 
@@ -271,7 +285,7 @@
                     <h4>Produce Image</h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
-                            <div id="showtext">click here to upload image</div>
+                            <div id="showtext">Click here to upload image</div>
 
                             <img id="blah" src="#" style="display:none">
                             <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" />
@@ -348,7 +362,7 @@
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<br/><br/><br/><p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
 							{
-								out.print("ProductEntry Successfull");
+								out.println("ProductEntry Successfull");
 							}
 							else if(msg != null)
 							{
