@@ -9,6 +9,7 @@
 	 java.sql.ResultSet,
 	 java.util.Date,
 	 java.sql.SQLException,
+	 com.neomandi.prototype.TraderLoginBean ,
 	 java.sql.Statement,
 	 java.awt.image.BufferedImage,
  java.io.ByteArrayInputStream,
@@ -33,6 +34,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
 $( "p" ).click(function() {
   $( this ).toggleClass( "highlight" );
@@ -97,7 +99,6 @@ div.panel {
 }
 </style>
 <style>
-
 .whiteclsbc{
 background-color:#ffffff;
 width:5%;
@@ -120,7 +121,21 @@ border-top:0px solid #fff !important;}
 <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%HttpSession tlog=request.getSession(false);
+TraderLoginBean tlbn =null;
+try
+{
+	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+	if(tlbn.getTname()==null){}
+}
+catch(NullPointerException e)
+{
+		out.println("<script type=\"text/javascript\">");
+	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+	  	 out.println("location='TraderLogin.jsp';");
+	 	 out.println("</script>");
+}
+out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -142,12 +157,7 @@ border-top:0px solid #fff !important;}
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
   <div id="accord"> 
         <!----row1--->
-	<div class="one">
-	<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-	<div class="table-responsive"> 
-<%
+        <%
   String msg1=(String)request.getAttribute("notlogged");
   if(msg1!=null)
   {
@@ -160,6 +170,7 @@ border-top:0px solid #fff !important;}
   {
     String msg=(String)request.getAttribute("msg");
     System.out.println("msg"+msg);
+    
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
@@ -180,7 +191,7 @@ border-top:0px solid #fff !important;}
 		}
 		else
 		{
-			int i=0;
+			int i=0,z=0;
 			int finalcostlist=0;
 			int tradelist=0;
 			if(request.getAttribute("remove")==null)//not removed any row
@@ -204,25 +215,32 @@ border-top:0px solid #fff !important;}
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
-%>  <table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
+%>
+	<div class="one">
+	
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
+	<div class="table-responsive"> 
+  <table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%=++z %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" ></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>" ></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" ></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>" ></td></tr>
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" ></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" ></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>" ></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" type="text" value="3000" readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
@@ -232,11 +250,11 @@ border-top:0px solid #fff !important;}
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlb.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -296,6 +314,7 @@ border-top:0px solid #fff !important;}
     var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
     var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
 	var currentbids=new Number(currentbid);
+	console.log("current bid is "+currentbids);
 	var result=currentbids+1;
     var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
 	var assigned=new  Number(assigneds);
@@ -361,30 +380,82 @@ border-top:0px solid #fff !important;}
 		         {
 		        	 console.log("assigned =0");
 		        	 var symbol="-";
-		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
-			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
-			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
-			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
-			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				         
+		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = number;
+			         
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").value = number;
+			      
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 			         console.log(string.substring(startbestbid,endbestbid));
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
+			         
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
 			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 			     }
 		         else
 		         {
-			        // document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
-			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = "lotcost";			        
-			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				     var lotcost=string.substring(startlotcost,endlotcost);
+				     var commission=string.substring(startcommission,endcommission);
+				     var marketcess=string.substring(startmarket,endmarket);
+				     var final=string.substring(startfinal,endfinal);
+				     
+				   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+				     
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = lotcost;
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").value = lotcost;
+			         
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = commission;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
+			         
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
-		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
-			         console.log(string.substring(startbestbid,endbestbid));
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
-			    //     console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			         
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
+			         
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+		        	 
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
+			         
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
+			         
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+			    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 			         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
 		         }}}};
 		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
@@ -392,25 +463,26 @@ border-top:0px solid #fff !important;}
 		  bid1=bid1+1;
 		  xmlhttp.open("POST", "ajaxIncrement.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("number="+bid1+"&lotnumber="+j);
+		  xmlhttp.send("number="+result+"&lotnumber="+j);
+	 }
 	}
-		}
-}
-</script>
+ }
+	</script>
 	<tr><td><br><a href="#" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
-	<%
-SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss"); 
-%>
-<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
+	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
+	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
 	<script>
+	function remove()
+	{
+		window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+	}
 	function fun<%=tlb.getLotnum()%>(){
 	var Etime=document.getElementById("time").value;
 	var Btime="10:30:00";
 	var Btime1="10:35:00";
-
 	start = Etime.split(":");
 	end =Btime.split(":");
 	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -444,9 +516,11 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	console.log("time difference isss "+timedifference);	
 	//if(timedifference.includes("-"))
 	{
-	      var i= document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
+	      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
+	      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+	      console.log("old bid in front end is "+i+"new bid is "+demo6<%out.print(tlb.getLotnum());%>.value);
 		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
-		  if(i==""||document.getElementById("number<%out.print(tlb.getLotnum());%>").value==null)
+		  if(k==""||document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value==null)
 		  { 
 			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
 		  }
@@ -456,6 +530,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 			var assigned=new  Number(assigneds);
 			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
 			var needed=new  Number(neededs);
+			
 			if(assigned-needed==0)
 			{
 				console.log("assigned=needed");
@@ -463,14 +538,19 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 			else
 			{
 			  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
-			  var currentbid=document.getElementById("demo6<%= tlb.getLotnum() %>").value;
+			  var currentbid=document.getElementById("mybid<%= tlb.getLotnum() %>").value;
 			  var currentbids=new Number(currentbid);
-			  var newbid=document.getElementById("number<%out.print(tlb.getLotnum());%>").value;
+			  var newbid=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 			  var newbids=new Number(newbid);
-			  if(currentbids>=newbids)
+			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  if(currentbids===newbids)
+				  {
+					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+				  }
+			  if(currentbids>newbids)
 			  {	  
 				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
-				  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+				 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  }
 			  else
 			  {
@@ -480,7 +560,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 					    {					     
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
-					    		{
+					    	{
 					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
@@ -522,43 +602,95 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 					         var assigned=string.substring(startassigned,endassigned);
 					         if(assigned=="0")
 					         {
-					        	 console.log("assigned =0");
-					        	 var symbol="-";
-					        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = 0;
-						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = 0;
-						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = 0;
-						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 0;
-						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
-						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = 0;
-						         var input = document.getElementById("number<%out.print(tlb.getLotnum());%>");
-						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-						         var bid=new  Number(string.substring(startmybid,endmybid));
+					        	 var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
 						         input.setAttribute("min",bid);
+						         
+						         console.log("assigned =0");
+					        	 var symbol="-";
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							         
+					        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = number;
+						         
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = number;
+						      
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));						   
 						     }
 					         else
 					         {
-						         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotcost,endlotcost);
-						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = string.substring(startcommission,endcommission);
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							     var lotcost=string.substring(startlotcost,endlotcost);
+							     var commission=string.substring(startcommission,endcommission);
+							     var marketcess=string.substring(startmarket,endmarket);
+							     var final=string.substring(startfinal,endfinal);
+							     
+							   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+							     
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = lotcost;
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = lotcost;
+						         
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = commission;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
+						         
 						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = string.substring(startmarket,endmarket);
-						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =string.substring(startbestbid,endbestbid);
-						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = string.substring(startmybid,endmybid);
-						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = string.substring(startassigned,endassigned);
-						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = string.substring(startfinal,endfinal);
-						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
+						         
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+					        	 
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
+						         
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						        
+						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+					           var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
-						         input.setAttribute("min",bid);
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
 					         }}}};
-			  document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+			//document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			  xmlhttp.send("number=" + i+"&lotnumber="+j);
+			  xmlhttp.send("number=" +k+"&lotnumber="+j);
 	  }}}}
 	/*else
 		{	console.log(!timedifference.includes("-"));
@@ -569,244 +701,527 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	</div>
 	</div>
     </div></div>
-    <%}}}}}}}}%>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	<!---row 1 end--->
-	<!----row2--->
+    <%}}}}}
+			else//removed row
+            {	
+	 		  int j=0;
+	  		  HttpSession remove=request.getSession(false);
+			  List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
+		  	  for(Object m:l)		
+		   	  {
+		   		TradeListBean tlbr=(TradeListBean)m;
+		   		System.out.println("inside tlbr->"+tlbr);
+		   		if(tlbr.getSlotnumber()!=null && (tlbr.getSlotnumber().equals("slot1")||tlbr.getSlotnumber().equals("Slot1")))
+				{
+		   			System.out.println("lotnum which belongs to slot1 "+tlbr.getLotnum());			   		
+				{
+					HttpSession MyFinalCost=request.getSession(false);
+					List ll=(List)MyFinalCost.getAttribute("MyFinalCost"); 
+		   			for(Object mm:ll)
+					{
+						MyFinalCostBean mfcb=(MyFinalCostBean)mm;						
+						System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());	
+						if(mfcb.getLotnum().equals(tlbr.getLotnum()))
+						{%>
+      <!----row1--->
 	<div class="one">
-<div class="container-fluid status">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
+	<div class="table-responsive"> 
  <table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">2</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
-	<table>
-	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 2 end--->
-	<!----row3--->
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">3</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 3 end--->
-	<!----row 4--->
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">4</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 4 end--->
- </div>
-
-
-
-
-<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
-  <div id="accord1" class="collapse">
-    
- 
-        <!----row1--->
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlbr.getQuantityneeded()%>" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
+	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<% 
+	String quantityneededs=tlbr.getQuantityneeded();
+	int quantityneeded=Integer.parseInt(quantityneededs);
+	String quantityassigneds=mfcb.getQuantityassigned();
+	int quantityassigned=Integer.parseInt(quantityassigneds);%>
+	<input type="hidden" name="lotnum" id="mybid<%out.print(tlbr.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
+	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlbr.getLotnum());%>" value="<%out.print(tlbr.getLotnum());%>"/>
+	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+	<script>
+	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+	var bid=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
+	bid=bid+1;
+	function submitbutton<%out.print(tlbr.getLotnum());%>()
+	{
+	 var Etime=document.getElementById("time").value;
+	 var Btime="10:30:00";
+	 var Btime1="10:35:00";
+   	 start = Etime.split(":");
+	 end =Btime.split(":");
+	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
 
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference is "+timedifference);
+	/*if(!timedifference.includes("-"))
+	{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+	}*/
+	//else
+	{
+    var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+    var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
+    var currentbid=document.getElementById("mybid<%=tlbr.getLotnum()%>").value;
+	var currentbids=new Number(currentbid);
+	console.log("current bid is "+currentbids);
+	var result=currentbids+1;
+    var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+	var assigned=new  Number(assigneds);
+	var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+	var needed=new  Number(neededs);
+	console.log("volume assigned is "+assigned+"");
+	console.log("volume needed is "+needed+"");
+	if(assigned-needed==0)
+	{
+		console.log("assigned=needed");
+		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
+	}
+	else
+	{
+		console.log("assigned!=needed");
+		 xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	 var string=xmlhttp.responseText;
+		    	 if(string.includes("block"))
+		    		{
+		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		  	  	       window.location='TraderBlock.do';
+		    		}
+		    	else
+		    	{	
+		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+		         startlotnum=startlotnum+9;
+		         
+		         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+		         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+		         startlotcost=startlotcost+7;
+		         
+		         var startcommission=xmlhttp.responseText.indexOf('commission');
+		         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+		         startcommission=startcommission+10;
+		         
+		         var startmarket=xmlhttp.responseText.indexOf('market');
+		         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+		         startmarket=startmarket+6;
+		         
+		         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+		         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+		         startbestbid=startbestbid+7;
+		         
+		         var startmybid=xmlhttp.responseText.indexOf('mybid');
+		         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+		         startmybid=startmybid+5;
+		         
+		         var startassigned=xmlhttp.responseText.indexOf('assigned');
+		         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+		         startassigned=startassigned+8;
+		         
+		         var startfinal=xmlhttp.responseText.indexOf('final');
+		         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+		         startfinal=startfinal+5;
 
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
+		         document.getElementById("demo1<%= tlbr.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+		         var assigned=string.substring(startassigned,endassigned);
+		         if(assigned=="0")
+		         {
+		        	 console.log("assigned =0");
+		        	 var symbol="-";
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				         
+		        	 document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = number;
+			         
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = number;
+			      
+			         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+			         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
+			         
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			     }
+		         else
+		         {
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				     var lotcost=string.substring(startlotcost,endlotcost);
+				     var commission=string.substring(startcommission,endcommission);
+				     var marketcess=string.substring(startmarket,endmarket);
+				     var final=string.substring(startfinal,endfinal);
+				     
+				   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+				     
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = lotcost;
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = lotcost;
+			         
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = commission;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
+			         
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+			         
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
+			         
+		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+		        	 
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
+			         
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
+			         
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+			    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+		         }}}};
+		  var bid1=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
+		  console.log("current bid is "+bid1);
+		  bid1=bid1+1;
+		  xmlhttp.open("POST", "ajaxIncrement.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("number="+result+"&lotnumber="+j);
+	 }
+	}
+ }
+	</script>
+	<tr><td><br><a href="#" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
+	</td></tr>
+	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
+	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
+	<script>
+	function remove()
+	{
+		window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
+	}
+	function fun<%=tlbr.getLotnum()%>()
+	{
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);	
+	//if(timedifference.includes("-"))
+	{
+	      var i= document.getElementById("mybid<%out.print(tlbr.getLotnum());%>").value;
+	      var k=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+	      console.log("old bid in front end is "+i+"new bid is "+demo6<%out.print(tlbr.getLotnum());%>.value);
+		  var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
+		  if(k==""||document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value==null)
+		  { 
+			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
+		  }
+	      else
+		  {
+			var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+			var assigned=new  Number(assigneds);
+			var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+			var needed=new  Number(neededs);
+			
+			if(assigned-needed==0)
+			{
+				console.log("assigned=needed");
+			}
+			else
+			{
+			  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+			  var currentbid=document.getElementById("mybid<%= tlbr.getLotnum() %>").value;
+			  var currentbids=new Number(currentbid);
+			  var newbid=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+			  var newbids=new Number(newbid);
+			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  if(currentbids===newbids)
+				  {
+					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+				  }
+			  if(currentbids>newbids)
+			  {	  
+				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+			  }
+			  else
+			  {
+					  xmlhttp = new XMLHttpRequest();
+					  xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {					     
+					    	 var string=xmlhttp.responseText;			  
+					    	if(string.includes("block"))
+					    	{
+					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					  	  	       window.location='TraderBlock.do';
+					    		}
+					    	else
+					    	{	
+					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+					         startlotnum=startlotnum+9;
+					         
+					         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+					         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+					         startlotcost=startlotcost+7;
+					         
+					         var startcommission=xmlhttp.responseText.indexOf('commission');
+					         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+					         startcommission=startcommission+10;
+					         
+					         var startmarket=xmlhttp.responseText.indexOf('market');
+					         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+					         startmarket=startmarket+6;
+					         
+					         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+					         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+					         startbestbid=startbestbid+7;
+					         
+					         var startmybid=xmlhttp.responseText.indexOf('mybid');
+					         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+					         startmybid=startmybid+5;
+					         
+					         var startassigned=xmlhttp.responseText.indexOf('assigned');
+					         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+					         startassigned=startassigned+8;
+					         
+					         var startfinal=xmlhttp.responseText.indexOf('final');
+					         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+					         startfinal=startfinal+5;
+					         
+					         document.getElementById("demo1<%= tlbr.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+					         var assigned=string.substring(startassigned,endassigned);
+					         if(assigned=="0")
+					         {
+					        	 var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         input.setAttribute("min",bid);
+						         
+						         console.log("assigned =0");
+					        	 var symbol="-";
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							         
+					        	 document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = number;
+						         
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = number;
+						      
+						         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+						         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
+						         
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));						   
+						     }
+					         else
+					         {
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							     var lotcost=string.substring(startlotcost,endlotcost);
+							     var commission=string.substring(startcommission,endcommission);
+							     var marketcess=string.substring(startmarket,endmarket);
+							     var final=string.substring(startfinal,endfinal);
+							     
+							   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+							     
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = lotcost;
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = lotcost;
+						         
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = commission;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
+						         
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+						         
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
+						         
+					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+					        	 
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
+						         
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
+						         
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						        
+						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+					           var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+					         }}}};
+			//document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+			  xmlhttp.open("POST", "ajaxIncrement.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("number=" +k+"&lotnumber="+j);
+	  }}}}
+	/*else
+		{	console.log(!timedifference.includes("-"));
+			alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}*/}
+	</script>
+	</tbody></table></div>
+	</div>
+	</div>
     </div></div>
+    <%}}}}}}}}}%>    
+    
 	<!---row 1 end--->
 	<!----row2--->
-	<div class="one">
-<div class="container-fluid status">
+	<!--  <div class="one">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
- <table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">2</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
+	<div class="table-responsive"> 
+ 	<table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">2</td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -814,18 +1229,17 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
 	<table>
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
@@ -834,29 +1248,27 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
+	<tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
+	<table align="center"><tbody><tr><td><button  type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
+	</td></tr>
+	</tbody></table></div>
+	</div>
+	</div>
     </div></div>
 	<!---row 2 end--->
 	<!----row3--->
-	<div class="one">
-<div class="container-fluid status">
+	<!-- <div class="one">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">3</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
+	<div class="table-responsive"> 
+	<table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">3</td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -867,7 +1279,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -898,7 +1310,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
     </div></div>
 	<!---row 3 end--->
 	<!----row 4--->
-	<div class="one">
+	<!-- <div class="one">
 <div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
@@ -917,7 +1329,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -949,15 +1361,1068 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 	<!---row 4 end--->
  </div>
 
+<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
+  <div id="accord"> 
+        <!----row1--->
+        <%
+   msg1=(String)request.getAttribute("notlogged");
+  if(msg1!=null)
+  {
+	 out.println("<script type=\"text/javascript\">");
+  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+  	 out.println("location='TraderLogin.jsp';");
+ 	 out.println("</script>");
+  }
+  else
+  {
+    String msg=(String)request.getAttribute("msg");
+    System.out.println("msg"+msg);
+    if(msg!=null)
+    {
+		  out.println("<script type=\"text/javascript\">");
+	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("window.location='TraderBlock.do';");
+	 	  out.println("</script>");
+	}
+	else
+	{	
+        System.out.println("inside else()");
+		String msg2=(String)request.getAttribute("assigned");
+		if(msg2!=null)
+		{
+			out.println("<script type=\"text/javascript\">");
+		  	out.println("alert('You need to enter the number of bid to be increased before');");
+		  	out.println("location='TradeorAuction.do';");
+		 	out.println("</script>");
+		}
+		else
+		{
+			int i=0;
+			int finalcostlist=0;
+			int tradelist=0;
+			if(request.getAttribute("remove")==null)//not removed any row
+			{
+				HttpSession traderlistbean=request.getSession(false);
+				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
+				System.out.println("inside traderlist bean"+al);
+				for(Object o:al)
+				{
+					TradeListBean tlb=(TradeListBean)o;
+					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
+					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot2")||tlb.getSlotnumber().equals("Slot2")))
+					{				
+						HttpSession MyFinalCost=request.getSession(false);
+						List l=(List)MyFinalCost.getAttribute("MyFinalCost"); 
+						System.out.println("list l is "+l);
+						for(Object m:l)
+						{	
+							System.out.println("myfinalcostbean list size"+l.size()+l);
+							MyFinalCostBean mfcb=(MyFinalCostBean)m;
+							if(mfcb.getLotnum().equals(tlb.getLotnum()))
+							{
+								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
+%> 
+	<div class="one">
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
+	<div class="table-responsive"> 
+ <table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	<table >
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<% 
+	String quantityneededs=tlb.getQuantityneeded();
+	int quantityneeded=Integer.parseInt(quantityneededs);
+	String quantityassigneds=mfcb.getQuantityassigned();
+	int quantityassigned=Integer.parseInt(quantityassigneds);%>
+	<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
+	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
+	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
+	<script>
+	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+	bid=bid+1;
+	function submitbutton<%out.print(tlb.getLotnum());%>()
+	{
+	 var Etime=document.getElementById("time").value;
+	 var Btime="10:30:00";
+	 var Btime1="10:35:00";
+   	 start = Etime.split(":");
+	 end =Btime.split(":");
+	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
 
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference is "+timedifference);
+	/*if(!timedifference.includes("-"))
+	{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+	}*/
+	//else
+	{
+    var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+    var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
+    var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
+	var currentbids=new Number(currentbid);
+	console.log("current bid is "+currentbids);
+	var result=currentbids+1;
+    var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+	var assigned=new  Number(assigneds);
+	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+	var needed=new  Number(neededs);
+	console.log("volume assigned is "+assigned+"");
+	console.log("volume needed is "+needed+"");
+	if(assigned-needed==0)
+	{
+		console.log("assigned=needed");
+		document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
+	}
+	else
+	{
+		console.log("assigned!=needed");
+		 xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	 var string=xmlhttp.responseText;
+		    	 if(string.includes("block"))
+		    		{
+		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		  	  	       window.location='TraderBlock.do';
+		    		}
+		    	else
+		    	{	
+		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+		         startlotnum=startlotnum+9;
+		         
+		         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+		         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+		         startlotcost=startlotcost+7;
+		         
+		         var startcommission=xmlhttp.responseText.indexOf('commission');
+		         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+		         startcommission=startcommission+10;
+		         
+		         var startmarket=xmlhttp.responseText.indexOf('market');
+		         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+		         startmarket=startmarket+6;
+		         
+		         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+		         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+		         startbestbid=startbestbid+7;
+		         
+		         var startmybid=xmlhttp.responseText.indexOf('mybid');
+		         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+		         startmybid=startmybid+5;
+		         
+		         var startassigned=xmlhttp.responseText.indexOf('assigned');
+		         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+		         startassigned=startassigned+8;
+		         
+		         var startfinal=xmlhttp.responseText.indexOf('final');
+		         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+		         startfinal=startfinal+5;
 
+		         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+		         var assigned=string.substring(startassigned,endassigned);
+		         if(assigned=="0")
+		         {
+		        	 console.log("assigned =0");
+		        	 var symbol="-";
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				         
+		        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = number;
+			         
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = number;
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").value = number;
+			      
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+			         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
+			         
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			     }
+		         else
+		         {
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				     var lotcost=string.substring(startlotcost,endlotcost);
+				     var commission=string.substring(startcommission,endcommission);
+				     var marketcess=string.substring(startmarket,endmarket);
+				     var final=string.substring(startfinal,endfinal);
+				     
+				   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+				     
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = lotcost;
+			         document.getElementById("demo2<%= tlb.getLotnum() %>").value = lotcost;
+			         
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = commission;
+			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
+			         
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+			         
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
+			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
+			         
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+		        	 
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
+			         
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
+			         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
+			         
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+			    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+		         }}}};
+		  var bid1=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+		  console.log("current bid is "+bid1);
+		  bid1=bid1+1;
+		  xmlhttp.open("POST", "ajaxIncrement.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("number="+result+"&lotnumber="+j);
+	 }
+	}
+ }
+	</script>
+	<tr><td><br><a href="#" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
+	</td></tr>
+	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
+	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
+	<script>
+	function remove()
+	{
+		window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+	}
+	function fun<%=tlb.getLotnum()%>(){
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);	
+	//if(timedifference.includes("-"))
+	{
+	      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
+	      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+	      console.log("old bid in front end is "+i+"new bid is "+demo6<%out.print(tlb.getLotnum());%>.value);
+		  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
+		  if(k==""||document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value==null)
+		  { 
+			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
+		  }
+	      else
+		  {
+			var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+			var assigned=new  Number(assigneds);
+			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+			var needed=new  Number(neededs);
+			
+			if(assigned-needed==0)
+			{
+				console.log("assigned=needed");
+			}
+			else
+			{
+			  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+			  var currentbid=document.getElementById("mybid<%= tlb.getLotnum() %>").value;
+			  var currentbids=new Number(currentbid);
+			  var newbid=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+			  var newbids=new Number(newbid);
+			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  if(currentbids===newbids)
+				  {
+					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+				  }
+			  if(currentbids>newbids)
+			  {	  
+				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+			  }
+			  else
+			  {
+					  xmlhttp = new XMLHttpRequest();
+					  xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {					     
+					    	 var string=xmlhttp.responseText;			  
+					    	if(string.includes("block"))
+					    	{
+					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					  	  	       window.location='TraderBlock.do';
+					    		}
+					    	else
+					    	{	
+					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+					         startlotnum=startlotnum+9;
+					         
+					         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+					         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+					         startlotcost=startlotcost+7;
+					         
+					         var startcommission=xmlhttp.responseText.indexOf('commission');
+					         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+					         startcommission=startcommission+10;
+					         
+					         var startmarket=xmlhttp.responseText.indexOf('market');
+					         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+					         startmarket=startmarket+6;
+					         
+					         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+					         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+					         startbestbid=startbestbid+7;
+					         
+					         var startmybid=xmlhttp.responseText.indexOf('mybid');
+					         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+					         startmybid=startmybid+5;
+					         
+					         var startassigned=xmlhttp.responseText.indexOf('assigned');
+					         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+					         startassigned=startassigned+8;
+					         
+					         var startfinal=xmlhttp.responseText.indexOf('final');
+					         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+					         startfinal=startfinal+5;
+					         
+					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+					         var assigned=string.substring(startassigned,endassigned);
+					         if(assigned=="0")
+					         {
+					        	 var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         input.setAttribute("min",bid);
+						         
+						         console.log("assigned =0");
+					        	 var symbol="-";
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							         
+					        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = number;
+						         
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = number;
+						      
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));						   
+						     }
+					         else
+					         {
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							     var lotcost=string.substring(startlotcost,endlotcost);
+							     var commission=string.substring(startcommission,endcommission);
+							     var marketcess=string.substring(startmarket,endmarket);
+							     var final=string.substring(startfinal,endfinal);
+							     
+							   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+							     
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = lotcost;
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = lotcost;
+						         
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = commission;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
+						         
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+						         
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
+						         
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+					        	 
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
+						         
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						        
+						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+					           var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+					         }}}};
+			//document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+			  xmlhttp.open("POST", "ajaxIncrement.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("number=" +k+"&lotnumber="+j);
+	  }}}}
+	/*else
+		{	console.log(!timedifference.includes("-"));
+			alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}*/}
+	</script>
+	</tbody></table></div>
+	</div>
+	</div>
+    </div></div>
+    <%}}}}}
+			else//removed row
+            {	
+	 		  int j=0;
+	  		  HttpSession remove=request.getSession(false);
+			  List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
+		  	  for(Object m:l)		
+		   	  {
+		   		TradeListBean tlbr=(TradeListBean)m;
+		   		System.out.println("inside tlbr->"+tlbr);
+		   		if(tlbr.getSlotnumber()!=null && (tlbr.getSlotnumber().equals("slot2")||tlbr.getSlotnumber().equals("Slot2")))
+				{
+		   			System.out.println("lotnum which belongs to slot1 "+tlbr.getLotnum());			   		
+				{
+					HttpSession MyFinalCost=request.getSession(false);
+					List ll=(List)MyFinalCost.getAttribute("MyFinalCost"); 
+		   			for(Object mm:ll)
+					{
+						MyFinalCostBean mfcb=(MyFinalCostBean)mm;						
+						System.out.println("MyFinalCostBeanlotnumber->"+mfcb.getLotnum());	
+						if(mfcb.getLotnum().equals(tlbr.getLotnum()))
+						{%>
+      <!----row1--->
+	<div class="one">
+	<div class="container-fluid status">
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
+	<div class="table-responsive"> 
+ <table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
+	<table align="center">
+	<tbody>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	<table >
+	<tbody>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlbr.getQuantityneeded()%>" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
+	</tbody>
+	</table>
+	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<% 
+	String quantityneededs=tlbr.getQuantityneeded();
+	int quantityneeded=Integer.parseInt(quantityneededs);
+	String quantityassigneds=mfcb.getQuantityassigned();
+	int quantityassigned=Integer.parseInt(quantityassigneds);%>
+	<input type="hidden" name="lotnum" id="mybid<%out.print(tlbr.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
+	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlbr.getLotnum());%>" value="<%out.print(tlbr.getLotnum());%>"/>
+	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
+	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+	<script>
+	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+	var bid=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
+	bid=bid+1;
+	function submitbutton<%out.print(tlbr.getLotnum());%>()
+	{
+	 var Etime=document.getElementById("time").value;
+	 var Btime="10:30:00";
+	 var Btime1="10:35:00";
+   	 start = Etime.split(":");
+	 end =Btime.split(":");
+	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference is "+timedifference);
+	/*if(!timedifference.includes("-"))
+	{
+		alert('YOU CANT BID BEFORE AUCTION STARTS');
+	}*/
+	//else
+	{
+    var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+    var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
+    var currentbid=document.getElementById("mybid<%=tlbr.getLotnum()%>").value;
+	var currentbids=new Number(currentbid);
+	console.log("current bid is "+currentbids);
+	var result=currentbids+1;
+    var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+	var assigned=new  Number(assigneds);
+	var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+	var needed=new  Number(neededs);
+	console.log("volume assigned is "+assigned+"");
+	console.log("volume needed is "+needed+"");
+	if(assigned-needed==0)
+	{
+		console.log("assigned=needed");
+		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
+	}
+	else
+	{
+		console.log("assigned!=needed");
+		 xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	 var string=xmlhttp.responseText;
+		    	 if(string.includes("block"))
+		    		{
+		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		  	  	       window.location='TraderBlock.do';
+		    		}
+		    	else
+		    	{	
+		         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+		         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+		         startlotnum=startlotnum+9;
+		         
+		         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+		         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+		         startlotcost=startlotcost+7;
+		         
+		         var startcommission=xmlhttp.responseText.indexOf('commission');
+		         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+		         startcommission=startcommission+10;
+		         
+		         var startmarket=xmlhttp.responseText.indexOf('market');
+		         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+		         startmarket=startmarket+6;
+		         
+		         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+		         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+		         startbestbid=startbestbid+7;
+		         
+		         var startmybid=xmlhttp.responseText.indexOf('mybid');
+		         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+		         startmybid=startmybid+5;
+		         
+		         var startassigned=xmlhttp.responseText.indexOf('assigned');
+		         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+		         startassigned=startassigned+8;
+		         
+		         var startfinal=xmlhttp.responseText.indexOf('final');
+		         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+		         startfinal=startfinal+5;
+
+		         document.getElementById("demo1<%= tlbr.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+		         var assigned=string.substring(startassigned,endassigned);
+		         if(assigned=="0")
+		         {
+		        	 console.log("assigned =0");
+		        	 var symbol="-";
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				         
+		        	 document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = number;
+			         
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = number;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = number;
+			      
+			         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+			         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+			         console.log(string.substring(startbestbid,endbestbid));
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
+			         
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+			         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			     }
+		         else
+		         {
+		        	 var number=0;
+		        	 var assigned=string.substring(startassigned,endassigned);
+		        	 var bestbid=string.substring(startbestbid,endbestbid);
+				     var mybid=string.substring(startmybid,endmybid);
+				     var lotcost=string.substring(startlotcost,endlotcost);
+				     var commission=string.substring(startcommission,endcommission);
+				     var marketcess=string.substring(startmarket,endmarket);
+				     var final=string.substring(startfinal,endfinal);
+				     
+				   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+				     
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = lotcost;
+			         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = lotcost;
+			         
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = commission;
+			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
+			         
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+			         
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
+			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
+			         
+		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+		        	 
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
+			         
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
+			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
+			         
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			         
+			         var bid=new  Number(string.substring(startmybid,endmybid));
+			         bid=bid+1;
+			         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+			    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+			         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+		         }}}};
+		  var bid1=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
+		  console.log("current bid is "+bid1);
+		  bid1=bid1+1;
+		  xmlhttp.open("POST", "ajaxIncrement.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("number="+result+"&lotnumber="+j);
+	 }
+	}
+ }
+	</script>
+	<tr><td><br><a href="#" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
+	</td></tr>
+	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
+	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
+	<script>
+	function remove()
+	{
+		window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
+	}
+	function fun<%=tlbr.getLotnum()%>()
+	{
+	var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time inside submit function is "+Btime);
+	console.log("current time inside submit function is"+Etime);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;	
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("time difference isss "+timedifference);	
+	//if(timedifference.includes("-"))
+	{
+	      var i= document.getElementById("mybid<%out.print(tlbr.getLotnum());%>").value;
+	      var k=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+	      console.log("old bid in front end is "+i+"new bid is "+demo6<%out.print(tlbr.getLotnum());%>.value);
+		  var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
+		  if(k==""||document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value==null)
+		  { 
+			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
+		  }
+	      else
+		  {
+			var assigneds=document.getElementById("<%=tlbr.getLotnum()%>").value;
+			var assigned=new  Number(assigneds);
+			var neededs=document.getElementById("quantityneeded<%=tlbr.getLotnum()%>").value;
+			var needed=new  Number(neededs);
+			
+			if(assigned-needed==0)
+			{
+				console.log("assigned=needed");
+			}
+			else
+			{
+			  var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
+			  var currentbid=document.getElementById("mybid<%= tlbr.getLotnum() %>").value;
+			  var currentbids=new Number(currentbid);
+			  var newbid=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+			  var newbids=new Number(newbid);
+			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  if(currentbids===newbids)
+				  {
+					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+				  }
+			  if(currentbids>newbids)
+			  {	  
+				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+			  }
+			  else
+			  {
+					  xmlhttp = new XMLHttpRequest();
+					  xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {					     
+					    	 var string=xmlhttp.responseText;			  
+					    	if(string.includes("block"))
+					    	{
+					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					  	  	       window.location='TraderBlock.do';
+					    		}
+					    	else
+					    	{	
+					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+					         startlotnum=startlotnum+9;
+					         
+					         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+					         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+					         startlotcost=startlotcost+7;
+					         
+					         var startcommission=xmlhttp.responseText.indexOf('commission');
+					         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+					         startcommission=startcommission+10;
+					         
+					         var startmarket=xmlhttp.responseText.indexOf('market');
+					         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+					         startmarket=startmarket+6;
+					         
+					         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+					         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+					         startbestbid=startbestbid+7;
+					         
+					         var startmybid=xmlhttp.responseText.indexOf('mybid');
+					         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+					         startmybid=startmybid+5;
+					         
+					         var startassigned=xmlhttp.responseText.indexOf('assigned');
+					         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+					         startassigned=startassigned+8;
+					         
+					         var startfinal=xmlhttp.responseText.indexOf('final');
+					         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+					         startfinal=startfinal+5;
+					         
+					         document.getElementById("demo1<%= tlbr.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+					         var assigned=string.substring(startassigned,endassigned);
+					         if(assigned=="0")
+					         {
+					        	 var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         input.setAttribute("min",bid);
+						         
+						         console.log("assigned =0");
+					        	 var symbol="-";
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							         
+					        	 document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = number;
+						         
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = number;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = number;
+						      
+						         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+						         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
+						         
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));						   
+						     }
+					         else
+					         {
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							     var lotcost=string.substring(startlotcost,endlotcost);
+							     var commission=string.substring(startcommission,endcommission);
+							     var marketcess=string.substring(startmarket,endmarket);
+							     var final=string.substring(startfinal,endfinal);
+							     
+							   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+							     
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = lotcost;
+						         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = lotcost;
+						         
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = commission;
+						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
+						         
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+						         
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
+						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
+						         
+					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+					        	 
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
+						         
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
+						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
+						         
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						         
+						        
+						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+					           var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+					         }}}};
+			//document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+			  xmlhttp.open("POST", "ajaxIncrement.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("number=" +k+"&lotnumber="+j);
+	  }}}}
+	/*else
+		{	console.log(!timedifference.includes("-"));
+			alert('YOU CANT BID BEFORE AUCTION STARTS');
+		}*/}
+	</script>
+	</tbody></table></div>
+	</div>
+	</div>
+    </div></div>
+    <%}}}}}}}}}%>    
 <div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
   <div id="accord3" class="collapse">
     
  
         <!----row1--->
-	<div class="one">
+	<!-- <div class="one">
 <div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
@@ -976,7 +2441,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -1006,7 +2471,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </div>
     </div></div>
 	<!---row 1 end--->
-	<!----row2--->
+	<!----row2
 	<div class="one">
 <div class="container-fluid status">
 	<div class="row">
@@ -1026,7 +2491,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -1076,7 +2541,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
@@ -1106,7 +2571,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </div>
     </div></div>
 	<!---row 3 end--->
-	<!----row 4--->
+	<!----row 4
 	<div class="one">
 <div class="container-fluid status">
 	<div class="row">
@@ -1126,7 +2591,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lost Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>

@@ -128,14 +128,14 @@ margin-top: 10px;
 font-weight:bold;
 }
 .lotbtn {
-background: #ff0000;
-border-color: #ff0000;
-border-radius: 2px;
+		 background: #3c4da0;
+	     border-color: #3c4da0;
+		 border-radius: 2px;
 }
 .lotbtn:hover {
-    background: #3c4da0;
-    border-color: #3c4da0;
-    border-radius: 2px;
+   		background: #ff0000;
+		border-color: #ff0000;
+        border-radius: 2px;
 }
 .bid tr td h4 {
     text-align: center !important;

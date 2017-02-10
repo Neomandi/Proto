@@ -1554,7 +1554,6 @@ if(uri.contains("AfterAccept")){
 			String lotnumber=request.getParameter("lotnum");
 			String name=tlbn.getTname();
 			String pwd=tlbn.getTpwd();
-			System.out.println("inside CS()-> name is "+name+""+pwd);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass)m.removeLotNumber(lotnumber,name,pwd);
 			HttpSession remove=request.getSession(false);
@@ -1563,7 +1562,7 @@ if(uri.contains("AfterAccept")){
 			HttpSession MyFinalCost=request.getSession();
 			MyFinalCost.setAttribute("MyFinalCost", mc.getBl());
 			request.setAttribute("remove","hi");
-			rd=request.getRequestDispatcher("ajax2.jsp");
+			rd=request.getRequestDispatcher("TraderorAuction2.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (ServletException | IOException e) 
