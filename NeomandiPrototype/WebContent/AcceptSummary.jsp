@@ -10,6 +10,7 @@
 	 javax.servlet.http.HttpServletResponse,
 	 java.sql.SQLException,
 	 java.text.SimpleDateFormat,
+	 com.neomandi.prototype.FarmerHistoryBean,
 	 java.util.*"
 %>
 <!doctype html>
@@ -166,29 +167,61 @@
 <div class="datetable" align="center">
 
 
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='from'>
-                    <input type='text' class="form-control" />
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='from' name='from' >
+                    <input type='text' class="form-control" name='from' id='from'/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div></div>
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='to'>
-                    <input type='text' class="form-control" />
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='to' >
+                    <input type='text' class="form-control" name='to' />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><div><a href="FarmerSummaryInt.jsp" class="get">Get Summary</a></div></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><div><a href="FarmerHistoryInt.jsp" class="get">Get Summary</a></div></div>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" class="export">Export as PDF</a></div>
 
 </div>
 </div>
-
+<%if(request.getAttribute("farmerhistory")!=null)
+		{
+			if(request.getAttribute("farmerhistory").equals("no"))
+				{
+  	%>
+  	<b>YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE</b>
+  <%
+  		} else if(request.getAttribute("farmerhistory").equals("success"))
+  {%>
 <!---table2-->
 <div class="container-fluid sum2 pad">
-	  <div class="tabin">
+<div class="tabin">
 <div class="sum2tab table-responsive">
-	  <table class="table sum2table last">
+<table class="table sum2table last">
+
+<% 
+		HttpSession farmerhistory=request.getSession(false);
+		List al=(List)farmerhistory.getAttribute("farmerhistory");
+		//request.setAttribute("theList", al);
+		for(Object o:al)
+		{
+			FarmerHistoryBean fhb=(FarmerHistoryBean)o;%>
+			<%String finalprice=fhb.getFinalprice();
+			double fprice1=Double.parseDouble(finalprice);
+			double MUCharge1=1*fprice1/100;
+			double PACharge1=100;
+			double EPUCharge1=100;
+			double TCharge1=MUCharge1+PACharge1+EPUCharge1;
+		    double myEarn1=fprice1-TCharge1;
+		    myEarn1=myEarn1*100;
+		    myEarn1=(int)myEarn1;
+		    myEarn1=myEarn1/100;
+		    double deduction1=TCharge1+500;
+		    deduction1=deduction1*100;
+		    deduction1=(int)deduction1;
+		    deduction1=deduction1/100;
+		    int transport=500;
+			 %>
 <thead><tr>
 <td></td>
 <td><h4>Date</h4></td>
@@ -206,14 +239,30 @@
 <td></td>
 	  </tr></thead>
 	  <tbody>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
-	  <tr class="gradeX"><td></td><td class="clspad0"><h4>10/01/2017</h4></td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td class="clspadr0"><h4>19,100</h4></td><td></td></tr>
+	  <tr class="gradeX">
+	  	<td></td>
+	  	<td class="clspad0"><h4>10/01/2017</h4></td>
+	  	<td><h4><%=fhb.getLotnumber()  %></h4></td>
+	  	<td><h4><%=fhb.getQuantity() %></h4></td><td>
+	  	<h4><%=fhb.getAverageprice()%></h4></td>
+	  	<td><h4><%=fhb.getAverageprice()%></h4></td>
+	  	<td><h4><%=fhb.getFinalprice() %></h4></td>
+	  	<td><h4><%=transport %></h4></td>
+	  	<td><h4><%=MUCharge1 %></h4></td>
+	  	<td><h4><%=EPUCharge1 %></h4></td>
+	  	<td><h4><%=PACharge1 %></h4></td>
+	  	<td><h4><%=deduction %></h4></td>
+	  	<td class="clspadr0"><h4><%= myEarn1 %></h4></td>
+	  	<td></td>
+	  </tr>
+	  <%} %>
 	  </tbody>
 	  </table>
+	  
 </div>
 	  </div>
 	  </div><!---table2 end-->
+	   <%}} %>
 	  <div id="grad1"></div>
 	  <div class="container charge">
 	  <table class="table"><tr><td><h4>*Transportation / Loading Charges</h4></td><td><h4> #E-Platform Charges</h4></td><td><h4>$ Pre-Market Value Addition Charges</h4></td></tr></table>
@@ -240,5 +289,6 @@ $('#to').datetimepicker({
            });
 });
         </script>
+       
 </body>
 </html>

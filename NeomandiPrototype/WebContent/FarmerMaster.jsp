@@ -166,8 +166,8 @@
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled>Reject</button>
 	  			  </td>
-	  <td class="clsnowrap"><h4>
-	  	<div id="msg" >Your Auction will begins in</div><div id="timer"></div></h4>
+	  <td class="clsnowrap" width="30%"><h4>
+	  	<div id="msg" >Auction will begins in</div><div id="timer"></div></h4>
 	  	<div id="auction"></div>
 		<div id="auction1"></div>
 	  	</td></tr>
@@ -528,8 +528,8 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<center><b><h4><font color='blue' ><div id='a1'>Your Auction has begun</div></font></h4></b></center>";
-		            	str+="<center><b><h4><font color='blue' ><div id='a2'>Your Auction will ends in</div></font></h4></b></center>";
+		            	var str="<center><b><h4><font color='blue' ><div id='a1'>Auction has begun ,Auction will ends in</div></font></h4></b></center>";
+		            	str+="<center><b><h4><font color='blue' ><div id='a2'></div></font></h4></b></center>";
 		            	str+="<center><h4><font color='red' ><div id='hms' >5:00</div></font></h4></center>";
 		            	var strCmd = "document.getElementById('auction').style.display = 'none'";
 		            	var waitseconds = seconds;
