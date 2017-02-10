@@ -153,7 +153,7 @@
 	  	<td><h4>--</h4></td>
 	  	<td><h4>--</h4></td>
 	  	<td  class="clspadr0"><h4>--</h4></td>
-	  	<td><h4><%=status %></h4></td>
+	  	<td width="25%"><h4><%=status %></h4></td>
 	  	<td></td></tr>
 	  
 	  </tbody>
