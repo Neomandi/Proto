@@ -1,214 +1,121 @@
-<%@page import="java.sql.SQLException"%>
-<%@page import="com.neomandi.prototype.JDBCHelper,java.sql.Connection,java.sql.ResultSet,
-     java.sql.PreparedStatement"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<link rel="icon" type="image/png" href="Images/Neomandi1.png">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Farmer Profile</title>
-	
-		<style>
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;    
-		}
-		 li
-		{
-			display: inline;
-		    float: left;
-		    
-		}
-		li a:hover:not(.active) {
-		    color: white;
-		    
-		}
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;
-		    
-		}
-		
-		 a
-		{
-		    text-align: center;
-		    border: 1px solid black;
-		      border-radius: 9px 9px 0 0;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 100px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: white;
-		    border-radius: 9px 9px 0 0;    
-		}
-		
-		 li
-		{
-			display: inline;
-		    float: left;    
-		}
-		
-		li a:hover:not(.active) {
-		    color: white;
-		    
-		}
-		
-		.active {
-		    border: 1px solid black;
-		    color: brown;
-		    background-color: white;
-		    bottom: -3px;    
-		    border-bottom: 2px solid white;    
-		}
-		
-		 a
-		{
-		    text-align: center;
-		    background-color: blue;   
-			display: inline;
-			display: block;
-		    color: white;
-			width: 150px;
-			text-decoration: none;
-			padding: 10px 20px;
-		}
-		/*
-		#navigation_container {
-		   margin: 0 auto;
-		   width: 960px;
-		}
-		
-		.rectangle {
-			width: 1200px;
-		   color: white;
-		   text-align:center;
-		   background: #e5592e;
-		   height: 62px;
-		   position: relative;
-		   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-		   box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-		   -webkit-border-radius: 34px;
-		   -moz-border-radius: 3px;
-		   border-radius: 3px;
-		   z-index: 200; /* the stack order: foreground */
-		   margin: 3em 0;
-		   top: 0px;
-		}*/
-		</style>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="script.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
-	<script src = "jspdf/jspdf.min.js"></script>
-	<script src = "html2canvas.js"></script>
-	<script>
-	
-		function genPDF(){
-			html2canvas(document.getElementById('myProfile'),{
-				onrendered: function(canvas){
-					var img = canvas.toDataURL("image/png");
-					var doc = new jsPDF;
-					doc.addImage(img,'JPEG',50,10);
-					doc.save('FarmerProfile.pdf');
-				}
-			});
-		}
-		
-	</script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMandi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<style>
-table
-{
-	border-collapse: collapse;
-	width: 30%;
-}
-th
-{
-	padding: 12px;
-	height: 30px;
-	text-align: left;
-	background-color: rgb(1,163,226);
-}
-td
-{
-	padding: 12px;
-	background-color: rgb(182,228,31);
-}
-</style>
-<body>
-	<%@ include file="Fribbon.jsp" %><br><br>	
-	<ul>
-	   	<li><a  href="javascript:window.location = document.referrer;">Auction</a></li>
-	  	<li><a href="Lotdetails.jsp">My Lots</a></li>
-		<li><a href="GetSummary.do">Summary</a></li>
-		<li><a href="FarmerProfile.jsp" class="active">My Profile</a>
-		<li><a href="FarmerSummaryInt.jsp">History</a></li>
-	</ul>
-<div id = 'myProfile'>
-<br/><br/>
-<h1>Farmer Profile</h1>
-<br/>
-<table border>
-	<%
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	try
-	{
-		con = JDBCHelper.getConnection();
-		if(con == null)
-		{
-			out.println("Connection not established!");
-		}
-		
-		String sql = "SELECT * FROM freg WHERE aadharnum = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setLong(1, 200000000001L);
-		rs = pstmt.executeQuery();
-		if(rs.next())
-		{
-	%>
-		<tr><th>Name</th><td><%= rs.getString("name") %></td></tr>
-		<tr><th>Mobile</th><td><%= rs.getLong("mobile") %></td></tr>
-		<tr><th>Aadhar Number</th><td><%= rs.getLong("aadharnum") %></td></tr>
-		<tr><th>Email</th><td><%= rs.getString("email") %></td></tr>
-		<tr><th>State</th><td><%= rs.getString("state") %></td></tr>
-		<tr><th>District</th><td><%= rs.getString("district") %></td></tr>
-		<tr><th>Taluk</th><td><%= rs.getString("taluk") %></td></tr>
-		<tr><th>Hobli</th><td><%= rs.getString("hobli") %></td></tr>
-		<tr><th>Village</th><td><%= rs.getString("village") %></td></tr>
-	<%
-		}
-	}
-	catch(SQLException e)
-	{
-		e.printStackTrace();
-	}
-	finally
-	{
-		JDBCHelper.Close(rs);
-		JDBCHelper.Close(pstmt);
-		JDBCHelper.Close(con);
-	}
-	%>
-</table>
-</div><br/><br/>
-<a href = "javascript:genPDF()">Download PDF</a>
+
+<body class="" >
+<div class="logo_relative">
+<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="container-fluid headertop">
+<div class="">
+
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+</div>
+</div>
+
+<div class="container-fluid tradtab">
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+  <ul class="nav nav-tabs">
+    <li ><a href="FarmerMaster.jsp">Auction</a></li>
+    <li ><a  href="Lotdetails.jsp" >My Lots</a></li>
+    <li ><a class="classbeauty" id="ts" href="#">Summary</a></li>
+    <li class="active"><a href="FarmerpPofile.jsp">My Profile</a></li>
+     <li ><a href="FarmerSummaryInt.jsp">History</a></li>
+  </ul>
+
+
+</div>
+</div></div>
+ 
+	<div class="container">
+	<div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 det">
+<h4>My Details</h4>
+<div class="detail">
+<form>
+    <table class="table">
+      <tr><td><label for="name">Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="mobno">Mobile Number</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+      <tr><td><label for="email">Email:</label></td></tr>
+      <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email"></td></tr>
+      <tr><td><label for="address">Address</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><select class="form-control" id="sel1">
+        <option>State</option>
+        <option>TamilNadu</option>
+        <option>Karnataka</option>
+        <option>Andhra Pradesh</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>District</option>
+        <option>Dindigul</option>
+        <option>Chennai</option>
+        <option>Madurai</option>
+      </select></td></tr>
+	  <tr><td><select class="form-control" id="sel1">
+        <option>Taluk</option>
+        <option>ottanchadiram taluk</option>
+        <option>palani taluk</option>
+        <option>Vadamadurai taluk</option>
+      </select></td></tr>
+	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+    </table>
+  </form>
+  </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 aut">
+<h4>My Account Details</h4>
+<div class="bankacc">
+<form>
+    <table class="table">
+      
+      <tr><td><label for="aadhar">Bank Name</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><label for="name">Account Number</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      <tr><td><label for="address">IFSC</label></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+       <tr><td><label for="mobno">Bank Branch</label></td></tr>
+<tr><td><input type="text" class="form-control" id="usr"></td></tr>
+    </table>
+  </form>
+    </div>
+	<br><br>
+	<table align="center"><tr><td><a href="#" class="reg">Export as PDF</a></td></tr></table>
+</div>
+</div>
+</div>
+  
+
+
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+
+
+     
+
 </body>
 </html>

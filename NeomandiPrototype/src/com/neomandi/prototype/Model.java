@@ -3022,11 +3022,17 @@ public void TraderProductAccept(String lotnum,String accno)
 						System.out.println("in cs farmerid="+farmerid);
 
 						System.out.println("from-> "+from+" to->"+to );
-						String st[]=to.split("-");
-						int date=Integer.parseInt(st[2])+1;
-						st[2]=String.valueOf(date);
-						to=st[0]+"-"+st[1]+"-0"+st[2];
-						System.out.println(to);
+						String st[]=to.split("/");
+						String st1[]=from.split("/");
+						int date=Integer.parseInt(st[0])+1;
+						int date1=Integer.parseInt(st1[2]);
+						st[0]=String.valueOf(date);
+						st1[2]=String.valueOf(date1);
+						from=st1[2]+"-"+st1[1]+"-"+st1[0];
+						to=st[2]+"-"+st[1]+"-"+st[0];
+						
+						System.out.println("to="+to);
+						System.out.println("from="+from);
 						//getsummary details
 						ps = con.prepareStatement("select * from history h,freg f where f.name=?  and  created_at BETWEEN ? AND ? and f.pass=? and h.farmerid=f.aadharnum ;" );
 						ps.setString(1,name);

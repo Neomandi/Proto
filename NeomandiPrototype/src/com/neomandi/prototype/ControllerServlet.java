@@ -429,54 +429,6 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-if(uri.contains("AfterAccept")){
-			
-			System.out.println("in cs uri="+uri);
-			HttpSession hs=request.getSession(false);
-			String name=(String) hs.getAttribute("name");
-			String pass=(String) hs.getAttribute("pass");
-			System.out.println("in cs pass="+pass);
-			System.out.println("in cs name="+name);
-			Model m = new Model();
-			sb=m.getSummary(name, pass, sb);
-			
-			System.out.println(" in cs sb="+sb);
-			String lotnumber=sb.getLotnumber();
-			String lotsize=sb.getLotsize();
-			String quantitysold=sb.getQuantitysold();
-			String averageprice=sb.getAverageprice();
-			String account=sb.getAccountnum();
-			String msg="Accept";
-			System.out.println(("in cs avg="+averageprice));
-			m.employeeAcceptResult(quantitysold,lotnumber);
-			
-			HttpSession hsr=request.getSession();
-			hsr.setAttribute("lotnumber",lotnumber);
-			hsr.setAttribute("lotsize",lotsize);
-			hsr.setAttribute("quantitysold", quantitysold);
-			hsr.setAttribute("averageprice", averageprice);
-			hsr.setAttribute("msg",msg);
-			
-			
-			
-			HttpSession farmerstatus=request.getSession();
-			farmerstatus.setAttribute("msg",msg);
-			farmerstatus.setAttribute("lotnumber",lotnumber);
-			farmerstatus.setAttribute("accountnumber", account);
-			m.TraderProductAccept(lotnumber,account);
-			rd=request.getRequestDispatcher("AfterAccept.jsp");
-			try 
-			{
-				rd.forward(request, response);			
-			}			
-			catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		
 		//RejectSummary
 		if(uri.contains("RejectSummary")){
@@ -1889,7 +1841,7 @@ if(uri.contains("AfterAccept")){
 			if(al.size()==0)
 			{
 				request.setAttribute("farmerhistory","no");
-				rd=request.getRequestDispatcher("AcceptSummary.jsp");
+				rd=request.getRequestDispatcher("FarmerTradeSummary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
