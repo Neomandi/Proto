@@ -275,14 +275,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(19, trb.getTraderLiscenseDistrict());
 				ps.setString(20, trb.getTraderLicenseTaluk());
 				ps.setString(21, trb.getTraderLicensePin());
-				ps.execute();
-				
+				ps.execute();				
 				msg = "SUCCESS";
-				
 				con.commit();
 				}
-				else{
-					
+				else{					
 						msg =  "Already Registered. Please try to login.";
 				}
 			}
@@ -423,8 +420,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	
 	//farmer trade summary	
 	@SuppressWarnings({ "resource" })
-	public SummaryBean getSummary(String name, String pass,SummaryBean sb){
-
+	public SummaryBean getSummary(String name, String pass,SummaryBean sb)
+	{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;

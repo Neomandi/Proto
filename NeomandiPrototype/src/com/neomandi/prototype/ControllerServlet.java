@@ -792,6 +792,7 @@ public class ControllerServlet extends HttpServlet {
 			String name=tlbn.getTname();
 			Model m = new Model();
 			String msg = m.traderLogin(tlbn);
+			System.out.println("msg received from model is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
