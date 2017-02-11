@@ -65,7 +65,10 @@
             <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
                 <div class="">
-					<%HttpSession hs=request.getSession(false);  
+					<%HttpSession hs=request.getSession(false); 
+					if((String)hs.getAttribute("name")==null){
+						out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
+					}
  String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
 <h1><%=name %>&nbsp;&nbsp; welcome to e-aution at Neomandi.</h1></div>
