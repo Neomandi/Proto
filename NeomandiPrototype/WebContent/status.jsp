@@ -68,6 +68,7 @@ if((String)tlbn.getTname()==null)
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
+<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/OrderStatus.do">
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
@@ -303,7 +304,6 @@ int i=1;
     </div></div>
 	<!---row 4 end--->
  </div>
-	
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script>

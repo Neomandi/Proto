@@ -1658,7 +1658,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				rd=request.getRequestDispatcher("status.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1813,7 +1813,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1865,7 +1865,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
