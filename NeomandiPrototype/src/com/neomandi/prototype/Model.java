@@ -1002,7 +1002,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{					
 					balance=rs.getInt("balance");				
 				}				
-				System.out.println("old balance is "+balance);								
+											
 				balance=balance-block;								
 				if(balance<0)								
 				{									
@@ -1044,11 +1044,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						rs = ps.getResultSet();									
 						int blockamount=0;									
 						while(rs.next())										
-						blockamount=rs.getInt("blockamount");									
-						blockamount=blockamount+block;									
-						String blockamounts=String.valueOf(blockamount);
-						System.out.println("amount to be blocked now is  "+block);
-						System.out.println("total blocked amount is "+blockamount);		
+						blockamount=rs.getInt("blockamount");		
+						System.out.println("old balance          = "+balance);
+						System.out.println("amount to be blocked = "+block);
+						System.out.println("old blocked amount   = "+blockamount);						
+						blockamount=blockamount+block;			
+						System.out.println("total blocked amount = "+blockamount);
+						String blockamounts=String.valueOf(blockamount);	
 						msg[1]=blockamounts;
 															
 						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");											
@@ -3720,5 +3722,136 @@ public String holdfundsgetbalance(String account)
 		JDBCHelper.Close(con);
 	}
 		return balance;
+	}
+
+@SuppressWarnings("resource")
+public int release(String name, String pwd, String release,String bank) 
+{
+	String balance="dance";
+	PreparedStatement ps = null;
+	PreparedStatement ps1 = null;
+	PreparedStatement ps2 = null;
+	PreparedStatement ps3 = null;
+	PreparedStatement ps4 = null;
+	Connection con = null;
+	ResultSet rs = null;	
+	ResultSet rs1 = null;	
+	ResultSet rs2 = null;	
+	ResultSet rs3 = null;	
+	String aadharnumber=null;
+	try
+	{
+		con = JDBCHelper.getConnection();
+		if(con == null)
+		{			
+		}
+		else
+		{
+			con.setAutoCommit(false);
+			ps=con.prepareStatement("select aadharnumber from treg where name=? and pass=?");
+			ps.setString(1, name);
+			ps.setString(2, pwd);
+			ps.execute();
+			rs = ps.getResultSet();
+			while(rs.next())
+			{
+				aadharnumber=rs.getString("aadharnumber");				
+			}
+			System.out.println("aadharnumber is "+aadharnumber);
+			int releas=Integer.parseInt(release);
+			
+			ps1 =con.prepareStatement("select balance from tbankaccount where aadharnumber=? and bankname=?");
+			ps1.setString(1, aadharnumber);
+			ps1.setString(2, bank);
+			System.out.println(ps1.execute()+" "+ps1);
+			rs1 = ps1.getResultSet();
+			while(rs1.next())
+			{
+				balance=rs1.getString("balance");							
+				System.out.println("old balance      = "+balance);
+				System.out.println("amount released  = "+release);
+			}
+			int balan=Integer.parseInt(balance);
+			balan=balan+releas;
+			System.out.println("new balance      = "+String.valueOf(balan));
+			
+			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
+			ps2.setString(1, String.valueOf(balan));
+			ps2.setString(2, aadharnumber);
+			ps2.setString(3, bank);
+			System.out.println(ps2.executeUpdate()+" "+ps2);
+			
+			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
+			ps2.setString(1, String.valueOf(balan));
+			ps2.setString(2, aadharnumber);
+			ps2.setString(3, bank);
+			System.out.println(ps2.execute()+" "+ps2);
+			
+			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
+			ps2.setString(1, String.valueOf(balan));
+			ps2.setString(2, aadharnumber);
+			ps2.setString(3, bank);
+			System.out.println(ps2.execute()+" "+ps2);
+			
+			ps3 =con.prepareStatement("select balance from tbankaccount where aadharnumber=?");
+			ps3.setString(1, aadharnumber);
+			System.out.println(ps3.execute()+" "+ps3);
+			rs2 = ps3.getResultSet();
+			while(rs2.next())
+			{
+				System.out.println("total balance available = "+rs2.getString("balance"));
+			}
+			
+			ps4 =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
+			ps4.setString(1, aadharnumber);
+			System.out.println(ps4.execute()+" "+ps4);
+			rs3 = ps4.getResultSet();
+			int block=0;
+			while(rs3.next())
+			{
+				block=Integer.parseInt(rs3.getString("blockamount"));				
+			}
+			System.out.println("old blocked amount      = "+block);
+			System.out.println("amount released         = "+release);
+			block=block-releas;
+			System.out.println("new blocked amount      = "+block);
+			
+			ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");
+			ps.setString(1, String.valueOf(block));
+			ps.setString(2, aadharnumber);
+			System.out.println(ps.execute()+" "+ps);
+			
+			ps1 =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
+			ps1.setString(1, aadharnumber);
+			System.out.println(ps1.execute()+" "+ps1);
+			rs2 = ps1.getResultSet();
+			while(rs2.next())
+			{
+				block=Integer.parseInt(rs2.getString("blockamount"));		
+				System.out.println("block amount is  "+block);
+			}
+	return block;
+}}
+	catch(Exception e)
+	{e.printStackTrace();
+	
+	try {
+		con.rollback();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	}
+	finally
+	{
+		JDBCHelper.Close(ps);
+		JDBCHelper.Close(ps1);
+		JDBCHelper.Close(ps2);
+		JDBCHelper.Close(ps3);
+		JDBCHelper.Close(ps4);
+		JDBCHelper.Close(con);
+	}
+		int block = 0;
+		return block;
 	}
 }

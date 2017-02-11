@@ -1985,6 +1985,46 @@ public class ControllerServlet extends HttpServlet {
 		}
 		}
 		
+		if(uri.contains("ajaxReleasefunds"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlbn.getTname()==null)
+			{
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				String name=tlbn.getTname();
+				String pwd=tlbn.getTpwd();
+				String release=request.getParameter("release");
+				String bank=request.getParameter("bank");
+				Model m=new Model();
+				int block=m.release(name,pwd,release,bank);
+				PrintWriter out = null;
+				try
+				{
+						out = response.getWriter();
+						out.println(block);
+					    out.flush();
+					    out.close();
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		if(uri.contains("ajaxBlockfunds"))
 		{
 			System.out.println("***************************************************************************");

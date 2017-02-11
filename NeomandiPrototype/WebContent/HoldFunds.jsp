@@ -36,27 +36,24 @@ border-top:2px solid #fff !important;
 }
 </style>
 </head>
-
 <body class="" >
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-
 <div class="col-lg-offset-2 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
-
 <div class="container-fluid tradtab">
-<div class="col-lg-offset-2 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="product.jsp">Product Search</a></li>
-  <li><a class="active" href="TraderBlock.do">Hold Funds</a></li>
+  <li><a href="product.jsp">Product Search</a></li>
+  <li ><a class="active" style="background-color:white; color:black;" href="TraderBlock.do">Hold Funds</a></li>
   <li><a href="TradeorAuction.do">Trade</a></li>
   <li><a href = "OrderStatus.do">Status</a></li>
   <li><a href="TradeSummary.jsp">Summary</a></li>
-    <li><a href="TraderProfile.jsp">My Profile</a></li>
+  <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
 </div>
@@ -105,9 +102,9 @@ else
       <tr><td><label for="mobno">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch">Bank Branch</label></td></tr>
-      <tr><td><input type="text" class="form-control" id="email" value="<%=tbb.getBranch()%>"></td></tr>
+      <tr><td><input type="text" class="form-control" id="email" value="<%=tbb.getBranch()%>" readonly></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="balance"></td></tr> 
+	  <tr><td><input type="text" class="form-control" id="balance" readonly></td></tr> 
 	  <tr><td><table align="center"><tr><td><a href="#" onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
 	  <script>
 	  function getbalance()
@@ -145,18 +142,45 @@ else
 	function hold()
 	{	
 		  var balance=document.getElementById("balance").value;
+		  var bal=new Number(balance);
 		  var account=document.getElementById("a1").value;
 		  var bank=document.getElementById("a2").value;
 		  var hold=document.getElementById("hold").value;
+		  var hld=new Number(hold);
 		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
 		  if(balance!=null&&balance.length!=0)
 		  {			 	        
-			if(balance<hold)
+			if(bal<hld)
 			{
 					alert("YOU CANT HOLD FUNDS MORE THAN AVAILABLE BALANCE")
 			}
+			 else
+			  {
+				  xmlhttp = new XMLHttpRequest();
+				  xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					  	 var string=xmlhttp.responseText; 	   			      
+	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+		   			     starttotalblocked=starttotalblocked+12;	
+		   			     console.log(string);
+		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+		   				 console.log("total blocked amount is "+blocked);
+		   			     document.getElementById("netamount").innerHTML = blocked;
+		   			  	 document.getElementById("netamount").value = blocked;
+		   			     document.getElementById("hold").value = "";
+		   			  document.getElementById("balance").value = "";
+		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+		   			     
+				  }};
+					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
+				 }
 		  }
-		  if(hold==0)
+		  else  if(hold==0)
 			  {
 			  	alert("PLEASE HOLD MORE FUNDS");
 			  }
@@ -175,6 +199,9 @@ else
 	   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
 	   				 console.log("total blocked amount is "+blocked);
 	   			     document.getElementById("netamount").innerHTML = blocked;
+	   			  	 document.getElementById("netamount").value = blocked;
+	   			     document.getElementById("hold").value = "";
+	   			  document.getElementById("balance").value = "";
 	   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
 	   			     
 			  }};
@@ -197,8 +224,53 @@ else
 	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=tbb.getBlock() %>" readonly></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" placeholder="Enter Amount"></td></tr>	  
-	  <tr><td><table align="center"><tr><td><a href="#" class="reg">Release</a></td></tr></table></td></tr>
+	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  
+	  <tr><td><table align="center"><tr><td><a href="#" onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
+     <script>
+		function holdfundsrelease()
+		{		  
+		    var netamount=document.getElementById("netamount").value;
+		    var bank=document.getElementById("a2").value;
+			var release=document.getElementById("release").value;	
+			var net=new Number(netamount);
+			var rel=new Number(release);
+			console.log("netamout"+net+" release"+rel+"bank"+bank);
+			if(net<rel)
+			{
+					alert("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
+			}
+			else if(release.length==0)
+				{
+				alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
+				}
+		  else
+		  {
+			  xmlhttp = new XMLHttpRequest();
+			  xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) 
+			  {
+				  	 var string=xmlhttp.responseText; 	   			      
+        			 /*var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+	   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+	   			     starttotalblocked=starttotalblocked+12;	
+	   			     console.log(string);
+	   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+	   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+	   				 console.log("total blocked amount is "+blocked);*/
+	   				 console.log("string is "+string);
+	   			     document.getElementById("netamount").innerHTML = string;
+	   			  	 document.getElementById("netamount").value = string;
+	   			     document.getElementById("hold").value = "";
+	   				 document.getElementById("balance").value = "";
+	   			     alert('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
+	   			     
+			  }};
+				  xmlhttp.open("POST", "ajaxReleasefunds.do", true);
+				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				  xmlhttp.send("release="+rel+"&bank="+bank);
+			 }
+		  }		 
+		</script>
     </table>
   </form><br><br>
   <%} %>
