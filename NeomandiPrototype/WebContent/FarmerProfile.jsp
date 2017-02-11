@@ -47,9 +47,11 @@
         <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
-
+				<%HttpSession hs=request.getSession(false);  
+				String name=(String)hs.getAttribute("name"); %>
+				
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <h1>Farmer1, welcome to e-Auction at NeoMandi.</h1></div>
+                    <h1><%=name %>&nbsp;&nbsp; welcome to e-Auction at NeoMandi.</h1></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
@@ -82,7 +84,7 @@
                 
 <%	 	
 		 
-	 		HttpSession hs=request.getSession(false);  
+	 		  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
 	    	
@@ -106,7 +108,7 @@
 		     	rs = statement.executeQuery(sql);
 		    	while(rs.next()){
 		    		 adhar=rs.getString("aadharnum");
-				    String name=rs.getString("name");
+				    String name1=rs.getString("name");
 				    Long mobile=rs.getLong("mobile");
 				    String email=  rs.getString("email");
 				    String state= rs.getString("state");
@@ -126,7 +128,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=name%>" readonly/>
+                                    <input type="text" class="form-control" id="usr" value="<%=name1%>" readonly/>
                                 </td>
                             </tr>
                             <tr>

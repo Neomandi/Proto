@@ -21,6 +21,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
         <title>NeoMandi</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -54,6 +55,10 @@
             .sum2tab .table tbody tr td {
                 border-top: 2px solid #fff !important;
             }
+            .img-responsive {
+		    height: 60px;
+		    width: 65px;
+			}
         </style>
         <script>
         function populate(s1, s2)
@@ -96,7 +101,7 @@
     </head>
     <body class="">
         <div class="logo_relative">
-            <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+            <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
                 <div class="">
                 <%

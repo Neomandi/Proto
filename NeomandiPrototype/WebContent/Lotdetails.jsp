@@ -10,11 +10,11 @@
 	java.sql.SQLException,java.text.SimpleDateFormat,
 	java.util.*"
  %>
-    <!doctype html>
-    <html>
-
-    <head>
-        <meta charset="utf-8">
+ 
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NeoMandi</title>
@@ -22,10 +22,11 @@
         <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -35,20 +36,36 @@
     	width: 65px;
     }
 </style>
-    </head>
+</head>
 
-    <body class="">
-        <div class="logo_relative">
-            <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
-            <div class="container-fluid headertop">
-                <div class="">
+<body class="" >
+<div class="logo_relative">
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
+<div class="container-fluid headertop">
+<div class="">
+<%HttpSession hs=request.getSession(false);  
+	String name=(String)hs.getAttribute("name"); %>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %> &nbsp;&nbsp;welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+</div>
+</div>
 
-                    <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                        <h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
-                    <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
-                </div>
-            </div>
-            <%
+<div class="container-fluid tradtab">
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+  <ul class="nav nav-tabs">
+    <li><a href="FarmerMaster.jsp">Auction</a></li>
+    <li class="active"><a href="Lotdetails.jsp">My Lots</a></li>
+    <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
+    <li><a href="FarmerProfile.jsp">My Profile</a></li>
+    <li><a href="FarmerSummaryInt.jsp">History</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="container-fluid lots pad">
+<div class="tabin">
+<div class="lottable">
+<%
 
 	 HttpSession hs1=request.getSession(false);  
      String pass=(String)hs1.getAttribute("pass");  
@@ -58,19 +75,6 @@
      Statement statement = null;
      ResultSet resultSet = null;    
      con = JDBCHelper.getConnection();
-%>
-                <div class="container-fluid tradtab">
-                    <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
-                        <ul class="nav nav-tabs">
-                        
-                            <li><a href="FarmerMaster.jsp">Auction</a></li>
-                            <li class="active"><a href="Lotdetails.jsp">My Lots</a></li>
-                            <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-                            <li><a href="FarmerProfile.jsp">My Profile</a></li>
-                            <li><a href="FarmerSummaryInt.jsp">History</a></li>
-                        </ul>
-                        <%
-
      String s="";
      try{	
      	if(con == null)
@@ -92,37 +96,27 @@
 		e.printStackTrace();	
 	}
 %>
-                    </div>
-                </div>
-        </div>
+<table class="table ltable">
 
-        <div class="container-fluid lots pad">
-            <div class="tabin">
-                <div class="lottable">
-                    <table class="table ltable">
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <h4>Lot Number</h4></td>
-                                <td>
-                                    <h4>Produce</h4></td>
-                                <td>
-                                    <h4>Product</h4></td>
-                                <td>
-                                    <h4>Grade</h4></td>
-                                <td>
-                                    <h4>Quantity</h4></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <%
+<thead><tr>
+          <td></td>
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Produce</h4></td>
+	  <td><h4>Product</h4></td>
+	  <td><h4>Grade</h4></td>
+	  <td><h4>Quantity</h4></td>
+	  <td></td><td></td>
+	  </tr></thead>
+	  
+
+	  <tbody>
+	  <%
 //fetching lotdetails
 	String imgsrc="";
     String date="";
     String slot="";
 	String s1="";
+	
 	try{	
 
 			statement = con.createStatement();
@@ -132,6 +126,10 @@
 			List<String> l=new ArrayList<String>();
 			while(resultSet.next()){
 				String lotnumber=resultSet.getString("lotnumber");
+				String produce=resultSet.getString("produce");
+				String product= resultSet.getString("kindofpro");
+				String grade=resultSet.getString("qualitygrade");
+				String quantity=resultSet.getString("quantity");
 				date+=resultSet.getString("Date");
 				slot+=resultSet.getString("slotnumber");
 				l.add(slot);
@@ -142,50 +140,35 @@
 					}
 				
 				  imgsrc="ProductImages/"+lotnumber+".png";
+			%>
 				  
-%>
-
-                            <tbody>
-                                <tr class="gradeX">
-                                    <td></td>
-                                    <td>
-                                        <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn" data-target="#myModal">
-                                            <%=lotnumber %>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <h4><%= resultSet.getString("produce")%></h4></td>
-                                    <td>
-                                        <h4><%= resultSet.getString("kindofpro")%></h4></td>
-                                    <td>
-                                        <h4><%=resultSet.getString("qualitygrade")%></h4></td>
-                                    <td>
-                                        <h4><%= resultSet.getString("quantity")%></h4></td>
-                                    <td></td>
-                                </tr>
-                                <% 	
-			}
-		} catch (Exception e) {
-		e.printStackTrace();
-	}
-	  finally{
-		  resultSet.close();
-			statement.close();
-			con.close();
-	  }
-%>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
- 
-        <!---------modal image--------------->
-        <div class="modal fade" id="myModal1" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
+	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"> <%=lotnumber %></button></td><td><h4><%=resultSet.getString("produce")%></h4></td><td><h4><%=product%></h4></td><td><h4><%=grade%></h4></td><td><h4><%=quantity %></h4></td><td></td></tr>
+	  <% 
+	  }  
+			} catch (Exception e) {
+				e.printStackTrace();
+				}
+				 finally{
+				    resultSet.close();
+					statement.close();
+					con.close();
+					  }
+				%> 
+	  </tbody>
+	  
+	 </table>
+	  
+</div>
+</div>
+</div>
+    
+  
+  <!---------modal image--------------->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Product Image</h4>
@@ -200,10 +183,13 @@
 
             </div>
         </div>
-        <!--------modal image end------------>
+<!--------modal image end------------>   
+  
 
-        <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
+
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
 <div id="msg" style="visibility:hidden;" ></div>&nbsp;<font color='blue' ><div id="timer" style="visibility:hidden;" ></div></font></h4>
 <div id="auction" style="visibility:hidden;"></div>
 <div id="auction1" style="visibility:hidden;"></div>
@@ -613,6 +599,7 @@ countdown(minutes,seconds,hours);
 
 
 
-    </body>
+     
 
-    </html>
+</body>
+</html>
