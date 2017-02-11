@@ -96,15 +96,15 @@ int i=1;
 	{		
 %>
         <!----row1--->
-		<div class="one" id="one<%= osbn.getLotnum()%>">
-<div class="container-fluid status">
+	<div class="one" id="one<%= osbn.getLotnum()%>">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
- <table>
-<tbody><tr><td  style="background: #bfbfbf;text-align:center; padding:10px;"><%out.println(i); i++; %></td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
+	<div class="table-responsive"> 
+	<table>
+	<tbody><tr><td  style="background: #bfbfbf;text-align:center; padding:10px;"><%out.println(i); i++; %></td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getLotnum());%>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getProduce());%>"readonly></td></tr>
@@ -112,7 +112,7 @@ int i=1;
 	<tr><td style="white-space:nowrap !important"><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQuantityavailable() %>"readonly></td></tr>
 	</tbody>
 	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>"readonly></td></tr>
@@ -137,19 +137,19 @@ int i=1;
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	console.log(status);
-	if(status.includes("PENDING"))
+	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
 	{
 	//	$("#status").css("border-left: 60px solid yellow;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 		console.log("inside pending");
 	}
-	if(status.includes("REJECTED"))
+	if(status.includes("rejected")||status.toUpperCase() ==="REJECTED")
 	{
 	//	$("#status").css("border-left: 60px solid red;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		console.log("inside rej");
 	}
-	if(status.includes("ACCEPTED"))
+	if(status.includes("accepted")||status.toUpperCase() === "ACCEPTED")
 	{
     	//clas.style.borderLeft= "54px solid green";
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
@@ -308,9 +308,7 @@ int i=1;
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script>
 var tt = $( window ).height();
-
 $(".maindiv").height(parseInt(tt)-60);
 </script>
-
 </body>
 </html>
