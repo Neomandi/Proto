@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
 <!doctype html>
 <html>
 <head>
@@ -67,41 +66,33 @@ border-top:2px solid #fff !important;
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <% 
-String msg3=(String)request.getAttribute("notlogged");
-System.out.println("String msg3=(String)request.getAttribute(msg);"+msg3);
 HttpSession tlog=request.getSession(false);
-if((String)tlog.getAttribute("Tname")==null)
+TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+
+HttpSession hcs=request.getSession(false);
+TraderBlockBean tbb=(TraderBlockBean)hcs.getAttribute("bean");
+hcs.setAttribute("bean",tbb);
+
+if((String)tlbn.getTname()==null)
 {    out.println("<script type=\"text/javascript\">");
   	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
   	 out.println("location='TraderLogin.jsp';");
  	 out.println("</script>");
 }
-if(msg3!=null)
-{
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE TO LOGIN TO PEROFRM FURTHER OPERATIONS ');");
-  	 out.println("location='TraderLogin.jsp';");
- 	 out.println("</script>");
-}
 else
 {	
-  String msg=null;
+ /* String msg=null;
   msg=(String)request.getAttribute("msg"); 
   String msg1=(String)request.getAttribute("blockmsg");
   System.out.println(" msg is "+msg+" msg1 is "+msg1);
- if(msg==null&&msg1==null)
+  if(msg==null&&msg1==null)
   {}
   else
   {
-	  HttpSession hcs=request.getSession(false);
-	  TraderBlockBean tbb=(TraderBlockBean)hcs.getAttribute("bean");
-	  if((msg!=null)&&msg.contains("you dont have account"))
-	 		  out.println(msg);
-
 	  if((msg!=null&&!msg.contains("you dont have account"))||msg1!=null)
 	  {
 		  String acc=tbb.getAccountnumber();
-		  String bank=tbb.getDbbankname();
+		  String bank=tbb.getDbbankname();*/
 %>
 <h4>My Account Details</h4>
 <div class="detail">
@@ -114,10 +105,30 @@ else
       <tr><td><label for="mobno">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch">Bank Branch</label></td></tr>
-      <tr><td><input type="text" class="form-control" id="email" ></td></tr>
+      <tr><td><input type="text" class="form-control" id="email" value="<%=tbb.getBranch()%>"></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr> 
- <tr><td><table align="center"><tr><td><a href="#" class="reg">Get Balance</a></td></tr></table></td></tr>
+	  <tr><td><input type="text" class="form-control" id="balance"></td></tr> 
+	  <tr><td><table align="center"><tr><td><a href="#" onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
+	  <script>
+	  function getbalance()
+	  {	
+		  var accountnumber=document.getElementById("a1").value;
+		  console.log("account number for which balance is checked is "+accountnumber);
+		  xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) 
+		  {
+			    		 var string=xmlhttp.responseText;		        	 	        	 
+					     console.log("balance "+string+" ");
+					     
+				         document.getElementById("balance").innerHTML = string;
+				         document.getElementById("balance").value = string;				         
+		  }};
+			  xmlhttp.open("POST", "holdfundsgetbalance.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("accountnumber="+accountnumber);
+		}
+		</script>
     </table>
   </form><br><br>
   </div>
@@ -128,40 +139,74 @@ else
 <br><br>
 <form>
     <table class="table">      
-	  <tr><td><input type="text" class="form-control" id="usr" placeholder="Enter Amount"></td></tr>
-	   <tr><td><table align="center"><tr><td><a href="#" class="reg">Hold</a></td></tr></table></td></tr>
+	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount"></td></tr>
+	<tr><td><table align="center"><tr><td><a href="#" onclick="hold()"class="reg" >Hold</a></td></tr></table></td></tr>
+    <script>
+	function hold()
+	{	
+		  var balance=document.getElementById("balance").value;
+		  var account=document.getElementById("a1").value;
+		  var bank=document.getElementById("a2").value;
+		  var hold=document.getElementById("hold").value;
+		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
+		  if(balance!=null&&balance.length!=0)
+		  {			 	        
+			if(balance<hold)
+			{
+					alert("YOU CANT HOLD FUNDS MORE THAN AVAILABLE BALANCE")
+			}
+		  }
+		  if(hold==0)
+			  {
+			  	alert("PLEASE HOLD MORE FUNDS");
+			  }
+		  else
+		  {
+			  xmlhttp = new XMLHttpRequest();
+			  xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) 
+			  {
+				  	 var string=xmlhttp.responseText; 	   			      
+        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+	   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+	   			     starttotalblocked=starttotalblocked+12;	
+	   			     console.log(string);
+	   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+	   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+	   				 console.log("total blocked amount is "+blocked);
+	   			     document.getElementById("netamount").innerHTML = blocked;
+	   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+	   			     
+			  }};
+				  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
+			 }
+		  }		 
+		</script>
     </table>
   </form><br><br>
   </div>
 </div>
-
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
 <h4>Release Funds</h4>
 <div class="password">
 <form>
     <table class="table">   
-<tr><td><label for="name">Fund Utilized</label></td></tr>
+	  <tr><td><label for="name">Fund Utilized</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" placeholder="Enter Amount"></td></tr>
-	  
+	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=tbb.getBlock() %>" readonly></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" placeholder="Enter Amount"></td></tr>	  
 	  <tr><td><table align="center"><tr><td><a href="#" class="reg">Release</a></td></tr></table></td></tr>
     </table>
   </form><br><br>
+  <%} %>
   </div>
-
 </div>
 </div>
 </div>
-    
-     
-
-
-
-
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-
 </body>
 </html>

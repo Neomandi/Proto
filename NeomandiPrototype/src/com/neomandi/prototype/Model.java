@@ -908,7 +908,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{
 					aadharnumber=rs.getString("aadharnumber");
 				}
-				ps =con.prepareStatement("select bankname,ifsc,balance,accountnumber from tbankaccount where aadharnumber = ?");
+				ps =con.prepareStatement("select tb.bankname,tb.ifsc,tr.branch,tb.accountnumber from tbankaccount tb,treg tr where tr.aadharnumber =tb.aadharnumber and tb.aadharnumber= ?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
 				
@@ -921,9 +921,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					tbb.setDbbankname(dbbankname);
 					tbb.setAccountnumber(rs.getString("accountnumber"));
 					tbb.setIfsc(rs.getString("ifsc"));
-					tbb.setBalance(rs.getInt("balance"));					
+				//	tbb.setBalance(rs.getInt("balance"));
+					tbb.setBranch(rs.getString("branch"));
 					tbb.setMsg("SUCCESS");
-					System.out.println("total balance amount is "+rs.getInt("balance"));		
+				//	System.out.println("total balance amount is "+rs.getInt("balance"));		
 			    }	
 				int blockamount[]=new int[1000];
 				ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
@@ -3672,5 +3673,52 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			JDBCHelper.Close(con);
 		}
 		return mc;		
+	}
+
+public String holdfundsgetbalance(String account) 
+{
+	String balance=null;
+	PreparedStatement ps = null;
+	Connection con = null;
+	ResultSet rs = null;	
+	try
+	{
+		con = JDBCHelper.getConnection();
+		if(con == null)
+		{			
+		}
+		else
+		{
+			con.setAutoCommit(false);
+			ps =con.prepareStatement("select balance from tbankaccount where accountnumber=?");
+			ps.setString(1, account);
+	//		ps.setString(2, tpwd);
+			ps.execute();
+			rs = ps.getResultSet();
+			while(rs.next())
+			{
+				balance=rs.getString("balance");
+			}
+	return balance;
+	// TODO Auto-generated method stub
+	
+}
+	}
+	catch(Exception e)
+	{e.printStackTrace();
+	
+	try {
+		con.rollback();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	}
+	finally
+	{
+		JDBCHelper.Close(ps);
+		JDBCHelper.Close(con);
+	}
+		return balance;
 	}
 }

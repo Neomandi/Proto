@@ -10,7 +10,7 @@
 	 java.sql.SQLException,
 	 java.sql.Statement,
 	 java.awt.image.BufferedImage,
- java.io.ByteArrayInputStream,
+ java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,
  java.io.ByteArrayOutputStream,
  java.io.File,
  java.io.IOException,
@@ -110,7 +110,8 @@
 					HttpSession psr=request.getSession(false);
 					List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
 					HttpSession tlog=request.getSession(false);
-					if((String)tlog.getAttribute("Tname")==null)
+					TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+					if((String)tlbn.getTname()==null)
 					{    out.println("<script type=\"text/javascript\">");
 					  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 					  	 out.println("location='TraderLogin.jsp';");
