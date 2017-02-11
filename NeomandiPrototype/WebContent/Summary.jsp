@@ -130,13 +130,13 @@ border-top:2px solid #fff !important;
 	  <div class="sum1tab table-responsive">
 	  <table class="table sum1table">
 	  <thead class="none"><tr>
-<%
-//if(request.getAttribute("tradesummary")!=null)
+<%/*
+if(request.getAttribute("tradesummary")!=null)
 {
 if(request.getAttribute("tradesummary").equals("no"))
 {
   %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
-  <%} else if(request.getAttribute("todaysummary").equals("success"))
+  <%} else if(request.getAttribute("tradesummary").equals("success"))
   {%>
 	  <td><h4>Lot </h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
@@ -158,7 +158,7 @@ if(request.getAttribute("tradesummary").equals("no"))
       <br><br></tr><%}%></tbody>
 	  </table>
 </div>
-<%}}%></tr>
+<%}}*/%></tr>
 	   </tbody>
 	  </table>
 </div></div>
@@ -202,10 +202,15 @@ if(request.getAttribute("tradesummary").equals("no"))
                   </div>
                 </div>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun()" class="get1">Get History</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="update1(true)" id="pdf" class="export">Export as PDF</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun2()" id="pdf" class="export">Export as PDF</a></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
+}
+function fun2()
+{
+	console.log("inside fun2");
+	update1(true)
 }
 </script>
 </div></div>
@@ -262,15 +267,11 @@ $('#idto').datetimepicker({
         <script src="libs/jspdf.min.js"></script>					
 					<script src="libs/jspdf.plugin.autotable.src.js"></script>					
 					<script src="js/examples.js"></script>					
-					<script>
-					    window.onhashchange = function () {
-					        update();
-					    };
-					
-					    document.getElementById('pdf').onclick = function () {
+					<script>					
+					    document.getElementById('todaypdf').onclick = function () {
 					        update(true);
 					    };
-					    document.getElementById('todaypdf').onclick = function () {
+					    document.getElementById('pdf').onclick = function () {
 					        update1(true);
 					    };
 					    function update(shouldDownload) {
