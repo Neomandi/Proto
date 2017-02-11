@@ -188,8 +188,6 @@
 	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
 		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
 	  	</h4></td></tr>
-	 
-
 	  <%
 		}
 	}
@@ -203,14 +201,8 @@
 </div>
 	  </div>
 	  </div>
-
   <!-----------------------------------------------------modal image----------------------------------------------->
-
-
-   
-   
   <!---------modal image--------------->
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
@@ -269,9 +261,7 @@
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
-
 <script type="text/javascript">
-
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -556,13 +546,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-
-						
-
-		   
-
 		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
