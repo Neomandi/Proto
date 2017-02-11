@@ -48,9 +48,7 @@ overflow:auto;
     width: 65px;
 }
 </style>
-
 </head>
-
 <body>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
