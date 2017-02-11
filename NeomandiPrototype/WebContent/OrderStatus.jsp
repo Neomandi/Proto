@@ -84,7 +84,6 @@ a.more {
 
 </style>
 <body>
-<%@ include file="TRibbon.jsp" %><br><br>
 	<ul><li><a  href="product.jsp">Product Search</a></li>
 	<li><a href="TraderBlock.do">Hold Funds</a></li>
   	<li><a href=" TradeorAuction.do">Trade/Auction</a></li>

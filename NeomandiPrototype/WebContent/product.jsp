@@ -107,8 +107,8 @@
 					String msg3=(String)request.getAttribute("errmsg");
 					String msg4=(String)request.getAttribute("quantity");
 						
-					HttpSession psr=request.getSession(false);
-					List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+				//	HttpSession psr=request.getSession(false);
+					//List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
 					HttpSession tlog=request.getSession(false);
 					TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 					if((String)tlbn.getTname()==null)
@@ -141,10 +141,10 @@
                     <table class="table">
                         <tr>
                             <td>
-                            <form id="myForm" action="ProductSearchInt.jsp" method = "post">
+                            	<form id="myForm" action="ProductSearchInt.jsp" method = "post">
                                 <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')">
                                     <option value="Category">Select Category</option>
-                                    <option value="Vegetables">Vegetables</option>
+                                    <option value="Vegetables">Vegetable</option>
                                     <option value="Fruits">Fruits</option>
                                     <option value="Grains">Grains</option>
                                     <option value="Pulses">Pulses</option>
@@ -189,7 +189,14 @@
                 </div>
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             </div>
-            <%  if(msg2!=null||msg3!=null)
+            <%  
+            HttpSession psr=request.getSession(false);
+            List msg=(List)psr.getAttribute("beans");
+            List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+            System.out.println("ist in jsp "+l);
+            //if(msg.isEmpty())
+            //	out.println("THERE ARE NO LOTS!!!!");
+            if(msg2!=null||msg3!=null)
   {
 Connection con = null;
 Statement stmt = null;
