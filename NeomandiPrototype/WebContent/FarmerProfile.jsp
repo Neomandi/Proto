@@ -24,10 +24,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoMandi</title>
+    <link rel="stylesheet" href="libs/pure-min.css">
+    <link rel="stylesheet" href="libs/grids-responsive-min.css">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -123,7 +127,7 @@
 				    String branch= rs.getString("branch"); 
 				%>
                     <form>
-                        <table class="table">
+                        <table class="table" id="basic-table">
                             <tr>
                                 <td>
                                     <label for="name">Name</label>
@@ -227,7 +231,7 @@
                 <h4>My Account Details</h4>
                 <div class="bankacc">
                     <form>
-                        <table class="table">
+                        <table class="table" id="tbl2">
 
                             <tr>
                                 <td>
@@ -284,12 +288,54 @@
                 <br>
                 <table align="center">
                     <tr>
-                        <td><a href="#" class="reg">Export as PDF</a></td>
+                        <td><a href="#" id="download-btn" class="reg">Export as PDF</a></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
+    
+    <script src="libs/jspdf.min.js"></script>
+					
+	<script src="libs/jspdf.plugin.autotable.src.js"></script>
+					
+	<script src="js/examples.js"></script>
+    <script>
+		    $(function() {
+		        $('#download-btn').click(function() {
+		            $('#basic-table > tbody:last').append($('#tbl2 > tbody').html());
+		            $('#tbl2').remove();
+		            update(true);
+		        })
+		    });
+		
+		
+		window.onhashchange = function () {
+		    update();
+		};
+		
+		// document.getElementById('download-btn').onclick = function () {
+		//     update(true);
+		// };
+		
+		function update(shouldDownload) {
+		    var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
+		    var doc = examples['html']();
+		
+// 		    doc.setProperties({
+// 		        title: 'Example: ' + funcStr,
+// 		        subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
+// 		    });
+		
+		    if (shouldDownload) {
+		        doc.save('Profile.pdf');
+		    } else {
+		        document.getElementById("output").src = doc.output('datauristring');
+		    }
+		}
+		
+		update();
+    </script>
     
      <%
 //fetching lotdetails
