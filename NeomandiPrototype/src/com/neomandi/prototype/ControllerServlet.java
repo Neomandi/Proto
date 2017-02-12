@@ -620,20 +620,18 @@ public class ControllerServlet extends HttpServlet {
 			String name=elbn.getEname();
 			Model m = new Model();
 			String msg = m.employeeLogin(elbn);
-			if(msg.equals("SUCCESS"))
+			String arr[] = msg.split(":");
+			if(arr[0].equals("SUCCESS"))
 			{
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
-				HttpSession hc=request.getSession();
-				hc.setAttribute("date", date);
-				hc.setAttribute("time",date2);
-				hc.setAttribute("name", name);
 				
 				HttpSession elog = request.getSession();
 				elog.setAttribute("name", elbn.getEname());
 				elog.setAttribute("pwd", elbn.getEpwd());
+				elog.setAttribute("empnumber", arr[1]);
 				
 				rd=request.getRequestDispatcher("ProductEntry.jsp");
 				try 
@@ -1633,6 +1631,7 @@ public class ControllerServlet extends HttpServlet {
 			{ 
 				elog.removeAttribute("name");
 				elog.removeAttribute("pwd");
+				elog.removeAttribute("empnumber");
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
