@@ -1,5 +1,6 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+    pageEncoding="ISO-8859-1" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!doctype html>
 <html>
 <head>
@@ -123,7 +124,7 @@ footer {
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		//System.out.println(rs);
-		if(rs.next() != true)
+		if(!rs.isBeforeFirst())
 		{
 			while(rs.next())
 			{
