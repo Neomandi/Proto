@@ -1,5 +1,4 @@
 package com.neomandi.prototype;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -2964,7 +2963,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				from=ft[2]+"-"+ft[0]+"-"+ft[1];
 				from=from.replace("/","-");
 				System.out.println(from);
-				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.lotnum=tbp.lotnum;");
 				ps.setString(1,name);
 				ps.setString(2,from);
 				ps.setString(3, to);
@@ -3975,14 +3974,14 @@ public List traderHistory(String name, String pwd, String from, String to) {
 			st[0]=String.valueOf(date);
 			if(date<10)
 				//to=st[0]+"-0"+st[1]+"-"+st[2];
-				to=st[2]+"-0"+st[0]+"-"+st[1];
+				to=st[2]+"-0"+st[1]+"-"+st[0];
 			else
-				to=st[2]+"-"+st[0]+"-"+st[1];
+				to=st[2]+"-"+st[1]+"-"+st[0];
 			System.out.println(to);
-			from=ft[2]+"-"+ft[0]+"-"+ft[1];
+			from=ft[2]+"-"+ft[1]+"-"+ft[0];
 			from=from.replace("/","-");
 			System.out.println(from);
-			ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+			ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and  tl.lotnum=tbp.lotnum;");
 			ps.setString(1,name);
 			ps.setString(2,from);
 			ps.setString(3, to);

@@ -1897,6 +1897,8 @@ public class ControllerServlet extends HttpServlet {
 			List al=(List)m.tradeSummary(name,pwd,date,date);
 			if(al.size()==0)
 			{
+				HttpSession tradeSummary=request.getSession();
+				tradeSummary.setAttribute("todaysummarymsg", "fail");
 				request.setAttribute("todaysummary","no");
 				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
@@ -1909,6 +1911,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				HttpSession tradeSummary=request.getSession();
 				tradeSummary.setAttribute("todaysummary", al);
+				tradeSummary.setAttribute("todaysummarymsg", "success");
 				request.setAttribute("todaysummary","success");
 				rd=request.getRequestDispatcher("Summary.jsp");
 				try {

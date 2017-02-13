@@ -62,14 +62,14 @@ catch(Exception e)
 					OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 					HashMap<String, Integer> a=osrb.getA();
 					List al=osrb.getAl();
-					System.out.println(al);
+					System.out.println("al"+al);
 					int z=0;
 				 	for(Object o:al)
 				    {
 				 	   DispatchBean dp=(DispatchBean)o;
 				       int size= a.get(dp.getLotnum());
 				       System.out.println("size is"+size);
-				       System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
+				       //System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
 				       System.out.println(ls);%>  
 				       <input type="hidden" id="num" value="<%out.println(z);++z; %>">
 				       <script>
@@ -113,7 +113,7 @@ catch(Exception e)
 				</td><%} %>
 				</tr>
 				 <%}
-				    else
+				       if(ls.contains(dp.getLotnum()))
 				    {   
 				    	System.out.println("insde else "+dp.getLotnum());
 					    
