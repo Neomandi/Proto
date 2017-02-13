@@ -1,6 +1,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.neomandi.prototype.JDBCHelper,java.sql.Connection,java.sql.ResultSet,
-     java.sql.PreparedStatement"%>
+     java.sql.PreparedStatement,
+     java.sql.Statement"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
@@ -41,6 +42,7 @@
                     <li><a href="Lotdetails.jsp">My Lots</a></li>
                     <li><a href="FarmerTradeSummary.jsp">Summary</a></li>
                     <li class="active"><a href="FarmerProfile.jsp">My Profile</a></li>
+                     <li><a href="FarmerSummaryInt.jsp">History</a></li>
                 </ul>
 
             </div>
@@ -52,24 +54,43 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 det">
                 <h4>My Details</h4>
                 <div class="detail">
-                <%
-				Connection con = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				try
-				{
-					con = JDBCHelper.getConnection();
-					if(con == null)
-					{
-						out.println("Connection not established!");
-					}
-					
-					String sql = "SELECT * FROM freg WHERE aadharnum = ?";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setLong(1, 200000000001L);
-					rs = pstmt.executeQuery();
-					if(rs.next())
-					{
+                
+<%	 	
+		 
+	 		HttpSession hs=request.getSession(false);  
+	     	String pass=(String)hs.getAttribute("pass");  
+	     	// String time=(String)hs.getAttribute("time");
+	    	
+		 	System.out.println("password="+pass);
+			
+			HttpSession hs1=request.getSession(false);  
+	   	     hs1.setAttribute("pass",pass); 
+		     Connection con = null;
+		Statement statement = null;
+		     ResultSet rs = null;    
+		       
+		     con = JDBCHelper.getConnection();
+			//display aadhar number 
+		    
+		     try
+		     	{	
+		     
+		     	statement = con.createStatement();
+		     	String sql = "select * from freg where pass='"+pass+"' ";
+		     	//System.out.println(sql);
+		     	rs = statement.executeQuery(sql);
+		    	while(rs.next()){
+		    		String adhar=rs.getString("aadharnum");
+				    String name=rs.getString("name");
+				    Long mobile=rs.getLong("mobile");
+				    String email=  rs.getString("email");
+				    String state= rs.getString("state");
+				    String district= rs.getString("district"); 
+				    String taluk= rs.getString("taluk"); 
+				    String bankname= rs.getString("bankname");
+				    String accountnumber= rs.getString("accountnum");
+				    String ifsc= rs.getString("ifsccode");
+				    String branch= rs.getString("branch"); 
 				%>
                     <form>
                         <table class="table">
@@ -80,7 +101,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("name") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=name%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -90,7 +111,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("aadharnum") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=adhar %>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -100,7 +121,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("mobile") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=mobile%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -110,7 +131,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="email" class="form-control" id="email" value=<%= rs.getString("email") %> readonly>
+                                    <input type="email" class="form-control" id="email" value="<%=email%>" readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -135,7 +156,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("state") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=state%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +166,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("district") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=district%>" readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -155,7 +176,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("taluk") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=taluk%>" readonly />
                                 </td>
                             </tr>
                             <tr>
@@ -185,7 +206,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("bankname") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=bankname%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -195,7 +216,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("accountnum") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=accountnumber%>" readonly />
                                 </td>
                             </tr>
                             <tr>
@@ -205,7 +226,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("ifsccode") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=ifsc %>" readonly />
                                 </td>
                             </tr>
                             <tr>
@@ -215,7 +236,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value=<%= rs.getString("branch") %> readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=branch%>" readonly/>
                                 </td>
                             </tr>
                         </table>
@@ -230,7 +251,7 @@
 					finally
 					{
 						JDBCHelper.Close(rs);
-						JDBCHelper.Close(pstmt);
+						JDBCHelper.Close(statement);
 						JDBCHelper.Close(con);
 					}
 					%>
