@@ -31,11 +31,9 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="pdf/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="pdf/font-awesome/css/font-awesome.min.css" />
 
-        <script type="text/javascript" src="pdf/js/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="pdf/bootstrap/js/bootstrap.min.js"></script>
+
+        
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
