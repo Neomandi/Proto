@@ -134,7 +134,7 @@ examples.multiple = function () {
 // From html - shows how pdf tables can be be drawn from html tables
 examples.html = function () {
     var doc = new jsPDF('portrait', 'pt','a2');
-    doc.text("Neomandi Trade Summary", 40, 30);
+    doc.text("NeoMandi Trade Summary", 40, 30);
     doc.text("*Transportation / Loading Charges   #E-Platform Charges   $ Pre-Market Value Addition Charges", 464, 30);
     var elem = document.getElementById("basic-table");
     var res = doc.autoTableHtmlToJson(elem);

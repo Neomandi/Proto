@@ -40,13 +40,13 @@
     	height: 60px;
     	width: 65px;
     }
+    #image{
+    height:300px;
+    width:300px;}
     .tradtab a{
-    background-color: #8467D7;
+    background-color:#6CBB3C;
     }
-   .fontcolor  h4{
-   color:#6C2DC7;
    
-   }
     </style>
 </head>
 
@@ -154,8 +154,8 @@ if((String)hs.getAttribute("name")==null){
 		   imgsrc="ProductImages/"+lotnumber+".jpg";
 		   System.out.println("in farmer master lotnumber="+lotnumber);
 		%>
-	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
-	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
+	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
+	  <td><h4 style="color:#000080"><b><%=resultSet.getString("quantity") %></b></h4></td>
 	  <%
 	  	String qty="--"; 
 	  	if(resultSet.getString("quantitybidfor")!=null){
@@ -166,10 +166,10 @@ if((String)hs.getAttribute("name")==null){
 			y=y/100;
 			System.out.println("before"+quantity+" after"+y);
           	%>  
-          	<td><h4><%=y%></h4></td> 
+          	<td><h4 style="color:#000080"><b><%=y%></b></h4></td> 
           	<% }
 	  		else{ %>         
-	  	<td><h4><%=qty %></h4></td><%} %>
+	  	<td><h4 style="color:#000080;"><%=qty %></h4></td><%} %>
 	  	<%  	
 	  		if(resultSet.getString("averageprice")!=null){
 			String average=(String)resultSet.getString("averageprice");
@@ -179,9 +179,9 @@ if((String)hs.getAttribute("name")==null){
 			x=x/100;
 			System.out.println("before"+average+" after"+x);
 	  		%>
-	  		<td><h4><%=x%></h4></td>
+	  		<td><b><h4 style="color:#000080"><%=x%></h4></b></td>
 	  		<%}else{ %>
-	  <td><h4><%=avg %></h4></td><%} %>
+	  <td><h4 style="color:#000080;"><%=avg %></h4></td><%} %>
 	  <td>
 
 
@@ -195,12 +195,12 @@ if((String)hs.getAttribute("name")==null){
 
 
 	 <td class="clsnowrap" >
-	<b><h4>
-	  <div id="msg" style="display:inline; color:#6C2DC7;" >Auction will begins in</div>
-	  <div id="timer" style="display:inline; margin-top: -2em color:#6C2DC7; " ></div>
-	  	<div id="auction" style="display:inline; margin-top: -2em; color:#6C2DC7; "></div>
-		<div id="auction1" style="display:inline; margin-top: -2em; color:#6C2DC7;""></div>
-	  	</h4></b></td></tr>
+	<b><h4><b>
+	  <div id="msg" style="display:inline; color:#000080;" >Auction will begins in</div>&nbsp;&nbsp;
+	 <font color="#000080" ><div id="timer" style="display:inline;  color:#000080; " ></div></font>
+	  	<div id="auction" style="display:inline;  color:#000080; "></div>
+		<div id="auction1" style="display:inline;  color:#000080;"></div>
+	  	</b></h4></b></td></tr>
 	  <%
 		}
 	}
@@ -225,7 +225,7 @@ if((String)hs.getAttribute("name")==null){
           <h4 class="modal-title">Product Image</h4>
         </div>
         <div class="modal-body">
-          <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%">
+          <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%" id="image">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -568,7 +568,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
+		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
@@ -610,7 +610,7 @@ function countdown(minutes,seconds,hours)
 			        			   }
 			        		       else
 			        		       {
-			        		           	var str1="Your Auction has ended";
+			        		           	var str1=" Auction has ended";
 			        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;

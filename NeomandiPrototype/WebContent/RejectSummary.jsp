@@ -172,13 +172,13 @@
                                     <td>
                                         <h4>Gross Earnings</h4></td>
                                     <td>
-                                        <h4>TLC*</h4></td>
+                                        <h4>TLC<sup>*</sup></h4></td>
                                     <td>
                                         <h4>Market Cess</h4></td>
                                     <td>
-                                        <h4>EPC</h4></td>
+                                        <h4>EPC<sup>#</sup></h4></td>
                                     <td>
-                                        <h4>PMVA</h4></td>
+                                        <h4>PMVA<sup>$</sup></h4></td>
                                     <td>
                                         <h4>Deductions</h4></td>
                                     <td>
@@ -192,29 +192,29 @@
                                 <tr class="gradeX">
                                     <td></td>
                                     <td class="clspad0">
-                                        <h4><%=lotnumber %></h4></td>
+                                        <h4 style="color:#000080"><b><%=lotnumber %></b></h4></td>
                                     <td>
-                                        <h4><%=lotsize%></h4></td>
+                                        <h4 style="color:#000080"><b><%=lotsize%></b></h4></td>
                                     <td>
-                                        <h4><%=quantitysold %></h4></td>
+                                        <h4 style="color:#000080"><b><%=quantitysold %></b></h4></td>
                                     <td>
-                                        <h4><%= aprice%></h4></td>
+                                        <h4 style="color:#000080"><b><%= aprice%></b></h4></td>
                                     <td>
-                                        <h4><%=fprice %></h4></td>
+                                        <h4 style="color:#000080"><b><%=fprice %></b></h4></td>
                                     <td>
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td class="clspadr0">
-                                        <h4>--</h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td width="25%">
-                                        <h4><%=status %></h4></td>
+                                        <h4 style="color:#000080"><b><%=status%></h4></td>
                                     <td></td>
                                 </tr>
 
