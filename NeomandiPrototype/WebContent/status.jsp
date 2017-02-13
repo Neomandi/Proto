@@ -130,7 +130,9 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) out.println("Waiting for farmer's acceptance"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT")) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
+	<meta http-equiv="refresh"  content="3; URL=http://loclahost:8080/NeomandiPrototype/OrderStatus.do">
+	<%} else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT")) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
@@ -142,6 +144,7 @@ if((String)tlbn.getTname()==null)
 	//	$("#status").css("border-left: 60px solid yellow;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 		console.log("inside pending");
+		
 	}
 	if(status.includes("rejected")||status.toUpperCase() ==="REJECTED")
 	{
