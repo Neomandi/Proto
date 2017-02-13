@@ -7,7 +7,14 @@ String accountnumber;
 int balance;
 String msg="null";
 int block;
+String branch;
 
+public String getBranch() {
+	return branch;
+}
+public void setBranch(String branch) {
+	this.branch = branch;
+}
 public int getBlock() {
 	return block;
 }

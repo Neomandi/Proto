@@ -642,7 +642,7 @@ if(!(password.value.length >8)){
       <tr><td><label for="aadhar">Bank Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName" onclick="fun1()"></td></tr>
       <tr><td><label for="mobno">Branch</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
+	  <tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
 	  function fun1(){	
 		  $("#h2").css("box-shadow","0px 0px 14px black");
 		  $("#h1").css("box-shadow","0px 0px 0px black");

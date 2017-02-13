@@ -787,13 +787,15 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			TraderLoginBean tlbn = (TraderLoginBean) request.getAttribute("tlbean");
-			HttpSession tlog=request.getSession();
+			HttpSession tlog=request.getSession(true);
 			tlog.setAttribute("tlog",tlbn);
 			String name=tlbn.getTname();
 			Model m = new Model();
 			String msg = m.traderLogin(tlbn);
+			System.out.println("msg received from model is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
+				System.out.println("inside if ");
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
@@ -803,6 +805,7 @@ public class ControllerServlet extends HttpServlet {
 				hc.setAttribute("time",time);
 				hc.setAttribute("name", name);
 //				System.out.println("dt is "+date+" time is "+time);
+				
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
@@ -900,7 +903,8 @@ public class ControllerServlet extends HttpServlet {
 			try
 			{
 				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
-				if(tlbn.getTname()==null)
+				System.out.println(tlbn.getTname());
+				if(tlbn.getTname().equals("ki"))
 				{}
 			}
 			catch(NullPointerException e)
@@ -1134,15 +1138,17 @@ public class ControllerServlet extends HttpServlet {
 			try
 			{
 				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
-				tlbn.getTname();
-				tlbn.getTpwd();
+				System.out.println(tlbn.getTname());
+				System.out.println(tlbn.getTpwd());
+				name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
 				if(tlbn.getTname()==null)
 				{}
 			}
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1150,8 +1156,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 			System.out.println("***************************************************************************");
-			name=tlbn.getTname();
-			pwd=tlbn.getTpwd();
+			
 			Model m=new Model();
 			TraderBlockBean tbb=m.traderBlockBank(name,pwd);
 			HttpSession traderblockbean=request.getSession();
@@ -1162,7 +1167,7 @@ public class ControllerServlet extends HttpServlet {
 				hcs.setAttribute("bean",tbb);
 				System.out.println("msg sent is SUCCESS");
 				request.setAttribute("msg","SUCCESS");
-				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e) {
@@ -1175,7 +1180,7 @@ public class ControllerServlet extends HttpServlet {
 				hcs.setAttribute("bean",tbb);
 		//		System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
 				request.setAttribute("msg","you dont have account in this bank...Please select other bank");
-				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e) {
@@ -1184,6 +1189,42 @@ public class ControllerServlet extends HttpServlet {
 			}			
 		}
 		
+		if(uri.contains("holdfundsgetbalance"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlbn.getTname()==null)
+			{
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				String account=request.getParameter("accountnumber");
+				System.out.println("account in CS is "+account);
+				Model m=new Model();
+				String balance=m.holdfundsgetbalance(account);
+				System.out.println("balance in CS is "+balance);
+				 PrintWriter out = null;
+					try {
+						out = response.getWriter();
+						out.println(balance);
+						out.flush();
+					    out.close();
+					}
+					 catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			}
+		}
 		//Trader Block Amount
 		if(uri.contains("traderblockamount"))
 		{
@@ -1193,7 +1234,7 @@ public class ControllerServlet extends HttpServlet {
 			if(tlbn.getTname()==null)
 			{
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e) 
@@ -1217,7 +1258,7 @@ public class ControllerServlet extends HttpServlet {
 				{
 					System.out.println("msg[1]==null");
 					request.setAttribute("blockmsg",msg[0]);
-					rd=request.getRequestDispatcher("TraderBlock.jsp");
+					rd=request.getRequestDispatcher("HoldFunds.jsp");
 					try {
 						rd.forward(request, response);
 					} catch (ServletException | IOException e) 
@@ -1236,7 +1277,7 @@ public class ControllerServlet extends HttpServlet {
 					request.setAttribute("blockamount",amount);
 					request.setAttribute("totalblock",block);
 					request.setAttribute("blockmsg",msg[0]);
-					rd=request.getRequestDispatcher("TraderBlock.jsp");
+					rd=request.getRequestDispatcher("HoldFunds.jsp");
 					try 
 					{
 						rd.forward(request, response);
@@ -1944,6 +1985,46 @@ public class ControllerServlet extends HttpServlet {
 		}
 		}
 		
+		if(uri.contains("ajaxReleasefunds"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlbn.getTname()==null)
+			{
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("TraderBlock.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				String name=tlbn.getTname();
+				String pwd=tlbn.getTpwd();
+				String release=request.getParameter("release");
+				String bank=request.getParameter("bank");
+				Model m=new Model();
+				int block=m.release(name,pwd,release,bank);
+				PrintWriter out = null;
+				try
+				{
+						out = response.getWriter();
+						out.println(block);
+					    out.flush();
+					    out.close();
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		if(uri.contains("ajaxBlockfunds"))
 		{
 			System.out.println("***************************************************************************");
@@ -1988,6 +2069,7 @@ public class ControllerServlet extends HttpServlet {
 					System.out.println("msg[1]!=null");
 					int balance=Integer.parseInt(msg[0]);
 					int totalblocked=Integer.parseInt(msg[1]);
+					System.out.println("in cs balance is "+balance+" total blocked amount is "+totalblocked);
 					PrintWriter out = null;
 					try {
 						out = response.getWriter();
