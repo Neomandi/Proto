@@ -47,6 +47,15 @@
     .tradtab a{
     background-color:#C68E17;
     }
+    #basic-table{
+    	width: 300px;
+    }
+    #basic-table th {
+    	height: 50px;
+	}
+	#tbl2{
+		width: 300px;
+	}
 </style>
 </head>
 <body class="">
@@ -61,7 +70,7 @@
 				String name=(String)hs.getAttribute("name"); %>
 				
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
+                    <h1><%=name %>,&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
@@ -130,7 +139,7 @@
 				    String branch= rs.getString("branch"); 
 				%>
                     <form>
-                        <table class="table" id="basic-table">
+                        <table class="table table-bordered" id="basic-table">
                             <tr>
                                 <td>
                                     <label for="name">Name</label>
@@ -138,7 +147,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=name1%>" readonly/>
+                                    <%=name1%>
                                 </td>
                             </tr>
                             <tr>
@@ -148,7 +157,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=adhar %>" readonly/>
+                                    <%=adhar %>
                                 </td>
                             </tr>
                             <tr>
@@ -158,7 +167,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=mobile%>" readonly/>
+                                    <%=mobile%>
                                 </td>
                             </tr>
                             <tr>
@@ -168,7 +177,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="email" class="form-control" id="email" value="<%=email%>" readonly>
+                                    <%=email%>
                                 </td>
                             </tr>
                             <tr>
@@ -178,12 +187,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr">
+                                    add1
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr">
+                                    add2
                                 </td>
                             </tr>
                             <tr>
@@ -193,7 +202,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=state%>" readonly/>
+                                    <%=state%>
                                 </td>
                             </tr>
                             <tr>
@@ -203,7 +212,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=district%>" readonly>
+                                    <%=district%>
                                 </td>
                             </tr>
                             <tr>
@@ -213,7 +222,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=taluk%>" readonly />
+                                    <%=taluk%>
                                 </td>
                             </tr>
                             <tr>
@@ -223,7 +232,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="pin" readonly>
+                                    pin
                                 </td>
                             </tr>
                         </table>
@@ -234,7 +243,7 @@
                 <h4>My Account Details</h4>
                 <div class="bankacc">
                     <form>
-                        <table class="table" id="tbl2">
+                        <table class="table table-bordered" id="tbl2">
 
                             <tr>
                                 <td>
@@ -243,7 +252,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=bankname%>" readonly/>
+                                    <%=bankname%>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +262,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=accountnumber%>" readonly />
+                                    <%=accountnumber%>
                                 </td>
                             </tr>
                             <tr>
@@ -263,7 +272,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=ifsc %>" readonly />
+                                    <%=ifsc %>
                                 </td>
                             </tr>
                             <tr>
@@ -273,7 +282,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="<%=branch%>" readonly/>
+                                    <%=branch%>
                                 </td>
                             </tr>
                         </table>
@@ -302,12 +311,12 @@
 					
 	<script src="libs/jspdf.plugin.autotable.src.js"></script>
 					
-	<script src="js/examples.js"></script>
+	<script src="js/profile.js"></script>
     <script>
 		    $(function() {
 		        $('#download-btn').click(function() {
 		            $('#basic-table > tbody:last').append($('#tbl2 > tbody').html());
-		            $('#tbl2').remove();
+		            //$('#tbl2').remove();
 		            update(true);
 		        })
 		    });
@@ -323,7 +332,7 @@
 		
 		function update(shouldDownload) {
 		    var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
-		    var doc = examples['html']();
+		    var doc = profile['html']();
 		
 // 		    doc.setProperties({
 // 		        title: 'Example: ' + funcStr,
@@ -331,7 +340,7 @@
 // 		    });
 		
 		    if (shouldDownload) {
-		        doc.save('Profile.pdf');
+		        doc.save('<%=name %>.pdf');
 		    } else {
 		        document.getElementById("output").src = doc.output('datauristring');
 		    }
@@ -377,9 +386,9 @@
 	%>
 	<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
-	<div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
-	  	<div id="auction" style="display:inline;"></div>
-		<div id="auction1" style="display:inline;"></div>
+	<div id="msg" style="display:inline; visibility:hidden;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; visibility:hidden;" ></div></font></h4>
+	  	<div id="auction" style="display:inline; visibility:hidden;"></div>
+		<div id="auction1" style="display:inline; visibility:hidden;"></div>
 <form>
 	<input type="hidden" value="<%=time %>" id="time" />
 	<input type="hidden" value="<%=s1 %>" id="slot" />
@@ -781,12 +790,5 @@ countdown(minutes,seconds,hours);
     
     </script> 
 
-				  
-
-    
-    
-    
-    
-    
 </body>
 </html>

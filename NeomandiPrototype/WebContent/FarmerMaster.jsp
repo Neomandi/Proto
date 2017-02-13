@@ -60,7 +60,7 @@ if((String)hs.getAttribute("name")==null){
 	out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
 }
 	String name=(String)hs.getAttribute("name"); %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>,&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -196,7 +196,7 @@ if((String)hs.getAttribute("name")==null){
 
 	 <td class="clsnowrap" >
 	<b><h4><b>
-	  <div id="msg" style="display:inline; color:#000080;" >Auction will begins in</div>&nbsp;&nbsp;
+	  <div id="msg" style="display:inline; color:#000080;" >Auction will begin in</div>&nbsp;&nbsp;
 	 <font color="#000080" ><div id="timer" style="display:inline;  color:#000080; " ></div></font>
 	  	<div id="auction" style="display:inline;  color:#000080; "></div>
 		<div id="auction1" style="display:inline;  color:#000080;"></div>
@@ -568,7 +568,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
+		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;

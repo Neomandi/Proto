@@ -8,7 +8,7 @@
 <title>Trader Registration</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
@@ -803,7 +803,7 @@ if(!(password.value.length >8)){
                         </tr>
                         <table align="center">
                             <tr>
-                                <td><a onclick="register()" id="reg" class="reg">Register</a></td>
+                                <td><a href="javascript:submitform()" id="reg" class="regi">Register</a></td>
                             </tr>
                         </table>
   </form>

@@ -67,6 +67,23 @@
     }
   
         </style>
+        <script>
+        	function historyForm(){
+        		var from=document.historyForm.from;
+        		var to=document.historyForm.to;
+        		if(from.value==""){
+        			alert("Please select from date");
+        			name.focus();
+        			    return false;
+        		}
+        		if(to.value==""){
+        			alert("Please select to date");
+        			name.focus();
+        			    return false;
+        		}
+        	}
+        
+        </script>
     </head>
 
     <body class="">
@@ -80,7 +97,7 @@
 					}
 				String name=(String)hs.getAttribute("name"); %>
                     <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                        <h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
+                        <h1><%=name %>,&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
                     <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
@@ -353,7 +370,15 @@
                     </script>
                     <script>
                         function history() {
-                            document.historyForm.submit();
+                        	
+                          
+                            var bool =historyForm();
+                        	console.log("Bool: "+bool);
+                        	console.log()
+                        	
+                        	
+                        		document.historyForm.submit();
+                        	
                         }
                     </script>
 					<script src="libs/jspdf.min.js"></script>

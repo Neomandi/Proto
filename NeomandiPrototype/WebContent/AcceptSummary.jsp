@@ -67,7 +67,7 @@ if((String)hs.getAttribute("name")==null){
 }
  String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-<h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
+<h1><%=name %>,&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -172,7 +172,7 @@ if((String)hs.getAttribute("name")==null){
 	  <tbody>
 	  <tr class="gradeX">
 	  	<td></td>
-	  	<td class="clspad0"><h4><%=lotnumber %></h4></td>
+	  	<td class="clspad0"><h4 style="color:#000080"><%=lotnumber %></h4></td>
 	  	<td><h4  style="color:#000080"><%=lotsize%></h4></td>
 	  	<td><h4  style="color:#000080"><%=quantitysold %></h4></td>
 	  	<td><h4  style="color:#000080"><%= aprice%></h4></td>
@@ -182,8 +182,8 @@ if((String)hs.getAttribute("name")==null){
 	  	<td><h4  style="color:#000080"><%=EPUCharge%></h4></td>
 	  	<td><h4  style="color:#000080"><%=PACharge%></h4></td>
 	  	<td><h4  style="color:#000080"><%=deduction%></h4></td>
-	  	<td  class="clspadr0"><h4><%=myEarn %></h4></td>
-	  	<td width="25%"><h4><%=status%></h4></td>
+	  	<td  class="clspadr0"><h4 style="color:#000080"><%=myEarn %></h4></td>
+	  	<td width="25%"><h4 style="color:#000080"><%=status%></h4></td>
 	  	<td></td></tr>
 	  
 	  </tbody>
