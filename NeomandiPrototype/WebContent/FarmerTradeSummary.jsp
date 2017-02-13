@@ -29,7 +29,6 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -57,57 +56,6 @@
                 overflow: hidden;
             }
         </style>
-        <script>
-            /*$(document).ready(function(e) {
-                $('#pdf').click(function(e) {
-                    $('#mytable').tableExport({
-                        type: 'pdf',
-                        escape: 'false'
-                    });
-                });
-
-                $('#excel').click(function(e) {
-                    $('#mytable').tableExport({
-                        type: 'excel',
-                        escape: 'false'
-                    });
-                });
-
-                $('#word').click(function(e) {
-                    $('#mytable').tableExport({
-                        type: 'doc',
-                        escape: 'false'
-                    });
-                });
-            });
-
-            function tableToJson(table) {
-                var data = [];
-
-                // first row needs to be headers
-                var headers = [];
-                for (var i = 0; i < table.rows[0].cells.length; i++) {
-                    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi, '');
-                }
-                data.push(headers);
-                // go through cells
-                for (var i = 1; i < table.rows.length; i++) {
-
-                    var tableRow = table.rows[i];
-                    var rowData = {};
-
-                    for (var j = 0; j < tableRow.cells.length; j++) {
-
-                        rowData[headers[j]] = tableRow.cells[j].innerHTML;
-
-                    }
-
-                    data.push(rowData);
-                }
-
-                return data;
-            }*/
-        </script>
     </head>
 
     <body class="">
@@ -157,11 +105,13 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         <div class='input-group date' id='from' name='from'>
                             <input type='text' class="form-control" name="from" id='from' />
+
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
                     </div>
+
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         <div class='input-group date' id='to'>
                             <input type='text' class="form-control" name="to" />
@@ -178,6 +128,8 @@
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button id="download-btn" class="pure-button export">Download PDF</button>
 
+
+
             </div>
             <script>
                 /*function callme() {
@@ -192,6 +144,8 @@
                             //doc.cell(1,10,90,20,cell,i);
                             //}
 
+
+
                         });
                     });
                     doc.save('FarmerHistory.pdf');
@@ -199,16 +153,22 @@
             </script>
         </div>
 
+
         <%if(request.getAttribute("farmerhistory")!=null)
+
+
 		{
 			if(request.getAttribute("farmerhistory").equals("no"))
 				{
   	%>
+
             <p style="align: center;"><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE</b></p>
 
             <%
+
   		} else if(request.getAttribute("farmerhistory").equals("success"))
   {%>
+
                 <!---table2-->
                 <div class="container-fluid sum2 pad">
                     <div class="tabin">
@@ -248,13 +208,16 @@
                                 <tbody>
                                     <tr class="gradeX">
                                         <% 
+
 		HttpSession farmerhistory=request.getSession(false);
 		List al=(List)farmerhistory.getAttribute("farmerhistory");
 		//request.setAttribute("theList", al);
 		for(Object o:al)
 		{
 			FarmerHistoryBean fhb=(FarmerHistoryBean)o;%>
+
                                             <%String finalprice=fhb.getFinalprice();
+
 			double fprice1=Double.parseDouble(finalprice);
 			double MUCharge1=1*fprice1/100;
 			double PACharge1=100;
@@ -270,6 +233,7 @@
 		    deduction1=deduction1/100;
 		    int transport=500;
 			 %>
+
                                                 <td></td>
                                                 <td class="clspad0" width="15%">
                                                     <h4><%=fhb.getCrdate() %></h4></td>
@@ -301,6 +265,8 @@
                                 </tbody>
                             </table>
 
+
+
                         </div>
                     </div>
                 </div>
@@ -308,6 +274,8 @@
                 <%}} %>
                     <footer>
                         <div id="grad1"></div>
+
+
 
                         <div class="container charge">
                             <table class="table">
@@ -321,16 +289,19 @@
                                 </tr>
                             </table>
 
+
                         </div>
+
+
 
                         <div class="bottom"></div>
                     </footer>
 
-                    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-                    <script src="js/bootstrap.js" type="text/javascript"></script>
-                    <script src="js/moment.js" type="text/javascript"></script>
-                    <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 
+            <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+            <script src="js/bootstrap.js" type="text/javascript"></script>
+            <script src="js/moment.js" type="text/javascript"></script>
+            <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
                     <script type="text/javascript">
                         $(function() {
                             $('#from').datetimepicker({
@@ -380,5 +351,4 @@
 					    update();
 					</script>
     </body>
-
     </html>

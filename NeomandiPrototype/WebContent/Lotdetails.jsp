@@ -114,7 +114,7 @@
 	  <tbody>
 	  <tr class="gradeX">
 	  <td></td>
-	  <td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"><%=lotnumber %></button></td>
+	  <td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal"><%=lotnumber %></button></td>
 	  <td><h4><%= resultSet.getString("produce")%></h4></td>
 	  <td><h4><%= resultSet.getString("kindofpro")%></h4></td>
 	  <td><h4><%=resultSet.getString("qualitygrade")%></h4></td>

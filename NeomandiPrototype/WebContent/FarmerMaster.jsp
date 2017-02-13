@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import=" com.neomandi.prototype.JDBCHelper,  java.text.DecimalFormat,
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" 
+    import=" com.neomandi.prototype.JDBCHelper,  
+    java.text.DecimalFormat,
      java.io.PrintWriter,
      java.sql.Connection,
      java.sql.ResultSet,
@@ -43,9 +45,9 @@
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="FarmerMaster.jsp">Auction</a></li>
-    <li><a href="Lotdetails.jsp">My Lots</a></li>
-    <li><a class="classbeauty" id="ts" href="#">Summary</a></li>
+    <li class="active"><a href="FarmerMaster.jsp"> Auction </a></li>
+    <li><a href="Lotdetails.jsp"> My Lots </a></li>
+    <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
     <li><a href="FarmerProfile.jsp">My Profile</a></li>
     <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
@@ -119,11 +121,11 @@
 		%>
 	  <tbody>
 	  <tr class="gradeX"><td></td>
-	  <td>
+	  
 	  	<%String lotnumber=resultSet.getString("lotnumber");
 		   imgsrc="ProductImages/"+lotnumber+".jpg";
 		%>
-	  <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" onMouseOver="this.style.color='black'"  onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;"><%=lotnumber %></button></td>
+	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
 	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
 	  <%
 	  	String qty="--"; 
@@ -160,12 +162,12 @@
 	  <td><h4><%=avg %></h4></td><%} %>
 	  
 	  <td>
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled>Accept</button>
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
 	  </td>
 	  
 	  <td>
-	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled>Reject</button>
+	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
 	  <td class="clsnowrap" ><h4>
 	 
@@ -530,24 +532,26 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<h4><div id='a1' style='display:inline;'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms'style='display:inline;' > 5:00</div></h4>";
+		            	var str="<h4><div id='a1'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+		            	
 		            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
+		            	
 		            	document.getElementById("timer").innerHTML=str;
 		            	function count(minutes1,seconds1) 
 		            	{
 		            		console.log("minutes is"+minutes);
 		            		console.log("seconds is"+seconds1);
 		        		    var seconds =seconds1;
-		        		    var mins = minutes1
+		        		    var mins = minutes1;
 		        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
 		        		    function tick() 
 		        		    {
@@ -571,30 +575,22 @@ function countdown(minutes,seconds,hours)
 			        			   }
 			        		       else
 			        		       {
-			        		           	var str1="<center><h4><font color='blue' >Your Auction has ended</font></h4><center>";
+			        		           	var str1="<center><h4>Your Auction has ended</h4><center>";
 			        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
+						            	
 						            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
-						            	var strCmd4 = "document.getElementById('a2').style.cssText ='display:none'";
-						            	var waitseconds = seconds;
-						            	var timeOutPeriod = waitseconds * 1000;
-						            	var hideTimer = setTimeout(strCmd4, timeOutPeriod);
+						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		            	console.log("inside the count function");
-			        		            	//alert("Auction under progress");
-			        		            	   location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
-			        		            	}
-						            	/*document.getElementById('accept').onclick = function() {
-			        		            	console.log("inside the count function");
-			        		            	//alert("Auction under progress");
-			        		            	   location="http://localhost:8080/NeomandiPrototype/AfterAccept.do";
-			        		            	}*/
-						    			document.getElementById("auction1").innerHTML=str1;
+			        		            console.log("inside the count function");
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            }
+						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}
 	        		     	}
@@ -626,21 +622,12 @@ function countdown(minutes,seconds,hours)
 	        			
 					}
 				}
-				}		       
+			}		       
  		}
  tick();
 }
 countdown(minutes,seconds,hours);			   
 			
-			/*
-			var t=setTimeout(nextPage,diff)
-			function nextPage(){
-				window.location='http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp';
-			}
-			*/
-	</script>
-	 <script>
-	
 //console.log("time="+timedif);
  var t=setTimeout(auction,timedif);
  function auction(){
