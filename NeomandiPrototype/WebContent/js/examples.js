@@ -136,7 +136,20 @@ examples.html = function () {
     var doc = new jsPDF('portrait', 'pt','a2');
     var d = new Date();
     doc.text("Neomandi Trade Summary", 40, 30);
-    doc.text(900,30,d.toUTCString());
+    var currentTime = new Date();
+
+    var currentOffset = currentTime.getTimezoneOffset();
+
+    var ISTOffset = 330;   // IST offset UTC +5:30 
+
+    var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
+
+    // ISTTime now represents the time in IST coordinates
+
+    var hoursIST = ISTTime.getHours();
+    var minutesIST = ISTTime.getMinutes();
+    
+    doc.text(1100,30,hoursIST+":"+minutesIST);
     var elem = document.getElementById("basic-table");
     var res = doc.autoTableHtmlToJson(elem);
     doc.autoTable(res.columns, res.data, {startY: 40});
