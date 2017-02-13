@@ -2,18 +2,43 @@ package com.neomandi.prototype;
 
 public class TradeSummaryBean {
 String lotnum;
+String volumesold;
+String lotcost;
+String commission;
+String marketcess;
+String myfinalcost;
+
+public String getLotcost() {
+	return lotcost;
+}
+public void setLotcost(String lotcost) {
+	this.lotcost = lotcost;
+}
+public String getCommission() {
+	return commission;
+}
+public void setCommission(String commission) {
+	this.commission = commission;
+}
+public String getMarketcess() {
+	return marketcess;
+}
+public void setMarketcess(String marketcess) {
+	this.marketcess = marketcess;
+}
 String quantity;
 String quantityneeded;
 String bidprice;
-String myfinalcost;
-String volumesold;
 String result;
 @Override
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((bidprice == null) ? 0 : bidprice.hashCode());
+	result = prime * result + ((commission == null) ? 0 : commission.hashCode());
+	result = prime * result + ((lotcost == null) ? 0 : lotcost.hashCode());
 	result = prime * result + ((lotnum == null) ? 0 : lotnum.hashCode());
+	result = prime * result + ((marketcess == null) ? 0 : marketcess.hashCode());
 	result = prime * result + ((myfinalcost == null) ? 0 : myfinalcost.hashCode());
 	result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 	result = prime * result + ((quantityneeded == null) ? 0 : quantityneeded.hashCode());
@@ -35,10 +60,25 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!bidprice.equals(other.bidprice))
 		return false;
+	if (commission == null) {
+		if (other.commission != null)
+			return false;
+	} else if (!commission.equals(other.commission))
+		return false;
+	if (lotcost == null) {
+		if (other.lotcost != null)
+			return false;
+	} else if (!lotcost.equals(other.lotcost))
+		return false;
 	if (lotnum == null) {
 		if (other.lotnum != null)
 			return false;
 	} else if (!lotnum.equals(other.lotnum))
+		return false;
+	if (marketcess == null) {
+		if (other.marketcess != null)
+			return false;
+	} else if (!marketcess.equals(other.marketcess))
 		return false;
 	if (myfinalcost == null) {
 		if (other.myfinalcost != null)
@@ -69,8 +109,9 @@ public boolean equals(Object obj) {
 }
 @Override
 public String toString() {
-	return "TradeSummaryBean [lotnum=" + lotnum + ", quantity=" + quantity + ", quantityneeded=" + quantityneeded
-			+ ", bidprice=" + bidprice + ", myfinalcost=" + myfinalcost + ", volumesold=" + volumesold + ", result="
+	return "TradeSummaryBean [lotnum=" + lotnum + ", volumesold=" + volumesold + ", lotcost=" + lotcost
+			+ ", commission=" + commission + ", marketcess=" + marketcess + ", myfinalcost=" + myfinalcost
+			+ ", quantity=" + quantity + ", quantityneeded=" + quantityneeded + ", bidprice=" + bidprice + ", result="
 			+ result + "]";
 }
 public String getLotnum() {

@@ -2,12 +2,47 @@ package com.neomandi.prototype;
 
 public class OrderStatusBean {
 String lotnum;
-String marketcode;
 String produce;
 String qualitygrade;
+String quantityavailable;
 String quantityneeded;
 String slotnumber;
 String lotcost;
+String commission;
+String marketcess;
+String transportation;
+String quantityassigned;
+public String getQuantityavailable() {
+	return quantityavailable;
+}
+public void setQuantityavailable(String quantityavailable) {
+	this.quantityavailable = quantityavailable;
+}
+public String getCommission() {
+	return commission;
+}
+public void setCommission(String commission) {
+	this.commission = commission;
+}
+public String getMarketcess() {
+	return marketcess;
+}
+public void setMarketcess(String marketcess) {
+	this.marketcess = marketcess;
+}
+public String getTransportation() {
+	return transportation;
+}
+public void setTransportation(String transportation) {
+	this.transportation = transportation;
+}
+public String getQuantityassigned() {
+	return quantityassigned;
+}
+public void setQuantityassigned(String quantityassigned) {
+	this.quantityassigned = quantityassigned;
+}
+String marketcode;
 String bestbid;
 String bidprice;
 String myfinalcost;
@@ -27,15 +62,21 @@ public int hashCode() {
 	int result = 1;
 	result = prime * result + ((bestbid == null) ? 0 : bestbid.hashCode());
 	result = prime * result + ((bidprice == null) ? 0 : bidprice.hashCode());
+	result = prime * result + ((commission == null) ? 0 : commission.hashCode());
+	result = prime * result + ((farmeraccept == null) ? 0 : farmeraccept.hashCode());
 	result = prime * result + ((lotcost == null) ? 0 : lotcost.hashCode());
 	result = prime * result + ((lotnum == null) ? 0 : lotnum.hashCode());
+	result = prime * result + ((marketcess == null) ? 0 : marketcess.hashCode());
 	result = prime * result + ((marketcode == null) ? 0 : marketcode.hashCode());
 	result = prime * result + ((myfinalcost == null) ? 0 : myfinalcost.hashCode());
 	result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 	result = prime * result + ((qualitygrade == null) ? 0 : qualitygrade.hashCode());
+	result = prime * result + ((quantityassigned == null) ? 0 : quantityassigned.hashCode());
+	result = prime * result + ((quantityavailable == null) ? 0 : quantityavailable.hashCode());
 	result = prime * result + ((quantityneeded == null) ? 0 : quantityneeded.hashCode());
 	result = prime * result + ((this.result == null) ? 0 : this.result.hashCode());
 	result = prime * result + ((slotnumber == null) ? 0 : slotnumber.hashCode());
+	result = prime * result + ((transportation == null) ? 0 : transportation.hashCode());
 	result = prime * result + ((volumesold == null) ? 0 : volumesold.hashCode());
 	return result;
 }
@@ -58,6 +99,16 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!bidprice.equals(other.bidprice))
 		return false;
+	if (commission == null) {
+		if (other.commission != null)
+			return false;
+	} else if (!commission.equals(other.commission))
+		return false;
+	if (farmeraccept == null) {
+		if (other.farmeraccept != null)
+			return false;
+	} else if (!farmeraccept.equals(other.farmeraccept))
+		return false;
 	if (lotcost == null) {
 		if (other.lotcost != null)
 			return false;
@@ -67,6 +118,11 @@ public boolean equals(Object obj) {
 		if (other.lotnum != null)
 			return false;
 	} else if (!lotnum.equals(other.lotnum))
+		return false;
+	if (marketcess == null) {
+		if (other.marketcess != null)
+			return false;
+	} else if (!marketcess.equals(other.marketcess))
 		return false;
 	if (marketcode == null) {
 		if (other.marketcode != null)
@@ -88,6 +144,16 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!qualitygrade.equals(other.qualitygrade))
 		return false;
+	if (quantityassigned == null) {
+		if (other.quantityassigned != null)
+			return false;
+	} else if (!quantityassigned.equals(other.quantityassigned))
+		return false;
+	if (quantityavailable == null) {
+		if (other.quantityavailable != null)
+			return false;
+	} else if (!quantityavailable.equals(other.quantityavailable))
+		return false;
 	if (quantityneeded == null) {
 		if (other.quantityneeded != null)
 			return false;
@@ -103,6 +169,11 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!slotnumber.equals(other.slotnumber))
 		return false;
+	if (transportation == null) {
+		if (other.transportation != null)
+			return false;
+	} else if (!transportation.equals(other.transportation))
+		return false;
 	if (volumesold == null) {
 		if (other.volumesold != null)
 			return false;
@@ -112,10 +183,12 @@ public boolean equals(Object obj) {
 }
 @Override
 public String toString() {
-	return "OrderStatusBean [lotnum=" + lotnum + ", marketcode=" + marketcode + ", produce=" + produce
-			+ ", qualitygrade=" + qualitygrade + ", quantityneeded=" + quantityneeded + ", slotnumber=" + slotnumber
-			+ ", lotcost=" + lotcost + ", bestbid=" + bestbid + ", bidprice=" + bidprice + ", myfinalcost="
-			+ myfinalcost + ", volumesold=" + volumesold + ", result=" + result + "]";
+	return "OrderStatusBean [lotnum=" + lotnum + ", produce=" + produce + ", qualitygrade=" + qualitygrade
+			+ ", quantityavailable=" + quantityavailable + ", quantityneeded=" + quantityneeded + ", slotnumber="
+			+ slotnumber + ", lotcost=" + lotcost + ", commission=" + commission + ", marketcess=" + marketcess
+			+ ", transportation=" + transportation + ", quantityassigned=" + quantityassigned + ", marketcode="
+			+ marketcode + ", bestbid=" + bestbid + ", bidprice=" + bidprice + ", myfinalcost=" + myfinalcost
+			+ ", farmeraccept=" + farmeraccept + ", volumesold=" + volumesold + ", result=" + result + "]";
 }
 public String getLotnum() {
 	return lotnum;

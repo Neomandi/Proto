@@ -2573,7 +2573,7 @@ public Myclass2 orderstatus(String name, String pwd)
 						{
 							aadharnumber=rs6.getString("aadharnumber");
 						}
-						ps =con.prepareStatement("select tl.lotnum,tl.slotnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl where tl.aadharnumber=? and tl.lotnum=? ");
+						ps =con.prepareStatement("select tl.lotnum,tl.quantity,tl.slotnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl where tl.aadharnumber=? and tl.lotnum=? ");
 						ps.setString(1, aadharnumber);
 						ps.setString(2, lotnum);
 						ps.execute();
@@ -2584,6 +2584,7 @@ public Myclass2 orderstatus(String name, String pwd)
 							osbn=new OrderStatusBean();
 							osbn.setLotnum(rs1.getString("lotnum"));
 							osbn.setMarketcode(rs1.getString("marketcode"));
+							osbn.setQuantityavailable(rs1.getString("quantity"));
 							osbn.setProduce(rs1.getString("produce"));
 							osbn.setQualitygrade(rs1.getString("qualitygrade"));
 							osbn.setQuantityneeded(rs1.getString("quantityneeded"));
@@ -2610,6 +2611,8 @@ public Myclass2 orderstatus(String name, String pwd)
 								String lotcosts=String.valueOf(lotcost);
 								System.out.println("lotcosts-> "+lotcosts);
 								osbn.setLotcost(lotcosts);
+								osbn.setCommission(String.valueOf(commission));
+								osbn.setMarketcess((String.valueOf(marketcess)));
 								osbn.setBestbid(rs2.getString("bestbid"));
 								osbn.setBidprice(bidprices);
 								osbn.setMyfinalcost(myfinalcosts);
@@ -2656,11 +2659,13 @@ public Myclass2 orderstatus(String name, String pwd)
 					while(rs2.next())
 					{					
 						osbn1=new OrderStatusBean();
-						osbn1.setMarketcode(rs2.getString("marketcode"));
-						osbn1.setProduce(rs2.getString("produce"));
-						osbn1.setQualitygrade(rs2.getString("qualitygrade"));
-						osbn1.setQuantityneeded(rs2.getString("quantityneeded"));
-						osbn1.setSlotnumber(rs2.getString("slotnumber"));						
+						osbn1.setLotnum(rs1.getString("lotnum"));
+						osbn1.setMarketcode(rs1.getString("marketcode"));
+						osbn1.setQuantityavailable(rs.getString("quantity"));
+						osbn1.setProduce(rs1.getString("produce"));
+						osbn1.setQualitygrade(rs1.getString("qualitygrade"));
+						osbn1.setQuantityneeded(rs1.getString("quantityneeded"));
+						osbn1.setSlotnumber(rs1.getString("slotnumber"));						
 						
 						ps =con.prepareStatement("select tdp.lotcost,tdp.lotnum,tdp.bidprice,tdp.bestbid,tdp.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tr.aadharnumber=tl.aadharnumber and tr.aadharnumber=tdp.aadharnumber and tdp.lotnum=tl.lotnum and tr.name=? and tr.pass=? and tdp.lotnum=?");
 						ps.setString(1, name);
@@ -2914,7 +2919,8 @@ public void TraderProductAccept(String lotnum,String accno)
 		}
 	}
 
-	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) {
+	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) 
+	{
 		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -2929,12 +2935,12 @@ public void TraderProductAccept(String lotnum,String accno)
 			else
 			{	
 				System.out.println("from-> "+from+" to->"+to );
-				String st[]=to.split("-");
+				String st[]=to.split("/");
 				int date=Integer.parseInt(st[2])+1;
 				st[2]=String.valueOf(date);
-				to=st[0]+"-"+st[1]+"-0"+st[2];
+			//	to=st[0]+"-"+st[1]+"-0"+st[2];
 				System.out.println(to);
-				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and `created_at` BETWEEN ? and ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND created_at< ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 				ps.setString(1,name);
 				ps.setString(2,from);
 				ps.setString(3, to);
@@ -2949,9 +2955,12 @@ public void TraderProductAccept(String lotnum,String accno)
 					tsb=new TradeSummaryBean();
 					tsb.setBidprice(rs.getString("bidprice"));
 					tsb.setLotnum(rs.getString("lotnum"));
+					tsb.setLotcost((rs.getString("lotcost")));
+					tsb.setCommission(rs.getString("commission"));
+					tsb.setMarketcess(rs.getString("marketcess"));
 					tsb.setMyfinalcost(rs.getString("myfinalcost"));
-					tsb.setQuantity(rs.getString("quantity"));
-					tsb.setQuantityneeded(rs.getString("quantityneeded"));
+				//	tsb.setQuantity(rs.getString("quantity"));
+				//	tsb.setQuantityneeded(rs.getString("quantityneeded"));
 					
 					ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table
 					ps.setString(2,name);
@@ -3724,7 +3733,6 @@ public String holdfundsgetbalance(String account)
 		return balance;
 	}
 
-@SuppressWarnings("resource")
 public int release(String name, String pwd, String release,String bank) 
 {
 	String balance="dance";
@@ -3739,6 +3747,7 @@ public int release(String name, String pwd, String release,String bank)
 	ResultSet rs2 = null;	
 	ResultSet rs3 = null;	
 	String aadharnumber=null;
+	int block = 0;
 	try
 	{
 		con = JDBCHelper.getConnection();
@@ -3751,7 +3760,7 @@ public int release(String name, String pwd, String release,String bank)
 			ps=con.prepareStatement("select aadharnumber from treg where name=? and pass=?");
 			ps.setString(1, name);
 			ps.setString(2, pwd);
-			ps.execute();
+			ps.executeQuery();
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
@@ -3763,7 +3772,7 @@ public int release(String name, String pwd, String release,String bank)
 			ps1 =con.prepareStatement("select balance from tbankaccount where aadharnumber=? and bankname=?");
 			ps1.setString(1, aadharnumber);
 			ps1.setString(2, bank);
-			System.out.println(ps1.execute()+" "+ps1);
+			System.out.println(ps1.executeQuery()+" "+ps1);
 			rs1 = ps1.getResultSet();
 			while(rs1.next())
 			{
@@ -3771,46 +3780,94 @@ public int release(String name, String pwd, String release,String bank)
 				System.out.println("old balance      = "+balance);
 				System.out.println("amount released  = "+release);
 			}
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
 			int balan=Integer.parseInt(balance);
 			balan=balan+releas;
 			System.out.println("new balance      = "+String.valueOf(balan));
 			
-			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
-			ps2.setString(1, String.valueOf(balan));
-			ps2.setString(2, aadharnumber);
-			ps2.setString(3, bank);
-			System.out.println(ps2.executeUpdate()+" "+ps2);
-			
+			con = JDBCHelper.getConnection();
 			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
 			ps2.setString(1, String.valueOf(balan));
 			ps2.setString(2, aadharnumber);
 			ps2.setString(3, bank);
 			System.out.println(ps2.execute()+" "+ps2);
 			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
 			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
 			ps2.setString(1, String.valueOf(balan));
 			ps2.setString(2, aadharnumber);
 			ps2.setString(3, bank);
 			System.out.println(ps2.execute()+" "+ps2);
 			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
+			ps2 =con.prepareStatement("update tbankaccount set balance=? where aadharnumber=? and bankname=?");
+			ps2.setString(1, String.valueOf(balan));
+			ps2.setString(2, aadharnumber);
+			ps2.setString(3, bank);
+			System.out.println(ps2.execute()+" "+ps2);
+			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
 			ps3 =con.prepareStatement("select balance from tbankaccount where aadharnumber=?");
 			ps3.setString(1, aadharnumber);
-			System.out.println(ps3.execute()+" "+ps3);
-			rs2 = ps3.getResultSet();
+			System.out.println(ps3.executeQuery()+" "+ps3);
+			rs2 = ps3.executeQuery();
 			while(rs2.next())
 			{
 				System.out.println("total balance available = "+rs2.getString("balance"));
 			}
 			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
 			ps4 =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
 			ps4.setString(1, aadharnumber);
-			System.out.println(ps4.execute()+" "+ps4);
-			rs3 = ps4.getResultSet();
-			int block=0;
+			System.out.println(ps4.executeQuery()+" "+ps4);
+			rs3 = ps4.executeQuery();
 			while(rs3.next())
 			{
 				block=Integer.parseInt(rs3.getString("blockamount"));				
 			}
+			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
 			System.out.println("old blocked amount      = "+block);
 			System.out.println("amount released         = "+release);
 			block=block-releas;
@@ -3821,15 +3878,30 @@ public int release(String name, String pwd, String release,String bank)
 			ps.setString(2, aadharnumber);
 			System.out.println(ps.execute()+" "+ps);
 			
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
+			con = JDBCHelper.getConnection();
 			ps1 =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
 			ps1.setString(1, aadharnumber);
-			System.out.println(ps1.execute()+" "+ps1);
+			System.out.println(ps1.executeQuery()+" "+ps1);
 			rs2 = ps1.getResultSet();
 			while(rs2.next())
 			{
 				block=Integer.parseInt(rs2.getString("blockamount"));		
 				System.out.println("block amount is  "+block);
 			}
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(ps1);
+			JDBCHelper.Close(ps2);
+			JDBCHelper.Close(ps3);
+			JDBCHelper.Close(ps4);
+			JDBCHelper.Close(con);
+			
 	return block;
 }}
 	catch(Exception e)
@@ -3851,7 +3923,7 @@ public int release(String name, String pwd, String release,String bank)
 		JDBCHelper.Close(ps4);
 		JDBCHelper.Close(con);
 	}
-		int block = 0;
+	
 		return block;
 	}
 }
