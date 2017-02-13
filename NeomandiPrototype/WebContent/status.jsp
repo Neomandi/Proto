@@ -297,9 +297,7 @@ if((String)tlbn.getTname()==null)
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
 </td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second">
-	
 	<table align="center"><tbody><tr><td><h4 class="text-center">Auction Complete. Waiting for Farmer's Acceptance.</h4></td></tr></tbody></table>
 </td></tr>
 </tbody></table></div>
