@@ -77,9 +77,9 @@
                     <ul class="nav nav-tabs">
                         <li><a href="FarmerMaster.jsp">Auction</a></li>
                         <li><a href="Lotdetails.jsp">My Lots</a></li>
-                        <li class="active"><a class="classbeauty" id="ts" href="FarmerTradeSummary.jsp">Summary</a></li>
+                        <li ><a class="classbeauty" id="ts" href="#">Summary</a></li>
                         <li><a href="FarmerProfile.jsp">My Profile</a></li>
-                        <li ><a href="FarmerSummaryInt.jsp">History</a></li>
+                        <li class="active"><a href="FarmerSummaryInt.jsp">History</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 <div class="datetable" align="center">
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                        <div class='input-group date' id='from' name='from'>
+                        FROM<div class='input-group date' id='from' name='from'>
                             <input type='text' class="form-control" name="from" id='from' />
 
                             <span class="input-group-addon">
@@ -115,20 +115,20 @@
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                        <div class='input-group date' id='to'>
+                       TO<div class='input-group date' id='to'>
                             <input type='text' class="form-control" name="to" />
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
-                    </div>
+                    </div><br/>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
-                        <div><a href="javascript:history()" class="get">Get Summary</a></div>
+                     <div><a href="javascript:history()" class="get">Get Summary</a></div>
                     </div>
                 </div>
             </form>
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button id="download-btn" class="pure-button export">Download PDF</button>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline;"><button id="download-btn" class="pure-button export">Download PDF</button>
 
 
 
@@ -170,7 +170,7 @@
 
   		} else if(request.getAttribute("farmerhistory").equals("success"))
   {%>
-
+<br/>
                 <!---table2-->
                 <div class="container-fluid sum2 pad">
                     <div class="tabin">
@@ -178,31 +178,32 @@
                             <table id="basic-table" class="table sum2table last">
 
                                 <thead>
-                                    <tr>
+                                    <tr class="gradeX">
                                         <th></th>
-                                        <th>
+                                       
+                                        <th style="text-align:center; color:white">
                                             <h4>Date</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Lot Number</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Lot Size</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Quantity</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Avg Price</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Gross Earnings</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>TLC*</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Market Cess</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>EPC</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>PMVA</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>Deductions</h4></th>
-                                        <th>
+                                        <th style="text-align:center; color:white">
                                             <h4>My Net Earnings</h4></th>
                                         <th></th>
                                     </tr>

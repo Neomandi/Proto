@@ -41,7 +41,7 @@
                 <ul class="nav nav-tabs">
                     <li><a href="FarmerMaster.jsp">Auction</a></li>
                     <li><a href="Lotdetails.jsp">My Lots</a></li>
-                    <li><a href="FarmerTradeSummary.jsp">Summary</a></li>
+                    <li><a href="#">Summary</a></li>
                     <li class="active"><a href="FarmerProfile.jsp">My Profile</a></li>
                      <li><a href="FarmerSummaryInt.jsp">History</a></li>
                 </ul>
