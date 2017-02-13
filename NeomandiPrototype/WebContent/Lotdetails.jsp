@@ -18,7 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -37,7 +37,7 @@
 <div class="">
 
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <%
@@ -54,7 +54,7 @@
   <ul class="nav nav-tabs">
     <li ><a href="FarmerMaster.jsp">Auction</a></li>
     <li class="active"><a  href="Lotdetails.jsp" >My Lots</a></li>
-    <li><a class="classbeauty" id="ts" href="#">Summary</a></li>
+    <li><a class="classbeauty" id="ts" href="FarmerTradeSummary.jsp">Summary</a></li>
     <li><a href="FarmerProfile.jsp">My Profile</a></li>
      <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
