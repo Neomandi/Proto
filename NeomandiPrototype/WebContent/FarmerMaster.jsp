@@ -121,11 +121,11 @@
 		%>
 	  <tbody>
 	  <tr class="gradeX"><td></td>
-	  <td>
+	  
 	  	<%String lotnumber=resultSet.getString("lotnumber");
 		   imgsrc="ProductImages/"+lotnumber+".jpg";
 		%>
-	  <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal"><%=lotnumber %></button></td>
+	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
 	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
 	  <%
 	  	String qty="--"; 

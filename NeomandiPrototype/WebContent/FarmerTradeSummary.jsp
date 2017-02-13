@@ -20,6 +20,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="viewport" content="width=device-width">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">-->
+    <link rel="stylesheet" href="libs/pure-min.css">
+
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
+    <link rel="stylesheet" href="libs/grids-responsive-min.css">
         <title>NeoMandi</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -124,6 +130,17 @@
                     </div>
                 </div>
             </form>
+            <div class="pure-g" style="padding-top: 50px; height: 100%;">
+    <div id="panel" class="pure-u-1 pure-u-md-1-5">
+        <ul class="menu">
+
+            <li><a href="#html">From html</a></li>
+        </ul>
+
+        <button id="download-btn" class="pure-button">Download PDF</button>
+        <!--<div class="editor">
+        <pre><code class="javascript">var test = "hey!";</code></pre></div>-->
+    </div>
             <div class="container">
     <button id="download-btn" class="btn btn-lg btn-danger clearfix">Export to PDF</button>
 
@@ -235,39 +252,7 @@
 <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
 <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
-<script src="libs/jspdf.min.js"></script>
 
-<script src="libs/faker.min.js"></script>
-<script src="libs/jspdf.plugin.autotable.src.js"></script>
-
-<script src="examples.js"></script>
-<script>
-    window.onhashchange = function () {
-        update();
-    };
-
-    document.getElementById('download-btn').onclick = function () {
-        update(true);
-    };
-
-    function update(shouldDownload) {
-        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
-        var doc = examples[funcStr]();
-
-        doc.setProperties({
-            title: 'Example: ' + funcStr,
-            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
-        });
-
-        if (shouldDownload) {
-            doc.save('table.pdf');
-        } else {
-            document.getElementById("output").src = doc.output('datauristring');
-        }
-    }
-
-    update();
-</script>
 <style>
     #exportButton {
         border-radius: 0;
@@ -318,4 +303,37 @@
                     document.historyForm.submit();
                 }
             </script>
+            <script src="lib/jspdf.min.js"></script>
+
+			<script src="lib/jspdf.plugin.autotable.src.js"></script>
+			
+			<script src="js/examples.js"></script>
+<script>
+    window.onhashchange = function () {
+        update();
+    };
+
+    document.getElementById('download-btn').onclick = function () {
+        update(true);
+    };
+
+    function update(shouldDownload) {
+        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
+        var doc = examples['html']();
+
+        doc.setProperties({
+            title: 'Example: ' + funcStr,
+            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
+        });
+
+        if (shouldDownload) {
+            doc.save('table.pdf');
+        } else {
+            document.getElementById("output").src = doc.output('datauristring');
+        }
+    }
+
+    update();
+</script>
     </body>
+    </html>
