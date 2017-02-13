@@ -114,11 +114,13 @@
 	try{	
 
 			statement = con.createStatement();
-			String sql5 = "select lotnumber,produce,kindofpro,qualitygrade,quantity from productentry where farmerid='"+s+"'";
+			String sql5 = "select * from productentry where farmerid='"+s+"'";
 			System.out.println(sql5);		
 			resultSet = statement.executeQuery(sql5);
 			while(resultSet.next()){
 				String lotnumber=resultSet.getString("lotnumber");
+				/*date+=resultSet.getString("Date");
+				slot+=resultSet.getString("slotnumber")*/
 				  imgsrc="ProductImages/"+lotnumber+".jpg";
 %>
                             <tbody>
