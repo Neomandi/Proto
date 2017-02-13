@@ -442,10 +442,10 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
-	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -1037,7 +1037,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlbr.getQuantityneeded()%>" readonly></td>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
@@ -1797,7 +1797,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlb.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
@@ -2364,7 +2364,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlbr.getQuantityneeded()%>" readonly></td>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"   value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>

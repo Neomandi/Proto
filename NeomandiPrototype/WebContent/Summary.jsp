@@ -73,7 +73,7 @@ border-top:2px solid #fff !important;
 			{
 			if(request.getAttribute("todaysummary").equals("no"))
 			{
-			  %><center><h3>YOUR SUMMARY FOR TODAY IS NILL</h3></center>
+			  %><center><h3>YOU HAVE NOT PERFORMED ANY TRADE OPERATIONS TODAY</h3></center>
 			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
 			  <script>
 			  var summary=document.getElementById("summary").value;
