@@ -31,6 +31,12 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+    .img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
+    </style>
 </head>
 
 <body class="" >
@@ -58,8 +64,10 @@
 </div>
 </div>
 </div>
-<%	 	
-		 
+
+ <% 
+ 
+	
 	 		HttpSession hs=request.getSession(false);  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
@@ -94,6 +102,7 @@
 					e.printStackTrace();	
 				}
 		    	
+	
 	%>
 <div class="container-fluid pad auct">
 <div class="tabin1">
@@ -111,6 +120,7 @@
           <td></td>
 	  </tr></thead>
 	    <%
+	    
 			//fetching lotnumber 
 			String lot="";
 	    	String imgsrc="";
@@ -127,7 +137,8 @@
 	  <tr class="gradeX"><td></td>
 	  
 	  	<%String lotnumber=resultSet.getString("lotnumber");
-		   imgsrc="ProductImages/"+lotnumber+".jpg";
+		   imgsrc="ProductImages/"+lotnumber+".png";
+		   System.out.println("in farmer master lotnumber="+lotnumber);
 		%>
 	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
 	  <td><h4><%=resultSet.getString("quantity") %></h4></td>
@@ -166,18 +177,18 @@
 	  <td><h4><%=avg %></h4></td><%} %>
 	  
 	  <td>
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
 	  </td>
 	  
 	  <td>
-	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
+	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
 	  <td class="clsnowrap" ><h4>
 	 
-	  <div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
-	  	<div id="auction" style="display:inline;"></div>
-		<div id="auction1" style="display:inline;"></div>
+	  <div id="msg" style="display:inline; " >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; " ></div></font></h4>
+	  	<div id="auction" style="display:inline; "></div>
+		<div id="auction1" style="display:inline; "></div>
 	  	</td></tr>
 	 
 	  <%
@@ -258,6 +269,7 @@
 	<input type="hidden" value="<%=s1 %>" id="slot" />
 	<input type="hidden" value="<%=date %>" id="date" />
 </form>
+
 		<script>
 	
 			var Etime=document.getElementById("time").value;
@@ -536,10 +548,10 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<h4><div id='a1'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
+		            	var str="<h4><div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div></h4>";
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
-		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
+		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
