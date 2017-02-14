@@ -169,15 +169,21 @@
         });
       } );
     </script>
+    <style>
+    .img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
+    </style>
 </head>
 <body class="">
     <div class="logo_relative">
-        <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+        <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <h1>Employee1, welcome to e-auction at NeoMandi.</h1></div>
+                    <h1>Employee1, Welcome to E-Auction at NeoMandi.</h1></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
