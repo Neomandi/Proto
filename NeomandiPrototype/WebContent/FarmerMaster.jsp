@@ -31,11 +31,17 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+    .img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
+    </style>
 </head>
 
 <body class="" >
 <div class="logo_relative">
-<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
 
@@ -180,9 +186,9 @@
 	  			  </td>
 	  <td class="clsnowrap" ><h4>
 	 
-	  <div id="msg" style="display:inline; position: absolute"; >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
-	  	<div id="auction" style="display:inline; position: absolute;"></div>
-		<div id="auction1" style="display:inline; position: absolute";></div>
+	  <div id="msg" style="display:inline; " >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; " ></div></font></h4>
+	  	<div id="auction" style="display:inline; "></div>
+		<div id="auction1" style="display:inline; "></div>
 	  	</td></tr>
 	 
 	  <%
@@ -542,10 +548,10 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<h4><div id='a1'style='display:inline; position: absolute;'>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline; position: absolute;' > 5:00</div></h4>";
+		            	var str="<h4><div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div></h4>";
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
-		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
+		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
