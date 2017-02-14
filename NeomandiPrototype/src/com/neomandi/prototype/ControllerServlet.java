@@ -1672,7 +1672,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession orderstatus=request.getSession();
 			orderstatus.setAttribute("msg", mc);
 			request.setAttribute("errmsg", mc);
-			rd=request.getRequestDispatcher("OrderStatus.jsp");
+			rd=request.getRequestDispatcher("status.jsp");
 			try 
 			{
 				rd.forward(request, response);			
@@ -1699,7 +1699,7 @@ public class ControllerServlet extends HttpServlet {
 				catch(NullPointerException e)
 				{			
 					request.setAttribute("notlogged","not loggedin");
-					rd=request.getRequestDispatcher("OrderStatus.jsp");
+					rd=request.getRequestDispatcher("status.jsp");
 					try {
 						rd.forward(request, response);
 					} catch (ServletException | IOException e1) {
@@ -1711,7 +1711,7 @@ public class ControllerServlet extends HttpServlet {
 				Model m=new Model();
 				mc=(Myclass2)m.farmeracceptstatus(mc);
 				request.setAttribute("errmsg", mc);
-				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				rd=request.getRequestDispatcher("status.jsp");
 				try 
 				{
 					rd.forward(request, response);			
@@ -1829,7 +1829,7 @@ public class ControllerServlet extends HttpServlet {
 			if(al.size()==0)
 			{
 				request.setAttribute("tradesummary","no");
-				rd=request.getRequestDispatcher("TradeSummary.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1841,7 +1841,7 @@ public class ControllerServlet extends HttpServlet {
 				HttpSession tradeSummary=request.getSession();
 				tradeSummary.setAttribute("tradesummary", al);
 				request.setAttribute("tradesummary","success");
-				rd=request.getRequestDispatcher("TradeSummary.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {

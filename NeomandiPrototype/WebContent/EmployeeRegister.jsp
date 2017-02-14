@@ -144,7 +144,7 @@ function validateEForm()
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+      <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
