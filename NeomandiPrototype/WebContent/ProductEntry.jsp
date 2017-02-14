@@ -277,7 +277,7 @@
                     <h4>Produce Image</h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
-                            <div id="showtext">click here to upload image</div>
+                            <div id="showtext">Click here to upload image</div>
 
                             <img id="blah" src="#" style="display:none">
                             <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" />
