@@ -169,16 +169,10 @@
         });
       } );
     </script>
-    <style>
-    .img-responsive{
-    	height: 60px;
-    	width: 65px;
-    }
-    </style>
 </head>
 <body class="">
     <div class="logo_relative">
-        <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
+        <div class="hidden-xs logo "><img src="images/logo.jpg" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
 
