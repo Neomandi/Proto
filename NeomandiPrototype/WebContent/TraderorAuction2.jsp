@@ -143,21 +143,21 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
     <li><a href="product.jsp">Product Search</a></li>
-    <li><a href="holdfunds.html">Hold Funds</a></li>
-    <li class="active"><a href="TradeorAuction.do">Trade</a></li>
-    <li><a href="orderstatus.html">Status</a></li>
-	<li><a href="tradesummary.html">Summary</a></li>
-    <li><a href="traderprofile.html">My Profile</a></li>
+                        <li><a href="TraderBlock.do">Hold Funds</a></li>
+                        <li  class="active"><a href="TradeorAuction.do">Trade</a></li>
+                        <li><a href="OrderStatus.do">Status</a></li>
+                        <li><a href="Summary.jsp">Summary</a></li>
+                        <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
 </div>
 </div>
-    		<div class="maindiv">
+<div class="maindiv">
 <div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
   <div id="accord"> 
         <!----row1--->
-        <%
+        <%int z=1;
   String msg1=(String)request.getAttribute("notlogged");
   if(msg1!=null)
   {
@@ -191,7 +191,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		}
 		else
 		{
-			int i=0,z=0;
+			int i=0;
 			int finalcostlist=0;
 			int tradelist=0;
 			if(request.getAttribute("remove")==null)//not removed any row
@@ -217,13 +217,12 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
 %>
 	<div class="one">
-	
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
-  <table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%=++z %></td>
+  	<table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
@@ -325,7 +324,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	if(assigned-needed==0)
 	{
 		console.log("assigned=needed");
-		document.getElementById('submit1<%=tlb.getLotnum()%>').removeAttribute("href");
+		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
+		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
 	else
 	{
@@ -533,6 +533,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			
 			if(assigned-needed==0)
 			{
+				alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 				console.log("assigned=needed");
 			}
 			else
@@ -730,7 +731,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
  <table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
@@ -831,6 +832,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	console.log("volume needed is "+needed+"");
 	if(assigned-needed==0)
 	{
+		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 	}
@@ -1422,13 +1424,12 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
-%> 
-	<div class="one">
+%> 	<div class="one">
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
- <table>
+ 	<table>
 	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
