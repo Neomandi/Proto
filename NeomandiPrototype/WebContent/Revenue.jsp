@@ -42,13 +42,21 @@ footer {
 }
 </style>
 <body class="">
+	<% 
+		HttpSession elog = request.getSession(false);
+	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
+	    {
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='Login.html';</script>");
+	    }
+	%>
     <div class="logo_relative">
         <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
-                    <h1>Employee1, Welcome to E-Auction at NeoMandi.</h1></div>
+                    <h1><%= (String)elog.getAttribute("name")%>, Welcome to E-Auction at NeoMandi.</h1></div>
                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>

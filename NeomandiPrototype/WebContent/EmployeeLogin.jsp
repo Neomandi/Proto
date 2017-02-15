@@ -11,7 +11,7 @@
     <title>NeoMandi</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,6 +19,30 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script>
+function validateELForm()
+{
+	var name = document.EmployeeLoginform.ename;
+	var pwd = document.EmployeeLoginform.epwd;
+	
+	//Name validation
+	if(name.value=="")
+	{
+		alert("Please provide username.");
+		name.focus();
+		return false;
+	}
+	
+	//Pwd validation
+	if(pwd.value=="")
+	{
+		alert("Please provide password.");
+		pwd.focus();
+		return false;
+	}		
+	return true;
+}
+</script>
 </head>
 
 <body class="">
@@ -54,7 +78,7 @@
     </nav>
     <!-----menu bar end------>
 
-	
+	<form action="EmployeeLoginInt.jsp" method = "post"  name = "EmployeeLoginform">
     <div class="container-fluid emplog pad">
         <div class="row">
             <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
@@ -67,16 +91,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="usr" placeholder="User name">
+                                <input type="text" class="form-control" id="usr" placeholder="User name" name="ename">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="usr" placeholder="Password">
+                                <input type="password" class="form-control" id="usr" placeholder="Password" name="epwd">
                             </td>
                         </tr>
                         <tr align="center">
-                            <td><a href="productentry.html" class="log">Login</a></td>
+                            <td><a href="javascript: submitform()" class="log">Login</a></td>
                         </tr>
                         <tr align="center">
                             <td><a href="" class="frgt">Forgot password?</a></td>
@@ -87,14 +111,20 @@
             </div>
         </div>
     </div>
+    </form>
+    
     
     <% String msg = (String)request.getAttribute("errmsg");  %>
-	<p align = "center"><b><% if(msg != null)
+	<p align = "center" style="margin-top: 40px;"><b><% if(msg != null)
 								out.print(msg);
 										%></b></p>
 	<script>
 	function submitform(){
-		document.EmployeeLoginform.submit();
+		var bool = validateELForm();
+		if(bool==true)
+		{
+			document.EmployeeLoginform.submit();
+		}
 	}
 	</script>
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
