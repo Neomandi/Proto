@@ -186,9 +186,9 @@
 	  			  </td>
 	  <td class="clsnowrap" ><h4>
 	 
-	  <div id="msg" style="display:inline; " >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; " ></div></font></h4>
-	  	<div id="auction" style="display:inline; "></div>
-		<div id="auction1" style="display:inline; "></div>
+	  <div id="msg" style="display:inline; " >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; margin-top: -2em " ></div></font></h4>
+	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
+		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
 	  	</td></tr>
 	 
 	  <%
