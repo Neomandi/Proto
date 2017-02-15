@@ -35,6 +35,12 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style type="text/css">
+.img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
+</style>
 </head>
 <body class="">
     <div class="logo_relative">
@@ -564,7 +570,10 @@
 			
 function countdown(minutes,seconds,hours) 
 {
-		
+	document.getElementById('ts').onclick = function() {
+		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
+		  location="http://localhost:8080/NeomandiPrototype/FarmerProfile.jsp";
+	  }
 	 	var seconds =seconds;
 	    var mins = minutes
 	    var hour=hours;

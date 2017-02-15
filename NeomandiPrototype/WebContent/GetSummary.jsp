@@ -51,6 +51,10 @@
                 width: 100%;
                 overflow: hidden;
             }
+            .img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
         </style>
     </head>
 

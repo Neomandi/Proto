@@ -79,7 +79,7 @@
                             <td><a href="productentry.html" class="log">Login</a></td>
                         </tr>
                         <tr align="center">
-                            <td><a href="" class "frgt">Forgot password?</a></td>
+                            <td><a href="" class="frgt">Forgot password?</a></td>
                         </tr>
                     </tbody>
                 </table>
