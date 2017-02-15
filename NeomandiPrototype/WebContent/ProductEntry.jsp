@@ -170,10 +170,10 @@
       } );
     </script>
     <style>
-    .img-responsive{
-    	height: 60px;
-    	width: 65px;
-    }
+    	.img-responsive {
+		    height: 60px;
+		    width: 65px;
+		}
     </style>
 </head>
 <body class="">
