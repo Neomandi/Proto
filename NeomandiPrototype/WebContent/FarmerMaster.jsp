@@ -124,6 +124,7 @@
 			//fetching lotnumber 
 			String lot="";
 	    	String imgsrc="";
+	    	String lotnumber="";
 			try{	
 				
 				statement = con.createStatement();
@@ -136,7 +137,7 @@
 	  <tbody>
 	  <tr class="gradeX"><td></td>
 	  
-	  	<%String lotnumber=resultSet.getString("lotnumber");
+	  	<% lotnumber=resultSet.getString("lotnumber");
 		   imgsrc="ProductImages/"+lotnumber+".png";
 		   System.out.println("in farmer master lotnumber="+lotnumber);
 		%>
@@ -184,12 +185,13 @@
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
-	  <td class="clsnowrap" ><h4>
-	 
-	  <div id="msg" style="display:inline; " >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; " ></div></font></h4>
-	  	<div id="auction" style="display:inline; "></div>
-		<div id="auction1" style="display:inline; "></div>
-	  	</td></tr>
+	  <td class="clsnowrap" >
+	 <h4>
+	  <div id="msg" style="display:inline; " >Auction will begins in</div>
+	  <div id="timer" style="display:inline; margin-top: -2em " ></div>
+	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
+		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
+	  	</h4></td></tr>
 	 
 	  <%
 		}
@@ -204,6 +206,7 @@
 </div>
 	  </div>
 	  </div>
+   
    
   <!---------modal image--------------->
 <div class="modal fade" id="myModal" role="dialog">
@@ -509,7 +512,12 @@
 			
 function countdown(minutes,seconds,hours) 
 {
-		
+	  document.getElementById('ts').onclick = function() {
+		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
+		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
+		  
+	  }	
+	 
 	 	var seconds =seconds;
 	    var mins = minutes
 	    var hour=hours;
@@ -548,7 +556,7 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-		            	var str="<h4><div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div></h4>";
+		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
@@ -591,7 +599,7 @@ function countdown(minutes,seconds,hours)
 			        			   }
 			        		       else
 			        		       {
-			        		           	var str1="<center><h4>Your Auction has ended</h4><center>";
+			        		           	var str1="Your Auction has ended";
 			        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 						            	var waitseconds = seconds;
 						            	var timeOutPeriod = waitseconds * 1000;

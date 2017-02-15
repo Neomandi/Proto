@@ -103,7 +103,7 @@ function validateELForm()
                             <td><a href="javascript: submitform()" class="log">Login</a></td>
                         </tr>
                         <tr align="center">
-                            <td><a href="" class "frgt">Forgot password?</a></td>
+                            <td><a href="" class="frgt">Forgot password?</a></td>
                         </tr>
                     </tbody>
                 </table>

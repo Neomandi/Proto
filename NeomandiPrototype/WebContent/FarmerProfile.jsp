@@ -35,6 +35,12 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style type="text/css">
+.img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
+</style>
 </head>
 <body class="">
     <div class="logo_relative">
@@ -44,7 +50,7 @@
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
                     <h1>Farmer1, welcome to e-Auction at NeoMandi.</h1></div>
-                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
 		<%
@@ -564,7 +570,10 @@
 			
 function countdown(minutes,seconds,hours) 
 {
-		
+	document.getElementById('ts').onclick = function() {
+		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
+		  location="http://localhost:8080/NeomandiPrototype/FarmerProfile.jsp";
+	  }
 	 	var seconds =seconds;
 	    var mins = minutes
 	    var hour=hours;

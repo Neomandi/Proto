@@ -49,6 +49,10 @@ footer {
     width: 100%;
     overflow:hidden;
 }
+.img-responsive{
+    	height: 60px;
+    	width: 65px;
+    }
 </style>
 </head>
 
@@ -59,7 +63,7 @@ footer {
 <div class="">
 
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 
