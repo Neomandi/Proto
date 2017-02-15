@@ -1611,8 +1611,8 @@ public class ControllerServlet extends HttpServlet {
 		//EmployeeLogout
 		if(uri.contains("ELogout"))
 		{
-			System.out.println("Inside Elogout");
-			RequestDispatcher rd1=null;
+			System.out.println("Inside ELogout");
+			RequestDispatcher rde=null;
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)
 			{ 
@@ -1621,10 +1621,10 @@ public class ControllerServlet extends HttpServlet {
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rd1=request.getRequestDispatcher("EmployeeLogin.jsp");
+				rde=request.getRequestDispatcher("Login.html");
 				try 
 				{
-					rd1.forward(request, response);	
+					rde.forward(request, response);	
 					return;
 				}			
 				catch (ServletException e) {
