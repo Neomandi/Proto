@@ -26,6 +26,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -54,6 +55,10 @@ margin-top:0px;
 .autable .table tbody tr td, .lottable .table tbody tr td,  .sum2tab .table tbody tr td {
 border-top:2px solid #fff !important;
 }
+.img-responsive {
+	height: 60px;
+	width: 65px;
+}
 </style>
 </head>
 <body class="" >
@@ -72,7 +77,7 @@ catch(Exception e)
 }
 %>
 <div class="logo_relative">
-<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>

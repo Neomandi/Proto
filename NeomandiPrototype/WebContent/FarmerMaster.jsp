@@ -171,6 +171,7 @@
 	  <td><h4><%=avg %></h4></td><%} %>
 	  <td>
 
+
 	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
 
@@ -178,6 +179,7 @@
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
+
 
 	 <td class="clsnowrap" >
 	 <h4>
@@ -203,6 +205,7 @@
 	  </div>
 
   <!-----------------------------------------------------modal image----------------------------------------------->
+
 
    
    
@@ -266,7 +269,9 @@
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
+
 <script type="text/javascript">
+
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -551,12 +556,13 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
+
 						
 
 		   
 
 		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-		            	
+            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
