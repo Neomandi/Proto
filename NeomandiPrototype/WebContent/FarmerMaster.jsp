@@ -45,7 +45,10 @@
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<%HttpSession hs=request.getSession(false);  
+<%HttpSession hs=request.getSession(false); 
+if((String)hs.getAttribute("name")==null){
+	out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
+}
 	String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>&nbsp;&nbsp;welcome to e-aution at Neomandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
@@ -188,8 +191,6 @@
 	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
 		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
 	  	</h4></td></tr>
-	 
-
 	  <%
 		}
 	}
@@ -203,14 +204,8 @@
 </div>
 	  </div>
 	  </div>
-
   <!-----------------------------------------------------modal image----------------------------------------------->
-
-
-   
-   
   <!---------modal image--------------->
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
@@ -269,9 +264,7 @@
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
-
 <script type="text/javascript">
-
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -556,13 +549,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-
-						
-
-		   
-
 		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;

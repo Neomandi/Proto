@@ -15,6 +15,11 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+table:nth-child(even) {
+    classname: container-fluid dispatch pad;
+}
+</style>
 </head>
 <body class="" >
 <div class="logo_relative">
@@ -52,32 +57,40 @@ catch(Exception e)
 </div>
 </div>
 </div> 
-
-<div class="container-fluid dispatch pad">
-<div class="row">
-  <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
-     <div class="row wback">
-         <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">
-				<table class="table">
-				<tbody align="center">
-				<tr>
-				<%  LinkedList<String> ls=new LinkedList<String>();
+<%  				LinkedList<String> ls=new LinkedList<String>();
 					HttpSession dispatch=request.getSession();
 					OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 					HashMap<String, Integer> a=osrb.getA();
 					List al=osrb.getAl();
 					System.out.println(al);
+					int z=0;
 				 	for(Object o:al)
 				    {
 				 	   DispatchBean dp=(DispatchBean)o;
 				       int size= a.get(dp.getLotnum());
 				       System.out.println("size is"+size);
 				       System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
-				       System.out.println(ls);%>
-					    <%
-				       if(ls.contains(dp.getLotnum()))
+				       System.out.println(ls);%>  
+				       <input type="hidden" id="num" value="<%out.println(z);++z; %>">
+				       <script>
+				       console.log(document.getElementById("num").value);
+				       if((document.getElementById("num").value)%2==0)
+				    	{
+				    	   document.getElementById("text").className = 'container-fluid dispatch pad dispatchgreen';
+				   		}
+				       </script>  
+<div class="container-fluid dispatch pad" id="text">
+<div class="row">
+  <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
+     <div class="row wback">
+         <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">				
+				<%
+				       if(!ls.contains(dp.getLotnum()))
 				       {
-			   %>
+%>
+			   <table class="table">
+				<tbody align="center">
+				<tr>
 				<td class=" cback clsnowrap" rowspan="<%=size%>">
 				Lot Number
 				</td>
@@ -89,8 +102,9 @@ catch(Exception e)
 				<td colspan="3">
 			</td>
 				<td class="clsnowrap">
-				<% for(int i=1;i<size;i++)
+				<% for(int i=0;i<1;i++)
 		       {
+					ls.add(dp.getLotnum());
 		    	  System.out.println(i);%>
 				<h4><%=dp.getName() %></h4>
 				</td>
@@ -102,10 +116,11 @@ catch(Exception e)
 				    else
 				    {   
 				    	System.out.println("insde else "+dp.getLotnum());
-					    ls.add(dp.getLotnum());
+					    
 					    System.out.println("inside ls"+ls);
 				%>
-			<tr><% for(int i=0;i<1;i++)
+			<tr><% 
+				for(int i=1;i<size;i++)
 		           {
 		    	    System.out.println(i);%>
 			<td colspan="2">
@@ -115,17 +130,16 @@ catch(Exception e)
 				</td>
 				<td>
 			<h4><%=dp.getQuantityassigned() %></h4>
-				</td><%} %>				
-				</tr><%}} %>				
+				</td><%}%>				
+				</tr><%}%>				
 			</tbody>
-				</table>
+		  </table>
 		</div>		
      </div>	 
    </div>
 </div>
-</div>
-
-<div class="container-fluid dispatch pad dispatchgreen">
+</div><%}%>
+<div class="container-fluid dispatch pad dispatchgreen" id="text">
 <div class="row">
   <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
      <div class="row wback">

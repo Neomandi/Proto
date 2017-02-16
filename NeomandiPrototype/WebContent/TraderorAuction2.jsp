@@ -160,7 +160,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 </div>
 <div class="maindiv">
-<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>&nbsp;&nbsp;<div id="auction1" style="display:inline;"><div id="msg" style="display:inline;">will begin in&nbsp</div>;<div id="timer" style="display:inline;" ></div></div>
+<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>&nbsp;&nbsp;<div id="auction1" style="display:inline;"><div id="msg" style="display:inline;"> will begin in&nbsp;</div><div id="timer" style="display:inline;" ></div></div>
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
@@ -234,11 +234,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			        if( seconds > 0 )
 			        {
 			            setTimeout(tick,1000);
-			          /*  document.getElementById('ts').onclick = function() {
-				            	console.log("inside the count function");
-				            	//alert("Auction under progress");
-				            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
-				            	}*/
+			          
 			        } 
 			        else 
 		     		{
@@ -282,7 +278,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				        		        var current_minutes = mins
 				        		       	seconds--;
 				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-				        		        if( seconds > 0 ) {
+				        		        if( seconds > 0 ) 
+				        		        {
 				        		            setTimeout(tick,1000);
 				        		            
 				        		        } 
