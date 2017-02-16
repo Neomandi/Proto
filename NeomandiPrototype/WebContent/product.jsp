@@ -123,7 +123,7 @@
 					}
 			    %>
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=(String)tlog.getAttribute("name")%>, Welcome to e-Auction at NeoMandi.</h1></div>
-                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
             <div class="container-fluid tradtab">
@@ -133,7 +133,7 @@
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary.jsp">Summary</a></li>
+                        <li><a href="Summary.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
                     </ul>
                 </div>

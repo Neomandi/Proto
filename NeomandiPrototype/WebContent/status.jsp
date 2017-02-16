@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,7 +64,7 @@ if((String)tlbn.getTname()==null)
 	out.println("</script>");
 } %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=tlbn.getTname()%>, welcome to e-aution at Neomandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
@@ -75,7 +74,7 @@ if((String)tlbn.getTname()==null)
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li class="active"><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary.jsp">Summary</a></li>
+                        <li><a href="Summary.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
@@ -95,7 +94,7 @@ int i=1;
 	{		
 %>
         <!----row1--->
-		<div class="one">
+		<div class="one" id="one<%= osbn.getLotnum()%>">
 <div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
@@ -130,25 +129,29 @@ int i=1;
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBestbid()%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"readonly></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.Farmer's status is<output id="status"><%=osbn.getFarmeraccept()%>.</output></h4></header>
+	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.Farmer's status is<output id="status<%= osbn.getLotnum()%>"><%=osbn.getFarmeraccept()%>.</output></h4></header>
 	<script> 
-	var status=document.getElementById("status").value;
+	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	console.log(status);
 	if(status.includes("PENDING"))
 	{
-		$("#status").css("border-left: 60px solid yellow;");
+	//	$("#status").css("border-left: 60px solid yellow;");
+		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
+		console.log("inside pending");
 	}
 	if(status.includes("REJECTED"))
 	{
-		$("#status").css("border-left: 60px solid red;");
+	//	$("#status").css("border-left: 60px solid red;");
+		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		console.log("inside rej");
 	}
 	if(status.includes("ACCEPTED"))
 	{
     	//clas.style.borderLeft= "54px solid green";
-		$("#class").css("border-left: 60px solid red;");
+		document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
+		console.log("inside acp");
 	}
 	</script></td></tr></tbody></table>
 </td></tr>

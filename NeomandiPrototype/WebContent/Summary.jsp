@@ -10,6 +10,10 @@
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+ <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+            <script src="js/bootstrap.js" type="text/javascript"></script>
+            <script src="js/moment.js" type="text/javascript"></script>
+            <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -46,7 +50,7 @@ border-top:2px solid #fff !important;
 <div class="container-fluid headertop">
 <div class="">
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
@@ -56,7 +60,7 @@ border-top:2px solid #fff !important;
     <li><a href="TraderBlock.do">Hold Funds</a></li>
     <li><a href="TradeorAuction.do">Trade</a></li>
     <li><a href="OrderStatus.do">Status</a></li>
-<li class="active"><a href="Summary.jsp">Summary</a></li>
+	<li class="active"><a href="Summary.do">Summary</a></li>
     <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
@@ -69,6 +73,25 @@ border-top:2px solid #fff !important;
 <table class="table sum1table ">
 <thead class="none"><tr>
 	  <td>&nbsp;</td>
+	  <%if(request.getAttribute("todaysummary")!=null)
+			{
+			if(request.getAttribute("todaysummary").equals("no"))
+			{
+			  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
+			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
+			  <script>
+			  var summary=document.getElementById("summary").value;
+			  console.log(summary);
+			    if(summary=="no")
+			    	{
+			    	 document.getElementById("summary").style.display="none";
+			    	 document.getElementById("todaypdf").style.display="none";
+			    	}
+			  </script>
+			  <%} 
+			   else if(request.getAttribute("todaysummary").equals("success"))
+			   {
+	  %>
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
 	  <td><h4>Lot Cost</h4></td>
@@ -79,22 +102,39 @@ border-top:2px solid #fff !important;
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10">
-	  <tr class="gradeX">
-	  <td class="whiteclsbc"></td><td><h4>PCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td>
-	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle"><a href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>
-      <br><br><a href="#" style="margin-left:10px" class="greencls">Export as PDF</a></td>	</tr>
-	  <tr class="gradeX">	  <td class="whiteclsbc">&nbsp;</td><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td>	 </tr>
-	  </tbody>
+	  <tr class="gradeX">	<% 
+		HttpSession todaysummary=request.getSession(false);
+		List al=(List)todaysummary.getAttribute("todaysummary");
+		//request.setAttribute("theList", al);
+		for(Object o:al)
+		{
+			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
+	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+      <br><br></tr><%}%></tbody>
+	  </table><%}}%>
+</div><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+<td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>
+&nbsp; &nbsp; &nbsp;<a id="todaypdf" href="#" style="margin-left:10px" class="greencls">Export as PDF</a></td>
+</tr>
+	   </tbody>
 	  </table>
 </div>
 <div class="container-fluid sum1"  style="display:none">
 	  <div class="container1 tabin tsum">
 	  <div class="row tfrom">
 	  <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-<div class="sum1tab table-responsive">
+	  <div class="sum1tab table-responsive">
 	  <table class="table sum1table">
-<thead class="none"><tr>
-	 <td><h4>Lot Number</h4></td>
+	  <thead class="none"><tr>
+	  <%if(request.getAttribute("tradesummary")!=null)
+{
+if(request.getAttribute("tradesummary").equals("no"))
+{
+  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
+  <%} else if(request.getAttribute("todaysummary").equals("success"))
+  {%>
+	  <td><h4>Lot </h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
 	  <td><h4>Lot Cost</h4></td>
 	  <td><h4>Commission Charges</h4></td>
@@ -103,10 +143,19 @@ border-top:2px solid #fff !important;
 	  <td><h4>My Final cost</h4></td>
 	  </tr></thead>
 	  <tbody>
-	  <tr class="gradeX"><td><h4>CBPRA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
-	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
-	  <tr class="gradeX"><td><h4>CBPCARA0173</h4></td><td><h4>1000</h4></td><td><h4>1000</h4></td><td><h4>20</h4></td><td><h4>20,000</h4></td><td><h4>500</h4></td><td><h4>200</h4></td><td><h4>100</h4></td><td><h4>100</h4></td><td><h4>900</h4></td><td><h4>19,100</h4></td></tr>
-	  </tbody>
+	  <tr class="gradeX">	  	<% 
+		HttpSession todaysummary=request.getSession(false);
+		List al=(List)todaysummary.getAttribute("todaysummary");
+		//request.setAttribute("theList", al);
+		for(Object o:al)
+		{
+			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
+	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+      <br><br></tr><%}%></tbody>
+	  </table>
+</div>
+<%}}%></tr>
+	   </tbody>
 	  </table>
 </div></div>
 <div class="col-lg-3 col-md-5 col-sm-5 col-xs-12 from">
@@ -146,9 +195,10 @@ border-top:2px solid #fff !important;
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
-                </div></div>
+                  </div>
+                </div>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun()" class="get1">Get Summary</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" class="export">Export as PDF</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" id="pdf" class="export">Export as PDF</a></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
@@ -164,7 +214,7 @@ if(request.getAttribute("tradesummary").equals("no"))
   <%} else if(request.getAttribute("tradesummary").equals("success"))
   {%>
 <div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
-<table class="table sum1table ">
+<table id="basic-table"  class="table sum1table ">
 <thead class="none"><tr>
 	  <td>&nbsp;</td>
 	  <td><h4>Lot Number</h4></td>
@@ -204,5 +254,39 @@ $('#idto').datetimepicker({
            });
 });
         </script>
+        <script src="libs/jspdf.min.js"></script>
+					
+					<script src="libs/jspdf.plugin.autotable.src.js"></script>
+					
+					<script src="js/examples.js"></script>
+					
+					<script>
+					    window.onhashchange = function () {
+					        update();
+					    };
+					
+					    document.getElementById('pdf').onclick = function () {
+					        update(true);
+					    };
+					    document.getElementById('todaypdf').onclick = function () {
+					        update(true);
+					    };
+					    function update(shouldDownload) {
+					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
+					        var doc = examples['html']();
+					
+					        /*doc.setProperties({
+					            title: 'Example: ' + funcStr,
+					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
+					        });*/
+					
+					        if (shouldDownload) {
+					            doc.save('TraderSummary.pdf');
+					        } else {
+					            document.getElementById("output").src = doc.output('datauristring');
+					        }
+					    }
+					    update();
+					</script>
 </body>
 </html>

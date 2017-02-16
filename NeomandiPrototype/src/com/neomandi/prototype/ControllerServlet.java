@@ -1801,11 +1801,14 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
+			String name=null;
 			try
 			{
 				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				tlbn.getTname();
 				tlbn.getTpwd();
+
+				name=tlbn.getTname();
 			}
 			catch(NullPointerException e)
 			{			
@@ -1821,7 +1824,6 @@ public class ControllerServlet extends HttpServlet {
 			String to=request.getParameter("to");
 	        System.out.println("from is "+from);
 	        System.out.println("to is "+to);
-			String name=tlbn.getTname();
 			String pwd=tlbn.getTpwd();
 			Model m=new Model();
 			@SuppressWarnings("rawtypes")
@@ -1841,6 +1843,57 @@ public class ControllerServlet extends HttpServlet {
 				HttpSession tradeSummary=request.getSession();
 				tradeSummary.setAttribute("tradesummary", al);
 				request.setAttribute("tradesummary","success");
+				rd=request.getRequestDispatcher("Summary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}	
+			}
+		}
+		if(uri.contains("Summary"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				tlbn.getTname();
+				tlbn.getTpwd();
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy");
+			String date=sdf.format(new Date());
+			String name=tlbn.getTname();
+			String pwd=tlbn.getTpwd();
+			Model m=new Model();
+			@SuppressWarnings("rawtypes")
+			List al=(List)m.tradeSummary(name,pwd,date,date);
+			if(al.size()==0)
+			{
+				request.setAttribute("todaysummary","no");
+				rd=request.getRequestDispatcher("Summary.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else
+			{
+				HttpSession tradeSummary=request.getSession();
+				tradeSummary.setAttribute("todaysummary", al);
+				request.setAttribute("todaysummary","success");
 				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
@@ -1892,7 +1945,7 @@ public class ControllerServlet extends HttpServlet {
 			OrderStatusResult osrb=m.Dispatch();
 			HttpSession dispatch=request.getSession();
 			dispatch.setAttribute("al",osrb);
-			rd=request.getRequestDispatcher("Dispatch.jsp");
+			rd=request.getRequestDispatcher("dispatch2.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (ServletException | IOException e1) {

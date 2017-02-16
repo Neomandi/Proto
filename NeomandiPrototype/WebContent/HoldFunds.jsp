@@ -46,7 +46,7 @@ border-top:2px solid #fff !important;
 <div class="container-fluid headertop">
 <div class="">
 <div class="col-lg-offset-2 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
@@ -56,7 +56,7 @@ border-top:2px solid #fff !important;
                         <li class="active"><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary.jsp">Summary</a></li>
+                        <li><a href="Summary.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
@@ -106,7 +106,7 @@ else
       <tr><td><label for="mobno">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch">Bank Branch</label></td></tr>
-      <tr><td><input type="text" class="form-control" id="email" value="<%=tbb.getBranch()%>" readonly></td></tr>
+      <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); %>" readonly></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="balance" readonly></td></tr> 
 	  <tr><td><table align="center"><tr><td><a href="#" onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
@@ -225,7 +225,7 @@ else
 <form>
     <table class="table">   
 	  <tr><td><label for="name">Fund Utilized</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" readonly></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=tbb.getBlock() %>" readonly></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  

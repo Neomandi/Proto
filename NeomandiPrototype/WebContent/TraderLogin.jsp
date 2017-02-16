@@ -45,7 +45,7 @@
           <a class="dropdown-toggle" href="Register.html">Register</a>
           
         </li>
-        <li><a class="active" href="Login.html">Login</a></li>
+        <li class="active"><a  href="Login.html">Login</a></li>
       </ul>
       
     </div>
