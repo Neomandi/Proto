@@ -1,5 +1,5 @@
 <%@page import="java.net.InetAddress"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" errorPage="Error.jsp" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" errorPage="Error.jsp" 
     import=" com.neomandi.prototype.JDBCHelper,  
     java.text.DecimalFormat,
@@ -12,9 +12,10 @@
 	 javax.servlet.http.HttpServletRequest,
 	 javax.servlet.http.HttpServletResponse,
 	 java.sql.SQLException,
+	 java.net.InetAddress,
 	 java.text.SimpleDateFormat,
+	java.util.*"%>
 	
-	 java.util.*"%>
 <!doctype html>
 <html>
 <head>
@@ -141,7 +142,7 @@ if((String)hs.getAttribute("name")==null){
 	  <tr class="gradeX"><td></td>
 	  
 	  	<% lotnumber=resultSet.getString("lotnumber");
-		   imgsrc="ProductImages/"+lotnumber+".png";
+		   imgsrc="ProductImages/"+lotnumber+".jpg";
 		   System.out.println("in farmer master lotnumber="+lotnumber);
 		%>
 	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal"><%=lotnumber %></button></td>
@@ -267,14 +268,19 @@ if((String)hs.getAttribute("name")==null){
 %>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<% InetAddress addr = InetAddress.getLocalHost();
+	String ip=addr.getHostAddress();
+%> 
 <form>
 	<input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
+	<input type="hidden" value="<%=ip %>" id="IP"/>
 </form>
 
 <script type="text/javascript">
-
+			var IP=document.getElementById("IP").value;
+			console.log("ip="+IP);
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -542,7 +548,8 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 

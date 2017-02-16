@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp"
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" errorPage="Error.jsp"
     import=" com.neomandi.prototype.JDBCHelper, 
     java.io.PrintWriter, java.sql.Connection, 
     java.sql.ResultSet,java.sql.Statement,
@@ -143,7 +143,7 @@ if((String)hs.getAttribute("name")==null){
 					 s1=obj;
 					}
 				
-				  imgsrc="ProductImages/"+lotnumber+".png";
+				  imgsrc="ProductImages/"+lotnumber+".jpg";
 			%>
 				  
 	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"> <%=lotnumber %></button></td><td><h4><%=resultSet.getString("produce")%></h4></td><td><h4><%=product%></h4></td><td><h4><%=grade%></h4></td><td><h4><%=quantity %></h4></td><td></td></tr>
