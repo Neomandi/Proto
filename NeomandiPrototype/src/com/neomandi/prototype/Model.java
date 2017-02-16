@@ -55,20 +55,18 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				
-				ps = con.prepareStatement("select mobile from ereg where mobile = ? ");
-				ps.setString(1, erb.getEmployeemob());
+				ps = con.prepareStatement("select empnumber from ereg where empnumber = ? ");
+				ps.setString(1, erb.getEmployeenum());
 				ps.execute();
 				rs = ps.getResultSet();
 				if(!rs.next())
 				{
 					con.setAutoCommit(false);
-					System.out.println("bean "+erb.getEmployeename()+"mobile "+erb.getEmployeemob());
-					ps = con.prepareStatement("insert into ereg values(?,?,?,?)");
+					System.out.println("bean "+erb.getEmployeename()+" empnumber "+erb.getEmployeenum());
+					ps = con.prepareStatement("insert into ereg values(?,?,?)");
 					ps.setString(1, erb.getEmployeename());
-					ps.setString(2, erb.getEmployeemob());
-					
-					ps.setString(3, erb.getEmployeepwd());
-					ps.setString(4, erb.getCemployeepwd());
+					ps.setString(2, erb.getEmployeepwd());
+					ps.setString(3, erb.getEmployeenum());
 					
 					ps.execute();
 					
@@ -3326,8 +3324,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				pstmt1.setString(1, slotnumber);
 				pstmt1.setString(2, lotnumber);
 				pstmt1.executeUpdate();
-				System.out.println("Lot has not accepted. Entry added for next slot.");
-				
+				System.out.println("Lot has not accepted. Entry added for next slot.");				
 				con.commit();
 			}
 		}
@@ -3338,8 +3335,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			
+			}			
 			e.printStackTrace();
 		}
 		finally
@@ -3943,4 +3939,91 @@ public int release(String name, String pwd, String release,String bank)
 	
 		return block;
 	}
+
+public List traderHistory(String name, String pwd, String from, String to) {
+	// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
+	PreparedStatement ps = null;
+	Connection con = null;
+	ResultSet rs = null;
+	ResultSet rs2 = null;
+	List<TradeSummaryBean> al=new ArrayList<TradeSummaryBean>();	
+	try
+	{
+		con = JDBCHelper.getConnection();
+		if(con == null)
+		{}
+		else
+		{	
+			System.out.println("from-> "+from+" to->"+to );
+			String st[]=to.split("/");
+			String ft[]=from.split("/");
+			System.out.println("st[0]"+st[0]);
+			System.out.println("st[1]"+st[1]);
+			System.out.println("st[2]"+st[2]);
+			int date=(Integer.parseInt(st[0]))+1;
+			System.out.println("previous date is"+st[0]);
+			System.out.println("current date is "+date);
+			st[0]=String.valueOf(date);
+			if(date<10)
+				//to=st[0]+"-0"+st[1]+"-"+st[2];
+				to=st[2]+"-0"+st[0]+"-"+st[1];
+			else
+				to=st[2]+"-"+st[0]+"-"+st[1];
+			System.out.println(to);
+			from=ft[2]+"-"+ft[0]+"-"+ft[1];
+			from=from.replace("/","-");
+			System.out.println(from);
+			ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+			ps.setString(1,name);
+			ps.setString(2,from);
+			ps.setString(3, to);
+			ps.setString(4,pwd);
+			ps.execute();
+			System.out.println(ps);
+			rs = ps.getResultSet();
+			TradeSummaryBean tsb=null;
+			while(rs.next())
+			{	
+				System.out.println("lotnum is "+rs.getString("lotnum"));
+				tsb=new TradeSummaryBean();
+				tsb.setBidprice(rs.getString("bidprice"));
+				tsb.setLotnum(rs.getString("lotnum"));
+				tsb.setLotcost((rs.getString("lotcost")));
+				tsb.setCommission(rs.getString("commission"));
+				tsb.setMarketcess(rs.getString("marketcess"));
+				tsb.setMyfinalcost(rs.getString("myfinalcost"));
+			//	tsb.setQuantity(rs.getString("quantity"));
+			//	tsb.setQuantityneeded(rs.getString("quantityneeded"));
+				
+				ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table
+				ps.setString(2,name);
+				ps.setString(1,rs.getString("lotnum"));
+				ps.execute();
+				rs2 = ps.getResultSet();
+				if(rs2.next())
+				{
+					tsb.setVolumesold(rs2.getString("quantityassigned"));
+					tsb.setResult("WON");
+				}
+				else
+				{
+					tsb.setVolumesold("--");
+					tsb.setResult("LOST");
+				}
+				al.add(tsb);					
+			}	
+			return al;
+		}
+	}catch(Exception e)
+	{
+e.printStackTrace();
+}
+	finally
+	{
+		JDBCHelper.Close(ps);
+		JDBCHelper.Close(con);
+	}
+return al;
+
+}
 }

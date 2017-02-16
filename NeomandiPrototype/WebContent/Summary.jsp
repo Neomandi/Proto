@@ -61,38 +61,40 @@ border-top:2px solid #fff !important;
     <li><a href="TraderBlock.do">Hold Funds</a></li>
     <li><a href="TradeorAuction.do">Trade</a></li>
     <li><a href="OrderStatus.do">Status</a></li>
-	<li class="active"><a href="Summary.do">Summary</a></li>
+	<li class="active"><a href="Summary1.do">Summary</a></li>
     <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
 </div>
 </div>   
 <div class="container-fluid today">
-<div class="container1" style="padding-left:5%"><h4>Today's Summary</h4></div>
-</div>
-<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
-<table class="table sum1table ">
-<thead class="none"><tr>
-	  <td>&nbsp;</td>
-	  <%if(request.getAttribute("todaysummary")!=null)
+<div class="container1" style="padding-left:5%"><h4>Today's Summary</h4></div></div>
+ <%if(request.getAttribute("todaysummary")!=null)
 			{
 			if(request.getAttribute("todaysummary").equals("no"))
 			{
-			  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
+			  %><center><h3>YOUR SUMMARY FOR TODAY IS NILL</h3></center>
 			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
 			    if(summary=="no")
 			    	{
-			    	 document.getElementById("summary").style.display="none";
+			    	 document.getElementById("summary").style.display='none';
 			    	 //document.getElementById("todaypdf").style.display="none";
 			    	}
-			  </script>
-			  <%} 
+			    else
+			    	{
+			    	 document.getElementById("summary").style.marginLeft='10px';
+			    	}</script><%} 
 			   else if(request.getAttribute("todaysummary").equals("success"))
 			   {
 	  %>
+<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
+<table class="table sum1table" id="basic-table">
+<thead class="none"><tr>
+	  <td>&nbsp;</td>
+			  
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
 	  <td><h4>Lot Cost</h4></td>
@@ -115,12 +117,12 @@ border-top:2px solid #fff !important;
 	  </table><%}}%>
 </div><br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-<td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>
-&nbsp; &nbsp; &nbsp;<a id="summary" href="#" style="margin-left:10px" class="greencls">Export as PDF</a></td>
+<td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><!--  <a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>-->
+&nbsp; &nbsp; &nbsp;<a id="summary" href="#" onclick="update(true)" class="greencls">Export as PDF</a></td>
 </tr>
 	   </tbody>
 	  </table>
-</div>
+</div><!-- 
 <div class="container-fluid sum1"  style="display:none">
 	  <div class="container1 tabin tsum">
 	  <div class="row tfrom">
@@ -128,13 +130,13 @@ border-top:2px solid #fff !important;
 	  <div class="sum1tab table-responsive">
 	  <table class="table sum1table">
 	  <thead class="none"><tr>
-<%
+<%/*
 if(request.getAttribute("tradesummary")!=null)
 {
 if(request.getAttribute("tradesummary").equals("no"))
 {
   %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
-  <%} else if(request.getAttribute("todaysummary").equals("success"))
+  <%} else if(request.getAttribute("tradesummary").equals("success"))
   {%>
 	  <td><h4>Lot </h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
@@ -156,7 +158,7 @@ if(request.getAttribute("tradesummary").equals("no"))
       <br><br></tr><%}%></tbody>
 	  </table>
 </div>
-<%}}%></tr>
+<%}}*/%></tr>
 	   </tbody>
 	  </table>
 </div></div>
@@ -178,14 +180,14 @@ if(request.getAttribute("tradesummary").equals("no"))
 </table>
 </div>
 </div>
+	  </div>-->
 	  </div>
-	  </div>
-<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
-<div class="container-fluid tfrom">
-<div class="container tsum from">
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-<div align="center">
-<form action = "tradeSummary.do" method = "post" id="myForm">
+	<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
+	<div class="container-fluid tfrom">
+	<div class="container tsum from">
+	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+	<div align="center">
+	<form action = "tradeSummary.do" method = "post" id="myForm">
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='idfrom'>
                     <input type='text' class="form-control" name="from"/>
                     <div class="input-group-addon">
@@ -199,11 +201,16 @@ if(request.getAttribute("tradesummary").equals("no"))
                     </div>
                   </div>
                 </div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun()" class="get1">Get Summary</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" id="pdf" class="export">Export as PDF</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun()" class="get1">Get History</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun2()" id="pdf" class="export">Export as PDF</a></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
+}
+function fun2()
+{
+	console.log("inside fun2");
+	update1(true)
 }
 </script>
 </div></div>
@@ -213,10 +220,11 @@ if(request.getAttribute("tradesummary").equals("no"))
 if(request.getAttribute("tradesummary").equals("no"))
 {
   %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE</b>
-  <%} else if(request.getAttribute("tradesummary").equals("success"))
-  {%>
+  <%} 
+	else if(request.getAttribute("tradesummary").equals("success"))
+  	{%>
 <div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
-<table id="basic-table"  class="table sum1table ">
+<table id="basic-table1"  class="table sum1table ">
 <thead class="none"><tr>
 	  <td>&nbsp;</td>
 	  <td><h4>Lot Number</h4></td>
@@ -259,16 +267,12 @@ $('#idto').datetimepicker({
         <script src="libs/jspdf.min.js"></script>					
 					<script src="libs/jspdf.plugin.autotable.src.js"></script>					
 					<script src="js/examples.js"></script>					
-					<script>
-					    window.onhashchange = function () {
-					        update();
-					    };
-					
-					    document.getElementById('pdf').onclick = function () {
-					        update(true);
-					    };
+					<script>					
 					    document.getElementById('todaypdf').onclick = function () {
 					        update(true);
+					    };
+					    document.getElementById('pdf').onclick = function () {
+					        update1(true);
 					    };
 					    function update(shouldDownload) {
 					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
@@ -286,6 +290,22 @@ $('#idto').datetimepicker({
 					        }
 					    }
 					    update();
+					    function update1(shouldDownload) {
+					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
+					        var doc = examples1['html']();
+					
+					        /*doc.setProperties({
+					            title: 'Example: ' + funcStr,
+					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
+					        });*/
+					
+					        if (shouldDownload) {
+					            doc.save('TraderSummary.pdf');
+					        } else {
+					            document.getElementById("output").src = doc.output('datauristring');
+					        }
+					    }
+					    update1();
 					</script>
 </body>
 </html>

@@ -48,9 +48,7 @@ overflow:auto;
     width: 65px;
 }
 </style>
-
 </head>
-
 <body>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -68,6 +66,7 @@ if((String)tlbn.getTname()==null)
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
+<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/OrderStatus.do">
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
@@ -75,7 +74,7 @@ if((String)tlbn.getTname()==null)
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li class="active"><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary.do">Summary</a></li>
+                        <li><a href="Summary1.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>
@@ -95,15 +94,15 @@ int i=1;
 	{		
 %>
         <!----row1--->
-		<div class="one" id="one<%= osbn.getLotnum()%>">
-<div class="container-fluid status">
+	<div class="one" id="one<%= osbn.getLotnum()%>">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
- <table>
-<tbody><tr><td  style="background: #bfbfbf;text-align:center; padding:10px;"><%out.println(i); i++; %></td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
+	<div class="table-responsive"> 
+	<table>
+	<tbody><tr><td  style="background: #bfbfbf;text-align:center; padding:10px;"><%out.println(i); i++; %></td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getLotnum());%>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getProduce());%>"readonly></td></tr>
@@ -111,7 +110,7 @@ int i=1;
 	<tr><td style="white-space:nowrap !important"><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQuantityavailable() %>"readonly></td></tr>
 	</tbody>
 	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>"readonly></td></tr>
@@ -136,19 +135,19 @@ int i=1;
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	console.log(status);
-	if(status.includes("PENDING"))
+	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
 	{
 	//	$("#status").css("border-left: 60px solid yellow;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 		console.log("inside pending");
 	}
-	if(status.includes("REJECTED"))
+	if(status.includes("rejected")||status.toUpperCase() ==="REJECTED")
 	{
 	//	$("#status").css("border-left: 60px solid red;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		console.log("inside rej");
 	}
-	if(status.includes("ACCEPTED"))
+	if(status.includes("accepted")||status.toUpperCase() === "ACCEPTED")
 	{
     	//clas.style.borderLeft= "54px solid green";
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
@@ -303,14 +302,11 @@ int i=1;
     </div></div>
 	<!---row 4 end--->
  </div>
-	
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script>
 var tt = $( window ).height();
-
 $(".maindiv").height(parseInt(tt)-60);
 </script>
-
 </body>
 </html>

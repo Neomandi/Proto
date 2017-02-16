@@ -57,7 +57,7 @@ border-top:2px solid #fff !important;
                         <li class="active"><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary.do">Summary</a></li>
+                        <li><a href="Summary1.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
   </ul>
 </div>

@@ -1658,7 +1658,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				rd=request.getRequestDispatcher("status.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1813,7 +1813,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
@@ -1827,7 +1827,7 @@ public class ControllerServlet extends HttpServlet {
 			String pwd=tlbn.getTpwd();
 			Model m=new Model();
 			@SuppressWarnings("rawtypes")
-			List al=(List)m.tradeSummary(name,pwd,from,to);
+			List al=(List)m.traderHistory(name,pwd,from,to);
 			if(al.size()==0)
 			{
 				request.setAttribute("tradesummary","no");
@@ -1851,7 +1851,7 @@ public class ControllerServlet extends HttpServlet {
 				}	
 			}
 		}
-		if(uri.contains("Summary"))
+		if(uri.contains("Summary1"))
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
@@ -1865,7 +1865,7 @@ public class ControllerServlet extends HttpServlet {
 			catch(NullPointerException e)
 			{			
 				request.setAttribute("notlogged","not loggedin");
-				rd=request.getRequestDispatcher("OrderStatus.jsp");
+				rd=request.getRequestDispatcher("Summary.jsp");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {

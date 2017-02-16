@@ -8,7 +8,7 @@
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -24,7 +24,7 @@
 function validateEForm()
 {
 	
-	var mob = document.EregForm1.employeemob;
+	var num = document.EregForm1.employeenum;
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
 	var cpwd = document.EregForm1.cemployeepwd;
@@ -52,30 +52,30 @@ function validateEForm()
 	}
 	
 	//Mobile number validation
-	var val = mob.value;
+	var val = num.value;
 	if(val==""){
 		alert("Please enter your mobile number");
-		 mob.focus();
+		 num.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		alert("Enter the valid Mobile Number(Like : 9566137117)");
-		mob.focus();
+		alert("Enter the valid Mobile Number(Like : 12345)");
+		num.focus();
 		return false;
 	}
-	if((val.length < 1) || (val.length > 10)){
+	if((val.length < 1) || (val.length > 5)){
 		
 		alert(" Your Mobile Number must be 0 to 9 Integers");
-		mob.focus();
+		num.focus();
 		return false;
 	}
-	var val = mob.value;
-	if (/^\d{10}$/.test(val)) {
+	var val = num.value;
+	if (/^\d{5}$/.test(val)) {
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid mobile number, must be ten digits");
-	    mob.focus();
+	    alert("Invalid employee number, must be five digits");
+	    num.focus();
 	    return false;
 	}
 	
@@ -181,7 +181,7 @@ function validateEForm()
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="name" name="employeename" onclick="fun()"></td></tr>
       <tr><td><label for="aadhar">Employee Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" name="employeemob" onclick="fun()"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" name="employeenum" onclick="fun()"></td></tr>
          </table>
   
   </div>
