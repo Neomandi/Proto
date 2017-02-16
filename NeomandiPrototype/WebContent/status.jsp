@@ -43,13 +43,17 @@ border-top:2px solid #fff !important;
 
 overflow:auto;
 }
+.img-responsive {
+    height: 60px;
+    width: 65px;
+}
 </style>
 
 </head>
 
 <body>
 <div class="logo_relative">
-<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
 <%HttpSession tlog=request.getSession(false);

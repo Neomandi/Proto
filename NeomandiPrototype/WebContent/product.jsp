@@ -54,6 +54,10 @@
             .sum2tab .table tbody tr td {
                 border-top: 2px solid #fff !important;
             }
+            .img-responsive {
+		    height: 60px;
+		    width: 65px;
+			}
         </style>
         <script>
         function populate(s1, s2)
@@ -96,7 +100,7 @@
     </head>
     <body class="">
         <div class="logo_relative">
-            <div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+            <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
                 <div class="">
                 <%

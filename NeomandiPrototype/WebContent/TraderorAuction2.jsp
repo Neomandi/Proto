@@ -113,12 +113,17 @@ tbody:before {
 margin-top:0px;
 } 
 .autable .table tbody tr td, .lottable .table tbody tr td, .table tbody tr td, .sum2tab .table tbody tr td {
-border-top:0px solid #fff !important;}
+border-top:0px solid #fff !important;
+}
+.img-responsive {
+	height: 60px;
+	width: 65px;
+}
 </style>
 </head>
 <body class="" >
 <div class="logo_relative">
-<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%HttpSession tlog=request.getSession(false);
