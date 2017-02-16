@@ -7,7 +7,18 @@
 <title>Error</title>
 </head>
 <body>
-Error occurred:
-<center><%=exception.getMessage()%></center>
+<p>Error Occurred</p><br>
+<pre>Message:
+<%=exception%></pre>
+
+<pre>StackTrace:
+<%
+	StringWriter stringWriter = new StringWriter();
+	PrintWriter printWriter = new PrintWriter(stringWriter);
+	exception.printStackTrace(printWriter);
+	out.println(stringWriter);
+	printWriter.close();
+	stringWriter.close();
+%></pre>
 </body>
 </html>

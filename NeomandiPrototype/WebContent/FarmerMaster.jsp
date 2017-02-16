@@ -19,9 +19,16 @@
 <!doctype html>
 <html>
 <head>
+<script>
+setTimeout(function(){
+	console.log("inside the function");
+	   $( "#mytable" ).load( "FarmerMaster.jsp #mytable" );
+	}, 2000);
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">--> 
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -110,7 +117,7 @@ if((String)hs.getAttribute("name")==null){
 <div class="container-fluid pad auct">
 <div class="tabin1">
 <div class="autable">
-<table class="table atable">
+<table class="table atable" id="mytable">
 <thead><tr>
           <td></td>
 	  <td><h4>Lot Number</h4></td>
@@ -192,8 +199,6 @@ if((String)hs.getAttribute("name")==null){
 	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
 		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
 	  	</h4></td></tr>
-	 
-
 	  <%
 		}
 	}
@@ -207,14 +212,8 @@ if((String)hs.getAttribute("name")==null){
 </div>
 	  </div>
 	  </div>
-
   <!-----------------------------------------------------modal image----------------------------------------------->
-
-
-   
-   
   <!---------modal image--------------->
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
@@ -277,10 +276,11 @@ if((String)hs.getAttribute("name")==null){
 	<input type="hidden" value="<%=date%>" id="date" />
 	<input type="hidden" value="<%=ip %>" id="IP"/>
 </form>
-
 <script type="text/javascript">
+
 			var IP=document.getElementById("IP").value;
 			console.log("ip="+IP);
+
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -566,13 +566,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-
-						
-
-		   
-
 		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
 		            	var waitseconds = seconds;
