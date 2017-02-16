@@ -13,6 +13,7 @@
 	 javax.servlet.http.HttpServletResponse,
 	 java.sql.SQLException,
 	 java.text.SimpleDateFormat,
+	
 	 java.util.*"%>
 <!doctype html>
 <html>
@@ -44,7 +45,9 @@
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
+<%HttpSession hs=request.getSession(false);  
+	String name=(String)hs.getAttribute("name"); %>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>&nbsp;&nbsp;welcome to e-aution at Neomandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -64,7 +67,7 @@
  <% 
  
 	
-	 		HttpSession hs=request.getSession(false);  
+	 		
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
@@ -80,7 +83,7 @@
 		     con = JDBCHelper.getConnection();
 			//display aadhar number 
 		     String s="";
-			 String name="";
+			
 		     try
 		     	{	
 		     
@@ -167,24 +170,16 @@
 	  		<%}else{ %>
 	  <td><h4><%=avg %></h4></td><%} %>
 	  <td>
-<<<<<<< HEAD
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>	  		
-=======
+
 	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 	  </td>
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
-<<<<<<< HEAD
-	  <td class="clsnowrap"><h4>
-	  <div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
-	  	<div id="auction" style="display:inline;"></div>
-		<div id="auction1" style="display:inline;"></div>
-	  	</td></tr>
-=======
-	  <td class="clsnowrap" >
+
+	 <td class="clsnowrap" >
 	 <h4>
 	  <div id="msg" style="display:inline; " >Auction will begins in</div>
 	  <div id="timer" style="display:inline; margin-top: -2em " ></div>
@@ -192,7 +187,7 @@
 		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
 	  	</h4></td></tr>
 	 
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 	  <%
 		}
 	}
@@ -206,13 +201,13 @@
 </div>
 	  </div>
 	  </div>
-<<<<<<< HEAD
+
   <!-----------------------------------------------------modal image----------------------------------------------->
-=======
+
    
    
   <!---------modal image--------------->
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
@@ -271,13 +266,7 @@
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
-<<<<<<< HEAD
-		<script>	
-=======
-
-		<script>
-	
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+<script type="text/javascript">
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -563,11 +552,10 @@ function countdown(minutes,seconds,hours)
 					else
 					{
 						
-<<<<<<< HEAD
-		            	var str="<h4><div id='a1'>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
-=======
+
+		   
+
 		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
