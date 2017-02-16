@@ -167,32 +167,16 @@
 	  		<%}else{ %>
 	  <td><h4><%=avg %></h4></td><%} %>
 	  <td>
-<<<<<<< HEAD
 	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 3px solid #808080;" class="btn"  data-target="#myModal">Accept</button>	  		
-=======
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
-	  		
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  </td>
 	  <td>
 	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
-<<<<<<< HEAD
 	  <td class="clsnowrap"><h4>
 	  <div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
 	  	<div id="auction" style="display:inline;"></div>
 		<div id="auction1" style="display:inline;"></div>
 	  	</td></tr>
-=======
-	  <td class="clsnowrap" >
-	 <h4>
-	  <div id="msg" style="display:inline; " >Auction will begins in</div>
-	  <div id="timer" style="display:inline; margin-top: -2em " ></div>
-	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
-		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
-	  	</h4></td></tr>
-	 
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 	  <%
 		}
 	}
@@ -206,13 +190,7 @@
 </div>
 	  </div>
 	  </div>
-<<<<<<< HEAD
   <!-----------------------------------------------------modal image----------------------------------------------->
-=======
-   
-   
-  <!---------modal image--------------->
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
