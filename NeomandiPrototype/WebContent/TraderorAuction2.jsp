@@ -26,6 +26,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">

@@ -271,13 +271,7 @@
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
-<<<<<<< HEAD
 		<script>	
-=======
-
-		<script>
-	
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 			var Etime=document.getElementById("time").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
@@ -562,12 +556,7 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{
-						
-<<<<<<< HEAD
 		            	var str="<h4><div id='a1'>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
-=======
-		            	var str="<div id='a1'style='display:inline; '>Auction has begun. Auction will ends in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";

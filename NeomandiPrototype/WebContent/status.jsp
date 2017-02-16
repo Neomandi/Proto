@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
