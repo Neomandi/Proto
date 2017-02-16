@@ -514,8 +514,6 @@ if(!(password.value.length >8)){
 </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
-
-
 <body class="">
 <!---menu bar------>
 
@@ -537,8 +535,8 @@ if(!(password.value.length >8)){
 		<li><a href="Howitworks.html">How it works</a></li>
         <li><a href="News.html">News</a></li>
 		<li><a href="ContactUs.html">Contact Us</a></li>
-		<li class="dropdown">
-          <a class="dropdown-toggle" href="Register.html" class="active">Register</a>
+		<li class="active" class="dropdown">
+          <a class="dropdown-toggle" href="Register.html" >Register</a>
           
         </li>
         <li><a href="Login.html">Login</a></li>
@@ -766,8 +764,7 @@ if(!(password.value.length >8)){
         </td></tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin" onclick="fun2()"></td></tr>
-    </table>
-  
+    </table>  
   </div>
   </div>
 </div>
@@ -785,31 +782,34 @@ if(!(password.value.length >8)){
 		  $("#h2").css("box-shadow","0px 0px 0px black");
 		  $("#h1").css("box-shadow","0px 0px 0px black");
 		  $("#h3").css("box-shadow","0px 0px 0px black");
-		  $("#h4").css("box-shadow","0px 0px 14px black");
-		 
+		  $("#h4").css("box-shadow","0px 0px 14px black");		 
 	  }
 		  </script>
       <tr><td><label for="pwd">Confirm Password</label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword" onclick="fun3()"></td></tr>
       <tr><td><label for="pwd">Enter OTP</label></td></tr>
-<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP" onclick="fun3()"></td></tr>	  
-	
-    </table>
-  
+<tr><td><input type="password" class="form-control" id="pwd" name="traderOTP" onclick="fun3()"></td></tr>	  	
+    </table>  
   </div>
   </div>
   </div>
-  
  <br/>
-  <table align="center">
-  <tr><td><label><input type="checkbox" name="tc">I accept Terms and Condition</label></td></tr> </table><br/> 
-  <table align="center"><tr><td><a href="javascript: submitform()" class="reg" >Register</a></td></tr></table>
- 
+ <table align="center">
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" id="terms">I accept Terms and Condition</label>
+                            </td>
+                        </tr>
+                        <table align="center">
+                            <tr>
+                                <td><a onclick="register()" id="reg" class="reg">Register</a></td>
+                            </tr>
+                        </table>
   </form>
 </div>
 </div>
-</div>
- 
+</div> 
 <!---my detail form end----->
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b>

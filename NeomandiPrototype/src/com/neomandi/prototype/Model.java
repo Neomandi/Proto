@@ -2936,11 +2936,23 @@ public void TraderProductAccept(String lotnum,String accno)
 			{	
 				System.out.println("from-> "+from+" to->"+to );
 				String st[]=to.split("/");
-				int date=Integer.parseInt(st[2])+1;
-				st[2]=String.valueOf(date);
-			//	to=st[0]+"-"+st[1]+"-0"+st[2];
+				String ft[]=from.split("/");
+				System.out.println("st[0]"+st[0]);
+				System.out.println("st[1]"+st[1]);
+				System.out.println("st[2]"+st[2]);
+				int date=Integer.parseInt(st[1])+1;
+				System.out.println("ate is"+date);
+				st[1]=String.valueOf(date);
+				if(date<10)
+					//to=st[0]+"-0"+st[1]+"-"+st[2];
+					to=st[2]+"-"+st[0]+"-"+st[1];
+				else
+					to=st[2]+"-"+st[0]+"-"+st[1];
 				System.out.println(to);
-				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND created_at< ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
+				from=ft[2]+"-"+ft[0]+"-"+ft[1];
+				from=from.replace("/","-");
+				System.out.println(from);
+				ps =con.prepareStatement("SELECT tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 				ps.setString(1,name);
 				ps.setString(2,from);
 				ps.setString(3, to);

@@ -12,10 +12,8 @@
 	 java.text.SimpleDateFormat,
 	 com.neomandi.prototype.FarmerHistoryBean,
 	 java.util.*"
-%>
-    <!doctype html>
+%>  <!doctype html>
     <html>
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,14 +21,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NeoMandi</title>
         <link rel="stylesheet" href="libs/pure-min.css">
-
 		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
 		<link rel="stylesheet" href="libs/grids-responsive-min.css">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -136,12 +132,9 @@
                 </div>
             </form>
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline;"><button id="download-btn" class="pure-button export">Download PDF</button>
-
-
-
-            </div>
-            <script>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline;"><button id="download-btn" class="pure-button export">Download PDF</button>
+</div>
+<script>
                 /*function callme() {
                     var table = tableToJson($('#mytable').get(0));
                     var doc = new jsPDF('l', 'pt', 'letter', true);
@@ -341,27 +334,22 @@
 					    window.onhashchange = function () {
 					        update();
 					    };
-					
 					    document.getElementById('download-btn').onclick = function () {
 					        update(true);
 					    };
-					
 					    function update(shouldDownload) {
 					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
 					        var doc = examples['html']();
-					
 					        /*doc.setProperties({
 					            title: 'Example: ' + funcStr,
 					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
 					        });*/
-					
 					        if (shouldDownload) {
 					            doc.save('FarmerSummary.pdf');
 					        } else {
 					            document.getElementById("output").src = doc.output('datauristring');
 					        }
 					    }
-					
 					    update();
 					</script>
 					
