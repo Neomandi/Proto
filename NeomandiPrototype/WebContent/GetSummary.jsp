@@ -63,9 +63,10 @@
             <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
                 <div class="">
-
-                    <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                        <h1>Farmer1, welcome to e-aution at Neomandi.</h1></div>
+					<%HttpSession hs=request.getSession(false);  
+ String name=(String)hs.getAttribute("name"); %>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
+<h1><%=name %>&nbsp;&nbsp; welcome to e-aution at Neomandi.</h1></div>
                     <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
@@ -95,7 +96,7 @@
 		    out.println("</script>");
 		}*/
 
-		HttpSession hs=request.getSession(false);  
+		  
      	String pass=(String)hs.getAttribute("pass");  
     	System.out.println(" in get summary password="+pass);
 	    HttpSession hsr=request.getSession(false); 
