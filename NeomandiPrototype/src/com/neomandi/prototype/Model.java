@@ -55,20 +55,18 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				
-				ps = con.prepareStatement("select mobile from ereg where mobile = ? ");
-				ps.setString(1, erb.getEmployeemob());
+				ps = con.prepareStatement("select empnumber from ereg where empnumber = ? ");
+				ps.setString(1, erb.getEmployeenum());
 				ps.execute();
 				rs = ps.getResultSet();
 				if(!rs.next())
 				{
 					con.setAutoCommit(false);
-					System.out.println("bean "+erb.getEmployeename()+"mobile "+erb.getEmployeemob());
-					ps = con.prepareStatement("insert into ereg values(?,?,?,?)");
+					System.out.println("bean "+erb.getEmployeename()+" empnumber "+erb.getEmployeenum());
+					ps = con.prepareStatement("insert into ereg values(?,?,?)");
 					ps.setString(1, erb.getEmployeename());
-					ps.setString(2, erb.getEmployeemob());
-					
-					ps.setString(3, erb.getEmployeepwd());
-					ps.setString(4, erb.getCemployeepwd());
+					ps.setString(2, erb.getEmployeepwd());
+					ps.setString(3, erb.getEmployeenum());
 					
 					ps.execute();
 					
