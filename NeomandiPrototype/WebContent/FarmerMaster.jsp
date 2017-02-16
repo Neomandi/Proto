@@ -119,7 +119,9 @@
 	  <td><h4>Status</h4></td>
           <td></td>
 	  </tr></thead>
-	    <%
+	   
+	  <tbody>
+	   <%
 	    
 			//fetching lotnumber 
 			String lot="";
@@ -134,7 +136,6 @@
 				while(resultSet.next()){
 					String avg="--";
 		%>
-	  <tbody>
 	  <tr class="gradeX"><td></td>
 	  
 	  	<% lotnumber=resultSet.getString("lotnumber");
