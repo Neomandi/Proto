@@ -547,7 +547,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	
 	public List<ProductSearchResultBean> productSearch(ProductSearchBean psb) 
 	{
-		List<ProductSearchResultBean> l = new ArrayList<ProductSearchResultBean>();
+		List<ProductSearchResultBean> l = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -595,10 +595,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
 			//		System.out.println("inside else if()->");
+					if(kproduce.equals("Vegetables"))
+					  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
 					rs = pstmt.executeQuery();
+					System.out.println(pstmt);
 					ProductSearchResultBean psrb = null;
 					while(rs.next())
 					{
@@ -612,6 +615,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				//		System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
+					System.out.println("list is "+l);
 					return l;
 				}
 				else if(slot.equals("base")&&!quality.equals("base"))
@@ -646,6 +650,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					pstmt.setString(4, slot);	
 					rs = pstmt.executeQuery();
 					ProductSearchResultBean psrb = null;
+					System.out.println(pstmt);
 					while(rs.next())
 					{
 						psrb = new ProductSearchResultBean();

@@ -160,14 +160,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 </div>
 <div class="maindiv">
-<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>&nbsp;&nbsp;<div id="auction1" style="display:inline;"><div id="msg" style="display:inline;">will begin in&nbsp</div>;<div id="timer" style="display:inline;" ></div></div>
+<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>&nbsp;&nbsp;<div id="auction1" style="display:inline;"><div id="msg" style="display:inline;"><!-- will begin in&nbsp --></div><div id="timer" style="display:inline;" ></div></div>
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <script>
-  	
+  	/*
         var Etime=document.getElementById("time").value;
 		var Btimes1="10:30:00";
 		var Btime1s1="10:35:00";
@@ -234,11 +234,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			        if( seconds > 0 )
 			        {
 			            setTimeout(tick,1000);
-			          /*  document.getElementById('ts').onclick = function() {
-				            	console.log("inside the count function");
-				            	//alert("Auction under progress");
-				            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
-				            	}*/
+			          
 			        } 
 			        else 
 		     		{
@@ -340,7 +336,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 		}
 		 tick();
 		}
-		countdown1(minutes,seconds,hours);	
+		countdown1(minutes,seconds,hours);	-*/
 //--------------------------for slot2------------------------------------------------------------------------	
 	</script>
         <!----row1--->

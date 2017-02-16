@@ -717,7 +717,7 @@ if(!(password.value.length >8)){
 	  }
 		  </script>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
-	  <tr><td><input type="date" class="form-control" id = "dateofregistration" name="traderDateOfRegistration" onclick="fun2()"></td></tr>
+	  <tr><td><input type="date" class="form-control" id = "dateofregistration" placeholder="dd-mm-yyyy" name="traderDateOfRegistration" onclick="fun2()"></td></tr>
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration" onclick="fun2()"></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>

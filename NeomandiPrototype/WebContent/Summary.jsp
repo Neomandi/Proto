@@ -86,7 +86,7 @@ border-top:2px solid #fff !important;
 			    if(summary=="no")
 			    	{
 			    	 document.getElementById("summary").style.display="none";
-			    	 document.getElementById("todaypdf").style.display="none";
+			    	 //document.getElementById("todaypdf").style.display="none";
 			    	}
 			  </script>
 			  <%} 
@@ -116,7 +116,7 @@ border-top:2px solid #fff !important;
 </div><br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>
-&nbsp; &nbsp; &nbsp;<a id="todaypdf" href="#" style="margin-left:10px" class="greencls">Export as PDF</a></td>
+&nbsp; &nbsp; &nbsp;<a id="summary" href="#" style="margin-left:10px" class="greencls">Export as PDF</a></td>
 </tr>
 	   </tbody>
 	  </table>
@@ -128,7 +128,8 @@ border-top:2px solid #fff !important;
 	  <div class="sum1tab table-responsive">
 	  <table class="table sum1table">
 	  <thead class="none"><tr>
-	  <%if(request.getAttribute("tradesummary")!=null)
+<%
+if(request.getAttribute("tradesummary")!=null)
 {
 if(request.getAttribute("tradesummary").equals("no"))
 {
@@ -144,7 +145,7 @@ if(request.getAttribute("tradesummary").equals("no"))
 	  <td><h4>My Final cost</h4></td>
 	  </tr></thead>
 	  <tbody>
-	  <tr class="gradeX">	  	<% 
+	  <tr class="gradeX"><% 
 		HttpSession todaysummary=request.getSession(false);
 		List al=(List)todaysummary.getAttribute("todaysummary");
 		//request.setAttribute("theList", al);
@@ -164,7 +165,7 @@ if(request.getAttribute("tradesummary").equals("no"))
 <tr>
    <td></td>
    <td></td>
-<td><a href="#" class="reg">Get Summary</a></td>
+<td><a id="summary"  href="#" class="reg">Get Summary</a></td>
 </tr>
 </table>
 <table class="table" align="center">
@@ -172,7 +173,7 @@ if(request.getAttribute("tradesummary").equals("no"))
    <td></td>
    <td></td>
 <td></td>
-<td><a href="#" class="reg">Export as PDF</a></td>
+<td><a id="todaypdf"  href="#" class="reg">Export as PDF</a></td>
 </tr>
 </table>
 </div>
@@ -255,12 +256,9 @@ $('#idto').datetimepicker({
            });
 });
         </script>
-        <script src="libs/jspdf.min.js"></script>
-					
-					<script src="libs/jspdf.plugin.autotable.src.js"></script>
-					
-					<script src="js/examples.js"></script>
-					
+        <script src="libs/jspdf.min.js"></script>					
+					<script src="libs/jspdf.plugin.autotable.src.js"></script>					
+					<script src="js/examples.js"></script>					
 					<script>
 					    window.onhashchange = function () {
 					        update();
