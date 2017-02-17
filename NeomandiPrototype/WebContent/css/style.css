@@ -675,7 +675,7 @@ vertical-align:middle;
     font-size: 14px;
 position: relative;
 padding: 7px 10px;
-top: 7px;
+top: 0.5px;
 text-align: center;
 }
 .from .pad .get {
@@ -745,8 +745,8 @@ position: relative;
 
 .from .pad .get::before {
     content: "";
-border-top: 16px solid #d81e5d;
-border-bottom: 17px solid #d81e5d;
+/* border-top: 16px solid #d81e5d; */
+/* border-bottom: 17px solid #d81e5d; */
 border-left: 16px solid transparent;
 position: absolute;
 left: -16px;
@@ -763,8 +763,8 @@ top: 0;
 }
 .from .pad .export::before {
     content: "";
-    border-top: 17px solid #00bea4;
-    border-bottom: 17px solid #00bea4;
+/*     border-top: 17px solid #00bea4; */
+/*     border-bottom: 17px solid #00bea4; */
     border-left: 16px solid transparent;
     position: absolute;
     left: -16px;
@@ -772,8 +772,8 @@ top: 0;
 }
 .from .pad .get::after {
     content: "";
-border-top: 17px solid transparent;
-border-bottom: 16px solid transparent;
+/* border-top: 17px solid transparent; */
+/* border-bottom: 16px solid transparent; */
 border-left: 16px solid #d81e5d;
 position: absolute;
 right: -16px;
@@ -800,8 +800,8 @@ top: 0px;
 }
 .from .pad .export::after {
     content: "";
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
+/*     border-top: 17px solid transparent; */
+/*     border-bottom: 17px solid transparent; */
     border-left: 16px solid #00bea4!important;
     position: absolute;
     right: -16px;
