@@ -67,7 +67,7 @@ footer {
                 <ul class="nav nav-tabs">
                     <li><a href="ProductEntry.jsp">Product Entry</a></li>
                     <li class="active"><a href="Revenue.jsp">Revenue</a></li>
-                    <li><a href="dispatch.html">Dispatch</a></li>
+                    <li><a href="Dispatch.do">Dispatch</a></li>
                 </ul>
             </div>
         </div>
@@ -123,7 +123,7 @@ footer {
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		//System.out.println(rs);
-		if(!rs.isBeforeFirst())
+		if(rs.next() != true)
 		{
 			while(rs.next())
 			{

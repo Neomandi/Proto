@@ -117,7 +117,11 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         FROM<div class='input-group date' id='from' name='from'>
+<<<<<<< HEAD
                             <input type='text' class="form-control" name="from" id='from' placeholder="dd/mm/yyyy" />
+=======
+                            <input type='text' class="form-control" name="from" id='from' value="${param. from}"/>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -127,7 +131,11 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
+<<<<<<< HEAD
                             <input type='text' class="form-control" name="to" placeholder="dd/mm/yyyy" />
+=======
+                            <input type='text' class="form-control" name="to" value="${param. to}"/>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -209,9 +217,13 @@
                                         <th style="text-align:center; color:white">
                                             <h4>Market Cess</h4></th>
                                         <th style="text-align:center; color:white">
+
                                             <h4>EPC<sup>#</sup></h4></th>
+
                                         <th style="text-align:center; color:white">
+
                                             <h4>PMVA<sup>$</sup></h4></th>
+
                                         <th style="text-align:center; color:white">
                                             <h4>Deductions</h4></th>
                                         <th style="text-align:center; color:white">
@@ -352,7 +364,7 @@
 					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
 					        });*/
 					        if (shouldDownload) {
-					            doc.save('FarmerSummary.pdf');
+					            doc.save('<%=name %> Summary.pdf');
 					        } else {
 					            document.getElementById("output").src = doc.output('datauristring');
 					        }
