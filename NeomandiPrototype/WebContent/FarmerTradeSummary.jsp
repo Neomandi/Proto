@@ -114,7 +114,7 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         FROM<div class='input-group date' id='from' name='from'>
-                            <input type='text' class="form-control" name="from" id='from' />
+                            <input type='text' class="form-control" name="from" id='from' value="${param. from}"/>
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -124,7 +124,7 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
-                            <input type='text' class="form-control" name="to" />
+                            <input type='text' class="form-control" name="to" value="${param. to}"/>
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -206,9 +206,9 @@
                                         <th style="text-align:center; color:white">
                                             <h4>Market Cess</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>EPC</h4></th>
+                                            <h4>EPC#</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>PMVA</h4></th>
+                                            <h4>PMVA$</h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4>Deductions</h4></th>
                                         <th style="text-align:center; color:white">
@@ -349,7 +349,7 @@
 					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
 					        });*/
 					        if (shouldDownload) {
-					            doc.save('FarmerSummary.pdf');
+					            doc.save('<%=name %> Summary.pdf');
 					        } else {
 					            document.getElementById("output").src = doc.output('datauristring');
 					        }

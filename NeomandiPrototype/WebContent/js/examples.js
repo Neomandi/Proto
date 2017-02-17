@@ -134,25 +134,11 @@ examples.multiple = function () {
 // From html - shows how pdf tables can be be drawn from html tables
 examples.html = function () {
     var doc = new jsPDF('portrait', 'pt','a2');
-    var d = new Date();
     doc.text("Neomandi Trade Summary", 40, 30);
-    var currentTime = new Date();
-
-    var currentOffset = currentTime.getTimezoneOffset();
-
-    var ISTOffset = 330;   // IST offset UTC +5:30 
-
-    var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
-
-    // ISTTime now represents the time in IST coordinates
-
-    var hoursIST = ISTTime.getHours();
-    var minutesIST = ISTTime.getMinutes();
-    
-    doc.text(1100,30,hoursIST+":"+minutesIST);
+    doc.text("*Transportation / Loading Charges   #E-Platform Charges   $ Pre-Market Value Addition Charges", 464, 30);
     var elem = document.getElementById("basic-table");
     var res = doc.autoTableHtmlToJson(elem);
-    doc.autoTable(res.columns, res.data, {startY: 40});
+    doc.autoTable(res.columns, res.data, {startY: 60});
     return doc;
 };
 
