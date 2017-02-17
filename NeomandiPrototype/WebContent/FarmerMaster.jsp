@@ -40,6 +40,13 @@
     	height: 60px;
     	width: 65px;
     }
+    .tradtab a{
+    background-color: #8467D7;
+    }
+   .fontcolor  h4{
+   color:#6C2DC7;
+   
+   }
     </style>
 </head>
 
@@ -53,7 +60,7 @@ if((String)hs.getAttribute("name")==null){
 	out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
 }
 	String name=(String)hs.getAttribute("name"); %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>&nbsp;&nbsp;welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -188,12 +195,12 @@ if((String)hs.getAttribute("name")==null){
 
 
 	 <td class="clsnowrap" >
-	 <h4>
-	  <div id="msg" style="display:inline; " >Auction will begins in</div>
-	  <div id="timer" style="display:inline; margin-top: -2em " ></div>
-	  	<div id="auction" style="display:inline; margin-top: -2em; "></div>
-		<div id="auction1" style="display:inline; margin-top: -2em;"></div>
-	  	</h4></td></tr>
+	<b><h4>
+	  <div id="msg" style="display:inline; color:#6C2DC7;" >Auction will begins in</div>
+	  <div id="timer" style="display:inline; margin-top: -2em color:#6C2DC7; " ></div>
+	  	<div id="auction" style="display:inline; margin-top: -2em; color:#6C2DC7; "></div>
+		<div id="auction1" style="display:inline; margin-top: -2em; color:#6C2DC7;""></div>
+	  	</h4></b></td></tr>
 	  <%
 		}
 	}
@@ -218,7 +225,7 @@ if((String)hs.getAttribute("name")==null){
           <h4 class="modal-title">Product Image</h4>
         </div>
         <div class="modal-body">
-          <img src="<%=imgsrc%>" class="img-responsive trad">
+          <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
