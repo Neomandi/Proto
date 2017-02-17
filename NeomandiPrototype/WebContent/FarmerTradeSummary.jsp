@@ -58,6 +58,9 @@
     	height: 60px;
     	width: 65px;
     }
+    .tradtab a{
+    background-color: #9118C4;
+    }
    
         </style>
     </head>
@@ -73,7 +76,7 @@
 					}
 				String name=(String)hs.getAttribute("name"); %>
                     <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                        <h1><%=name %>&nbsp;&nbsp; welcome to e-aution at Neomandi.</h1></div>
+                        <h1><%=name %>&nbsp;&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
                     <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
@@ -114,7 +117,7 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         FROM<div class='input-group date' id='from' name='from'>
-                            <input type='text' class="form-control" name="from" id='from' />
+                            <input type='text' class="form-control" name="from" id='from' placeholder="dd/mm/yyyy" />
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -124,14 +127,14 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
-                            <input type='text' class="form-control" name="to" />
+                            <input type='text' class="form-control" name="to" placeholder="dd/mm/yyyy" />
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
                     </div><br/>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
-                     <div><a href="javascript:history()" class="get">Get Summary</a></div>
+                     <div><a href="javascript:history()" class="get">Get Summary</a>></div>
                     </div>
                 </div>
             </form>
@@ -190,7 +193,7 @@
                                         <th></th>
                                        
                                         <th style="text-align:center; color:white">
-                                            <h4>Date</h4></th>
+                                            <h4>Date/Time</h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4>Lot Number</h4></th>
                                         <th style="text-align:center; color:white">
@@ -202,13 +205,13 @@
                                         <th style="text-align:center; color:white">
                                             <h4>Gross Earnings</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>TLC*</h4></th>
+                                            <h4>TLC<sup>*</sup></h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4>Market Cess</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>EPC</h4></th>
+                                            <h4>EPC<sup>#</sup></h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>PMVA</h4></th>
+                                            <h4>PMVA<sup>$</sup></h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4>Deductions</h4></th>
                                         <th style="text-align:center; color:white">
@@ -253,7 +256,7 @@
                                                 <td>
                                                     <h4><%=fhb.getQuantity() %></h4></td>
                                                 <td>
-                                                    <h4><%=fhb.getAverageprice()%></h4></td>
+                                                    <h4><%=fhb.getQuantitybidfor()%></h4></td>
                                                 <td>
                                                     <h4><%=fhb.getAverageprice()%></h4></td>
                                                 <td>
