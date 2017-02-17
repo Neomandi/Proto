@@ -185,7 +185,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("select pass from ereg where name = ?");
+				ps = con.prepareStatement("select pass,empnumber from ereg where name = ?");
 				ps.setString(1, elbn.getEname());
 				
 				ps.executeQuery();
@@ -195,8 +195,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(rs.next())
 				{
 					String npwd = rs.getString("pass");
+					String empnumber = rs.getString("empnumber");
 					if(npwd.equals(elbn.getEpwd()))
-						msg = msg + "SUCCESS";
+						msg = msg + "SUCCESS" + ":"+ empnumber;
 					else
 						msg = msg + "Your password does not match. Please provide correct password.";
 				}
