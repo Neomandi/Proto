@@ -966,7 +966,7 @@ public class ControllerServlet extends HttpServlet {
 				e1.printStackTrace();
 			}         
 	        String photo="";
-	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();

@@ -36,11 +36,14 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color: #52D017;
+    background-color:#FF7220;
     }
     h4{
     	color:#6C2DC7;
     }
+     #image{
+    height:300px;
+    width:300px;}
 </style>
 </head>
 
@@ -152,7 +155,7 @@ if((String)hs.getAttribute("name")==null){
 				  imgsrc="ProductImages/"+lotnumber+".jpg";
 			%>
 				  
-	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"> <%=lotnumber %></button></td><td><h4><%=resultSet.getString("produce")%></h4></td><td><h4><%=product%></h4></td><td><h4><%=grade%></h4></td><td><h4><%=quantity %></h4></td><td></td></tr>
+	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"  style="color:#000080"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=resultSet.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
 	  <% 
 	  }  
 			} catch (Exception e) {
@@ -184,7 +187,7 @@ if((String)hs.getAttribute("name")==null){
                         <h4 class="modal-title">Product Image</h4>
                     </div>
                     <div class="modal-body">
-                        <img src="<%=imgsrc%>" class="img-responsive trad">
+                        <img src="<%=imgsrc%>" class="img-responsive trad" id="image">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

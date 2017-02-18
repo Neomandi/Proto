@@ -21,18 +21,22 @@ public class FarmerHistoryBean {
 	private String status;
 	private InputStream photo;
 	private String crdate;
-	
+	public FarmerHistoryBean(){
+		System.out.println("in FarmerHistoryBean");
+	}
 	public String getCrdate() {
 		return crdate;
 	}
 	public void setCrdate(String crdate) {
 		this.crdate = crdate;
+		System.out.println("crdate="+crdate);
 	}
 	public String getFarmerid() {
 		return farmerid;
 	}
 	public void setFarmerid(String farmerid) {
 		this.farmerid = farmerid;
+		System.out.println("farmerid="+farmerid);
 	}
 	public String getLotnumber() {
 		return lotnumber;

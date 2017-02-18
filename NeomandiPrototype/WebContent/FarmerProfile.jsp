@@ -45,7 +45,7 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color: #2F0AC2;
+    background-color:#C68E17;
     }
 </style>
 </head>

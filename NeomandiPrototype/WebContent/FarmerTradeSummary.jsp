@@ -59,9 +59,13 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color: #9118C4;
+    background-color:#E55451;
     }
+    .sum2 .table thead th{
    
+    height:5px;
+    }
+  
         </style>
     </head>
 
@@ -117,11 +121,9 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         FROM<div class='input-group date' id='from' name='from'>
-<<<<<<< HEAD
-                            <input type='text' class="form-control" name="from" id='from' placeholder="dd/mm/yyyy" />
-=======
+
                             <input type='text' class="form-control" name="from" id='from' value="${param. from}"/>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -131,23 +133,21 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
-<<<<<<< HEAD
-                            <input type='text' class="form-control" name="to" placeholder="dd/mm/yyyy" />
-=======
+
                             <input type='text' class="form-control" name="to" value="${param. to}"/>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
                     </div><br/>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
-                     <div><a href="javascript:history()" class="get">Get Summary</a>></div>
+                     <div><a href="javascript:history()" class="get">Get Summary</a></div>
                     </div>
                 </div>
             </form>
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline;"><button id="download-btn" class="pure-button export">Download PDF</button>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline; color:white;"><button id="download-btn" class="pure-button export"><font color="white"><b>Download PDF</b></font></button>
 </div>
 <script>
                 /*function callme() {
@@ -196,38 +196,43 @@
                         <div class="sum2tab table-responsive">
                             <table id="basic-table" class="table sum2table last">
 
-                                <thead>
-                                    <tr class="gradeX">
+                                <thead >
+                                    <tr>
                                         <th></th>
-                                       
+                                   		
+                                        
+                                        <th style="text-align:center; color:white;">
+                                            <h4 style="font-size:15px;">Date/Time</h4></th>
+                                       <th style="text-align:center; color:white;">
+                                            <h4 style="font-size:15px;">Farmer Name</h4></th> 
+                                         <!--  <th style="text-align:center; color:white;">
+                                            <h4 style="font-size:15px;">Farmer ID</h4></th>-->
                                         <th style="text-align:center; color:white">
-                                            <h4>Date/Time</h4></th>
+                                            <h4 style="font-size:15px;">Lot Number</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>Lot Number</h4></th>
+                                            <h4 style="font-size:15px;">Lot Size</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>Lot Size</h4></th>
+                                            <h4 style="font-size:15px;">Quantity</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>Quantity</h4></th>
+                                            <h4 style="font-size:15px;">Avg. Price</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>Avg Price</h4></th>
+                                            <h4 style="font-size:15px;">Gross Earnings</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>Gross Earnings</h4></th>
+                                            <h4 style="font-size:15px;">TLC<sup>*</sup></h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>TLC<sup>*</sup></h4></th>
-                                        <th style="text-align:center; color:white">
-                                            <h4>Market Cess</h4></th>
+                                            <h4 style="font-size:15px;">Market Cess</h4></th>
                                         <th style="text-align:center; color:white">
 
-                                            <h4>EPC<sup>#</sup></h4></th>
+                                            <h4 style="font-size:15px;">EPC<sup>#</sup></h4></th>
 
                                         <th style="text-align:center; color:white">
 
-                                            <h4>PMVA<sup>$</sup></h4></th>
+                                            <h4 style="font-size:15px;">PMVA<sup>$</sup></h4></th>
 
                                         <th style="text-align:center; color:white">
-                                            <h4>Deductions</h4></th>
+                                            <h4 style="font-size:15px;">Deductions</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4>My Net Earnings</h4></th>
+                                            <h4 style="font-size:15px;">My Net Earnings</h4></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -259,32 +264,40 @@
 		    deduction1=deduction1/100;
 		    int transport=500;
 			 %>
+			 
 
                                                 <td></td>
+                                                
                                                 <td class="clspad0" width="15%">
-                                                    <h4><%=fhb.getCrdate() %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getCrdate() %></b></h4></td>
+                                              <td class="clspad0">
+                                                    
+                                                   <h4  style="color:#000080"><b><%=(String)hs.getAttribute("name")%></b></h4></td>
+                                                      <!--  <td class="clspad0">
+                                                    
+                                                   <h4  style="color:#000080"><b><%=fhb.getFarmerid()%></b></h4></td>--> 
                                                 <td>
-                                                    <h4><%=fhb.getLotnumber()  %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getLotnumber()  %></b></h4></td>
                                                 <td>
-                                                    <h4><%=fhb.getQuantity() %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getQuantity() %></b></h4></td>
                                                 <td>
-                                                    <h4><%=fhb.getQuantitybidfor()%></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getQuantitybidfor()%></b></h4></td>
                                                 <td>
-                                                    <h4><%=fhb.getAverageprice()%></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getAverageprice()%></b></h4></td>
                                                 <td>
-                                                    <h4><%=fhb.getFinalprice() %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=fhb.getFinalprice() %></b></h4></td>
                                                 <td>
-                                                    <h4><%=transport %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=transport %></b></h4></td>
                                                 <td>
-                                                    <h4><%=MUCharge1 %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=MUCharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4><%=EPUCharge1 %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=EPUCharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4><%=PACharge1 %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=PACharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4><%=deduction1 %></h4></td>
+                                                    <h4  style="color:#000080"><b><%=deduction1 %></b></h4></td>
                                                 <td class="clspadr0">
-                                                    <h4><%= myEarn1 %></h4></td>
+                                                    <h4  style="color:#000080"><b><%= myEarn1 %></b></h4></td>
                                                 <td></td>
                                     </tr>
                                     <%} %>
