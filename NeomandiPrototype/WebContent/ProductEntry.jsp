@@ -61,7 +61,7 @@
     	s2.innerHTML = "";
     	if(s1.value == "Vegetables")
     	{
-    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish"];	
+    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish", "POTATO|Potato"];	
     	}
     	else if(s1.value == "Fruits")
     	{
@@ -93,6 +93,11 @@
     	var lotnumber=document.ProductEntryForm.lotnumber;
     	
     	//farmerid validation
+    	if(farmerid.value == ""){
+    		alert("Please enter farmerid");
+    		farmerid.focus();
+    		return false;
+    	}
     	if(isNaN(farmerid.value)){
     		alert("Enter the valid Farmerid ");
     		farmerid.focus();
@@ -422,9 +427,9 @@
         	var produce = document.getElementById("produce").value;
         	var quality = document.getElementById("quality").value;
         	var num = document.getElementById("nm").value;
-        	console.log(farmerid+" "+produce+" "+quality+" "+num);
+        	//console.log(farmerid+" "+produce+" "+quality+" "+num);
         	
-        	if(farmerid == "")
+        	if(farmerid == "" || produce == "Produce" || quality == "Grade")
         	{
         		alert("Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber");
         		return false;
