@@ -168,63 +168,74 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 </div>
 <div class="maindiv">
-<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>&nbsp;&nbsp;<div id="auction1" style="display:inline;"><div id="msg" style="display:inline;"> will begin in&nbsp;</div><div id="timer" style="display:inline;" ></div></div>
+
+<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>
+	
+	  <div id="msg" style="display:inline; " >Auction will begin in</div>&nbsp;&nbsp;
+	 <div id="timer" style="display:inline;  " ></div>
+	  	<div id="auction" style="display:inline;   "></div>
+		<div id="auction1" style="display:inline; "></div>
+	  	
+
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <script>
-  	
-        var Etime=document.getElementById("time").value;
-		var Btimes1="10:30:00";
-		var Btime1s1="10:35:00";
-	
-		start = Etime.split(":");
-		end =Btimes1.split(":");
-		var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-		var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-		diff = endDate.getTime() - startDate.getTime();
-		console.log("current time is "+Etime);
-		console.log("difference in milliseconds is "+diff);
-		var hours = Math.floor(diff / 1000 / 60 / 60);
-		//diff -= hours* 60 * 60;
-		var seconds= Math.floor(diff /1000);
-		var minutes = Math.floor(diff / 1000 / 60);
-		var res3=0;
-		console.log("differences in minutes before calc "+minutes);		
-		console.log("differences in seconds before calc "+seconds);		
-		if(seconds>60)
-		{
-				res1=seconds%60;
-				res2=Math.floor(seconds/60);
-						
-				seconds=res1;
-				minutes=res2;
-		}
-		if(minutes>60)
-		{
-				res1=minutes%60;
-				res3=Math.floor(minutes/60);
-						
-				hours=res3;
-				minutes=res1;
-		}
-		console.log("differences in minutes is "+minutes);
-		console.log("differences in seconds is "+seconds);
-		console.log("differences in hours is "+hours);
+  var Etime=document.getElementById("time").value;
+	var Btime="10:30:00";
+	var Btime1="10:35:00";
 
-		var timedifference=+hours+":"+minutes+":"+seconds;
-		console.log("differences in time is "+timedifference);
-		
-		countdown1(minutes,seconds,hours);
-		
-		var five=300000;
-		timedif=diff+five;
-		console.log("count"+timedif);	
+	start = Etime.split(":");
+	end =Btime.split(":");
+	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+	 diff = endDate.getTime() - startDate.getTime();
+	console.log("end time is "+Btime);
+	console.log("current time is "+Etime);
+	console.log("difference in milliseconds is "+diff);
+	var hours = Math.floor(diff / 1000 / 60 / 60);
+	//diff -= hours* 60 * 60;
+	var seconds= Math.floor(diff /1000);
+	var minutes = Math.floor(diff / 1000 / 60);
+	var res3=0;
+	console.log("differences in minutes before calc "+minutes);		
+	console.log("differences in seconds before calc "+seconds);		
+	if(seconds>60)
+	{
+			res1=seconds%60;
+			res2=Math.floor(seconds/60);
+					
+			seconds=res1;
+			minutes=res2;
+	}
+	if(minutes>60)
+	{
+			res1=minutes%60;
+			res3=Math.floor(minutes/60);
+					
+			hours=res3;
+			minutes=res1;
+	}
+	console.log("differences in minutes is "+minutes);
+	console.log("differences in seconds is "+seconds);
+	console.log("differences in hours is "+hours);
+
+	var timedifference=+hours+":"+minutes+":"+seconds;
+	console.log("differences in time is "+timedifference);
 	
-		function countdown1(minutes,seconds,hours) 
-		{			
+	countdown(minutes,seconds,hours);
+	
+	var five=300000;
+	timedif=diff+five;
+	console.log("count"+timedif);	
+
+	
+		function countdown(minutes,seconds,hours) 
+		{
+			  
+			 
 			 	var seconds =seconds;
 			    var mins = minutes
 			    var hour=hours;
@@ -242,32 +253,30 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			        if( seconds > 0 )
 			        {
 			            setTimeout(tick,1000);
-			          
+			           
 			        } 
 			        else 
 		     		{
 						if(mins > 0)
 						{
-							setTimeout(function (){	countdown1(mins - 1,60,hour); },1000);
+							setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
 						}			 				
 						else
 						{
 							if(hour>1)
 							{
-			 					setTimeout(function (){	countdown1(59,60,hour-1); },1000);
+			 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
 			 				}	
 							else
 							{
-								
-				            	var str="<h4><div id='a1'>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' > 5:00</div></h4>";
-				            	
+				            	var str="<div id='a1'style='display:inline; '> has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
 				            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
 				            	
-				            	//var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
+				            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
 				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
@@ -286,8 +295,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				        		        var current_minutes = mins
 				        		       	seconds--;
 				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-				        		        if( seconds > 0 ) 
-				        		        {
+				        		        if( seconds > 0 ) {
 				        		            setTimeout(tick,1000);
 				        		            
 				        		        } 
@@ -299,7 +307,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 					        			   }
 					        		       else
 					        		       {
-					        		           	var str1=" has ended.";
+					        		           	var str1="has ended";
 					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
 								            	var timeOutPeriod = waitseconds * 1000;
@@ -308,7 +316,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
 								            	var timeOutPeriod = waitseconds * 1000;
-								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
+								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
+								            	
+								            	
 								            	document.getElementById("auction1").innerHTML=str1;
 					        		       }
 				        		    	}
@@ -317,7 +327,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			        			}		
 				            	var Etime1=document.getElementById("time").value;
 				            	start1 = Etime1.split(":");
-				            	end1 =Btime1s1.split(":");
+				            	end1 =Btime1.split(":");
 				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 				            	var td = endDate1.getTime() - startDate1.getTime();					            	
@@ -334,7 +344,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
-				            	console.log("auction ends at "+Btime1s1);
+				            	console.log("auction ends at "+Btime1);
 				            	console.log("time is  "+Etime1);
 				            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
 			        			count(minutes1,seconds1);
@@ -345,7 +355,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 		}
 		 tick();
 		}
-		countdown1(minutes,seconds,hours);	
+		countdown(minutes,seconds,hours);	
 //--------------------------for slot2------------------------------------------------------------------------	
 	</script>
         <!----row1--->
