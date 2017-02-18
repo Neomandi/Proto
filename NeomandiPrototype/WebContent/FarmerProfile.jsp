@@ -386,9 +386,9 @@
 	%>
 	<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
-	<div id="msg" style="display:inline;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline;" ></div></font></h4>
-	  	<div id="auction" style="display:inline;"></div>
-		<div id="auction1" style="display:inline;"></div>
+	<div id="msg" style="display:inline; visibility:hidden;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; visibility:hidden;" ></div></font></h4>
+	  	<div id="auction" style="display:inline; visibility:hidden;"></div>
+		<div id="auction1" style="display:inline; visibility:hidden;"></div>
 <form>
 	<input type="hidden" value="<%=time %>" id="time" />
 	<input type="hidden" value="<%=s1 %>" id="slot" />
