@@ -159,14 +159,16 @@ else
 		  var hold=document.getElementById("hold").value;
 		  var hld=new Number(hold);
 		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
-		  if(balance!=null&&balance.length!=0)
+		  if(hold.length==0)
+			  alert("PLEASE ENTER AMOUNT TO BE HELD ")
+		  else if(balance!=null&&balance.length!=0)
 		  {			 	        
 			if(bal<hld)
 			{
 					alert("YOU CANT HOLD FUNDS MORE THAN AVAILABLE BALANCE")
 			}
-			 else
-			  {
+			else
+			{
 				  xmlhttp = new XMLHttpRequest();
 				  xmlhttp.onreadystatechange = function() {
 				  if (this.readyState == 4 && this.status == 200) 
@@ -189,11 +191,11 @@ else
 					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
 					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
-				 }
+			 }
 		  }
 		  else  if(hold==0)
 			  {
-			  	alert("PLEASE HOLD MORE FUNDS");
+			  //	alert("PLEASE HOLD MORE FUNDS");
 			  }
 		  else
 		  {

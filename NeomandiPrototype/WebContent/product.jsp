@@ -368,8 +368,7 @@
 										{
 										   	 var string=xmlhttp.responseText;
 										   	// console.log("string is"+string);
-										   	document.getElementById("category").value=string;
-											document.getElementById("category").innerHTML=string;
+										   
 											
 											         document.getElementById("addtrade").innerHTML = string;
 											         document.getElementById("addtrade").value = string;
