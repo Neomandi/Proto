@@ -45,6 +45,14 @@
             padding-bottom: 100px;
         }
     </style>
+    <% 
+		HttpSession elog = request.getSession(false);
+	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
+	    {
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='Login.html';</script>");
+	    }
+	%>
     <script>
     function populate(s1, s2)
     {
@@ -53,7 +61,7 @@
     	s2.innerHTML = "";
     	if(s1.value == "Vegetables")
     	{
-    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish"];	
+    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish", "POTATO|Potato"];	
     	}
     	else if(s1.value == "Fruits")
     	{
@@ -80,8 +88,16 @@
     	var category=document.ProductEntryForm.category;
     	var produce=document.ProductEntryForm.produce;
     	var grade=document.ProductEntryForm.quality;
+    	var empnumber=document.ProductEntryForm.empnumber;
+    	var pwd=document.ProductEntryForm.pwd;
+    	var lotnumber=document.ProductEntryForm.lotnumber;
     	
     	//farmerid validation
+    	if(farmerid.value == ""){
+    		alert("Please enter farmerid");
+    		farmerid.focus();
+    		return false;
+    	}
     	if(isNaN(farmerid.value)){
     		alert("Enter the valid Farmerid ");
     		farmerid.focus();
@@ -94,13 +110,13 @@
     		return false;
     	}
     	
-//     	//marketcode validation
-//     	var letters = /^[0-9a-zA-Z]+$/;
-//     	if(!marketcode.value.match(letters)){
-//     		alert('Your marketcode should contain alphanumeric characters only');
-//     		marketcode.focus();
-//     		return false;
-//     	}
+    	//marketcode validation
+    	var letters = /^[0-9a-zA-Z]+$/;
+    	if(marketcode.value == ""){
+    		alert("Please enter marketcode");
+    		marketcode.focus();
+    		return false;
+    	}
 
 		//Category Validation
 		//console.log(category.value);
@@ -136,6 +152,13 @@
     	if(quantity.value==0){
     		alert("Please enter atleast minimum 1 kg");
     		quantity.focus();
+    		return false;
+    	}
+    	
+    	//Lotnumber Validation
+    	if(lotnumber.value == "")
+    	{
+    		alert("Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber");
     		return false;
     	}
     	return true;
@@ -179,14 +202,6 @@
     </style>
 </head>
 <body class="">
-    <% 
-		HttpSession elog = request.getSession(false);
-	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
-	    {
-	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='Login.html';</script>");
-	    }
-	%>
     <div class="logo_relative">
         <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
@@ -334,7 +349,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="pwd">
+                                        <input type="text" class="form-control" id="pwd" name="empnumber">
                                     </td>
                                 </tr>
                                 <tr>
@@ -344,7 +359,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="password" class="form-control" id="pwd">
+                                        <input type="password" class="form-control" id="pwd" name="pwd">
                                     </td>
                                 </tr>
 
@@ -412,11 +427,11 @@
         	var produce = document.getElementById("produce").value;
         	var quality = document.getElementById("quality").value;
         	var num = document.getElementById("nm").value;
-        	console.log(farmerid+" "+produce+" "+quality+" "+num);
+        	//console.log(farmerid+" "+produce+" "+quality+" "+num);
         	
-        	if(farmerid == "")
+        	if(farmerid == "" || produce == "Produce" || quality == "Grade")
         	{
-        		alert("Please give proper Farmerid, Produce and Quality to generate Lotnumber");
+        		alert("Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber");
         		return false;
         	}
         	else

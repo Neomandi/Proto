@@ -185,7 +185,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
-				ps = con.prepareStatement("select pass from ereg where name = ?");
+				ps = con.prepareStatement("select pass,empnumber from ereg where name = ?");
 				ps.setString(1, elbn.getEname());
 				
 				ps.executeQuery();
@@ -195,8 +195,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(rs.next())
 				{
 					String npwd = rs.getString("pass");
+					String empnumber = rs.getString("empnumber");
 					if(npwd.equals(elbn.getEpwd()))
-						msg = msg + "SUCCESS";
+						msg = msg + "SUCCESS" + ":"+ empnumber;
 					else
 						msg = msg + "Your password does not match. Please provide correct password.";
 				}
@@ -565,6 +566,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String quality = psb.getGrade();
 				String slot=psb.getSlot();
 				System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
+				if(kproduce!=null)
+					if(kproduce.equals("Vegetables"))
+					  kproduce="Vegetable";
 				if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
@@ -588,6 +592,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						l.add(psrb);	
 						//System.out.println("inside ProductSearchResultBean"+psrb);
 					}
+					System.out.println(l);
 					return l;
 				}
 				else if(slot.equals("base")&&quality.equals("base"))
@@ -616,15 +621,16 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println("list is "+l);
 					return l;
 				}
-				else if(slot.equals("base")&&!quality.equals("base"))
+				else if(slot.equals("base")&&(!quality.equals("base")))
 				{
-					//System.out.println("inside else if()->");
+					System.out.println("slot= base quality!=base");
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);					
 					rs = pstmt.executeQuery();
 					ProductSearchResultBean psrb = null;
+					System.out.println(pstmt);
 					while(rs.next())
 					{
 						psrb = new ProductSearchResultBean();
@@ -637,6 +643,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						//System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
+					System.out.println(l);
 					return l;
 				}
 				else
@@ -661,6 +668,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				//		System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 					}
+					System.out.println(l);
 					return l;
 				}
 			}
@@ -678,8 +686,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	}
 
 	//Product Entry
-	public String productEntry(ProductEntryBean peb){
-		
+	public String productEntry(ProductEntryBean peb)
+	{	
 		String msg = null;
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -811,7 +819,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(1,aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();
-				System.out.println("lotnum trader "+tlbn.getTname()+" is bidding for is ");
+				//System.out.println("lotnum trader "+tlbn.getTname()+" is bidding for is ");
 				while(rs.next())
 				{
 					lot[i]=rs.getString("lotnum");
@@ -2582,6 +2590,7 @@ public Myclass2 orderstatus(String name, String pwd)
 						ps.execute();
 						OrderStatusBean osbn=null;
 						rs1 = ps.getResultSet();
+						System.out.println(ps);
 						while(rs1.next())
 						{
 							osbn=new OrderStatusBean();

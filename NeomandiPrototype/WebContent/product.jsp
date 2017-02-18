@@ -18,6 +18,16 @@
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
     <html>
     <head>
+    <style>
+    a
+    {
+    	cursor:pointer;
+    }
+    .psearch
+    {
+    height:34px;
+    }
+    </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,17 +111,18 @@
     </head>
     <body class="">
         <div class="logo_relative">
-            <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
+            <div class="col-lg-1 col-md-1  hidden-sm hidden-xs logo"><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
                 <div class="">
+                <input type="hidden" name="addtrade" id="addtrade">
                 <%
 					String lotnum="null";
 					String quantity="null";
 					String msg1=(String)request.getAttribute("notlogged");
 					String msg2=(String)request.getAttribute("productsearchresult");
-					String msg3=(String)request.getAttribute("errmsg");
+					String msg3=request.getParameter("addtrade");
+				//	String msg3=(String)request.getAttribute("errmsg");
 					String msg4=(String)request.getAttribute("quantity");
-						
 				//	HttpSession psr=request.getSession(false);
 					//List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
 					HttpSession tlog=request.getSession(false);
@@ -128,8 +139,9 @@
                 </div>
             </div>
             <div class="container-fluid tradtab">
-                <div class="container">
-                    <ul class="nav nav-tabs" style="border-bottom: 1px solid #ddd;">
+                <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
+               <!--      <ul class="nav nav-tabs" style="border-bottom: 1px solid #ddd;"> -->
+               <ul class="nav nav-tabs">
                         <li class="active"><a href="product.jsp">Product Search</a></li>
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
@@ -141,13 +153,14 @@
             </div>
         </div>
         <div id="home" class="tab-pane fade in active">
-            <div class="container-fluid psearch" style="border-top: 1px solid white;">
+           <!-- <div class="container-fluid psearch" style="border-top: 1px solid white;"> -->
+            <div class="container-fluid psearch" >
                 <div class="container release">
                     <table class="table">
                         <tr>
                             <td>
                             	<form id="myForm" action="ProductSearchInt.jsp" method = "post">
-                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')">
+                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')" >
                                     <option value="Category">Select Category</option>
                                     <option value="Vegetables">Vegetable</option>
                                     <option value="Fruits">Fruits</option>
@@ -177,14 +190,33 @@
                                 </select>
                             </td>
                             <td><a href="#" onclick="fun()" onclick="fun()" class="reg">Search</a></td>
+                            <!--  <input type="hidden" id="category">
+                            <input type="hidden" id="produce">
+                            <input type="hidden" id="grade">
+                            <input type="hidden" id="slot">-->
                             <script>
 							function fun()
 							{
+								/*var produce=document.getElementById("produce").value;
+								var category=document.getElementById("category").value;
+								var grade=document.getElementById("grade").value;
+								var slot=document.getElementById("slot").value;*/
 								console.log("category="+document.getElementById("category").value+" slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value)
 								if(document.getElementById("category").value=="Category"&&document.getElementById("slot").value=="base")
 									alert("You need to choose atleast Slot number or kind of produce")
 								else
 								{
+									/*document.getElementById("produce").value=produce;
+									document.getElementById("produce").innerHTML=produce;
+									
+								/*	document.getElementById("category").value=category;
+									document.getElementById("category").innerHTML=category;
+									
+									document.getElementById("grade").value=grade;
+									document.getElementById("grade").innerHTML=grade;
+									
+									document.getElementById("slot").value=slot;
+									document.getElementById("slot").innerHTML=slot;*/
 									document.getElementById("myForm").submit();//window.location.href='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp';
 								}
 							}							
@@ -202,14 +234,14 @@
             //if(msg.isEmpty())
             //	out.println("THERE ARE NO LOTS!!!!");
             if(msg2!=null||msg3!=null)
-  {
-Connection con = null;
-Statement stmt = null;
-ResultSet rs = null;
-String image = null;  
-byte[] imgData = null;
-OutputStream os=null;
-	%>
+			{
+				Connection con = null;
+				Statement stmt = null;
+				ResultSet rs = null;
+				String image = null;  
+				byte[] imgData = null;
+				OutputStream os=null;
+			%>
                 <div class="container tabin">
                     <div class="pstable">
                         <table class="table pstab">
@@ -285,7 +317,7 @@ OutputStream os=null;
                                  
                                 <tr class="gradeX">
                                     <td>
-                                        <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal"><% out.println(psr1.getLotnumber()); %></button>
+                                        <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
                                     </td>
                                     <td>
                                         <h4><% out.println(psr1.getMarketcode()); %></h4></td>
@@ -326,15 +358,34 @@ OutputStream os=null;
 									{
 										alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs
-									}													
-								}
+										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+										
+										
+
+										xmlhttp = new XMLHttpRequest();
+										xmlhttp.onreadystatechange = function() {
+										if(this.readyState == 4 && this.status == 200) 
+										{
+										   	 var string=xmlhttp.responseText;
+										   	// console.log("string is"+string);
+										   	document.getElementById("category").value=string;
+											document.getElementById("category").innerHTML=string;
+											
+											         document.getElementById("addtrade").innerHTML = string;
+											         document.getElementById("addtrade").value = string;
+											        // console.log("message sent from CS is "+string);
+										}
+									};
+									xmlhttp.open("POST", "AddTrade.do", true);
+									xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+									xmlhttp.send("s1="+product+"&quantity="+neededs);
+								}													
+							}
 						</script>
                                 
                                  <!---------modal image------------->
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">
-
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -342,7 +393,7 @@ OutputStream os=null;
                                 <h4 class="modal-title">Modal Header</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="images1/<%=psr1.getLotnumber() %>.png" class="img-responsive trad">
+                                <img src="ProductImages/<%=psr1.getLotnumber()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  width="90px" height="10px">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
