@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/OrderStatus.do">
+<head><!-- 
+<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/OrderStatus.do">-->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,7 +82,7 @@ if((String)tlbn.getTname()==null)
 </div>
     		<div class="maindiv">
 <%
-int i=1;
+  int i=1;
   RequestDispatcher rd=null;
   int check=0;
   Myclass2 mc=(Myclass2)request.getAttribute("errmsg");
@@ -130,11 +130,13 @@ int i=1;
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.Farmer's status is<output id="status<%= osbn.getLotnum()%>"><%=osbn.getFarmeraccept()%>.</output></h4></header>
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) out.println("Waiting for farmer's acceptance"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT")) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
-	console.log(status);
+//	status=status+".";
+	status=status.toUpperCase();
+	console.log(status);	
 	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
 	{
 	//	$("#status").css("border-left: 60px solid yellow;");
@@ -147,7 +149,7 @@ int i=1;
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		console.log("inside rej");
 	}
-	if(status.includes("accepted")||status.toUpperCase() === "ACCEPTED")
+	if(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED")
 	{
     	//clas.style.borderLeft= "54px solid green";
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';

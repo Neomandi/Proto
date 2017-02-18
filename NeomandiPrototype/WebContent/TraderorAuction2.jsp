@@ -21,12 +21,19 @@
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-<head>
-<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">
+<head><!-- 
+<meta http-equiv="refresh"  content="98765432345678903; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">-->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
+<style>
+
+input[type="number"],input[type="text"]
+{
+text-align: center;
+}
+</style>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -342,7 +349,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 //--------------------------for slot2------------------------------------------------------------------------	
 	</script>
         <!----row1--->
-        <%int z=1;
+        <%
+  int z=1;
   String msg1=(String)request.getAttribute("notlogged");
   if(msg1!=null)
   {
@@ -431,14 +439,37 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"  size="10" value="<%=tlb.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
+	<script>
+		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
+		var bestbid=new  Number(bestbids);		
+		var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
+		var mybid=new  Number(mybids);
+		console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+		console.log(mybid==0);
+		if(mybid<bestbid&&mybid>0)
+		{
+			console.log("mybid<bestbid")
+				document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+		}
+		else if(mybid-bestbid==0||mybid>bestbid)
+		{
+			document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+			console.log("mybid-bestbid==0");
+		}
+		else if(mybid==0)
+		{
+			document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+			console.log("mybid==0");
+		}		
+	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlb.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -448,6 +479,58 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
+	<script>
+		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+		var quantityneeded=new  Number(quantityneededs);		
+		var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+		var quantityassigned=new  Number(quantityassigneds);
+		console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+		console.log("quantityneeded<quantityassigned");
+		console.log(quantityneeded<quantityassigned);
+		console.log("quantityneeded>0"+quantityneeded>0);
+		if(quantityassigned==0)
+		{
+			console.log("quantityneeded==0");
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+		}	
+		
+		else if(quantityneeded-quantityassigned==0)
+		{
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+			console.log("quantityneeded-quantityassigned==0");
+		}
+		else if(quantityassigned<quantityneeded&&quantityassigned>0)
+		{
+			console.log("quantityneeded<quantityassigned");
+				document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+		}	
+	</script>
+	<script>
+	var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+	console.log("quantityneeded<quantityassigned");
+	console.log(quantityneeded<quantityassigned);
+	console.log("quantityneeded>0"+quantityneeded>0);
+	if(quantityassigned==0)
+	{
+		console.log("quantityneeded==0");
+		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+	}	
+	
+	else if(quantityneeded-quantityassigned==0)
+	{
+		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+		console.log("quantityneeded-quantityassigned==0");
+	}
+	else if(quantityassigned<quantityneeded&&quantityassigned>0)
+	{
+		console.log("quantityneeded<quantityassigned");
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+	}	
+	</script>
 	<script>
 	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
@@ -652,7 +735,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
  }
 	</script>
-	<tr><td><br><a href="#" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><a  onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -661,7 +744,19 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<script>
 	function remove()
 	{
-		window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+		var quantityneeded=new  Number(quantityneededs);		
+		var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+		var quantityassigned=new  Number(quantityassigneds);
+		console.log("quantityassigneds"+quantityassigneds+" quantityneeded"+quantityneeded+" ");
+		console.log(mybid==0);
+		if(quantityassigned>0)
+		{
+			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+		}
+		else
+			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+
 	}
 	function fun<%=tlb.getLotnum()%>(){
 	var Etime=document.getElementById("time").value;
@@ -945,8 +1040,33 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
+	<script>
+		var bestbids=document.getElementById("demo5<%=tlbr.getLotnum()%>").value;
+		var bestbid=new  Number(bestbids);		
+		var mybids=document.getElementById("demo6<%=tlbr.getLotnum()%>").value;
+		var mybid=new  Number(mybids);
+		console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+		console.log(mybid==0);
+		if(mybid<bestbid&&mybid>0)
+		{
+				console.log(mybid<bestbid);
+				document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+		}
+		else if(mybid-bestbid==0||mybid>bestbid)
+		{
+			console.log(mybid-bestbid==0);
+			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+			console.log("after if ");
+		}
+		else if(mybid==0)
+		{
+			console.log("mybid==0");
+			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+			console.log("after if ");
+		}		
+	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -956,6 +1076,32 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlbr.getLotnum());%>" value="<%out.print(tlbr.getLotnum());%>"/>
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+	<script>
+	var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlbr.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+	console.log("quantityneeded<quantityassigned");
+	console.log(quantityneeded<quantityassigned);
+	console.log("quantityneeded>0"+quantityneeded>0);
+	if(quantityassigned==0)
+	{
+		console.log("quantityneeded==0");
+		document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+	}	
+	
+	else if(quantityneeded-quantityassigned==0)
+	{
+		document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+		console.log("quantityneeded-quantityassigned==0");
+	}
+	else if(quantityassigned<quantityneeded&&quantityassigned>0)
+	{
+		console.log("quantityneeded<quantityassigned");
+			document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+	}	
+	</script>
 	<script>
 	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
@@ -1160,7 +1306,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
  }
 	</script>
-	<tr><td><br><a href="#" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><a onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1169,7 +1315,18 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<script>
 	function remove()
 	{
-		window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
+		var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+		var quantityneeded=new  Number(quantityneededs);		
+		var quantityassigneds=document.getElementById("demo7<%=tlbr.getLotnum()%>").value;
+		var quantityassigned=new  Number(quantityassigneds);
+		console.log("quantityassigneds"+quantityassigneds+" quantityneeded"+quantityneeded+" ");
+		console.log(mybid==0);
+		if(quantityassigned>0)
+		{
+			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+		}
+		else
+			window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
 	}
 	function fun<%=tlbr.getLotnum()%>()
 	{
@@ -1643,8 +1800,31 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
+	<script>
+		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
+		var bestbid=new  Number(bestbids);		
+		var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
+		var mybid=new  Number(mybids);
+		console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+		console.log(mybid==0);
+		if(mybid<bestbid&&mybid>0)
+		{
+			console.log("mybid<bestbid");
+				document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+		}
+		else if(mybid-bestbid==0||mybid>bestbid)
+		{
+			document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+			console.log("mybid-bestbid==0");
+		}
+		else if(mybid==0)
+		{
+			console.log("mybid==0");
+			document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+		}		
+	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlb.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -1654,6 +1834,32 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
+	<script>
+	var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+	console.log("quantityneeded<quantityassigned");
+	console.log(quantityneeded<quantityassigned);
+	console.log("quantityneeded>0"+quantityneeded>0);
+	if(quantityassigned==0)
+	{
+		console.log("quantityneeded==0");
+		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+	}	
+	
+	else if(quantityneeded-quantityassigned==0)
+	{
+		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+		console.log("quantityneeded-quantityassigned==0");
+	}
+	else if(quantityassigned<quantityneeded&&quantityassigned>0)
+	{
+		console.log("quantityneeded<quantityassigned");
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+	}	
+	</script>
 	<script>
 	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
@@ -1857,7 +2063,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
  }
 	</script>
-	<tr><td><br><a href="#" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><a onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1866,7 +2072,19 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<script>
 	function remove()
 	{
-		window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+		var quantityneeded=new  Number(quantityneededs);		
+		var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+		var quantityassigned=new  Number(quantityassigneds);
+		console.log("quantityassigneds"+quantityassigneds+" quantityneeded"+quantityneeded+" ");
+		console.log(mybid==0);
+		if(quantityassigned>0)
+		{
+			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+		}
+		else
+			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+
 	}
 	function fun<%=tlb.getLotnum()%>(){
 	var Etime=document.getElementById("time").value;
@@ -2149,8 +2367,32 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
+	<script>
+		var bestbids=document.getElementById("demo5<%=tlbr.getLotnum()%>").value;
+		var bestbid=new  Number(bestbids);		
+		var mybids=document.getElementById("demo6<%=tlbr.getLotnum()%>").value;
+		var mybid=new  Number(mybids);
+		console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+		console.log(mybid==0);
+		if(mybid<bestbid&&mybid>0)
+		{
+			console.log("mybid<bestbid");
+				document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+		}
+		else if(mybid-bestbid==0||mybid>bestbid)
+		{
+			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+			console.log("mybid-bestbid==0");
+		}
+		else if(mybid==0)
+		{
+			console.log("mybid==0");
+			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+	
+		}		
+	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -2160,6 +2402,32 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlbr.getLotnum());%>" value="<%out.print(tlbr.getLotnum());%>"/>
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlbr.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlbr.getLotnum()%>"/>
+	<script>
+	var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlbr.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+	console.log("quantityneeded<quantityassigned");
+	console.log(quantityneeded<quantityassigned);
+	console.log("quantityneeded>0"+quantityneeded>0);
+	if(quantityassigned==0)
+	{
+		console.log("quantityneeded==0");
+		document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+	}	
+	
+	else if(quantityneeded-quantityassigned==0)
+	{
+		document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+		console.log("quantityneeded-quantityassigned==0");
+	}
+	else if(quantityassigned<quantityneeded&&quantityassigned>0)
+	{
+		console.log("quantityneeded<quantityassigned");
+			document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+	}	
+	</script>
 	<script>
 	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
@@ -2363,7 +2631,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
  }
 	</script>
-	<tr><td><br><a href="#" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><a onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -2371,8 +2639,19 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
 	<script>
 	function remove()
+	{var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlbr.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigneds"+quantityassigneds+" quantityneeded"+quantityneeded+" ");
+	console.log(mybid==0);
+	if(quantityassigned>0)
 	{
+		alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+	}
+	else
 		window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
+
 	}
 	function fun<%=tlbr.getLotnum()%>()
 	{
@@ -2742,8 +3021,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><a class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+				 <tr><td><br><a  class="sub">Submit</a></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
@@ -2785,7 +3064,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control ight" id="usr" type="text"></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>

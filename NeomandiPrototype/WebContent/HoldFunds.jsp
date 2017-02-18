@@ -46,7 +46,16 @@ border-top:2px solid #fff !important;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-2 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-aution at Neomandi.</h1></div>
+<%HttpSession tlog=request.getSession(false);
+TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+if((String)tlbn.getTname()==null)
+{    out.println("<script type=\"text/javascript\">");
+  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+  	 out.println("location='TraderLogin.jsp';");
+ 	 out.println("</script>");
+}
+%>
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=tlbn.getTname() %>, welcome to e-aution at Neomandi.</h1></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -68,9 +77,6 @@ border-top:2px solid #fff !important;
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <% 
-HttpSession tlog=request.getSession(false);
-TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-
 HttpSession hcs=request.getSession(false);
 TraderBlockBean tbb=(TraderBlockBean)hcs.getAttribute("bean");
 hcs.setAttribute("bean",tbb);
@@ -195,19 +201,25 @@ else
 			  xmlhttp.onreadystatechange = function() {
 			  if (this.readyState == 4 && this.status == 200) 
 			  {
-				  	 var string=xmlhttp.responseText; 	   			      
-        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-	   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-	   			     starttotalblocked=starttotalblocked+12;	
-	   			     console.log(string);
-	   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-	   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-	   				 console.log("total blocked amount is "+blocked);
-	   			     document.getElementById("netamount").innerHTML = blocked;
-	   			  	 document.getElementById("netamount").value = blocked;
-	   			     document.getElementById("hold").value = "";
-	   			  document.getElementById("balance").value = "";
-	   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+				  	 var string=xmlhttp.responseText;
+				  	 console.log("string is"+string);
+				  	 if(string.includes("fail"))
+				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
+				  	 else
+				  	 {
+	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+		   			     starttotalblocked=starttotalblocked+12;	
+		   			     console.log(string);
+		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+		   				 console.log("total blocked amount is "+blocked);
+		   			     document.getElementById("netamount").innerHTML = blocked;
+		   			  	 document.getElementById("netamount").value = blocked;
+		   			     document.getElementById("hold").value = "";
+		   			  	 document.getElementById("balance").value = "";
+		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+				  	 }
 	   			     
 			  }};
 				  xmlhttp.open("POST", "ajaxBlockfunds.do", true);

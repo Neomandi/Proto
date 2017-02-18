@@ -868,6 +868,10 @@ public class ControllerServlet extends HttpServlet {
 				psr.setAttribute("beans", msg);
 				
 				request.setAttribute("productsearchresult", "productsearchresult");
+				request.setAttribute("category",psb.getCategory());
+				request.setAttribute("produce",psb.getProduce());
+				request.setAttribute("grade",psb.getGrade());
+				request.setAttribute("slot",psb.getSlot());
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
@@ -914,6 +918,17 @@ public class ControllerServlet extends HttpServlet {
 				String msg1=msg.substring(7);
 				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
 				System.out.println("message sent is "+msg);
+				msg="success";
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("msg"+msg+"msg");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 				request.setAttribute("errmsg", msg);
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
@@ -964,7 +979,7 @@ public class ControllerServlet extends HttpServlet {
 				e1.printStackTrace();
 			}         
 	        String photo="";
-	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="C:/Users/varun/git/Proto/NeomandiPrototype/WebContent/ProductImages";
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();
@@ -2089,13 +2104,23 @@ public class ControllerServlet extends HttpServlet {
 				String block=request.getParameter("block");
 				String account=request.getParameter("account");
 				String bankname=request.getParameter("bank");
-				System.out.println("");
+				System.out.println(block+" "+account+" "+bankname+" ");
 				Model m=new Model();
 				String msg[]=m.traderblockamount(name,pwd,block,bankname,account);
 				System.out.println("message received by CS is msg[0]"+msg[0]+" msg1 "+msg[1]);
 				if(msg[1]==null)
 				{
 					System.out.println("msg[1]==null");
+					PrintWriter out = null;
+					try {
+						out = response.getWriter();
+						out.println("fail");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
 					request.setAttribute("blockmsg",msg[0]);
 					rd=request.getRequestDispatcher("TraderBlock.jsp");
 					try {
