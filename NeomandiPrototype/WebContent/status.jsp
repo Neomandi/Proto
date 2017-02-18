@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -132,7 +131,7 @@ if((String)tlbn.getTname()==null)
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
 	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://loclahost:8080/NeomandiPrototype/OrderStatus.do">
+	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
 	<%} else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT")) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
@@ -297,9 +296,7 @@ if((String)tlbn.getTname()==null)
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
 </td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second">
-	
 	<table align="center"><tbody><tr><td><h4 class="text-center">Auction Complete. Waiting for Farmer's Acceptance.</h4></td></tr></tbody></table>
 </td></tr>
 </tbody></table></div>
