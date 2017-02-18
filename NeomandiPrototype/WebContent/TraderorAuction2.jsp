@@ -28,10 +28,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
 <style>
-
 input[type="number"],input[type="text"]
 {
 text-align: center;
+}
+a
+{
+	cursor:pointer;
 }
 </style>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
@@ -157,7 +160,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="product.jsp">Product Search</a></li>
+    					<li><a href="product.jsp">Product Search</a></li>
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li  class="active"><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
