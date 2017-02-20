@@ -19,17 +19,41 @@
 table:nth-child(even) {
     classname: container-fluid dispatch pad;
 }
+.img-responsive
+{
+	height:60px;
+	width: 65px;
+}
 </style>
 </head>
 <body class="" >
 <div class="logo_relative">
-<div class="hidden-xs logo "><img src="images/trad_logo.jpg" class="img-responsive"></div>
+<div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"  ></div>
 <div class="container-fluid headertop">
 <div class="">
-<%
+<%  
+System.out.println(request.getAttribute("msg"));
+if(((String)request.getAttribute("msg"))!=null )
+{
+	 System.out.println("inside if");
+	 out.println("<script type=\"text/javascript\">");
+ 	 out.println("alert('THERE ARE NO LOTS TO BE DISPATCHED');");
+ 	 out.println("location='Revenue.jsp';");
+	 out.println("</script>");
+	 %>
+	 <input type="hidden" value="<%=(String)request.getAttribute("msg")%>" id="msg">
+	 <script>
+	 var msg=document.getElementById("msg");
+	 console.log(msg);
+	 if(msg.includes("fail"))
+		 alert('THERE ARE NO LOTS TO BE DISPATCHED');
+	 location='Revenue.jsp';
+	 </script>
+	 <% 
+}
+else{
 EmployeeLoginBean elbn = null;
 HttpSession elog = request.getSession();
-
 elog.getAttribute("pwd");
 try{
 if(((String)elog.getAttribute("name")).equals("e1"))
@@ -37,7 +61,7 @@ if(((String)elog.getAttribute("name")).equals("e1"))
 }
 catch(Exception e)
 {
-	out.println("<script type=\"text/javascript\">");
+	 out.println("<script type=\"text/javascript\">");
  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
  	 out.println("location='EmployeeLogin.jsp';");
 	 out.println("</script>");
@@ -50,8 +74,8 @@ catch(Exception e)
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="productentry.html">Product Entry</a></li>
-    <li><a href="revenue.html">Revenue</a></li>
+    <li><a href="ProductEntry.jsp">Product Entry</a></li>
+    <li><a href="Revenue.jsp">Revenue</a></li>
     <li class="active"><a href="Dispatch.do">Dispatch</a></li>
   </ul>
 </div>
@@ -143,7 +167,7 @@ catch(Exception e)
      </div>	 
    </div>
 </div>
-</div><%}}%>
+</div><%}}}%><!-- 
 <div class="container-fluid dispatch pad dispatchgreen" id="text">
 <div class="row">
   <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
@@ -210,7 +234,7 @@ catch(Exception e)
      </div>
    </div>
 </div>
-</div>
+</div>-->
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 </body>
