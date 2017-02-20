@@ -1,8 +1,6 @@
 package com.neomandi.prototype;
-
 import java.util.HashMap;
 import java.util.List;
-
 public class OrderStatusResult {
 @SuppressWarnings("rawtypes")
 List al=null;

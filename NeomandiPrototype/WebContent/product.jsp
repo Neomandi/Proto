@@ -189,7 +189,7 @@
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
-                            <td><a href="#" onclick="fun()" onclick="fun()" class="reg">Search</a></td>
+                            <td><a onclick="fun()" onclick="fun()" class="reg">Search</a></td>
                             <!--  <input type="hidden" id="category">
                             <input type="hidden" id="produce">
                             <input type="hidden" id="grade">
@@ -330,7 +330,7 @@
                                     <td>
                                         <input type="number" min='1' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
                                     </td>
-                                    <td class="tdfit"><a href="#" onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
+                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                 </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()

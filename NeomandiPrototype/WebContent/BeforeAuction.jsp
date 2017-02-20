@@ -112,31 +112,8 @@
 	    String lotsize=(String)hsr.getAttribute("lotsize");
 	    String quantitysold=(String)hsr.getAttribute("quantitysold");
 	    String averageprice=(String)hsr.getAttribute("averageprice");
-	    double aprice=Double.parseDouble(averageprice);
-	    aprice=aprice*100;
-	    aprice=(int)aprice;
-	    aprice=aprice/100;
-	    double qsold=Double.parseDouble(quantitysold);
-	    qsold=qsold*100;
-	    qsold=(int)qsold;
-	    qsold=qsold/100;
-	    double fprice=aprice*qsold;
-	    fprice=fprice*100;
-	    fprice=(int)fprice;
-	    fprice=fprice/100;
-		double MUCharge=1*fprice/100;
-		double PACharge=100;
-		double EPUCharge=100;
-		double Transport=500;
-		double TCharge=MUCharge+PACharge+EPUCharge+Transport;
-	    double myEarn=fprice-TCharge;
-	    myEarn=myEarn*100;
-	    myEarn=(int)myEarn;
-	    myEarn=myEarn/100;
-	    double deduction=TCharge;
-	    deduction=deduction*100;
-	    deduction=(int)deduction;
-	    deduction=deduction/100;
+	    
+	    
 	    System.out.println("in in before auction lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
 		    String status="Auction yet to start";
@@ -146,11 +123,7 @@
 	    	 	lsize=lsize*100;
 	    	 	lsize=(int)lsize;
 	    	 	lsize=lsize/100;
-			 	String quantitysold1=String.valueOf(qsold);
-			 	double qs=Double.parseDouble(quantitysold1);
-			 	qs=qs*100;
-			 	qs=(int)qs;
-			 	qs=qs/100;
+			 	
 	    %>
             <div class="container-fluid sum1 pad">
                 <div class="tabin">

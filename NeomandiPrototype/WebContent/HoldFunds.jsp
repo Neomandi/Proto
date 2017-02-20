@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import="com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
 <!doctype html>
 <html>
 <head>
@@ -39,6 +39,11 @@ border-top:2px solid #fff !important;
 	height: 60px;
 	width: 65px;
 }
+a
+{
+	cursor:pointer;
+}
+
 </style>
 </head>
 <body class="" >
@@ -116,7 +121,7 @@ else
       <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); %>" readonly></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="balance" readonly></td></tr> 
-	  <tr><td><table align="center"><tr><td><a href="#" onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
+	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
 	  <script>
 	  function getbalance()
 	  {	
@@ -148,7 +153,7 @@ else
 <form>
     <table class="table">      
 	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount"></td></tr>
-	<tr><td><table align="center"><tr><td><a href="#" onclick="hold()"class="reg" >Hold</a></td></tr></table></td></tr>
+	<tr><td><table align="center"><tr><td><a  onclick="hold()"class="reg" >Hold</a></td></tr></table></td></tr>
     <script>
 	function hold()
 	{	
@@ -244,7 +249,7 @@ else
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=tbb.getBlock() %>" readonly></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  
-	  <tr><td><table align="center"><tr><td><a href="#" onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
+	  <tr><td><table align="center"><tr><td><a  onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
      <script>
 		function holdfundsrelease()
 		{		  
