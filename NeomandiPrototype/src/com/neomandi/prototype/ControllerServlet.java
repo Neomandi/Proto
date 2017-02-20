@@ -978,6 +978,11 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
+			
+			String filePath = new File("").getAbsolutePath();
+			System.out.println(filePath);
+			
+			
 	        String photo="";
 
 	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
