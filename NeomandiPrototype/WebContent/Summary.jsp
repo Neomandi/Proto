@@ -69,9 +69,11 @@ border-top:2px solid #fff !important;
 </div>   
 <div class="container-fluid today">
 <div class="container1" style="padding-left:5%"><h4>Today's Summary</h4></div></div>
- <%if(request.getAttribute("todaysummary")!=null)
-			{
-			if(request.getAttribute("todaysummary").equals("no"))
+ <%		
+ 		HttpSession tradeSummary=request.getSession(false);
+		if(tradeSummary.getAttribute("todaysummarymsg")!=null)
+		{
+			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><center><h3>YOU HAVE NOT PERFORMED ANY TRADE OPERATIONS TODAY</h3></center>
 			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
@@ -86,15 +88,16 @@ border-top:2px solid #fff !important;
 			    else
 			    	{
 			    	 document.getElementById("summary").style.marginLeft='10px';
-			    	}</script><%} 
-			   else if(request.getAttribute("todaysummary").equals("success"))
+			    	}
+			  </script>
+			  <%} 
+			   else if(tradeSummary.getAttribute("todaysummarymsg")!=null && tradeSummary.getAttribute("todaysummarymsg").equals("success"))
 			   {
 	  %>
 <div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
 <table class="table sum1table" id="basic-table">
 <thead class="none"><tr>
 	  <td>&nbsp;</td>
-			  
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Assigned Lot size</h4></td>
 	  <td><h4>Lot Cost</h4></td>
@@ -118,7 +121,7 @@ border-top:2px solid #fff !important;
 </div><br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><!--  <a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>-->
-&nbsp; &nbsp; &nbsp;<a id="summary" href="#" onclick="update(true)" class="greencls">Export as PDF</a></td>
+&nbsp; &nbsp; &nbsp;<a id="summary" onclick="update(true)" class="greencls">Export as PDF</a></td>
 </tr>
 	   </tbody>
 	  </table>
@@ -201,8 +204,8 @@ if(request.getAttribute("tradesummary").equals("no"))
                     </div>
                   </div>
                 </div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun()" class="get1">Get History</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a href="#" onclick="fun2()" id="pdf" class="export">Export as PDF</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun()" class="get1">Get History</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun2()" id="pdf" class="export">Export as PDF</a></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();

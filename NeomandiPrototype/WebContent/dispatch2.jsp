@@ -52,7 +52,7 @@ catch(Exception e)
   <ul class="nav nav-tabs">
     <li><a href="productentry.html">Product Entry</a></li>
     <li><a href="revenue.html">Revenue</a></li>
-    <li class="active"><a href="dispatch.html">Dispatch</a></li>
+    <li class="active"><a href="Dispatch.do">Dispatch</a></li>
   </ul>
 </div>
 </div>
@@ -62,16 +62,29 @@ catch(Exception e)
 					OrderStatusResult osrb=(OrderStatusResult)dispatch.getAttribute("al");
 					HashMap<String, Integer> a=osrb.getA();
 					List al=osrb.getAl();
-					System.out.println(al);
-					int z=0;
-				 	for(Object o:al)
+					int z=1;
+					int k=0;
+				/* 	for(Object o:al)
 				    {
 				 	   DispatchBean dp=(DispatchBean)o;
 				       int size= a.get(dp.getLotnum());
 				       System.out.println("size is"+size);
-				       System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
-				       System.out.println(ls);%>  
-				       <input type="hidden" id="num" value="<%out.println(z);++z; %>">
+				       //System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
+				       System.out.println(ls);*/%> 				      				
+				<%
+				for(Object o:al)
+			    {
+						 System.out.println("neyxt loop");			    
+				 	   DispatchBean dp=(DispatchBean)o;
+				       int size= a.get(dp.getLotnum());
+				       System.out.println("size is"+size+" lotnum is "+dp.getLotnum());
+				       //System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
+				       System.out.println(ls);
+				       if(!ls.contains(dp.getLotnum()))
+				       {				    	   
+				    	   System.out.println("**********************z***********"+z); 
+%>
+					   <input type="hidden" id="num" value="<%out.println(z);%>">
 				       <script>
 				       console.log(document.getElementById("num").value);
 				       if((document.getElementById("num").value)%2==0)
@@ -83,11 +96,7 @@ catch(Exception e)
 <div class="row">
   <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
      <div class="row wback">
-         <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">				
-				<%
-				       if(!ls.contains(dp.getLotnum()))
-				       {
-%>
+         <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">
 			   <table class="table">
 				<tbody align="center">
 				<tr>
@@ -99,14 +108,14 @@ catch(Exception e)
 				</td>
 				<td>
 			</td>
-				<td colspan="3">
+				<td colspan="2">
 			</td>
 				<td class="clsnowrap">
 				<% for(int i=0;i<1;i++)
-		       {
+		       {z=z+1;
 					ls.add(dp.getLotnum());
-		    	  System.out.println(i);%>
-				<h4><%=dp.getName() %></h4>
+		    	  //System.out.println(i);%>
+				<h4><%out.println(dp.getName());System.out.println(dp.getName()); %></h4>
 				</td>
 				<td>
 				<h4><%=dp.getQuantityassigned() %></h4>
@@ -115,30 +124,26 @@ catch(Exception e)
 				 <%}
 				    else
 				    {   
-				    	System.out.println("insde else "+dp.getLotnum());
-					    
-					    System.out.println("inside ls"+ls);
-				%>
-			<tr><% 
-				for(int i=1;i<size;i++)
-		           {
-		    	    System.out.println(i);%>
-			<td colspan="2">
+				    	k=k+1;
+				    	System.out.println("insde else "+dp.getLotnum());					    
+					   // System.out.println("inside ls"+ls);
+				%><tr>
+			<td colspan="3">
 			</td>
 			<td class="clsnowrap">
-				<h4 ><%=dp.getName() %></h4>
+				<h4 ><%out.println(dp.getName());System.out.println(dp.getName()); %></h4>
 				</td>
 				<td>
 			<h4><%=dp.getQuantityassigned() %></h4>
-				</td><%}%>				
-				</tr><%}%>				
+				</td><%%>				
+				</tr><%} System.out.println("k"+k+"size"+size); if(size!=(k+1)){ continue;} else if(size==(k+1)){System.out.println("*****************"); k=0;%>				
 			</tbody>
 		  </table>
 		</div>		
      </div>	 
    </div>
 </div>
-</div><%}%>
+</div><%}}%>
 <div class="container-fluid dispatch pad dispatchgreen" id="text">
 <div class="row">
   <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
