@@ -434,9 +434,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			
 			if(con == null)
 			{
-				
+				System.out.println("Connection not established!");
 			}
-			
 			else
 			{
 				con.setAutoCommit(false);
@@ -989,6 +988,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			con = JDBCHelper.getConnection();
 			if(con == null)		
 			{
+				System.out.println("Connection not established!");
 			}			
 			else		
 			{
@@ -1128,6 +1128,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 			
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -1261,6 +1262,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 			
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -1524,6 +1526,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 			con = JDBCHelper.getConnection();			
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -1781,6 +1784,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 			
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -2025,6 +2029,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 		
 		if(con == null)
 		{
+			System.out.println("Connection not established!");
 		}
 		else
 		{
@@ -2291,6 +2296,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 			
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -2551,6 +2557,7 @@ public Myclass2 orderstatus(String name, String pwd)
 			con = JDBCHelper.getConnection();
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -2769,6 +2776,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			con = JDBCHelper.getConnection();
 			if(con == null)
 			{
+				System.out.println("Connection not established!");
 			}
 			else
 			{		
@@ -2942,7 +2950,9 @@ public void TraderProductAccept(String lotnum,String accno)
 		{
 			con = JDBCHelper.getConnection();
 			if(con == null)
-			{}
+			{
+				System.out.println("Connection not established!");
+			}
 			else
 			{	
 				System.out.println("from-> "+from+" to->"+to );
@@ -3030,9 +3040,8 @@ public void TraderProductAccept(String lotnum,String accno)
 					
 					if(con == null)
 					{
-						
+						System.out.println("Connection not established");
 					}
-					
 					else
 					{
 						con.setAutoCommit(false);
@@ -3104,6 +3113,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			}
 				finally
 				{
+					JDBCHelper.Close(rs);
 					JDBCHelper.Close(ps);
 					JDBCHelper.Close(con);
 				}
@@ -3458,7 +3468,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			
 			if(con == null)
 			{
-				
+				System.out.println("Connection not established!");
 			}
 			else
 			{
@@ -3717,7 +3727,8 @@ public String holdfundsgetbalance(String account)
 	{
 		con = JDBCHelper.getConnection();
 		if(con == null)
-		{			
+		{
+			System.out.println("Connection not established!");
 		}
 		else
 		{
@@ -3774,6 +3785,7 @@ public int release(String name, String pwd, String release,String bank)
 		con = JDBCHelper.getConnection();
 		if(con == null)
 		{			
+			System.out.println("Connection not established!");
 		}
 		else
 		{
@@ -3959,7 +3971,9 @@ public List traderHistory(String name, String pwd, String from, String to) {
 	{
 		con = JDBCHelper.getConnection();
 		if(con == null)
-		{}
+		{
+			System.out.println("Connection not established!");
+		}
 		else
 		{	
 			System.out.println("from-> "+from+" to->"+to );
