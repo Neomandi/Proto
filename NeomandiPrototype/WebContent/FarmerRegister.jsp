@@ -272,7 +272,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select class="form-control" id="s2" name="farmerState" onclick="fun1()" onchange="populate('state','district')">
+                                            <select class="form-control" id="state" name="farmerState" onclick="fun1()" onchange="populate('state','district')">
                                                 <option>State</option>
                                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -311,7 +311,7 @@ else
                                         <td>
                                             <label for="district">District</label>
                                             <br />
-                                            <select class="form-control" id="d2" name="traderDistrict" onclick="fun1()">
+                                            <select class="form-control" id="district" name="traderDistrict" onclick="fun1()">
                                             </select>
                                             <br/>
                                             <tr>
@@ -403,6 +403,22 @@ else
                         </table>
                         <script>
                             function populate1(s1, s2) {
+                                var s1 = document.getElementById(s1);
+                                var s2 = document.getElementById(s2);
+                                s2.innerHTML = "";
+                                if (s1.value == "Karnataka") {
+                                    var optionArray = ["|", "bagalkot|Bagalkot", "bengaluru Urban|Bengaluru Urban", "bengaluru Rural|Bengaluru Rural", "belagavi|Belagavi", "bellary|Bellary", "bidar|Bidar", "chamarajanagar|Chamarajanagar", "chikballapur|Chikballapur", "chikkamagaluru|Chikkamagaluru", "chitradurga|Chitradurga", "dakshina Kannada|Dakshina Kannada", "davanagere|Davanagere", "dharwad|Dharwad", "gadag|Gadag", "kalaburagi|Kalaburagi", "hassan|Hassan", "haveri|Haveri", "kodagu|Kodagu", "kolar|Kolar", "koppal|Koppal", "mandya|Mandya", "mysuru|Mysuru", "raichur|Raichur", "ramanagara|Ramanagara", "shivamogga|Shivamogga", "tumakuru|Tumakuru", "udupi|Udupi", "uttara Kannada|Uttara Kannada", "vijayapura|Vijayapura", "yadgir|Yadgir"];
+                                }
+                                for (var option in optionArray) {
+                                    var pair = optionArray[option].split("|");
+                                    var newOption = document.createElement("option");
+                                    newOption.value = pair[0];
+                                    newOption.innerHTML = pair[1];
+                                    s2.options.add(newOption);
+                                }
+                            }
+                            
+                            function populate(s1, s2) {
                                 var s1 = document.getElementById(s1);
                                 var s2 = document.getElementById(s2);
                                 s2.innerHTML = "";
