@@ -326,16 +326,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				            	if(seconds1>60)
 				            	{
 				            			res1=seconds1%60;
-				            			res2=Math.floor(seconds1/60);
-				            					
+				            			res2=Math.floor(seconds1/60);				            					
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
 				            	console.log("auction ends at "+Btime1);
 				            	console.log("time is  "+Etime1);
 				            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-			        			count(minutes1,seconds1);
-			        			
+			        			count(minutes1,seconds1);			        			
 							}
 						}
 					}		       
@@ -343,9 +341,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 tick();
 		}
 		countdown(minutes,seconds,hours);	
-//--------------------------for slot2------------------------------------------------------------------------	
 	</script>
-        <!----row1--->
         <%
   int z=1;
   String msg1=(String)request.getAttribute("notlogged");

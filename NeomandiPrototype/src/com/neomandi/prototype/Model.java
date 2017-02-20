@@ -3965,6 +3965,7 @@ public int release(String name, String pwd, String release,String bank)
 		return block;
 	}
 
+@SuppressWarnings("rawtypes")
 public List traderHistory(String name, String pwd, String from, String to) {
 	// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 	PreparedStatement ps = null;
