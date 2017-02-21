@@ -45,7 +45,7 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color:#C68E17;
+    background-color:#CC74B6;
     }
     #basic-table{
     	width: 300px;
