@@ -978,6 +978,11 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
+			
+			String filePath = new File("").getAbsolutePath();
+			System.out.println(filePath);
+			
+			
 	        String photo="";
 
 	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
@@ -1339,7 +1344,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//Increment
-		if(uri.contains("increment"))
+	/*	if(uri.contains("increment"))
 		{
 			String increment=request.getParameter("number");
 			String lotnum=request.getParameter("lotnumber");
@@ -1407,7 +1412,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		}
-		
+		*/
 		//SubmitIncrement1
 		/*if(uri.contains("SubmitIncrement1"))
 		{
@@ -1962,16 +1967,33 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("inside CS");
 			Model m=new Model();
 			OrderStatusResult osrb=m.Dispatch();
-			HttpSession dispatch=request.getSession();
-			dispatch.setAttribute("al",osrb);
-			rd=request.getRequestDispatcher("dispatch2.jsp");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException | IOException e1) {
-				e1.printStackTrace();
+			System.out.println("osrb.getAl().size()"+osrb.getAl().size());
+			if(osrb.getAl().size()==0)
+			{
+				request.setAttribute("msg", "fail");
+				rd=request.getRequestDispatcher("dispatch2.jsp");
+				try 
+				{
+					rd.forward(request, response);
+				}
+				catch (ServletException | IOException e1) 
+				{
+					e1.printStackTrace();
+				}
 			}
-			
+			else
+			{
+				HttpSession dispatch=request.getSession();
+				dispatch.setAttribute("al",osrb);
+				rd=request.getRequestDispatcher("dispatch2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}		
 		}
+		
 		if(uri.contains("ajaxIncrement"))
 		{
 			System.out.println("***************************************************************************");

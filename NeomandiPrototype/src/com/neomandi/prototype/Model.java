@@ -2003,7 +2003,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		}
 		return mc;		
 }*/
-	
+	/*
 @SuppressWarnings("resource")
 public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,String bankname)
 {
@@ -2241,7 +2241,7 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 			}									
 		}						
 		con.commit();		
-	}*/
+	}
 	catch(SQLException e)
 	{
 		e.printStackTrace();
@@ -2262,8 +2262,6 @@ public Myclass1 submitIncrement1(String name, String pwd, String lotnumber,Strin
 	return mc;
 }
 	
-	@SuppressWarnings({ "resource", "finally" })
-
 public Myclass Increment(String name, String pwd, String increments, String lotnum) 
 	{
 		int increment=0;
@@ -2532,7 +2530,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 		return mc;		
 		}
 	}
-
+*/
 @SuppressWarnings("resource")
 public Myclass2 orderstatus(String name, String pwd) 
 	{
@@ -2572,12 +2570,13 @@ public Myclass2 orderstatus(String name, String pwd)
 						ps2.setString(3,pwd);
 						ps2.execute();
 						rs1 = ps2.getResultSet();
+						System.out.println(ps2);
 						while(rs1.next())
 						{				
 							volumes=rs1.getString("quantityassigned");
 							lotnum=rs1.getString("lotnumber");
 							con.setAutoCommit(false);
-							System.out.println("volume sold is "+volumes+" and lotnum is "+lotnum);
+							System.out.println("volume sold form lotnum"+lotnum+" is "+volumes);
 						}	
 						ps=con.prepareStatement("select aadharnumber from treg where name=?");
 						ps.setString(1, name);						
@@ -2605,6 +2604,7 @@ public Myclass2 orderstatus(String name, String pwd)
 							osbn.setQuantityneeded(rs1.getString("quantityneeded"));
 							osbn.setSlotnumber(rs1.getString("slotnumber"));
 							
+							System.out.println("quantity available is "+rs1.getString("quantity"));
 							ps =con.prepareStatement("select tdp.bidprice,tdp.bestbid from traders_bid_price tdp, treg tr where tdp.aadharnumber=tr.aadharnumber and tdp.lotnum=? and  tr.name=? and tr.pass=?");
 							ps.setString(1, lotnum);
 							ps.setString(2, name);
@@ -2647,15 +2647,20 @@ public Myclass2 orderstatus(String name, String pwd)
 									osbn.setFarmeraccept(rs2.getString("farmerstatus"));
 							}	
 							osbn.setResult("LOT HAS BEEN ASSIGNED");
-							System.out.println("inside model-> inside osbn is "+osbn);
-							al.add(osbn);						
+							System.out.println("inside model-> inside osbn for lotnum"+lotnum+"is "+osbn);
+							al.add(osbn);		
+							System.out.println("inside al is "+al);
+							
 						}
 						mc.setAl(al);
 					    i=1;
 				}
 				if(i==1)
+				{
+					System.out.println(mc.getAl());
 					return mc;
-				con.setAutoCommit(false);
+				}
+					con.setAutoCommit(false);
 				
 				ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where aadharnumber=?)");
 				ps.setString(1, name);
@@ -2664,7 +2669,7 @@ public Myclass2 orderstatus(String name, String pwd)
 				rs1 = ps.getResultSet();
 				while(rs1.next())
 				{							
-					ps =con.prepareStatement("select tl.slotnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
+					ps =con.prepareStatement("select tl.slotnumber,tl.quantity,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
 					ps.setString(1, name);
 					ps.setString(2, rs1.getString("lotnum"));
 					ps.setString(3, pwd);
@@ -2675,12 +2680,12 @@ public Myclass2 orderstatus(String name, String pwd)
 					{					
 						osbn1=new OrderStatusBean();
 						osbn1.setLotnum(rs1.getString("lotnum"));
-						osbn1.setMarketcode(rs1.getString("marketcode"));
-						osbn1.setQuantityavailable(rs.getString("quantity"));
-						osbn1.setProduce(rs1.getString("produce"));
-						osbn1.setQualitygrade(rs1.getString("qualitygrade"));
-						osbn1.setQuantityneeded(rs1.getString("quantityneeded"));
-						osbn1.setSlotnumber(rs1.getString("slotnumber"));						
+						osbn1.setMarketcode(rs2.getString("marketcode"));
+						osbn1.setQuantityavailable(rs2.getString("quantity"));
+						osbn1.setProduce(rs2.getString("produce"));
+						osbn1.setQualitygrade(rs2.getString("qualitygrade"));
+						osbn1.setQuantityneeded(rs2.getString("quantityneeded"));
+						osbn1.setSlotnumber(rs2.getString("slotnumber"));						
 						
 						ps =con.prepareStatement("select tdp.lotcost,tdp.lotnum,tdp.bidprice,tdp.bestbid,tdp.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tr.aadharnumber=tl.aadharnumber and tr.aadharnumber=tdp.aadharnumber and tdp.lotnum=tl.lotnum and tr.name=? and tr.pass=? and tdp.lotnum=?");
 						ps.setString(1, name);
@@ -2704,13 +2709,14 @@ public Myclass2 orderstatus(String name, String pwd)
 						rs3 = ps.getResultSet();
 						while(rs3.next())
 						{ 
+							System.out.println("***********************"+rs3.getString("farmerstatus"));
 							if(rs3.getString("farmerstatus")==null||rs3.getString("farmerstatus").equals(""))
 								osbn1.setFarmeraccept("PENDING");
 							else
 								osbn1.setFarmeraccept(rs3.getString("farmerstatus"));
 						}
 						al.add(osbn1);
-				}
+					}
 				}
 				System.out.println("inside model indide al is "+al);
 				mc.setAl(al);
@@ -2728,7 +2734,6 @@ public Myclass2 orderstatus(String name, String pwd)
 		return mc;
 	}
 	
-
 	public void TraderProductReject(String lotnum)
 	{
 		Connection con = null;
@@ -3952,6 +3957,7 @@ public int release(String name, String pwd, String release,String bank)
 		return block;
 	}
 
+@SuppressWarnings("rawtypes")
 public List traderHistory(String name, String pwd, String from, String to) {
 	// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 	PreparedStatement ps = null;

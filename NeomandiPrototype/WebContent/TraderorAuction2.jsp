@@ -172,14 +172,11 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 <div class="maindiv">
 
-<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>
-	
-	  <div id="msg" style="display:inline; " >Auction will begin in</div>&nbsp;&nbsp;
+<div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>	
+	  <div id="msg" style="display:inline; " > will begin in</div>&nbsp;&nbsp;
 	 <div id="timer" style="display:inline;  " ></div>
 	  	<div id="auction" style="display:inline;   "></div>
 		<div id="auction1" style="display:inline; "></div>
-	  	
-
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
@@ -224,21 +221,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	console.log("differences in minutes is "+minutes);
 	console.log("differences in seconds is "+seconds);
 	console.log("differences in hours is "+hours);
-
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("differences in time is "+timedifference);
-	
-	countdown(minutes,seconds,hours);
-	
+	console.log("differences in time is "+timedifference);	
+	countdown(minutes,seconds,hours);	
 	var five=300000;
 	timedif=diff+five;
 	console.log("count"+timedif);	
-
-	
 		function countdown(minutes,seconds,hours) 
-		{
-			  
-			 
+		{			  			 
 			 	var seconds =seconds;
 			    var mins = minutes
 			    var hour=hours;
@@ -272,18 +262,16 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			 				}	
 							else
 							{
-				            	var str="<div id='a1'style='display:inline; '> has begun. Auction will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
+				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
-				            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
-				            	
+				            	var hideTimer = setTimeout(strCmd, timeOutPeriod);				            	
 				            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
-				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
-				            	
+				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);				            	
 				            	document.getElementById("timer").innerHTML=str;
 				            	function count(minutes1,seconds1) 
 				            	{
@@ -299,8 +287,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				        		       	seconds--;
 				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 				        		        if( seconds > 0 ) {
-				        		            setTimeout(tick,1000);
-				        		            
+				        		            setTimeout(tick,1000);				        		            
 				        		        } 
 				        		        else 
 				        		        {
@@ -314,14 +301,11 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
 								            	var timeOutPeriod = waitseconds * 1000;
-								            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);
-								            	
+								            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);								            	
 								            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
 								            	var timeOutPeriod = waitseconds * 1000;
-								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
-								            	
-								            	
+								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
 					        		       }
 				        		    	}
@@ -342,16 +326,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				            	if(seconds1>60)
 				            	{
 				            			res1=seconds1%60;
-				            			res2=Math.floor(seconds1/60);
-				            					
+				            			res2=Math.floor(seconds1/60);				            					
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
 				            	console.log("auction ends at "+Btime1);
 				            	console.log("time is  "+Etime1);
 				            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-			        			count(minutes1,seconds1);
-			        			
+			        			count(minutes1,seconds1);			        			
 							}
 						}
 					}		       
@@ -359,9 +341,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 tick();
 		}
 		countdown(minutes,seconds,hours);	
-//--------------------------for slot2------------------------------------------------------------------------	
 	</script>
-        <!----row1--->
         <%
   int z=1;
   String msg1=(String)request.getAttribute("notlogged");
@@ -3097,7 +3077,6 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
- 
 <script>
 var tt = $( window ).height();
 $(".maindiv").height(parseInt(tt)-60);

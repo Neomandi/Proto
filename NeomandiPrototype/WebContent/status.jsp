@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" errorPage="Error.jsp" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><!-- 
@@ -51,6 +51,50 @@ overflow:auto;
 </style>
 </head>
 <body>
+<%
+	SimpleDateFormat sdf=new SimpleDateFormat("HH");
+	SimpleDateFormat sdf1=new SimpleDateFormat("mm");
+	String hours=sdf.format(new Date());
+	String minutes=sdf1.format(new Date());
+	int hour=Integer.parseInt(hours);
+	int minute=Integer.parseInt(minutes);
+	System.out.println("current time is "+hour+":"+minute+"  ");
+	if(hour<10)
+	{
+		 System.out.println("inside if ");
+		 out.println("<script type=\"text/javascript\">");
+		 out.println("alert('YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE');");
+		 out.println("location='TradeorAuction.do';");
+		 out.println("</script>");
+	}
+	else
+	{
+		if(hour==10&&minute<35)
+		 {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE');");
+	 		out.println("location='TradeorAuction.do';");
+	 		out.println("</script>");
+	 	  }
+		 else
+		 {
+%>
+<input type="hidden" value="<%=hour%>" id="hour">
+<input type="hidden" value="<%=minute%>" id="minute">
+<script>
+var hour=document.getElementById("hour");
+var minute=document.getElementById("minute");
+console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
+if(hour!=10)
+	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+	 else
+		 {
+		 console.log("minute<35"+minute<35)
+		 if(minute<35)
+			 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+				
+		 }
+</script>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
@@ -92,6 +136,7 @@ if((String)tlbn.getTname()==null)
 	OrderStatusBean osbn=(OrderStatusBean)o;
 	if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
 	{		
+		System.out.println("inside syatus.jsp "+osbn);
 %>
         <!----row1--->
 	<div class="one" id="one<%= osbn.getLotnum()%>">
@@ -113,11 +158,11 @@ if((String)tlbn.getTname()==null)
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>"readonly></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getCommission()%>"readonly></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getMarketcess()%>"readonly></td></tr>
-	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" value="3000"readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getCommission()%>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getMarketcess()%>" style="text-align: right;" readonly></td></tr>
+	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="3000"readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
@@ -130,9 +175,9 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
 	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
-	<%} else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT")) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
+	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
@@ -163,7 +208,7 @@ if((String)tlbn.getTname()==null)
 </tbody></table></div>
 </div>
 </div>
-    </div></div><%}} %>
+    </div></div><%}}}}%>
 	<!---row 1 end--->
 	<!----row2---><!--  
 	<div class="two">
