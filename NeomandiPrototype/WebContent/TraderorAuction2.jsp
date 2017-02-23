@@ -307,7 +307,18 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-					        		       }
+								            	
+								            	xmlhttp = new XMLHttpRequest();
+								      		  	xmlhttp.onreadystatechange = function() {
+								      		    if (this.readyState == 4 && this.status == 200) 
+								      		    {
+								      		    	
+								      		    }};
+								      		    console.log("your auction has ended");
+								      		  xmlhttp.open("POST", "PostAuction.do", true);
+								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								      		alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
+								      	   }
 				        		    	}
 			        		     	}
 			        		   	 	tick();
