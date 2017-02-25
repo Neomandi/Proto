@@ -9,9 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Model 
 {
@@ -786,6 +788,26 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			}
 			else
 			{
+				
+				
+				Calendar calendar = Calendar.getInstance();
+		        TimeZone fromTimeZone = calendar.getTimeZone();
+		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+		        calendar.setTimeZone(fromTimeZone);
+		        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+		        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+		            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+		        }
+
+		        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+		        if (toTimeZone.inDaylightTime(calendar.getTime())) 
+		        {
+		            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+		        }
+		        System.out.println("************"+calendar.getTime());
+		        
+				
 				con.setAutoCommit(false);
 		//		System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
@@ -1389,8 +1411,8 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		return mc;
 	}
 
-	public String actionTrail(ActionTrailBean atbean) {
-		
+	public String actionTrail(ActionTrailBean atbean) 
+	{	
 		Connection con = null;
 		PreparedStatement ps = null;
 		Statement stmt = null;
@@ -3551,8 +3573,32 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					System.out.println("traders final cost                             = "+finalcost);
 					System.out.println("time at whch bid was placed                    = "+date);
 					//System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
-					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//
 					
+					//int biddate=Integer.parseInt(date);
+					String str[]=date.split(":");
+					System.out.println("hour is "+str[0]);
+					int hour=Integer.parseInt(str[0]);
+					int minute=Integer.parseInt(str[1]);
+					
+					Calendar calendar = Calendar.getInstance();
+			        TimeZone fromTimeZone = calendar.getTimeZone();
+			        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+			        calendar.setTimeZone(fromTimeZone);
+			        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+			        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+			            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+			        }
+
+			        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+			        if (toTimeZone.inDaylightTime(calendar.getTime())) {
+			            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+			        }
+
+			        System.out.println("************"+calendar.getTime());
+			        
+					//System.out.println("**********************************date is "+biddate+"*************");
+					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//					
 					ps.setString(1,lotcosts);
 					ps.setInt(2,res);
 					ps.setString(3,commissions);

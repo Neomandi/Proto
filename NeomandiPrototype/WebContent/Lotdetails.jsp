@@ -581,16 +581,14 @@ function countdown(minutes,seconds,hours)
 		            	console.log("auction ends at "+Btime1);
 		            	console.log("time is  "+Etime1);
 		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
-	        			
+	        			count(minutes1,seconds1);	        			
 					}
 				}
 			}		       
  		}
  tick();
 }
-countdown(minutes,seconds,hours);			   
-			
+countdown(minutes,seconds,hours);			   			
 //console.log("time="+timedif);
  var t=setTimeout(auction,timedif);
  function auction(){
@@ -604,15 +602,7 @@ countdown(minutes,seconds,hours);
    	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
-
     <script>
-    
-    
     </script> 
-
-
-
-     
-
 </body>
 </html>

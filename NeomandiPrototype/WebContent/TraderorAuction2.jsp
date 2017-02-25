@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1" import="java.util.*,
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+pageEncoding="ISO-8859-1" import="java.util.*,
     java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
     com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
     java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
