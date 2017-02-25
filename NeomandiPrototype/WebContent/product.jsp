@@ -220,7 +220,8 @@
 									document.getElementById("myForm").submit();//window.location.href='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp';
 								}
 							}							
-						</script></form>
+						</script>
+						</form>
                         </tr>
                     </table>
                 </div>

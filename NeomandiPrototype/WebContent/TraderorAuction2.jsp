@@ -316,8 +316,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								      		    	
 								      		    }};
 								      		    console.log("your auction has ended");
-								      		  xmlhttp.open("POST", "PostAuction.do", true);
-								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								      		//  xmlhttp.open("POST", "PostAuction.do", true);
+								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 								      		alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
 								      	   }
 				        		    	}
