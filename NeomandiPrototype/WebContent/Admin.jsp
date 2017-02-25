@@ -43,7 +43,6 @@
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
     <li class="active"><a href="FarmerMaster.jsp"> Controls </a></li>
-    
   </ul>
 </div>
 </div>

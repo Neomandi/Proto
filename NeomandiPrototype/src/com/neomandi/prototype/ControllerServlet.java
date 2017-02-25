@@ -420,7 +420,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//RejectSummary
-		if(uri.contains("RejectSummary")){
+		if(uri.contains("RejectSummary"))
+		{
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
