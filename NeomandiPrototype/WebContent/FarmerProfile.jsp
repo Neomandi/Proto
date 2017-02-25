@@ -45,7 +45,7 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color:#CC74B6;
+    background-color:#0082B2;
     }
     #basic-table{
     	width: 300px;
@@ -137,6 +137,7 @@
 				    String accountnumber= rs.getString("accountnum");
 				    String ifsc= rs.getString("ifsccode");
 				    String branch= rs.getString("branch"); 
+				    
 				%>
                     <form>
                         <table class="table table-bordered" id="basic-table">

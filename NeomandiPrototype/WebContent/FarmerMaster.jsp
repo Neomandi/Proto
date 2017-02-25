@@ -14,6 +14,8 @@
 	 java.sql.SQLException,
 	 java.net.InetAddress,
 	 java.text.SimpleDateFormat,
+	 sun.misc.BASE64Encoder,
+	
 	java.util.*"%>
 	
 <!doctype html>
@@ -44,7 +46,7 @@
     height:300px;
     width:300px;}
     .tradtab a{
-    background-color:#CC52A7;
+    background-color:#CBCBCB;
     }
    
     </style>
@@ -81,7 +83,10 @@ if((String)hs.getAttribute("name")==null){
  
 	
 	 		
-	     	String pass=(String)hs.getAttribute("pass");  
+	     	String pass=(String)hs.getAttribute("pass"); 
+ 		     System.out.println("original password="+pass);
+ 		   
+ 		    
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
 	     	String time=df1.format(new Date());

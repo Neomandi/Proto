@@ -451,12 +451,12 @@ if(!(license.length >1) && (license.length < 10)){
 		return false;
 	}
 	
-if(!(password.value.length >8)){
+/*if(!(password.value.length >8)){
 		
 		alert(" Your password must be greater than 8 digits");
 		password.focus();
 		return false;
-	}
+	}*/
 	if(rpassword.value==""){
 		window.alert("Please enter your password again");
 		rpassword.focus();

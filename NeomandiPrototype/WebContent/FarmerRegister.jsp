@@ -663,12 +663,7 @@
                             		return false;
                             	}
                             	
-                            if(!(password.value.length >8)){
-                            		
-                            		alert(" Your password must be greater than 8 digits");
-                            		password.focus();
-                            		return false;
-                            	}
+                           
                             var cpassword=document.fregform.cpassword;
                             if(cpassword.value==""){
                         		window.alert("Please enter your password again");
