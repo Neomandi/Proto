@@ -987,7 +987,7 @@ public class ControllerServlet extends HttpServlet {
 			
 	        String photo="";
 
-	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
 
 	        System.out.println("Path "+path);
 	        File file=new File(path);

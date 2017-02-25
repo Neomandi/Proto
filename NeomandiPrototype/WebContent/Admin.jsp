@@ -49,23 +49,43 @@
 </div>
 <center>
 <div class="container" id="div" >
-<form>	
-<input type="text" name="starttime" placeholder="Starting time" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="endtime" placeholder="End time" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" style="width:200px" onclick="fun()"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<form action="SchedulerServlet" method="post" name="admin">	
+<input type="text" name="starttime" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="endtime" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
+
 <script>
 function fun()
 {
-		xmlhttp = new XMLHttpRequest();
-	  	xmlhttp.onreadystatechange = function() {
-	    if (this.readyState == 4 && this.status == 200) 
-	    {}};
-	    console.log("your auction has ended");
-	//  xmlhttp.open("POST", "PostAuction.do", true);
-	//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var starttime=document.getElementById("starttime").value;
+	 var endtime=document.getElementById("endtime").value;
+	  xmlhttp = new XMLHttpRequest();
+	  xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) 
+	  {
+		    				         
+	  }};
+		  xmlhttp.open("POST", "SchedulerServlet", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+}
+
+function fun1()
+{
+	var stop = 1;
+	  xmlhttp = new XMLHttpRequest();
+	  xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) 
+	  {
+		    				         
+	  }};
+		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("stopauction="+stop);
 }
 </script>
 </div></center>

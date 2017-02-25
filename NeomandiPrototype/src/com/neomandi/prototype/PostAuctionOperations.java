@@ -11,6 +11,7 @@ public class PostAuctionOperations {
 	
 	public static void postAO(){
 		
+		System.out.println("Post Auction");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
