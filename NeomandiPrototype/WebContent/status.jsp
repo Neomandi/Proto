@@ -86,12 +86,12 @@ var hour=document.getElementById("hour");
 var minute=document.getElementById("minute");
 console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
 if(hour!=10)
-	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 	 else
 		 {
 		 console.log("minute<35"+minute<35)
 		 if(minute<35)
-			 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 				
 		 }
 </script>
