@@ -18,6 +18,22 @@ public class FarmerRegisterBean {
 	private String farmerbranch;
 	private String farmerifsccode;
 	private InputStream farmerphoto;
+	private String password;
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password){
+		this.password=password;
+		System.out.println("password="+password);
+	}
+	public String getFarmerbankname() {
+		// TODO Auto-generated method stub
+		return farmerbankname;
+	}
+	public void setFarmerbankname(String farmerbankname){
+		this.farmerbankname=farmerbankname;
+	}
+	
 	public String getFarmername() {
 		return farmername;
 	}
@@ -83,8 +99,8 @@ public class FarmerRegisterBean {
 	public String getFarmerbankbame() {
 		return farmerbankname;
 	}
-	public void setFarmerbankbame(String farmerbankbame) {
-		this.farmerbankname = farmerbankbame;
+	public void setFarmerbankbame(String farmerbankname) {
+		this.farmerbankname = farmerbankname;
 	}
 	public long getFarmeraccountnum() {
 		return farmeraccountnum;
@@ -211,6 +227,7 @@ public class FarmerRegisterBean {
 			return false;
 		return true;
 	}
+	
 	
 	
 }

@@ -36,7 +36,7 @@
     	width: 65px;
     }
     .tradtab a{
-    background-color:#FF7220;
+    background-color:#A66DCC;
     }
     h4{
     	color:#6C2DC7;
@@ -155,7 +155,7 @@ if((String)hs.getAttribute("name")==null){
 				  imgsrc="ProductImages/"+lotnumber+".jpg";
 			%>
 				  
-	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1"  style="color:#000080"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=resultSet.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
+	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=resultSet.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
 	  <% 
 	  }  
 			} catch (Exception e) {
@@ -581,16 +581,14 @@ function countdown(minutes,seconds,hours)
 		            	console.log("auction ends at "+Btime1);
 		            	console.log("time is  "+Etime1);
 		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
-	        			
+	        			count(minutes1,seconds1);	        			
 					}
 				}
 			}		       
  		}
  tick();
 }
-countdown(minutes,seconds,hours);			   
-			
+countdown(minutes,seconds,hours);			   			
 //console.log("time="+timedif);
  var t=setTimeout(auction,timedif);
  function auction(){
@@ -604,15 +602,7 @@ countdown(minutes,seconds,hours);
    	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
-
     <script>
-    
-    
     </script> 
-
-
-
-     
-
 </body>
 </html>

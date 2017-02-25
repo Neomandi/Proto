@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoMandi</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,20 +38,7 @@
 </head>
 
 <body class="">
-    <%if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("FAIL")))
-{    
-	 out.println("<script type=\"text/javascript\">");
-	 out.println("alert('THIS AADHARNUMBER HAS ALREADY BEEN REGISTERED');");
-     out.println("</script>");
-}
-else
-{
-	if(request.getAttribute("errmsg")!=null && (request.getAttribute("errmsg").equals("success")))
-	{    
-		 out.println("<script type=\"text/javascript\">");
-		 out.println("alert('YOU HAVE SUCCESSFULLY REGISTERED');");
-    	 out.println("</script>");
-	}%>
+ 
         <!---menu bar------>
         <nav class="navbar navbar-inverse menu">
             <div class="container-fluid">
@@ -82,13 +70,14 @@ else
             <h4>Welcome to NeoMandi's farmer registration page</h4>
         </div>
         <!---my detail form----->
+         <form id="bank" method="get" action="FarmerRegisterInt.jsp" name="fregform">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
                     <div id="h1">
                         <h4>My Details</h4>
                         <div class="detail">
-                            <form id="bank" method="get" action="FarmerRegisterInt.jsp">
+                           
                                 <table class="table">
                                     <tr>
                                         <td>
@@ -144,7 +133,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" onclick="fun()" id="usr" required>
+                                            <input type="text" class="form-control" onclick="fun()" id="usr"  name="address" required>
                                         </td>
                                     </tr>
                                     <tr>
@@ -154,7 +143,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select class="form-control" id="state1" name="farmerState" onclick="fun()" onchange="populate1('state1','district1')">
+                                            <select class="form-control" id="state1" name="farmerstate" onclick="fun()" onchange="populate1('state1','district1')">
                                                 <option>State</option>
                                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -193,12 +182,12 @@ else
                                         <td>
                                             <label for="district">District</label>
                                             <br />
-                                            <select class="form-control" id="district1" name="traderDistrict" onclick="fun()">
+                                            <select class="form-control" id="district1" name="farmerdistrict" onclick="fun()">
                                             </select>
                                             <br/>
                                             <tr>
-                                                <td>
-                                                    <input type="text" id="sell" name="farmerTaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
+                                                <td><label for="district">Taluk</label>
+                                                    <input type="text" id="sell" name="farmertaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
                                                     <br/>
                                                 </td>
                                             </tr>
@@ -209,11 +198,11 @@ else
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input type="number" onclick="fun()" min="0" class="form-control" placeholder="Pin" id="pin" required>
+                                                    <input type="number" onclick="fun()" min="0" class="form-control" placeholder="Pin" id="pin" name="pin" required>
                                                 </td>
                                             </tr>
                                 </table>
-                            </form>
+                           
                         </div>
                     </div>
                 </div>
@@ -221,7 +210,7 @@ else
                     <div id="h2">
                         <h4>My Bank Account Details</h4>
                         <div class="bankacc">
-                            <form id="bank" method="get" action="FarmerRegisterInt.jsp">
+
                                 <table class="table">
                                     <tr>
                                         <td>
@@ -267,12 +256,12 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="number" class="form-control" id="ifsc" onclick="fun1()" placeholder="Bank IFSC" name="farmerifsc" required>
+                                            <input type="text" class="form-control" id="ifsc" onclick="fun1()" placeholder="Bank IFSC" name="farmerifsccode" required>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select class="form-control" id="state" name="farmerState" onclick="fun1()" onchange="populate('state','district')">
+                                            <select class="form-control" id="state" name="state" onclick="fun1()" onchange="populate('state','district')">
                                                 <option>State</option>
                                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -311,12 +300,12 @@ else
                                         <td>
                                             <label for="district">District</label>
                                             <br />
-                                            <select class="form-control" id="district" name="traderDistrict" onclick="fun1()">
+                                            <select class="form-control" id="district" name="district" onclick="fun1()">
                                             </select>
                                             <br/>
                                             <tr>
                                                 <td>
-                                                    <input type="text" id="sell" name="farmerTaluk" class="form-control" placeholder="Taluk" onclick="fun1()" required/>
+                                                    <input type="text" id="sell" name="bTaluk" class="form-control" placeholder="Taluk" onclick="fun1()" required/>
                                                     <br/>
                                                 </td>
                                             </tr>
@@ -327,11 +316,11 @@ else
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input type="number" class="form-control" onclick="fun1()" placeholder="Pin" id="usr" required>
+                                                    <input type="number" class="form-control" onclick="fun1()" placeholder="pincode" id="usr"  name="bpin" required>
                                                 </td>
                                             </tr>
                                 </table>
-                            </form>
+                           
                         </div>
                     </div>
                 </div>
@@ -344,9 +333,9 @@ else
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass" id="class">
                     <div id="h3">
-                        <h4>My Bank Account Details</h4>
+                        <h4>My Password</h4>
                         <div class="password">
-                            <form>
+                           
                                 <table class="table">
                                     <tr>
                                         <td>
@@ -355,7 +344,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="password" class="form-control" onclick="fun2()" placeholder="" id="pwd" required>
+                                            <input type="password" class="form-control" onclick="fun2()" placeholder="" id="pwd" name="password" required>
                                         </td>
                                     </tr>
                                     <tr>
@@ -365,7 +354,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="password" class="form-control" onclick="fun2()" placeholder="" id="cpwd" required>
+                                            <input type="password" class="form-control" onclick="fun2()" placeholder="" id="cpwd" name="cpassword" required>
                                         </td>
                                     </tr>
                                     <tr>
@@ -375,7 +364,7 @@ else
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="number" class="form-control" onclick="fun2()" placeholder="" id="pwd">
+                                            <input type="number" class="form-control" onclick="fun2()" placeholder="" id="pwd" name="otpval">
                                         </td>
                                     </tr>
                                 </table>
@@ -386,22 +375,29 @@ else
                                         $("#h3").css("box-shadow", "0px 0px 14px black");
                                     }
                                 </script>
-                            </form>
+                            
                         </div>
                     </div>
                     <table align="center">
                         <tr>
                             <td>
                                 <label>
-                                    <input type="checkbox" id="terms">I accept Terms and Condition</label>
+                                    <input type="checkbox" id="terms" name="tc">I accept Terms and Condition</label>
                             </td>
                         </tr>
                         <table align="center">
                             <tr>
-                                <td><a onclick="register()" id="reg" class="reg">Register</a></td>
+                                <td><a href="javascript:submitform()" id="reg" class="reg">Register</a></td>
                             </tr>
                         </table>
-                        <script>
+                       
+                       
+                    </table>
+                </div>
+            </div>
+        </div>
+        </form>
+         <script>
                             function populate1(s1, s2) {
                                 var s1 = document.getElementById(s1);
                                 var s2 = document.getElementById(s2);
@@ -417,7 +413,6 @@ else
                                     s2.options.add(newOption);
                                 }
                             }
-                            
                             function populate(s1, s2) {
                                 var s1 = document.getElementById(s1);
                                 var s2 = document.getElementById(s2);
@@ -433,194 +428,301 @@ else
                                     s2.options.add(newOption);
                                 }
                             }
+//Input validation-------------------------------------------------------------
 
-                            function register() {
-                                var msg = "";
-                                var regex = /^[a-zA-Z]+$/;
-                                if (document.getElementById("name").value == null || document.getElementById("name").value === undefined || document.getElementById("name").value === "") {
-                                    console.log(document.getElementById("name").value.match(regex));
-                                    msg = "NAME";
-                                } else {
-                                    /*console.log(document.getElementById("name").value);
-        	//console.log(document.getElementById("name").value.match(regex));
-	       	if(!(document.getElementById("name").value.match(regex)))
-	    	{
-	    		window.alert("DONT ENTER NUMBERS FOR NAME");
-	    	//	document.getElementById("name").focus();
-	    		return false;
-	    	}	*/
-                                }
-                                if (document.getElementById("aadharnumber").value == null || document.getElementById("aadharnumber").value === undefined || document.getElementById("aadharnumber").value === "") {
-                                    msg = msg + " AADHARNUMBER";
-                                } else {
-                                    console.log(document.getElementById("aadharnumber").value + "+");
-                                    if (/^\d{12}$/.test(document.getElementById("aadharnumber").value)) {} else {
-                                        alert("AADHARNUMBER NUMBER MUST BE 12 DIGITS");
-                                        return false
-                                    }
-                                }
-                                if (document.getElementById("mob").value == null || document.getElementById("mob").value === undefined || document.getElementById("mob").value === "") {
-                                    //window.alert("ENTER MOBILE");
-                                    msg = msg + " MOBILE";
-                                } else {
-                                    console.log("mob is defined" + document.getElementById("mob").length + " " + document.getElementById("mob").value);
-                                    if (/^\d{10}$/.test(document.getElementById("mob").value)) {
-                                        // value is ok, use it
-                                    } else {
+							function submitform(){
+									var bool = validateForm();
+									console.log("Bool: "+bool);
+									console.log()
+									if(bool == true)
+										{
+											document.fregform.submit();
+										}
+								}
+                            function validateForm() {
+                            	console.log("inside the register()");
+                            	var letters = /^[A-Za-z ]+$/;
+                            	//name validation
+                            	 
+                                var name=document.fregform.farmername;
+                                
+                                if (name.value=="" ) {
+                                 
+                                    window .alert("please enter your name");
+                                    name.focus();
+                                    return false;
+                                   
+                                } 
+                                if(!name.value.match(letters))
+                            	{
+                            		window.alert("Please enter only alphabets for name.");
+                            		name.focus();
+                            		return false;
+                            	}
+                              //Aadhar number validation
+                              var aadhar=document.fregform.farmeraadharnum;
+                            	var aval = aadhar.value;
+                            	if(aval==""){
+                            		alert("Please enter your Aadhar number");
+                            		aadhar.focus();
+                            		    return false;
+                            	}
+                            	if(isNaN(aval)){
+                            		alert("Enter the valid Aadhar Number");
+                            		aadhar.focus();
+                            		return false;
+                            	}
+                            	if(aval.length!=12){
+                            		
+                            		alert(" Your Aadhar number must be 12 digits");
+                            		aadhar.focus();
+                            		return false;
+                            	}
+                            	//Mobile number validation
+                            	var mob=document.fregform.farmermobile;
+                            	var val = mob.value;
+                            	if(val==""){
+                            		alert("Please enter your mobile number");
+                            		 mob.focus();
+                            		    return false;
+                            	}
+                            	if(isNaN(val)){
+                            		alert("Enter the valid Mobile Number(Like : 9566137117)");
+                            		mob.focus();
+                            		return false;
+                            	}
+                            	
+                            	var val = mob.value;
+                            	if (/^\d{10}$/.test(val)) {
+                            		
+                            	    // value is ok, use it
+                            	} else {
+                            	    alert("Invalid mobile number, must be ten digits");
+                            	    mob.focus();
+                            	    return false;
+                            	}
+                            	
 
-                                        alert("MOBILE NUMBER MUST BE 10 DIGITS");
-                                        //  document.getElementById("mob").focus();
-                                        return false
-                                    }
+                            	//Email validation
+                            	var email=document.fregform.farmeremail;
+                            	if(email.value==""){
+                            		window.alert("Please enter your email id");
+                            		email.focus();
+                            		return false;
+                            	}
+                            	if(email.value.indexOf("@", 0) < 0)
+                            	{
+                            		window.alert("Please enter a valid email id");
+                            		email.focus();
+                            		return false;
+                            	}
+                            	if (email.value.indexOf(".", 0) < 0)
+                                {
+                                    window.alert("Please enter a valid e-mail address.");
+                                    email.focus();
+                                    return false;
                                 }
-                                if (document.getElementById("email").value == null || document.getElementById("email").value === undefined || document.getElementById("email").value === "") {
-                                    msg = msg + " EMAIL-ID ";
-                                } else {
-                                    console.log("email is defined");
-                                    if (document.getElementById("email").value.indexOf("@", 0) < 0) {
-                                        window.alert("ENTER VALID EMAIL ID");
-                                        //	document.getElementById("email").focus();
-                                        return false;
-                                    }
-                                    if (document.getElementById("email").value.indexOf(".", 0) < 0) {
-                                        window.alert("ENTER VALID EMAIL ID");
-                                        //    document.getElementById("email").focus();
-                                        return false;
-                                    }
-                                }
-                                if (document.getElementById("pin").value == null || document.getElementById("pin").value === undefined || document.getElementById("pin").value === "") {
-                                    //window.alert("ENTER PIN CODE");
-                                    msg = msg + " PINCODE";
-                                    //document.getElementById("pin").focus();
-                                } else {
-                                    console.log("pin is defined");
-                                    if ((document.getElementById("pin").value.match(regex))) {
-                                        window.alert("ENTER VALID PINCODE");
-                                    }
-                                }
-                                if (document.getElementById("acc").value == null || document.getElementById("acc").value === undefined || document.getElementById("acc").value === "") {
-                                    //window.alert("ENTER ACCOUNT NUMBER");
-                                    msg = msg + " ACCOUNT NUMBER";
-                                    //document.getElementById("acc").focus();
-                                } else {
-                                    if ((document.getElementById("acc").value.match(regex))) {
-                                        window.alert("DONT ENTER ALPHABETS FOR ACCOUNT NUMBER")
-                                        document.getElementById("acc").focus();
-                                        return false;
-                                    }
-                                }
-                                if (document.getElementById("farmerbank").value == null || document.getElementById("farmerbank").value === undefined || document.getElementById("farmerbank").value === "") {
-                                    //window.alert("ENTER BANK NAME");
-                                    console.log("bank name is" + document.getElementById("farmerbank").value);
-                                    msg = msg + " BANK NAME";
-                                } else {
-                                    if (!(document.getElementById("farmerbank").value.match(regex))) {
-                                        window.alert("DONT ENTER NUMBERS FOR BANK NAME")
-                                            //	document.getElementById("bank").focus();
-                                        return false;
-                                    }
-                                }
-                                if (document.getElementById("branch").value == null || document.getElementById("branch").value === undefined || document.getElementById("branch").value === "") {
-                                    //window.alert("ENTER NAME OF BRANCH");
-                                    msg = msg + " BRANCH NAME";
-                                } else {
-                                    if (!(document.getElementById("branch").value.match(regex))) {
-                                        window.alert("DONT ENTER NUMBERS FOR BANK BRANCH")
-                                            //	document.getElementById("branch").focus();
-                                        return false;
-                                    }
-                                }
-                                if (document.getElementById("ifsc").value == null || document.getElementById("ifsc").value === undefined || document.getElementById("ifsc").value === "") {
-                                    //	window.alert("ENTER BANK'S IFSC");
-                                    msg = msg + " IFSC";
-                                } else {
-                                    console.log(document.getElementById("ifsc").value);
-                                    //if(/^[A-Za-z]{4}0[0-9]{6}$/.test(document.getElementById("ifsc").value))
-                                    {
-                                        //value is ok
-                                    }
-                                    //else
-                                    {
-                                        //window.alert("ENTER ONLY NUMBERS FOR IFSC")
-                                        //ifsc.focus();			
-                                    }
-                                }
-                                if (document.getElementById("pwd").value == null || document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "") {
-                                    //window.alert("ENTER PASSWORD");
-                                    msg = msg + " PASSWORD";
-                                }
-                                if (document.getElementById("cpwd").value == null || document.getElementById("cpwd").value === undefined || document.getElementById("cpwd").value === "") {
-                                    //window.alert("ENTER CONFIRM PASSWORD");
-                                } else {
-                                    if (document.getElementById("pwd").value != document.getElementById("cpwd").value)
-                                        alert("PASSWORD DOESNOT MATCH");
-                                }
-                                console.log(document.getElementById("pwd").value + " " + document.getElementById("cpwd").value);
-                                console.log(document.getElementById("terms").checked == true);
-                                if ((document.getElementById("terms").checked == false)) {
-                                    msg = msg + " TERMS AND CONDITION";
-                                }
-                                console.log(msg);
-                                document.getElementById("terms").focus();
-                                document.getElementById("name").focus();
-                                document.getElementById("pwd").focus();
-                                if (msg.length == 0)
-                                    document.getElementById("bank").submit();
-                                else
-                                    window.alert("PLEASE ENTER " + msg);
-                                //  var name = document.bank.name;
-                                /*	var mob = document.bank.farmermobile;
-                                	var aadharnum = document.bank.farmeraadharnum;
-                                    var email = document.bank.farmeremail;
-                                	var taluk = document.bank.name;
-                                	var hobli = document.bank.name;
-                                	var village = document.bank.name;
-                                	var bankname = document.bank.farmerbank;
-                                	var accnum = document.bank.farmeraccountnum;
-                                	var branch = document.bank.farmerbranch;
-                                	var ifsc = document.bank.farmerifsc;
-                                	//var uid = document.fregform.farmeruid;
-                                	//var pwd = document.fregform.farmerpwd;
-                                	var letters = /^[A-Za-z ]+$/;		
-                                	var val = mob.value;		
-                                	var val = aadharnum.value;
-                                	if (/^\d{12}$/.test(val)) 
-                                	{
-                                	}
-                                	else
-                                	{
-                                	    alert("AADHARNUMBER MUST BE 12 DIGITS");
-                                	    document.getElementById("aadharnumber").focus();
-                                	    return false
-                                	}		
-                                	if(!taluk.value.match(letters))
-                                	{
-                                		window.alert("DONT ENTER NUMBERS FOR TALUK")
-                                	//	taluk.focus();
-                                		return false;
-                                	}		
-                                	if(!hobli.value.match(letters))
-                                	{
-                                		window.alert("DONT ENTER NUMBERS FOR HOBLI")
-                                		//hobli.focus();
-                                		return false;
-                                	}
-                                	if(!village.value.match(letters))
-                                	{
-                                		window.alert("DONT ENTER NUMBERS FOR VILLAGE")
-                                	//	village.focus();
-                                		return false;
-                                	}
-                                	var ifscval = ifsc.value;*/
-                            }
+                            	
+                            	//address validation
+                            	var address=document.fregform.address;
+                            	if(address.value==""){
+                            		window.alert("Please enter your address");
+                            		address.focus();
+                            		return false;
+                            	}
+                            	
+                            	
+                            	//Taluk name validation
+                            	var taluk=document.fregform.farmertaluk;
+                            	
+                            	if(taluk.value==""){
+                            		window.alert("Please enter your taluk name");
+                            		taluk.focus();
+                            		return false;
+                            	}
+                            	if(!taluk.value.match(letters))
+                            	{
+                            		window.alert("Please enter only alphabets for taluk name.");
+                            		taluk.focus();
+                            		return false;
+                            	}
+                            	//PIN Code validation
+                            	var pin=document.fregform.pin;
+                            	if(pin.value==""){
+                            		window.alert("Please enter your pincode");
+                            		pin.focus();
+                            		return false;
+                            	}
+                            	var pinval = pin.value;
+                            	if(/^[0-9]{6}$/.test(pinval))
+                            	{
+                            		//value is ok
+                            	}
+                            	else
+                            	{
+                            		window.alert("Please enter valid PIN Code.");
+                            		pin.focus();
+                            		return false;
+                            	}
+                            	//accountnumber validation
+                            	var farmeraccountnum=document.fregform.farmeraccountnum;
+                            	var acc = farmeraccountnum.value;
+                            	if(acc==""){
+                            		alert("Please enter your Account number");
+                            		farmeraccountnum.focus();
+                            		    return false;
+                            	}
+                            	if(isNaN(acc)){
+                            		alert("Enter the valid Account Number");
+                            		farmeraccountnum.focus();
+                            		return false;
+                            	}
+                            	if(acc.length!=12){
+                            		
+                            		alert(" Your Account number must be 12 digits");
+                            		farmeraccountnum.focus();
+                            		return false;
+                            	}
+                            	//Bank name validation
+                            	var bankname=document.fregform.farmerbankname;
+                            	if(bankname.value==""){
+                            		window.alert("Please enter your Bank name");
+                            		bankname.focus();
+                            		return false;
+                            	}
+                            	if(!bankname.value.match(letters))
+                            	{
+                            		window.alert("Please enter only alphabets for bank name.");
+                            		bankname.focus();
+                            		return false;
+                            	}
+
+                            	//Account Branch name validation
+                            	var branch=document.fregform.farmerbranch;
+                            	if(branch.value==""){
+                            		window.alert("Please enter your Branch name");
+                            		branch.focus();
+                            		return false;
+                            	}
+                            	if(!branch.value.match(letters))
+                            	{
+                            		window.alert("Please enter only alphabets for branch name.");
+                            		branch.focus();
+                            		return false;
+                            	}
+                            	//IFSC Code validation
+                            	var ifsc=document.fregform.farmerifsccode;
+                            	if(ifsc.value==""){
+                            		window.alert("Please enter your IFSC code");
+                            		ifsc.focus();
+                            		return false;
+                            	}
+                            	
+                            	var ifscval = ifsc.value;
+                            	if(/^[A-Za-z]{4}0[0-9]{6}$/.test(ifscval))
+                            	{
+                            		//value is ok
+                            	}
+                            	else
+                            	{
+                            		window.alert("Please enter valid IFSC Code.");
+                            		ifsc.focus();
+                            		return false;
+                            	}
+                            	// bank taluk validation
+                            	var btaluk=document.fregform.bTaluk;
+                            	if( btaluk.value==""){
+                            		window.alert("Please enter taluk of your bank");
+                            		 btaluk.focus();
+                            		return false;
+                            	}
+                            	
+                            	// bank pinncode validation
+                            	var bpin=document.fregform.bpin;
+                            	if(bpin.value==""){
+                            		window.alert("Please enter your pincode");
+                            		bpin.focus();
+                            		return false;
+                            	}
+                            	var bpinval = bpin.value;
+                            	if(/^[0-9]{6}$/.test(bpinval))
+                            	{
+                            		//value is ok
+                            	}
+                            	else
+                            	{
+                            		window.alert("Please enter valid PIN Code.");
+                            		bpin.focus();
+                            		return false;
+                            	}
+                            	//Password validation
+                            	var password=document.fregform.password;
+                            	if(password.value==""){
+                            		window.alert("Please enter your password");
+                            		password.focus();
+                            		return false;
+                            	}
+                            	
+                           
+                            var cpassword=document.fregform.cpassword;
+                            if(cpassword.value==""){
+                        		window.alert("Please enter your password again");
+                        		cpassword.focus();
+                        		return false;
+                        	}
+                        	
+                        	if(password.value != cpassword.value)
+                        	{
+                        		window.alert("Password does not match.")
+                        		return false;
+                        	}
+                        	//otp validation
+                        	var otp=document.fregform.otpval;
+                        	var otpval = otp.value;
+                        	if(otp.value == "")
+                        	{
+                        		alert("Please enter your OTP");
+                        		otp.focus();
+                        		return false;
+                        	}
+                        	if(isNaN(otpval)){
+                        		alert("Enter the valid OTP number");
+                        		otp.focus();
+                        		return false;
+                        	}
+                        	if (/^\d{6}$/.test(otpval)) {
+                        		
+                        	    // value is ok, use it
+                        	} else {
+                        	    alert("Invalid OTP number, must be six digits");
+                        	    otp.focus();
+                        	    return false;
+                        	}
+                        	//Terms & condn validation
+                        	var tc=document.fregform.tc;
+                        	if(tc.checked == false)
+                        	{
+                        		alert("Please check T & C");
+                        	    tc.focus();
+                        	    return false;
+                        	}
+                        	return true;
+                       }
                         </script>
-                    </table>
-                </div>
-            </div>
-        </div>
         <!---my detail form end----->
         <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
-        <%} %>
+       <% String msg = (String)request.getAttribute("errmsg");  %>
+<p align = "center"><b>
+<% if(msg != null && msg.equals("success"))
+	{
+		out.print("Registration Successfull");
+		out.print("<br/><a href='Login.html'>Click here to login</a>");
+	}
+	else if(msg != null)
+	{
+		out.print(msg);
+	}
+%></b></p>
 </body>
 </html>
