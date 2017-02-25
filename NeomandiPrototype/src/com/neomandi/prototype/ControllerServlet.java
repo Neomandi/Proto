@@ -1031,7 +1031,7 @@ public class ControllerServlet extends HttpServlet {
 				try {
 					pw = response.getWriter();
 					pw.println("<script>alert('Product Entry Successfull');");
-					pw.println("location = 'ProductEntry.jsp';</script>");
+					pw.println("location = 'https://neomandi.in/ProductEntry.jsp';</script>");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
