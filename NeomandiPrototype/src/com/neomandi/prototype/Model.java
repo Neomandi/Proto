@@ -738,7 +738,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps.setString(9, date);
 				ps.setString(10, date2);
-				ps.setString(11, slot);
+				ps.setString(11, "slot1");
 				ps.setString(12, null);
 				ps.setString(13, null);
 				ps.execute();

@@ -55,7 +55,7 @@
 <input type="text" name="starttime" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="endtime" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
 
@@ -75,9 +75,18 @@ function fun()
 		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
 }
 
-function starttime()
+function fun1()
 {
-	 
+	var stop = 1;
+	  xmlhttp = new XMLHttpRequest();
+	  xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) 
+	  {
+		    				         
+	  }};
+		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("stopauction="+stop);
 }
 </script>
 </div></center>
