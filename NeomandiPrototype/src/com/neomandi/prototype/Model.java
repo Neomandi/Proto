@@ -727,7 +727,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				
-				try {
+				try 
+				{
 					slot = TimeSlots.time(date+" "+date2);
 					System.out.println(slot);
 				} catch (ParseException e) {

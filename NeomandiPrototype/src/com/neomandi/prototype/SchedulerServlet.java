@@ -106,8 +106,6 @@ public class SchedulerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
 		System.out.println("Start time: "+t1.getStartTime());
 		System.out.println("End time: "+t1.getEndTime());
 		
@@ -127,9 +125,7 @@ public class SchedulerServlet extends HttpServlet {
 			} catch (SchedulerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		
+			}	
 			//System.out.println("End time: "+t1.getEndTime());
 	}
-
 }
