@@ -73,7 +73,6 @@ function fun()
 		  xmlhttp.open("POST", "Start.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-
 }
 function fun1()
 {
@@ -98,9 +97,9 @@ function fun2()
 	  {
 		    				         
 	  }};
-		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+		  xmlhttp.open("POST", "PostAuction.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("stopauction="+stop);
+		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
 }
 
 </script>

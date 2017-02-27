@@ -76,6 +76,10 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession fss = request.getSession();
 			fss.setAttribute("starttime", starttime);
 			fss.setAttribute("endtime", endtime);
+			
+			HttpSession tss = request.getSession();
+			tss.setAttribute("starttime", starttime);
+			tss.setAttribute("endtime", endtime);
 			boolean flag = true;
 			
 			SchedulerServlet.process(starttime, endtime, flag);
@@ -1327,8 +1331,9 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			String start=request.getParameter("starttime");
-			String stop=request.getParameter("stoptime");
+			HttpSession tss = request.getSession();
+			String start=(String)tss.getAttribute("starttime");
+			String stop=(String)tss.getAttribute("endtime");
 			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;
@@ -1364,10 +1369,11 @@ public class ControllerServlet extends HttpServlet {
 			{
 				if(start!=null)
 				{
-					System.out.println("request.getParameter(starttime).length()->"+((String)request.getParameter("starttime")).length());
 					HttpSession timer=request.getSession(true);
 					timer.setAttribute("start",request.getParameter("starttime"));
 					timer.setAttribute("stop", request.getParameter("endtime"));
+					//
+					System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
 					rd1.forward(request, response);
 				}
 				else		
@@ -1616,6 +1622,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("**********************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			System.out.println(tlbn==null);
 			if(tlbn==null)
 			{
 				rd=request.getRequestDispatcher("TraderLogin.jsp");
@@ -1630,13 +1637,13 @@ public class ControllerServlet extends HttpServlet {
 			{
 				Model m=new Model();
 				m.PostAuction(tlbn.getTname(),tlbn.getTpwd());
-				rd=request.getRequestDispatcher("OrderStatus.do");
+				/*rd=request.getRequestDispatcher("OrderStatus.do");
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e) 
 				{
 					e.printStackTrace();
-				}	
+				}	*/
 			}			
 		}
 		
@@ -1737,11 +1744,15 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("inside CS");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
 			try
 			{
 				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 				if(tlbn.getTname()==null)
 				{}
+				 name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
 			}
 			catch(NullPointerException e)
 			{			
@@ -1753,9 +1764,9 @@ public class ControllerServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 			}
-			String name=tlbn.getTname();
-			String pwd=tlbn.getTpwd();
+			
 			Model m=new Model();
+			//Myclass2 mc=(Myclass2)m.orderstatus(name,pwd);  FOR TIME BEING I WILL USE ORDERSTATUS;)
 			Myclass2 mc=(Myclass2)m.orderstatus(name,pwd);
 			HttpSession orderstatus=request.getSession();
 			orderstatus.setAttribute("msg", mc);

@@ -181,9 +181,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
 <%
-					HttpSession timer=request.getSession();
-					String start=(String)timer.getAttribute("start");
-					String stop=(String)timer.getAttribute("stop");
+HttpSession tss = request.getSession(false);
+String start=(String)tss.getAttribute("starttime");
+String stop=(String)tss.getAttribute("endtime");
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
