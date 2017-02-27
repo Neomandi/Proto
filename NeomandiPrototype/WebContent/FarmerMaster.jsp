@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+		<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -190,12 +190,12 @@ if((String)hs.getAttribute("name")==null){
 	  <td>
 
 
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
 
 	  </td>
 	  <td>
-	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
+	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
 
 
@@ -531,7 +531,7 @@ function countdown(minutes,seconds,hours)
 {
 	  document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
+		  location="http://neomandi.in/FarmerMaster.jsp";
 		  
 	  }	
 	 
@@ -556,7 +556,7 @@ function countdown(minutes,seconds,hours)
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
 		            	
-		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   window.location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -604,7 +604,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -628,7 +628,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -674,10 +674,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
   </script> 
 </body>

@@ -70,7 +70,7 @@ function fun()
 	  {
 		    				         
 	  }};
-		  xmlhttp.open("POST", "SchedulerServlet", true);
+		  xmlhttp.open("POST", "Time.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
 }
