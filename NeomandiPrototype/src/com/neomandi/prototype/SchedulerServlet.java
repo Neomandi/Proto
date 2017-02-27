@@ -52,17 +52,17 @@ public class SchedulerServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public static void process(String a, String b)
+	public static void process(String a, String b, boolean c)
 	{
 		try {
-			init(a, b);
+			init(a, b, c);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void init(String a, String b) throws ServletException {
+	public static void init(String a, String b, boolean c) throws ServletException {
 		
 		System.out.println("SchedulerServlet init()......");
 		JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
@@ -121,7 +121,10 @@ public class SchedulerServlet extends HttpServlet {
 		
 		String dt = format.format(new Date());
 		
+		boolean flag = c;
 		
+		if(flag == true)
+		{
 			try {
 				sc.start();
 			} catch (SchedulerException e) {
@@ -135,5 +138,16 @@ public class SchedulerServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 			//System.out.println("End time: "+t1.getEndTime());
+		}
+		else
+		{
+			try {
+				sc.shutdown();
+				System.out.println("Job shutdown");
+			} catch (SchedulerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

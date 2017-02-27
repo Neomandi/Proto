@@ -54,6 +54,7 @@ public class PostAuctionOperationServlet extends HttpServlet {
 		
 		while(val.equals("1"))
 		{	
+			SchedulerServlet.process("00:00:00", "00:00:00", false);
 			PostAuctionOperations.postAO();
 			val = "0";
 		}

@@ -67,7 +67,7 @@ public class ControllerServlet extends HttpServlet {
 		//Employee Registration
 		
 		
-		if(uri.contains("Time"))
+		if(uri.contains("Start"))
 		{
 			starttime = request.getParameter("starttime");
 			endtime = request.getParameter("endtime");
@@ -76,8 +76,9 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession fss = request.getSession();
 			fss.setAttribute("starttime", starttime);
 			fss.setAttribute("endtime", endtime);
+			boolean flag = true;
 			
-			SchedulerServlet.process(starttime, endtime);
+			SchedulerServlet.process(starttime, endtime, flag);
 		}
 		
 		if(uri.contains("EmployeeRegister"))
@@ -1004,11 +1005,6 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
-			
-			String filePath = new File("").getAbsolutePath();
-			System.out.println(filePath);
-			
-			
 	        String photo="";
 
 	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
@@ -1053,11 +1049,12 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
+				request.setAttribute("errmsg", msg);
+				rd = request.getRequestDispatcher("ProductEntry.jsp");
 				try {
-					pw = response.getWriter();
-					pw.println("<html><head><script>alert('Product Entry Successfull');");
-					pw.println("window.location = 'https://neomandi.in/ProductEntry.jsp';</script></head></html>");
-				} catch (IOException e) {
+					rd.forward(request, response);
+					return;
+				} catch (ServletException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
