@@ -124,6 +124,7 @@ footer {
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		//System.out.println(rs);
+		System.out.println("is resultset not empty "+!rs.isBeforeFirst());
 		if(!rs.isBeforeFirst())
 		{
 			while(rs.next())

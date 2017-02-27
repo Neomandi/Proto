@@ -59,10 +59,27 @@ public class ControllerServlet extends HttpServlet {
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
-		SummaryBean sb=(SummaryBean)request.getAttribute("sb");		
+		SummaryBean sb=(SummaryBean)request.getAttribute("sb");	
+		String starttime = "";
+		String endtime = "";
 		String uri=request.getRequestURI();		
 		System.out.println(uri);		
 		//Employee Registration
+		
+		
+		if(uri.contains("Start"))
+		{
+			starttime = request.getParameter("starttime");
+			endtime = request.getParameter("endtime");
+			System.out.println("Starttime: "+starttime);
+			System.out.println("Endtime: "+endtime);
+			HttpSession fss = request.getSession();
+			fss.setAttribute("starttime", starttime);
+			fss.setAttribute("endtime", endtime);
+			boolean flag = true;
+			
+			SchedulerServlet.process(starttime, endtime, flag);
+		}
 		
 		if(uri.contains("EmployeeRegister"))
 		{
@@ -201,16 +218,24 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.farmerLogin(name,pass);
 			if(msg.equals("SUCCESS"))
 			{
+				HttpSession fss = request.getSession(false);
+				starttime = (String) fss.getAttribute("starttime");
+				endtime = (String) fss.getAttribute("endtime");
+				System.out.println("FLogin sttime: "+starttime);
+				System.out.println("Flogin etime: "+endtime);
+				
+				
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				HttpSession hs=request.getSession();
-				hs.setAttribute("date", date);
-				hs.setAttribute("time",date2);
+				hs.setAttribute("starttime", starttime);
+				hs.setAttribute("endtime",endtime);
 				hs.setAttribute("name", name);
 				hs.setAttribute("pass",pass);
 				rd=request.getRequestDispatcher("FarmerMaster.jsp");
+				
 				try 
 				{
 					rd.forward(request, response);			
@@ -980,11 +1005,6 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IllegalStateException | IOException | ServletException e1) {
 				e1.printStackTrace();
 			}         
-			
-			String filePath = new File("").getAbsolutePath();
-			System.out.println(filePath);
-			
-			
 	        String photo="";
 
 	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
@@ -1029,11 +1049,12 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.productEntry(pebean);
 			if(msg.equals("SUCCESS"))
 			{
+				request.setAttribute("errmsg", msg);
+				rd = request.getRequestDispatcher("ProductEntry.jsp");
 				try {
-					pw = response.getWriter();
-					pw.println("<script>alert('Product Entry Successfull');");
-					pw.println("location = 'https://neomandi.in/ProductEntry.jsp';</script>");
-				} catch (IOException e) {
+					rd.forward(request, response);
+					return;
+				} catch (ServletException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

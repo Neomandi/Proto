@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="libs/pure-min.css">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
     <link rel="stylesheet" href="libs/grids-responsive-min.css">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -69,21 +70,11 @@ function fun()
 	  {
 		    				         
 	  }};
-	 xmlhttp.open("POST", "SchedulerServlet", true);
-	 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-	 
-	 xmlhttp = new XMLHttpRequest();
-	 xmlhttp.onreadystatechange = function() {
-	 if (this.readyState == 4 && this.status == 200) 
-	 {
-	    				         
-	 }};
-	 xmlhttp.open("POST", "TradeorAuction.do", true);
-	 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-}
+		  xmlhttp.open("POST", "Start.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
 
+}
 function fun1()
 {
 	var stop = 1;
