@@ -50,10 +50,14 @@ public class SchedulerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String starttime = request.getParameter("starttime");
+		String endtime = request.getParameter("endtime");
+		System.out.println(starttime);
+		System.out.println(endtime);
+		init(starttime, endtime);
 	}
 	
-	@Override
-	public void init() throws ServletException {
+	public void init(String a, String b) throws ServletException {
 		
 		System.out.println("SchedulerServlet init()......");
 		JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
@@ -81,16 +85,15 @@ public class SchedulerServlet extends HttpServlet {
 		
 		//System.out.println("Time + 10min: "+time1);
 		
-		
 		try {
-			s1t = format.parse(date+" "+"10:30:00.000");
+			s1t = format.parse(date+" "+a);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Date e1t = null;;
 		try {
-			e1t = format.parse(date+" "+"10:35:00.000");
+			e1t = format.parse(date+" "+b);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,8 +109,6 @@ public class SchedulerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
 		System.out.println("Start time: "+t1.getStartTime());
 		System.out.println("End time: "+t1.getEndTime());
 		
@@ -127,9 +128,7 @@ public class SchedulerServlet extends HttpServlet {
 			} catch (SchedulerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		
+			}	
 			//System.out.println("End time: "+t1.getEndTime());
 	}
-
 }

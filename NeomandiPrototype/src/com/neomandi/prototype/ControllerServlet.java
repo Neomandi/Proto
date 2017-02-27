@@ -940,6 +940,7 @@ public class ControllerServlet extends HttpServlet {
 				} catch (IOException e) {
 							e.printStackTrace();
 				}
+				return;
 			}
 			else
 			{
@@ -985,7 +986,7 @@ public class ControllerServlet extends HttpServlet {
 			
 	        String photo="";
 
-	        String path="C:/Users/NEOMANDI-PC2/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
 
 	        System.out.println("Path "+path);
 	        File file=new File(path);
@@ -1030,7 +1031,7 @@ public class ControllerServlet extends HttpServlet {
 				try {
 					pw = response.getWriter();
 					pw.println("<script>alert('Product Entry Successfull');");
-					pw.println("location = 'ProductEntry.jsp';</script>");
+					pw.println("location = 'https://neomandi.in/ProductEntry.jsp';</script>");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1573,6 +1574,35 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		if(uri.contains("PostAuction"))
+		{
+			System.out.println("**********************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			if(tlbn==null)
+			{
+				rd=request.getRequestDispatcher("TraderLogin.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}	
+			}
+			else
+			{
+				Model m=new Model();
+				m.PostAuction(tlbn.getTname(),tlbn.getTpwd());
+				rd=request.getRequestDispatcher("OrderStatus.do");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}	
+			}			
+		}
+		
 		//TraderLogout
 		if(uri.contains("logout"))
 		{
@@ -1926,7 +1956,8 @@ public class ControllerServlet extends HttpServlet {
 				}	
 			}
 		}
-		if(uri.contains("FarmerHistory")){
+		if(uri.contains("FarmerHistory"))
+		{
 			System.out.println("***************************************************************************");
 			String from=request.getParameter("from");
 			String to=request.getParameter("to");

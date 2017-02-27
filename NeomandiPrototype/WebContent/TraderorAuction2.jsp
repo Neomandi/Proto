@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1" import="java.util.*,
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+pageEncoding="ISO-8859-1" import="java.util.*,
     java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
     com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
     java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
@@ -307,7 +308,18 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-					        		       }
+								            	
+								            	xmlhttp = new XMLHttpRequest();
+								      		  	xmlhttp.onreadystatechange = function() {
+								      		    if (this.readyState == 4 && this.status == 200) 
+								      		    {
+								      		    	
+								      		    }};
+								      		    console.log("your auction has ended");
+								      		//  xmlhttp.open("POST", "PostAuction.do", true);
+								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								      		alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
+								      	   }
 				        		    	}
 			        		     	}
 			        		   	 	tick();

@@ -9,24 +9,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
-public class Model {
-int count=0;
-String tradername=null;
-String traderpwd=null;
-String farmeracceptresult=null;
-String lotnum=null;
+public class Model 
+{
+	int count=0;
+	String tradername=null;
+	String traderpwd=null;
+	String farmeracceptresult=null;
+	String lotnum=null;
 
-public String getLotnum() {
-	return lotnum;
-}
+	public String getLotnum() {
+		return lotnum;
+	}	
 
-public void setLotnum(String lotnum) {
-	this.lotnum = lotnum;
-}
+	public void setLotnum(String lotnum) {
+		this.lotnum = lotnum;
+	}	
 
 public String getFarmeracceptresult() {
 	return farmeracceptresult;
@@ -724,7 +727,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				
-				try {
+				try 
+				{
 					slot = TimeSlots.time(date+" "+date2);
 					System.out.println(slot);
 				} catch (ParseException e) {
@@ -734,7 +738,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps.setString(9, date);
 				ps.setString(10, date2);
-				ps.setString(11, slot);
+				ps.setString(11, "slot1");
 				ps.setString(12, null);
 				ps.setString(13, null);
 				ps.execute();
@@ -785,6 +789,26 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			}
 			else
 			{
+				
+				
+				Calendar calendar = Calendar.getInstance();
+		        TimeZone fromTimeZone = calendar.getTimeZone();
+		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+		        calendar.setTimeZone(fromTimeZone);
+		        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+		        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+		            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+		        }
+
+		        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+		        if (toTimeZone.inDaylightTime(calendar.getTime())) 
+		        {
+		            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+		        }
+		        System.out.println("************"+calendar.getTime());
+		        
+				
 				con.setAutoCommit(false);
 		//		System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
@@ -1388,8 +1412,8 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		return mc;
 	}
 
-	public String actionTrail(ActionTrailBean atbean) {
-		
+	public String actionTrail(ActionTrailBean atbean) 
+	{	
 		Connection con = null;
 		PreparedStatement ps = null;
 		Statement stmt = null;
@@ -3550,8 +3574,32 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					System.out.println("traders final cost                             = "+finalcost);
 					System.out.println("time at whch bid was placed                    = "+date);
 					//System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
-					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//
 					
+					//int biddate=Integer.parseInt(date);
+					String str[]=date.split(":");
+					System.out.println("hour is "+str[0]);
+					int hour=Integer.parseInt(str[0]);
+					int minute=Integer.parseInt(str[1]);
+					
+					Calendar calendar = Calendar.getInstance();
+			        TimeZone fromTimeZone = calendar.getTimeZone();
+			        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+			        calendar.setTimeZone(fromTimeZone);
+			        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+			        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+			            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+			        }
+
+			        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+			        if (toTimeZone.inDaylightTime(calendar.getTime())) {
+			            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+			        }
+
+			        System.out.println("************"+calendar.getTime());
+			        
+					//System.out.println("**********************************date is "+biddate+"*************");
+					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//					
 					ps.setString(1,lotcosts);
 					ps.setInt(2,res);
 					ps.setString(3,commissions);
@@ -3933,7 +3981,8 @@ public int release(String name, String pwd, String release,String bank)
 			JDBCHelper.Close(con);
 			
 	return block;
-}}
+	}
+		}
 	catch(Exception e)
 	{e.printStackTrace();
 	
@@ -3952,13 +4001,13 @@ public int release(String name, String pwd, String release,String bank)
 		JDBCHelper.Close(ps3);
 		JDBCHelper.Close(ps4);
 		JDBCHelper.Close(con);
-	}
-	
-		return block;
-	}
+	}	
+	return block;
+}
 
 @SuppressWarnings("rawtypes")
-public List traderHistory(String name, String pwd, String from, String to) {
+public List traderHistory(String name, String pwd, String from, String to) 
+{
 	// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 	PreparedStatement ps = null;
 	Connection con = null;
@@ -4032,16 +4081,98 @@ public List traderHistory(String name, String pwd, String from, String to) {
 			}	
 			return al;
 		}
-	}catch(Exception e)
+	}
+	catch(Exception e)
 	{
-e.printStackTrace();
-}
+		e.printStackTrace();
+	}
 	finally
 	{
 		JDBCHelper.Close(ps);
 		JDBCHelper.Close(con);
 	}
-return al;
-
+    return al;
 }
+
+public void PostAuction(String name,String pwd) 
+{
+	PreparedStatement ps = null;
+	PreparedStatement ps1 = null;
+	PreparedStatement ps2 = null;
+	PreparedStatement ps3 = null;
+	Connection con = null;
+	ResultSet rs = null;
+	ResultSet rs2 = null;
+	
+	try
+	{
+		con = JDBCHelper.getConnection();
+		if(con == null)
+		{
+			System.out.println("Connection not established!");
+		}
+		else
+		{	
+			System.out.println("Inside model.....");
+			ps=con.prepareStatement("select tl.lotnum,tl.aadharnumber,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantity,tl.slotnumber,tl.quantityneeded,tl.created_at from tradelist tl, treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tr.pass=?");
+			ps.setString(1,name);
+			ps.setString(2,pwd);
+			ps.execute();
+			System.out.println(ps);
+			rs = ps.getResultSet();
+			while(rs.next())
+			{
+				ps1=con.prepareStatement("select tbp.marketcess,tbp.bidprice,tbp.lotcost,tbp.commission,tbp.myfinalcost,tbp.bestbid,tbp.quantityassigned from traders_bid_price tbp where tbp.aadharnumber=? and tbp.lotnum=?");
+				ps1.setString(1,rs.getString("aadharnumber"));
+				ps1.setString(2,rs.getString("lotnum"));
+				ps1.execute();
+				rs2=ps1.getResultSet();
+				System.out.println(ps1);
+				while(rs2.next())
+				{
+					ps2=con.prepareStatement("insert into trader_histroy values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					ps2.setString(1,rs.getString("aadharnumber"));
+					ps2.setString(2,rs.getString("lotnum"));
+					ps2.setString(3,rs.getString("marketcode"));
+					ps2.setString(4,rs.getString("produce"));
+					ps2.setString(5,rs.getString("qualitygrade"));
+					ps2.setString(6,rs2.getString("bidprice"));
+					ps2.setString(7,rs2.getString("myfinalcost"));
+					ps2.setString(8,rs2.getString("bestbid"));
+					ps2.setString(9,rs.getString("quantity"));
+					ps2.setString(10,rs.getString("quantityneeded"));
+					ps2.setString(11,rs2.getString("quantityassigned"));
+					ps2.setString(12,rs.getString("slotnumber"));
+					ps2.setString(13,rs2.getString("lotcost"));
+					ps2.setString(14,rs2.getString("commission"));
+					ps2.setString(15,rs2.getString("marketcess"));
+					ps2.setString(16,rs.getString("created_at"));
+					ps2.execute();
+					System.out.println(ps2);					
+					
+					ps2=con.prepareStatement("delete from trader_histroy where aadharnumber=? and lotnum=?");
+					ps2.setString(1,rs.getString("aadharnumber"));
+					ps2.setString(2,rs.getString("lotnum"));
+					ps2.execute();
+					System.out.println(ps2);
+					
+					ps3=con.prepareStatement("delete from tradelist where aadharnumber=? and lotnum=?");
+					ps3.setString(1,rs.getString("aadharnumber"));
+					ps3.setString(2,rs.getString("lotnum"));
+					ps3.execute();
+					System.out.println(ps3);
+				}
+			}
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	finally
+	{
+		JDBCHelper.Close(ps);
+		JDBCHelper.Close(con);
+	}
+  }
 }
