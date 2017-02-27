@@ -2824,7 +2824,7 @@ public Myclass2 orderstatus1(String name, String pwd)
 						osbn=new OrderStatusBean();
 						osbn.setLotnum(rs1.getString("lotnum"));
 						osbn.setMarketcode(rs1.getString("marketcode"));
-						osbn.setQuantityavailable(rs1.getString("quantity"));
+						osbn.setQuantityavailable(rs1.getString("quantityavailable"));
 						osbn.setProduce(rs1.getString("produce"));
 						osbn.setQualitygrade(rs1.getString("qualitygrade"));
 						osbn.setQuantityneeded(rs1.getString("quantityneeded"));
@@ -2844,7 +2844,7 @@ public Myclass2 orderstatus1(String name, String pwd)
 						osbn.setMyfinalcost(myfinalcosts);
 						System.out.println("lotnum 				=	"+rs1.getString("lotnum"));
 						System.out.println("Marketcode 			=	"+rs1.getString("marketcode"));
-						System.out.println("Quantityavailable 	=	"+rs1.getString("quantity"));
+						System.out.println("Quantityavailable 	=	"+rs1.getString("quantityavailable"));
 						System.out.println("Produce 			=	"+rs1.getString("produce"));
 						System.out.println("Qualitygrade 		=	"+rs1.getString("qualitygrade"));
 						System.out.println("Quantityneeded 		=	"+rs1.getString("quantityneeded"));
@@ -4319,6 +4319,7 @@ public void PostAuction(String name,String pwd)
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
+				System.out.println("lotnumber is "+rs.getString("lotnum")+" name is "+name+" pwd is "+pwd);
 				ps1=con.prepareStatement("select tbp.marketcess,tbp.bidprice,tbp.lotcost,tbp.commission,tbp.myfinalcost,tbp.bestbid,tbp.quantityassigned from traders_bid_price tbp where tbp.aadharnumber=? and tbp.lotnum=?");
 				ps1.setString(1,rs.getString("aadharnumber"));
 				ps1.setString(2,rs.getString("lotnum"));
