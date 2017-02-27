@@ -181,9 +181,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
 <%
-HttpSession tss = request.getSession(false);
-String start=(String)tss.getAttribute("starttime");
-String stop=(String)tss.getAttribute("endtime");
+	ServletContext context = request.getSession().getServletContext();
+	String start=(String)context.getAttribute("starttime");
+	String stop=(String)context.getAttribute("endtime");
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
@@ -609,7 +609,7 @@ String stop=(String)tss.getAttribute("endtime");
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
 		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
-	else if(currentbid-bestbid==0)
+	else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0))
 		{
 			console.log("currentbid-bestbid==0");
 			alert("YOU CANT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
@@ -855,7 +855,7 @@ String stop=(String)tss.getAttribute("endtime");
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 			  var bestbid=new Number(bestbids);
-			  if(currentbids-bestbid==0)
+			  if(currentbids-bestbid==0 && currentbid!=0)
 				  {
 				  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
@@ -1194,7 +1194,7 @@ String stop=(String)tss.getAttribute("endtime");
 	}
 	var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
 	var bestbid=new Number(bestbids);
-	if(currentbids-bestbid==0)
+	if(currentbids-bestbid==0 && currentbids!=0)
 		  {
 				console.log("currentbids-bestbid==0");
 		  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
@@ -1438,7 +1438,7 @@ String stop=(String)tss.getAttribute("endtime");
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
 				var bestbid=new Number(bestbids);
-				if(currentbids-bestbid==0)
+				if(currentbids-bestbid==0 && currentbids!=0)
 					  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }

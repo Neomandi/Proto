@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -76,6 +77,10 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession fss = request.getSession();
 			fss.setAttribute("starttime", starttime);
 			fss.setAttribute("endtime", endtime);
+			
+			ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("starttime", starttime);
+			context.setAttribute("endtime", endtime);
 			
 			HttpSession tss = request.getSession();
 			tss.setAttribute("starttime", starttime);
@@ -399,8 +404,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//AcceptSummary
-		if(uri.contains("AcceptSummary")){
-			
+		if(uri.contains("AcceptSummary"))
+		{	
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -426,8 +431,6 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("msg",msg);
-			
-			
 			
 			HttpSession farmerstatus=request.getSession();
 			farmerstatus.setAttribute("msg",msg);
@@ -1334,6 +1337,11 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession tss = request.getSession(false);
 			String start=(String)tss.getAttribute("starttime");
 			String stop=(String)tss.getAttribute("endtime");
+			
+			ServletContext context = request.getSession().getServletContext();
+			start=(String)context.getAttribute("starttime");
+			stop=(String)context.getAttribute("endtime");
+			
 			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;
