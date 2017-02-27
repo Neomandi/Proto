@@ -87,8 +87,10 @@ if((String)hs.getAttribute("name")==null){
 	 		
 	     	String pass=(String)hs.getAttribute("pass"); 
  		     System.out.println("original password="+pass);
- 		   
- 		    
+ 		   String starttime=(String)hs.getAttribute("starttime"); 
+ 		  System.out.println("starttime="+starttime);
+ 		 String endtime=(String)hs.getAttribute("starttime"); 
+		  System.out.println("starttime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
 	     	String time=df1.format(new Date());
