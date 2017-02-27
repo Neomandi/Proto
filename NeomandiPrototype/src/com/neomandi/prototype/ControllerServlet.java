@@ -1306,6 +1306,8 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
+			String start=request.getParameter("starttime");
+			String stop=request.getParameter("stoptime");
 			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;
@@ -1339,15 +1341,18 @@ public class ControllerServlet extends HttpServlet {
 			RequestDispatcher rd1 = request.getRequestDispatcher("TraderorAuction2.jsp");
 			try 
 			{
-				if(request.getParameter("starttime")!=null)
+				if(start!=null)
 				{
+					System.out.println("request.getParameter(starttime).length()->"+((String)request.getParameter("starttime")).length());
 					HttpSession timer=request.getSession(true);
 					timer.setAttribute("start",request.getParameter("starttime"));
 					timer.setAttribute("stop", request.getParameter("endtime"));
 					rd1.forward(request, response);
 				}
-				else					
+				else		
+				{					
 					rd1.forward(request, response);
+				}
 			}
 			catch (ServletException | IOException| NullPointerException e) 
 			{

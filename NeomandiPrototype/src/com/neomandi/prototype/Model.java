@@ -2812,7 +2812,7 @@ public Myclass2 orderstatus1(String name, String pwd)
 					{
 						aadharnumber=rs6.getString("aadharnumber");
 					}
-					ps =con.prepareStatement("select th.lotnum,th.quantityavailable,th.slotnumber,th.marketcode,th.produce,th.qualitygrade,th.quantityneeded,th.bidprice,th.bestbid,th.quantityassigned,th.lotcost  from tradelist tl where tl.aadharnumber=? and tl.lotnum=? ");
+					ps =con.prepareStatement("select th.lotnum,th.quantityavailable,th.slotnumber,th.marketcode,th.produce,th.qualitygrade,th.quantityneeded,th.bidprice,th.bestbid,th.quantityassigned,th.lotcost  from trader_histroy th where th.aadharnumber=? and th.lotnum=? ");
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnum);
 					ps.execute();
@@ -2829,35 +2829,34 @@ public Myclass2 orderstatus1(String name, String pwd)
 						osbn.setQualitygrade(rs1.getString("qualitygrade"));
 						osbn.setQuantityneeded(rs1.getString("quantityneeded"));
 						osbn.setSlotnumber(rs1.getString("slotnumber"));
-						
-						System.out.println("quantity available is "+rs1.getString("quantity"));
-						ps =con.prepareStatement("select tdp.bidprice,tdp.bestbid from traders_bid_price tdp, treg tr where tdp.aadharnumber=tr.aadharnumber and tdp.lotnum=? and  tr.name=? and tr.pass=?");
-						ps.setString(1, lotnum);
-						ps.setString(2, name);
-						ps.setString(3, pwd);
-						ps.execute();
-						rs2 = ps.getResultSet();
-						while(rs2.next())
-						{
-							String bidprices=rs2.getString("bidprice");
-							int volume=Integer.parseInt(volumes);
-							int bidprice=Integer.parseInt(bidprices);
-							int lotcost=volume*bidprice;							
-							int commission = (int) (lotcost*0.05);
-							int marketcess = (int) (lotcost*0.01);
-							int eplatform=100;
-							int myfinalcost=commission+marketcess+3000+lotcost+eplatform;
-							String myfinalcosts=String.valueOf(myfinalcost);
-							System.out.println("int myfinalcost=commission+marketcess+3000+lotcost+eplatform->"+commission+"+"+marketcess+"+"+3000+"+"+lotcost+"+ 100");
-							String lotcosts=String.valueOf(lotcost);
-							System.out.println("lotcosts-> "+lotcosts);
-							osbn.setLotcost(lotcosts);
-							osbn.setCommission(String.valueOf(commission));
-							osbn.setMarketcess((String.valueOf(marketcess)));
-							osbn.setBestbid(rs2.getString("bestbid"));
-							osbn.setBidprice(bidprices);
-							osbn.setMyfinalcost(myfinalcosts);
-						}		
+						osbn.setLotcost(rs1.getString("lotcost"));
+						int lotcost=Integer.parseInt(rs1.getString("lotcost"));
+						int commission = (int)(lotcost*0.05);
+						int marketcess = (int)(lotcost*0.01);
+						int eplatform=100;
+						int myfinalcost=commission+marketcess+3000+lotcost+eplatform;
+						String myfinalcosts=String.valueOf(myfinalcost);
+						String lotcosts=String.valueOf(lotcost);
+						osbn.setCommission(String.valueOf(commission));
+						osbn.setMarketcess((String.valueOf(marketcess)));
+						osbn.setBestbid(rs1.getString("bestbid"));
+						osbn.setBidprice(rs1.getString("bidprice"));
+						osbn.setMyfinalcost(myfinalcosts);
+						System.out.println("lotnum 				=	"+rs1.getString("lotnum"));
+						System.out.println("Marketcode 			=	"+rs1.getString("marketcode"));
+						System.out.println("Quantityavailable 	=	"+rs1.getString("quantity"));
+						System.out.println("Produce 			=	"+rs1.getString("produce"));
+						System.out.println("Qualitygrade 		=	"+rs1.getString("qualitygrade"));
+						System.out.println("Quantityneeded 		=	"+rs1.getString("quantityneeded"));
+						System.out.println("Slotnumber 			=	"+rs1.getString("slotnumber"));
+						System.out.println("Lotcost				=	"+rs1.getString("lotcost"));
+						System.out.println("Commission			=	"+String.valueOf(commission));
+						System.out.println("marketcess          =	"+String.valueOf(marketcess));
+						System.out.println("bestbid             =	"+rs1.getString("bestbid"));
+						System.out.println("bidprice            =	"+rs1.getString("bidprice"));
+						System.out.println("quantityassigned    =   "+rs1.getString("quantityassigned"));
+						System.out.println("myfinalcosts        =   "+myfinalcosts);
+							
 						ps =con.prepareStatement("select ar.quantityassigned, ar.farmerstatus from auction_result ar,treg tr where ar.aadharnumber=tr.aadharnumber and tr.name=? and tr.pass=? and ar.lotnumber=?");
 						ps.setString(1, name);
 						ps.setString(2,pwd);
@@ -2888,17 +2887,16 @@ public Myclass2 orderstatus1(String name, String pwd)
 			}
 				con.setAutoCommit(false);
 			
-			ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where aadharnumber=?)");
-			ps.setString(1, name);
+			ps =con.prepareStatement("select th.lotnum from trader_histroy th where th.aadharnumber and  th.lotnum  NOT IN (select lotnumber from auction_result where aadharnumber=?)");
+			ps.setString(1, aadharnumber);
 			ps.setString(2, aadharnumber);
 			ps.execute();
 			rs1 = ps.getResultSet();
 			while(rs1.next())
 			{							
-				ps =con.prepareStatement("select tl.slotnumber,tl.quantity,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
-				ps.setString(1, name);
+				ps =con.prepareStatement("select th.slotnumber,th.quantityavailable,th.marketcode,th.produce,th.qualitygrade,th.quantityneeded from trader_histroy th where th.aadharnumber=? and th.lotnum=?");
+				ps.setString(1, aadharnumber);
 				ps.setString(2, rs1.getString("lotnum"));
-				ps.setString(3, pwd);
 				ps.execute();
 				rs2 = ps.getResultSet();
 				OrderStatusBean osbn1=null;
@@ -2907,13 +2905,13 @@ public Myclass2 orderstatus1(String name, String pwd)
 					osbn1=new OrderStatusBean();
 					osbn1.setLotnum(rs1.getString("lotnum"));
 					osbn1.setMarketcode(rs2.getString("marketcode"));
-					osbn1.setQuantityavailable(rs2.getString("quantity"));
+					osbn1.setQuantityavailable(rs2.getString("quantityavailable"));
 					osbn1.setProduce(rs2.getString("produce"));
 					osbn1.setQualitygrade(rs2.getString("qualitygrade"));
 					osbn1.setQuantityneeded(rs2.getString("quantityneeded"));
 					osbn1.setSlotnumber(rs2.getString("slotnumber"));						
 					
-					ps =con.prepareStatement("select tdp.lotcost,tdp.lotnum,tdp.bidprice,tdp.bestbid,tdp.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tr.aadharnumber=tl.aadharnumber and tr.aadharnumber=tdp.aadharnumber and tdp.lotnum=tl.lotnum and tr.name=? and tr.pass=? and tdp.lotnum=?");
+					ps =con.prepareStatement("select th.lotcost,th.lotnum,th.bidprice,th.bestbid,th.myfinalcost from traders_bid_price tdp, treg tr, tradelist tl where tr.aadharnumber=tl.aadharnumber and tr.aadharnumber=tdp.aadharnumber and tdp.lotnum=tl.lotnum and tr.name=? and tr.pass=? and tdp.lotnum=?");
 					ps.setString(1, name);
 					ps.setString(2, pwd);
 					ps.setString(3, rs1.getString("lotnum"));
@@ -2959,7 +2957,6 @@ public Myclass2 orderstatus1(String name, String pwd)
 	}
 	return mc;
 }
-
 
 	public void TraderProductReject(String lotnum)
 	{
@@ -4348,8 +4345,9 @@ public void PostAuction(String name,String pwd)
 					ps2.setString(15,rs2.getString("marketcess"));
 					ps2.setString(16,rs.getString("created_at"));
 					ps2.execute();
-					System.out.println(ps2);					
+					System.out.println(ps2);		
 					
+					/*
 					ps2=con.prepareStatement("delete from traders_bid_price where aadharnumber=? and lotnum=?");
 					ps2.setString(1,rs.getString("aadharnumber"));
 					ps2.setString(2,rs.getString("lotnum"));
@@ -4360,7 +4358,7 @@ public void PostAuction(String name,String pwd)
 					ps3.setString(1,rs.getString("aadharnumber"));
 					ps3.setString(2,rs.getString("lotnum"));
 					ps3.execute();
-					System.out.println(ps3);
+					System.out.println(ps3);*/
 				}
 			}
 		}

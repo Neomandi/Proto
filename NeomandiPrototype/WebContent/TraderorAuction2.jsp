@@ -187,8 +187,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
-  <input type="hidden" value="<%=start%> id="start">
-  <input type="hidden" value="<%=stop%> id="stop">
+  <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
+  <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
   <script>
   var start=document.getElementById("start").value;
   var stop=document.getElementById("stop").value;
