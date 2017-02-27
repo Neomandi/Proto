@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="libs/pure-min.css">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
     <link rel="stylesheet" href="libs/grids-responsive-min.css">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -55,7 +56,7 @@
 <input type="text" name="endtime" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
 
 <script>
@@ -69,19 +70,9 @@ function fun()
 	  {
 		    				         
 	  }};
-
-		  xmlhttp.open("POST", "Time.do", true);
+		  xmlhttp.open("POST", "Start.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-
-		  xmlhttp.onreadystatechange = function() {
-			  if (this.readyState == 4 && this.status == 200) 
-			  {
-				    				         
-			  }};
-				  xmlhttp.open("POST", "ControllerServlet", true);
-				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
 
 }
 function fun1()
@@ -97,6 +88,21 @@ function fun1()
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("stopauction="+stop);
 }
+
+function fun2()
+{
+	var stop = 1;
+	  xmlhttp = new XMLHttpRequest();
+	  xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) 
+	  {
+		    				         
+	  }};
+		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("stopauction="+stop);
+}
+
 </script>
 </div></center>
 </div>

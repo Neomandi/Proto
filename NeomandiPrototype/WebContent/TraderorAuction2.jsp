@@ -172,7 +172,6 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
 </div>
 <div class="maindiv">
-
 <div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>	
 	  <div id="msg" style="display:inline; " > will begin in</div>&nbsp;&nbsp;
 	 <div id="timer" style="display:inline;  " ></div>
@@ -181,19 +180,30 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
+<%
+					HttpSession timer=request.getSession();
+					String start=(String)timer.getAttribute("start");
+					String stop=(String)timer.getAttribute("stop");
+%>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
+  <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
+  <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
   <script>
+  var start=document.getElementById("start").value;
+  var stop=document.getElementById("stop").value;
   var Etime=document.getElementById("time").value;
-	var Btime="10:30:00";
-	var Btime1="10:35:00";
-
+	//var Btime="10:30:00";
+	//var Btime1="10:35:00";
+	var Btime=start;
+	var Btime1=stop;
 	start = Etime.split(":");
 	end =Btime.split(":");
 	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
-	console.log("end time is "+Btime);
+	console.log("start time is "+Btime);
+	console.log("end time is "+Btime1);
 	console.log("current time is "+Etime);
 	console.log("difference in milliseconds is "+diff);
 	var hours = Math.floor(diff / 1000 / 60 / 60);
