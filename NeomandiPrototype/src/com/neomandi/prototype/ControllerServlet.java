@@ -442,7 +442,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//RejectSummary
-		if(uri.contains("RejectSummary")){
+		if(uri.contains("RejectSummary"))
+		{
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -1358,9 +1359,18 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("inside mfcb in CS"+MyFinalCost.getAttribute("MyFinalCost"));
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd1 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			try {
-				rd1.forward(request, response);
-			} catch (ServletException | IOException e) 
+			try 
+			{
+				if(request.getParameter("starttime")!=null)
+				{
+					request.setAttribute("start",request.getParameter("starttime"));
+					request.setAttribute("stop", request.getParameter("endtime"));
+					rd1.forward(request, response);
+				}
+				else					
+					rd1.forward(request, response);
+			}
+			catch (ServletException | IOException e) 
 			{
 				e.printStackTrace();
 			}	
