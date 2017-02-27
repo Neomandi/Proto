@@ -59,10 +59,24 @@ public class ControllerServlet extends HttpServlet {
 		ProductSearchBean psb = (ProductSearchBean) request.getAttribute("product");
 		//ProductEntryBean peb = (ProductEntryBean) request.getAttribute("pe");
 		ActionTrailBean atbean = (ActionTrailBean) request.getAttribute("atbean");
-		SummaryBean sb=(SummaryBean)request.getAttribute("sb");		
+		SummaryBean sb=(SummaryBean)request.getAttribute("sb");	
+		String starttime = "";
+		String endtime = "";
 		String uri=request.getRequestURI();		
 		System.out.println(uri);		
 		//Employee Registration
+		
+		
+		if(uri.contains("Time"))
+		{
+			starttime = request.getParameter("starttime");
+			endtime = request.getParameter("endtime");
+			System.out.println("Starttime: "+starttime);
+			System.out.println("Endtime: "+endtime);
+			HttpSession fss = request.getSession();
+			fss.setAttribute("starttime", starttime);
+			fss.setAttribute("endtime", endtime);
+		}
 		
 		if(uri.contains("EmployeeRegister"))
 		{
@@ -201,16 +215,24 @@ public class ControllerServlet extends HttpServlet {
 			String msg = m.farmerLogin(name,pass);
 			if(msg.equals("SUCCESS"))
 			{
+				HttpSession fss = request.getSession(false);
+				starttime = (String) fss.getAttribute("starttime");
+				endtime = (String) fss.getAttribute("endtime");
+				System.out.println("FLogin sttime: "+starttime);
+				System.out.println("Flogin etime: "+endtime);
+				
+				
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
 				HttpSession hs=request.getSession();
-				hs.setAttribute("date", date);
-				hs.setAttribute("time",date2);
+				hs.setAttribute("starttime", starttime);
+				hs.setAttribute("endtime",endtime);
 				hs.setAttribute("name", name);
 				hs.setAttribute("pass",pass);
 				rd=request.getRequestDispatcher("FarmerMaster.jsp");
+				
 				try 
 				{
 					rd.forward(request, response);			
@@ -420,7 +442,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//RejectSummary
-		if(uri.contains("RejectSummary")){
+		if(uri.contains("RejectSummary"))
+		{
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -1030,8 +1053,8 @@ public class ControllerServlet extends HttpServlet {
 			{
 				try {
 					pw = response.getWriter();
-					pw.println("<script>alert('Product Entry Successfull');");
-					pw.println("location = 'https://neomandi.in/ProductEntry.jsp';</script>");
+					pw.println("<html><head><script>alert('Product Entry Successfull');");
+					pw.println("window.location = 'https://neomandi.in/ProductEntry.jsp';</script></head></html>");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1336,9 +1359,18 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("inside mfcb in CS"+MyFinalCost.getAttribute("MyFinalCost"));
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd1 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			try {
-				rd1.forward(request, response);
-			} catch (ServletException | IOException e) 
+			try 
+			{
+				if(request.getParameter("starttime")!=null)
+				{
+					request.setAttribute("start",request.getParameter("starttime"));
+					request.setAttribute("stop", request.getParameter("endtime"));
+					rd1.forward(request, response);
+				}
+				else					
+					rd1.forward(request, response);
+			}
+			catch (ServletException | IOException e) 
 			{
 				e.printStackTrace();
 			}	

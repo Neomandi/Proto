@@ -310,7 +310,7 @@
 							{
 								alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
 								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-								window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs
+								window.location="http://neomandi.in/AddTrade.do?s1="+product+"&&quantity="+neededs
 							}													
 						}
 						</script></td>--> 

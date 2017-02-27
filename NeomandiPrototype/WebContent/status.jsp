@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><!-- 
-<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/OrderStatus.do">-->
+<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">-->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,12 +86,12 @@ var hour=document.getElementById("hour");
 var minute=document.getElementById("minute");
 console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
 if(hour!=10)
-	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 	 else
 		 {
 		 console.log("minute<35"+minute<35)
 		 if(minute<35)
-			 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 				
 		 }
 </script>
@@ -176,7 +176,7 @@ if((String)tlbn.getTname()==null)
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
 	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
+	<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;

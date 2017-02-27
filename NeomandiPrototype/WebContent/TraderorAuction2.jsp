@@ -308,17 +308,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-								            	
 								            	xmlhttp = new XMLHttpRequest();
 								      		  	xmlhttp.onreadystatechange = function() {
 								      		    if (this.readyState == 4 && this.status == 200) 
-								      		    {
-								      		    	
-								      		    }};
+								      		    {}};
 								      		    console.log("your auction has ended");
 								      		//  xmlhttp.open("POST", "PostAuction.do", true);
 								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								      		alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
+								      	//	alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
 								      	   }
 				        		    	}
 			        		     	}
@@ -541,7 +538,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 	bid=bid+1;
 	function submitbutton<%out.print(tlb.getLotnum());%>()
-	{
+	{	
 	 var Etime=document.getElementById("time").value;
 	 var Btime="10:30:00";
 	 var Btime1="10:35:00";
@@ -586,6 +583,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
     var currentbid=document.getElementById("mybid<%=tlb.getLotnum()%>").value;
 	var currentbids=new Number(currentbid);
 	console.log("current bid is "+currentbids);
+	var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
+	var bestbid=new Number(bestbids);
+	console.log("best bid is"+bestbid);
 	var result=currentbids+1;
     var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
 	var assigned=new  Number(assigneds);
@@ -599,6 +599,11 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
 		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
+	else if(currentbid-bestbid==0)
+		{
+			console.log("currentbid-bestbid==0");
+			alert("YOU CANT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
+		}
 	else
 	{
 		console.log("assigned!=needed");
@@ -763,7 +768,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
 
 	}
-	function fun<%=tlb.getLotnum()%>(){
+	function fun<%=tlb.getLotnum()%>()
+	{
 	var Etime=document.getElementById("time").value;
 	var Btime="10:30:00";
 	var Btime1="10:35:00";
@@ -837,7 +843,13 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
 				 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  }
-			  else
+			  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
+			  var bestbid=new Number(bestbids);
+			  if(currentbids-bestbid==0)
+				  {
+				  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+				  }
+			  else  if(currentbids-bestbid!=0)
 			  {
 					  xmlhttp = new XMLHttpRequest();
 					  xmlhttp.onreadystatechange = function() {
@@ -1170,7 +1182,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 	}
-	else
+	var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
+	var bestbid=new Number(bestbids);
+	if(currentbids-bestbid==0)
+		  {
+				console.log("currentbids-bestbid==0");
+		  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+		  }
+	else if(currentbids-bestbid!=0)
 	{
 		console.log("assigned!=needed");
 		 xmlhttp = new XMLHttpRequest();
@@ -1407,7 +1426,13 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
 				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
 			  }
-			  else
+			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
+				var bestbid=new Number(bestbids);
+				if(currentbids-bestbid==0)
+					  {
+					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  }
+			  else if(currentbids-bestbid!=0)
 			  {
 					  xmlhttp = new XMLHttpRequest();
 					  xmlhttp.onreadystatechange = function() {
@@ -3014,7 +3039,6 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table align="center">
 	<tbody>
@@ -3024,18 +3048,17 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
-
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><a class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 				 <tr><td><br><a  class="sub">Submit</a></td></tr></tbody></table>
-
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
 </td></tr>
 </tbody></table></div>
 </div>
 </div>
-    </div></div>
+</div>
+</div>
 	<!---row 3 end--->
 	<!----row 4
 	<div class="one">
