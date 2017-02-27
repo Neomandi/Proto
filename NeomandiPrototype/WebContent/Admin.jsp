@@ -69,25 +69,9 @@ function fun()
 	  {
 		    				         
 	  }};
-<<<<<<< HEAD
 		  xmlhttp.open("POST", "Time.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-=======
-	 xmlhttp.open("POST", "SchedulerServlet", true);
-	 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-	 
-	 xmlhttp = new XMLHttpRequest();
-	 xmlhttp.onreadystatechange = function() {
-	 if (this.readyState == 4 && this.status == 200) 
-	 {
-	    				         
-	 }};
-	 xmlhttp.open("POST", "TradeorAuction.do", true);
-	 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 }
 
 function fun1()

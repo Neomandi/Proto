@@ -76,6 +76,8 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession fss = request.getSession();
 			fss.setAttribute("starttime", starttime);
 			fss.setAttribute("endtime", endtime);
+			
+			SchedulerServlet.process(starttime, endtime);
 		}
 		
 		if(uri.contains("EmployeeRegister"))

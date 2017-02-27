@@ -50,14 +50,19 @@ public class SchedulerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String starttime = request.getParameter("starttime");
-		String endtime = request.getParameter("endtime");
-		System.out.println(starttime);
-		System.out.println(endtime);
-		init(starttime, endtime);
 	}
 	
-	public void init(String a, String b) throws ServletException {
+	public static void process(String a, String b)
+	{
+		try {
+			init(a, b);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void init(String a, String b) throws ServletException {
 		
 		System.out.println("SchedulerServlet init()......");
 		JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
@@ -66,19 +71,19 @@ public class SchedulerServlet extends HttpServlet {
 
 		//Trigger t1 = TriggerBuilder.newTrigger().withIdentity("CroneTrigger").withSchedule(CronScheduleBuilder.cronSchedule("	0 0 14 1/1 * ? *")).build();
 		
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss.SSS");
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
 		String date = format1.format(new Date());
 		//System.out.println(format1.format(new Date()));
 		
-		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss.SSS");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		String time = timeFormat.format(new Date());
 		Date s1t = null;
 		
 		
 		//System.out.println("Time: "+time);
 		
-		DateTimeFormatter formatter1 = DateTimeFormat.forPattern("HH:mm:ss.SSS");
+		DateTimeFormatter formatter1 = DateTimeFormat.forPattern("HH:mm:ss");
         LocalTime time1 = formatter1.parseLocalTime(time);
         time1 = time1.plusMinutes(10);
 		
