@@ -1341,14 +1341,15 @@ public class ControllerServlet extends HttpServlet {
 			{
 				if(request.getParameter("starttime")!=null)
 				{
-					request.setAttribute("start",request.getParameter("starttime"));
-					request.setAttribute("stop", request.getParameter("endtime"));
+					HttpSession timer=request.getSession(true);
+					timer.setAttribute("start",request.getParameter("starttime"));
+					timer.setAttribute("stop", request.getParameter("endtime"));
 					rd1.forward(request, response);
 				}
 				else					
 					rd1.forward(request, response);
 			}
-			catch (ServletException | IOException e) 
+			catch (ServletException | IOException| NullPointerException e) 
 			{
 				e.printStackTrace();
 			}	
