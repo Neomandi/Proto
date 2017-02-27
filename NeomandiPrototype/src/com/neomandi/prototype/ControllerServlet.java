@@ -1331,7 +1331,7 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			HttpSession tss = request.getSession();
+			HttpSession tss = request.getSession(false);
 			String start=(String)tss.getAttribute("starttime");
 			String stop=(String)tss.getAttribute("endtime");
 			TraderLoginBean tlbn=null;
@@ -1369,10 +1369,6 @@ public class ControllerServlet extends HttpServlet {
 			{
 				if(start!=null)
 				{
-					HttpSession timer=request.getSession(true);
-					timer.setAttribute("start",request.getParameter("starttime"));
-					timer.setAttribute("stop", request.getParameter("endtime"));
-					//
 					System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
 					rd1.forward(request, response);
 				}

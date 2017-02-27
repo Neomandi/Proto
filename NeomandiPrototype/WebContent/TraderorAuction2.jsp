@@ -911,7 +911,7 @@ String stop=(String)tss.getAttribute("endtime");
 					         {
 					        	 var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
-						         input.setAttribute("min",bid);
+						         //input.setAttribute("min",bid);
 						         
 						         console.log("assigned =0");
 					        	 var symbol="-";

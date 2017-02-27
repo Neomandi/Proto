@@ -169,14 +169,14 @@ if((String)tlbn.getTname()==null)
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" value="<%=osbn.getVolumesold() %>"readonly></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" value="<%if(osbn.getQuantityassigned()==null) out.println("0"); %>"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBestbid()%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
 	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">
+	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
 	<script> 
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
