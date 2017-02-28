@@ -125,8 +125,8 @@ footer {
 		rs = pstmt.executeQuery();
 		//System.out.println(rs);
 		System.out.println("is resultset not empty "+!rs.isBeforeFirst());
-		if(!rs.isBeforeFirst())
-		{
+// 		if(!rs.isBeforeFirst())
+// 		{
 			while(rs.next())
 			{
 				String lotnumber = rs.getString("lotnumber");
@@ -167,11 +167,11 @@ footer {
                         </tr>
                         <%
 			}
-		}
-		else
-		{
-			System.out.println("No revenues.");
-		}
+// 		}
+// 		else
+// 		{
+// 			System.out.println("No revenues.");
+// 		}
 	}
 	}
 	catch(SQLException e)

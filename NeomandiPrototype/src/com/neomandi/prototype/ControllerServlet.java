@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import com.sun.net.httpserver.HttpContext;
 
 @MultipartConfig(maxFileSize = 16177215)
 public class ControllerServlet extends HttpServlet {
@@ -76,6 +79,10 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession fss = request.getSession();
 			fss.setAttribute("starttime", starttime);
 			fss.setAttribute("endtime", endtime);
+			
+			ServletContext context = request.getSession().getServletContext();
+			context.setAttribute("starttime", starttime);
+			context.setAttribute("endtime", endtime);
 			
 			HttpSession tss = request.getSession();
 			tss.setAttribute("starttime", starttime);
@@ -238,6 +245,9 @@ public class ControllerServlet extends HttpServlet {
 				hs.setAttribute("endtime",endtime);
 				hs.setAttribute("name", name);
 				hs.setAttribute("pass",pass);
+				ServletContext context = request.getSession().getServletContext();
+				starttime=(String)context.getAttribute("starttime");
+				endtime=(String)context.getAttribute("endtime");
 				rd=request.getRequestDispatcher("FarmerMaster.jsp");
 				
 				try 
@@ -433,6 +443,7 @@ public class ControllerServlet extends HttpServlet {
 			farmerstatus.setAttribute("msg",msg);
 			farmerstatus.setAttribute("lotnumber",lotnumber);
 			farmerstatus.setAttribute("accountnumber", account);
+			System.out.println("**********************farmer is sending the accept request***************");
 			m.TraderProductAccept(lotnumber,account);
 			rd=request.getRequestDispatcher("AcceptSummary.jsp");
 			try 
@@ -1331,9 +1342,13 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			HttpSession tss = request.getSession();
+			HttpSession tss = request.getSession(false);
 			String start=(String)tss.getAttribute("starttime");
 			String stop=(String)tss.getAttribute("endtime");
+			ServletContext context = request.getSession().getServletContext();
+			start=(String)context.getAttribute("starttime");
+			stop=(String)context.getAttribute("endtime");
+			
 			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;

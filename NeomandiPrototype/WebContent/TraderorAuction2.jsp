@@ -22,8 +22,8 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-<head><!-- 
-<meta http-equiv="refresh"  content="98765432345678903; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">-->
+<head> 
+<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/TradeorAuction.do">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -181,9 +181,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
 <%
-HttpSession tss = request.getSession(false);
-String start=(String)tss.getAttribute("starttime");
-String stop=(String)tss.getAttribute("endtime");
+	ServletContext context = request.getSession().getServletContext();
+	String start=(String)context.getAttribute("starttime");
+	String stop=(String)context.getAttribute("endtime");
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
@@ -420,8 +420,7 @@ String stop=(String)tss.getAttribute("endtime");
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
-%>
-	<div class="one">
+%>	<div class="one">
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
@@ -609,11 +608,11 @@ String stop=(String)tss.getAttribute("endtime");
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
 		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
-	else if(currentbid-bestbid==0)
-		{
-			console.log("currentbid-bestbid==0");
+	else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
+	{
+			console.log("currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned!=needed");
 			alert("YOU CANT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
-		}
+	}
 	else
 	{
 		console.log("assigned!=needed");
@@ -855,11 +854,11 @@ String stop=(String)tss.getAttribute("endtime");
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 			  var bestbid=new Number(bestbids);
-			  if(currentbids-bestbid==0)
+			  if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
 				  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-			  else  if(currentbids-bestbid!=0)
+			  else  if(currentbids-bestbid!=0 && assigned!=needed)
 			  {
 					  xmlhttp = new XMLHttpRequest();
 					  xmlhttp.onreadystatechange = function() {
@@ -911,7 +910,7 @@ String stop=(String)tss.getAttribute("endtime");
 					         {
 					        	 var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
-						         input.setAttribute("min",bid);
+						         //input.setAttribute("min",bid);
 						         
 						         console.log("assigned =0");
 					        	 var symbol="-";
@@ -1194,12 +1193,12 @@ String stop=(String)tss.getAttribute("endtime");
 	}
 	var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
 	var bestbid=new Number(bestbids);
-	if(currentbids-bestbid==0)
+	if(currentbids-bestbid==0 && currentbids!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 		  {
 				console.log("currentbids-bestbid==0");
 		  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 		  }
-	else if(currentbids-bestbid!=0)
+	else if(currentbids-bestbid!=0 &&assigned!=needed)
 	{
 		console.log("assigned!=needed");
 		 xmlhttp = new XMLHttpRequest();
@@ -1438,7 +1437,7 @@ String stop=(String)tss.getAttribute("endtime");
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
 				var bestbid=new Number(bestbids);
-				if(currentbids-bestbid==0)
+				if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 					  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }

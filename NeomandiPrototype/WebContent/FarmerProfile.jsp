@@ -77,7 +77,7 @@
 		<%
 
 	
-     SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
+     SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
   	String time=df1.format(new Date());
 	 
 %>
@@ -111,7 +111,11 @@
  		 String endtime=(String)hs.getAttribute("endtime"); 
 		  System.out.println(" in farmermaster endtime="+endtime);
 		 	System.out.println("password="+pass);
-			
+		 	ServletContext context = request.getSession().getServletContext();
+			starttime=(String)context.getAttribute("starttime");
+			endtime=(String)context.getAttribute("endtime");
+	     	// String time=(String)hs.getAttribute("time");
+	    	
 			HttpSession hs1=request.getSession(false);  
 	   	     hs1.setAttribute("pass",pass); 
 		     Connection con = null;
@@ -462,8 +466,13 @@
 				
 				countdown(minutes,seconds,hours);
 				
-				var five=300000;
-				timedif=diff+five;
+				var Etime1=document.getElementById("time").value;
+            	start1 = Etime1.split(":");
+            	end1 =Btime1.split(":");
+            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+            	var td = endDate1.getTime() - startDate1.getTime();	
+				timedif=diff+td;
 				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
@@ -645,7 +654,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/FarmerProfile.jsp";
+		  location="http://neomandi.in/FarmerProfile.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -667,7 +676,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -717,7 +726,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -741,8 +750,12 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
+						            	if(document.getElementById("auction1")!=null){
+						            		document.getElementById("accept").disabled=false;
+											 document.getElementById("reject").disabled=false;
+						            	}
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}
@@ -782,16 +795,16 @@ function countdown(minutes,seconds,hours)
 countdown(minutes,seconds,hours);			   
 			
 //console.log("time="+timedif);
- var t=setTimeout(auction,timedif);
- function auction(){
+  /* var t=setTimeout(auction,timedif);
+function auction(){
 	 document.getElementById("accept").disabled=false;
 	 document.getElementById("reject").disabled=false;
- }
+ }*/
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
 
