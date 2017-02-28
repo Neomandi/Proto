@@ -61,7 +61,8 @@
 <tr><td><h2>Trader Login</h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="tname" placeholder="User name"></td></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
-<tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br>
+<!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
+<tr align="center"><td><button class="btn btn-primary" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td></tr><br>
 <tr align="center"><td><a href="#" class"frgt">Forgot password?</a></td></tr>
 </tbody></table>
 </form>

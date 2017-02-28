@@ -23,7 +23,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
 <head><!-- 
-<meta http-equiv="refresh"  content="98765432345678903; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">-->
+<meta http-equiv="refresh"  content="3; URL=http://192.173.6.16:8080/NeomandiPrototype/TradeorAuction.do">-->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -483,7 +483,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
 	String quantityneededs=tlb.getQuantityneeded();
-	int quantityneeded=Integer.parseInt(quantityneededs);
+	int quantityneeded=Integer.parseInt(quantityneededs); 
 	String quantityassigneds=mfcb.getQuantityassigned();
 	int quantityassigned=Integer.parseInt(quantityassigneds);%>
 	<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>

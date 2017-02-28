@@ -90,8 +90,9 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
                                 </tr>
                                 <tr align="center">
                                     <td>
-                                    <a href="javascript:login()" class="log">Login</a>
-                                       
+                                    <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
+									<tr align="center"><td><button class="btn btn-primary" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td></tr><br>
+   
                                     </td>
                                 </tr>
                                 <br>

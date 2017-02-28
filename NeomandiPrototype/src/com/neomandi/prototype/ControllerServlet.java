@@ -1046,7 +1046,6 @@ public class ControllerServlet extends HttpServlet {
 	            }
 	        System.out.println("Photo: "+photo);
 			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnumber, photo);
-			
 			System.out.println("***************************************************************************");
 			System.out.println("in cs productentry pebean="+pebean);
 			

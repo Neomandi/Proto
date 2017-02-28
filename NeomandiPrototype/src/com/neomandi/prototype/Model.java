@@ -575,7 +575,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(kproduce!=null)
 					if(kproduce.equals("Vegetables"))
 					  kproduce="Vegetable";
-				if(kproduce.equals("Category"))
+				/*if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
 					if(slot!=null&&slot.equals("slot3"))
@@ -652,7 +652,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println(l);
 					return l;
 				}
-				else
+				else*/
 				{
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
@@ -3230,7 +3230,7 @@ public void TraderProductAccept(String lotnum,String accno)
 					}
 					else
 					{
-						tsb.setVolumesold("--");
+						tsb.setVolumesold("0");
 						tsb.setResult("LOST");
 					}
 					al.add(tsb);					
@@ -3590,7 +3590,7 @@ public void TraderProductAccept(String lotnum,String accno)
 	
 	@SuppressWarnings("resource")
 	public OrderStatusResult Dispatch() {
-		System.out.println("inside model");
+		System.out.println("inside model...Dispatch");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
@@ -3610,7 +3610,7 @@ public void TraderProductAccept(String lotnum,String accno)
 			else
 			{
 				con.setAutoCommit(false);
-				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM neomandi.auction_result where farmerstatus=? group by lotnumber order by lotnumber");
+				ps=con.prepareStatement("SELECT lotnumber,count(*) FROM auction_result where farmerstatus=? group by lotnumber order by lotnumber");
 				ps.setString(1,"accepted");
 				rs=ps.executeQuery();
 				a=new HashMap<>();
