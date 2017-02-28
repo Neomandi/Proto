@@ -964,7 +964,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 				request.setAttribute("errmsg", msg);
 				rd=request.getRequestDispatcher("product.jsp");
-				try 
+				/*try 
 				{
 					rd.forward(request, response);			
 				}			
@@ -972,7 +972,7 @@ public class ControllerServlet extends HttpServlet {
 							e.printStackTrace();
 				} catch (IOException e) {
 							e.printStackTrace();
-				}
+				}*/ 
 				return;
 			}
 			else

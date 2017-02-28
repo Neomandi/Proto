@@ -59,7 +59,7 @@ overflow:auto;
 	int hour=Integer.parseInt(hours);
 	int minute=Integer.parseInt(minutes);
 	System.out.println("current time is "+hour+":"+minute+"  ");
-	if(hour<10)
+	/*if(hour<10)
 	{
 		 System.out.println("inside if ");
 		 out.println("<script type=\"text/javascript\">");
@@ -67,8 +67,9 @@ overflow:auto;
 		 out.println("location='TradeorAuction.do';");
 		 out.println("</script>");
 	}
-	else
+	else*/
 	{
+		/*
 		if(hour==10&&minute<35)
 		 {
 			out.println("<script type=\"text/javascript\">");
@@ -76,7 +77,7 @@ overflow:auto;
 	 		out.println("location='TradeorAuction.do';");
 	 		out.println("</script>");
 	 	  }
-		 else
+		 else*/
 		 {
 %>
 <input type="hidden" value="<%=hour%>" id="hour">
@@ -159,9 +160,9 @@ if((String)tlbn.getTname()==null)
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getCommission()%>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getMarketcess()%>" style="text-align: right;" readonly></td></tr>
-	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="3000"readonly></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getCommission()==null) out.println("0"); else out.println(osbn.getCommission());  %>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getMarketcess()==null) out.println("0"); else out.println(osbn.getMarketcess());  %>" style="text-align: right;" readonly></td></tr>
+	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
 	</tbody>
 	</table>
@@ -169,7 +170,7 @@ if((String)tlbn.getTname()==null)
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" value="<%if(osbn.getQuantityassigned()==null) out.println("0"); %>"readonly></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" value="<%if(osbn.getVolumesold()==null) out.println("0"); else out.println(osbn.getVolumesold());  %>"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBestbid()%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"readonly></td></tr>
 	</tbody>

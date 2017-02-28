@@ -2587,7 +2587,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 				rs = ps.getResultSet();
 				while(rs.next())
 				{
-						System.out.println("trader has won the auction for lot"+rs.getString("lotnumber"));
+						System.out.println("trader "+name+" has won the auction for lot"+rs.getString("lotnumber"));
 						ps2 =con.prepareStatement("select ar.lotnumber,ar.quantityassigned from auction_result ar,treg tr where ar.aadharnumber=tr.aadharnumber and ar.lotnumber=? and tr.name=? and tr.pass=?");//this checks whether the trader has won in auction by checking his name in auction result table
 						ps2.setString(1,rs.getString("lotnumber"));
 						ps2.setString(2,name);

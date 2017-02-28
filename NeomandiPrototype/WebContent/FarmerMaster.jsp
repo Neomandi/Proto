@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
+		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -535,7 +535,7 @@ function countdown(minutes,seconds,hours)
 {
 	  document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://neomandi.in/FarmerMaster.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
 		  
 	  }	
 	 
@@ -560,7 +560,7 @@ function countdown(minutes,seconds,hours)
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -608,7 +608,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -632,7 +632,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -678,10 +678,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
   </script> 
 </body>
