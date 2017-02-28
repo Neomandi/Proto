@@ -413,6 +413,10 @@
 					<%
 	 HttpSession hs1=request.getSession(false);  
      String pass=(String)hs1.getAttribute("pass");  
+     String starttime=(String)hs.getAttribute("starttime"); 
+	  System.out.println(" in farmermaster starttime="+starttime);
+	 String endtime=(String)hs.getAttribute("endtime"); 
+	  System.out.println(" in farmermaster endtime="+endtime);
      SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
   	 String time=df1.format(new Date());
 	 Connection con = null;
@@ -475,13 +479,20 @@
 <div id="auction" style="visibility:hidden;"></div>
 <div id="auction1" style="visibility:hidden;"></div>
 <form>
-	<input type="hidden" value="<%=time %>" id="time" />
-	<input type="hidden" value="<%=s1 %>" id="slot" />
-	<input type="hidden" value="<%=date %>" id="date" />
+	
+<input type="hidden" value="<%=time%>" id="time" />
+	<input type="hidden" value="<%=starttime%>" id="stime" />
+	<input type="hidden" value="<%=endtime%>" id="etime" />
+	<input type="hidden" value="<%=s1%>" id="slot" />
+	<input type="hidden" value="<%=date%>" id="date" />
+	
 </form>
 <script>
 	
-			var Etime=document.getElementById("time").value;
+
+var Etime=document.getElementById("time").value;
+var stime=document.getElementById("stime").value;
+var etime=document.getElementById("etime").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
 			var s1="slot1";
@@ -494,8 +505,8 @@
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(slot==s1){
 				var Etime=document.getElementById("time").value;
-				var Btime="10:30:00";
-				var Btime1="10:35:00";
+				var Btime=stime;
+				var Btime1=etime;
 			
 				start = Etime.split(":");
 				end =Btime.split(":");

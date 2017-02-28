@@ -25,7 +25,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+=======
+	  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -88,9 +92,9 @@ if((String)hs.getAttribute("name")==null){
 	     	String pass=(String)hs.getAttribute("pass"); 
  		     System.out.println("original password="+pass);
  		   String starttime=(String)hs.getAttribute("starttime"); 
- 		  System.out.println("starttime="+starttime);
- 		 String endtime=(String)hs.getAttribute("starttime"); 
-		  System.out.println("starttime="+endtime);
+ 		  System.out.println(" in farmermaster starttime="+starttime);
+ 		 String endtime=(String)hs.getAttribute("endtime"); 
+		  System.out.println(" in farmermaster endtime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
 	     	String time=df1.format(new Date());
@@ -194,12 +198,12 @@ if((String)hs.getAttribute("name")==null){
 	  <td>
 
 
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
+	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
 	  		
 
 	  </td>
 	  <td>
-	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
+	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
 	  			  </td>
 
 
@@ -282,7 +286,9 @@ if((String)hs.getAttribute("name")==null){
 	String ip=addr.getHostAddress();
 %> 
 <form>
-	<input type="hidden" value="<%=time%>" id="time" />
+<input type="hidden" value="<%=time%>" id="time" />
+	<input type="hidden" value="<%=starttime%>" id="stime" />
+	<input type="hidden" value="<%=endtime%>" id="etime" />
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 	<input type="hidden" value="<%=ip %>" id="IP"/>
@@ -293,6 +299,8 @@ if((String)hs.getAttribute("name")==null){
 			console.log("ip="+IP);
 
 			var Etime=document.getElementById("time").value;
+			var stime=document.getElementById("stime").value;
+			var etime=document.getElementById("etime").value;
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
 			var s1="slot1";
@@ -306,9 +314,10 @@ if((String)hs.getAttribute("name")==null){
 			if(slot==s1)
 			{
 				var Etime=document.getElementById("time").value;
-				var Btime="10:30:00";
-				var Btime1="10:35:00";
-			
+				var Btime=stime;
+				var Btime1=etime;
+				console.log("Btime="+Btime);
+				console.log("Btime1="+Btime1);
 				start = Etime.split(":");
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -348,187 +357,14 @@ if((String)hs.getAttribute("name")==null){
 				console.log("differences in time is "+timedifference);
 				
 				countdown(minutes,seconds,hours);
-				
+
 				var five=300000;
 				timedif=diff+five;
-				console.log("count"+timedif);	
+				console.log("count"+timedif);
+					
+				
 			}
-		//--------------------------for slot2------------------------------------------------------------------------
-		else if(slot==s2)
-		{
-			var Etime=document.getElementById("time").value;
-			var Btime="10:40:00";
-			var Btime1="10:45:00";
-			start = Etime.split(":");
-			end =Btime.split(":");
-			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-		    diff = endDate.getTime() - startDate.getTime();
-			console.log("end time is "+Btime);
-			console.log("current time is "+Etime);
-			console.log("difference in milliseconds is "+diff);
-			var hours = Math.floor(diff / 1000 / 60 / 60);
-			//diff -= hours* 60 * 60;
-			var seconds= Math.floor(diff /1000);
-			var minutes = Math.floor(diff / 1000 / 60);
-			var res3=0; 
-			console.log("differences in minutes before calc "+minutes);		
-			console.log("differences in seconds before calc "+seconds);		
-			if(seconds>60)
-			{
-					res1=seconds%60;
-					res2=Math.floor(seconds/60);
-							
-					seconds=res1;
-					minutes=res2;
-			}
-			if(minutes>60)
-			{
-					res1=minutes%60;
-					res3=Math.floor(minutes/60);
-							
-					hours=res3;
-					minutes=res1;
-			}
-			console.log("differences in minutes is "+minutes);
-			console.log("differences in seconds is "+seconds);
-			console.log("differences in hours is "+hours);
-
-			var timedifference=+hours+":"+minutes+":"+seconds;
-			console.log("differences in time is "+timedifference);
-			var idiff = parseInt("timedifference") + "<br>";
-			countdown(minutes,seconds,hours);
-			//time progress-------------------------
-    		var start = new Date();
-			var maxTime = diff;
-			var timeoutVal = Math.floor(maxTime/100);
-			animateUpdate();
-
-			function updateProgress(percentage) {
-			    $('#pbar_innerdiv').css("width", percentage + "%");
-			    $('#pbar_innertext').text(percentage + "%");
-			}
-
-			function animateUpdate() {
-			    var now = new Date();
-			    var timeDiff = now.getTime() - start.getTime();
-			    var perc = Math.round((timeDiff/maxTime)*100);
-			    console.log(perc);
-			      if (perc <= 100) {
-			       updateProgress(perc);
-			       setTimeout(animateUpdate, timeoutVal);
-			      }
-			}
-			//----------------------------------
-
-			var five=300000;
-			timedif=diff+five;
-			console.log("count"+timedif);
-	}
-	//-------------------------------for slot3-----------------------------------------------------------------
-		else if(slot==s3)
-		{
-			var Etime=document.getElementById("time").value;
-			var Btime="10:50:00";
-			var Btime1="10:55:00";
-			start = Etime.split(":");
-			end =Btime.split(":");
-			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-			 diff = endDate.getTime() - startDate.getTime();
-			console.log("end time is "+Btime);
-			console.log("current time is "+Etime);
-			console.log("difference in milliseconds is "+diff);
-			var hours = Math.floor(diff / 1000 / 60 / 60);
-			//diff -= hours* 60 * 60;
-			var seconds= Math.floor(diff /1000);
-			var minutes = Math.floor(diff / 1000 / 60);
-			var res3=0;
-			console.log("differences in minutes before calc "+minutes);		
-			console.log("differences in seconds before calc "+seconds);		
-			if(seconds>60)
-			{
-					res1=seconds%60;
-					res2=Math.floor(seconds/60);
-							
-					seconds=res1;
-					minutes=res2;
-			}
-			if(minutes>60)
-			{
-					res1=minutes%60;
-					res3=Math.floor(minutes/60);
-							
-					hours=res3;
-					minutes=res1;
-			}
-			console.log("differences in minutes is "+minutes);
-			console.log("differences in seconds is "+seconds);
-			console.log("differences in hours is "+hours);
-
-			var timedifference=+hours+":"+minutes+":"+seconds;
-			console.log("differences in time is "+timedifference);
-			var idiff = parseInt("timedifference") + "<br>";
-			countdown(minutes,seconds,hours);
-
-			
-
-			var five=300000;
-			timedif=diff+five;
-			console.log("count"+timedif);
-			
-	}
-	//----------------------------------for slot4---------------------------------------------------------------	
-		else if (slot==s4)
-		{
-			var Etime=document.getElementById("time").value;
-			var Btime="11:00:00";
-			var Btime1="11:05:00";
-			start = Etime.split(":");
-			end =Btime.split(":");
-			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-			var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-			 diff = endDate.getTime() - startDate.getTime();
-			console.log("end time is "+Btime);
-			console.log("current time is "+Etime);
-			console.log("difference in milliseconds is "+diff);
-			var hours = Math.floor(diff / 1000 / 60 / 60);
-			//diff -= hours* 60 * 60;
-			var seconds= Math.floor(diff /1000);
-			var minutes = Math.floor(diff / 1000 / 60);
-			var res3=0;
-			console.log("differences in minutes before calc "+minutes);		
-			console.log("differences in seconds before calc "+seconds);		
-			if(seconds>60)
-			{
-					res1=seconds%60;
-					res2=Math.floor(seconds/60);
-							
-					seconds=res1;
-					minutes=res2;
-			}
-			if(minutes>60)
-			{
-					res1=minutes%60;
-					res3=Math.floor(minutes/60);
-							
-					hours=res3;
-					minutes=res1;
-			}
-			console.log("differences in minutes is "+minutes);
-			console.log("differences in seconds is "+seconds);
-			console.log("differences in hours is "+hours);
-
-			var timedifference=+hours+":"+minutes+":"+seconds;
-			console.log("differences in time is "+timedifference);
-			var idiff = parseInt("timedifference") + "<br>";
-			countdown(minutes,seconds,hours);
-			
-			var five=300000;
-			timedif=diff+five;
-			console.log("count"+timedif);
-			
-		}
+		
 		//---------------------for count down timer----------------------------------	
 			
 function countdown(minutes,seconds,hours) 
@@ -536,7 +372,6 @@ function countdown(minutes,seconds,hours)
 	  document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
 		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
-		  
 	  }	
 	 
 	 	var seconds =seconds;
@@ -579,7 +414,7 @@ function countdown(minutes,seconds,hours)
 					{
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
-		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none''";
+		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
 		            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
@@ -609,7 +444,9 @@ function countdown(minutes,seconds,hours)
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
 		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+
 		        		            	}
+		        		            
 		        		        } 
 		        		        else 
 		        		        {
@@ -633,7 +470,9 @@ function countdown(minutes,seconds,hours)
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
 			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+
 			        		            }
+						            	
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}
@@ -672,11 +511,12 @@ function countdown(minutes,seconds,hours)
 }
 countdown(minutes,seconds,hours);		   
 //console.log("time="+timedif);
- var t=setTimeout(auction,timedif);
- function auction(){
-	 document.getElementById("accept").disabled=false;
-	 document.getElementById("reject").disabled=false;
- }
+ console.log("count"+timedif);
+				var t=setTimeout(auction,timedif);
+				 function auction(){
+					 document.getElementById("accept").disabled=false;
+					 document.getElementById("reject").disabled=false;
+				 }
  function accept(){
 	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }

@@ -1,5 +1,4 @@
 package com.neomandi.prototype;
-
 public interface Constants 
 {
 	//Define database attributes.
