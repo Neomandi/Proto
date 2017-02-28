@@ -176,9 +176,15 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>">
+	<%
+		if(Integer.parseInt(osbn.getLotcost())==0) 
+			out.println("Lot Has Not been Assigned to you");
+		else if(Integer.parseInt(osbn.getLotcost())!=0) 
+		{
+			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
 	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
-	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
+	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted the bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected the bid");  }%></output></h4></header>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
 	console.log(lotcost);

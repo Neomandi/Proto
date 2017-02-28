@@ -318,6 +318,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
+								            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB")
+								            	
 								            	xmlhttp = new XMLHttpRequest();
 								      		  	xmlhttp.onreadystatechange = function() {
 								      		    if (this.readyState == 4 && this.status == 200) 

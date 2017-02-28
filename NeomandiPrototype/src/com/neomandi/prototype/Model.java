@@ -2654,7 +2654,10 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 								osbn.setMarketcess((String.valueOf(marketcess)));
 								osbn.setBestbid(rs2.getString("bestbid"));
 								osbn.setBidprice(bidprices);
-								osbn.setMyfinalcost(myfinalcosts);
+								if(lotcost==0)
+									osbn.setMyfinalcost("0");
+								else
+									osbn.setMyfinalcost(myfinalcosts);
 							}		
 							ps =con.prepareStatement("select ar.quantityassigned, ar.farmerstatus from auction_result ar,treg tr where ar.aadharnumber=tr.aadharnumber and tr.name=? and tr.pass=? and ar.lotnumber=?");
 							ps.setString(1, name);
