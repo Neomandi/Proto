@@ -409,8 +409,8 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//AcceptSummary
-		if(uri.contains("AcceptSummary")){
-			
+		if(uri.contains("AcceptSummary"))
+		{	
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -436,8 +436,6 @@ public class ControllerServlet extends HttpServlet {
 			hsr.setAttribute("quantitysold", quantitysold);
 			hsr.setAttribute("averageprice", averageprice);
 			hsr.setAttribute("msg",msg);
-			
-			
 			
 			HttpSession farmerstatus=request.getSession();
 			farmerstatus.setAttribute("msg",msg);
@@ -972,7 +970,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 				request.setAttribute("errmsg", msg);
 				rd=request.getRequestDispatcher("product.jsp");
-				try 
+				/*try 
 				{
 					rd.forward(request, response);			
 				}			
@@ -980,7 +978,7 @@ public class ControllerServlet extends HttpServlet {
 							e.printStackTrace();
 				} catch (IOException e) {
 							e.printStackTrace();
-				}
+				}*/ 
 				return;
 			}
 			else
@@ -1054,7 +1052,6 @@ public class ControllerServlet extends HttpServlet {
 	            }
 	        System.out.println("Photo: "+photo);
 			ProductEntryBean pebean = new ProductEntryBean(farmerid, marketcode, kproduce, produce, quality, quantity, lotnumber, photo);
-			
 			System.out.println("***************************************************************************");
 			System.out.println("in cs productentry pebean="+pebean);
 			
@@ -1345,6 +1342,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession tss = request.getSession(false);
 			String start=(String)tss.getAttribute("starttime");
 			String stop=(String)tss.getAttribute("endtime");
+
 			ServletContext context = request.getSession().getServletContext();
 			start=(String)context.getAttribute("starttime");
 			stop=(String)context.getAttribute("endtime");
@@ -1384,10 +1382,6 @@ public class ControllerServlet extends HttpServlet {
 			{
 				if(start!=null)
 				{
-					HttpSession timer=request.getSession(true);
-					timer.setAttribute("start",request.getParameter("starttime"));
-					timer.setAttribute("stop", request.getParameter("endtime"));
-					//
 					System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
 					rd1.forward(request, response);
 				}

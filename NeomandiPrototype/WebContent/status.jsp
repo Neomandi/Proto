@@ -159,7 +159,9 @@ if((String)tlbn.getTname()==null)
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
+
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="lotcost<%= osbn.getLotnum()%>" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
+
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getCommission()==null) out.println("0"); else out.println(osbn.getCommission());  %>" style="text-align: right;" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getMarketcess()==null) out.println("0"); else out.println(osbn.getMarketcess());  %>" style="text-align: right;" readonly></td></tr>
 	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
@@ -176,10 +178,18 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>"><%if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">
-	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  %></output></h4></header>
+	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>">
+	<%
+		if(Integer.parseInt(osbn.getLotcost())==0) 
+			out.println("Lot Has Not been Assigned to you");
+		else if(Integer.parseInt(osbn.getLotcost())!=0) 
+		{
+			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
+	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
+	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted the bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected the bid");  }%></output></h4></header>
 	<script> 
+	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
+	console.log(lotcost);
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 //	status=status+".";
@@ -203,6 +213,12 @@ if((String)tlbn.getTname()==null)
     	//clas.style.borderLeft= "54px solid green";
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
 		console.log("inside acp");
+	}
+	if(lotcost==0)
+	{
+	//	$("#status").css("border-left: 60px solid red;");
+		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		console.log("inside rej");
 	}
 	</script></td></tr></tbody></table>
 </td></tr>

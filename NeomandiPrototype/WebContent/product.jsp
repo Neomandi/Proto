@@ -201,9 +201,17 @@
 								var category=document.getElementById("category").value;
 								var grade=document.getElementById("grade").value;
 								var slot=document.getElementById("slot").value;*/
-								console.log("category="+document.getElementById("category").value+" slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value)
-								if(document.getElementById("category").value=="Category"&&document.getElementById("slot").value=="base")
-									alert("You need to choose atleast Slot number or kind of produce")
+								//alert(document.getElementById("category").value+" "+document.getElementById("produce").value+" "+document.getElementById("slot").value+" "+document.getElementById("grade").value)
+								console.log("category="+document.getElementById("category").value+" produce= "+document.getElementById("produce").value+"slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value)
+								
+								if(document.getElementById("category").value=="Category") 
+									alert("You should choose the Category ")
+								else if(document.getElementById("produce").value=="produce")
+									alert("You should choose the Produce ")
+									else if(document.getElementById("grade").value=="base")
+									alert("You should choose the Grade ")
+								else if(document.getElementById("slot").value=="base")
+									alert("You should choose the Slot ")								
 								else
 								{
 									/*document.getElementById("produce").value=produce;

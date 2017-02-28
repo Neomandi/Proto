@@ -25,7 +25,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
+=======
+<<<<<<< HEAD
+		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+=======
+	  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -370,9 +378,9 @@ if((String)hs.getAttribute("name")==null){
 function countdown(minutes,seconds,hours) 
 {
 	  document.getElementById('ts').onclick = function() {
-		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
+
 		  location="http://http://neomandi.in/FarmerMaster.jsp";
-		  
+
 	  }	
 	 
 	 	var seconds =seconds;
@@ -444,7 +452,9 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
+
 		        		            	   location="http://neomandi.in/DuringAuction.do";
+
 		        		            	}
 		        		            
 		        		        } 
@@ -469,7 +479,9 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
+
 			        		            location="http://neomandi.in/GetSummary.do";
+
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
 						            		document.getElementById("accept").disabled=false;

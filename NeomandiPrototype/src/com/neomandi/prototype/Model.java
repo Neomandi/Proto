@@ -575,7 +575,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(kproduce!=null)
 					if(kproduce.equals("Vegetables"))
 					  kproduce="Vegetable";
-				if(kproduce.equals("Category"))
+				/*if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
 					if(slot!=null&&slot.equals("slot3"))
@@ -652,7 +652,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println(l);
 					return l;
 				}
-				else
+				else*/
 				{
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
@@ -2654,7 +2654,10 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 								osbn.setMarketcess((String.valueOf(marketcess)));
 								osbn.setBestbid(rs2.getString("bestbid"));
 								osbn.setBidprice(bidprices);
-								osbn.setMyfinalcost(myfinalcosts);
+								if(lotcost==0)
+									osbn.setMyfinalcost("0");
+								else
+									osbn.setMyfinalcost(myfinalcosts);
 							}		
 							ps =con.prepareStatement("select ar.quantityassigned, ar.farmerstatus from auction_result ar,treg tr where ar.aadharnumber=tr.aadharnumber and tr.name=? and tr.pass=? and ar.lotnumber=?");
 							ps.setString(1, name);
@@ -3230,7 +3233,7 @@ public void TraderProductAccept(String lotnum,String accno)
 					}
 					else
 					{
-						tsb.setVolumesold("--");
+						tsb.setVolumesold("0");
 						tsb.setResult("LOST");
 					}
 					al.add(tsb);					
@@ -3590,7 +3593,7 @@ public void TraderProductAccept(String lotnum,String accno)
 	
 	@SuppressWarnings("resource")
 	public OrderStatusResult Dispatch() {
-		System.out.println("inside model");
+		System.out.println("inside model...Dispatch");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
