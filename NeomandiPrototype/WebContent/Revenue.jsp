@@ -174,9 +174,15 @@ footer {
 // 		}
 	}
 	}
-	catch(SQLException e)
+	catch(SQLException | NullPointerException | NumberFormatException e)
 	{
-		e.printStackTrace();
+		System.out.println("Inside catch()...");
+		%>
+			<script>
+				alert('No Revenues.');
+				window.location = "http://www.neomandi.in/ProductEntry.jsp";
+			</script>
+		<%
 	}
 	finally
 	{
