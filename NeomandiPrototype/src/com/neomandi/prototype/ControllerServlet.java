@@ -1382,7 +1382,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				if(start!=null)
 				{
-					System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
+					//System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
 					rd1.forward(request, response);
 				}
 				else		
