@@ -96,13 +96,16 @@ if((String)hs.getAttribute("name")==null){
 	     	String pass=(String)hs.getAttribute("pass"); 
  		     System.out.println("original password="+pass);
  		   String starttime=(String)hs.getAttribute("starttime"); 
- 		  System.out.println(" in farmermaster starttime="+starttime);
+ 		 
  		 String endtime=(String)hs.getAttribute("endtime"); 
-		  System.out.println(" in farmermaster endtime="+endtime);
+		 
+
 		  
 		  ServletContext context = request.getSession().getServletContext();
 			starttime=(String)context.getAttribute("starttime");
 			endtime=(String)context.getAttribute("endtime");
+			System.out.println("in farmer page starttime="+starttime);
+			System.out.println("in farmer page endtime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 	     	String time=df1.format(new Date());
@@ -372,14 +375,118 @@ if((String)hs.getAttribute("name")==null){
 					
 				
 			}
-		
+			//-----------------------for slot2--------------------------------------------------------------------
+			if(slot==s2)
+			{
+				var Etime=document.getElementById("time").value;
+				var Btime=stime;
+				var Btime1=etime;
+				console.log("Btime="+Btime);
+				console.log("Btime1="+Btime1);
+				start = Etime.split(":");
+				end =Btime.split(":");
+				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+				 diff = endDate.getTime() - startDate.getTime();
+				console.log("end time is "+Btime);
+				console.log("current time is "+Etime);
+				console.log("difference in milliseconds is "+diff);
+				var hours = Math.floor(diff / 1000 / 60 / 60);
+				//diff -= hours* 60 * 60;
+				var seconds= Math.floor(diff /1000);
+				var minutes = Math.floor(diff / 1000 / 60);
+				var res3=0;
+				console.log("differences in minutes before calc "+minutes);		
+				console.log("differences in seconds before calc "+seconds);		
+				if(seconds>60)
+				{
+						res1=seconds%60;
+						res2=Math.floor(seconds/60);
+								
+						seconds=res1;
+						minutes=res2;
+				}
+				if(minutes>60)
+				{
+						res1=minutes%60;
+						res3=Math.floor(minutes/60);
+								
+						hours=res3;
+						minutes=res1;
+				}
+				console.log("differences in minutes is "+minutes);
+				console.log("differences in seconds is "+seconds);
+				console.log("differences in hours is "+hours);
+
+				var timedifference=+hours+":"+minutes+":"+seconds;
+				console.log("differences in time is "+timedifference);
+				
+				countdown(minutes,seconds,hours);
+
+				var five=300000;
+				timedif=diff+five;
+				console.log("count"+timedif);
+					
+				
+			}
+			//-----------------------for slot3--------------------------------------------------------------------
+			var Etime=document.getElementById("time").value;
+				var Btime=stime;
+				var Btime1=etime;
+				console.log("Btime="+Btime);
+				console.log("Btime1="+Btime1);
+				start = Etime.split(":");
+				end =Btime.split(":");
+				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+				 diff = endDate.getTime() - startDate.getTime();
+				console.log("end time is "+Btime);
+				console.log("current time is "+Etime);
+				console.log("difference in milliseconds is "+diff);
+				var hours = Math.floor(diff / 1000 / 60 / 60);
+				//diff -= hours* 60 * 60;
+				var seconds= Math.floor(diff /1000);
+				var minutes = Math.floor(diff / 1000 / 60);
+				var res3=0;
+				console.log("differences in minutes before calc "+minutes);		
+				console.log("differences in seconds before calc "+seconds);		
+				if(seconds>60)
+				{
+						res1=seconds%60;
+						res2=Math.floor(seconds/60);
+								
+						seconds=res1;
+						minutes=res2;
+				}
+				if(minutes>60)
+				{
+						res1=minutes%60;
+						res3=Math.floor(minutes/60);
+								
+						hours=res3;
+						minutes=res1;
+				}
+				console.log("differences in minutes is "+minutes);
+				console.log("differences in seconds is "+seconds);
+				console.log("differences in hours is "+hours);
+
+				var timedifference=+hours+":"+minutes+":"+seconds;
+				console.log("differences in time is "+timedifference);
+				
+				countdown(minutes,seconds,hours);
+
+				var five=300000;
+				timedif=diff+five;
+				console.log("count"+timedif);
+					
+				
 		//---------------------for count down timer----------------------------------	
 			
 function countdown(minutes,seconds,hours) 
 {
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://http://neomandi.in/FarmerMaster.jsp";
+		  location="http://neomandi.in/FarmerMaster.jsp";
 
 	  }	
 	 
