@@ -23,9 +23,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
 
-<head> 
-<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/TradeorAuction.do">
-
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -364,6 +362,25 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 tick();
 		}
 		countdown(minutes,seconds,hours);	
+		
+		 window.setInterval(function()
+				  {
+			  		funny();
+				  },3000);
+				  function funny()
+		  {
+			 // alert("THIS IS A MSG");
+			 xmlhttp = new XMLHttpRequest();
+					  xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {	
+					    
+					    }
+					    xmlhttp.open("POST", "TradeorAuction.do", true);
+						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					//	xmlhttp.send("number=" +k+"&lotnumber="+j);
+					    
+		  }
 	</script>
         <%
   int z=1;
