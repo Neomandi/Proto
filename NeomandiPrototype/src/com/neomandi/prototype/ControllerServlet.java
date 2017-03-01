@@ -1369,6 +1369,7 @@ public class ControllerServlet extends HttpServlet {
 					e1.printStackTrace();
 				}*/
 			}
+			/*first code*/
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			HttpSession traderlistbean=request.getSession();
@@ -1383,6 +1384,7 @@ public class ControllerServlet extends HttpServlet {
 				if(start!=null)
 				{
 					//System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
+				
 					rd1.forward(request, response);
 				}
 				else		
@@ -1394,6 +1396,64 @@ public class ControllerServlet extends HttpServlet {
 			{
 				e.printStackTrace();
 			}	
+			
+		}
+		
+		if(uri.contains("refresh"))
+		{	
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			String name=null;
+			String pwd=null;
+			pwd=tlbn.getTpwd();
+			name=tlbn.getTname();
+			/*try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				pwd=tlbn.getTpwd();
+				name=tlbn.getTname();
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+			//	rd=request.getRequestDispatcher("ajax2.jsp");
+				rd=request.getRequestDispatcher("TraderorAuction2.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}*/
+			Model m=new Model();
+			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
+			//rd=request.getRequestDispatcher("ajax2.jsp");
+			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
+			try 
+			{
+					PrintWriter out = null;
+					try {
+						System.out.println(mfcb);
+						out = response.getWriter();
+						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+					    out.flush();
+					    out.close();
+					    System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+				//	rd3.forward(request, response);
+					return;
+			}
+			catch ( Exception e) 
+			{
+				e.printStackTrace();
+			}					
 		}
 		
 		//Increment

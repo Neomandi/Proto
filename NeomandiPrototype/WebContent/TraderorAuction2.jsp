@@ -22,7 +22,6 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -361,26 +360,20 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		 		}
 		 tick();
 		}
-		countdown(minutes,seconds,hours);	
+			
+		var a=document.getElementById("timer").value;
+		console.log("document.getElementById"+ document.getElementById("timer").value);
+		console.log("document.getElementById"+ typeof a);
+		if(typeof a==="undefined")
+		{		
+			console.log("inside if()")	 		 
+		}
+		else
+		{
+					console.log("inside else)")
+		}
 		
-		 window.setInterval(function()
-				  {
-			  		funny();
-				  },3000);
-				  function funny()
-		  {
-			 // alert("THIS IS A MSG");
-			 xmlhttp = new XMLHttpRequest();
-					  xmlhttp.onreadystatechange = function() {
-					    if (this.readyState == 4 && this.status == 200) 
-					    {	
-					    
-					    }
-					    xmlhttp.open("POST", "TradeorAuction.do", true);
-						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					//	xmlhttp.send("number=" +k+"&lotnumber="+j);
-					    
-		  }
+		countdown(minutes,seconds,hours);
 	</script>
         <%
   int z=1;
@@ -498,7 +491,230 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		{
 			document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 			console.log("mybid==0");
-		}		
+		}	
+		
+		
+		//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
+		window.setInterval(function()
+				  {
+					funny();
+				  },6000);
+		
+		function funny()
+ 		{
+					  
+			 		    xmlhttp = new XMLHttpRequest();
+					    xmlhttp.onreadystatechange = function() {
+					    if (this.readyState == 4 && this.status == 200) 
+					    {	
+					    	 var string=xmlhttp.responseText;
+					    	 var startlotnum=xmlhttp.responseText.indexOf('lotnum');
+					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnum');
+					         startlotnum=startlotnum+6;
+					         
+					         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+					         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+					         startlotcost=startlotcost+7;
+					         
+					         var startcommission=xmlhttp.responseText.indexOf('commission');
+					         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+					         startcommission=startcommission+10;
+					         
+					         var startmarket=xmlhttp.responseText.indexOf('market');
+					         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+					         startmarket=startmarket+6;
+					         
+					         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+					         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+					         startbestbid=startbestbid+7;
+					         
+					         var startmybid=xmlhttp.responseText.indexOf('mybid');
+					         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+					         startmybid=startmybid+5;
+					         
+					         var startassigned=xmlhttp.responseText.indexOf('assigned');
+					         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+					         startassigned=startassigned+8;
+					         
+					         var startfinal=xmlhttp.responseText.indexOf('final');
+					         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+					         startfinal=startfinal+5;
+
+					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+					         var assigned=string.substring(startassigned,endassigned);
+					         if(assigned=="0")
+					         {
+					        	 console.log("assigned =0");
+					        	 var symbol="-";
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							         
+					        	 document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = number;
+						         
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = number;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = number;
+						      
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+						         console.log(string.substring(startbestbid,endbestbid));
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         
+						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+						 		 var quantityneeded=new  Number(quantityneededs);	
+						 		console.log(quantityneededs);
+						 		 var assigneds=new Number(assigned);
+						 		if(assigneds==0)
+								{
+									console.log("quantityneeded==0");
+									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+								}	
+								
+								else if(quantityneeded-assigneds==0)
+								{
+									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+									console.log("quantityneeded-quantityassigned==0");
+								}
+								else if(assigneds<quantityneeded&&assigneds>0)
+								{
+									console.log("quantityneeded<quantityassigned");
+										document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+								}
+						 		
+						 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
+								var bestbid=new  Number(bestbids);		
+								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
+								var mybid=new  Number(mybids);
+								console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+								console.log(mybid==0);
+								if(mybid<bestbid&&mybid>0)
+								{
+									console.log("mybid<bestbid")
+										document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+								}
+								else if(mybid-bestbid==0||mybid>bestbid)
+								{
+									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+									console.log("mybid-bestbid==0");
+								}
+								else if(mybid==0)
+								{
+									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+									console.log("mybid==0");
+								}	
+					         }
+					         else
+					         {
+					        	 var number=0;
+					        	 var assigned=string.substring(startassigned,endassigned);
+					        	 var bestbid=string.substring(startbestbid,endbestbid);
+							     var mybid=string.substring(startmybid,endmybid);
+							     var lotcost=string.substring(startlotcost,endlotcost);
+							     var commission=string.substring(startcommission,endcommission);
+							     var marketcess=string.substring(startmarket,endmarket);
+							     var final=string.substring(startfinal,endfinal);
+							     
+							   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+							     
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").innerHTML = lotcost;
+						         document.getElementById("demo2<%= tlb.getLotnum() %>").value = lotcost;
+						         
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").innerHTML = commission;
+						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
+						         
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+						         
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
+						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
+						         
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
+					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
+					        	 
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
+						         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
+						         
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
+						         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
+						         
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						         
+						         var bid=new  Number(string.substring(startmybid,endmybid));
+						         bid=bid+1;
+						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
+						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+					        
+						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+						 		 var quantityneeded=new  Number(quantityneededs);	
+					         
+						 		 var assigneds=new Number(assigned);
+						 		if(assigneds==0)
+								{
+									console.log("quantityneeded==0");
+									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+								}	
+								
+								else if(quantityneeded-assigneds==0)
+								{
+									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+									console.log("quantityneeded-quantityassigned==0");
+								}
+								else if(assigneds<quantityneeded&&assigneds>0)
+								{
+									console.log("quantityneeded<quantityassigned");
+										document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+								}
+						 		
+						 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
+								var bestbid=new  Number(bestbids);		
+								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
+								var mybid=new  Number(mybids);
+								console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+								console.log(mybid==0);
+								if(mybid<bestbid&&mybid>0)
+								{
+									console.log("mybid<bestbid")
+										document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+								}
+								else if(mybid-bestbid==0||mybid>bestbid)
+								{
+									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+									console.log("mybid-bestbid==0");
+								}
+								else if(mybid==0)
+								{
+									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+									console.log("mybid==0");
+								}	
+					         }
+					    }};
+					    xmlhttp.open("POST", "refresh.do", true);
+						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+						xmlhttp.send("number=" +1+"&lotnumber="+1);
+ 		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
