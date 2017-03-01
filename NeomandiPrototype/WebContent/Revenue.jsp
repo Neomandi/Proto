@@ -125,8 +125,8 @@ footer {
 		rs = pstmt.executeQuery();
 		//System.out.println(rs);
 		System.out.println("is resultset not empty "+!rs.isBeforeFirst());
-		if(!rs.isBeforeFirst())
-		{
+// 		if(!rs.isBeforeFirst())
+// 		{
 			while(rs.next())
 			{
 				String lotnumber = rs.getString("lotnumber");
@@ -167,16 +167,22 @@ footer {
                         </tr>
                         <%
 			}
-		}
-		else
-		{
-			System.out.println("No revenues.");
-		}
+// 		}
+// 		else
+// 		{
+// 			System.out.println("No revenues.");
+// 		}
 	}
 	}
-	catch(SQLException e)
+	catch(SQLException | NullPointerException | NumberFormatException e)
 	{
-		e.printStackTrace();
+		System.out.println("Inside catch()...");
+		%>
+			<script>
+				alert('No Revenues.');
+				window.location = "http://www.neomandi.in/ProductEntry.jsp";
+			</script>
+		<%
 	}
 	finally
 	{

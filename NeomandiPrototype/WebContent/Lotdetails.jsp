@@ -86,7 +86,11 @@ if((String)hs.getAttribute("name")==null){
 	  System.out.println(" in farmermaster starttime="+starttime);
 	 String endtime=(String)hs.getAttribute("endtime"); 
 	  System.out.println(" in farmermaster endtime="+endtime);
-     SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
+	  ServletContext context = request.getSession().getServletContext();
+		starttime=(String)context.getAttribute("starttime");
+		endtime=(String)context.getAttribute("endtime");
+   	// String time=(String)hs.getAttribute("time");
+  	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
   	String time=df1.format(new Date());
 	 Connection con = null;
      Statement statement = null;
@@ -282,9 +286,6 @@ var date=document.getElementById("date").value;
 				
 				countdown(minutes,seconds,hours);
 				
-				var five=300000;
-				timedif=diff+five;
-				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(slot==s2){
@@ -465,7 +466,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/Lotdetails.jsp";
+		  location="http://neomandi.in/Lotdetails.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -487,7 +488,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -537,7 +538,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -561,7 +562,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -600,16 +601,16 @@ function countdown(minutes,seconds,hours)
 }
 countdown(minutes,seconds,hours);			   			
 //console.log("time="+timedif);
- var t=setTimeout(auction,timedif);
+ /*var t=setTimeout(auction,timedif);
  function auction(){
 	 document.getElementById("accept").disabled=false;
 	 document.getElementById("reject").disabled=false;
- }
+ }*/
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
     <script>
