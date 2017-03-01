@@ -50,7 +50,7 @@
 	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='Login.html';</script>");
+	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/Login.html';</script>");
 	    }
 	%>
     <script>
