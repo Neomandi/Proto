@@ -174,7 +174,7 @@ footer {
 // 		}
 	}
 	}
-	catch(SQLException | NullPointerException | NumberFormatException e)
+	catch(NumberFormatException | NullPointerException e)
 	{
 		System.out.println("Inside catch()...");
 		%>
@@ -183,6 +183,10 @@ footer {
 				window.location = "http://www.neomandi.in/ProductEntry.jsp";
 			</script>
 		<%
+	}
+	catch(SQLException e)
+	{
+		e.printStackTrace();
 	}
 	finally
 	{
