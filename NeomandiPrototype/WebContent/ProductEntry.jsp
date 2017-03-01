@@ -89,8 +89,9 @@
     	var produce=document.ProductEntryForm.produce;
     	var grade=document.ProductEntryForm.quality;
     	var empnumber=document.ProductEntryForm.empnumber;
-    	var pwd=document.ProductEntryForm.pwd;
+    	var epwd=document.ProductEntryForm.epwd;
     	var lotnumber=document.ProductEntryForm.lotnumber;
+    	var fileID=document.ProductEntryForm.fileID;
     	
     	//farmerid validation
     	if(farmerid.value == ""){
@@ -113,7 +114,7 @@
     	//marketcode validation
     	var letters = /^[0-9a-zA-Z]+$/;
     	if(marketcode.value == ""){
-    		alert("Please enter marketcode");
+    		alert("Please enter Marketcode");
     		marketcode.focus();
     		return false;
     	}
@@ -159,6 +160,20 @@
     	if(lotnumber.value == "")
     	{
     		alert("Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber");
+    		return false;
+    	}
+    	
+    	//EmployeeNumber Validation
+    	if(empnumber.value == "")
+    	{
+    		alert("Please enter Employee Number");
+    		return false;
+    	}
+    	
+    	//EmployeePassword Validation
+    	if(epwd.value == "")
+    	{
+    		alert("Please enter Employee Password");
     		return false;
     	}
     	return true;
@@ -303,7 +318,7 @@
                             <div id="showtext">Click here to upload image</div>
 
                             <img id="blah" src="#" style="display:none">
-                            <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" />
+                            <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" required/>
                         </div>
 
                         <br>
@@ -357,7 +372,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="password" class="form-control" id="pwd" name="pwd">
+                                        <input type="password" class="form-control" id="pwd" name="epwd">
                                     </td>
                                 </tr>
 
