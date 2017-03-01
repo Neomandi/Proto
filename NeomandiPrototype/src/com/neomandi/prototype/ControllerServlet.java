@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import com.sun.net.httpserver.HttpContext;
-
 @MultipartConfig(maxFileSize = 16177215)
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -1007,6 +1005,15 @@ public class ControllerServlet extends HttpServlet {
 			String produce = request.getParameter("produce");
 			String quality = request.getParameter("quality");
 			String quantity = request.getParameter("quantity");
+			String ename = request.getParameter("empnumber");
+			String epwd = request.getParameter("epwd");
+			System.out.println("Name and pwd from form: "+ename+" "+epwd);
+			
+			HttpSession elog = request.getSession(false);
+			String name = (String) elog.getAttribute("name");
+			String pwd = (String) elog.getAttribute("pwd");
+			System.out.println("Name and pwd from session: "+name+" "+pwd);
+			
 			
 			//System.out.println("Farmerid: "+farmerid+" Lotnum: "+lotnum+" Marketcode: "+marketcode+" Kproduce: "+kproduce+" Produce: "+produce+" Quality: "+quality+" Quantity: "+quantity);
 			
@@ -1058,7 +1065,16 @@ public class ControllerServlet extends HttpServlet {
 			
 			PrintWriter pw = null;
 			Model m = new Model();
-			String msg = m.productEntry(pebean);
+			String msg = "";
+			if(ename.equals(name) && epwd.equals(pwd))
+			{
+				msg = m.productEntry(pebean);
+			}
+			else
+			{
+				msg = msg + "Employee Number/Password is incorrect";
+			}
+			
 			if(msg.equals("SUCCESS"))
 			{
 				request.setAttribute("errmsg", msg);

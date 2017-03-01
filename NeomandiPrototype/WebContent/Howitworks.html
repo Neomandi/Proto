@@ -18,6 +18,25 @@
         a {
             font-family: Arial, Helvetica, sans-serif;
         }
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        
+        body {
+            margin: 0 0 100px;
+            /* bottom = footer height */
+            padding: 25px;
+        }
+        
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+        }
     </style>
 </head>
 <link rel="stylesheet" href="Header&footerstyle.css">
@@ -54,26 +73,36 @@
         </div>
     </nav>
     <!-----menu bar end------>
-    <div id="content">
+    <div class="container" id="content">
         <br/>
         <br/>
-        <img src="Images1/FarmerPic.jpg" alt="Can't display" />
-        <br/>
-        <a href="NeomandiFarmer.html">
-            <input type="submit" value="I AM A FARMER" />
-        </a>
-        <br/>
-        <br/>
-        <img src="Images1/TraderPic.png" alt="Can't display" />
-        <br/>
-        <br/>
-        <a href="NeomandiTrader.html">
-            <input type="submit" value="I AM A TRADER" />
-        </a>
-        <br/>
-        <br/>
+        <div>
+        	<div class="row">
+		        <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
+		        	<div>
+				        <img src="Images1/FarmerPic.jpg" alt="Can't display" />
+				        <br/><br/><br/><br/>
+				        <a href="NeomandiFarmer.html">
+				            <input type="submit" value="I AM A FARMER" />
+				        </a>
+					</div>
+		        </div>
+		        
+		        <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
+		        	<div>
+				        <br/>
+				        <br/>
+				        <img src="Images1/TraderPic.png" alt="Can't display" />
+				        <br/>
+				        <br/>
+				        <a href="NeomandiTrader.html">
+				            <input type="submit" value="I AM A TRADER" />
+				        </a>
+			        </div>
+		        </div>
+			</div>
+	    </div>
     </div>
     <div id="footer"></div>
 </body>
-
 </html>
