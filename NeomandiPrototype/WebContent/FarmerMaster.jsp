@@ -92,7 +92,7 @@ if((String)hs.getAttribute("name")==null){
  		 String endtime=(String)hs.getAttribute("endtime"); 
 		  System.out.println(" in farmermaster endtime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
-	    	SimpleDateFormat df1=new SimpleDateFormat("hh:mm:ss");
+	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 	     	String time=df1.format(new Date());
 		 	System.out.println("password="+pass);
 			System.out.println("new time="+time);
