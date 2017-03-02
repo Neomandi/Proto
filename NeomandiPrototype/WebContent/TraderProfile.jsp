@@ -28,6 +28,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <title>NeoMandi</title>
+   <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -227,9 +228,48 @@ catch(Exception e)
     </table>
   </form>
   </div><br>
- <table align="center"><tr><td><a href="#" class="reg">Export as PDF</a></td></tr></table>
+ <table align="center"><tr><td><a id="download-btn" class="reg">Export as PDF</a></td></tr></table>
 </div>
-
+ <script src="libs/jspdf.min.js"></script>					
+	<script src="libs/jspdf.plugin.autotable.src.js"></script>					
+	<script src="js/profile.js"></script>
+    <script>
+		    $(function() {
+		        $('#download-btn').click(function() {
+		        	console.log("btn clicked");
+		            $('#basic-table > tbody:last').append($('#tbl2 > tbody').html());
+		            //$('#tbl2').remove();
+		            update(true);
+		        })
+		    });
+		
+		
+		window.onhashchange = function () {
+		    update();
+		};
+		
+		// document.getElementById('download-btn').onclick = function () {
+		//     update(true);
+		// };
+		
+		function update(shouldDownload) {
+		    var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
+		    var doc = profile['html']();
+		
+// 		    doc.setProperties({
+// 		        title: 'Example: ' + funcStr,
+// 		        subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
+// 		    });
+		
+		    if (shouldDownload) {
+		        doc.save('<%=rs.getString("name")  %>.pdf');
+		    } else {
+		        document.getElementById("output").src = doc.output('datauristring');
+		    }
+		}
+		
+		update();
+    </script>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <h4>My Account Details</h4>
 <div class="detail">
@@ -263,7 +303,7 @@ catch(Exception e)
 </div>
 </div>
 </div>
-    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+ 
 <script src="js/bootstrap.js" type="text/javascript"></script>
 </body>
 </html>

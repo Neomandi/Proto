@@ -3258,7 +3258,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 </div>
     </div></div>
 	<!---row 2 end--->
-	<!----row3--->
+	<!----row3--
 	<div class="one">
 <div class="container-fluid status">
 	<div class="row">
