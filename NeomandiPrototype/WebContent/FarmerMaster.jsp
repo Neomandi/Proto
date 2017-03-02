@@ -28,9 +28,9 @@
 
 	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
 
+
 		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
 
-	  
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">

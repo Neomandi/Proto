@@ -67,7 +67,7 @@ if((String)tlbn.getTname()==null)
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
- <li ><a href="product.jsp">Product Search</a></li>
+ 						<li ><a href="product.jsp">Product Search</a></li>
                         <li class="active"><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
