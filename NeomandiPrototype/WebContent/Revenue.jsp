@@ -108,10 +108,14 @@ footer {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt1 = null;
+	PreparedStatement pstmt2 = null;
+	
 	ResultSet rs = null;
 	ResultSet rs1 = null;
+	ResultSet rs2 = null;
 	
-	try{
+	try
+	{
 	con = JDBCHelper.getConnection();
 	
 	if(con == null)
@@ -120,18 +124,18 @@ footer {
 	}
 	else
 	{
-		String sql = "select COUNT(*) from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
+		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		while(rs.next())
+		if(rs.next())
 		{
-			if(rs.getString("COUNT(*)").equals("0"))
+			/*if(rs.getString("COUNT(*)").equals("0"))
 			{
 				 out.println("<script type=\"text/javascript\">");
 			  	 out.println("alert('No Revenues');");
 			 	 out.println("</script>");
 			}
-			else
+			else*/
 			{
 				String sql2 = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 				pstmt1 = con.prepareStatement(sql2);
@@ -187,9 +191,15 @@ footer {
 		// 		}
 			}
 		}
+		else
+		{
+			 out.println("<script type=\"text/javascript\">");
+		  	 out.println("alert('No Revenues');");
+		 	 out.println("</script>");
+		}
 	}
 	}
-	catch(SQLException | NumberFormatException | NullPointerException e)
+	catch(Exception e)
 	{
 		e.printStackTrace();
 	}

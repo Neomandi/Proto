@@ -27,7 +27,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
-<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do">
+<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/TradeorAuction.do">
 <style>
 input[type="number"],input[type="text"]
 {
@@ -457,8 +457,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="3000" readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println(mfcb.getMyfinalcost()); %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
@@ -1289,7 +1289,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000");%>" readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
@@ -2062,7 +2062,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
