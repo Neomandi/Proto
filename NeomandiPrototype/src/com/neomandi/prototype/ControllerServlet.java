@@ -1027,7 +1027,7 @@ public class ControllerServlet extends HttpServlet {
 			}         
 	        String photo="";
 
-	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
 
 	        System.out.println("Path "+path);
 	        File file=new File(path);
@@ -1702,6 +1702,7 @@ public class ControllerServlet extends HttpServlet {
 			}	
 		}
 		
+		//PostAuction
 		if(uri.contains("PostAuction"))
 		{
 			System.out.println("**********************************************************");

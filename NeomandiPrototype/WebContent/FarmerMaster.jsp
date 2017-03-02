@@ -28,7 +28,7 @@
 
 
 
-	<!--  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp"> --> 
+	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">  
 
 
 
