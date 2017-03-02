@@ -26,8 +26,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoMandi</title>
-<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do">
+<title>NeoMandi</title><!-- <meta http-equiv="refresh"  content="3; URL=TradeorAuction.do">-->
 <style>
 input[type="number"],input[type="text"]
 {
@@ -202,17 +201,17 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
-	console.log("start time is "+Btime);
+	/*console.log("start time is "+Btime);
 	console.log("end time is "+Btime1);
 	console.log("current time is "+Etime);
-	console.log("difference in milliseconds is "+diff);
+	console.log("difference in milliseconds is "+diff);*/
 	var hours = Math.floor(diff / 1000 / 60 / 60);
 	//diff -= hours* 60 * 60;
 	var seconds= Math.floor(diff /1000);
 	var minutes = Math.floor(diff / 1000 / 60);
 	var res3=0;
-	console.log("differences in minutes before calc "+minutes);		
-	console.log("differences in seconds before calc "+seconds);		
+	//console.log("differences in minutes before calc "+minutes);		
+	//console.log("differences in seconds before calc "+seconds);		
 	if(seconds>60)
 	{
 			res1=seconds%60;
@@ -229,15 +228,15 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			hours=res3;
 			minutes=res1;
 	}
-	console.log("differences in minutes is "+minutes);
-	console.log("differences in seconds is "+seconds);
-	console.log("differences in hours is "+hours);
+//	console.log("differences in minutes is "+minutes);
+	//console.log("differences in seconds is "+seconds);
+	//console.log("differences in hours is "+hours);
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("differences in time is "+timedifference);	
+	//console.log("differences in time is "+timedifference);	
 	countdown(minutes,seconds,hours);	
 	var five=300000;
 	timedif=diff+five;
-	console.log("count"+timedif);	
+//	console.log("count"+timedif);	
 		function countdown(minutes,seconds,hours) 
 		{			  			 
 			 	var seconds =seconds;
@@ -286,8 +285,8 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				            	document.getElementById("timer").innerHTML=str;
 				            	function count(minutes1,seconds1) 
 				            	{
-				            		console.log("minutes is"+minutes);
-				            		console.log("seconds is"+seconds1);
+				            		//console.log("minutes is"+minutes);
+				            		//console.log("seconds is"+seconds1);
 				        		    var seconds =seconds1;
 				        		    var mins = minutes1;
 				        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
@@ -324,7 +323,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								      		  	xmlhttp.onreadystatechange = function() {
 								      		    if (this.readyState == 4 && this.status == 200) 
 								      		    {}};
-								      		    console.log("your auction has ended");
+								      		    //console.log("your auction has ended");
 								      		//  xmlhttp.open("POST", "PostAuction.do", true);
 								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 								      	//	alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
@@ -351,9 +350,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
-				            	console.log("auction ends at "+Btime1);
-				            	console.log("time is  "+Etime1);
-				            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
+				            	//console.log("auction ends at "+Btime1);
+				            	//console.log("time is  "+Etime1);
+				            //	console.log("differences in time remainins is "+minutes1+":"+seconds1);
 			        			count(minutes1,seconds1);			        			
 							}
 						}
@@ -363,15 +362,15 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		}
 			
 		var a=document.getElementById("timer").value;
-		console.log("document.getElementById"+ document.getElementById("timer").value);
-		console.log("document.getElementById"+ typeof a);
+	//	console.log("document.getElementById"+ document.getElementById("timer").value);
+	//	console.log("document.getElementById"+ typeof a);
 		if(typeof a==="undefined")
 		{		
-			console.log("inside if()")	 		 
+			//console.log("inside if()")	 		 
 		}
 		else
 		{
-					console.log("inside else)")
+				//	console.log("inside else)")
 		}
 		
 		countdown(minutes,seconds,hours);
@@ -457,7 +456,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
@@ -476,11 +475,12 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		var bestbid=new  Number(bestbids);		
 		var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 		var mybid=new  Number(mybids);
-		console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+		console.log("best bid is"+bestbid);
+		console.log(" my bid is"+mybid+" ");
 		console.log(mybid==0);
 		if(mybid<bestbid&&mybid>0)
 		{
-			console.log("mybid<bestbid")
+				console.log("mybid<bestbid")
 				document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
 		}
 		else if(mybid-bestbid==0||mybid>bestbid)
@@ -498,11 +498,12 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
 		window.setInterval(function()
 				  {
-					//funny();
-				  },6000);
+					funny();
+				  },3000);
 		
 		function funny()
  		{		  
+			var needed=document.getElementById("needed<%=tlb.getLotnum() %>").value;
 			 		    xmlhttp = new XMLHttpRequest();
 					    xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
@@ -542,9 +543,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 
 					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 					         var assigned=string.substring(startassigned,endassigned);
+					         console.log("assigned is "+string.substring(startassigned,endassigned));
 					         if(assigned=="0")
-					         {
-					        	 console.log("assigned =0");
+					         {					        	 
 					        	 var symbol="-";
 					        	 var number=0;
 					        	 var assigned=string.substring(startassigned,endassigned);
@@ -577,26 +578,25 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
 						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
-						         console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-						         
+						        
 						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
 						 		 var quantityneeded=new  Number(quantityneededs);	
 						 		console.log(quantityneededs);
 						 		 var assigneds=new Number(assigned);
 						 		if(assigneds==0)
 								{
-									console.log("quantityneeded==0");
+									//console.log("quantityneeded==0");
 									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 								}	
 								
 								else if(quantityneeded-assigneds==0)
 								{
 									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
-									console.log("quantityneeded-quantityassigned==0");
+								//	console.log("quantityneeded-quantityassigned==0");
 								}
 								else if(assigneds<quantityneeded&&assigneds>0)
 								{
-									console.log("quantityneeded<quantityassigned");
+									//console.log("quantityneeded="+quantityneeded+"quantityassigned"+assigneds);
 										document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
 								}
 						 		
@@ -604,23 +604,27 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								var bestbid=new  Number(bestbids);		
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
-								console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
 								console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
-									console.log("mybid<bestbid")
+								//	console.log("mybid<bestbid")
 										document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
 								}
 								else if(mybid-bestbid==0||mybid>bestbid)
 								{
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
-									console.log("mybid-bestbid==0");
+									//console.log("mybid-bestbid==0");
 								}
 								else if(mybid==0)
 								{
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
-									console.log("mybid==0");
+									//console.log("mybid==0");
 								}	
+								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("assigned =0");
+						         console.log("my bid is "+mybid);
+						         console.log("needed is "+needed);
 					         }
 					         else
 					         {
@@ -665,7 +669,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 						         bid=bid+1;
 						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
 						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
-						         console.log("lotcost"+string.substring(startlotcost,endlotcost)+"commssion"+string.substring(startcommission,endcommission)+"marketcess"+string.substring(startmarket,endmarket)+"my bid"+string.substring(startmybid,endmybid)+"bestbid"+string.substring(startbestbid,endbestbid)+"assigned"+string.substring(startassigned,endassigned)+"final "+string.substring(startfinal,endfinal));
+						       /*  console.log("lotcost "+string.substring(startlotcost,endlotcost));
+						         console.log("commssion "+string.substring(startcommission,endcommission));
+						         console.log("marketcess "+string.substring(startmarket,endmarket));
+						         console.log("my bid "+string.substring(startmybid,endmybid));
+						         console.log("bestbid "+string.substring(startbestbid,endbestbid));
+						         console.log("assigned "+string.substring(startassigned,endassigned));
+						         console.log("final "+string.substring(startfinal,endfinal));
+						         console.log("quantityassigned "+assigned);*/
 					        
 						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
 						 		 var quantityneeded=new  Number(quantityneededs);	
@@ -673,18 +684,18 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 						 		 var assigneds=new Number(assigned);
 						 		if(assigneds==0)
 								{
-									console.log("quantityneeded==0");
+									//console.log("quantityneeded==0");
 									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 								}	
 								
 								else if(quantityneeded-assigneds==0)
 								{
 									document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
-									console.log("quantityneeded-quantityassigned==0");
+									//console.log("quantityneeded-quantityassigned==0");
 								}
 								else if(assigneds<quantityneeded&&assigneds>0)
 								{
-									console.log("quantityneeded<quantityassigned");
+								//	console.log("quantityneeded<quantityassigned");
 										document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
 								}
 						 		
@@ -692,23 +703,27 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 								var bestbid=new  Number(bestbids);		
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
-								console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
 								console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
-									console.log("mybid<bestbid")
+									//console.log("mybid<bestbid")
 										document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
 								}
 								else if(mybid-bestbid==0||mybid>bestbid)
 								{
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
-									console.log("mybid-bestbid==0");
+								//	console.log("mybid-bestbid==0");
 								}
 								else if(mybid==0)
 								{
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
-									console.log("mybid==0");
-								}	
+									//console.log("mybid==0");
+								}
+								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+						         console.log("assigned ="+assigneds);
+						         console.log("my bid is "+mybid);
+						         console.log("needed is "+needed);
 					         }
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
@@ -793,7 +808,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
-		console.log("current time is "+Etime);
+		console.log("***********INCREMENT**********");
 		var hours = Math.floor(diff / 1000 / 60 / 60);
 		//diff -= hours* 60 * 60;
 		var seconds= Math.floor(diff /1000);
@@ -817,7 +832,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("time difference is "+timedifference);
+	//console.log("time difference is "+timedifference);
 	/*if(!timedifference.includes("-"))
 	{
 		alert('YOU CANT BID BEFORE AUCTION STARTS');
@@ -833,9 +848,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	var bestbid=new Number(bestbids);
 	console.log("best bid is"+bestbid);
 	var result=currentbids+1;
-    var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+    var assigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
 	var assigned=new  Number(assigneds);
-	var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
+	var neededs=document.getElementById("needed<%=tlb.getLotnum() %>").value;
 	var needed=new  Number(neededs);
 	console.log("volume assigned is "+assigned+"");
 	console.log("volume needed is "+needed+"");
@@ -1017,6 +1032,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	function fun<%=tlb.getLotnum()%>()
 	{
 	var Etime=document.getElementById("time").value;
+	console.log("**********************SUBMIT************************")
 	var Btime="10:30:00";
 	var Btime1="10:35:00";
 	start = Etime.split(":");
@@ -1024,8 +1040,6 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
-	console.log("end time inside submit function is "+Btime);
-	console.log("current time inside submit function is"+Etime);
 	var hours = Math.floor(diff / 1000 / 60 / 60);
 	//diff -= hours* 60 * 60;
 	var seconds= Math.floor(diff /1000);
@@ -1049,7 +1063,6 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	}
 
 	var timedifference=+hours+":"+minutes+":"+seconds;
-	console.log("time difference isss "+timedifference);	
 	//if(timedifference.includes("-"))
 	{
 	      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
@@ -1079,7 +1092,14 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			  var currentbids=new Number(currentbid);
 			  var newbid=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 			  var newbids=new Number(newbid);
-			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  var assigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+			  var assigned=new  Number(assigneds);
+			  var neededs=document.getElementById("needed<%=tlb.getLotnum() %>").value;
+			  var needed=new  Number(neededs);
+			  console.log("current bid is"+currentbids);
+			  console.log(" new bid is "+newbids);
+			  console.log("quantityneeded is "+needed);
+			  console.log("assigned is "+assigned);
 			  if(currentbids===newbids)
 				  {
 					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
@@ -1092,9 +1112,9 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 			  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 			  var bestbid=new Number(bestbids);
 			  if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
-				  {
+			  {
 				  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
-				  }
+			  }
 			  else  if(currentbids-bestbid!=0 && assigned!=needed)
 			  {
 					  xmlhttp = new XMLHttpRequest();
@@ -1289,7 +1309,7 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="3000" readonly></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
