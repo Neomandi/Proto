@@ -70,7 +70,7 @@
             <h4>Welcome to NeoMandi's farmer registration page</h4>
         </div>
         <!---my detail form----->
-         <form id="bank" method="get" action="FarmerRegisterInt.jsp" name="fregform">
+         <form id="bank" method="get" action="FarmerRegisterInt.jsp" name="fregform" autocomplete="off">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">

@@ -185,7 +185,7 @@ if((String)tlbn.getTname()==null)
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
 			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
+	<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted the bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected the bid");  }%></output></h4></header>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
