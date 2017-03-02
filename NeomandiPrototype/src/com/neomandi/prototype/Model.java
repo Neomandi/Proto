@@ -1106,7 +1106,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 					else
 					{
-						ps =con.prepareStatement("insert into Traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
+						ps =con.prepareStatement("insert into traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
 						ps.setString(1, name);
 						ps.setString(2, aadharnumber);
 						ps.setString(3,String.valueOf(block));
@@ -1424,7 +1424,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 		JDBCHelper.Close(ps);
 		JDBCHelper.Close(con);
 	}
-	System.out.println("after returning*()(*&^%$#$%^&*()(*&^%$");
 	return null;
 }
 

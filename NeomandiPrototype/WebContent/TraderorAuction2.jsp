@@ -27,6 +27,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoMandi</title>
+<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do">
 <style>
 input[type="number"],input[type="text"]
 {
@@ -497,12 +498,11 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 		//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
 		window.setInterval(function()
 				  {
-					funny();
+					//funny();
 				  },6000);
 		
 		function funny()
- 		{
-					  
+ 		{		  
 			 		    xmlhttp = new XMLHttpRequest();
 					    xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
@@ -713,45 +713,45 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
 						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-						xmlhttp.send("number=" +1+"&lotnumber="+1);
+						xmlhttp.send("number="+1+"&lotnumber="+1);
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
 	<% 
-	String quantityneededs=tlb.getQuantityneeded();
-	int quantityneeded=Integer.parseInt(quantityneededs); 
-	String quantityassigneds=mfcb.getQuantityassigned();
-	int quantityassigned=Integer.parseInt(quantityassigneds);%>
+		String quantityneededs=tlb.getQuantityneeded();
+		int quantityneeded=Integer.parseInt(quantityneededs); 
+		String quantityassigneds=mfcb.getQuantityassigned();
+		int quantityassigned=Integer.parseInt(quantityassigneds);
+	%>
 	<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
 	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
 	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
 	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
 	<script>
-		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
-		var quantityneeded=new  Number(quantityneededs);		
-		var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
-		var quantityassigned=new  Number(quantityassigneds);
-		console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
-		console.log("quantityneeded<quantityassigned");
-		console.log(quantityneeded<quantityassigned);
-		console.log("quantityneeded>0"+quantityneeded>0);
-		if(quantityassigned==0)
-		{
+	var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+	var quantityneeded=new  Number(quantityneededs);		
+	var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+	var quantityassigned=new  Number(quantityassigneds);
+	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
+	console.log("quantityneeded<quantityassigned");
+	console.log(quantityneeded<quantityassigned);
+	console.log("quantityneeded>0"+quantityneeded>0);
+	if(quantityassigned==0)
+	{
 			console.log("quantityneeded==0");
 			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
-		}	
-		
-		else if(quantityneeded-quantityassigned==0)
-		{
+	}		
+	else if(quantityneeded-quantityassigned==0)
+	{
 			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
 			console.log("quantityneeded-quantityassigned==0");
-		}
-		else if(quantityassigned<quantityneeded&&quantityassigned>0)
-		{
+	}
+	else if(quantityassigned<quantityneeded&&quantityassigned>0)
+	{
 			console.log("quantityneeded<quantityassigned");
 				document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
-		}	
+	}	
 	</script>
 	<script>
 	var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
@@ -793,16 +793,16 @@ out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
 	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 	 diff = endDate.getTime() - startDate.getTime();
-	console.log("current time is "+Etime);
-	var hours = Math.floor(diff / 1000 / 60 / 60);
-	//diff -= hours* 60 * 60;
-	var seconds= Math.floor(diff /1000);
-	var minutes = Math.floor(diff / 1000 / 60);
-	var res3=0;	
-	if(seconds>60)
-	{
-			res1=seconds%60;
-			res2=Math.floor(seconds/60);
+		console.log("current time is "+Etime);
+		var hours = Math.floor(diff / 1000 / 60 / 60);
+		//diff -= hours* 60 * 60;
+		var seconds= Math.floor(diff /1000);
+		var minutes = Math.floor(diff / 1000 / 60);
+		var res3=0;	
+		if(seconds>60)
+		{
+				res1=seconds%60;
+				res2=Math.floor(seconds/60);
 					
 			seconds=res1;
 			minutes=res2;
