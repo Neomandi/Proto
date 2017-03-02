@@ -67,7 +67,7 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" method="post" action="FarmerLogin.do">
+<form id="login" method="post" action="FarmerLogin.do" autocomplete="off">
 <table class="table login">
 
 

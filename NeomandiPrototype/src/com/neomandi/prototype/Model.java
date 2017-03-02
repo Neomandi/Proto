@@ -1424,7 +1424,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 		JDBCHelper.Close(ps);
 		JDBCHelper.Close(con);
 	}
-	System.out.println("after returning*()(*&^%$#$%^&*()(*&^%$");
 	return null;
 }
 

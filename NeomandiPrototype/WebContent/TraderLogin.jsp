@@ -55,7 +55,7 @@
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" action="TraderLoginInt.jsp" method = "post"  name = "TraderLoginform">
+<form id="login" action="TraderLoginInt.jsp" method = "post"  name = "TraderLoginform" autocomplete="off">
 <table class="table login">
 <tbody>
 <tr><td><h2>Trader Login</h2></td></tr>

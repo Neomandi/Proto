@@ -558,7 +558,7 @@ if(!(license.length >1) && (license.length < 10)){
 <div id="h1">
 <h4 >My Details</h4>
 <div class="detail" id="d1">
-<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform"   >
+<form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform" autocomplete="off"  >
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="name"   onclick="fun()" name="traderName" required></td></tr>

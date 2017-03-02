@@ -172,7 +172,7 @@ function validateEForm()
 <!---my detail form----->
 <div class="container">
 <div class="row emp"><!-- style="box-shadow: 0 0 10px #000;" -->
-<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp">
+<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp" autocomplete="off">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <div id="d1">
 <h4 id="h1">My Details</h4>
