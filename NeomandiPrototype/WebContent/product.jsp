@@ -188,13 +188,13 @@
                             <td>
                             <%
                             	ServletContext context = request.getSession().getServletContext();
+                            /*	if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
-                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
-                        		
+                        		Stri*/
                         	%>
                                 <select class="form-control" id="slot" name="slot">
-                                    <option selected value="base">Auction Slot</option>
-                                    <option value="slot1">Slot 1 (<%=start%>-<%=stop%>)</option>
+                                    <option selected value="base">Auction Slot</option>                                  
+                                    <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
                                     <option value="slot2">Slot 2 (10:40-10:45)</option>
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
                                 </select>

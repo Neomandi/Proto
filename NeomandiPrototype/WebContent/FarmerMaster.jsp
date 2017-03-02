@@ -27,7 +27,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
+
+	<!--  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp"> --> 
+
+
 
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">

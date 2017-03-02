@@ -316,9 +316,7 @@
     </div>
     
     <script src="libs/jspdf.min.js"></script>
-					
 	<script src="libs/jspdf.plugin.autotable.src.js"></script>
-					
 	<script src="js/profile.js"></script>
     <script>
 		    $(function() {
