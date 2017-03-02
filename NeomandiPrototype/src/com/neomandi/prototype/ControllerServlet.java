@@ -2379,6 +2379,16 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}*/
+		if(uri.contains("Admin"))
+		{
+			rd=request.getRequestDispatcher("Admin.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException | IOException e) 
+			{
+				e.printStackTrace();
+			}	
+		}
 	}
 
 
