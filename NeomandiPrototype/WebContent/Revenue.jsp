@@ -120,78 +120,85 @@ footer {
 	}
 	else
 	{
-		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
+		String sql = "select COUNT(*) from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		//System.out.println(rs);
-		System.out.println("is resultset not empty "+!rs.isBeforeFirst());
-// 		if(!rs.isBeforeFirst())
-// 		{
-			while(rs.next())
+		while(rs.next())
+		{
+			if(rs.getString("COUNT(*)").equals("0"))
 			{
-				String lotnumber = rs.getString("lotnumber");
-				int quantityassigned = Integer.parseInt(rs.getString("sum(ar.quantityassigned)"));
-				String aadharnumber = rs.getString("bidprice");
-				int bestbid = Integer.parseInt(rs.getString("bestbid"));
-				double averageprice = Double.parseDouble(rs.getString("averageprice"));
-				int lotcost = (int)(quantityassigned*averageprice);
-				int commission = (int)(lotcost*0.05);
-				int marketcess = (int)(lotcost*0.01);
-				double quantitybidfor = Double.parseDouble(rs.getString("quantitybidfor"));
-				int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
-				int nmr = commission + marketcess + 100 + 100 + fmarketcess;
-%>
-                        <tr class="gradeX">
-                            <td>
-                                <h4><%= lotnumber %></h4></td>
-                            <td>
-                                <h4><%= lotcost %></h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4><%= commission %></h4></td>
-                            <td>
-                                <h4><%= marketcess %></h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>3000</h4></td>
-                            <td>
-                                <h4><%= fmarketcess %></h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4>100</h4></td>
-                            <td>
-                                <h4><%= nmr %></h4></td>
-                        </tr>
-                        <%
+				 out.println("<script type=\"text/javascript\">");
+			  	 out.println("alert('No Revenues');");
+			 	 out.println("</script>");
 			}
-// 		}
-// 		else
-// 		{
-// 			System.out.println("No revenues.");
-// 		}
-	}
-	}
-	catch(NumberFormatException | NullPointerException e)
-	{
-		System.out.println("Inside catch()...");
+			else
+			{
+				String sql2 = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
+				pstmt1 = con.prepareStatement(sql2);
+				rs1 = pstmt1.executeQuery();
+				//System.out.println(rs);
+				System.out.println("is resultset not empty "+!rs1.isBeforeFirst());
+		// 		if(!rs.isBeforeFirst())
+		// 		{
+					while(rs1.next())
+					{
+						String lotnumber = rs1.getString("lotnumber");
+						int quantityassigned = Integer.parseInt(rs1.getString("sum(ar.quantityassigned)"));
+						String aadharnumber = rs1.getString("bidprice");
+						int bestbid = Integer.parseInt(rs1.getString("bestbid"));
+						double averageprice = Double.parseDouble(rs1.getString("averageprice"));
+						int lotcost = (int)(quantityassigned*averageprice);
+						int commission = (int)(lotcost*0.05);
+						int marketcess = (int)(lotcost*0.01);
+						double quantitybidfor = Double.parseDouble(rs1.getString("quantitybidfor"));
+						int fmarketcess = (int)((averageprice * quantitybidfor) * 0.01);
+						int nmr = commission + marketcess + 100 + 100 + fmarketcess;
 		%>
-			<script>
-				alert('No Revenues.');
-				window.location = "http://www.neomandi.in/ProductEntry.jsp";
-			</script>
-		<%
+		                        <tr class="gradeX">
+		                            <td>
+		                                <h4><%= lotnumber %></h4></td>
+		                            <td>
+		                                <h4><%= lotcost %></h4></td>
+		                            <td>
+		                                <h4>3000</h4></td>
+		                            <td>
+		                                <h4><%= commission %></h4></td>
+		                            <td>
+		                                <h4><%= marketcess %></h4></td>
+		                            <td>
+		                                <h4>100</h4></td>
+		                            <td>
+		                                <h4>3000</h4></td>
+		                            <td>
+		                                <h4><%= fmarketcess %></h4></td>
+		                            <td>
+		                                <h4>100</h4></td>
+		                            <td>
+		                                <h4>100</h4></td>
+		                            <td>
+		                                <h4><%= nmr %></h4></td>
+		                        </tr>
+		                        <%
+					}
+		// 		}
+		// 		else
+		// 		{
+		// 			System.out.println("No revenues.");
+		// 		}
+			}
+		}
 	}
-	catch(SQLException e)
+	}
+	catch(SQLException | NumberFormatException | NullPointerException e)
 	{
 		e.printStackTrace();
 	}
 	finally
 	{
 		JDBCHelper.Close(rs);
+		JDBCHelper.Close(rs1);
 		JDBCHelper.Close(pstmt);
+		JDBCHelper.Close(pstmt1);
 		JDBCHelper.Close(con);
 	}
 %>

@@ -572,10 +572,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String quality = psb.getGrade();
 				String slot=psb.getSlot();
 				System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
-				if(kproduce!=null)
-					if(kproduce.equals("Vegetables"))
-					  kproduce="Vegetable";
-				/*if(kproduce.equals("Category"))
+				
+					
+				if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
 					if(slot!=null&&slot.equals("slot3"))
@@ -604,8 +603,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
 			//		System.out.println("inside else if()->");
-					if(kproduce.equals("Vegetables"))
-					  kproduce="Vegetable";
+				//	if(kproduce.equals("Vegetables"))
+					//  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
@@ -652,7 +651,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					System.out.println(l);
 					return l;
 				}
-				else*/
+				else
 				{
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
@@ -673,6 +672,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setPhoto(rs.getString("photo"));
 				//		System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
+						System.out.println(l);
 					}
 					System.out.println(l);
 					return l;
@@ -1106,7 +1106,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 					else
 					{
-						ps =con.prepareStatement("insert into Traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
+						ps =con.prepareStatement("insert into traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
 						ps.setString(1, name);
 						ps.setString(2, aadharnumber);
 						ps.setString(3,String.valueOf(block));

@@ -25,15 +25,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
+
 	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp">
-=======
-<<<<<<< HEAD
-		<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
-=======
-	  <meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp">
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
