@@ -602,8 +602,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
-				//	if(kproduce.equals("Vegetables"))
-					//  kproduce="Vegetable";
+					if(kproduce.equals("Vegetables"))
+					  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
