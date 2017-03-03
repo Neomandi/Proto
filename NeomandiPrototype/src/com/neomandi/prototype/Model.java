@@ -597,12 +597,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						l.add(psrb);	
 						//System.out.println("inside ProductSearchResultBean"+psrb);
 					}
-					System.out.println(l);
+					System.out.println(l); 
 					return l;
 				}
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
-			//		System.out.println("inside else if()->");
 				//	if(kproduce.equals("Vegetables"))
 					//  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
@@ -4581,11 +4580,9 @@ public void PostAuction()
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String msg = "";
-		
 		try
 		{
 			con = JDBCHelper.getConnection();
-			
 			if(con == null)
 			{
 				System.out.println("Connection not established");
@@ -4593,17 +4590,13 @@ public void PostAuction()
 			else
 			{
 				con.setAutoCommit(false);
-				
-				
 				String sql = "select pass from areg where name=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, aname);
 				rs = pstmt.executeQuery();
-				
 				if(rs.next())
 				{
 					String pass = rs.getString("pass");
-					
 					if(pass.equals(apwd))
 					{
 						msg = msg + "SUCCESS";
@@ -4617,9 +4610,7 @@ public void PostAuction()
 				{
 					msg = msg + "Username/Password is incorrect";
 				}
-				
 				con.commit();
-				
 			}
 		}
 		catch(SQLException e)
