@@ -195,9 +195,12 @@
                             <%
                             	ServletContext context = request.getSession().getServletContext();
                             try{
-                            	if((String)context.getAttribute("starttime")!=null){
+                            	System.out.println("************************starttime is "+(String)context.getAttribute("starttime"));
+                            	//if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
-                        		String stop=(((String)context.getAttribute("stoptime")).split(":"))[0]+":"+(((String)context.getAttribute("stoptime")).split(":"))[1];
+                        		System.out.println("*********1");
+                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
+                        		System.out.println("*********2");
                         		System.out.println("************************starttime is "+start);
                         	%>
                                 <select class="form-control" id="slot" name="slot">
@@ -207,7 +210,7 @@
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
-                            <%}}
+                            <%}
                             	catch(Exception e)
                             	{
                             		System.out.println("*****inside catch");
