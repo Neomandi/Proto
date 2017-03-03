@@ -1355,14 +1355,9 @@ public class ControllerServlet extends HttpServlet {
 		{
 			System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
-			HttpSession tss = request.getSession(false);
-			String start=(String)tss.getAttribute("starttime");
-			String stop=(String)tss.getAttribute("endtime");
-
-			ServletContext context = request.getSession().getServletContext();
-			start=(String)context.getAttribute("starttime");
-			stop=(String)context.getAttribute("endtime");
 			
+			ServletContext context = request.getSession().getServletContext();
+			String start=(String)context.getAttribute("starttime");
 			TraderLoginBean tlbn=null;
 			String name=null;
 			String pwd=null;
