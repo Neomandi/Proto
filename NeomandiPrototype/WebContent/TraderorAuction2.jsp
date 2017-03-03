@@ -1557,14 +1557,10 @@ catch(NullPointerException e)
 					         
 					         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
 					         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
-					         
-<<<<<<< HEAD
+
 					   //      document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
 					    //     document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
-=======
-					        // document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
-					       //  document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 					         
 					         var bid=new  Number(string.substring(startmybid,endmybid));
 					         bid=bid+1;
