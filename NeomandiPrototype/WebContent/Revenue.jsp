@@ -42,6 +42,9 @@ footer {
     height: 60px;
     width: 65px;
 }
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 <body class="">
 	<% 
@@ -58,7 +61,7 @@ footer {
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
-                    <h1><%= (String)elog.getAttribute("name")%>, Welcome to E-Auction at NeoMandi.</h1></div>
+                   <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-aution at Neomandi.</p></div>
                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>

@@ -55,6 +55,16 @@
     	height: 60px;
     	width: 65px;
     }
+    .tradtab a{
+    background-color:#0082B2;
+    }
+     .today {
+    background: #149DDA;
+    margin-top: 10px;
+}
+.sum1 .table thead {
+    background: #000080;
+}
         </style>
     </head>
 

@@ -27,6 +27,7 @@
     {
     height:34px;
     }
+    
     </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,10 +70,15 @@
 		    height: 60px;
 		    width: 65px;
 			}
+
+			 .tradtab a{
+    background-color:#0082B2;
+    }
+
 			#img{
 				width: 300px;
 				height: 300px;
-			}
+			}ps://github.com/Neomandi/Proto.git
         </style>
         <script>
         function populate(s1, s2)
@@ -138,7 +144,7 @@
 					 	 out.println("</script>");
 					}
 			    %>
-                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=(String)tlog.getAttribute("name")%>, Welcome to e-Auction at NeoMandi.</h1></div>
+                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
@@ -188,17 +194,37 @@
                             <td>
                             <%
                             	ServletContext context = request.getSession().getServletContext();
-                            /*	if((String)context.getAttribute("starttime")!=null){
+                            try{
+                            	System.out.println("************************starttime is "+(String)context.getAttribute("starttime"));
+                            	//if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
-                        		Stri*/
+                        		System.out.println("*********1");
+                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
+                        		System.out.println("*********2");
+                        		System.out.println("************************starttime is "+start);
                         	%>
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base">Auction Slot</option>                                  
-                                    <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
+                                    <option value="slot1">Slot 1 (<%=start %>-<%=stop %>)</option>                                                                      
                                     <option value="slot2">Slot 2 (10:40-10:45)</option>
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
+                            <%}
+                            	catch(Exception e)
+                            	{
+                            		System.out.println("*****inside catch");
+                            		e.printStackTrace();
+                            		%>
+                            		 <select class="form-control" id="slot" name="slot">
+                                    <option selected value="base">Auction Slot</option>                                  
+                                    <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
+                                    <option value="slot2">Slot 2 (10:40-10:45)</option>
+                                    <option value="slot3">Slot 3 (10:50-10:55)</option>
+                               		</select>
+                            		
+                            		<% 
+                            	}%>
                             <td><a onclick="fun()" onclick="fun()" class="reg">Search</a></td>
                             <!--  <input type="hidden" id="category">
                             <input type="hidden" id="produce">

@@ -81,7 +81,9 @@ a.more {
 #search {
     width: 90px;  height: 2em;
 }
-
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 <body>
 	<ul><li><a  href="product.jsp">Product Search</a></li>

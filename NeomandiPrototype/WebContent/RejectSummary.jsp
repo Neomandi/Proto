@@ -56,6 +56,16 @@
     	height: 60px;
     	width: 65px;
     }
+    .tradtab a{
+    background-color:#0082B2;
+    }
+     .today {
+    background: #149DDA;
+    margin-top: 10px;
+}
+.sum1 .table thead {
+    background: #000080;
+}
    
         </style>
     </head>
@@ -71,7 +81,7 @@
 					}
  String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-<h1><%=name %>,&nbsp;Welcome to E-Auction at NeoMandi.</h1></div>
+<p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p></div>
                     <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
