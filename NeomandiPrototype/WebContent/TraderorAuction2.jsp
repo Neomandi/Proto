@@ -22,8 +22,8 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-<head><title>NeoMandi</title><!-- 
-<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do"> -->
+<head><title>NeoMandi</title>
+<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
