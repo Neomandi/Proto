@@ -147,7 +147,7 @@
 				    
 				%>
                     <form>
-                        <table class="table table-bordered" id="basic-table">
+                        <table class="table" id="basic-table">
                             <tr>
                                 <td>
                                     <label for="name">Name</label>
@@ -155,7 +155,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=name1%>
+                                    <input type="text" class="form-control" id="name" value="<%=name1%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -165,7 +165,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=adhar %>
+                                    <input type="text" class="form-control" id="aadhar" value="<%=adhar %>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -175,7 +175,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=mobile%>
+                                    <input type="text" class="form-control" id="mobile" value="<%=mobile%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -185,7 +185,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=email%>
+                                    <input type="text" class="form-control" id="email" value="<%=email%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -195,12 +195,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    add1
+                                    <input type="text" class="form-control" id="email" value="add1" readonly/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    add2
+                                    <input type="text" class="form-control" id="email" value="add2" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -210,7 +210,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=state%>
+                                    <input type="text" class="form-control" id="email" value="<%=state%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -220,7 +220,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=district%>
+                                    <input type="text" class="form-control" id="email" value="<%=district%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -230,7 +230,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=taluk%>
+                                    <input type="text" class="form-control" id="email" value="<%=taluk%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -240,7 +240,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    pin
+                                    <input type="text" class="form-control" id="email" value="pin" readonly/>
                                 </td>
                             </tr>
                         </table>
@@ -260,7 +260,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=bankname%>
+                                    <input type="text" class="form-control" id="email" value="<%=bankname%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -270,7 +270,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=accountnumber%>
+                                    <input type="text" class="form-control" id="email" value="<%=accountnumber%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -280,7 +280,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=ifsc %>
+                                    <input type="text" class="form-control" id="email" value="<%=ifsc %>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -290,7 +290,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=branch%>
+                                    <input type="text" class="form-control" id="email" value="<%=branch%>" readonly/>
                                 </td>
                             </tr>
                         </table>
@@ -302,6 +302,12 @@
 					{
 						e.printStackTrace();
 					}
+		     		finally
+		     		{
+		     			JDBCHelper.Close(rs);
+		     			JDBCHelper.Close(statement);
+		     			JDBCHelper.Close(con);
+		     		}
 					%>
                 </div>
                 <br>

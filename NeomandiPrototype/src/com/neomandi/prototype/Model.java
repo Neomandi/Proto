@@ -4545,4 +4545,66 @@ public void PostAuction(String name,String pwd)
 		JDBCHelper.Close(con);
 	}
   }
+
+	public String adminLogin(String aname, String apwd) 
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String msg = "";
+		
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				System.out.println("Connection not established");
+			}
+			else
+			{
+				con.setAutoCommit(false);
+				
+				
+				String sql = "select pass from areg where name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, aname);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next())
+				{
+					String pass = rs.getString("pass");
+					
+					if(pass.equals(apwd))
+					{
+						msg = msg + "SUCCESS";
+					}
+					else
+					{
+						msg = msg + "You don't have permission to login";
+					}
+				}
+				
+				con.commit();
+				
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			JDBCHelper.Close(rs);
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(con);
+		}
+		return msg;
+	}
 }

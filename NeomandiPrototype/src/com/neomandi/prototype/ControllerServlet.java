@@ -2380,15 +2380,61 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}*/
+		
+		//Admin Login
 		if(uri.contains("Admin"))
 		{
-			rd=request.getRequestDispatcher("Admin.jsp");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException | IOException e) 
+			String aname = request.getParameter("aname");
+			String apwd = request.getParameter("apwd");
+			
+			Model m = new Model();
+			String msg = m.adminLogin(aname,apwd);
+			
+			RequestDispatcher rda = null;
+			
+			if(msg.equals("SUCCESS"))
 			{
-				e.printStackTrace();
-			}	
+				HttpSession alog = request.getSession();
+				alog.setAttribute("name", aname);
+				alog.setAttribute("pwd", apwd);
+				
+				request.setAttribute("errmsg", msg);
+				rda=request.getRequestDispatcher("Admin.jsp");
+				try {
+					rda.forward(request, response);
+				} catch (ServletException | IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				request.setAttribute("errmsg", msg);
+				rda=request.getRequestDispatcher("Admin.jsp");
+			}
+		}
+		
+		//Admin Logout
+		if(uri.contains("AdminLogout"))
+		{
+			HttpSession alog = request.getSession(false);
+			RequestDispatcher rdal = null;
+			
+			if(alog != null)
+			{
+				alog.removeAttribute("name");
+				alog.removeAttribute("pwd");
+				alog.invalidate();
+				
+				rdal = request.getRequestDispatcher("AdminLogin.jsp");
+				try {
+					rdal.forward(request, response);
+					return;
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

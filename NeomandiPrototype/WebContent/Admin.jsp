@@ -31,19 +31,27 @@
     </style>
 </head>
 <body>
+<% 
+		HttpSession alog = request.getSession(false);
+	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
+	    {
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.html';</script>");
+	    }
+%>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
 
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Admin ,Welcome to E-Auction at NeoMandi.</h1></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href=""><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%= (String)alog.getAttribute("name") %>, Welcome to E-Auction at NeoMandi.</h1></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="AdminLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="FarmerMaster.jsp"> Controls </a></li>
+    <li class="active"><a href="Admin.jsp"> Controls </a></li>
   </ul>
 </div>
 </div>
