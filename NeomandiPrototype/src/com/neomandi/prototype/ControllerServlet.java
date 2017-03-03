@@ -106,10 +106,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -122,10 +122,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -158,7 +158,7 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				filePart = request.getPart("farmerPhoto");
 			} catch (IllegalStateException | IOException | ServletException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 	        
@@ -172,7 +172,7 @@ public class ControllerServlet extends HttpServlet {
 	            try {
 	            	farmerPhoto = filePart.getInputStream();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 	        }
@@ -193,10 +193,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -209,10 +209,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -253,10 +253,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -269,10 +269,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -297,10 +297,10 @@ public class ControllerServlet extends HttpServlet {
 					return;
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 		}
@@ -345,10 +345,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -396,10 +396,10 @@ public class ControllerServlet extends HttpServlet {
 				
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -447,10 +447,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
@@ -496,10 +496,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -544,10 +544,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -592,10 +592,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -641,10 +641,10 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -676,10 +676,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -692,10 +692,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -745,7 +745,7 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				filePart = request.getPart("traderPhoto");
 			} catch (IllegalStateException | IOException | ServletException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 	        
@@ -759,7 +759,7 @@ public class ControllerServlet extends HttpServlet {
 	            try {
 	            	traderPhoto = filePart.getInputStream();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 	        }
@@ -780,10 +780,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -797,10 +797,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -850,10 +850,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -1063,7 +1063,6 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("in cs productentry pebean="+pebean);
 			
 			
-			PrintWriter pw = null;
 			Model m = new Model();
 			String msg = "";
 			if(ename.equals(name) && epwd.equals(pwd))
@@ -1083,7 +1082,7 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -1097,10 +1096,10 @@ public class ControllerServlet extends HttpServlet {
 					return;
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}			
@@ -1114,7 +1113,7 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				filePart = request.getPart("photo");
 			} catch (IllegalStateException | IOException | ServletException e2) {
-				// TODO Auto-generated catch block
+				
 				e2.printStackTrace();
 			}
 		    final String fileName = getFileName(filePart);
@@ -1125,7 +1124,7 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				writer = response.getWriter();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 
@@ -1151,14 +1150,14 @@ public class ControllerServlet extends HttpServlet {
 		        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
 		                new Object[]{fne.getMessage()});
 		    } catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} finally {
 		        if (out != null) {
 		            try {
 						out.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 		        }
@@ -1166,7 +1165,7 @@ public class ControllerServlet extends HttpServlet {
 		            try {
 						filecontent.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 		        }
@@ -1280,7 +1279,7 @@ public class ControllerServlet extends HttpServlet {
 					    out.close();
 					}
 					 catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 			}
@@ -1436,7 +1435,7 @@ public class ControllerServlet extends HttpServlet {
 				try {
 					rd.forward(request, response);
 				} catch (ServletException | IOException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 			}*/
@@ -1717,7 +1716,7 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				Model m=new Model();
-				m.PostAuction(tlbn.getTname(),tlbn.getTpwd());
+				m.PostAuction();
 				/*rd=request.getRequestDispatcher("OrderStatus.do");
 				try {
 					rd.forward(request, response);
@@ -1770,10 +1769,10 @@ public class ControllerServlet extends HttpServlet {
 					rd.forward(request, response);			
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -1804,10 +1803,10 @@ public class ControllerServlet extends HttpServlet {
 					return;
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -1858,7 +1857,7 @@ public class ControllerServlet extends HttpServlet {
 				rd.forward(request, response);			
 			}			
 			catch (ServletException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -1938,7 +1937,7 @@ public class ControllerServlet extends HttpServlet {
 			    try {
 					response.getWriter().write(json.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 		}*/	
@@ -1951,7 +1950,7 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				out = response.getWriter();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 			if(flog!=null)
@@ -1963,10 +1962,10 @@ public class ControllerServlet extends HttpServlet {
 					return;
 				}			
 				catch (ServletException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -2191,7 +2190,7 @@ public class ControllerServlet extends HttpServlet {
 					    out.close();
 					}
 					 catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 			}
@@ -2207,7 +2206,7 @@ public class ControllerServlet extends HttpServlet {
 				    out.close();
 				}
 				 catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 			}			
@@ -2223,7 +2222,7 @@ public class ControllerServlet extends HttpServlet {
 			    out.close();
 	
 } catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		}
@@ -2262,7 +2261,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 				catch (IOException e)
 				{
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -2413,7 +2412,7 @@ public class ControllerServlet extends HttpServlet {
 					rda.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -2432,13 +2431,18 @@ public class ControllerServlet extends HttpServlet {
 				alog.removeAttribute("name");
 				alog.removeAttribute("pwd");
 				alog.invalidate();
-				
+				try {
+					request.logout();
+				} catch (ServletException e1) {
+					
+					e1.printStackTrace();
+				}
 				rdal = request.getRequestDispatcher("AdminLogin.jsp");
 				try {
 					rdal.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}

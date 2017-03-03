@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-<% 
+<%  
 		HttpSession alog = request.getSession(false);
 	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
 	    {
@@ -75,9 +75,12 @@
 		<div id="auction1" style="display:inline;"></div>
 	</div>	
 </form>
+<<<<<<< HEAD
 </div></center>
 <input type="hidden" value="<%=time%>" id="time" />	
 
+=======
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <script>
 function fun()
 {

@@ -22,15 +22,15 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-<head>
+<head><title>NeoMandi</title><!-- 
+<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do"> -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoMandi</title> <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/TradeorAuction.do">
 <style>
 input[type="number"],input[type="text"]
 {
-text-align: center;
+	text-align: center;
 }
 a
 {
@@ -234,11 +234,11 @@ catch(NullPointerException e)
 //	console.log("differences in minutes is "+minutes);
 	//console.log("differences in seconds is "+seconds);
 	//console.log("differences in hours is "+hours);
-	var timedifference=+hours+":"+minutes+":"+seconds;
+		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
-	countdown(minutes,seconds,hours);	
-	var five=300000;
-	timedif=diff+five;
+		countdown(minutes,seconds,hours);	
+		var five=300000;
+		timedif=diff+five;
 //	console.log("count"+timedif);	
 		function countdown(minutes,seconds,hours) 
 		{			  			 
@@ -259,7 +259,6 @@ catch(NullPointerException e)
 			        if( seconds > 0 )
 			        {
 			            setTimeout(tick,1000);
-			           
 			        } 
 			        else 
 		     		{
@@ -285,11 +284,9 @@ catch(NullPointerException e)
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
 				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);				            	
-				            	document.getElementById("timer").innerHTML=str;
+				            	document.getElementById("timer").innerHTML=str;         	
 				            	function count(minutes1,seconds1) 
 				            	{
-				            		//console.log("minutes is"+minutes);
-				            		//console.log("seconds is"+seconds1);
 				        		    var seconds =seconds1;
 				        		    var mins = minutes1;
 				        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
@@ -499,7 +496,7 @@ catch(NullPointerException e)
 		
 		
 		//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-		window.setInterval(function()
+		setInterval(function()
 				  {
 					funny();
 				  },3000);
@@ -568,8 +565,8 @@ catch(NullPointerException e)
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
@@ -1054,7 +1051,7 @@ catch(NullPointerException e)
 		  }
 	      else
 		  {
-			var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+			var assigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
 			var assigned=new  Number(assigneds);
 			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
 			var needed=new  Number(neededs);
@@ -1461,6 +1458,7 @@ catch(NullPointerException e)
 					         console.log(string.substring(startbestbid,endbestbid));
 					 //        document.getElementById("demo6<%=tlbr.getLotnum() %>").innerHTML = mybid;
 					  //       document.getElementById("demo6<%=tlbr.getLotnum() %>").value = mybid;
+
 					         document.getElementById("demo7<%=tlbr.getLotnum() %>").innerHTML = assigned;
 					         document.getElementById("demo8<%=tlbr.getLotnum() %>").innerHTML = number;
 					         document.getElementById("demo7<%=tlbr.getLotnum() %>").value = assigned;
@@ -1468,7 +1466,7 @@ catch(NullPointerException e)
 					         
 					      //   document.getElementById("mybid<%=tlbr.getLotnum() %>").innerHTML = mybid;
 					      //   document.getElementById("mybid<%=tlbr.getLotnum() %>").value = mybid;
-					         
+
 					         var bid=new  Number(string.substring(startmybid,endmybid));
 					         bid=bid+1;
 					         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
@@ -1547,7 +1545,11 @@ catch(NullPointerException e)
 				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 				        	 
+<<<<<<< HEAD
 					    //     document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+=======
+					     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 					     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 					         
 					         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
@@ -1556,8 +1558,13 @@ catch(NullPointerException e)
 					         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
 					         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
 					         
+<<<<<<< HEAD
 					   //      document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
 					    //     document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+=======
+					        // document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+					       //  document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 					         
 					         var bid=new  Number(string.substring(startmybid,endmybid));
 					         bid=bid+1;
