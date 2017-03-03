@@ -103,7 +103,7 @@
     		return false;
     	}
     	if(isNaN(farmerid.value)){
-    		alert("Enter the valid Farmerid ");
+    		alert("Enter a valid Farmer ID ");
     		farmerid.focus();
     		return false;
     	}
@@ -149,7 +149,7 @@
     	
     	//quantity validation
     	if(isNaN(quantity.value)){
-    		alert("Enter the valid quantity value. Only number from 0-9 ");
+    		alert("Enter a valid quantity value. Only number from 0-9 ");
     		quantity.focus();
     		return false;
     	}
@@ -261,7 +261,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="farmerid" name="farmerid">
+                                        <input type="text" class="form-control" id="farmerid" name="farmerid" value="${param. farmerid}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -271,7 +271,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="marketcode" name="marketcode">
+                                        <input type="text" class="form-control" id="marketcode" name="marketcode" value="${param. marketcode}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -308,7 +308,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="quantity" name="quantity">
+                                        <input type="text" class="form-control" id="quantity" name="quantity" value="${param. quantity}">
                                     </td>
                                 </tr>
                             </table>
@@ -355,7 +355,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="lotnumber" name="lotnumber">
+                                        <input type="text" class="form-control" id="lotnumber" name="lotnumber" value="${param. lotnumber}">
                                     </td>
                                 </tr>
                                 <tr>

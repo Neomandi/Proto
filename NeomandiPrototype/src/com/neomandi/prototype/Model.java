@@ -4455,6 +4455,8 @@ public void PostAuction(String name,String pwd)
 	PreparedStatement ps2 = null;
 	PreparedStatement ps3 = null;
 	PreparedStatement ps4 = null;
+	PreparedStatement ps5 = null;
+	PreparedStatement ps6 = null;
 	Connection con = null;
 	ResultSet rs = null;
 	ResultSet rs2 = null;
@@ -4504,27 +4506,31 @@ public void PostAuction(String name,String pwd)
 					ps2.setString(15,rs2.getString("marketcess"));
 					ps2.setString(16,rs.getString("created_at"));
 					ps2.execute();
-					System.out.println(ps2);		
-					
-					/*
-					ps2=con.prepareStatement("delete from traders_bid_price where aadharnumber=? and lotnum=?");
-					ps2.setString(1,rs.getString("aadharnumber"));
-					ps2.setString(2,rs.getString("lotnum"));
-					ps2.execute();
-					System.out.println(ps2);
+					System.out.println(ps2+" added entry into histroy table");		
 					
 					ps3=con.prepareStatement("delete from tradelist where aadharnumber=? and lotnum=?");
 					ps3.setString(1,rs.getString("aadharnumber"));
 					ps3.setString(2,rs.getString("lotnum"));
 					ps3.execute();
-					System.out.println(ps3);
+					System.out.println(ps3+" Data deleted from tradelist");
 					
 					ps4=con.prepareStatement("delete from auction_result where aadharnumber=? and lotnum=?");
 					ps4.setString(1,rs.getString("aadharnumber"));
 					ps4.setString(2,rs.getString("lotnum"));
 					ps4.execute();
-					System.out.println(ps4);
-					*/
+					System.out.println(ps4+" Data deleted from auction_result");
+					
+					ps5=con.prepareStatement("delete from productentry where lotnumber=?");
+					ps5.setString(1,rs.getString("lotnum"));
+					ps5.execute();
+					System.out.println(ps5+" Data deleted from productentry");
+					
+					ps6=con.prepareStatement("delete from traders_bid_price where aadharnumber=? and lotnum=?");
+					ps6.setString(1,rs.getString("aadharnumber"));
+					ps6.setString(2,rs.getString("lotnum"));
+					ps6.execute();
+					System.out.println(ps6+" Data deleted from traders_bid_price");
+					
 				}
 			}
 		}
@@ -4540,6 +4546,8 @@ public void PostAuction(String name,String pwd)
 		JDBCHelper.Close(ps2);
 		JDBCHelper.Close(ps3);
 		JDBCHelper.Close(ps4);
+		JDBCHelper.Close(ps5);
+		JDBCHelper.Close(ps6);
 		JDBCHelper.Close(rs);
 		JDBCHelper.Close(rs2);
 		JDBCHelper.Close(con);
@@ -4583,6 +4591,10 @@ public void PostAuction(String name,String pwd)
 					{
 						msg = msg + "Username/Password is incorrect";
 					}
+				}
+				else
+				{
+					msg = msg + "Username/Password is incorrect";
 				}
 				
 				con.commit();
