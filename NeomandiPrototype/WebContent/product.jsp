@@ -27,6 +27,7 @@
     {
     height:34px;
     }
+    
     </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,6 +70,9 @@
 		    height: 60px;
 		    width: 65px;
 			}
+			 .tradtab a{
+    background-color:#0082B2;
+    }
         </style>
         <script>
         function populate(s1, s2)
@@ -134,7 +138,7 @@
 					 	 out.println("</script>");
 					}
 			    %>
-                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=(String)tlog.getAttribute("name")%>, Welcome to e-Auction at NeoMandi.</h1></div>
+                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>

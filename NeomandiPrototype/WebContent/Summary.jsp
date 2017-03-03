@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" errorPage="Error.jsp" pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TradeSummaryBean,java.util.*" errorPage="Error.jsp"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" errorPage="Error.jsp" pageEncoding="ISO-8859-1" import="com.neomandi.prototype.TradeSummaryBean,com.neomandi.prototype.TraderLoginBean,com.neomandi.prototype.TraderBlockBean,java.util.*" errorPage="Error.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,6 +43,9 @@ border-top:2px solid #fff !important;
 	height: 60px;
 	width: 65px;
 }
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 </head>
 <body class="" >
@@ -50,7 +53,9 @@ border-top:2px solid #fff !important;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-auction at NeomMandi.</h1></div>
+<%HttpSession tlog=request.getSession(false);
+TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>

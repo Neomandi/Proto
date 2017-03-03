@@ -43,7 +43,9 @@ a
 {
 	cursor:pointer;
 }
-
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 </head>
 <body class="" >
@@ -60,7 +62,7 @@ if((String)tlbn.getTname()==null)
  	 out.println("</script>");
 }
 %>
-<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=tlbn.getTname() %>, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:18px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -118,7 +120,7 @@ else
       <tr><td><label for="mobno">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch">Bank Branch</label></td></tr>
-      <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); %>" readonly></td></tr>
+      <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); else out.println(tbb.getBranch()); %>" readonly></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="balance" readonly></td></tr> 
 	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>

@@ -24,6 +24,9 @@ table:nth-child(even) {
 	height:60px;
 	width: 65px;
 }
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 </head>
 <body class="" >
@@ -67,7 +70,7 @@ catch(Exception e)
 	 out.println("</script>");
 }
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%=((String)elog.getAttribute("name"))%>, welcome to e-aution at Neomandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-aution at Neomandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Elogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>

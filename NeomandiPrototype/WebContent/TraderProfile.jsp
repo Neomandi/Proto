@@ -60,6 +60,9 @@ border-top:2px solid #fff !important;
 	height: 60px;
 	width: 65px;
 }
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 </head>
 <body class="" >
@@ -81,7 +84,7 @@ catch(Exception e)
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1>Trade1, welcome to e-auction at NeoMandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -133,7 +136,9 @@ catch(Exception e)
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email"value="<%= rs.getString("email") %>" readonly></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value=<%=rs.getString("address")%> readonly> 
+	   
+	  </td></tr>
        <tr><td><input type="text" class="form-control" id="usr"></td></tr>
       <tr>
                                 <td>
@@ -188,9 +193,9 @@ catch(Exception e)
       <tr><td><label for="name">Trade License Number</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("license") %>" readonly></td></tr>
       <tr><td><label for="aadhar">Date of Registration</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("dateofregistration") %>" readonly></td></tr>
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>	  
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("placeofregistration") %>" readonly></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
        <tr><td><input type="text" class="form-control" id="usr"></td></tr><tr>

@@ -58,6 +58,9 @@ $( "p" ).click(function() {
 .maindiv{
 overflow:auto;
 }
+.tradtab a{
+    background-color:#0082B2;
+    }
 </style>
 <script>
 var acc = document.getElementsByClassName("accordion");
@@ -140,7 +143,7 @@ border-top:0px solid #fff !important;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%HttpSession tlog=request.getSession(false);
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><%HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn =null;
 try
 {
@@ -153,8 +156,8 @@ catch(NullPointerException e)
 	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 	  	 out.println("location='TraderLogin.jsp';");
 	 	 out.println("</script>");
-}
-out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</h1></div>
+}%>
+<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
