@@ -2389,6 +2389,7 @@ public class ControllerServlet extends HttpServlet {
 			
 			if(msg.equals("SUCCESS"))
 			{
+				System.out.println("SUCCESS");
 				HttpSession alog = request.getSession();
 				alog.setAttribute("name", aname);
 				alog.setAttribute("pwd", apwd);
@@ -2397,6 +2398,7 @@ public class ControllerServlet extends HttpServlet {
 				rda=request.getRequestDispatcher("Admin.jsp");
 				try {
 					rda.forward(request, response);
+					return;
 				} catch (ServletException | IOException e) 
 				{
 					e.printStackTrace();
@@ -2404,8 +2406,18 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
+				System.out.println("Failure");
 				request.setAttribute("errmsg", msg);
-				rda=request.getRequestDispatcher("Admin.jsp");
+				rda=request.getRequestDispatcher("AdminLogin.jsp");
+				try {
+					rda.forward(request, response);
+					return;
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 			}
 		}
 		

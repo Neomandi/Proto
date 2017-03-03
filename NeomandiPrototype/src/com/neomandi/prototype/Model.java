@@ -4581,7 +4581,7 @@ public void PostAuction(String name,String pwd)
 					}
 					else
 					{
-						msg = msg + "You don't have permission to login";
+						msg = msg + "Username/Password is incorrect";
 					}
 				}
 				
