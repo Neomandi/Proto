@@ -4454,6 +4454,7 @@ public void PostAuction(String name,String pwd)
 	PreparedStatement ps1 = null;
 	PreparedStatement ps2 = null;
 	PreparedStatement ps3 = null;
+	PreparedStatement ps4 = null;
 	Connection con = null;
 	ResultSet rs = null;
 	ResultSet rs2 = null;
@@ -4516,7 +4517,14 @@ public void PostAuction(String name,String pwd)
 					ps3.setString(1,rs.getString("aadharnumber"));
 					ps3.setString(2,rs.getString("lotnum"));
 					ps3.execute();
-					System.out.println(ps3);*/
+					System.out.println(ps3);
+					
+					ps4=con.prepareStatement("delete from auction_result where aadharnumber=? and lotnum=?");
+					ps4.setString(1,rs.getString("aadharnumber"));
+					ps4.setString(2,rs.getString("lotnum"));
+					ps4.execute();
+					System.out.println(ps4);
+					*/
 				}
 			}
 		}
@@ -4528,6 +4536,12 @@ public void PostAuction(String name,String pwd)
 	finally
 	{
 		JDBCHelper.Close(ps);
+		JDBCHelper.Close(ps1);
+		JDBCHelper.Close(ps2);
+		JDBCHelper.Close(ps3);
+		JDBCHelper.Close(ps4);
+		JDBCHelper.Close(rs);
+		JDBCHelper.Close(rs2);
 		JDBCHelper.Close(con);
 	}
   }

@@ -70,9 +70,15 @@
 		    height: 60px;
 		    width: 65px;
 			}
+
 			 .tradtab a{
     background-color:#0082B2;
     }
+
+			#img{
+				width: 300px;
+				height: 300px;
+			}ps://github.com/Neomandi/Proto.git
         </style>
         <script>
         function populate(s1, s2)
@@ -84,7 +90,7 @@
         	s2.innerHTML = "";
         	if(s1.value == "Vegetables")
         	{
-        		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish"];	
+        		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato"];	
         	}
         	else if(s1.value == "Fruits")
         	{
@@ -411,7 +417,7 @@
                                 <h4 class="modal-title">Modal Header</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="ProductImages/<%=psr1.getLotnumber()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  width="110px" height="90px">
+                                <img src="ProductImages/<%=psr1.getLotnumber()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  id="img">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

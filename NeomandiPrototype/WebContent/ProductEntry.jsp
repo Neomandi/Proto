@@ -64,7 +64,7 @@
     	s2.innerHTML = "";
     	if(s1.value == "Vegetables")
     	{
-    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "RADDISH|Raddish", "POTATO|Potato"];	
+    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato"];	
     	}
     	else if(s1.value == "Fruits")
     	{
