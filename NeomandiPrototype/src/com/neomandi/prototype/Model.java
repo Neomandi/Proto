@@ -4467,6 +4467,7 @@ public List traderHistory(String name, String pwd, String from, String to)
     return al;
 }
 
+@SuppressWarnings("resource")
 public void PostAuction() 
 {
 	PreparedStatement ps = null;
@@ -4530,6 +4531,7 @@ public void PostAuction()
 					ps2.setString(2,rs.getString("lotnum"));
 					ps2.execute();
 					System.out.println(ps2);
+					System.out.println(ps2+" Data deleted from traders_bid_price");
 					
 					ps3=con.prepareStatement("delete from tradelist where aadharnumber=? and lotnum=?");
 					ps3.setString(1,rs.getString("aadharnumber"));
@@ -4537,7 +4539,7 @@ public void PostAuction()
 					ps3.execute();
 					System.out.println(ps3+" Data deleted from tradelist");
 					
-					ps4=con.prepareStatement("delete from auction_result where aadharnumber=? and lotnum=?");
+					ps4=con.prepareStatement("delete from auction_result where aadharnumber=? and lotnumber=?");
 					ps4.setString(1,rs.getString("aadharnumber"));
 					ps4.setString(2,rs.getString("lotnum"));
 					ps4.execute();
@@ -4548,11 +4550,7 @@ public void PostAuction()
 					ps5.execute();
 					System.out.println(ps5+" Data deleted from productentry");
 					
-					ps6=con.prepareStatement("delete from traders_bid_price where aadharnumber=? and lotnum=?");
-					ps6.setString(1,rs.getString("aadharnumber"));
-					ps6.setString(2,rs.getString("lotnum"));
-					ps6.execute();
-					System.out.println(ps6+" Data deleted from traders_bid_price");
+					
 
 				}
 			}
