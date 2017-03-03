@@ -31,13 +31,22 @@
     </style>
 </head>
 <body>
-<% 
+<%  
 		HttpSession alog = request.getSession(false);
-	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
-	    {
-	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.html';</script>");
-	    }
+		try
+		{
+		    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
+		    {
+		    	//System.out.println("Session invalid."+elog);
+		    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.html';</script>");
+		    }
+		    ((String)alog.getAttribute("name")).split(":");
+		    System.out.println((String)alog.getAttribute("name"));
+		}
+		catch(Exception e)
+		{
+			out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.html';</script>");
+		}	    
 %>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -66,7 +75,6 @@
 <input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
-
 <script>
 function fun()
 {
