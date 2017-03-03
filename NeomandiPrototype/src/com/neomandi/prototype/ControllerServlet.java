@@ -1700,20 +1700,6 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("PostAuction"))
 		{
 			System.out.println("**********************************************************");
-			HttpSession tlog=request.getSession(false);
-			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-			System.out.println(tlbn==null);
-			if(tlbn==null)
-			{
-				rd=request.getRequestDispatcher("TraderLogin.jsp");
-				try {
-					rd.forward(request, response);
-				} catch (ServletException | IOException e) 
-				{
-					e.printStackTrace();
-				}	
-			}
-			else
 			{
 				Model m=new Model();
 				m.PostAuction();
