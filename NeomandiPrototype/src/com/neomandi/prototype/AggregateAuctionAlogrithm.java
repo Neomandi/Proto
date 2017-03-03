@@ -22,6 +22,7 @@ public class AggregateAuctionAlogrithm {
 		Statement stmt1 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt3 = null;
 		ResultSet rs = null;
 		List<AggregateDataBean> li = new ArrayList<AggregateDataBean>();
 		List<Long> a = new ArrayList<Long>();
@@ -238,7 +239,7 @@ public class AggregateAuctionAlogrithm {
 				pstmt.executeUpdate();
 			}
 			
-			PreparedStatement pstmt3 = null;
+			pstmt3 = null;
 			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
 			pstmt3 = con.prepareStatement(sql4);
 			pstmt3.setDouble(1, avg);
@@ -267,6 +268,8 @@ public class AggregateAuctionAlogrithm {
 		JDBCHelper.Close(rs);
 		JDBCHelper.Close(stmt1);
 		JDBCHelper.Close(pstmt);
+		JDBCHelper.Close(pstmt1);
+		JDBCHelper.Close(pstmt3);
 		JDBCHelper.Close(con);
 	}
 	}
