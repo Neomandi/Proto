@@ -360,7 +360,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="emp">Employee Number</label>
+                                        <label for="emp">Employee Name</label>
                                     </td>
                                 </tr>
                                 <tr>
