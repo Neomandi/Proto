@@ -225,7 +225,7 @@
         <div class="container-fluid headertop">
             <div class="">
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-aution at Neomandi.</p></div>
+                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>

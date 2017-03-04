@@ -38,6 +38,25 @@ public class TraderRegisterBean {
 	private String bDistrict;
 	private String bTaluq;
 	private String bPin;
+	private String laddress;
+	private String pin;
+	
+	public String getLaddress() {
+		return laddress;
+	}
+	public void setLaddress(String laddress) {
+		this.laddress = laddress;
+		System.out.println("laddress="+laddress);
+	}
+	public String getPin() {
+		return pin;
+	}
+	public void setPin(String pin) {
+		this.pin = pin;
+		System.out.println("pin="+pin);
+	}
+	
+	
 	public String getTraderName() {
 		return traderName;
 	}

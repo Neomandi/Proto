@@ -144,7 +144,8 @@
 				    String accountnumber= rs.getString("accountnum");
 				    String ifsc= rs.getString("ifsccode");
 				    String branch= rs.getString("branch"); 
-				    
+				    String pin=rs.getString("pin");
+				    String address=rs.getString("address");
 				%>
                     <form>
                         <table class="table table-bordered" id="basic-table">
@@ -195,14 +196,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    add1
+                                    <%=address %>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    add2
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td>
                                     <label for="name">State</label>
@@ -240,7 +237,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    pin
+                                    <%=pin %>
                                 </td>
                             </tr>
                         </table>
