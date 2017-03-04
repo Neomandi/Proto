@@ -625,6 +625,8 @@ catch(NullPointerException e)
 						         //console.log("assigned =0");
 						         console.log("my bid is "+mybid);
 						         console.log("needed is "+needed);
+						         console.log("asssigned="+assigned);
+						         console.log("trans= 0");
 					         }
 					         else
 					         {
@@ -646,6 +648,7 @@ catch(NullPointerException e)
 						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
 						         
 						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = 3000;
 						         
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
@@ -724,6 +727,8 @@ catch(NullPointerException e)
 						        // console.log("assigned ="+assigneds);
 						         console.log("my bid is "+mybid);
 						         console.log("needed is "+needed);
+						         console.log("asssigned="+assigned);
+						         console.log("trans= 3000");
 					         }
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
@@ -772,6 +777,9 @@ catch(NullPointerException e)
 	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 	bid=bid+1;
+	
+	
+	
 	function submitbutton<%out.print(tlb.getLotnum());%>()
 	{	
 	 var Etime=document.getElementById("time").value;
@@ -927,7 +935,9 @@ catch(NullPointerException e)
 			         console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 			         console.log("assigned ="+assigneds);
 			         console.log("my bid is "+mybid);
-			         console.log("needed is "+needed); }
+			         console.log("needed is "+needed);
+			         console.log("transportation= "+number);
+			         }
 		         else
 		         {
 		        	 var number=0;
@@ -948,7 +958,8 @@ catch(NullPointerException e)
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
 			         
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-			         
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").value = 3000;
+				        
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
 			         
@@ -974,7 +985,8 @@ catch(NullPointerException e)
 			         console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 			         console.log("assigned ="+assigneds);
 			         console.log("my bid is "+mybid);
-			         console.log("needed is "+needed); }}}};
+			         console.log("needed is "+needed);
+			         console.log("transportation= 3000");}}}};
 		  xmlhttp.open("POST", "ajaxIncrement.do", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("number="+result+"&lotnumber="+j);
@@ -1202,7 +1214,8 @@ catch(NullPointerException e)
 						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
 						         
 						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-						         
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = 3000;
+							        
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
 						         
@@ -1538,6 +1551,7 @@ catch(NullPointerException e)
 					         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
 					         
 					         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+					         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = 3000;
 					         
 					         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
 					         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
@@ -1800,6 +1814,7 @@ catch(NullPointerException e)
 			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
 			         
 			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = 3000;
 			         
 			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
 			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
@@ -2046,6 +2061,7 @@ catch(NullPointerException e)
 						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
 						         
 						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = 3000;
 						         
 						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
 						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
@@ -2563,7 +2579,8 @@ catch(NullPointerException e)
 			         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
 			         
 			         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
-			         
+			         document.getElementById("transportation<%= tlb.getLotnum() %>").value = 3000;
+				        
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
 			         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
 			         
@@ -2803,6 +2820,7 @@ catch(NullPointerException e)
 						         document.getElementById("demo3<%= tlb.getLotnum() %>").value = commission;
 						         
 						         document.getElementById("transportation<%= tlb.getLotnum() %>").innerHTML = 3000;
+						         document.getElementById("transportation<%= tlb.getLotnum() %>").value = 3000;
 						         
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").innerHTML = marketcess;
 						         document.getElementById("demo4<%= tlb.getLotnum() %>").value = marketcess;
@@ -3131,6 +3149,8 @@ catch(NullPointerException e)
 			         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
 			         
 			         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+			         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = 3000;
+			         
 			         
 			         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
 			         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
@@ -3371,6 +3391,7 @@ catch(NullPointerException e)
 						         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
 						         
 						         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+						         document.getElementById("transportation<%= tlbr.getLotnum() %>").value = 3000;
 						         
 						         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
 						         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
