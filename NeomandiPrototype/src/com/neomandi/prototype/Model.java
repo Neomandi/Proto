@@ -126,7 +126,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				if(!rs.next())
 				
 				{
-					ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");	
+					ps = con.prepareStatement("insert into freg(name,mobile,aadharnum,email,state,district,taluk,hobli,village,bankname,accountnum,branch,ifsccode,pass,pin,address) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");	
 					ps.setString(1, frb.getFarmername());
 					ps.setLong(2, frb.getFarmermobile());
 					ps.setLong(3, frb.getFarmeraadharnum());
@@ -141,6 +141,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					ps.setString(12, frb.getFarmerbranch());
 					ps.setString(13, frb.getFarmerifsccode());
 					ps.setString(14,frb.getPassword());
+					ps.setString(15, frb.getPin());
+					ps.setString(16, frb.getAddress());
 					//ps.setBlob(15, frb.getFarmerPhoto());
 					ps.execute();				
 					msg = "SUCCESS";				
@@ -256,7 +258,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				rs = ps.getResultSet();
 				if(!rs.next()){
 				con.setAutoCommit(false);
-				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				ps = con.prepareStatement("insert into treg values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, trb.getTraderName());
 				ps.setLong(2, trb.getTraderMobile());
 				ps.setLong(3, trb.getTraderAadharnum());
@@ -280,6 +282,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(19, trb.getTraderLiscenseDistrict());
 				ps.setString(20, trb.getTraderLicenseTaluk());
 				ps.setString(21, trb.getTraderLicensePin());
+				ps.setString(22,trb.getLaddress());
+				ps.setString(23, trb.getPin());
 				ps.execute();				
 				msg = "SUCCESS";
 				con.commit();
@@ -602,8 +606,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
-				//	if(kproduce.equals("Vegetables"))
-					//  kproduce="Vegetable";
+					if(kproduce.equals("Vegetables"))
+					  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
@@ -652,6 +656,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else
 				{
+					if(kproduce.equals("Vegetables"))
+						  kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
@@ -3344,7 +3350,6 @@ public void TraderProductAccept(String lotnum,String accno)
 				System.out.println("ate is"+date);
 				st[1]=String.valueOf(date);
 				if(date<10)
-					//to=st[0]+"-0"+st[1]+"-"+st[2];
 					to=st[2]+"-"+st[0]+"-"+st[1];
 				else
 					to=st[2]+"-"+st[0]+"-"+st[1];
@@ -3360,6 +3365,18 @@ public void TraderProductAccept(String lotnum,String accno)
 				rs = ps.getResultSet();
 				if(rs.next())
 				{
+					ps =con.prepareStatement("SELECT a.quantityassigned FROM auction_result a, treg t where t.name=? and t.aadharnumber=a.aadharnumber and a.farmerstatus=?");
+					ps.setString(1,name);
+					ps.setString(2, "REJECTED");
+					ps.execute();
+					System.out.println(ps);
+					rs = ps.getResultSet();
+					if(rs.next())
+					{
+						return al;
+					}
+					else
+					{
 						ps =con.prepareStatement("SELECT tl.created_at,tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 						ps.setString(1,name);
 						ps.setString(2,from);
@@ -3383,10 +3400,6 @@ public void TraderProductAccept(String lotnum,String accno)
 							System.out.println(created);
 							tsb.setCreated(created);
 							
-							
-						//	tsb.setQuantity(rs.getString("quantity"));
-						//	tsb.setQuantityneeded(rs.getString("quantityneeded"));
-							
 							ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table
 							ps.setString(2,name);
 							ps.setString(1,rs.getString("lotnum"));
@@ -3405,7 +3418,8 @@ public void TraderProductAccept(String lotnum,String accno)
 							al.add(tsb);					
 						}	
 						return al;
-					}
+					}	
+				}
 				else
 				{
 					return al;

@@ -144,7 +144,8 @@
 				    String accountnumber= rs.getString("accountnum");
 				    String ifsc= rs.getString("ifsccode");
 				    String branch= rs.getString("branch"); 
-				    
+				    String pin=rs.getString("pin");
+				    String address=rs.getString("address");
 				%>
                     <form>
                         <table class="table" id="basic-table">
@@ -195,14 +196,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="email" value="add1" readonly/>
+
+                                    <%=address %>
+
+                                    
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" class="form-control" id="email" value="add2" readonly/>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td>
                                     <label for="name">State</label>
@@ -240,7 +240,11 @@
                             </tr>
                             <tr>
                                 <td>
+<<<<<<< HEAD
+                                    <%=pin %>
+=======
                                     <input type="text" class="form-control" id="email" value="pin" readonly/>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
                                 </td>
                             </tr>
                         </table>

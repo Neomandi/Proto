@@ -19,6 +19,23 @@ public class FarmerRegisterBean {
 	private String farmerifsccode;
 	private InputStream farmerphoto;
 	private String password;
+	private String pin;
+	private String address;
+	
+	public String getPin(){
+		return pin;
+	}
+	public void setPin(String pin){
+		this.pin=pin;
+		System.out.println("pin="+pin);
+	}
+	public String getAddress(){
+		return address;
+	}
+	public void setAddress(String address){
+		this.address=pin;
+		System.out.println("address="+address);
+	}
 	public String getPassword(){
 		return password;
 	}
