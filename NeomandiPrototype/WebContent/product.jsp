@@ -172,7 +172,7 @@
                             	<form id="myForm" action="ProductSearchInt.jsp" method = "post">
                                 <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')" >
                                     <option value="Category">Select Category</option>
-                                    <option value="Vegetables">Vegetable</option>
+                                    <option value="Vegetables">Vegetables</option>
                                     <option value="Fruits">Fruits</option>
                                     <option value="Grains">Grains</option>
                                     <option value="Pulses">Pulses</option>
@@ -195,11 +195,11 @@
                             <%
                             	ServletContext context = request.getSession().getServletContext();
                             try{
-                            	if((String)context.getAttribute("starttime")!=null){
+                            	System.out.println("************************starttime is "+(String)context.getAttribute("starttime"));
+                            	//if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
-                        		String stop=(((String)context.getAttribute("stoptime")).split(":"))[0]+":"+(((String)context.getAttribute("stoptime")).split(":"))[1];
-                        		System.out.println("************************starttime is "+start);
-                        	%>
+                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
+                        		%>
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base">Auction Slot</option>                                  
                                     <option value="slot1">Slot 1 (<%=start %>-<%=stop %>)</option>                                                                      
@@ -207,7 +207,7 @@
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
-                            <%}}
+                            <%}
                             	catch(Exception e)
                             	{
                             		System.out.println("*****inside catch");

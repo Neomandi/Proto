@@ -22,15 +22,15 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.io.InputStream,
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
 <html>
-<head>
+<head><title>NeoMandi</title><!-- 
+<meta http-equiv="refresh"  content="3; URL=TradeorAuction.do"> -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoMandi</title> <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/TradeorAuction.do">
 <style>
 input[type="number"],input[type="text"]
 {
-text-align: center;
+	text-align: center;
 }
 a
 {
@@ -234,11 +234,11 @@ catch(NullPointerException e)
 //	console.log("differences in minutes is "+minutes);
 	//console.log("differences in seconds is "+seconds);
 	//console.log("differences in hours is "+hours);
-	var timedifference=+hours+":"+minutes+":"+seconds;
+		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
-	countdown(minutes,seconds,hours);	
-	var five=300000;
-	timedif=diff+five;
+		countdown(minutes,seconds,hours);	
+		var five=300000;
+		timedif=diff+five;
 //	console.log("count"+timedif);	
 		function countdown(minutes,seconds,hours) 
 		{			  			 
@@ -259,7 +259,6 @@ catch(NullPointerException e)
 			        if( seconds > 0 )
 			        {
 			            setTimeout(tick,1000);
-			           
 			        } 
 			        else 
 		     		{
@@ -285,11 +284,9 @@ catch(NullPointerException e)
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
 				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);				            	
-				            	document.getElementById("timer").innerHTML=str;
+				            	document.getElementById("timer").innerHTML=str;         	
 				            	function count(minutes1,seconds1) 
 				            	{
-				            		//console.log("minutes is"+minutes);
-				            		//console.log("seconds is"+seconds1);
 				        		    var seconds =seconds1;
 				        		    var mins = minutes1;
 				        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
@@ -499,7 +496,7 @@ catch(NullPointerException e)
 		
 		
 		//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-		window.setInterval(function()
+		setInterval(function()
 				  {
 					funny();
 				  },3000);
@@ -568,15 +565,15 @@ catch(NullPointerException e)
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
 						         
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						     //    document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 						         
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
@@ -656,8 +653,8 @@ catch(NullPointerException e)
 					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 					        	 
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
@@ -665,8 +662,8 @@ catch(NullPointerException e)
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
 						         
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						      //   document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 						         
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
@@ -1054,7 +1051,7 @@ catch(NullPointerException e)
 		  }
 	      else
 		  {
-			var assigneds=document.getElementById("<%=tlb.getLotnum()%>").value;
+			var assigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
 			var assigned=new  Number(assigneds);
 			var neededs=document.getElementById("quantityneeded<%=tlb.getLotnum()%>").value;
 			var needed=new  Number(neededs);
@@ -1291,11 +1288,7 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" readonly></td></tr>
 	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
 	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-<<<<<<< HEAD
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
-=======
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000");%>" readonly></td></tr>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
 	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
@@ -1370,9 +1363,269 @@ catch(NullPointerException e)
 		console.log("quantityneeded<quantityassigned");
 			document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
 	}	
-	</script>
-	<script>
-	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
+	
+	var bestbids=document.getElementById("demo5<%=tlbr.getLotnum()%>").value;
+	var bestbid=new  Number(bestbids);		
+	var mybids=document.getElementById("demo6<%=tlbr.getLotnum()%>").value;
+	var mybid=new  Number(mybids);
+	console.log("best bid is"+bestbid);
+	console.log(" my bid is"+mybid+" ");
+	console.log(mybid==0);
+	if(mybid<bestbid&&mybid>0)
+	{
+			console.log("mybid<bestbid")
+			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+	}
+	else if(mybid-bestbid==0||mybid>bestbid)
+	{
+		document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+		console.log("mybid-bestbid==0");
+	}
+	else if(mybid==0)
+	{
+		document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+		console.log("mybid==0");
+	}	
+	//***************************************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
+	window.setInterval(function()
+			  {
+				funny2();
+			  },3000);
+	
+	function funny2()
+		{		  
+		var needed=document.getElementById("needed<%=tlbr.getLotnum() %>").value;
+		 		    xmlhttp = new XMLHttpRequest();
+				    xmlhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) 
+				    {	
+				    	 var string=xmlhttp.responseText;
+				    	 var startlotnum=xmlhttp.responseText.indexOf('lotnum');
+				         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnum');
+				         startlotnum=startlotnum+6;
+				         
+				         var startlotcost=xmlhttp.responseText.indexOf('lotcost');
+				         var endlotcost=xmlhttp.responseText.lastIndexOf('lotcost');
+				         startlotcost=startlotcost+7;
+				         
+				         var startcommission=xmlhttp.responseText.indexOf('commission');
+				         var endcommission=xmlhttp.responseText.lastIndexOf('commission');
+				         startcommission=startcommission+10;
+				         
+				         var startmarket=xmlhttp.responseText.indexOf('market');
+				         var endmarket=xmlhttp.responseText.lastIndexOf('market');
+				         startmarket=startmarket+6;
+				         
+				         var startbestbid=xmlhttp.responseText.indexOf('bestbid');
+				         var endbestbid=xmlhttp.responseText.lastIndexOf('bestbid');
+				         startbestbid=startbestbid+7;
+				         
+				         var startmybid=xmlhttp.responseText.indexOf('mybid');
+				         var endmybid=xmlhttp.responseText.lastIndexOf('mybid');
+				         startmybid=startmybid+5;
+				         
+				         var startassigned=xmlhttp.responseText.indexOf('assigned');
+				         var endassigned=xmlhttp.responseText.lastIndexOf('assigned');
+				         startassigned=startassigned+8;
+				         
+				         var startfinal=xmlhttp.responseText.indexOf('final');
+				         var endfinal=xmlhttp.responseText.lastIndexOf('final');
+				         startfinal=startfinal+5;
+
+				         document.getElementById("demo1<%= tlbr.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
+				         var assigned=string.substring(startassigned,endassigned);
+				         console.log("assigned is "+string.substring(startassigned,endassigned));
+				         if(assigned=="0")
+				         {					        	 
+				        	 var symbol="-";
+				        	 var number=0;
+				        	 var assigned=string.substring(startassigned,endassigned);
+				        	 var bestbid=string.substring(startbestbid,endbestbid);
+						     var mybid=string.substring(startmybid,endmybid);
+						         
+				        	 document.getElementById("demo2<%=tlbr.getLotnum() %>").innerHTML = number;
+					         document.getElementById("demo3<%=tlbr.getLotnum() %>").innerHTML = number;
+					         document.getElementById("demo4<%=tlbr.getLotnum() %>").innerHTML = number;
+					         document.getElementById("transportation<%=tlbr.getLotnum() %>").innerHTML = number;
+					         
+					         document.getElementById("demo2<%=tlbr.getLotnum() %>").value = number;
+					         document.getElementById("demo3<%=tlbr.getLotnum() %>").value = number;
+					         document.getElementById("demo4<%=tlbr.getLotnum() %>").value = number;
+					         document.getElementById("transportation<%=tlbr.getLotnum() %>").value = number;
+					      
+					         document.getElementById("demo5<%=tlbr.getLotnum() %>").innerHTML =bestbid;
+					         document.getElementById("demo5<%=tlbr.getLotnum() %>").value =bestbid;
+					         console.log(string.substring(startbestbid,endbestbid));
+					 //        document.getElementById("demo6<%=tlbr.getLotnum() %>").innerHTML = mybid;
+					  //       document.getElementById("demo6<%=tlbr.getLotnum() %>").value = mybid;
+
+					         document.getElementById("demo7<%=tlbr.getLotnum() %>").innerHTML = assigned;
+					         document.getElementById("demo8<%=tlbr.getLotnum() %>").innerHTML = number;
+					         document.getElementById("demo7<%=tlbr.getLotnum() %>").value = assigned;
+					         document.getElementById("demo8<%=tlbr.getLotnum() %>").value = number;
+					         
+					      //   document.getElementById("mybid<%=tlbr.getLotnum() %>").innerHTML = mybid;
+					      //   document.getElementById("mybid<%=tlbr.getLotnum() %>").value = mybid;
+
+					         var bid=new  Number(string.substring(startmybid,endmybid));
+					         bid=bid+1;
+					         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+					        
+					         var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+					 		 var quantityneeded=new  Number(quantityneededs);	
+					 		console.log(quantityneededs);
+					 		 var assigneds=new Number(assigned);
+					 		if(assigneds==0)
+							{
+								//console.log("quantityneeded==0");
+								document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+							}	
+							
+							else if(quantityneeded-assigneds==0)
+							{
+								document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+							//	console.log("quantityneeded-quantityassigned==0");
+							}
+							else if(assigneds<quantityneeded&&assigneds>0)
+							{
+								//console.log("quantityneeded="+quantityneeded+"quantityassigned"+assigneds);
+									document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+							}
+					 		
+					 		var bestbids=document.getElementById("demo5<%=tlbr.getLotnum()%>").value;
+							var bestbid=new  Number(bestbids);		
+							var mybids=document.getElementById("demo6<%=tlbr.getLotnum()%>").value;
+							var mybid=new  Number(mybids);
+						//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+							console.log(mybid==0);
+							if(mybid<bestbid&&mybid>0)
+							{
+							//	console.log("mybid<bestbid")
+									document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+							}
+							else if(mybid-bestbid==0||mybid>bestbid)
+							{
+								document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+								//console.log("mybid-bestbid==0");
+							}
+							else if(mybid==0)
+							{
+								document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+								//console.log("mybid==0");
+							}	
+							 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+					         //console.log("assigned =0");
+					         console.log("my bid is "+mybid);
+					         console.log("needed is "+needed);
+				         }
+				         else
+				         {
+				        	 var number=0;
+				        	 var assigned=string.substring(startassigned,endassigned);
+				        	 var bestbid=string.substring(startbestbid,endbestbid);
+						     var mybid=string.substring(startmybid,endmybid);
+						     var lotcost=string.substring(startlotcost,endlotcost);
+						     var commission=string.substring(startcommission,endcommission);
+						     var marketcess=string.substring(startmarket,endmarket);
+						     var final=string.substring(startfinal,endfinal);
+						     
+						   //  console.log("assigned="+assigned+" bestbid "+bestbid+" ");
+						     
+					         document.getElementById("demo2<%= tlbr.getLotnum() %>").innerHTML = lotcost;
+					         document.getElementById("demo2<%= tlbr.getLotnum() %>").value = lotcost;
+					         
+					         document.getElementById("demo3<%= tlbr.getLotnum() %>").innerHTML = commission;
+					         document.getElementById("demo3<%= tlbr.getLotnum() %>").value = commission;
+					         
+					         document.getElementById("transportation<%= tlbr.getLotnum() %>").innerHTML = 3000;
+					         
+					         document.getElementById("demo4<%= tlbr.getLotnum() %>").innerHTML = marketcess;
+					         document.getElementById("demo4<%= tlbr.getLotnum() %>").value = marketcess;
+					         
+				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
+				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
+
+					    //     document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+
+					     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+					         
+					         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
+					         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
+					         
+					         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
+					         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
+
+					   //      document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+					    //     document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+
+					         
+					         var bid=new  Number(string.substring(startmybid,endmybid));
+					         bid=bid+1;
+					         document.getElementById("demo6<%= tlbr.getLotnum() %>").setAttribute("min",mybid);
+					    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
+					       /*  console.log("lotcost "+string.substring(startlotcost,endlotcost));
+					         console.log("commssion "+string.substring(startcommission,endcommission));
+					         console.log("marketcess "+string.substring(startmarket,endmarket));
+					         console.log("my bid "+string.substring(startmybid,endmybid));
+					         console.log("bestbid "+string.substring(startbestbid,endbestbid));
+					         console.log("assigned "+string.substring(startassigned,endassigned));
+					         console.log("final "+string.substring(startfinal,endfinal));
+					         console.log("quantityassigned "+assigned);*/
+				        
+					         var quantityneededs=document.getElementById("needed<%=tlbr.getLotnum()%>").value;
+					 		 var quantityneeded=new  Number(quantityneededs);	
+				         
+					 		 var assigneds=new Number(assigned);
+					 		if(assigneds==0)
+							{
+								//console.log("quantityneeded==0");
+								document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+							}	
+							
+							else if(quantityneeded-assigneds==0)
+							{
+								document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+								//console.log("quantityneeded-quantityassigned==0");
+							}
+							else if(assigneds<quantityneeded&&assigneds>0)
+							{
+							//	console.log("quantityneeded<quantityassigned");
+									document.getElementById("demo7<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
+							}
+					 		
+					 		var bestbids=document.getElementById("demo5<%=tlbr.getLotnum()%>").value;
+							var bestbid=new  Number(bestbids);		
+							var mybids=document.getElementById("demo6<%=tlbr.getLotnum()%>").value;
+							var mybid=new  Number(mybids);
+						//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+							console.log(mybid==0);
+							if(mybid<bestbid&&mybid>0)
+							{
+								//console.log("mybid<bestbid")
+									document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px #FFA500 inset";
+							}
+							else if(mybid-bestbid==0||mybid>bestbid)
+							{
+								document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 75px green inset";
+							//	console.log("mybid-bestbid==0");
+							}
+							else if(mybid==0)
+							{
+								document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+								//console.log("mybid==0");
+							}
+							 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+					        // console.log("assigned ="+assigneds);
+					         console.log("my bid is "+mybid);
+					         console.log("needed is "+needed);
+				         }
+				    }};
+				    xmlhttp.open("POST", "refresh.do", true);
+					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+					xmlhttp.send("number="+1+"&lotnumber="+1);
+		}
+	
+/*	var input = document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlbr.getLotnum() %>").value);
 	bid=bid+1;
 	function submitbutton<%out.print(tlbr.getLotnum());%>()
@@ -1415,7 +1668,7 @@ catch(NullPointerException e)
 		alert('YOU CANT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
-	{
+	{/*
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
     var currentbid=document.getElementById("mybid<%=tlbr.getLotnum()%>").value;
@@ -1555,7 +1808,7 @@ catch(NullPointerException e)
 		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 		        	 
 			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			        document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 			         
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
@@ -1580,7 +1833,7 @@ catch(NullPointerException e)
 		  xmlhttp.send("number="+result+"&lotnumber="+j);
 	 }
 	}
- }
+ }*/
 	</script>
 	<tr><td><br><a onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
@@ -1984,11 +2237,11 @@ catch(NullPointerException e)
     </div></div>
 	<!---row 4 end--->
  </div>
-
+<!--
 <div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
+<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-
   <div id="accord"> 
-        <!----row1--->
+        --row1--->
         <%
    msg1=(String)request.getAttribute("notlogged");
   if(msg1!=null)
@@ -2275,15 +2528,15 @@ catch(NullPointerException e)
 			         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 			         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 			         console.log(string.substring(startbestbid,endbestbid));
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			 //        document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			    //     document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
 			         
-			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			   //      document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			    //     document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 			         
 			         var bid=new  Number(string.substring(startmybid,endmybid));
 			         bid=bid+1;
@@ -2317,8 +2570,8 @@ catch(NullPointerException e)
 		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 		        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 		        	 
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+			     //    document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+			      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 			         
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 			         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
@@ -2326,8 +2579,8 @@ catch(NullPointerException e)
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
 			         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
 			         
-			         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+			       //  document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+			        // document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 			         
 			         var bid=new  Number(string.substring(startmybid,endmybid));
 			         bid=bid+1;
@@ -2515,15 +2768,15 @@ catch(NullPointerException e)
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						    //     document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML = number;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").value = assigned;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").value = number;
 						         
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						   //      document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						     //    document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 						         
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
@@ -2557,8 +2810,8 @@ catch(NullPointerException e)
 					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 					        	 document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
 					        	 
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
+						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
+						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").value =assigned;
@@ -2566,8 +2819,8 @@ catch(NullPointerException e)
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").innerHTML =final;
 						         document.getElementById("demo8<%= tlb.getLotnum() %>").value =final;
 						         
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
+						      //   document.getElementById("mybid<%= tlb.getLotnum() %>").innerHTML = mybid;
+						       //  document.getElementById("mybid<%= tlb.getLotnum() %>").value = mybid;
 						         
 						        
 						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
@@ -2843,15 +3096,15 @@ catch(NullPointerException e)
 			         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 			         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 			         console.log(string.substring(startbestbid,endbestbid));
-			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			  //       document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			   //      document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
 			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
 			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
 			         
-			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			      //   document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			       //  document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
 			         
 			         var bid=new  Number(string.substring(startmybid,endmybid));
 			         bid=bid+1;
@@ -2885,8 +3138,8 @@ catch(NullPointerException e)
 		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 		        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 		        	 
-			         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+			     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 			         
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
 			         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
@@ -2894,8 +3147,8 @@ catch(NullPointerException e)
 			         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
 			         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
 			         
-			         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
-			         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+			      //   document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+			      //   document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
 			         
 			         var bid=new  Number(string.substring(startmybid,endmybid));
 			         bid=bid+1;
@@ -3083,15 +3336,15 @@ catch(NullPointerException e)
 						         document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 						         console.log(string.substring(startbestbid,endbestbid));
-						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						      //   document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						       //  document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML = number;
 						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value = assigned;
 						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value = number;
 						         
-						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						        // document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						        // document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
 						         
 						         var bid=new  Number(string.substring(startmybid,endmybid));
 						         bid=bid+1;
@@ -3125,17 +3378,17 @@ catch(NullPointerException e)
 					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 					        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 					        	 
-						         document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
+						    //     document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						    //     document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 						         
 						         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
 						         document.getElementById("demo7<%= tlbr.getLotnum() %>").value =assigned;
 						         
 						         document.getElementById("demo8<%= tlbr.getLotnum() %>").innerHTML =final;
 						         document.getElementById("demo8<%= tlbr.getLotnum() %>").value =final;
-						         
-						         document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
-						         document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
+						      //   
+						      //   document.getElementById("mybid<%= tlbr.getLotnum() %>").innerHTML = mybid;
+						      //   document.getElementById("mybid<%= tlbr.getLotnum() %>").value = mybid;
 						         
 						        
 						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
@@ -3158,10 +3411,10 @@ catch(NullPointerException e)
 	</div>
 	</div>
     </div></div>
-    <%}}}}}}}}}%>    
+    <%}}}}}}}}}%>    <!--
 <div class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
-  <div id="accord3" class="collapse">
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>
+  <div id="accord3" class="collapse">-->
     
  
         <!----row1--->

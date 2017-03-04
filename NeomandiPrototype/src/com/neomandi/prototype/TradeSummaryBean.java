@@ -7,7 +7,14 @@ String lotcost;
 String commission;
 String marketcess;
 String myfinalcost;
+String created;
 
+public String getCreated() {
+	return created;
+}
+public void setCreated(String created) {
+	this.created = created;
+}
 public String getLotcost() {
 	return lotcost;
 }
@@ -36,6 +43,7 @@ public int hashCode() {
 	int result = 1;
 	result = prime * result + ((bidprice == null) ? 0 : bidprice.hashCode());
 	result = prime * result + ((commission == null) ? 0 : commission.hashCode());
+	result = prime * result + ((created == null) ? 0 : created.hashCode());
 	result = prime * result + ((lotcost == null) ? 0 : lotcost.hashCode());
 	result = prime * result + ((lotnum == null) ? 0 : lotnum.hashCode());
 	result = prime * result + ((marketcess == null) ? 0 : marketcess.hashCode());
@@ -64,6 +72,11 @@ public boolean equals(Object obj) {
 		if (other.commission != null)
 			return false;
 	} else if (!commission.equals(other.commission))
+		return false;
+	if (created == null) {
+		if (other.created != null)
+			return false;
+	} else if (!created.equals(other.created))
 		return false;
 	if (lotcost == null) {
 		if (other.lotcost != null)
@@ -111,8 +124,8 @@ public boolean equals(Object obj) {
 public String toString() {
 	return "TradeSummaryBean [lotnum=" + lotnum + ", volumesold=" + volumesold + ", lotcost=" + lotcost
 			+ ", commission=" + commission + ", marketcess=" + marketcess + ", myfinalcost=" + myfinalcost
-			+ ", quantity=" + quantity + ", quantityneeded=" + quantityneeded + ", bidprice=" + bidprice + ", result="
-			+ result + "]";
+			+ ", created=" + created + ", quantity=" + quantity + ", quantityneeded=" + quantityneeded + ", bidprice="
+			+ bidprice + ", result=" + result + "]";
 }
 public String getLotnum() {
 	return lotnum;

@@ -33,6 +33,10 @@ tbody:before {
     line-height:10px;
     color: transparent;
 }
+a
+{
+cursor: pointer;
+}
 .from table{
 margin-top:0px;
 } 
@@ -110,6 +114,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	  <td><h4>Transportation Charges</h4></td>
 	  <td><h4>Market Cess</h4></td>
 	  <td><h4>My Final cost</h4></td>
+	  <td><h4>Date</h4></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10">
@@ -120,7 +125,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table><%}}%>
 </div><br>
@@ -210,7 +215,7 @@ if(request.getAttribute("tradesummary").equals("no"))
                   </div>
                 </div>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun()" class="get1">Get History</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun2()" id="pdf" class="export">Export as PDF</a></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun2()" id="pdf" class="get1">Export as PDF</a></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
@@ -242,6 +247,7 @@ if(request.getAttribute("tradesummary").equals("no"))
 	  <td><h4>Transportation Charges</h4></td>
 	  <td><h4>Market Cess</h4></td>
 	  <td><h4>My Final cost</h4></td>
+	  <td><h4>Date</h4></td>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
@@ -254,7 +260,7 @@ if(request.getAttribute("tradesummary").equals("no"))
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
 </div>
