@@ -148,7 +148,7 @@
 				    String address=rs.getString("address");
 				%>
                     <form>
-                        <table class="table table-bordered" id="basic-table">
+                        <table class="table" id="basic-table">
                             <tr>
                                 <td>
                                     <label for="name">Name</label>
@@ -156,7 +156,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=name1%>
+                                    <input type="text" class="form-control" id="name" value="<%=name1%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -166,7 +166,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=adhar %>
+                                    <input type="text" class="form-control" id="aadhar" value="<%=adhar %>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -176,7 +176,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=mobile%>
+                                    <input type="text" class="form-control" id="mobile" value="<%=mobile%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -186,7 +186,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=email%>
+                                    <input type="text" class="form-control" id="email" value="<%=email%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -196,10 +196,13 @@
                             </tr>
                             <tr>
                                 <td>
+
                                     <%=address %>
+
+                                    
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td>
                                     <label for="name">State</label>
@@ -207,7 +210,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=state%>
+                                    <input type="text" class="form-control" id="email" value="<%=state%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -217,7 +220,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=district%>
+                                    <input type="text" class="form-control" id="email" value="<%=district%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -227,7 +230,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=taluk%>
+                                    <input type="text" class="form-control" id="email" value="<%=taluk%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -237,7 +240,11 @@
                             </tr>
                             <tr>
                                 <td>
+<<<<<<< HEAD
                                     <%=pin %>
+=======
+                                    <input type="text" class="form-control" id="email" value="pin" readonly/>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
                                 </td>
                             </tr>
                         </table>
@@ -257,7 +264,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=bankname%>
+                                    <input type="text" class="form-control" id="email" value="<%=bankname%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -267,7 +274,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=accountnumber%>
+                                    <input type="text" class="form-control" id="email" value="<%=accountnumber%>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -277,7 +284,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=ifsc %>
+                                    <input type="text" class="form-control" id="email" value="<%=ifsc %>" readonly/>
                                 </td>
                             </tr>
                             <tr>
@@ -287,7 +294,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=branch%>
+                                    <input type="text" class="form-control" id="email" value="<%=branch%>" readonly/>
                                 </td>
                             </tr>
                         </table>
@@ -299,6 +306,12 @@
 					{
 						e.printStackTrace();
 					}
+		     		finally
+		     		{
+		     			JDBCHelper.Close(rs);
+		     			JDBCHelper.Close(statement);
+		     			JDBCHelper.Close(con);
+		     		}
 					%>
                 </div>
                 <br>
@@ -649,7 +662,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/FarmerProfile.jsp";
+		  location="http://neomandi.in/FarmerProfile.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -671,7 +684,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -721,7 +734,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -745,7 +758,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
 						            		document.getElementById("accept").disabled=false;
@@ -796,10 +809,10 @@ function auction(){
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
 

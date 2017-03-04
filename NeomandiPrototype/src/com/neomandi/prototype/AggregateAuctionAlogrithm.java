@@ -22,6 +22,7 @@ public class AggregateAuctionAlogrithm {
 		Statement stmt1 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt3 = null;
 		ResultSet rs = null;
 		List<AggregateDataBean> li = new ArrayList<AggregateDataBean>();
 		List<Long> a = new ArrayList<Long>();
@@ -175,7 +176,7 @@ public class AggregateAuctionAlogrithm {
 								pstmt.setLong(3, li.get(i).getAadharnumber());
 								System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 								pstmt.executeUpdate();
-								System.out.println(pstmt);
+								//System.out.println(pstmt);
 								
 								break;
 							}
@@ -203,7 +204,7 @@ public class AggregateAuctionAlogrithm {
 						pstmt.setLong(3, li.get(i).getAadharnumber());
 						System.out.println("Aadhar number: "+li.get(i).getAadharnumber());
 						pstmt.executeUpdate();
-						System.out.println(pstmt);
+						//System.out.println(pstmt);
 					}
 				}	
 			}
@@ -238,14 +239,15 @@ public class AggregateAuctionAlogrithm {
 				pstmt.executeUpdate();
 			}
 			
-			PreparedStatement pstmt3 = null;
+			pstmt3 = null;
 			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
 			pstmt3 = con.prepareStatement(sql4);
 			pstmt3.setDouble(1, avg);
 			pstmt3.setInt(2, maxavg-maxvol);
 			pstmt3.setString(3, lotnum);
-			System.out.println(pstmt3);
-			System.out.println(pstmt3.executeUpdate());
+			//System.out.println(pstmt3);
+			pstmt3.executeUpdate();
+			//System.out.println();
 			
 			con.commit();
 		
@@ -266,6 +268,8 @@ public class AggregateAuctionAlogrithm {
 		JDBCHelper.Close(rs);
 		JDBCHelper.Close(stmt1);
 		JDBCHelper.Close(pstmt);
+		JDBCHelper.Close(pstmt1);
+		JDBCHelper.Close(pstmt3);
 		JDBCHelper.Close(con);
 	}
 	}
