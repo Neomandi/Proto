@@ -139,7 +139,7 @@ catch(Exception e)
 	  <tr><td><input type="text" class="form-control" id="usr" value=<%=rs.getString("address")%> readonly> 
 	   
 	  </td></tr>
-       <tr><td><input type="text" class="form-control" id="usr"></td></tr>
+      
       <tr>
                                 <td>
                                     <label for="state">State</label>
@@ -177,7 +177,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="usr" value="Pin" readonly>
+                                    <input type="text" class="form-control" id="usr" value="<%=rs.getString("pin")%>" readonly>
                                 </td>
                             </tr>
                         </table>
@@ -197,8 +197,8 @@ catch(Exception e)
       <tr><td><label for="mobno">Place of Registration</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("placeofregistration") %>" readonly></td></tr>	  
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr"></td></tr>
-       <tr><td><input type="text" class="form-control" id="usr"></td></tr><tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("laddress") %>" readonly></td></tr>
+     
                                 <td>
                                     <label for="state">State</label>
                                 </td>
