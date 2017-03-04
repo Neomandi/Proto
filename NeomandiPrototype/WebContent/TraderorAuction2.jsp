@@ -1545,11 +1545,7 @@ catch(NullPointerException e)
 				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").innerHTML =bestbid;
 				        	 document.getElementById("demo5<%= tlbr.getLotnum() %>").value =bestbid;
 				        	 
-<<<<<<< HEAD
-					    //     document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
-=======
-					     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").innerHTML = mybid;
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 					     //    document.getElementById("demo6<%= tlbr.getLotnum() %>").value = mybid;
 					         
 					         document.getElementById("demo7<%= tlbr.getLotnum() %>").innerHTML = assigned;
