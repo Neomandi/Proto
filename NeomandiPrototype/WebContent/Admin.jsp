@@ -78,10 +78,9 @@
 </div></center>
 <input type="hidden" value="<%=time%>" id="time" />	
 <script>
+var Btime1;
 function fun()
 {
-	var starttime=document.getElementById("starttime").value;
-	 var endtime=document.getElementById("endtime").value;
 	 
 	 if(starttime == "" && endtime == "")
 	 {
@@ -144,55 +143,7 @@ function fun()
 				console.log("differences in time is "+timedifference);
 			  
 			  
-			  
-			  var start=document.getElementById("starttime").value;
-			var stop=document.getElementById("endtime").value;
-			var Etime=document.getElementById("time").value;
-				//var Btime="10:30:00";
-				//var Btime1="10:35:00";
-				var Btime=start;
-				var Btime1=stop;
-				start = Etime.split(":");
-				end =Btime.split(":");
-				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-				 diff = endDate.getTime() - startDate.getTime();
-				console.log("start time is "+Btime);
-				console.log("end time is "+Btime1);
-				console.log("current time is "+Etime);
-				console.log("difference in milliseconds is "+diff);
-				var hours = Math.floor(diff / 1000 / 60 / 60);
-				//diff -= hours* 60 * 60;
-				var seconds= Math.floor(diff /1000);
-				var minutes = Math.floor(diff / 1000 / 60);
-				var res3=0;
-				console.log("differences in minutes before calc "+minutes);		
-				console.log("differences in seconds before calc "+seconds);		
-				if(seconds>60)
-				{
-						res1=seconds%60;
-						res2=Math.floor(seconds/60);
-								
-						seconds=res1;
-						minutes=res2;
-				}
-				if(minutes>60)
-				{
-						res1=minutes%60;
-						res3=Math.floor(minutes/60);
-								
-						hours=res3;
-						minutes=res1;
-				}
-			//	console.log("differences in minutes is "+minutes);
-				//console.log("differences in seconds is "+seconds);
-				//console.log("differences in hours is "+hours);
-				var timedifference=+hours+":"+minutes+":"+seconds;
-				//console.log("differences in time is "+timedifference);	
-				countdown(minutes,seconds,hours);	
-				var five=300000;
-				timedif=diff+five;
-			//	console.log("count"+timedif);	
+				
 				
 				
 			  countdown(minutes,seconds,hours);
@@ -235,7 +186,7 @@ function fun2()
 			    var res1=0;
 			    var res2=0;
 			    var timedifference=+hours+":"+minutes+":"+seconds;
-			   		    
+			    var Btime1=document.getElementById("endtime").value;    
 				function tick() 
 				{
 			        var counter = document.getElementById("timer");
@@ -262,7 +213,7 @@ function fun2()
 			 				}	
 							else
 							{
-				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
+				            	var str="<div id='a1'style='display:inline; '>Auction has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
@@ -297,7 +248,7 @@ function fun2()
 					        			   }
 					        		       else
 					        		       {
-					        		           	var str1="has ended";
+					        		           	var str1="Auction has ended";
 					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
 								            	var timeOutPeriod = waitseconds * 1000;
@@ -322,7 +273,7 @@ function fun2()
 			        		     	}
 			        		   	 	tick();
 			        			}		
-				            	var Etime1=document.getElementById("time").value;
+				            	var Etime1=document.getElementById("starttime").value;
 				            	start1 = Etime1.split(":");
 				            	end1 =Btime1.split(":");
 				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
@@ -336,20 +287,22 @@ function fun2()
 				            	if(seconds1>60)
 				            	{
 				            			res1=seconds1%60;
-				            			res2=Math.floor(seconds1/60);				            					
+				            			res2=Math.floor(seconds1/60);
+				            					
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
-				            	//console.log("auction ends at "+Btime1);
-				            	//console.log("time is  "+Etime1);
-				            //	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-			        			count(minutes1,seconds1);			        			
+				            	console.log("auction ends at "+Btime1);
+				            	console.log("time is  "+Etime1);
+				            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
+			        			count(minutes1,seconds1);		        			
 							}
 						}
 					}		       
 		 		}
 		 tick();
 		}
+		//countdown(minutes,seconds,hours);
 </script>
 </body>
 </html>

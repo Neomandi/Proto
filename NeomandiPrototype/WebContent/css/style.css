@@ -128,14 +128,14 @@ margin-top: 10px;
 font-weight:bold;
 }
 .lotbtn {
-		 background: #3c4da0;
-	     border-color: #3c4da0;
-		 border-radius: 2px;
+background: #ff0000;
+border-color: #ff0000;
+border-radius: 2px;
 }
 .lotbtn:hover {
-   		background: #ff0000;
-		border-color: #ff0000;
-        border-radius: 2px;
+    background: #3c4da0;
+    border-color: #3c4da0;
+    border-radius: 2px;
 }
 .bid tr td h4 {
     text-align: center !important;
@@ -675,7 +675,7 @@ vertical-align:middle;
     font-size: 14px;
 position: relative;
 padding: 7px 10px;
-top: 0.5px;
+top: 7px;
 text-align: center;
 }
 .from .pad .get {
@@ -745,8 +745,8 @@ position: relative;
 
 .from .pad .get::before {
     content: "";
-/* border-top: 16px solid #d81e5d; */
-/* border-bottom: 17px solid #d81e5d; */
+border-top: 16px solid #d81e5d;
+border-bottom: 17px solid #d81e5d;
 border-left: 16px solid transparent;
 position: absolute;
 left: -16px;
@@ -763,8 +763,8 @@ top: 0;
 }
 .from .pad .export::before {
     content: "";
-/*     border-top: 17px solid #00bea4; */
-/*     border-bottom: 17px solid #00bea4; */
+    border-top: 17px solid #00bea4;
+    border-bottom: 17px solid #00bea4;
     border-left: 16px solid transparent;
     position: absolute;
     left: -16px;
@@ -772,8 +772,8 @@ top: 0;
 }
 .from .pad .get::after {
     content: "";
-/* border-top: 17px solid transparent; */
-/* border-bottom: 16px solid transparent; */
+border-top: 17px solid transparent;
+border-bottom: 16px solid transparent;
 border-left: 16px solid #d81e5d;
 position: absolute;
 right: -16px;
@@ -800,8 +800,8 @@ top: 0px;
 }
 .from .pad .export::after {
     content: "";
-/*     border-top: 17px solid transparent; */
-/*     border-bottom: 17px solid transparent; */
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
     border-left: 16px solid #00bea4!important;
     position: absolute;
     right: -16px;
@@ -1226,8 +1226,6 @@ top:0px;
 left: 15px;
 font-size: 18px;
 z-index: 9;
-height: 150px;
-width: 150px;
 }
 .tabdi, .tradtab {
     background: #bdd102;

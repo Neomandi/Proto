@@ -3350,7 +3350,6 @@ public void TraderProductAccept(String lotnum,String accno)
 				System.out.println("ate is"+date);
 				st[1]=String.valueOf(date);
 				if(date<10)
-					//to=st[0]+"-0"+st[1]+"-"+st[2];
 					to=st[2]+"-"+st[0]+"-"+st[1];
 				else
 					to=st[2]+"-"+st[0]+"-"+st[1];
@@ -3366,6 +3365,18 @@ public void TraderProductAccept(String lotnum,String accno)
 				rs = ps.getResultSet();
 				if(rs.next())
 				{
+					ps =con.prepareStatement("SELECT a.quantityassigned FROM auction_result a, treg t where t.name=? and t.aadharnumber=a.aadharnumber and a.farmerstatus=?");
+					ps.setString(1,name);
+					ps.setString(2, "REJECTED");
+					ps.execute();
+					System.out.println(ps);
+					rs = ps.getResultSet();
+					if(rs.next())
+					{
+						return al;
+					}
+					else
+					{
 						ps =con.prepareStatement("SELECT tl.created_at,tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 						ps.setString(1,name);
 						ps.setString(2,from);
@@ -3389,10 +3400,6 @@ public void TraderProductAccept(String lotnum,String accno)
 							System.out.println(created);
 							tsb.setCreated(created);
 							
-							
-						//	tsb.setQuantity(rs.getString("quantity"));
-						//	tsb.setQuantityneeded(rs.getString("quantityneeded"));
-							
 							ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table
 							ps.setString(2,name);
 							ps.setString(1,rs.getString("lotnum"));
@@ -3411,7 +3418,8 @@ public void TraderProductAccept(String lotnum,String accno)
 							al.add(tsb);					
 						}	
 						return al;
-					}
+					}	
+				}
 				else
 				{
 					return al;
@@ -3440,12 +3448,9 @@ public void TraderProductAccept(String lotnum,String accno)
 				try
 				{
 					con = JDBCHelper.getConnection();
-					
 					if(con == null)
-					{
-						
-					}
-					
+					{						
+					}					
 					else
 					{
 						con.setAutoCommit(false);
@@ -3499,7 +3504,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							fhb.setQuantity(rs.getString("quantity"));
 							fhb.setAverageprice(rs.getString("averageprice"));
 							fhb.setDate(rs.getString("created_at"));
-							 fhb.setDeduction("deduction");
+							fhb.setDeduction("deduction");
 							fhb.setEarnings(rs.getString("myearnings"));
 							fhb.setFinalprice(rs.getString("finalprice"));
 							fhb.setKindofpro(rs.getString("kindofpro"));
