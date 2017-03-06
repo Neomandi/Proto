@@ -57,27 +57,28 @@
 </div>
 </div>
 </div>
+
 <center>
-<div class="container" id="div" >
+<div class="container-fluid" id="div" >
 
 <form method="post" name="admin" class="form-inline">
-	<div class="form-group">	
-		<label for="starttime">Start Time: </label>
-		<input type="text" name="starttime" class="form-control" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
-	</div>
-	<div class="form-group">
-		<label for="endtime">End Time: </label>
-		<input type="text" name="endtime" class="form-control" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
-	</div><br/><br/>
-<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="stop" value="Stop Auction" class="btn btn-danger btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="reset" name="reset" value="Reset Auction" class="btn btn-warning btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br/><br/><div align="center">
-		<div id="msg" style="display:inline;" >Auction will begin in</div>
-		<div id="timer" style="display:inline;" ></div>
-		<div id="auction" style="display:inline;"></div>
-		<div id="auction1" style="display:inline;"></div>
-	</div>	
+		<div class="form-group form-group-lg">	
+			<label for="starttime">Start Time: </label>
+			<input type="text" name="starttime" class="form-control" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
+		</div>
+		<div class="form-group form-group-lg">
+			<label for="endtime">End Time: </label>
+			<input type="text" name="endtime" class="form-control" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
+		</div><br/><br/>
+	<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="stop" value="Stop Auction" class="btn btn-danger btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="reset" name="reset" value="Reset Auction" class="btn btn-warning btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<br/><br/><div align="center">
+			<div id="msg" style="display:inline;" >Auction will begin in</div>
+			<div id="timer" style="display:inline;" ></div>
+			<div id="auction" style="display:inline;"></div>
+			<div id="auction1" style="display:inline;"></div>
+		</div>	
 </form>
 </div></center>
 <script>
