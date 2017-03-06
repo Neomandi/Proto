@@ -197,7 +197,7 @@
                             <tr>
                                 <td>
 
-                                    <%=address %>
+                                    <input type="text" class="form-control" id="address" value="<%=address%>" readonly/>
 
                                     
                                 </td>
@@ -240,11 +240,11 @@
                             </tr>
                             <tr>
                                 <td>
-<<<<<<< HEAD
-                                    <%=pin %>
-=======
-                                    <input type="text" class="form-control" id="email" value="pin" readonly/>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
+                                  
+
+                                    <input type="text" class="form-control" id="email" value="  <%=pin %>" readonly/>
+
                                 </td>
                             </tr>
                         </table>
