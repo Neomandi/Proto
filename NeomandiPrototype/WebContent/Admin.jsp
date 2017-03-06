@@ -16,7 +16,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <style>
     	#div{
-    		font-size: 40px;
+    		
     		
 			padding:30px;
 			margin:200px;
