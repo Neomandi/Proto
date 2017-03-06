@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import="com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
+    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import="com.neomandi.prototype.JDBCHelper,java.util.*,java.sql.*,com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
 <!doctype html>
 <html>
 <head>
@@ -245,14 +245,42 @@ else
 <h4>Release Funds</h4>
 <div class="password">
 <form>
-    <table class="table">   
+      <table class="table">   
 	  <tr><td><label for="name">Fund Utilized</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" readonly></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=tbb.getBlock() %>" readonly></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  
 	  <tr><td><table align="center"><tr><td><a  onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
-     <script>
+	  <%
+	  	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+		if(tlbn.getTname()==null)
+			{}
+	  	Connection con = null;
+		ResultSet rs = null;	
+    	PreparedStatement ps = null;
+    	int result=0;
+		try
+		{
+			 result=0;
+			con = JDBCHelper.getConnection();
+			ps =con.prepareStatement("SELECT tb.blockamount FROM traders_blocked_amount tb,treg tr where tr.name=? and tr.aadharnumber=tb.aadharnumber ");
+			ps.setString(1, tlbn.getTname());
+			ps.execute();
+			rs = ps.getResultSet();	
+			while(rs.next())
+			{
+				result=rs.getInt("blockamount");						
+			}	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			
+		}
+		 %><input type="hidden" value="<%=result%>" id="amount">
+      <script>
+      console.log("blocked amoutn is +"+document.getElementById("amount").value)
 		function holdfundsrelease()
 		{		  
 		    var netamount=document.getElementById("netamount").value;
