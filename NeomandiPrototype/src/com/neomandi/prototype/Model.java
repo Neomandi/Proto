@@ -3448,12 +3448,9 @@ public void TraderProductAccept(String lotnum,String accno)
 				try
 				{
 					con = JDBCHelper.getConnection();
-					
 					if(con == null)
-					{
-						
-					}
-					
+					{						
+					}					
 					else
 					{
 						con.setAutoCommit(false);
@@ -3507,7 +3504,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							fhb.setQuantity(rs.getString("quantity"));
 							fhb.setAverageprice(rs.getString("averageprice"));
 							fhb.setDate(rs.getString("created_at"));
-							 fhb.setDeduction("deduction");
+							fhb.setDeduction("deduction");
 							fhb.setEarnings(rs.getString("myearnings"));
 							fhb.setFinalprice(rs.getString("finalprice"));
 							fhb.setKindofpro(rs.getString("kindofpro"));
