@@ -76,7 +76,7 @@
 	</div>	
 </form>
 </div></center>
-<!--  <input type="hidden" value="<%=time%>" id="time" />	-->
+  <!--  <input type="hidden" value="<%=time%>" id="time" />	-->
 <script>
 var Btime1;
 function fun()
@@ -99,11 +99,11 @@ function fun()
 			  xmlhttp.send("starttime="+document.getElementById("starttime").value+"&&endtime="+document.getElementById("endtime").value);
 			  
 			  
-			  var Etime = new Date(); // for now
-			  Etime.getHours(); // => 9
-			 Etime.getMinutes(); // =>  30
-			  Etime.getSeconds();
-				var Etime=document.getElementById("time").value;
+			  var d = new Date(); // for now
+			  d.getHours(); // => 9
+			 d.getMinutes(); // =>  30
+			  d.getSeconds();
+				var Etime=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 				var Btime=document.getElementById("starttime").value;
 				var Btime1=document.getElementById("endtime").value;
 				console.log("Btime="+Btime);
