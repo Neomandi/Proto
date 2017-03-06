@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin</title>
 <link rel="stylesheet" href="libs/pure-min.css">
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
     <link rel="stylesheet" href="libs/grids-responsive-min.css">
