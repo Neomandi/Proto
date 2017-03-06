@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin</title>
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link rel="stylesheet" href="libs/pure-min.css">
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
     <link rel="stylesheet" href="libs/grids-responsive-min.css">
@@ -59,13 +60,19 @@
 <center>
 <div class="container" id="div" >
 
-<form method="post" name="admin">	
-<input type="text" name="starttime" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="endtime" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<form method="post" name="admin" class="form-inline">
+	<div class="form-group">	
+		<label for="starttime">Start Time: </label>
+		<input type="text" name="starttime" class="form-control" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
+	</div>
+	<div class="form-group">
+		<label for="endtime">End Time: </label>
+		<input type="text" name="endtime" class="form-control" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
+	</div><br/><br/>
 <input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="stop" value="Stop Auction" class="btn btn-warning btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="reset" name="reset" value="Reset Auction" class="btn btn-primary btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<div align="center">
+<input type="button" name="stop" value="Stop Auction" class="btn btn-danger btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="reset" name="reset" value="Reset Auction" class="btn btn-warning btn-lg" onClick="fun2()"  style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><div align="center">
 		<div id="msg" style="display:inline;" >Auction will begin in</div>
 		<div id="timer" style="display:inline;" ></div>
 		<div id="auction" style="display:inline;"></div>
@@ -99,6 +106,7 @@ function fun()
 			  d.getHours(); // => 9
 			 d.getMinutes(); // =>  30
 			  d.getSeconds();
+			 
 				var Etime=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 				var Btime=document.getElementById("starttime").value;
 				var Btime1=document.getElementById("endtime").value;
