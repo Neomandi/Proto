@@ -244,7 +244,7 @@
 
                                         <th style="text-align:center; color:white">
 
-                                            <h4 style="font-size:15px;">PMVA<sup>$</sup></h4></th>
+                                            <h4 style="font-size:15px;">PMVA<sup>^</sup></h4></th>
 
                                         <th style="text-align:center; color:white">
                                             <h4 style="font-size:15px;">Deductions</h4></th>
@@ -341,7 +341,7 @@
                                     <td>
                                         <h4> #E-Platform Charges</h4></td>
                                     <td>
-                                        <h4>$ Pre-Market Value Addition Charges</h4></td>
+                                        <h4>^ Pre-Market Value Addition Charges</h4></td>
                                 </tr>
                             </table>
 
