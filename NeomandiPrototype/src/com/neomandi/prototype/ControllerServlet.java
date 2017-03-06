@@ -1776,6 +1776,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession elog = request.getSession(false);
 			if(elog!=null)
 			{ 
+				System.out.println("Inside if---invalidate session");
 				elog.removeAttribute("name");
 				elog.removeAttribute("pwd");
 				elog.removeAttribute("empnumber");
@@ -1798,7 +1799,14 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-				return;
+				System.out.println("Inside else---invalidate session");
+				rde=request.getRequestDispatcher("Login.html");
+				try {
+					rde.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
