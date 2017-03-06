@@ -32,6 +32,18 @@ input[type="number"],input[type="text"]
 {
 	text-align: center;
 }
+#remove
+{
+	background: #3c4da0;
+border-color: #3c4da0;
+border-radius: 2px;
+}
+#remove:HOVER
+{
+	background: #ff0000;
+    border-color: #ff0000;
+    border-radius: 2px;
+}
 a
 {
 	cursor:pointer;
@@ -56,6 +68,12 @@ $( "p" ).click(function() {
 <style>
 .maindiv{
 overflow:auto;
+}
+#increment:ACTIVE
+{
+	border-color:#BDD102;
+	color:#3C4DA0;
+	
 }
 .tradtab a{
     background-color:#0082B2;
@@ -89,7 +107,12 @@ button.accordion {
     font-size: 15px;
     transition: 0.4s;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
 
+   opacity: 3;
+
+}
 button.accordion.active, button.accordion:hover {
     background-color: #ddd;
 }
@@ -186,6 +209,7 @@ catch(NullPointerException e)
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
 	String stop=(String)context.getAttribute("endtime");
+	System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
@@ -467,7 +491,8 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here"  class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">&nbsp;&nbsp;&nbsp;
+	<font size="2">  Enter your bid here!</font></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -737,7 +762,12 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
 	<% 
 		String quantityneededs=tlb.getQuantityneeded();
 		int quantityneeded=Integer.parseInt(quantityneededs); 
@@ -994,9 +1024,9 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><a  onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip"   title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
 	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
 	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	

@@ -194,7 +194,8 @@
                             <td>
                             <%
                             	ServletContext context = request.getSession().getServletContext();
-                            try{
+                            try
+                            {
                             	System.out.println("************************starttime is "+(String)context.getAttribute("starttime"));
                             	//if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
@@ -386,6 +387,8 @@
 									var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
 									console.log(product);
 									var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
+									neededs=Math.ceil(neededs);
+									console.log("ceil="+neededs);									
 									if(neededs>totals)
 									{
 										alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
@@ -396,6 +399,11 @@
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
 									}
+									else if(neededs<=0)
+										{
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+											alert("YOU SHOULD ENTER VALID QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");								
+										}									
 									else 
 									{
 										alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");

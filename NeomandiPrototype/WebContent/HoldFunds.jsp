@@ -191,7 +191,7 @@ else
 		   			     document.getElementById("netamount").innerHTML = blocked;
 		   			  	 document.getElementById("netamount").value = blocked;
 		   			     document.getElementById("hold").value = "";
-		   			  document.getElementById("balance").value = "";
+		   			  	 document.getElementById("balance").value = "";
 		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
 		   			     
 				  }};

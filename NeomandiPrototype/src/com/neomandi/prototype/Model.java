@@ -918,7 +918,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		return "SUCCESS "+produce;
 	}
-
+//the ver first time when trader clicks on hold funds ths page pop ups
 	@SuppressWarnings("resource")
 	public TraderBlockBean traderBlockBank(String name,String pwd) 
 	{
@@ -969,22 +969,17 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					tbb.setMsg("SUCCESS");
 				//	System.out.println("total balance amount is "+rs.getInt("balance"));		
 			    }	
-				int blockamount[]=new int[1000];
+				int blockamount=0;
 				ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();		
-				int i=0;
 				while(rs.next())
 				{
-					blockamount[i]=rs.getInt("blockamount");
-					i++;
-				}
-				
-				for(i=1;i<blockamount.length;i++)
-					blockamount[0]=blockamount[0]+blockamount[i];
-				 System.out.println("total blocked amount is "+blockamount[0]);
-				 tbb.setBlock(blockamount[0]);
+					blockamount=rs.getInt("blockamount");
+				}				
+				System.out.println("total blocked amount is "+blockamount);
+				tbb.setBlock(blockamount);
 					return tbb;			
 			}
 			}
@@ -3907,6 +3902,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				{
 					quantityassigneds = rs.getString("quantityassigned");							
 				}		
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
+				
+				con = JDBCHelper.getConnection();				
 				int result=0;
 				ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 				ps.setString(1, aadharnumber);
