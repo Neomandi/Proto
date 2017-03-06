@@ -106,6 +106,7 @@ function fun()
 			  d.getHours(); // => 9
 			 d.getMinutes(); // =>  30
 			  d.getSeconds();
+			 console.log("System time: "+d);
 			 
 				var Etime=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 				var Btime=document.getElementById("starttime").value;
