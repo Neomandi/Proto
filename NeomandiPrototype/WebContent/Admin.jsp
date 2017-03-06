@@ -81,7 +81,7 @@
 var Btime1;
 function fun()
 {
-	 
+	 console.log("start time is "+ document.getElementById("starttime").value);
 	 if(starttime == "" && endtime == "")
 	 {
 		 alert("Please fill the fields");
@@ -96,7 +96,7 @@ function fun()
 		  }};
 			  xmlhttp.open("POST", "Start.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+			  xmlhttp.send("starttime="+document.getElementById("starttime").value+"&&endtime="+document.getElementById("endtime").value);
 			  
 			  
 				var Etime=document.getElementById("time").value;
@@ -140,12 +140,7 @@ function fun()
 				console.log("differences in hours is "+hours);
 				
 				var timedifference=+hours+":"+minutes+":"+seconds;
-				console.log("differences in time is "+timedifference);
-			  
-			  
-				
-				
-				
+				console.log("differences in time is "+timedifference);				
 			  countdown(minutes,seconds,hours);
 	 }
 }
