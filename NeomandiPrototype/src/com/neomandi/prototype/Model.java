@@ -976,8 +976,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
+				rs = ps.getResultSet();	
 				System.out.println(ps);
-				rs = ps.getResultSet();		
 				while(rs.next())
 				{
 					blockamount=rs.getInt("blockamount");
