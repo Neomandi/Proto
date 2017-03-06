@@ -62,7 +62,7 @@ footer {
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-auction at NeoMandi.</p></div>
-                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
 
@@ -101,7 +101,7 @@ footer {
                             <td>
                                 <h4>EPC<sup>#</sup></h4></td>
                             <td>
-                                <h4>PMVA<sup>$</sup></h4></td>
+                                <h4>PMVA<sup>^</sup></h4></td>
                             <td>
                                 <h4>NeoMandi Revenue</h4></td>
                         </tr>
@@ -230,7 +230,7 @@ footer {
                     <td>
                         <h4> #E-Platform Charges</h4></td>
                     <td>
-                        <h4>$ Pre-Market Value Addition Charges</h4></td>
+                        <h4>^ Pre-Market Value Addition Charges</h4></td>
                 </tr>
             </table>
 

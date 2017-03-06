@@ -47,7 +47,7 @@
 <div class="container-fluid headertop">
 <div class="">
 
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><h1><%= (String)alog.getAttribute("name") %>, Welcome to E-Auction at NeoMandi.</h1></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("name") %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="AdminLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -267,9 +267,10 @@ function fun2()
 				        		    	}
 			        		     	}
 			        		   	 	tick();
-			        			}		
+			        			}	
+				            	var Btime=document.getElementById("starttime").value;
 				            	var Etime1=document.getElementById("starttime").value;
-				            	start1 = Etime1.split(":");
+				            	start1 = Btime.split(":");
 				            	end1 =Btime1.split(":");
 				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);

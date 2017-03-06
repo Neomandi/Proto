@@ -27,6 +27,11 @@ table:nth-child(even) {
 .tradtab a{
     background-color:#0082B2;
     }
+ 
+.table > tbody + tbody { 
+border-top:0px;
+}
+ 
 </style>
 </head>
 <body class="" >
@@ -125,12 +130,29 @@ catch(Exception e)
      <div class="row wback">
          <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">
 			   <table class="table">
+			   <tr>
+			   		
+			   		<th   ></th>
+			   		<th   ></th>
+					<th  rowspan="<%=size%>" style="text-align:center;">Lot Number</th>
+					<th ></th>
+					<th colspan="2"></th>
+					<th  style="text-align:center;">Name</th>
+					<th  colspan="2" style="text-align:center;">Quantity</th>
+					<th   ></th>
+			   		<th   ></th>
+				</tr>
 				<tbody align="center">
+				
+				
 				<tr>
-				<td class=" cback clsnowrap" rowspan="<%=size%>">
-				Lot Number
+				<td rowspan="<%=size%>">
+				
 				</td>
-				<td  class="cback" rowspan="<%=size%>">
+				<td  rowspan="<%=size%>">
+				
+				</td>
+				<td   rowspan="<%=size%>">
 					<h4><%=dp.getLotnum()%></h4>
 				</td>
 				<td>
