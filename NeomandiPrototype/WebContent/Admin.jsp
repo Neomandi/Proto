@@ -38,9 +38,6 @@
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.jsp';</script>");
 	    }
-	    
-	    SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
-     	String time=df1.format(new Date());
 %>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -76,7 +73,6 @@
 	</div>	
 </form>
 </div></center>
-<input type="hidden" value="<%=time%>" id="time" />	
 <script>
 var Btime1;
 function fun()
@@ -99,7 +95,11 @@ function fun()
 			  xmlhttp.send("starttime="+document.getElementById("starttime").value+"&&endtime="+document.getElementById("endtime").value);
 			  
 			  
-				var Etime=document.getElementById("time").value;
+			  var d = new Date(); // for now
+			  d.getHours(); // => 9
+			 d.getMinutes(); // =>  30
+			  d.getSeconds();
+				var Etime=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 				var Btime=document.getElementById("starttime").value;
 				var Btime1=document.getElementById("endtime").value;
 				console.log("Btime="+Btime);
