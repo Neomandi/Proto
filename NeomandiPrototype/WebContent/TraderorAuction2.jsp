@@ -116,7 +116,10 @@ input[type=number]::-webkit-outer-spin-button {
 button.accordion.active, button.accordion:hover {
     background-color: #ddd;
 }
-
+#msg
+{
+	 text-align:right;
+}
 button.accordion:after {
     content: '\002B';
     color: #777;
@@ -491,10 +494,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here"  class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">&nbsp;&nbsp;&nbsp;
-	<font size="2">  Enter your bid here!</font></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here"  class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	</td>
+	</tr>
 	</tbody>
-	</table>
+	</table><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here!</font>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
