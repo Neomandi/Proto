@@ -38,9 +38,6 @@
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.jsp';</script>");
 	    }
-	    
-	    SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
-     	String time=df1.format(new Date());
 %>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -76,7 +73,6 @@
 	</div>	
 </form>
 </div></center>
-  <!--  <input type="hidden" value="<%=time%>" id="time" />	-->
 <script>
 var Btime1;
 function fun()
