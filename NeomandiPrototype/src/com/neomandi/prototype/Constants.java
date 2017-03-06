@@ -6,5 +6,4 @@ public interface Constants
     public static final String URL = "jdbc:mysql://localhost:3306/submaste_neomandi";
     public static final String UID = "submaste_root";
     public static final String PWD = "NeoMand!0220";
-
 }
