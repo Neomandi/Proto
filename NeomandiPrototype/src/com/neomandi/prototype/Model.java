@@ -606,8 +606,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else if(slot.equals("base")&&quality.equals("base"))
 				{
-					if(kproduce.equals("Vegetables"))
-					  kproduce="Vegetable";
+					//if(kproduce.equals("Vegetables"))
+					  //kproduce="Vegetable";
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and produce = ?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, produce);					
@@ -656,8 +656,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else
 				{
-					if(kproduce.equals("Vegetables"))
-						  kproduce="Vegetable";
+					
 					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
@@ -970,6 +969,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				//	System.out.println("total balance amount is "+rs.getInt("balance"));		
 			    }	
 				int blockamount=0;
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
+				
+				con = JDBCHelper.getConnection();				
 				ps =con.prepareStatement("select blockamount from traders_blocked_amount where aadharnumber=?");
 				ps.setString(1, aadharnumber);
 				ps.execute();
@@ -1008,6 +1011,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	{
 		System.out.println("inside model-> traderBlockamount()->..bankname is"+bankname+" trader name is "+name+" pwd is "+pwd);
 		PreparedStatement ps = null;	
+		PreparedStatement ps1 = null;	
+		PreparedStatement ps2= null;	
+		PreparedStatement ps3 = null;	
+		PreparedStatement ps4 = null;	
+		
 		Connection con = null;		
 		ResultSet rs = null;	
 		String aadharnumber="";	
@@ -1051,10 +1059,10 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}								
 				else								
 				{		
-					ps =con.prepareStatement("SELECT tradername FROM traders_blocked_amount where tradername=?");
-					ps.setString(1, name);									
-					ps.execute();									
-					rs = ps.getResultSet();		
+					ps1 =con.prepareStatement("SELECT tradername FROM traders_blocked_amount where tradername=?");
+					ps1.setString(1, name);									
+					ps1.execute();									
+					rs = ps1.getResultSet();		
 					if(rs.next())
 					{	
 						ps =con.prepareStatement("update tbankaccount set balance =? where  accountnumber= ?");									
@@ -1091,16 +1099,24 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						System.out.println("total blocked amount = "+blockamount);
 						String blockamounts=String.valueOf(blockamount);	
 						msg[1]=blockamounts;
-															
-						ps =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");											
-						ps.setString(1, blockamounts);											
-						ps.setString(2, aadharnumber);												
-						ps.execute();
+											
+						JDBCHelper.Close(ps);
+						JDBCHelper.Close(con);
 						
-						ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");												
-						ps.setString(1, name);												
-						ps.execute();												
-							rs = ps.getResultSet();											
+						con = JDBCHelper.getConnection();
+						ps2 =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");											
+						ps2.setString(1, blockamounts);											
+						ps2.setString(2, aadharnumber);												
+						ps2.execute();
+						System.out.println(ps2);
+						JDBCHelper.Close(ps);
+						JDBCHelper.Close(con);
+						
+						con = JDBCHelper.getConnection();
+						ps3 =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where tradername=?");												
+						ps3.setString(1, name);												
+						ps3.execute();												
+							rs = ps3.getResultSet();											
 						while(rs.next())													
 							blockamount=rs.getInt("blockamount");													
 						System.out.println("after updating traders account, total blocked amount is "+blockamount);
