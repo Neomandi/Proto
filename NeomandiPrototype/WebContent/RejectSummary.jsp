@@ -188,7 +188,7 @@
                                     <td>
                                         <h4>EPC<sup>#</sup></h4></td>
                                     <td>
-                                        <h4>PMVA<sup>$</sup></h4></td>
+                                        <h4>PMVA<sup>^</sup></h4></td>
                                     <td>
                                         <h4>Deductions</h4></td>
                                     <td>
@@ -244,7 +244,7 @@
                             <td>
                                 <h4> #E-Platform Charges</h4></td>
                             <td>
-                                <h4>$ Pre-Market Value Addition Charges</h4></td>
+                                <h4>^ Pre-Market Value Addition Charges</h4></td>
                         </tr>
                     </table>
 

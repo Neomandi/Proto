@@ -173,7 +173,7 @@ if((String)hs.getAttribute("name")==null){
 	  <td><h4>TLC<sup>*</sup></h4></td>
 	<td><h4>Market Cess</h4></td>
 	<td><h4>EPC<sup>#</sup></h4></td>
-	<td><h4>PMVA<sup>$</sup></h4></td>
+	<td><h4>PMVA<sup>^</sup></h4></td>
 	<td><h4>Deductions</h4></td>
 	<td><h4>My Net Earnings</h4></td>
 	<td><h4>Status</h4></td>
@@ -206,7 +206,7 @@ if((String)hs.getAttribute("name")==null){
 	  <div id="grad1"></div>
 	 
 	  <div class="container charge">
-	  <table class="table"><tr><td><h4>*Transportation / Loading Charges</h4></td><td><h4> #E-Platform Charges</h4></td><td><h4>$ Pre-Market Value Addition Charges</h4></td></tr></table>
+	  <table class="table"><tr><td><h4>*Transportation / Loading Charges</h4></td><td><h4> #E-Platform Charges</h4></td><td><h4>^ Pre-Market Value Addition Charges</h4></td></tr></table>
 
     </div>
     
