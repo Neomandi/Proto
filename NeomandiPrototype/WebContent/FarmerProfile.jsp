@@ -106,14 +106,9 @@
 	 		  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
-	    	 String starttime=(String)hs.getAttribute("starttime"); 
- 		  System.out.println(" in farmermaster starttime="+starttime);
- 		 String endtime=(String)hs.getAttribute("endtime"); 
-		  System.out.println(" in farmermaster endtime="+endtime);
+	    	 
 		 	System.out.println("password="+pass);
-		 	ServletContext context = request.getSession().getServletContext();
-			starttime=(String)context.getAttribute("starttime");
-			endtime=(String)context.getAttribute("endtime");
+		 	
 	     	// String time=(String)hs.getAttribute("time");
 	    	
 			HttpSession hs1=request.getSession(false);  
@@ -306,12 +301,7 @@
 					{
 						e.printStackTrace();
 					}
-		     		finally
-		     		{
-		     			JDBCHelper.Close(rs);
-		     			JDBCHelper.Close(statement);
-		     			JDBCHelper.Close(con);
-		     		}
+		     		
 					%>
                 </div>
                 <br>
@@ -401,26 +391,31 @@
 	}
 	%>
 	<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-	<div id="msg" style="display:inline; visibility:hidden;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; visibility:hidden;" ></div></font></h4>
-	  	<div id="auction" style="display:inline; visibility:hidden;"></div>
-		<div id="auction1" style="display:inline; visibility:hidden;"></div>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<div id="msg" style="visibility:hidden;" ></div>&nbsp;<font color='blue' ><div id="timer" style="visibility:hidden;" ></div></font></h4>
+<div id="auction" style="visibility:hidden;"></div>
+<div id="auction1" style="visibility:hidden;"></div>
+<%ServletContext context = request.getSession().getServletContext();
+String	starttime=(String)context.getAttribute("starttime");
+	String endtime=(String)context.getAttribute("endtime"); %>
+
+<!-- fetching date and time for summary -->
 <form>
-	<input type="hidden" value="<%=time%>" id="time" />
+	
+<input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
 	<input type="hidden" value="<%=endtime%>" id="etime" />
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
-	
-
 </form>
 <script>
 	
-			var Etime=document.getElementById("time").value;
-			var stime=document.getElementById("stime").value;
-			var etime=document.getElementById("etime").value;
-			var slot=document.getElementById("slot").value;
-			var date=document.getElementById("date").value;
+
+var Etime=document.getElementById("time").value;
+var stime=document.getElementById("stime").value;
+var etime=document.getElementById("etime").value;
+var slot=document.getElementById("slot").value;
+var date=document.getElementById("date").value;
 			var s1="slot1";
 			var s2="slot2";
 			var s3="slot3";
@@ -438,7 +433,7 @@
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-				 diff = endDate.getTime() - startDate.getTime();
+				diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
 				console.log("current time is "+Etime);
 				console.log("difference in milliseconds is "+diff);
@@ -474,20 +469,12 @@
 				
 				countdown(minutes,seconds,hours);
 				
-				var Etime1=document.getElementById("time").value;
-            	start1 = Etime1.split(":");
-            	end1 =Btime1.split(":");
-            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-            	var td = endDate1.getTime() - startDate1.getTime();	
-				timedif=diff+td;
-				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(slot==s2){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:40:00";
-			var Btime1="10:45:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -557,8 +544,8 @@
 	//-------------------------------for slot3-----------------------------------------------------------------
 		else if(slot==s3){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:50:00";
-			var Btime1="10:55:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -609,8 +596,8 @@
 	//----------------------------------for slot4---------------------------------------------------------------	
 		else if (slot==s4){
 			var Etime=document.getElementById("time").value;
-			var Btime="11:00:00";
-			var Btime1="11:05:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -760,10 +747,6 @@ function countdown(minutes,seconds,hours)
 			        		            console.log("inside the count function");
 			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
-						            	if(document.getElementById("auction1")!=null){
-						            		document.getElementById("accept").disabled=false;
-											 document.getElementById("reject").disabled=false;
-						            	}
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}
@@ -792,19 +775,17 @@ function countdown(minutes,seconds,hours)
 		            	console.log("auction ends at "+Btime1);
 		            	console.log("time is  "+Etime1);
 		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
-	        			
+	        			count(minutes1,seconds1);	        			
 					}
 				}
 			}		       
  		}
  tick();
 }
-countdown(minutes,seconds,hours);			   
-			
+countdown(minutes,seconds,hours);			   			
 //console.log("time="+timedif);
-  /* var t=setTimeout(auction,timedif);
-function auction(){
+ /*var t=setTimeout(auction,timedif);
+ function auction(){
 	 document.getElementById("accept").disabled=false;
 	 document.getElementById("reject").disabled=false;
  }*/
@@ -815,10 +796,7 @@ function auction(){
    	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
-
     <script>
-    
-    
     </script> 
 
 </body>
