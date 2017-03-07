@@ -130,8 +130,10 @@ footer {
 		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		if(rs.next())
+		System.out.println(rs.getRow());
+		if(rs.getRow() != 0)
 		{
+			//System.out.println("Inside if....");
 			/*if(rs.getString("COUNT(*)").equals("0"))
 			{
 				 out.println("<script type=\"text/javascript\">");
@@ -196,13 +198,14 @@ footer {
 		}
 		else
 		{
+			 //System.out.println("Inside else....");
 			 out.println("<script type=\"text/javascript\">");
 		  	 out.println("alert('No Revenues');");
 		 	 out.println("</script>");
 		}
 	}
 	}
-	catch(Exception e)
+	catch(SQLException | NumberFormatException e)
 	{
 		e.printStackTrace();
 	}

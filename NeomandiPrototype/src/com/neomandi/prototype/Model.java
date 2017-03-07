@@ -850,23 +850,24 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				ps.setString(1,aadharnumber);
 				ps.execute();
 				rs = ps.getResultSet();
-				//System.out.println("lotnum trader "+tlbn.getTname()+" is bidding for is ");
 				while(rs.next())
 				{
 					lot[i]=rs.getString("lotnum");
-			//		System.out.println(lot[i]);
 					i++;
 				}
 				if(Arrays.asList(lot).contains(lotnum))
-				{
-					ps = con.prepareStatement("select * from tradelist");
-					ps.execute();
-					rs = ps.getResultSet();
-					while(rs.next())
-					{
-						lot[i]=rs.getString("lotnum");
-						i++;
-					}
+				{					
+						lot[i]=lotnum;
+						i++;			
+						ps = con.prepareStatement("select quantityneeded from tradelist where aadharnumber=? and lotnum=?");
+						ps.setString(1,aadharnumber);
+						ps.setString(2,lotnum);
+						ps.execute();
+						rs = ps.getResultSet();
+						while(rs.next())
+						{
+						return "fail"+rs.getString("quantityneeded");	
+						}						
 				}
 				else
 				{					
@@ -894,8 +895,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					ps.setString(7,"0");
 					ps.setString(8,"0");
 					ps.execute();				
-					con.commit();
-					
+					con.commit();					
 				}
 			}
 		}
@@ -3909,7 +3909,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				{					
 					quantityneededs=rs.getString("quantityneeded");
 				}		
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
 				
+				con = JDBCHelper.getConnection();
 				ps =con.prepareStatement("SELECT quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 				ps.setString(1, aadharnumber);
 				ps.setString(2, lotnum);
@@ -3932,6 +3935,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				{
 					result=rs.getInt("blockamount");						
 				}				
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
+				
+				con = JDBCHelper.getConnection();
 				int bidprice = 0;
 				String bidprices="";		
 				String finalcosts="";
@@ -4657,5 +4664,86 @@ public void PostAuction()
 			JDBCHelper.Close(con);
 		}
 		return msg;
+	}
+
+	@SuppressWarnings("resource")
+	public String addTradeAgain(String lotnumber, TraderLoginBean tlbn, String quantityneeded) 
+	{
+		System.out.println("inside Model-> inside AddTrade()->quantityneeded is "+quantityneeded);
+		String msg = null;
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		String produce="";
+		String aadharnumber="";
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				return msg + "Connection not established";
+			}
+			else
+			{
+				Calendar calendar = Calendar.getInstance();
+		        TimeZone fromTimeZone = calendar.getTimeZone();
+		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+		        calendar.setTimeZone(fromTimeZone);
+		        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+		        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+		            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+		        }
+
+		        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+		        if (toTimeZone.inDaylightTime(calendar.getTime())) 
+		        {
+		            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+		        }
+		        System.out.println("************"+calendar.getTime()); 
+				
+				con.setAutoCommit(false);
+		//		System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
+				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
+				ps.setString(1, tlbn.getTname());
+				ps.setString(2, tlbn.getTpwd());
+				ps.execute();
+				rs = ps.getResultSet();
+				while(rs.next())
+				{
+					 aadharnumber=rs.getString("aadharnumber");
+				}				
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
+				
+				con = JDBCHelper.getConnection();
+				ps = con.prepareStatement("update tradelist set quantityneeded=? where aadharnumber=? and lotnum=?");
+				ps.setString(2,aadharnumber);
+				ps.setString(1,quantityneeded);
+				ps.setString(3,lotnumber);
+				ps.execute();
+				System.out.println(ps);
+				rs = ps.getResultSet();
+				return null;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			
+			try {
+				con.rollback();
+			} catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
+		return "SUCCESS "+produce;
 	}
 }
