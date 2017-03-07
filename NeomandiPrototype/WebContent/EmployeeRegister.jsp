@@ -54,18 +54,18 @@ function validateEForm()
 	//Mobile number validation
 	var val = num.value;
 	if(val==""){
-		alert("Please enter your mobile number");
+		alert("Please enter your Employee Number");
 		 num.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		alert("Enter the valid Mobile Number(Like : 12345)");
+		alert("Enter the valid Employee Number(Like : 12345)");
 		num.focus();
 		return false;
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		alert(" Your Mobile Number must be 0 to 9 Integers");
+		alert(" Your Employee Number must be 0 to 9 Integers");
 		num.focus();
 		return false;
 	}
@@ -74,7 +74,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid employee number, must be five digits");
+	    alert("Invalid Employee Number, must be five digits");
 	    num.focus();
 	    return false;
 	}
