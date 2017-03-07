@@ -45,8 +45,8 @@ if(((String)request.getAttribute("msg"))!=null )
 {
 	 System.out.println("inside if");
 	 out.println("<script type=\"text/javascript\">");
- 	 out.println("alert('THERE ARE NO LOTS TO BE DISPATCHED');");
- 	 out.println("location='Revenue.jsp';");
+ 	 out.println("alert('Auction yet to happen, hence, no dispatch summary available.');");
+ 	 out.println("location='dispatch2.jsp';");
 	 out.println("</script>");
 	 %>
 	 <input type="hidden" value="<%=(String)request.getAttribute("msg")%>" id="msg">
@@ -54,8 +54,8 @@ if(((String)request.getAttribute("msg"))!=null )
 	 var msg=document.getElementById("msg");
 	 console.log(msg);
 	 if(msg.includes("fail"))
-		 alert('THERE ARE NO LOTS TO BE DISPATCHED');
-	 location='Revenue.jsp';
+		 alert('Auction yet to happen, hence, no dispatch summary available.');
+	 location='dispatch2.jsp';
 	 </script>
 	 <% 
 }
