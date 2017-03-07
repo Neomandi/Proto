@@ -136,7 +136,7 @@ catch(Exception e)
       <tr><td><label for="email">Email:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email"value="<%= rs.getString("email") %>" readonly></td></tr>
       <tr><td><label for="address">Address</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" value=<%=rs.getString("address")%> readonly> 
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("address")%>" readonly> 
 	   
 	  </td></tr>
       
@@ -147,7 +147,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="state" value=<%= rs.getString("state") %> readonly>
+                                    <input type="text" class="form-control" id="state" value="<%= rs.getString("state") %>" readonly>
                                 </td>
                             </tr>
 	 		<tr>
@@ -157,7 +157,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="district" value=<%= rs.getString("district") %> readonly>
+                                    <input type="text" class="form-control" id="district" value="<%= rs.getString("district") %>" readonly>
                                 </td>
                             </tr>
 							<tr>
@@ -167,7 +167,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="taluk" value=<%= rs.getString("taluk") %> readonly>
+                                    <input type="text" class="form-control" id="taluk" value="<%= rs.getString("taluk") %>" readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -215,7 +215,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="district" value=<%= rs.getString("ldistrict") %> readonly>
+                                    <input type="text" class="form-control" id="district" value="<%= rs.getString("ldistrict") %>" readonly>
                                 </td>
                             </tr>
 							<tr>
@@ -225,11 +225,11 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="taluk" value=<%= rs.getString("ltaluk") %> readonly>
+                                    <input type="text" class="form-control" id="taluk" value="<%= rs.getString("ltaluk") %>" readonly>
                                 </td>
                             </tr>
 	  <tr><td><label for="pin">Pin</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("lpin") %> readonly></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("lpin") %>" readonly></td></tr>
     </table>
   </form>
   </div><br>
@@ -281,11 +281,11 @@ catch(Exception e)
 <form>
     <table class="table"> 
   <tr><td><label for="name">Bank Name</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("bankname") %> readonly></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("bankname") %>" readonly></td></tr>
       <tr><td><label for="aadhar">Account Number</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("accountnum") %> readonly></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("accountnum") %>" readonly></td></tr>
       <tr><td><label for="mobno">IFSC</label></td></tr>
-<tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("ifsccode") %> readonly></td></tr>	  
+<tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("ifsccode") %>" readonly></td></tr>	  
 
       <tr><td><label for="address">Bank Branch</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("branch") %>" readonly></td></tr>
