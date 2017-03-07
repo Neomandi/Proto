@@ -990,15 +990,34 @@ public class ControllerServlet extends HttpServlet {
 			{
 				String ms=msg.substring(4);
 				System.out.println("quantityalready bid for first time is"+ms);
-				PrintWriter out = null;
-				try {
-					out = response.getWriter();
-					out.println("lotnumber"+ms+"lotnumber");
-				    out.flush();
-				    out.close();
+				int old=Integer.parseInt(ms);
+				int news=Integer.parseInt(quantity);
+				if(news<old)
+				{
+					PrintWriter out = null;
+					try 
+					{
+						out = response.getWriter();
+						out.println("fail"+old+"fail");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-				catch (IOException e) {
-					e.printStackTrace();
+				else
+				{
+					PrintWriter out = null;
+					try {
+						out = response.getWriter();
+						out.println("lotnumber"+ms+"lotnumber");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			else

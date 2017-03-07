@@ -402,7 +402,7 @@
 									else if(neededs<=0)
 										{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-											alert("YOU SHOULD ENTER VALID QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");								
+											alert("YOU SHOULD ENTER VALID QUANTITY YOU WILL BID FOR BEFORE ADDING TO TRADE LIST ");								
 										}
 									else if(neededs%50!=0)
 										{
@@ -421,14 +421,16 @@
 										if(this.readyState == 4 && this.status == 200) 
 										{
 										   	 var string=xmlhttp.responseText;
-										   	// console.log("string is"+string);	
-										   	if(string.includes("lotnumber"))
-										   		{
+										   	 console.log("string is"+string);	
+										   	 if(string.includes("lotnumber"))
+										   	 {
 											   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
 											         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
 											         startlotnum=startlotnum+9;
 											         
 											         var ms=string.substring(startlotnum,endlotnum);
+											         var newsize=new Number(ms);
+											         
 											         if (confirm('You have already added this lot to trade with quantity as '+ms+'Kg you want to update it with new quantity?? ')) 
 											         {
 											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
@@ -438,9 +440,18 @@
 											         }
 											         else
 											         {
-											        	 alert("You will be auctioning for this lot with previous mentioned quantity of "+neededs+" Kg");
+											        	 alert("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
 											         }											        
-										   		}
+										   	}
+										   	else if(string.includes("fail"))
+										   	{
+										   		var startlotnum=xmlhttp.responseText.indexOf('fail');
+										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+										         startlotnum=startlotnum+4;
+										         
+										         var ms=string.substring(startlotnum,endlotnum);
+											   		alert("You cant reduce the size you can only increase it. Please try to enter size greater than "+ms);
+									   		}
 										   	else if(string.includes("msg"))
 										   		{
 												   		alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs............");

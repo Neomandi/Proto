@@ -792,9 +792,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				return msg + "Connection not established";
 			}
 			else
-			{
-				
-				
+			{			
 				Calendar calendar = Calendar.getInstance();
 		        TimeZone fromTimeZone = calendar.getTimeZone();
 		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
@@ -866,7 +864,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						rs = ps.getResultSet();
 						while(rs.next())
 						{
-						return "fail"+rs.getString("quantityneeded");	
+							return "fail"+rs.getString("quantityneeded");	
 						}						
 				}
 				else
