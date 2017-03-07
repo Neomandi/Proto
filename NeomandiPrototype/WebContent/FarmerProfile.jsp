@@ -106,14 +106,9 @@
 	 		  
 	     	String pass=(String)hs.getAttribute("pass");  
 	     	// String time=(String)hs.getAttribute("time");
-	    	 String starttime=(String)hs.getAttribute("starttime"); 
- 		  System.out.println(" in farmermaster starttime="+starttime);
- 		 String endtime=(String)hs.getAttribute("endtime"); 
-		  System.out.println(" in farmermaster endtime="+endtime);
+	    	 
 		 	System.out.println("password="+pass);
-		 	ServletContext context = request.getSession().getServletContext();
-			starttime=(String)context.getAttribute("starttime");
-			endtime=(String)context.getAttribute("endtime");
+		 	
 	     	// String time=(String)hs.getAttribute("time");
 	    	
 			HttpSession hs1=request.getSession(false);  
@@ -306,12 +301,7 @@
 					{
 						e.printStackTrace();
 					}
-		     		finally
-		     		{
-		     			JDBCHelper.Close(rs);
-		     			JDBCHelper.Close(statement);
-		     			JDBCHelper.Close(con);
-		     		}
+		     		
 					%>
                 </div>
                 <br>
@@ -405,7 +395,9 @@
 <div id="msg" style="visibility:hidden;" ></div>&nbsp;<font color='blue' ><div id="timer" style="visibility:hidden;" ></div></font></h4>
 <div id="auction" style="visibility:hidden;"></div>
 <div id="auction1" style="visibility:hidden;"></div>
-
+<%ServletContext context = request.getSession().getServletContext();
+String	starttime=(String)context.getAttribute("starttime");
+	String endtime=(String)context.getAttribute("endtime"); %>
 
 <!-- fetching date and time for summary -->
 <form>
@@ -441,7 +433,7 @@ var date=document.getElementById("date").value;
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-				 diff = endDate.getTime() - startDate.getTime();
+				diff = endDate.getTime() - startDate.getTime();
 				console.log("end time is "+Btime);
 				console.log("current time is "+Etime);
 				console.log("difference in milliseconds is "+diff);
@@ -481,8 +473,8 @@ var date=document.getElementById("date").value;
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(slot==s2){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:40:00";
-			var Btime1="10:45:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -552,8 +544,8 @@ var date=document.getElementById("date").value;
 	//-------------------------------for slot3-----------------------------------------------------------------
 		else if(slot==s3){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:50:00";
-			var Btime1="10:55:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -604,8 +596,8 @@ var date=document.getElementById("date").value;
 	//----------------------------------for slot4---------------------------------------------------------------	
 		else if (slot==s4){
 			var Etime=document.getElementById("time").value;
-			var Btime="11:00:00";
-			var Btime1="11:05:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
