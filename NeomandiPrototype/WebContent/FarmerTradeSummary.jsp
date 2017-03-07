@@ -557,8 +557,8 @@ var etime=document.getElementById("etime").value;
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(slot==s2){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:40:00";
-			var Btime1="10:45:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -628,8 +628,8 @@ var etime=document.getElementById("etime").value;
 	//-------------------------------for slot3-----------------------------------------------------------------
 		else if(slot==s3){
 			var Etime=document.getElementById("time").value;
-			var Btime="10:50:00";
-			var Btime1="10:55:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -680,8 +680,8 @@ var etime=document.getElementById("etime").value;
 	//----------------------------------for slot4---------------------------------------------------------------	
 		else if (slot==s4){
 			var Etime=document.getElementById("time").value;
-			var Btime="11:00:00";
-			var Btime1="11:05:00";
+			var Btime=stime;
+			var Btime1=etime;
 			start = Etime.split(":");
 			end =Btime.split(":");
 			var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);

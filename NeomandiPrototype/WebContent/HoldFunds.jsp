@@ -134,8 +134,7 @@ else
 		  if (this.readyState == 4 && this.status == 200) 
 		  {
 			    		 var string=xmlhttp.responseText;		        	 	        	 
-					     console.log("balance "+string+" ");
-					     
+					     console.log("balance "+string+" ");					     
 				         document.getElementById("balance").innerHTML = string;
 				         document.getElementById("balance").value = string;				         
 		  }};
@@ -166,13 +165,20 @@ else
 		  var hold=document.getElementById("hold").value;
 		  var hld=new Number(hold);
 		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
+		  console.log(hld<0);
 		  if(hold.length==0)
 			  alert("PLEASE ENTER AMOUNT TO BE HELD ")
 		  else if(balance!=null&&balance.length!=0)
-		  {			 	        
+		  {
+			  console.log("inside balance!=null&")
 			if(bal<hld)
 			{
 					alert("YOU CANT HOLD FUNDS MORE THAN AVAILABLE BALANCE")
+			}
+			else if(hld<0||hld==0)
+			{
+					console.log("hld<0");
+					alert("PLEASE ENTER POSITIVE NUMBER");
 			}
 			else
 			{
@@ -200,12 +206,15 @@ else
 					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
 			 }
 		  }
-		  else  if(hold==0)
-			  {
-			  //	alert("PLEASE HOLD MORE FUNDS");
-			  }
 		  else
 		  {
+			  if(hld<0||hld==0)
+				{
+					console.log("hld<0");
+					alert("PLEASE ENTER POSITIVE NUMBER");
+				}
+			  else
+				  {
 			  xmlhttp = new XMLHttpRequest();
 			  xmlhttp.onreadystatechange = function() {
 			  if (this.readyState == 4 && this.status == 200) 
@@ -235,7 +244,8 @@ else
 				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
 			 }
-		  }		 
+		  }
+	}		 
 		</script>
     </table>
   </form><br><br>
