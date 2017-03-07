@@ -949,6 +949,13 @@ public class ControllerServlet extends HttpServlet {
 			String quantity= request.getParameter("quantity");
 			System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
 			Model m = new Model();
+			System.out.println("request.getParameter(again"+request.getParameter("again"));
+			if(request.getParameter("again")!=null)
+			{
+				m.addTradeAgain(lotnumber,tlbn,quantity);
+			}
+			else
+			{
 			String msg = m.addTrade(lotnumber,tlbn,quantity);
 			if(msg.contains("SUCCESS"))
 			{				
@@ -979,6 +986,21 @@ public class ControllerServlet extends HttpServlet {
 				}*/ 
 				return;
 			}
+			else if(msg.contains("fail"))
+			{
+				String ms=msg.substring(4);
+				System.out.println("quantityalready bid for first time is"+ms);
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("lotnumber"+ms+"lotnumber");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			else
 			{
 				request.setAttribute("errmsg", msg);
@@ -993,6 +1015,7 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}		  
+			}
 	}
 		
 		//Product Entry

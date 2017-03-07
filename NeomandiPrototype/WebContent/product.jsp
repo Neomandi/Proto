@@ -371,7 +371,7 @@
                                     <td>
                                         <h4><% out.println(psr1.getQuantity()); %></h4></td>
                                     <td>
-                                        <input type="number" min='1' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
+                                        <input type="number" min='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                 </tr>
@@ -388,7 +388,7 @@
 									console.log(product);
 									var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
 									neededs=Math.ceil(neededs);
-									console.log("ceil="+neededs);									
+																		
 									if(neededs>totals)
 									{
 										alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
@@ -403,10 +403,14 @@
 										{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 											alert("YOU SHOULD ENTER VALID QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");								
-										}									
+										}
+									else if(neededs%50!=0)
+										{
+											alert("PLEASE ENTER THE LOTSIZE IN MULTIPLES OF 50");
+										}
 									else 
 									{
-										alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
+										
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										
@@ -417,8 +421,30 @@
 										if(this.readyState == 4 && this.status == 200) 
 										{
 										   	 var string=xmlhttp.responseText;
-										   	// console.log("string is"+string);
-										   
+										   	// console.log("string is"+string);	
+										   	if(string.includes("lotnumber"))
+										   		{
+											   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+											         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+											         startlotnum=startlotnum+9;
+											         
+											         var ms=string.substring(startlotnum,endlotnum);
+											         if (confirm('You have already added this lot to trade with quantity as '+ms+'Kg you want to update it with new quantity?? ')) 
+											         {
+											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+											        	 	xmlhttp.open("POST", "AddTrade.do", true);
+															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+											         }
+											         else
+											         {
+											        	 alert("You will be auctioning for this lot with previous mentioned quantity of "+neededs+" Kg");
+											         }											        
+										   		}
+										   	else if(string.includes("msg"))
+										   		{
+												   		alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs............");
+										   		}
 											
 											         document.getElementById("addtrade").innerHTML = string;
 											         document.getElementById("addtrade").value = string;
