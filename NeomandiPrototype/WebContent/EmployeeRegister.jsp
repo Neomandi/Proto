@@ -54,18 +54,18 @@ function validateEForm()
 	//Mobile number validation
 	var val = num.value;
 	if(val==""){
-		alert("Please enter your mobile number");
+		alert("Please enter your Employee Number");
 		 num.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		alert("Enter the valid Mobile Number(Like : 12345)");
+		alert("Enter the valid Employee Number(Like : 12345)");
 		num.focus();
 		return false;
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		alert(" Your Mobile Number must be 0 to 9 Integers");
+		alert(" Your Employee Number must be 0 to 9 Integers");
 		num.focus();
 		return false;
 	}
@@ -74,7 +74,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid employee number, must be five digits");
+	    alert("Invalid Employee Number, must be five digits");
 	    num.focus();
 	    return false;
 	}
@@ -172,7 +172,7 @@ function validateEForm()
 <!---my detail form----->
 <div class="container">
 <div class="row emp"><!-- style="box-shadow: 0 0 10px #000;" -->
-<form name = "EregForm1" method = "post" action = "EmployeeRegisterInt.jsp" autocomplete="off">
+<form name = "EregForm1" method = "post" action = "" autocomplete="off">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <div id="d1">
 <h4 id="h1">My Details</h4>
@@ -205,12 +205,12 @@ function validateEForm()
   </div>
   </div>
   <table align="center">
-  <tr><td><label><input type="checkbox" name="empt">I accept Terms and Condition</label></td></tr>
+  <tr><td><label><input type="checkbox" name="empt">I accept Terms and Conditions</label></td></tr>
   
   </table>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<table><tr><td> <img src="images/employeeori.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
+<table><tr><td><img src="images/Employee.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
 <table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
 </div>
 </form>
