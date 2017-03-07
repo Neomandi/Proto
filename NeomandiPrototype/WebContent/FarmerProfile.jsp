@@ -401,26 +401,29 @@
 	}
 	%>
 	<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-	<div id="msg" style="display:inline; visibility:hidden;" >Auction will begins in</div>&nbsp;<font color='blue' ><div id="timer" style="display:inline; visibility:hidden;" ></div></font></h4>
-	  	<div id="auction" style="display:inline; visibility:hidden;"></div>
-		<div id="auction1" style="display:inline; visibility:hidden;"></div>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<div id="msg" style="visibility:hidden;" ></div>&nbsp;<font color='blue' ><div id="timer" style="visibility:hidden;" ></div></font></h4>
+<div id="auction" style="visibility:hidden;"></div>
+<div id="auction1" style="visibility:hidden;"></div>
+
+
+<!-- fetching date and time for summary -->
 <form>
-	<input type="hidden" value="<%=time%>" id="time" />
+	
+<input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
 	<input type="hidden" value="<%=endtime%>" id="etime" />
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
-	
-
 </form>
 <script>
 	
-			var Etime=document.getElementById("time").value;
-			var stime=document.getElementById("stime").value;
-			var etime=document.getElementById("etime").value;
-			var slot=document.getElementById("slot").value;
-			var date=document.getElementById("date").value;
+
+var Etime=document.getElementById("time").value;
+var stime=document.getElementById("stime").value;
+var etime=document.getElementById("etime").value;
+var slot=document.getElementById("slot").value;
+var date=document.getElementById("date").value;
 			var s1="slot1";
 			var s2="slot2";
 			var s3="slot3";
@@ -474,14 +477,6 @@
 				
 				countdown(minutes,seconds,hours);
 				
-				var Etime1=document.getElementById("time").value;
-            	start1 = Etime1.split(":");
-            	end1 =Btime1.split(":");
-            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-            	var td = endDate1.getTime() - startDate1.getTime();	
-				timedif=diff+td;
-				console.log("count"+timedif);	
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
 		else if(slot==s2){
@@ -760,10 +755,6 @@ function countdown(minutes,seconds,hours)
 			        		            console.log("inside the count function");
 			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
-						            	if(document.getElementById("auction1")!=null){
-						            		document.getElementById("accept").disabled=false;
-											 document.getElementById("reject").disabled=false;
-						            	}
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
 		        		    	}
@@ -792,19 +783,17 @@ function countdown(minutes,seconds,hours)
 		            	console.log("auction ends at "+Btime1);
 		            	console.log("time is  "+Etime1);
 		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
-	        			
+	        			count(minutes1,seconds1);	        			
 					}
 				}
 			}		       
  		}
  tick();
 }
-countdown(minutes,seconds,hours);			   
-			
+countdown(minutes,seconds,hours);			   			
 //console.log("time="+timedif);
-  /* var t=setTimeout(auction,timedif);
-function auction(){
+ /*var t=setTimeout(auction,timedif);
+ function auction(){
 	 document.getElementById("accept").disabled=false;
 	 document.getElementById("reject").disabled=false;
  }*/
@@ -815,10 +804,7 @@ function auction(){
    	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
-
     <script>
-    
-    
     </script> 
 
 </body>
