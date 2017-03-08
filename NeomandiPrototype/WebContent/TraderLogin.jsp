@@ -63,7 +63,7 @@
 <tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
 <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
 <tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 150px; border-radius:0px;  background-color:#149DDA">Login</button></td></tr><br>
-<tr align="center"><td><a href="#" class"frgt">Forgot password?</a></td></tr>
+<tr align="center"><td><a href="" onclick="fp()" class"frgt">Forgot password?</a></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -74,6 +74,11 @@
 							out.print(msg);
 									%></b></p>
 <script>
+function fp()
+{
+	alert("Please contact Admin for password regenaration");
+}
+
 function submitform(){
 	var msg="";
 	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
