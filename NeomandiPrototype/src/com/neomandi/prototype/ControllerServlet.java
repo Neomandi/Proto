@@ -897,11 +897,16 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
+			System.out.println("msg received from model in CS is "+msg.isEmpty());
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();
-				psr.setAttribute("beans", msg);
-				request.setAttribute("productsearchresult", null);
+				psr.setAttribute("beans", "nill");
+				psr.setAttribute("category",psb.getCategory());
+				psr.setAttribute("produce",psb.getProduce());
+				psr.setAttribute("grade",psb.getGrade());
+				psr.setAttribute("slot",psb.getSlot());
+				
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{

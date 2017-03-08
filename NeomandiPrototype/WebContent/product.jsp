@@ -196,7 +196,7 @@
                             	ServletContext context = request.getSession().getServletContext();
                             try
                             {
-                            	System.out.println("************************starttime is "+(String)context.getAttribute("starttime"));
+                            	System.out.println("starttime is "+(String)context.getAttribute("starttime"));
                             	//if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
                         		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
@@ -211,7 +211,7 @@
                             <%}
                             	catch(Exception e)
                             	{
-                            		System.out.println("*****inside catch");
+                            		System.out.println("inside catch");
                             		e.printStackTrace();
                             		%>
                             		 <select class="form-control" id="slot" name="slot">
@@ -219,24 +219,20 @@
                                     <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
                                     <option value="slot2">Slot 2 (10:40-10:45)</option>
                                     <option value="slot3">Slot 3 (10:50-10:55)</option>
-                               		</select>
-                            		
+                               		</select>                            		
                             		<% 
                             	}%>
-                            <td><a onclick="fun()" onclick="fun()" class="reg">Search</a></td>
-                            <!--  <input type="hidden" id="category">
-                            <input type="hidden" id="produce">
-                            <input type="hidden" id="grade">
-                            <input type="hidden" id="slot">-->
+                            <td><a onclick="func()" id="search" class="reg">Search</a></td>
                             <script>
-							function fun()
+                            document.getElementById("search").addEventListener("click", func);
+							function func()
 							{
 								/*var produce=document.getElementById("produce").value;
 								var category=document.getElementById("category").value;
 								var grade=document.getElementById("grade").value;
 								var slot=document.getElementById("slot").value;*/
 								//alert(document.getElementById("category").value+" "+document.getElementById("produce").value+" "+document.getElementById("slot").value+" "+document.getElementById("grade").value)
-								console.log("category="+document.getElementById("category").value+" produce= "+document.getElementById("produce").value+"slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value)
+								console.log("category="+document.getElementById("category").value+" produce= "+document.getElementById("produce").value+"slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value);
 								
 								if(document.getElementById("category").value=="Category") 
 									alert("You should choose the Category ")
@@ -274,8 +270,13 @@
             List msg=(List)psr.getAttribute("beans");
             List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
             System.out.println("ist in jsp "+l);
-            //if(msg.isEmpty())
-            //	out.println("THERE ARE NO LOTS!!!!");
+            System.out.println("+++++++++++"+psr.getAttribute("beans"));
+            if(psr.getAttribute("beans").equals("null"))
+            {
+	              out.println("<script type=\"text/javascript\">");
+	       	  	  out.println("alert('There are no lots that belong to "+psr.getAttribute("category")+" category "+psr.getAttribute("produce")+" produce of "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+	       	  	  out.println("</script>");
+            }
             if(msg2!=null||msg3!=null)
 			{
 				Connection con = null;
@@ -413,9 +414,6 @@
 										
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
-										
-										
-
 										xmlhttp = new XMLHttpRequest();
 										xmlhttp.onreadystatechange = function() {
 										if(this.readyState == 4 && this.status == 200) 
