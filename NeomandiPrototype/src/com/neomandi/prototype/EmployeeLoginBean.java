@@ -4,12 +4,15 @@ public class EmployeeLoginBean {
 	private String ename;
 	private String epwd;
 	
+	public EmployeeLoginBean() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getEname() {
 		return ename;
 	}
 	public void setEname(String ename) {
 		this.ename = ename;
-		//System.out.println("Ename: "+ename);
+		System.out.println("Ename: "+ename);
 	}
 	public String getEpwd() {
 		return epwd;
