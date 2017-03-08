@@ -195,7 +195,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				ps = con.prepareStatement("select pass,empnumber from ereg where name = ?");
 				ps.setString(1, elbn.getEname());
-				
+				//System.out.println(ps);
 				ps.executeQuery();
 				
 				rs = ps.getResultSet();

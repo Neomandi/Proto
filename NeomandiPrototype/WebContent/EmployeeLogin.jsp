@@ -165,7 +165,7 @@ function validateELForm()
 		    	}
 		}		
 	};
-	xmlhttp.open("POST", "EmployeeLoginInt.jsp", true);
+	xmlhttp.open("POST", "EmployeeLogin.do", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("ename="+document.getElementById("ename").value+"&epwd="+document.getElementById("epwd").value);
   }
