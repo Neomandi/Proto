@@ -792,9 +792,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				return msg + "Connection not established";
 			}
 			else
-			{
-				
-				
+			{			
 				Calendar calendar = Calendar.getInstance();
 		        TimeZone fromTimeZone = calendar.getTimeZone();
 		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
@@ -866,7 +864,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						rs = ps.getResultSet();
 						while(rs.next())
 						{
-						return "fail"+rs.getString("quantityneeded");	
+							return "fail"+rs.getString("quantityneeded");	
 						}						
 				}
 				else
@@ -4583,8 +4581,9 @@ public void PostAuction()
 					ps5.execute();
 					System.out.println(ps5+" Data deleted from productentry");
 					
-					
-
+					ps6=con.prepareStatement("update traders_blocked_amount set bockamount=0");
+					ps6.execute();
+					System.out.println(ps6+" Data updated from traders_blocked_amount");
 				}
 			}
 		}

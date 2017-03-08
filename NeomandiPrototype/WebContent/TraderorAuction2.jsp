@@ -498,7 +498,7 @@ catch(NullPointerException e)
 	</td>
 	</tr>
 	</tbody>
-	</table><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here!</font>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
