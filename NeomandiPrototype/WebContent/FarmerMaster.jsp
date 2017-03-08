@@ -622,11 +622,7 @@ function countdown(minutes,seconds,hours)
 countdown(minutes,seconds,hours);		   
 //console.log("time="+timedif);
  console.log("count"+timedif);
-				/*var t=setTimeout(auction,timedif);
-				 function auction(){
-					 document.getElementById("accept").disabled=false;
-					 document.getElementById("reject").disabled=false;
-				 }*/
+				
  function accept(){
 	 window.location="http://neomandi.in/AcceptSummary.do";
  }
