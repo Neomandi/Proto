@@ -71,7 +71,7 @@ footer {
                 <ul class="nav nav-tabs">
                     <li><a href="ProductEntry.jsp">Product Entry</a></li>
                     <li class="active"><a href="Revenue.jsp">Revenue</a></li>
-                    <li><a href="Dispatch.do">Dispatch</a></li>
+                    <li><a href="Dispatch.do" id="ts">Dispatch</a></li>
                 </ul>
             </div>
         </div>
@@ -242,5 +242,6 @@ footer {
     </footer>
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
+    
 </body>
 </html>

@@ -494,11 +494,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here"  class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement="bottom" class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here!</font>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -1028,7 +1028,7 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip"   title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>

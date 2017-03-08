@@ -15,9 +15,7 @@
 	 java.net.InetAddress,
 	 java.text.SimpleDateFormat,
 	 sun.misc.BASE64Encoder,
-	
 	java.util.*"%>
-	
 <!doctype html>
 <html>
 <head>
@@ -25,14 +23,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
 	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp"> 
-
-
-
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -631,11 +622,7 @@ function countdown(minutes,seconds,hours)
 countdown(minutes,seconds,hours);		   
 //console.log("time="+timedif);
  console.log("count"+timedif);
-				/*var t=setTimeout(auction,timedif);
-				 function auction(){
-					 document.getElementById("accept").disabled=false;
-					 document.getElementById("reject").disabled=false;
-				 }*/
+				
  function accept(){
 	 window.location="http://neomandi.in/AcceptSummary.do";
  }
