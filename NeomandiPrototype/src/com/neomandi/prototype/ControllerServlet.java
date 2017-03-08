@@ -901,7 +901,7 @@ public class ControllerServlet extends HttpServlet {
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();
-				psr.setAttribute("beans", "nill");
+				psr.setAttribute("msg", "nill");
 				psr.setAttribute("category",psb.getCategory());
 				psr.setAttribute("produce",psb.getProduce());
 				psr.setAttribute("grade",psb.getGrade());
