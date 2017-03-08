@@ -46,7 +46,7 @@ if(((String)request.getAttribute("msg"))!=null )
 	 System.out.println("inside if");
 	 out.println("<script type=\"text/javascript\">");
  	 out.println("alert('Auction yet to happen, hence, no dispatch summary available.');");
- 	 out.println("location='dispatch2.jsp';");
+ 	 out.println("location='dispatch.jsp';");
 	 out.println("</script>");
 	 %>
 	 <input type="hidden" value="<%=(String)request.getAttribute("msg")%>" id="msg">
@@ -55,7 +55,7 @@ if(((String)request.getAttribute("msg"))!=null )
 	 console.log(msg);
 	 if(msg.includes("fail"))
 		 alert('Auction yet to happen, hence, no dispatch summary available.');
-	 location='dispatch2.jsp';
+	 location='dispatch.jsp';
 	 </script>
 	 <% 
 }
