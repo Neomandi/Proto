@@ -4576,11 +4576,11 @@ public void PostAuction()
 					ps4.execute();
 					System.out.println(ps4+" Data deleted from auction_result");
 					
-					ps5=con.prepareStatement("delete from productentry where lotnumber=?");
+					/*ps5=con.prepareStatement("delete from productentry where lotnumber=?");
 					ps5.setString(1,rs.getString("lotnum"));
 					ps5.execute();
 					System.out.println(ps5+" Data deleted from productentry");
-					
+					*/
 					ps6=con.prepareStatement("update traders_blocked_amount set bockamount=0");
 					ps6.execute();
 					System.out.println(ps6+" Data updated from traders_blocked_amount");

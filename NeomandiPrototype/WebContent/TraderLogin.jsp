@@ -56,17 +56,15 @@
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" action="TraderLoginInt.jsp" method = "post"  name = "TraderLoginform" autocomplete="off">
 <table class="table login">
 <tbody>
 <tr><td><h2>Trader Login</h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="tname" placeholder="User name"></td></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
 <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-<tr align="center"><td><button class="btn btn-primary" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td></tr><br>
+<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 150px; border-radius:0px;  background-color:#149DDA">Login</button></td></tr><br>
 <tr align="center"><td><a href="#" class"frgt">Forgot password?</a></td></tr>
 </tbody></table>
-</form>
 </div>
 </div>
 </div>
@@ -94,8 +92,28 @@ function submitform(){
 	if(msg.length!=0)
 		window.alert("PLEASE ENTER "+msg);
 	
-	else
-	document.TraderLoginform.submit();
+	else{
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if(this.readyState==4 && this.status==200)
+		{
+			 var string=xmlhttp.responseText;
+			 console.log("string is "+string);
+		    	if(string.includes("SUCCESS"))
+		    	{
+		    		window.location="product.jsp";
+		    	}
+		    	else 
+		    	{
+		    		alert(string);		
+		    	}
+		}		
+	};
+	xmlhttp.open("POST", "TraderLogin.do", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("name="+document.getElementById("name").value+"&pwd="+document.getElementById("pwd").value);
+  }
 }
 </script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
