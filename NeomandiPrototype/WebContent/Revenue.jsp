@@ -205,7 +205,7 @@ footer {
 		}
 	}
 	}
-	catch(SQLException | NumberFormatException e)
+	catch(Exception e)
 	{
 		e.printStackTrace();
 	}
