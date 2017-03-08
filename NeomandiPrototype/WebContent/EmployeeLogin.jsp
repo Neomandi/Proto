@@ -55,7 +55,7 @@ function validateELForm()
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive"></a>
+                <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -81,7 +81,6 @@ function validateELForm()
         <div class="row">
             <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
             <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-            	<form action="EmployeeLoginInt.jsp" method = "post"  name = "EmployeeLoginform" autocomplete="off">
             	<div>
                 <table class="table login">
                     <tbody>
@@ -91,17 +90,17 @@ function validateELForm()
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="usr" placeholder="User name" name="ename">
+                                <input type="text" class="form-control" id="ename" placeholder="User name" name="ename">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="password" class="form-control" id="usr" placeholder="Password" name="epwd">
+                                <input type="password" class="form-control" id="epwd" placeholder="Password" name="epwd">
                             </td>
                         </tr>
                         <tr align="center">
                             <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-							<td><button class="btn btn-primary" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td><br/>
+							<td><button class="btn btn-primary" onclick="submitform();" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td><br/>
 
                         </tr>
                         <tr align="center">
@@ -110,7 +109,6 @@ function validateELForm()
                     </tbody>
                 </table>
 			</div>
-			</form>
             </div>
         </div>
     </div>
@@ -122,13 +120,56 @@ function validateELForm()
 								out.print(msg);
 										%></b></p>
 	<script>
+// 	function submitform(){
+// 		var bool = validateELForm();
+// 		if(bool==true)
+// 		{
+// 			document.EmployeeLoginform.submit();
+// 		}
+// 	}
 	function submitform(){
-		var bool = validateELForm();
-		if(bool==true)
+	var msg="";
+	//console.log(document.getElementById("ename").value);
+	//console.log(document.getElementById("epwd").value);
+	if(document.getElementById("ename").value==null|| document.getElementById("ename").value === undefined || document.getElementById("ename").value === "")
+    {
+    	console.log(document.getElementById("ename").value);
+    	//window.alert("ENTER USERNAME");
+    	msg="USER NAME ";
+    }	
+	if(document.getElementById("epwd").value==null|| document.getElementById("epwd").value === undefined || document.getElementById("epwd").value === "")
+    {
+    	console.log(document.getElementById("epwd").value);
+    	//window.alert("ENTER USERNAME");
+    	msg=msg+"PASSWORD";
+    }	
+	console.log(msg.length);
+	if(msg.length!=0)
+		window.alert("PLEASE ENTER "+msg);
+	
+	else{
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if(this.readyState==4 && this.status==200)
 		{
-			document.EmployeeLoginform.submit();
-		}
-	}
+			 var string=xmlhttp.responseText;
+			 console.log("string is "+string);
+		    	if(string.includes("SUCCESS"))
+		    	{
+		    		window.location="ProductEntry.jsp";
+		    	}
+		    	else 
+		    	{
+		    		alert(string);		
+		    	}
+		}		
+	};
+	xmlhttp.open("POST", "EmployeeLoginInt.jsp", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("ename="+document.getElementById("ename").value+"&epwd="+document.getElementById("epwd").value);
+  }
+}
 	</script>
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
