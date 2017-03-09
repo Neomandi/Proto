@@ -424,7 +424,7 @@ catch(NullPointerException e)
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
 	}
@@ -907,7 +907,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    	 {
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    	}
 		    	else
@@ -1060,7 +1060,7 @@ catch(NullPointerException e)
 		console.log(mybid==0);
 		if(quantityassigned>0)
 		{
-			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+			alert("Lot could be removed only when no lot has been assigned to you during auction")
 		}
 		else
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
@@ -1143,7 +1143,7 @@ catch(NullPointerException e)
 					  }
 				  if(currentbids>newbids)
 				  {	  
-					  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+					  alert('You are allowed only to increment the bid.');
 					 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 				  }
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
@@ -1161,7 +1161,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
 					    	else
@@ -1768,7 +1768,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    		{
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    		}
 		    	else
@@ -1993,7 +1993,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
@@ -2011,7 +2011,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
 					    	else
@@ -2324,7 +2324,7 @@ catch(NullPointerException e)
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
 	}
@@ -2533,7 +2533,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    		{
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds');
 		  	  	       window.location='TraderBlock.do';
 		    		}
 		    	else
@@ -2758,7 +2758,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  }
 			  else
@@ -3328,7 +3328,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
 			  }
 			  else
