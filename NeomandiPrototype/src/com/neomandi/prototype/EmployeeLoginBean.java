@@ -12,7 +12,7 @@ public class EmployeeLoginBean {
 	}
 	public void setEname(String ename) {
 		this.ename = ename;
-		System.out.println("Ename: "+ename);
+		//System.out.println("Ename: "+ename);
 	}
 	public String getEpwd() {
 		return epwd;
