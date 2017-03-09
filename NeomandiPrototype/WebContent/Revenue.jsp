@@ -1,6 +1,6 @@
 <%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+    pageEncoding="ISO-8859-1"  errorPage = "Error.jsp" import = "java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
 <!doctype html>
 <html>
 <head>
@@ -130,10 +130,13 @@ footer {
 		String sql = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
+		System.out.println(rs);
 		System.out.println(rs.getRow());
-		if(rs.getRow() != 0)
+		System.out.println(rs.first());
+		String lotnumber1 = rs.getString("lotnumber");
+		if(lotnumber1 != null)
 		{
-			//System.out.println("Inside if....");
+			System.out.println("Inside if....");
 			/*if(rs.getString("COUNT(*)").equals("0"))
 			{
 				 out.println("<script type=\"text/javascript\">");
@@ -141,17 +144,18 @@ footer {
 			 	 out.println("</script>");
 			}
 			else*/
-			{
 				String sql2 = "select ar.lotnumber, sum(ar.quantityassigned), ar.aadharnumber, tb.bidprice, tb.bestbid, hs.averageprice, hs.quantitybidfor from traders_bid_price tb, auction_result ar, history hs where (tb.lotnum = ar.lotnumber) and (tb.aadharnumber = ar.aadharnumber) and (hs.lotnumber = tb.lotnum)";
 				pstmt1 = con.prepareStatement(sql2);
 				rs1 = pstmt1.executeQuery();
-				//System.out.println(rs);
-				System.out.println("is resultset not empty "+!rs1.isBeforeFirst());
+				//System.out.println(rs1);
+				//System.out.println("is resultset not empty "+!rs1.isBeforeFirst());
 		// 		if(!rs.isBeforeFirst())
 		// 		{
 					while(rs1.next())
 					{
 						String lotnumber = rs1.getString("lotnumber");
+						System.out.println(lotnumber);
+						System.out.println("Quantity assigned: "+rs1.getString("sum(ar.quantityassigned)"));
 						int quantityassigned = Integer.parseInt(rs1.getString("sum(ar.quantityassigned)"));
 						String aadharnumber = rs1.getString("bidprice");
 						int bestbid = Integer.parseInt(rs1.getString("bestbid"));
@@ -194,14 +198,11 @@ footer {
 		// 		{
 		// 			System.out.println("No revenues.");
 		// 		}
-			}
 		}
 		else
 		{
-			 //System.out.println("Inside else....");
-			 out.println("<script type=\"text/javascript\">");
-		  	 out.println("alert('No Revenues');");
-		 	 out.println("</script>");
+			 System.out.println("Inside else....");
+			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no revenue summary is available.</h2></div>");
 		}
 	}
 	}
@@ -242,6 +243,5 @@ footer {
     </footer>
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
-    
 </body>
 </html>

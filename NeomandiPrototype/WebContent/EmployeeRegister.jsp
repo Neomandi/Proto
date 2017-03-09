@@ -65,7 +65,7 @@ function validateEForm()
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		alert(" Your Employee Number must be 0 to 9 Integers");
+		alert(" Your Employee Number must be of 5 digits");
 		num.focus();
 		return false;
 	}
@@ -216,7 +216,7 @@ function validateEForm()
 </form>
 </div>
 </div><br/><br/><br/>
-<% String msg = (String)request.getAttribute("errmsg");  %>
+<% String msg = (String)request.getAttribute("errmsg");%>
 <p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
 							{
 								out.print("Registration Successfull");

@@ -49,7 +49,7 @@ public class ControllerServlet extends HttpServlet {
 	{		
 		RequestDispatcher rd=null;	
 		EmployeeRegisterBean erb = (EmployeeRegisterBean) request.getAttribute("ebean");
-		EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
+		//EmployeeLoginBean elbn = (EmployeeLoginBean) request.getAttribute("elbean");
 
 		//FarmerRegisterBean frb = (FarmerRegisterBean) request.getAttribute("frreg");
 		TraderRegisterBean trb = (TraderRegisterBean) request.getAttribute("trbean");
@@ -701,8 +701,14 @@ public class ControllerServlet extends HttpServlet {
 		//Employee Login
 		if(uri.contains("EmployeeLogin"))
 		{
-			String name=elbn.getEname();
+			String ename=request.getParameter("ename");
+			String epwd=request.getParameter("epwd");
+			EmployeeLoginBean elbn = new EmployeeLoginBean();
+			elbn.setEname(ename);
+			elbn.setEpwd(epwd);
 			Model m = new Model();
+			//System.out.println("Elbn: "+elbn.getEname());
+			//System.out.println("Elbn: "+elbn.getEpwd());
 			String msg = m.employeeLogin(elbn);
 			String arr[] = msg.split(":");
 			if(arr[0].equals("SUCCESS"))
@@ -717,34 +723,59 @@ public class ControllerServlet extends HttpServlet {
 				elog.setAttribute("pwd", elbn.getEpwd());
 				elog.setAttribute("empnumber", arr[1]);
 				
-				rd=request.getRequestDispatcher("ProductEntry.jsp");
-				try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (ServletException e) {
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("SUCCESS");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+//				rd=request.getRequestDispatcher("ProductEntry.jsp");
+//				try 
+//				{
+//					rd.forward(request, response);	
+//					return;
+//				}			
+//				catch (ServletException e) {
+//					
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					
+//					e.printStackTrace();
+//				}
 			}
 			else
 			{
-				request.setAttribute("errmsg", msg);
-			    rd=request.getRequestDispatcher("EmployeeLogin.jsp");
-				try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (ServletException e) {
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
+				
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println(msg);
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+//				request.setAttribute("errmsg", msg);
+//			    rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+//				try 
+//				{
+//					rd.forward(request, response);
+//					return;
+//				}			
+//				catch (ServletException e) {
+//					
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					
+//					e.printStackTrace();
+//				}
 			}
 		}
 		
@@ -857,16 +888,18 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("TraderLogin"))
 		{
 			System.out.println("***************************************************************************");
-			TraderLoginBean tlbn = (TraderLoginBean) request.getAttribute("tlbean");
+			TraderLoginBean tlbn = new TraderLoginBean();
+			String name=request.getParameter("name");
+			String pwd=request.getParameter("pwd");
+			tlbn.setTname(name);
+			tlbn.setTpwd(pwd);
 			HttpSession tlog=request.getSession(true);
 			tlog.setAttribute("tlog",tlbn);
-			String name=tlbn.getTname();
 			Model m = new Model();
 			String msg = m.traderLogin(tlbn);
 			System.out.println("msg received from model is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
-				System.out.println("inside if ");
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
@@ -876,20 +909,32 @@ public class ControllerServlet extends HttpServlet {
 				hc.setAttribute("time",time);
 				hc.setAttribute("name", name);
 //				System.out.println("dt is "+date+" time is "+time);
+			
 				
-				rd=request.getRequestDispatcher("product.jsp");
-				try 
-				{
-					rd.forward(request,response);			
-				}			
-				catch (ServletException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("SUCCESS");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
+				//System.out.println("success");				
 			}
 			else
 			{
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println(msg);
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 				request.setAttribute("errmsg", msg);
 			    rd=request.getRequestDispatcher("TraderLogin.jsp");
 				try 
@@ -930,11 +975,16 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
+			System.out.println("msg received from model in CS is "+msg.isEmpty());
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();
-				psr.setAttribute("beans", msg);
-				request.setAttribute("productsearchresult", null);
+				psr.setAttribute("msg", "nill");
+				psr.setAttribute("category",psb.getCategory());
+				psr.setAttribute("produce",psb.getProduce());
+				psr.setAttribute("grade",psb.getGrade());
+				psr.setAttribute("slot",psb.getSlot());
+				
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
