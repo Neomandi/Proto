@@ -448,8 +448,8 @@ catch(NullPointerException e)
 			{
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-				System.out.println("inside traderlist bean"+al);
-				System.out.println("++++++++++++++++");
+				//System.out.println("inside traderlist bean"+al);
+				//System.out.println("++++++++++++++++");
 				System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
 					<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
@@ -466,8 +466,6 @@ catch(NullPointerException e)
 						{	
 							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
-							System.out.println("++++++++++++++++++++++++");
-							System.out.println(l.size()==0);
 							if(l.size()==0){
 								%><br>
 								<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
@@ -781,7 +779,7 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -1391,7 +1389,7 @@ catch(NullPointerException e)
 		}		
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -1900,7 +1898,7 @@ catch(NullPointerException e)
 	}
  }*/
 	</script>
-	<tr><td><br><a onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -3523,8 +3521,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -3577,8 +3575,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
