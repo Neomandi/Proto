@@ -281,19 +281,23 @@ public class ControllerServlet extends HttpServlet {
 		}						
 		if(uri.contains("Averageprice")){
 			
+
+			String farmerid=request.getParameter("farmerid");
+
 			
 			
-			String farmerid=request.getParameter("id");
 			System.out.println("in cs farmerid="+farmerid);
 			Model m = new Model();
 			System.out.println("before model is called");
 			@SuppressWarnings("unchecked")
 			List<String> l = m.farmerMaster(farmerid);
 			System.out.print("after model is called"+l);
-			String lotnumber=l.get(1);
-			String averageprice=l.get(2);
-			String quantity=l.get(3);
-			String quantitybidfor=l.get(4);
+			String lotnumber=l.get(0);
+			String averageprice=l.get(1);
+			System.out.print("after model1 is called"+l);
+			System.out.println(l.get(1)+" "+l.get(3));
+			String quantity=l.get(2);
+			String quantitybidfor=l.get(3);
 			HttpSession hf=request.getSession();
 			hf.setAttribute("lotnumber",lotnumber);
 			hf.setAttribute("averageprice",averageprice);
@@ -303,7 +307,7 @@ public class ControllerServlet extends HttpServlet {
 			PrintWriter out = null;
 			try {
 				out = response.getWriter();
-				out.println("averageprice"+averageprice+"averageprice for"+quantitybidfor+"for");
+				out.println("averageprice"+l.get(1)+"averageprice for"+l.get(3)+"for");
 			    out.flush();
 			    out.close();
 			}
@@ -312,19 +316,14 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			rd=request.getRequestDispatcher("FarmerMaster.jsp");
-			try 
-			{
-				rd.forward(request, response);	
-				return;
-			}			
-			catch (ServletException e) {
-				
-				e.printStackTrace();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
+			
+			return;
 			}
-		}
+			
+				
+				
+			
+		
 		//Farmer logout
 		if(uri.contains("FLogout"))
 		{

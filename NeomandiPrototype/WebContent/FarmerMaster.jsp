@@ -137,7 +137,7 @@ if((String)hs.getAttribute("name")==null){
           <td></td>
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Lot Size</h4></td>
-	  <td><h4>Quantity</h4></td>
+	  <td><h4>Quantity sold</h4></td>
 	  <td><h4>Avg Price</h4></td>
 	  <td><h4>Accept</h4></td>
 	  <td><h4>Reject</h4></td>
@@ -171,7 +171,7 @@ if((String)hs.getAttribute("name")==null){
 	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
 	  <td><h4 style="color:#000080"><b><%=resultSet.getString("quantity") %></b></h4></td>
 	  <%
-	  	String qty="--"; 
+	  	String empty="--"; 
 	  	if(resultSet.getString("quantitybidfor")!=null){
 			String quantity =(String)resultSet.getString("quantitybidfor");
 			double y=Double.parseDouble(quantity);
@@ -180,10 +180,10 @@ if((String)hs.getAttribute("name")==null){
 			y=y/100;
 			System.out.println("before"+quantity+" after"+y);
           	%>  
-          	<td id="a"><h4 style="color:#000080"><b><%=y%></b></h4></td> 
+          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%=y%></b></h4></td> 
           	<% }
 	  		else{ %>         
-	  	<td><h4 style="color:#000080;"><%=qty %></h4></td><%} %>
+	  	<td ><h4 id="q" style="color:#000080;"><%=empty %></h4></td><%} %>
 	  	<%  	
 	  		if(resultSet.getString("averageprice")!=null){
 			String average=(String)resultSet.getString("averageprice");
@@ -193,9 +193,11 @@ if((String)hs.getAttribute("name")==null){
 			x=x/100;
 			System.out.println("before"+average+" after"+x);
 	  		%>
-	  		<td id="q"><b><h4 style="color:#000080"><%=x%></h4></b></td>
-	  		<%}else{ %>
-	  <td><h4 style="color:#000080;"><%=avg %></h4></td><%} %>
+	  		<td><h4 id="a" style="color:#000080"><b><%=x%></b></h4></td>
+	  		<%}
+	  		else{ %>
+	  <td   style="color:#000080;"><h4 id="a" style="color:#000080;"><%=empty %></h4></td>
+	  <%} %>
 	  <td>
 
 
@@ -657,7 +659,8 @@ setInterval(function()
 			          var quantitybidfor=string.substring(startquantitybidfor,endquantitybidfor);
 			          document.getElementById("a").value=avg;
 			          document.getElementById("q").value=quantitybidfor;
-			          
+			          document.getElementById("a").innerHTML=avg;
+			          document.getElementById("q").innerHTML=quantitybidfor;
 			          console.log(avg+" "+quantitybidfor);
 			         
 			    }
@@ -667,7 +670,7 @@ setInterval(function()
 				var farmerid=document.getElementById("farmerid").value;
 				console.log("farmerid="+farmerid);
 				//console.log("xmlhttp.send(farmerid)"+xmlhttp.send(farmerid));
-				xmlhttp.send("id="+farmerid);
+				xmlhttp.send("farmerid="+farmerid);
 				console.log("end of function");
 		  }
 </script>

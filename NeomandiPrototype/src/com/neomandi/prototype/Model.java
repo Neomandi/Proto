@@ -434,7 +434,15 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		ResultSet rs = null;
 		
 		List l=new ArrayList();
-		try{	
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				
+			}
+			else{	
 			
 			ps = con.prepareStatement( "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?");
 			ps.setString(1,farmerid);
@@ -456,7 +464,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				
 				
 			}
-		
+			 
+		}
 	}
 		catch(SQLException e)
 		{
