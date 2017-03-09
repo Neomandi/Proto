@@ -44,7 +44,7 @@ function validateELForm()
 </script>
 </head>
 
-<body class="">
+<body class="" onkeypress="myFunction(event)">
     <!---menu bar------>
 
     <nav class="navbar navbar-inverse menu">
@@ -170,6 +170,15 @@ function validateELForm()
 	xmlhttp.send("ename="+document.getElementById("ename").value+"&epwd="+document.getElementById("epwd").value);
   }
 }
+	
+	
+	function myFunction(event) {
+	    var x = event.which || event.keyCode;
+	    if(x == 13){
+	    	submitform();
+	    }
+	}
+	
 	</script>
     <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>

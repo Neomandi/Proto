@@ -4581,7 +4581,7 @@ public void PostAuction()
 					ps5.execute();
 					System.out.println(ps5+" Data deleted from productentry");
 					*/
-					ps6=con.prepareStatement("update traders_blocked_amount set bockamount=0");
+					ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0");
 					ps6.execute();
 					System.out.println(ps6+" Data updated from traders_blocked_amount");
 				}
