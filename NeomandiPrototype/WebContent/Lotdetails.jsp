@@ -8,10 +8,11 @@
  	javax.servlet.http.HttpServletRequest,
 	javax.servlet.http.HttpServletResponse,
 	java.sql.SQLException,java.text.SimpleDateFormat,
-	java.util.*"
- %>
+	
+	
+	java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*,java.util.Date"%>
+
  
-<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -108,14 +109,15 @@ if((String)hs.getAttribute("name")==null){
 	 HttpSession hs1=request.getSession(false);  
      String pass=(String)hs1.getAttribute("pass"); 
      String starttime=(String)hs.getAttribute("starttime"); 
-	  System.out.println(" in farmermaster starttime="+starttime);
+	 
 	 String endtime=(String)hs.getAttribute("endtime"); 
-	  System.out.println(" in farmermaster endtime="+endtime);
+	  
 	  ServletContext context = request.getSession().getServletContext();
 		starttime=(String)context.getAttribute("starttime");
 		endtime=(String)context.getAttribute("endtime");
    	// String time=(String)hs.getAttribute("time");
   	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
+  	Date d=new Date();
   	String time=df1.format(new Date());
 	 Connection con = null;
      Statement statement = null;
@@ -158,56 +160,91 @@ if((String)hs.getAttribute("name")==null){
 	  
 
 	  <tbody>
-	  <%
-//fetching lotdetails
+	 <%
+		PreparedStatement pstmt = null;
+	PreparedStatement pstmt1 = null;
+	PreparedStatement pstmt2 = null;
+	
+	ResultSet rs = null;
+	ResultSet rs1 = null;
+	ResultSet rs2 = null;
 	String imgsrc="";
     String date="";
     String slot="";
 	String s1="";
 	String lotnumber="";
-	try{	
-
-			statement = con.createStatement();
-			String sql5 = "select * from productentry where farmerid='"+s+"'";
-			System.out.println(sql5);		
-			resultSet = statement.executeQuery(sql5);
+	try
+	{
+	con = JDBCHelper.getConnection();
+	
+	if(con == null)
+	{
+		System.out.println("Connection not established.");
+	}
+	else
+	{
+		String sql = "select * from productentry where farmerid='"+s+"'";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		System.out.println(sql);
+		System.out.println(rs);
+		System.out.println(rs.getRow());
+		System.out.println(rs.first());
+		String lotnumber1=null;
+	
+		 lotnumber1=rs.getString("lotnumber");
+		
+		if(lotnumber1!=null)
+		{
+			System.out.println("Inside if....");
 			
-			List<String> l=new ArrayList<String>();
-			while(resultSet.next()){
-				 lotnumber=resultSet.getString("lotnumber");
-				String produce=resultSet.getString("produce");
-				String product= resultSet.getString("kindofpro");
-				String grade=resultSet.getString("qualitygrade");
-				String quantity=resultSet.getString("quantity");
-				date+=resultSet.getString("Date");
-				slot+=resultSet.getString("slotnumber");
-				l.add(slot);
-				System.out.println(" in lotdetails date="+date);
-				System.out.println("slot="+slot);
-				for(String obj:l)  {
-					 s1=obj;
-					}
+				String sql2 = "select * from productentry where farmerid='"+s+"'";
+				pstmt1 = con.prepareStatement(sql2);
+				rs1 = pstmt1.executeQuery();
 				
-				  imgsrc="ProductImages/"+lotnumber+".jpg";
-			%>
-				  
-	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=resultSet.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
+					while(rs1.next())
+					{
+						lotnumber=rs1.getString("lotnumber");
+						String produce=rs1.getString("produce");
+						String product= rs1.getString("kindofpro");
+						String grade=rs1.getString("qualitygrade");
+						String quantity=rs1.getString("quantity");
+						
+						slot+=rs1.getString("slotnumber");
+						
+						
+						  imgsrc="ProductImages/"+lotnumber+".jpg";
+					
+						
+		%>
+	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=rs1.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
 	 
-	  <% 
-	  }  
-			} catch (Exception e) {
-				e.printStackTrace();
-				}
-				 finally{
-				    resultSet.close();
-					statement.close();
-					con.close();
-					  }
-				%> 
-	  </tbody>
-	  
-	 </table>
-	 
+		                        <%
+					}
+		
+		}
+		else
+		{
+			 System.out.println("Inside else....");
+			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no  Lot details is available.</h2></div>");
+		}
+	}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	finally
+	{
+		JDBCHelper.Close(rs);
+		JDBCHelper.Close(rs1);
+		JDBCHelper.Close(pstmt);
+		JDBCHelper.Close(pstmt1);
+		JDBCHelper.Close(con);
+	}
+%>
+                    </tbody>
+                </table>
 </div>
 </div>
 </div>

@@ -60,7 +60,7 @@ border-top:2px solid #fff !important;
 <%HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
@@ -84,7 +84,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 		{
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
-			  %><center><h3>YOU HAVE NOT PERFORMED ANY TRADE OPERATIONS TODAY</h3></center>
+			  %><center><h3>You have not performed any trade operations today</h3></center>
 			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
 			  <script>
 			  var summary=document.getElementById("summary").value;
@@ -127,11 +127,11 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
 	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
-	  </table><%}}%>
-</div><br>
-&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+	  </table>
+	  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><!--  <a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>-->
-&nbsp; &nbsp; &nbsp;<a id="summary" onclick="update(true)" class="greencls">Export as PDF</a></td>
+&nbsp; &nbsp; &nbsp;<button class="btn btn-primary" id="summary" onclick="update(true)" style="border-color:#3C4DA0;background-color:#3C4DA0;">Export as PDF</button></td><%}}%>
+</div><br>
 </tr>
 	   </tbody>
 	  </table>
@@ -148,7 +148,7 @@ if(request.getAttribute("tradesummary")!=null)
 {
 if(request.getAttribute("tradesummary").equals("no"))
 {
-  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS TODAY</b>
+  %><b>You have not performed any trade operations today</b>
   <%} else if(request.getAttribute("tradesummary").equals("success"))
   {%>
 	  <td><h4>Lot </h4></td>
@@ -201,21 +201,23 @@ if(request.getAttribute("tradesummary").equals("no"))
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	<div align="center">
 	<form action = "tradeSummary.do" method = "post" id="myForm">
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='idfrom'>
-                    <input type='text' class="form-control" name="from"/>
+	
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
+                    <input type='text' class="form-control" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div></div>
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"><div class='input-group date' id='idto'>
-                    <input type='text' class="form-control" name="to"/>
+                
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
+                    <input type='text' class="form-control" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                   </div>
-                </div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun()" class="get1">Get History</a></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><a  onclick="fun2()" id="pdf" class="get1">Export as PDF</a></div>
+                </div><br>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="fun()" class="btn btn-primary">Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();

@@ -283,7 +283,7 @@ public class ControllerServlet extends HttpServlet {
 			
 			
 			
-			String farmerid=request.getParameter("farmerid");
+			String farmerid=request.getParameter("id");
 			System.out.println("in cs farmerid="+farmerid);
 			Model m = new Model();
 			System.out.println("before model is called");
