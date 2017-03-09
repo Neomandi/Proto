@@ -66,16 +66,17 @@
             .sum2tab .table tbody tr td {
                 border-top: 2px solid #fff !important;
             }
-            .img-responsive {
-		    height: 60px;
-		    width: 65px;
+            .img-responsive 
+            {
+		    	height: 60px;
+		    	width: 65px;
 			}
-
-			 .tradtab a{
-    background-color:#0082B2;
-    }
-
-			#img{
+			.tradtab a
+			{
+    			background-color:#0082B2;
+    		}
+			#img
+			{
 				width: 300px;
 				height: 300px;
 			}ps://github.com/Neomandi/Proto.git
@@ -197,7 +198,7 @@
                             try
                             {
                             	System.out.println("starttime is "+(String)context.getAttribute("starttime"));
-                            	//if((String)context.getAttribute("starttime")!=null){
+                            	if((String)context.getAttribute("starttime")!=null){
                         		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
                         		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
                         		%>
@@ -209,6 +210,18 @@
                                 </select>
                             </td>
                             <%}
+                            	else{
+                            		%>
+                                    <select class="form-control" id="slot" name="slot">
+                                        <option selected value="base">Auction Slot</option>                                  
+                                        <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
+                                        <option value="slot2">Slot 2 (10:40-10:45)</option>
+                                        <option value="slot3">Slot 3 (10:50-10:55)</option>
+                                    </select>
+                                </td>
+                                <%
+                            	}
+                            	}
                             	catch(Exception e)
                             	{
                             		System.out.println("inside catch");
@@ -222,19 +235,18 @@
                                		</select>                            		
                             		<% 
                             	}%>
-                            <td><a onclick="func()" id="search" class="reg">Search</a></td>
-                            <script>
+                            <td><a onclick="func()" onclick="func()" id="search" class="reg">Search</a></td>                           
+						</form>
+                        </tr>
+                    </table>
+                </div>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script type="text/javascript">
                             document.getElementById("search").addEventListener("click", func);
-							function func()
-							{
-								/*var produce=document.getElementById("produce").value;
-								var category=document.getElementById("category").value;
-								var grade=document.getElementById("grade").value;
-								var slot=document.getElementById("slot").value;*/
-								//alert(document.getElementById("category").value+" "+document.getElementById("produce").value+" "+document.getElementById("slot").value+" "+document.getElementById("grade").value)
-								console.log("category="+document.getElementById("category").value+" produce= "+document.getElementById("produce").value+"slot="+document.getElementById("slot").value+" grade="+document.getElementById("grade").value);
-								
-								if(document.getElementById("category").value=="Category") 
+                            function func()
+                            {								
+                            	console.log("inside func");
+								if(document.getElementById("category").value=="Category")
 									alert("You should choose the Category ")
 								else if(document.getElementById("produce").value=="produce")
 									alert("You should choose the Produce ")
@@ -243,43 +255,29 @@
 								else if(document.getElementById("slot").value=="base")
 									alert("You should choose the Slot ")								
 								else
-								{
-									/*document.getElementById("produce").value=produce;
-									document.getElementById("produce").innerHTML=produce;
-									
-								/*	document.getElementById("category").value=category;
-									document.getElementById("category").innerHTML=category;
-									
-									document.getElementById("grade").value=grade;
-									document.getElementById("grade").innerHTML=grade;
-									
-									document.getElementById("slot").value=slot;
-									document.getElementById("slot").innerHTML=slot;*/
+								{			
+									console.log("inside else");
 									document.getElementById("myForm").submit();//window.location.href='http://localhost:8080/NeomandiPrototype/TraderLogin.jsp';
 								}
 							}							
-						</script>
-						</form>
-                        </tr>
-                    </table>
-                </div>
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+				</script>
             </div>
             <%  
             HttpSession psr=request.getSession(false);
-            List msg=(List)psr.getAttribute("beans");
-            List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
-            System.out.println("ist in jsp "+l);
-            System.out.println("+++++++++++"+psr.getAttribute("beans"));
-            if(psr.getAttribute("beans").equals("null"))
+           
+            System.out.println("in jsp++++++++"+psr.getAttribute("beans"));
+            if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-	              out.println("<script type=\"text/javascript\">");
-	       	  	  out.println("alert('There are no lots that belong to "+psr.getAttribute("category")+" category "+psr.getAttribute("produce")+" produce of "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
-	       	  	  out.println("</script>");
+            	System.out.println("inside if()");
+             out.println("<script type=\"text/javascript\">");
+       		 out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+       	  	  out.println("</script>");
             }
             if(msg2!=null||msg3!=null)
 			{
 				Connection con = null;
+				 List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+		            System.out.println("ist in jsp "+l);
 				Statement stmt = null;
 				ResultSet rs = null;
 				String image = null;  
@@ -485,7 +483,7 @@
                         </div>
                     </div>
                 </div>
-                <!--------modal image end------------> <%}} %> 
+                <!--------modal image end------------> <%}}%> 
                              <!--    <tr class="gradeX">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button>
