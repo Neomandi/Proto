@@ -401,7 +401,7 @@
 	<% String msg = (String)request.getAttribute("errmsg");  %>
 	<br/><br/><br/><p align = "center"><b><% if(msg != null && msg.equals("SUCCESS"))
 							{
-								out.println("ProductEntry Successfull");
+								out.println("Product Entry Successful");
 							}
 							else if(msg != null)
 							{
