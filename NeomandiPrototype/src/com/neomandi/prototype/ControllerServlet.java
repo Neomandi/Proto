@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.commons.collections4.bag.SynchronizedSortedBag;
+
 @MultipartConfig(maxFileSize = 16177215)
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -277,7 +279,52 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 		}						
-		
+		if(uri.contains("Averageprice")){
+			
+			
+			
+			String farmerid=request.getParameter("farmerid");
+			System.out.println("in cs farmerid="+farmerid);
+			Model m = new Model();
+			System.out.println("before model is called");
+			@SuppressWarnings("unchecked")
+			List<String> l = m.farmerMaster(farmerid);
+			System.out.print("after model is called"+l);
+			String lotnumber=l.get(1);
+			String averageprice=l.get(2);
+			String quantity=l.get(3);
+			String quantitybidfor=l.get(4);
+			HttpSession hf=request.getSession();
+			hf.setAttribute("lotnumber",lotnumber);
+			hf.setAttribute("averageprice",averageprice);
+			hf.setAttribute("quantity",quantity);
+			hf.setAttribute("quantitybidfor",quantitybidfor);
+			
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.println("averageprice"+averageprice+"averageprice for"+quantitybidfor+"for");
+			    out.flush();
+			    out.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			rd=request.getRequestDispatcher("FarmerMaster.jsp");
+			try 
+			{
+				rd.forward(request, response);	
+				return;
+			}			
+			catch (ServletException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
 		//Farmer logout
 		if(uri.contains("FLogout"))
 		{
@@ -305,7 +352,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}
 
-		if(uri.contains("FarmerMaster")){
+		/*if(uri.contains("FarmerMaster")){
 			System.out.println("in cs uri="+uri);
 			HttpSession hs=request.getSession(false);
 			String name=(String) hs.getAttribute("name");
@@ -353,7 +400,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			
-		}
+		}*/
 		//GetSummary
 		if(uri.contains("GetSummary")){
 			System.out.println("in cs uri="+uri);

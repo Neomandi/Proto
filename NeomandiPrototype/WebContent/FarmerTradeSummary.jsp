@@ -66,6 +66,15 @@
     height:5px;
     }
   
+
+.from .pad .get::before {
+content: "";
+    border-top: 16px solid #d81e5d !important;
+    
+    position: absolute !important;
+    left: -16px !important;
+    top: 0
+}
         </style>
         <script>
         	function historyForm(){
@@ -137,9 +146,9 @@
                 <div class="datetable" align="center">
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                        FROM<div class='input-group date' id='from' name='from'>
+                        FROM<div class='input-group date' id='from' name='from' >
 
-                            <input type='text' class="form-control" name="from" id='from' value="${param. from}"/>
+                            <input type='text' class="form-control" name="from" id='from' value="${param. from}" />
 
 
                             <span class="input-group-addon">
@@ -151,21 +160,26 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
 
-                            <input type='text' class="form-control" name="to" value="${param. to}"/>
+                            <input type='text' class="form-control" name="to" value="${param. to}" />
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
-                    </div><br/>
+                    </div>
+                   <br/>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
                      <div><a href="javascript:history()" class="get">Get Summary</a></div>
                     </div>
-                </div>
+                
             </form>
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style="display:inline; color:white;"><button id="download-btn" class="pure-button export"><font color="white"><b>Download PDF</b></font></button>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
+<button id="download-btn" class="pure-button export">
+<font color="white"><b>Download PDF</b></font></button><br/>
 </div>
+</div>
+
 <script>
                 /*function callme() {
                     var table = tableToJson($('#mytable').get(0));
@@ -733,7 +747,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://neomandi.in/FarmerTradeSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerTradeSummary.jsp";
 	  }
 	document.getElementById('ts').disabled='true';
 	 	var seconds =seconds;
@@ -756,7 +770,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://neomandi.in/BeforeAuction.do";
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -806,7 +820,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -830,7 +844,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
 						            		document.getElementById("accept").disabled=false;
@@ -881,10 +895,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
     </body>

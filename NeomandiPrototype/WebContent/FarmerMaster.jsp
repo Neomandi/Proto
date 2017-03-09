@@ -23,7 +23,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/FarmerMaster.jsp"> 
+
 <title>NeoMandi</title>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -128,6 +128,7 @@ if((String)hs.getAttribute("name")==null){
 		    	
 	
 	%>
+	 <input type="hidden" value="<%=s%>" id="farmerid"/>
 <div class="container-fluid pad auct">
 <div class="tabin1">
 <div class="autable">
@@ -161,6 +162,7 @@ if((String)hs.getAttribute("name")==null){
 					String avg="--";
 		%>
 	  <tr class="gradeX"><td></td>
+	 
 	  
 	  	<% lotnumber=resultSet.getString("lotnumber");
 		   imgsrc="ProductImages/"+lotnumber+".jpg";
@@ -178,7 +180,7 @@ if((String)hs.getAttribute("name")==null){
 			y=y/100;
 			System.out.println("before"+quantity+" after"+y);
           	%>  
-          	<td><h4 style="color:#000080"><b><%=y%></b></h4></td> 
+          	<td id="a"><h4 style="color:#000080"><b><%=y%></b></h4></td> 
           	<% }
 	  		else{ %>         
 	  	<td><h4 style="color:#000080;"><%=qty %></h4></td><%} %>
@@ -191,7 +193,7 @@ if((String)hs.getAttribute("name")==null){
 			x=x/100;
 			System.out.println("before"+average+" after"+x);
 	  		%>
-	  		<td><b><h4 style="color:#000080"><%=x%></h4></b></td>
+	  		<td id="q"><b><h4 style="color:#000080"><%=x%></h4></b></td>
 	  		<%}else{ %>
 	  <td><h4 style="color:#000080;"><%=avg %></h4></td><%} %>
 	  <td>
@@ -474,7 +476,7 @@ function countdown(minutes,seconds,hours)
 {
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://neomandi.in/FarmerMaster.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
 
 	  }	
 	 
@@ -499,7 +501,7 @@ function countdown(minutes,seconds,hours)
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -548,7 +550,7 @@ function countdown(minutes,seconds,hours)
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
 
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 
 		        		            	}
 		        		            
@@ -575,7 +577,7 @@ function countdown(minutes,seconds,hours)
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
 
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -624,11 +626,50 @@ countdown(minutes,seconds,hours);
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
   </script> 
+  
+<script type="text/javascript">
+setInterval(function()
+		  {
+			funny();
+		  },3000);
+		  
+		  function funny(){
+			  console.log("inside function");
+			  xmlhttp = new XMLHttpRequest();
+			    xmlhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) 
+			    {	
+			    	var string=xmlhttp.responseText;
+			    	 var startlotnum=xmlhttp.responseText.indexOf('averageprice');
+			         var endlotnum=xmlhttp.responseText.lastIndexOf('averageprice');
+			         startlotnum=startlotnum+12;
+			         
+			         var startquantitybidfor=xmlhttp.responseText.indexOf('for');
+			         var endquantitybidfor=xmlhttp.responseText.lastIndexOf('for');
+			         startquantitybidfor=startquantitybidfor+3;
+			          var avg=string.substring(startlotnum,endlotnum);
+			          var quantitybidfor=string.substring(startquantitybidfor,endquantitybidfor);
+			          document.getElementById("a").value=avg;
+			          document.getElementById("q").value=quantitybidfor;
+			          
+			          console.log(avg+" "+quantitybidfor);
+			         
+			    }
+			    };
+			    xmlhttp.open("POST", "Averageprice.do", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+				var farmerid=document.getElementById("farmerid").value;
+				console.log("farmerid="+farmerid);
+				//console.log("xmlhttp.send(farmerid)"+xmlhttp.send(farmerid));
+				xmlhttp.send("id="+farmerid);
+				console.log("end of function");
+		  }
+</script>
 </body>
 </html>

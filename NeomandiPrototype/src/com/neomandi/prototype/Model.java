@@ -426,7 +426,56 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		return msg;		
 	}
-	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List farmerMaster(String farmerid){
+		System.out.println("farmerid="+farmerid);
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		
+		List l=new ArrayList();
+		try{	
+			
+			ps = con.prepareStatement( "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?");
+			ps.setString(1,farmerid);
+			String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?";
+			//System.out.println(sql);
+			ps.execute();
+			rs = ps.getResultSet();
+			
+			while(rs!=null&&rs.next()){
+				String lotnumber=rs.getString("lotnumber");
+				String quantity=rs.getString("quantity");
+				String averageprice=rs.getString("averageprice");
+				String quantitybidfor=rs.getString("quantitybidfor");
+				
+				l.add(lotnumber);
+				l.add(averageprice);
+				l.add(quantity);
+				l.add(quantitybidfor);
+				
+				
+			}
+		
+	}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			
+			JDBCHelper.Close(con);
+			JDBCHelper.Close(ps);
+		}
+		return l;
+	}
 	//farmer trade summary	
 	@SuppressWarnings({ "resource" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb)

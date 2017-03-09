@@ -44,6 +44,31 @@
      #image{
     height:300px;
     width:300px;}
+    #div{
+    		
+    		
+			padding:30px;
+			margin:200px;
+			width:50%;
+			background-color:#E5E4E2;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    	}
+    	.ltable thead {
+    	background: #FF803D !important;
+    	}
+    	#div{
+    		
+    		
+			padding:30px;
+			margin:200px;
+			width:50%;
+			background-color:#E5E4E2;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    	}
 </style>
 </head>
 
@@ -116,6 +141,7 @@ if((String)hs.getAttribute("name")==null){
 	{
 		e.printStackTrace();	
 	}
+     
 %>
 <table class="table ltable">
 
@@ -128,6 +154,7 @@ if((String)hs.getAttribute("name")==null){
 	  <td><h4>Quantity</h4></td>
 	  <td></td><td></td>
 	  </tr></thead>
+
 	  
 
 	  <tbody>
@@ -137,16 +164,17 @@ if((String)hs.getAttribute("name")==null){
     String date="";
     String slot="";
 	String s1="";
-	
+	String lotnumber="";
 	try{	
 
 			statement = con.createStatement();
 			String sql5 = "select * from productentry where farmerid='"+s+"'";
 			System.out.println(sql5);		
 			resultSet = statement.executeQuery(sql5);
+			
 			List<String> l=new ArrayList<String>();
 			while(resultSet.next()){
-				String lotnumber=resultSet.getString("lotnumber");
+				 lotnumber=resultSet.getString("lotnumber");
 				String produce=resultSet.getString("produce");
 				String product= resultSet.getString("kindofpro");
 				String grade=resultSet.getString("qualitygrade");
@@ -164,6 +192,7 @@ if((String)hs.getAttribute("name")==null){
 			%>
 				  
 	  	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=resultSet.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
+	 
 	  <% 
 	  }  
 			} catch (Exception e) {
@@ -178,11 +207,11 @@ if((String)hs.getAttribute("name")==null){
 	  </tbody>
 	  
 	 </table>
-	  
+	 
 </div>
 </div>
 </div>
-    
+
   
   <!---------modal image--------------->
 <div class="modal fade" id="myModal1" role="dialog">
@@ -207,7 +236,7 @@ if((String)hs.getAttribute("name")==null){
 <!--------modal image end------------>   
   
 
-
+ 
 
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
@@ -225,6 +254,7 @@ if((String)hs.getAttribute("name")==null){
 	<input type="hidden" value="<%=s1%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
+
 <script>
 	
 
@@ -466,7 +496,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://neomandi.in/Lotdetails.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/Lotdetails.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -488,7 +518,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://neomandi.in/BeforeAuction.do";
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -538,7 +568,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -562,7 +592,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -607,13 +637,14 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
     <script>
     </script> 
+     
 </body>
 </html>
