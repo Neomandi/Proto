@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import="com.neomandi.prototype.JDBCHelper,java.util.*,java.sql.*,com.neomandi.prototype.TraderBlockBean, com.neomandi.prototype.TraderLoginBean" errorPage="Error.jsp"%>
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" errorPage="Error.jsp" pageEncoding="ISO-8859-1" import=" java.text.SimpleDateFormat,java.util.Date,com.neomandi.prototype.*,com.neomandi.prototype.MyFinalCostBean, com.neomandi.prototype.MyFinalCostBean,java.util.*, com.neomandi.prototype.TradeListBean, java.sql.SQLException,com.neomandi.prototype.JDBCHelper,java.sql.DriverManager, java.sql.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -48,29 +48,56 @@ a
     }
 </style>
 </head>
-<body class="" >
+<body>
+<%
+	SimpleDateFormat sdf=new SimpleDateFormat("HH");
+	SimpleDateFormat sdf1=new SimpleDateFormat("mm");
+	String hours=sdf.format(new Date());
+	String minutes=sdf1.format(new Date());
+	int hour=Integer.parseInt(hours);
+	int minute=Integer.parseInt(minutes);
+	System.out.println("current time is "+hour+":"+minute+"  ");
+%>
+<input type="hidden" value="<%=hour%>" id="hour">
+<input type="hidden" value="<%=minute%>" id="minute">
+<script>
+var hour=document.getElementById("hour");
+var minute=document.getElementById("minute");
+console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
+if(hour!=10)
+	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+	 else
+		 {
+		 console.log("minute<35"+minute<35)
+		 if(minute<35)
+		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
+				
+		 }
+</script>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<%HttpSession tlog=request.getSession(false);
-TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-if((String)tlbn.getTname()==null)
-{    out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-  	 out.println("location='TraderLogin.jsp';");
- 	 out.println("</script>");
-}
+<%
+	HttpSession tlog=request.getSession(false);
+	TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+	if((String)tlbn.getTname()==null)
+	{   
+		out.println("<script type=\"text/javascript\">");
+		out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+		out.println("location='TraderLogin.jsp';");
+		out.println("</script>");
+	}
 %>
-<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:18px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do" style="position: absolute; right: -99px;"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
- 						<li ><a href="product.jsp">Product Search</a></li>
-                        <li class="active"><a href="TraderBlock.do">Hold Funds</a></li>
+    					<li ><a href="product.jsp">Product Search</a></li>
+                        <li  class="active"><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
                         <li><a href="Summary1.do">Summary</a></li>
@@ -78,8 +105,7 @@ if((String)tlbn.getTname()==null)
   </ul>
 </div>
 </div>
-</div>   
-      <div class="container">
+</div> <div class="container">
 	  <br><br>
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass" style=" border-radius: 25px;">
@@ -87,7 +113,6 @@ if((String)tlbn.getTname()==null)
 HttpSession hcs=request.getSession(false);
 TraderBlockBean tbb=(TraderBlockBean)hcs.getAttribute("bean");
 hcs.setAttribute("bean",tbb);
-
 if((String)tlbn.getTname()==null)
 {    out.println("<script type=\"text/javascript\">");
   	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");

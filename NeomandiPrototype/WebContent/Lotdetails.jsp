@@ -57,7 +57,7 @@
 			font-size:18px;
     	}
     	.ltable thead {
-    	background: #FF803D !important;
+    	background: #E8B135 !important;
     	}
     	#div{
     		
@@ -190,11 +190,9 @@ if((String)hs.getAttribute("name")==null){
 		System.out.println(rs);
 		System.out.println(rs.getRow());
 		System.out.println(rs.first());
-		String lotnumber1=null;
+		String lotnumber1="";
 	
-		 lotnumber1=rs.getString("lotnumber");
-		
-		if(lotnumber1!=null)
+	if(lotnumber1!=null)
 		{
 			System.out.println("Inside if....");
 			

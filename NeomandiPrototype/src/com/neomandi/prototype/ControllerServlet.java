@@ -291,6 +291,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("before model is called");
 			@SuppressWarnings("unchecked")
 			List<String> l = m.farmerMaster(farmerid);
+			if(!l.isEmpty()) {
 			System.out.print("after model is called"+l);
 			String lotnumber=l.get(0);
 			String averageprice=l.get(1);
@@ -298,6 +299,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println(l.get(1)+" "+l.get(3));
 			String quantity=l.get(2);
 			String quantitybidfor=l.get(3);
+			
 			HttpSession hf=request.getSession();
 			hf.setAttribute("lotnumber",lotnumber);
 			hf.setAttribute("averageprice",averageprice);
@@ -319,6 +321,23 @@ public class ControllerServlet extends HttpServlet {
 			
 			return;
 			}
+			else{
+				String msg="empty";
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("FarmerMaster.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+			}
+		}
 			
 				
 				
@@ -346,7 +365,18 @@ public class ControllerServlet extends HttpServlet {
 					
 					e.printStackTrace();
 				} catch (IOException e) {
+					try 
+				{
+					rd.forward(request, response);	
+					return;
+				}			
+				catch (ServletException e1) {
 					
+					e1.printStackTrace();
+				} catch (IOException e3) {
+					
+					e3.printStackTrace();
+				}
 					e.printStackTrace();
 				}
 		}
@@ -896,7 +926,7 @@ public class ControllerServlet extends HttpServlet {
 			tlog.setAttribute("tlog",tlbn);
 			Model m = new Model();
 			String msg = m.traderLogin(tlbn);
-			System.out.println("msg received from model is "+msg);
+		//	System.out.println("msg received from model is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
 				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
@@ -974,7 +1004,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			System.out.println("msg received from model in CS is "+msg.isEmpty());
+			//System.out.println("msg received from model in CS is "+msg.isEmpty());
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();
@@ -1335,8 +1365,8 @@ public class ControllerServlet extends HttpServlet {
 			try
 			{
 				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
-				System.out.println(tlbn.getTname());
-				System.out.println(tlbn.getTpwd());
+				//System.out.println(tlbn.getTname());
+			//	System.out.println(tlbn.getTpwd());
 				name=tlbn.getTname();
 				pwd=tlbn.getTpwd();
 				if(tlbn.getTname()==null)
@@ -1352,8 +1382,7 @@ public class ControllerServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 			}
-			System.out.println("***************************************************************************");
-			
+			System.out.println("***************************************************************************");			
 			Model m=new Model();
 			TraderBlockBean tbb=m.traderBlockBank(name,pwd);
 			HttpSession traderblockbean=request.getSession();
@@ -1362,7 +1391,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				HttpSession hcs=request.getSession();
 				hcs.setAttribute("bean",tbb);
-				System.out.println("msg sent is SUCCESS");
+			//	System.out.println("msg sent is SUCCESS");
 				request.setAttribute("msg","SUCCESS");
 				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
@@ -1380,6 +1409,7 @@ public class ControllerServlet extends HttpServlet {
 				rd=request.getRequestDispatcher("HoldFunds.jsp");
 				try {
 					rd.forward(request, response);
+					return;
 				} catch (ServletException | IOException e) {
 					e.printStackTrace();
 				}
@@ -1524,15 +1554,13 @@ public class ControllerServlet extends HttpServlet {
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
 			MyFinalCost.setAttribute("MyFinalCost",mc.getBl());
-			System.out.println("inside mfcb in CS"+MyFinalCost.getAttribute("MyFinalCost"));
+		//	System.out.println("inside mfcb in CS"+MyFinalCost.getAttribute("MyFinalCost"));
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd1 = request.getRequestDispatcher("TraderorAuction2.jsp");
 			try 
 			{
 				if(start!=null)
 				{
-					//System.out.println("+++++++++++++++++++++++++++++++++++ start time is "+start+"+++++++++stop is "+stop);
-				
 					rd1.forward(request, response);
 				}
 				else		
@@ -1856,6 +1884,9 @@ public class ControllerServlet extends HttpServlet {
 		{
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+			HttpSession psr=request.getSession(false);
+			//psr.invalidate();
+			psr.setAttribute("msg",null);
 			if(tlbn==null)
 			{
 				rd=request.getRequestDispatcher("TraderLogin.jsp");
