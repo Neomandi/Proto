@@ -265,13 +265,13 @@
             <%  
             HttpSession psr=request.getSession(false);
            
-            System.out.println("in jsp++++++++"+psr.getAttribute("beans"));
+            System.out.println(psr.getAttribute("msg")==null);
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
             	System.out.println("inside if()");
-             out.println("<script type=\"text/javascript\">");
-       		 out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
-       	  	  out.println("</script>");
+                out.println("<script type=\"text/javascript\">");
+       		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+       	  	    out.println("</script>");
             }
             if(msg2!=null||msg3!=null)
 			{
@@ -370,7 +370,7 @@
                                     <td>
                                         <h4><% out.println(psr1.getQuantity()); %></h4></td>
                                     <td>
-                                        <input type="number" min='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
+                                        <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                 </tr>
