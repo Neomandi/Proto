@@ -68,10 +68,9 @@ if(hour!=10)
 	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 	 else
 		 {
-		 console.log("minute<35"+minute<35)
-		 if(minute<35)
-		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
-				
+			 console.log("minute<35"+minute<35)
+			 if(minute<35)
+			//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 		 }
 </script>
 <div class="logo_relative">
@@ -163,11 +162,11 @@ else
 				         document.getElementById("balance").innerHTML = string;
 				         document.getElementById("balance").value = string;				         
 		  }};
-			  xmlhttp.open("POST", "holdfundsgetbalance.do", true);
-			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			  xmlhttp.send("accountnumber="+accountnumber);
-		}
-		</script>
+		  xmlhttp.open("POST", "holdfundsgetbalance.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("accountnumber="+accountnumber);
+	 }
+	 </script>
     </table>
   </form><br><br>
   </div>
@@ -272,7 +271,7 @@ else
 			 }
 		  }
 	}		 
-		</script>
+	</script>
     </table>
   </form><br><br>
   </div>
@@ -280,7 +279,7 @@ else
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
 <h4>Release Funds</h4>
 <div class="password">
-  <%
+    <%
 	  	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 		if(tlbn.getTname()==null)
 			{}
@@ -307,7 +306,7 @@ else
 			
 		}
 		 %><input type="hidden" value="<%=result%>" id="amount">
-<form>
+	  <form>
       <table class="table">   
 	  <tr><td><label for="name">Fund Utilized</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" readonly></td></tr>
@@ -315,7 +314,6 @@ else
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  
 	  <tr><td><table align="center"><tr><td><a  onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
-	
       <script>
       console.log("blocked amoutn is +"+document.getElementById("amount").value)
 		function holdfundsrelease()
@@ -331,9 +329,9 @@ else
 					alert("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
 			}
 			else if(release.length==0)
-				{
-				alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
-				}
+			{
+					alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
+			}
 		  else
 		  {
 			  xmlhttp = new XMLHttpRequest();

@@ -40,15 +40,15 @@ border-top:0px;
 <div class="container-fluid headertop">
 <div class="">
 <%  
-System.out.println(request.getAttribute("msg"));
-if(((String)request.getAttribute("msg"))!=null )
-{
-	 System.out.println("inside if");
-	 out.println("<script type=\"text/javascript\">");
- 	 //out.println("alert('Auction yet to happen, hence, no dispatch summary available.');");
- 	 out.println("location='dispatch.jsp';");
-	 out.println("</script>");
-	 %>
+	System.out.println(request.getAttribute("msg"));
+	if(((String)request.getAttribute("msg"))!=null )
+	{
+		 System.out.println("inside if");
+		 out.println("<script type=\"text/javascript\">");
+	 	 //out.println("alert('Auction yet to happen, hence, no dispatch summary available.');");
+	 	 out.println("location='dispatch.jsp';");
+		 out.println("</script>");
+%>
 	 <input type="hidden" value="<%=(String)request.getAttribute("msg")%>" id="msg">
 	 <script>
 	 var msg=document.getElementById("msg");
