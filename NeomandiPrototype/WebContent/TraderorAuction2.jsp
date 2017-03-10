@@ -355,9 +355,9 @@ catch(NullPointerException e)
 								      		    if (this.readyState == 4 && this.status == 200) 
 								      		    {}};
 								      		    //console.log("your auction has ended");
-								      		//  xmlhttp.open("POST", "PostAuction.do", true);
-								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								      	//	alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
+								      		  xmlhttp.open("POST", "Slotchange.do", true);
+								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+											  xmlhttp.send("number=1");
 								      	   }
 				        		    	}
 			        		     	}
@@ -3585,9 +3585,7 @@ catch(NullPointerException e)
 </div>
 </div>
     </div></div>
-    </div>
-    
-    
+    </div>    
     <!-- 
 <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> -->

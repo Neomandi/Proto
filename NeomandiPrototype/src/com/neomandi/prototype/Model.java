@@ -1372,7 +1372,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			while(rs.next())
 			{
 				aadharnumber=rs.getString("aadharnumber");
-				System.out.println("aadharnumber of "+name+" is "+aadharnumber);
+			//	System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 			}		
 			String lotnum=null;
 			ps =con.prepareStatement("SELECT lotnum FROM tradelist where aadharnumber=?");
@@ -1405,7 +1405,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			int bidprice=0;
 			
 			
-			System.out.println("lotnum which trader is bidding for is "+lotnum);
+			//System.out.println("lotnum which trader is bidding for is "+lotnum);
 			ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 			ps.setString(1, aadharnumber);
 			ps.setString(2, lotnum);
@@ -1423,7 +1423,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						myfinalcost=100;
 					else
 						myfinalcost=100+lotcost+commission+marketcess+3000;
-					System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
+				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
 			}
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
@@ -1432,7 +1432,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 				ps.setString(4,String.valueOf(myfinalcost));
 				ps.setString(5,String.valueOf(aadharnumber));
 				ps.setString(6,lotnum);
-				System.out.println(ps);
+			//	System.out.println(ps);
 				ps.execute();
 				
 				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
@@ -1462,7 +1462,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 					marketcess=Integer.parseInt(String.valueOf(marketcess));
 					myfinalcost=Integer.parseInt(String.valueOf(myfinalcost));
 					
-					System.out.println("lotcost is "+lotcost+" commission "+commission+" myfinalcost "+myfinalcost);
+			//		System.out.println("lotcost is "+lotcost+" commission "+commission+" myfinalcost "+myfinalcost);
 					
 					String bestbid=null;
 					if(rs3.getString("bestbid")==null)
@@ -1473,7 +1473,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						bestbid=rs3.getString("bestbid");
 					mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
 					mfcb.setBestbid(bestbid);
-					System.out.println("inside model mfcb is "+mfcb);
+				//	System.out.println("inside model mfcb is "+mfcb);
 
 					
 				}//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
@@ -3714,7 +3714,7 @@ public void TraderProductAccept(String lotnum,String accno)
 				}
 				else
 				{
-					if(slotnumber.equals("slot1"))
+					if(slotnumber.equals("slot1")||slotnumber.equals("nill"))
 					{
 						slotnumber = "slot2";
 					}
@@ -3796,7 +3796,7 @@ public void TraderProductAccept(String lotnum,String accno)
 					slotnumber = rs.getString("slotnumber");
 				}
 				
-				if(slotnumber.equals("slot1"))
+				if(slotnumber.equals("slot1")||slotnumber.equals("nill"))
 				{
 					slotnumber = "slot2";
 				}
@@ -4802,5 +4802,55 @@ public void PostAuction()
 			JDBCHelper.Close(con);
 		}
 		return "SUCCESS "+produce;
+	}
+
+	public String Slotchange() 
+	{
+		String msg = null;
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				return msg + "Connection not established";
+			}
+			else
+			{
+				ps=con.prepareStatement("update productentry set slotnumber='nill' where slotnumber='slot1'");
+				ps.execute();
+				System.out.println(ps);
+				
+				ps=con.prepareStatement("select * from productentry where slotnumber='slot1'");
+				ps.execute();
+				rs=ps.getResultSet();
+				if(rs.next()){
+					System.out.println("LOTS ARE STILL PRESENT IN SLOT 1 ");
+				}
+				else
+					System.out.println("lots are removed");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			
+			try {
+				con.rollback();
+			} catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
+		return null;
+		
 	}
 }
