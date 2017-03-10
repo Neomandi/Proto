@@ -291,6 +291,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("before model is called");
 			@SuppressWarnings("unchecked")
 			List<String> l = m.farmerMaster(farmerid);
+			if(!l.isEmpty()) {
 			System.out.print("after model is called"+l);
 			String lotnumber=l.get(0);
 			String averageprice=l.get(1);
@@ -298,6 +299,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println(l.get(1)+" "+l.get(3));
 			String quantity=l.get(2);
 			String quantitybidfor=l.get(3);
+			
 			HttpSession hf=request.getSession();
 			hf.setAttribute("lotnumber",lotnumber);
 			hf.setAttribute("averageprice",averageprice);
@@ -319,6 +321,23 @@ public class ControllerServlet extends HttpServlet {
 			
 			return;
 			}
+			else{
+				String msg="empty";
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("FarmerMaster.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+			}
+		}
 			
 				
 				
@@ -346,7 +365,18 @@ public class ControllerServlet extends HttpServlet {
 					
 					e.printStackTrace();
 				} catch (IOException e) {
+					try 
+				{
+					rd.forward(request, response);	
+					return;
+				}			
+				catch (ServletException e1) {
 					
+					e1.printStackTrace();
+				} catch (IOException e3) {
+					
+					e3.printStackTrace();
+				}
 					e.printStackTrace();
 				}
 		}
