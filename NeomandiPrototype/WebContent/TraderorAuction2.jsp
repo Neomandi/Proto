@@ -355,9 +355,9 @@ catch(NullPointerException e)
 								      		    if (this.readyState == 4 && this.status == 200) 
 								      		    {}};
 								      		    //console.log("your auction has ended");
-								      		//  xmlhttp.open("POST", "PostAuction.do", true);
-								      		//  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								      	//	alert("YOU CAN CHECK THE STATUS IN STATUS PAGE");
+								      		  xmlhttp.open("POST", "Slotchange.do", true);
+								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+											  xmlhttp.send("number=1");
 								      	   }
 				        		    	}
 			        		     	}
@@ -424,7 +424,7 @@ catch(NullPointerException e)
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
 	}
@@ -448,8 +448,8 @@ catch(NullPointerException e)
 			{
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-				System.out.println("inside traderlist bean"+al);
-				System.out.println("++++++++++++++++");
+				//System.out.println("inside traderlist bean"+al);
+				//System.out.println("++++++++++++++++");
 				System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
 					<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
@@ -466,8 +466,6 @@ catch(NullPointerException e)
 						{	
 							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
-							System.out.println("++++++++++++++++++++++++");
-							System.out.println(l.size()==0);
 							if(l.size()==0){
 								%><br>
 								<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
@@ -509,7 +507,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement="bottom" class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
@@ -781,7 +779,7 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -907,7 +905,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    	 {
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    	}
 		    	else
@@ -1060,7 +1058,7 @@ catch(NullPointerException e)
 		console.log(mybid==0);
 		if(quantityassigned>0)
 		{
-			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+			alert("Lot could be removed only when no lot has been assigned to you during auction")
 		}
 		else
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
@@ -1143,7 +1141,7 @@ catch(NullPointerException e)
 					  }
 				  if(currentbids>newbids)
 				  {	  
-					  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+					  alert('You are allowed only to increment the bid.');
 					 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 				  }
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
@@ -1161,7 +1159,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
 					    	else
@@ -1391,7 +1389,7 @@ catch(NullPointerException e)
 		}		
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a  onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -1768,7 +1766,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    		{
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    		}
 		    	else
@@ -1900,7 +1898,7 @@ catch(NullPointerException e)
 	}
  }*/
 	</script>
-	<tr><td><br><a onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</a></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1993,7 +1991,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
 			  }
 			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
@@ -2011,7 +2009,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
 					    	else
@@ -2324,7 +2322,7 @@ catch(NullPointerException e)
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');");
+	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
 	}
@@ -2533,7 +2531,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    		{
-		    		   alert('your final cost has increased blocked amount!!! we are taking you to block funds page...block more money for more profit ');
+		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds');
 		  	  	       window.location='TraderBlock.do';
 		    		}
 		    	else
@@ -2758,7 +2756,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
 			  }
 			  else
@@ -3328,7 +3326,7 @@ catch(NullPointerException e)
 				  }
 			  if(currentbids>newbids)
 			  {	  
-				  alert('YOU CAN ONLY INCREASE YOUR BID NOT DECREASE');
+				  alert('You are allowed only to increment the bid.');
 				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
 			  }
 			  else
@@ -3523,8 +3521,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -3577,8 +3575,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -3587,9 +3585,7 @@ catch(NullPointerException e)
 </div>
 </div>
     </div></div>
-    </div>
-    
-    
+    </div>    
     <!-- 
 <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> -->

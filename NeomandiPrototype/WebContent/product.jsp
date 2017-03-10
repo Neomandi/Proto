@@ -99,7 +99,7 @@
         	}
         	else if(s1.value == "Grains")
         	{
-        		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "MILLET|Millet", "BARLEY|Barley", "RICE|Rice"];
+        		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "RAGI|Ragi", "BARLEY|Barley", "RICE|Rice"];
         	}
         	else if(s1.value == "Pulses")
         	{
@@ -390,18 +390,18 @@
 																		
 									if(neededs>totals)
 									{
-										alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
+										alert("Please enter a quantity same as or less than the Quantity Available");
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 									}
 									else if(isNaN(neededs))
 									{
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
+										alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
 									}
 									else if(neededs<=0)
 										{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-											alert("YOU SHOULD ENTER VALID QUANTITY YOU WILL BID FOR BEFORE ADDING TO TRADE LIST ");								
+											alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
 										}
 									else if(neededs%50!=0)
 										{
@@ -427,7 +427,7 @@
 											         var ms=string.substring(startlotnum,endlotnum);
 											         var newsize=new Number(ms);
 											         
-											         if (confirm('You have already added this lot to trade with quantity as '+ms+'Kg you want to update it with new quantity?? ')) 
+											         if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
 											         {
 											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
 											        	 	xmlhttp.open("POST", "AddTrade.do", true);
@@ -446,11 +446,11 @@
 										         startlotnum=startlotnum+4;
 										         
 										         var ms=string.substring(startlotnum,endlotnum);
-											   		alert("You cant reduce the size you can only increase it. Please try to enter size greater than "+ms);
+											   		alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
 									   		}
 										   	else if(string.includes("msg"))
 										   		{
-												   		alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+" Kgs");
+												   		alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
 										   		}
 											
 											         document.getElementById("addtrade").innerHTML = string;

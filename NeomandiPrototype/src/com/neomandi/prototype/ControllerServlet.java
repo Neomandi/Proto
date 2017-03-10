@@ -1615,7 +1615,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 					PrintWriter out = null;
 					try {
-						System.out.println(mfcb);
+						//System.out.println(mfcb);
 						out = response.getWriter();
 						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
 					    out.flush();
@@ -2608,6 +2608,14 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+		}
+		
+		if(uri.contains("Slotchange"))
+		{
+			System.out.println("Slotchange.do");
+			System.out.println("******************************");
+			Model m=new Model();
+			m.Slotchange();			
 		}
 	}
 
