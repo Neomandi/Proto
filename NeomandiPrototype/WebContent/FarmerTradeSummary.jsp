@@ -66,7 +66,18 @@
     height:5px;
     }
   
-
+#div{
+    		
+    		align:center;
+			padding:20px;
+			margin:250px;
+			width:40%;
+			background-color:#E5E4E2;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    	}
+ 
 .from .pad .get::before {
 content: "";
     border-top: 16px solid #d81e5d !important;
@@ -102,7 +113,7 @@ content: "";
                 <div class="">
 					<%HttpSession hs=request.getSession(false); 
 					if((String)hs.getAttribute("name")==null){
-						out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
+						out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
 					}
 				String name=(String)hs.getAttribute("name"); %>
                     <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
@@ -148,7 +159,7 @@ content: "";
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                         FROM<div class='input-group date' id='from' name='from' >
 
-                            <input type='text' class="form-control" name="from" id='from' value="${param. from}" />
+                            <input type='text' class="form-control" name="from" id='from' value="${param. from}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
 
 
                             <span class="input-group-addon">
@@ -160,7 +171,7 @@ content: "";
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
                        TO<div class='input-group date' id='to'>
 
-                            <input type='text' class="form-control" name="to" value="${param. to}" />
+                            <input type='text' class="form-control" name="to" value="${param. to}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -168,14 +179,17 @@ content: "";
                         </div>
                     </div>
                    <br/>
-                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
+                    <!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
                      <div><a href="javascript:history()" class="get">Get Summary</a></div>
-                    </div>
+                    </div>-->
                 
-            </form>
+            
 <!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
-<button id="download-btn" class="pure-button export">
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div></form>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   id="download-btn"  style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
+
+<!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
+<button id="download-btn" class="pure-button export">-->
 <font color="white"><b>Download PDF</b></font></button><br/>
 </div>
 </div>
@@ -211,9 +225,8 @@ content: "";
 				{
   	%>
 
-			<script>
-				window.alert("YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE");
-			</script>
+			<center><div id="div"><b>There are no trades recorded for this period</b></div></center>
+
             
 
             <%
@@ -746,8 +759,8 @@ var etime=document.getElementById("etime").value;
 function countdown(minutes,seconds,hours) 
 {
 	document.getElementById('ts').onclick = function() {
-		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/FarmerTradeSummary.jsp";
+		  
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	document.getElementById('ts').disabled='true';
 	 	var seconds =seconds;

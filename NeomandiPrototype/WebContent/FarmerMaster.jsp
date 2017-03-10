@@ -67,7 +67,7 @@
 <div class="">
 <%HttpSession hs=request.getSession(false); 
 if((String)hs.getAttribute("name")==null){
-	out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
+	out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
 }
 	String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>,&nbsp;welcome to e-auction at NeoMandi.</p></div>
@@ -534,7 +534,7 @@ function countdown(minutes,seconds,hours)
 {
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 
 	  }	
 	 

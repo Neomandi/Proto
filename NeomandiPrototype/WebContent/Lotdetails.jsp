@@ -228,7 +228,9 @@ if((String)hs.getAttribute("name")==null){
 		else if(lotnumber1 == null)
 		{
 			 System.out.println("Inside else....");
+
 			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div>");
+
 		}
 	}
 	}
@@ -534,8 +536,8 @@ var date=document.getElementById("date").value;
 function countdown(minutes,seconds,hours) 
 {
 	document.getElementById('ts').onclick = function() {
-		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/Lotdetails.jsp";
+		  
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
