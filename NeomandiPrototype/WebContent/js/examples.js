@@ -135,7 +135,7 @@ examples.multiple = function () {
 examples.html = function () {
     var doc = new jsPDF('portrait', 'pt','a2');
     doc.text("NeoMandi Trade Summary", 40, 30);
-    doc.text("*Transportation / Loading Charges   #E-Platform Charges   $ Pre-Market Value Addition Charges", 464, 30);
+    doc.text("*Transportation / Loading Charges   #E-Platform Charges   $ Pre-Market Value Addition Charges", 464, 1670);
     var elem = document.getElementById("basic-table");
     var res = doc.autoTableHtmlToJson(elem);
     doc.autoTable(res.columns, res.data, {startY: 60});
