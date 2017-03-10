@@ -31,15 +31,13 @@ table:nth-child(even) {
 .table > tbody + tbody { 
 border-top:0px;
 }
-#div{
-    		
-    		
+#div{   		
 			padding:30px;
 			margin:200px;
 			width:50%;
-			background-color:#E5E4E2;
+			background-color:#BFBFBF;
 			text-align:center;
-			color:darkblue;	 
+			color: black;	 
 			font-size:18px;
     	}
  
@@ -56,6 +54,7 @@ HttpSession elog = request.getSession(); %>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
+
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
@@ -66,6 +65,7 @@ HttpSession elog = request.getSession(); %>
 </div>
 </div>
 </div> 
+
 <div class="container-fluid dispatch pad" id="text">
 <div class="row">
   <div class="col-lg-offset-1 col-lg-6 col-sm-12 col-xs-12">
@@ -73,16 +73,16 @@ HttpSession elog = request.getSession(); %>
          <div class="col-lg-11 col-sm-8 col-xs-offset-0 col-xs-12 table-responsive">
 			   <table class="table">
 			   <tr>
-			   		
 			   		<th   ></th>
 			   		<th   ></th>
 					<th   style="text-align:center;">Lot Number</th>
-					<th ></th>
-					<th colspan="2"></th>
-					<th  style="text-align:center;">Name</th>
-					<th  colspan="2" style="text-align:center;">Quantity</th>
-					<th   ></th>
-			   		<th   ></th>
+					<th>
+					</th>
+					<th   colspan="2"></th>
+					<th   style="text-align:center;">Name</th>
+					<th   colspan="2" style="text-align:center;">Quantity</th>
+					<th></th>
+			   		<th></th>
 				</tr>
 				</table>
 				</div>
@@ -90,6 +90,6 @@ HttpSession elog = request.getSession(); %>
 				</div>
 				</div>
 				</div>
-				<center><div id="div"><b>Auction yet to happen, hence, no dispatch summary is available</b></div></center>
-				</body>
-				</html>
+				<center><div id="div"><h2>Auction is yet to begin hence, no dispatch summary is available</h2></div></center>
+</body>
+</html>

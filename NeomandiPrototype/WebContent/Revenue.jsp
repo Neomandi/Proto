@@ -45,6 +45,15 @@ footer {
 .tradtab a{
     background-color:#0082B2;
     }
+    #div{
+    		padding:30px;
+			margin:200px;
+			width:50%;
+			background-color:#E5E4E2;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    }
 </style>
 <body class="">
 	<% 
@@ -202,7 +211,7 @@ footer {
 		else
 		{
 			 System.out.println("Inside else....");
-			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no revenue summary is available.</h2></div>");
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div>");
 		}
 	}
 	}

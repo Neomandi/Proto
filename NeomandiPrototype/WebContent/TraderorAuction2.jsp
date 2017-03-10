@@ -452,7 +452,7 @@ catch(NullPointerException e)
 				//System.out.println("++++++++++++++++");
 				System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
-					<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
+					<h1 style="text-align: center;">None of the lots you have chosen come under slot-1</h1><br>
 			<%	}for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;
@@ -468,7 +468,7 @@ catch(NullPointerException e)
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(l.size()==0){
 								%><br>
-								<h1 style="text-align: center;">There are no lots that come under slot-1</h1><br>
+								<h1 style="text-align: center;">None of the lots you have chosen come under slot-1</h1><br>
 						<%}
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{   
