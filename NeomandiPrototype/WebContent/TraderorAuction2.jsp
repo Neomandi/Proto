@@ -551,7 +551,7 @@ catch(NullPointerException e)
 		setInterval(function()
 				  {
 					funny();
-				  },2000);
+				  },1000);
 		
 		function funny()
  		{		  
