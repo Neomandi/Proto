@@ -47,16 +47,14 @@
     background-color:#0082B2;
     }
    #div{
-    		
-    		
-			padding:30px;
+    		padding:30px;
 			margin:200px;
 			width:50%;
-			background-color:#E5E4E2;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
+    }
     </style>
 </head>
 
@@ -276,8 +274,7 @@ if((String)hs.getAttribute("name")==null){
 		else
 		{
 			 System.out.println("Inside else....");
-			// out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no Lot details is available.</b></p></div>");
-
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>No lot entries, hence, no auction details are available.</b></p></div>");
 		}
 	}
 }

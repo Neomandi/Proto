@@ -64,16 +64,14 @@ footer {
     background: #000080;
 }
 #div{
-    		
-    		align:center;
-			padding:20px;
-			margin:250px;
+    		padding:30px;
+			margin:200px;
 			width:40%;
-			background-color:#E5E4E2;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
+    }
 </style>
 </head>
 
@@ -138,8 +136,9 @@ if((String)hs.getAttribute("name")==null){
 </div>
 	  </div>
 	  </div>
-	  			<center><div id="div"><b>There are no trades recorded for this period</b></div></center>
-	  
+	  <% 
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
+	  %>
         <footer>
 	  <div id="grad1"></div>
 	 

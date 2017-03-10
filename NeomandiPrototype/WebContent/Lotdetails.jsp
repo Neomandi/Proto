@@ -46,30 +46,26 @@
     height:300px;
     width:300px;}
     #div{
-    		
-    		
-			padding:30px;
+    		padding:30px;
 			margin:200px;
-			width:50%;
-			background-color:#E5E4E2;
+			width:30%;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
+    }
     	.ltable thead {
-    	background: #E8B135 !important;
+    	background: #00B0B2 !important;
     	}
-    	#div{
-    		
-    		
-			padding:30px;
+    	 #div{
+    		padding:30px;
 			margin:200px;
-			width:50%;
-			background-color:#E5E4E2;
+			width:30%;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
+    }
 </style>
 </head>
 
@@ -230,7 +226,7 @@ if((String)hs.getAttribute("name")==null){
 		{
 			 System.out.println("Inside else....");
 
-			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>No lot entries were formed.</b></p></div>");
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 230px;'><p ><b>No lot entries were found.</b></p></div>");
 
 		}
 	}

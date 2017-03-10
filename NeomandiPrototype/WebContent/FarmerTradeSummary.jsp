@@ -67,16 +67,14 @@
     }
   
 #div{
-    		
-    		align:center;
-			padding:20px;
-			margin:250px;
+    		padding:30px;
+			margin:200px;
 			width:40%;
-			background-color:#E5E4E2;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
+    }
  
 .from .pad .get::before {
 content: "";
@@ -223,9 +221,10 @@ content: "";
 		{
 			if(request.getAttribute("farmerhistory").equals("no"))
 				{
+				 out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for this period.</b></p></div>");
+
   	%>
 
-			<center><div id="div"><b>There are no trades recorded for this period</b></div></center>
 
             
 
