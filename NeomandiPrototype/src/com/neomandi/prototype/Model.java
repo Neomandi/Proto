@@ -319,8 +319,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		System.out.println("trader name is "+tlbn.getTname());
-		System.out.println("trader password is "+tlbn.getTpwd());
+		//System.out.println("trader name is "+tlbn.getTname());
+		//System.out.println("trader password is "+tlbn.getTpwd());
 		String name=tlbn.getTname();
 		String pwd=tlbn.getTpwd();
 		try
@@ -340,7 +340,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				rs = ps.getResultSet();				
 				if(rs.next())
 				{
-					System.out.println(" trader is registered ");
+					//System.out.println(" trader is registered ");
 					String npwd = rs.getString("pass");
 					if(npwd.equals(pwd))
 						msg = msg + "SUCCESS";
@@ -349,10 +349,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				}
 				else
 				{
-					System.out.println(" trader has not registered ");				
+					//System.out.println(" trader has not registered ");				
 					msg = msg + "Register first and then login.";
-				}
-				
+				}				
 				con.commit();
 			}
 		}
@@ -633,7 +632,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String produce = psb.getProduce();
 				String quality = psb.getGrade();
 				String slot=psb.getSlot();
-				System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
+			//	System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
 				
 					
 				if(kproduce.equals("Category"))
@@ -734,9 +733,9 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setPhoto(rs.getString("photo"));
 				//		System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
-						System.out.println(l);
+						//System.out.println(l);
 					}
-					System.out.println(l);
+				//	System.out.println(l);
 					return l;
 				}
 			}
@@ -977,7 +976,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	@SuppressWarnings("resource")
 	public TraderBlockBean traderBlockBank(String name,String pwd) 
 	{
-		System.out.println("inside model-> traderBlockBank()->..trader name is "+name+" pwd is "+pwd);
+		//System.out.println("inside model-> traderBlockBank()->..trader name is "+name+" pwd is "+pwd);
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -1038,7 +1037,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{
 					blockamount=rs.getInt("blockamount");
 				}				
-				System.out.println("total blocked amount is "+blockamount);
+				//System.out.println("total blocked amount is "+blockamount);
 				tbb.setBlock(blockamount);
 					return tbb;			
 			}
@@ -1065,13 +1064,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 	@SuppressWarnings("resource")
 	public String[] traderblockamount(String name, String pwd, String amount, String bankname, String accno)
 	{
-		System.out.println("inside model-> traderBlockamount()->..bankname is"+bankname+" trader name is "+name+" pwd is "+pwd);
+		//System.out.println("inside model-> traderBlockamount()->..bankname is"+bankname+" trader name is "+name+" pwd is "+pwd);
 		PreparedStatement ps = null;	
 		PreparedStatement ps1 = null;	
 		PreparedStatement ps2= null;	
 		PreparedStatement ps3 = null;	
-		PreparedStatement ps4 = null;	
-		
 		Connection con = null;		
 		ResultSet rs = null;	
 		String aadharnumber="";	
@@ -1085,7 +1082,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			}			
 			else		
 			{
-				con.setAutoCommit(false);	
+				//con.setAutoCommit(false);	
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");				
 				ps.setString(1, name);		
 				ps.setString(2, pwd);
@@ -1188,7 +1185,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						rs = ps.getResultSet();		
 					}							
 			}								
-			con.commit();						
+			//con.commit();						
 			}				
 			}					
 			catch(SQLException e)					
@@ -1241,7 +1238,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 				while(rs.next())
 				{
 					aadharnumber=rs.getString("aadharnumber");
-					System.out.println("aadharnumber of "+name+" is "+aadharnumber);
+					//System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 				}			
 				List<String> lotnumber=new ArrayList<String>();
 				ps =con.prepareStatement("SELECT lotnum, marketcode, produce,qualitygrade, quantity, slotnumber,quantityneeded FROM tradelist where aadharnumber=?");
@@ -1260,10 +1257,10 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					tlb.setQuantityneeded(rs.getString("quantityneeded"));
 					al.add(tlb);
 					lotnumber.add(rs.getString("lotnum"));
-					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
+				//	System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
 				}
 				mc.setAl(al);	
-				System.out.println("model "+mc.getAl()+lotnumber.size());
+				//System.out.println("model "+mc.getAl()+lotnumber.size());
 				for(int i=0;i<lotnumber.size();i++)
 				{
 					int lotcost=0;
@@ -1273,12 +1270,12 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnumber.get(i));
-					System.out.println(lotnumber.get(i));
+				//	System.out.println(lotnumber.get(i));
 					ps.execute();
 					rs = ps.getResultSet();				
 					while(rs.next())
 					{
-						System.out.println("inside while()");
+					//	System.out.println("inside while()");
 						int quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
 						int bidprice=Integer.parseInt(rs.getString("bidprice"));
 						lotcost=bidprice*quantityassigned;
@@ -1319,7 +1316,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						else							
 							mfcb.setBestbid(rs3.getString("bestbid"));
 						mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
-						System.out.println("inside model lotnumber is"+mfcb.getLotnum()+"lotcost is"+mfcb.getLotcost());
+					//	System.out.println("inside model lotnumber is"+mfcb.getLotnum()+"lotcost is"+mfcb.getLotcost());
 						bl.add(mfcb);
 					}//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
 						mc.setBl(bl);
@@ -4723,7 +4720,6 @@ public void PostAuction()
 		return msg;
 	}
 
-	@SuppressWarnings("resource")
 	public String addTradeAgain(String lotnumber, TraderLoginBean tlbn, String quantityneeded) 
 	{
 		System.out.println("inside Model-> inside AddTrade()->quantityneeded is "+quantityneeded);
