@@ -425,6 +425,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		return msg;		
 	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List farmerMaster(String farmerid){
 		System.out.println("farmerid="+farmerid);
@@ -484,6 +485,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		return l;
 	}
+	
 	//farmer trade summary	
 	@SuppressWarnings({ "resource" })
 	public SummaryBean getSummary(String name, String pass,SummaryBean sb)
@@ -972,7 +974,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		}
 		return "SUCCESS "+produce;
 	}
-//the ver first time when trader clicks on hold funds ths page pop ups
+	
+    //the ver first time when trader clicks on hold funds ths page pop ups
 	@SuppressWarnings("resource")
 	public TraderBlockBean traderBlockBank(String name,String pwd) 
 	{
