@@ -21,20 +21,20 @@
             min-height: 100%;
         }
         
-        body {
+        .body {
             margin: 0 0 100px;
             /* bottom = footer height */
             padding: 25px;
         }
         
-        footer {
+        #footer {
 			width: 100%;
 			height: auto;
 			left: 0;
 			position: absolute;
 			bottom: 0;	
         }
-        header{
+        #header{
         	position: absolute;
             left: 0;
             top: 0;
@@ -53,7 +53,7 @@
 <body class="">
 <!---menu bar------>
 
-<header>
+<div class="header">
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
@@ -82,33 +82,39 @@
     </div>
   </div>
 </nav> 
-</header>
+</div>
 <!-----menu bar end------>
-<br/><br/>
-<div class="container-fluid">
+<div class="container-fluid body">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
+	<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+	<div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
 		<h1>Vision</h1>
-        <p align="justify" class="ex1">
+        <p align="justify">
             NeoMandi's vision is to be a leading corporation in providing an ecosystem of advanced technologies to help farmers in marketing their produce for a fair price discovered in a transparent and competitive environment.
         </p>
 	</div>
-	<div class="col-md-1"></div>
+	<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
 	</div>
 </div>
 
-<footer>
+<div id="footer">
 <nav class="navbar navbar-inverse menu">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
-	<ul class="nav navbar-nav">
-		<li><a title = "Follow us on twitter" href = "https://twitter.com/Neomanditech" target="_blank"><img src = "Images1/TwitterLogo.jpg" alt = "Can't display" width = "24" height = "24"></a></li>
-		<li><a title = "Follow Us on Youtube" href = "https://youtu.be/224nj8EdAPE" target="_blank"><img src = "Images1/YouTubeLogo.png" alt = "Can't display" width = "24" height = "24"></a></li>
-		<li><a title = "Follow Us on Linkedin" href = "https://www.linkedin.com/company/neomandi-technologies-pvt.-ltd.?report%2Esuccess=KJ_KkFGTDCfMt-A7wV3Fn9Yvgwr02Kd6AZHGx4bQCDiP6-2rfP2oxyVoEQiPrcAQ7Bf" target="_blank"><img src = "Images1/LinkedInLogo1.png" alt = "Can't display" width = "24" height = "24"></a></li>
-	</ul>
-</div>
+	    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myfNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                         
+      </button>
+    </div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myfNavbar">
+		<ul class="nav navbar-nav">
+			<li><a title = "Follow us on twitter" href = "https://twitter.com/Neomanditech" target="_blank"><img src = "Images1/TwitterLogo.jpg" alt = "Can't display" width = "24" height = "24"></a></li>
+			<li><a title = "Follow Us on Youtube" href = "https://youtu.be/224nj8EdAPE" target="_blank"><img src = "Images1/YouTubeLogo.png" alt = "Can't display" width = "24" height = "24"></a></li>
+			<li><a title = "Follow Us on Linkedin" href = "https://www.linkedin.com/company/neomandi-technologies-pvt.-ltd.?report%2Esuccess=KJ_KkFGTDCfMt-A7wV3Fn9Yvgwr02Kd6AZHGx4bQCDiP6-2rfP2oxyVoEQiPrcAQ7Bf" target="_blank"><img src = "Images1/LinkedInLogo1.png" alt = "Can't display" width = "24" height = "24"></a></li>
+		</ul>
+	</div>
 </nav>
-</footer>
+</div>
 
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
