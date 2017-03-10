@@ -281,7 +281,11 @@ public class ControllerServlet extends HttpServlet {
 		}						
 		if(uri.contains("Averageprice")){
 			
+
 			String farmerid=request.getParameter("farmerid");
+
+			
+			
 			System.out.println("in cs farmerid="+farmerid);
 			Model m = new Model();
 			System.out.println("before model is called");

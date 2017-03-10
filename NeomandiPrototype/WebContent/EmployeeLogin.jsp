@@ -100,7 +100,7 @@ function validateELForm()
                         </tr>
                         <tr align="center">
                             <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-							<td><button class="btn btn-primary" onclick="submitform();" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td><br/>
+							<td><button class="btn btn-primary" onclick="submitform();" style="width: 244px; border-radius:0px; background-color:#149DDA">Login</button></td><br/>
 
                         </tr>
                         <tr align="center">
