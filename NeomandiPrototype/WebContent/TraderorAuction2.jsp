@@ -462,7 +462,7 @@ catch(NullPointerException e)
 				//System.out.println("++++++++++++++++");
 				//System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
-					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 			<br>
 			<%	}for(Object o:al)
 				{
@@ -478,7 +478,7 @@ catch(NullPointerException e)
 							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(l.size()==0){
-								%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+								%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 						<br><%}
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{   
@@ -551,7 +551,7 @@ catch(NullPointerException e)
 		setInterval(function()
 				  {
 					funny();
-				  },3000);
+				  },2000);
 		
 		function funny()
  		{		  

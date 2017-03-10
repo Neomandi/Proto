@@ -1586,7 +1586,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		if(uri.contains("refresh"))
 		{	
-			System.out.println("***************************************************************************");
+			//System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
@@ -1627,7 +1627,7 @@ public class ControllerServlet extends HttpServlet {
 						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
 					    out.flush();
 					    out.close();
-					    System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+					 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
 					}
 					catch (IOException e) {
 						e.printStackTrace();
