@@ -15,7 +15,7 @@
 	 java.net.InetAddress,
 	 java.text.SimpleDateFormat,
 	 sun.misc.BASE64Encoder,
-	java.util.*"%>
+	java.util.Date,java.sql.*"%>
 <!doctype html>
 <html>
 <head>
@@ -46,7 +46,17 @@
     .tradtab a{
     background-color:#0082B2;
     }
-   
+   #div{
+    		
+    		
+			padding:30px;
+			margin:200px;
+			width:50%;
+			background-color:#E5E4E2;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    	}
     </style>
 </head>
 
@@ -78,9 +88,16 @@ if((String)hs.getAttribute("name")==null){
 </div>
 
  <% 
- 
-	
-	 		
+  /*String msg = (String)request.getAttribute("errmsg");
+ System.out.println("meassage="+msg);
+ System.out.println("if(msg != null && msg.equals(empty))"+(msg != null && msg.equals("empty")));
+ if(msg != null && msg.equals("empty")){
+	 System.out.println("insid if");*/
+	 %>
+	<!--   <div id="div">Auction yet to happen, hence, no  Lot details is available.</div>-->
+	 <% 
+// }else{
+	 		System.out.println("inside else");
 	     	String pass=(String)hs.getAttribute("pass"); 
  		     System.out.println("original password="+pass);
  		   String starttime=(String)hs.getAttribute("starttime"); 
@@ -146,85 +163,122 @@ if((String)hs.getAttribute("name")==null){
 	  </tr></thead>
 	   
 	  <tbody>
-	   <%
-	    
-			//fetching lotnumber 
-			String lot="";
-	    	String imgsrc="";
-	    	String lotnumber="";
-			try{	
-				
-				statement = con.createStatement();
-				String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
-				//System.out.println(sql);
-				resultSet = statement.executeQuery(sql);
-				while(resultSet.next()){
-					String avg="--";
-		%>
-	  <tr class="gradeX"><td></td>
-	 
 	  
-	  	<% lotnumber=resultSet.getString("lotnumber");
-		   imgsrc="ProductImages/"+lotnumber+".jpg";
-		   System.out.println("in farmer master lotnumber="+lotnumber);
-		%>
-	 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
-	  <td><h4 style="color:#000080"><b><%=resultSet.getString("quantity") %></b></h4></td>
-	  <%
-	  	String empty="--"; 
-	  	if(resultSet.getString("quantitybidfor")!=null){
-			String quantity =(String)resultSet.getString("quantitybidfor");
-			double y=Double.parseDouble(quantity);
-		    y=y*100;
-			y=(int)y;
-			y=y/100;
-			System.out.println("before"+quantity+" after"+y);
-          	%>  
-          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%=y%></b></h4></td> 
-          	<% }
-	  		else{ %>         
-	  	<td ><h4 id="q" style="color:#000080;"><%=empty %></h4></td><%} %>
-	  	<%  	
-	  		if(resultSet.getString("averageprice")!=null){
-			String average=(String)resultSet.getString("averageprice");
-			double x=Double.parseDouble(average);
-		    x=x*100;
-			x=(int)x;
-			x=x/100;
-			System.out.println("before"+average+" after"+x);
-	  		%>
-	  		<td><h4 id="a" style="color:#000080"><b><%=x%></b></h4></td>
-	  		<%}
-	  		else{ %>
-	  <td   style="color:#000080;"><h4 id="a" style="color:#000080;"><%=empty %></h4></td>
-	  <%} %>
-	  <td>
+	 <%
+	PreparedStatement pstmt = null;
+	PreparedStatement pstmt1 = null;
+	PreparedStatement pstmt2 = null;
+	
+	ResultSet rs = null;
+	ResultSet rs1 = null;
+	ResultSet rs2 = null;
+	String imgsrc="";
+   
+	String lotnumber="";
+	try
+	{
+	con = JDBCHelper.getConnection();
+	
+	if(con == null)
+	{
+		System.out.println("Connection not established.");
+	}
+	else
+	{
+		String sql = "select * from productentry where farmerid='"+s+"'";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		System.out.println(sql);
+		System.out.println(rs);
+		System.out.println(rs.getRow());
+		System.out.println(rs.first());
+		String lotnumber1=rs.getString("lotnumber");
+	
+		if(lotnumber1!=null)
+		{
+			System.out.println("Inside if....");
+			
+				String sql2 = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
+				pstmt1 = con.prepareStatement(sql2);
+				rs1 = pstmt1.executeQuery();
+				
+					while(rs1.next())
+					{
+
+						String avg="--";
+			%>
+		  <tr class="gradeX"><td></td>
+		 
+		  
+		  	<% lotnumber=rs1.getString("lotnumber");
+			   imgsrc="ProductImages/"+lotnumber+".jpg";
+			   System.out.println("in farmer master lotnumber="+lotnumber);
+			%>
+		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
+		  <td><h4 style="color:#000080"><b><%=rs1.getString("quantity") %></b></h4></td>
+		  <%
+		  	String empty="--"; 
+		  	if(rs1.getString("quantitybidfor")!=null){
+				String quantity =(String)rs1.getString("quantitybidfor");
+				double y=Double.parseDouble(quantity);
+			    y=y*100;
+				y=(int)y;
+				y=y/100;
+				System.out.println("before"+quantity+" after"+y);
+	          	%>  
+	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%=y%></b></h4></td> 
+	          	<% }
+		  		else{ %>         
+		  	<td ><h4 id="q" style="color:#000080; font-weight:bold;"><b><%=empty %></b></h4></td><%} %>
+		  	<%  	
+		  		if(rs1.getString("averageprice")!=null){
+				String average=(String)rs1.getString("averageprice");
+				double x=Double.parseDouble(average);
+			    x=x*100;
+				x=(int)x;
+				x=x/100;
+				System.out.println("before"+average+" after"+x);
+		  		%>
+		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%=x%></b></h4></td>
+		  		<%}
+		  		else{ %>
+		  <td   style="color:#000080;"><h4 id="a" style="color:#000080;  font-weight:bold;"><%=empty %></h4></td>
+		  <%} %>
+		  <td>
 
 
-	  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
-	  		
+		  		<button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
+		  		
 
-	  </td>
-	  <td>
-	  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
-	  			  </td>
+		  </td>
+		  <td>
+		  		<button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
+		  			  </td>
 
 
-	 <td class="clsnowrap" >
-	<b><h4><b>
-	  <div id="msg" style="display:inline; color:#000080;" >Auction will begin in</div>&nbsp;&nbsp;
-	 <font color="#000080" ><div id="timer" style="display:inline;  color:#000080; " ></div></font>
-	  	<div id="auction" style="display:inline;  color:#000080; "></div>
-		<div id="auction1" style="display:inline;  color:#000080;"></div>
-	  	</b></h4></b></td></tr>
-	  <%
+		 <td class="clsnowrap" >
+		<b><h4><b>
+		  <div id="msg" style="display:inline; color:#000080;" >Auction will begin in</div>&nbsp;&nbsp;
+		 <font color="#000080" ><div id="timer" style="display:inline;  color:#000080; " ></div></font>
+		  	<div id="auction" style="display:inline;  color:#000080; "></div>
+			<div id="auction1" style="display:inline;  color:#000080;"></div>
+		  	</b></h4></b></td></tr>
+		                        <%
+					}
+		
+		}
+		else
+		{
+			 System.out.println("Inside else....");
+			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no  Lot details is available.</h2></div>");
 		}
 	}
-	catch(SQLException e)	
-	{
-		e.printStackTrace();	
-	}			
-%>
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+	%>
 	  </tbody>
 	  </table>
 </div>
@@ -260,16 +314,14 @@ if((String)hs.getAttribute("name")==null){
 		statement = con.createStatement();
 		String sql = "select Date,Time,slotnumber from productentry where farmerid='"+s+"' ";
 		resultSet = statement.executeQuery(sql);
-		List<String> l=new ArrayList<String>();
+		
 		while(resultSet.next()){
 			date+=resultSet.getString("Date");
 			slot+=resultSet.getString("slotnumber");
-			l.add(slot);
+			
 			System.out.println("date="+date);
 			System.out.println("slot="+slot);
-			for(String obj:l)  {
-				 s1=obj;
-				}
+			
 			}
 		}
 		catch(SQLException e)
@@ -279,7 +331,11 @@ if((String)hs.getAttribute("name")==null){
 	 	finally
 		{
 	 		resultSet.close();
+	 		JDBCHelper.Close(rs1);
 			statement.close();
+			
+			JDBCHelper.Close(pstmt);
+			JDBCHelper.Close(pstmt1);
 			con.close();
 		}					
 %>
@@ -674,5 +730,6 @@ setInterval(function()
 				console.log("end of function");
 		  }
 </script>
+
 </body>
 </html>
