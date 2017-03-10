@@ -79,7 +79,7 @@
 			{
 				width: 300px;
 				height: 300px;
-			}ps://github.com/Neomandi/Proto.git
+			}ps://github.com//Proto.git
         </style>
         <script>
         function populate(s1, s2)

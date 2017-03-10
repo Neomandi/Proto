@@ -775,6 +775,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
+				
 				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getlotnumber());
@@ -1410,7 +1411,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			ps.setString(1, aadharnumber);
 			ps.setString(2, lotnum);
 			ps.execute();
-			System.out.println(ps);
+			//System.out.println(ps);
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
@@ -4058,7 +4059,19 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			        }
 
 			        System.out.println("************"+calendar.getTime());
-			        
+			        int diff=result-finalcost;
+			        if(diff<0)
+					{
+	                    diff=finalcost-result;
+						System.out.println("Your final cost is more than the blocked amount...!!! please increase the blocked amount by "+diff);					
+						msg="Your final cost is more than the blocked amount...!!! please increase the blocked amount by atleast "+diff;
+						mc.setMsg(msg);
+					}
+					else
+					{
+						msg="success";
+						mc.setMsg(msg);
+							
 					//System.out.println("**********************************date is "+biddate+"*************");
 					ps =con.prepareStatement("update traders_bid_price set lotcost=?, bidprice=? , commission=? , marketcess=?, myfinalcost=?, bid_time=? where aadharnumber=? and lotnum=?");//					
 					ps.setString(1,lotcosts);
@@ -4104,6 +4117,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					}	
 					mc.setMfcb(mfcb);
 					System.out.println("inside model() mfcb is-> "+mfcb);
+					}
 				}		
 				else
 				{
@@ -4191,7 +4205,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				System.out.println("total blocked amount = "+result);
 				int diff=result-finalcost;
 				System.out.println("finalcost-result     = "+diff);
-				if(diff<0)
+			/*	if(diff<0)
 				{
                     diff=finalcost-result;
 					System.out.println("Your final cost is more than the blocked amount...!!! please increase the blocked amount by "+diff);					
@@ -4202,7 +4216,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				{
 					msg="success";
 					mc.setMsg(msg);
-				}									
+				}		*/							
 			}						
 			con.commit();		
 		}

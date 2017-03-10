@@ -238,12 +238,12 @@ if((String)hs.getAttribute("name")==null){
 		  		if(rs1.getString("averageprice")!=null){
 				String average=(String)rs1.getString("averageprice");
 				double x=Double.parseDouble(average);
-			    x=x*100;
-				x=(int)x;
-				x=x/100;
+			    
+			    DecimalFormat two = new DecimalFormat("#.##");
+			     Double.valueOf(two.format(x));
 				System.out.println("before"+average+" after"+x);
 		  		%>
-		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%=x%></b></h4></td>
+		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%=Double.valueOf(two.format(x))%></b></h4></td>
 		  		<%}
 		  		else{ %>
 		  <td   style="color:#000080;"><h4 id="a" style="color:#000080;  font-weight:bold;"><%=empty %></h4></td>
