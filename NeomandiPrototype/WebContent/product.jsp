@@ -99,7 +99,7 @@
         	}
         	else if(s1.value == "Grains")
         	{
-        		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "MILLET|Millet", "BARLEY|Barley", "RICE|Rice"];
+        		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "RAGI|Ragi", "BARLEY|Barley", "RICE|Rice"];
         	}
         	else if(s1.value == "Pulses")
         	{
