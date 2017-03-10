@@ -789,7 +789,7 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -1399,7 +1399,7 @@ catch(NullPointerException e)
 		}		
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -3531,7 +3531,7 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
@@ -3585,7 +3585,7 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
