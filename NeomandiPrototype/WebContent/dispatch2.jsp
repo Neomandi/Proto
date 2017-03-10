@@ -113,8 +113,7 @@ catch(Exception e)
 				       //System.out.println("ls.contains(dp.getLotnum())"+ls.contains(dp.getLotnum()));
 				       System.out.println(ls);
 				       if(!ls.contains(dp.getLotnum()))
-				       {				    	   
-				    	   System.out.println("**********************z***********"+z); 
+				       {			    	 
 %>
 					   <input type="hidden" id="num" value="<%out.println(z);%>">
 				       <script>
@@ -142,15 +141,11 @@ catch(Exception e)
 					<th   ></th>
 			   		<th   ></th>
 				</tr>
-				<tbody align="center">
-				
-				
+				<tbody align="center">				
 				<tr>
 				<td rowspan="<%=size%>">
-				
 				</td>
 				<td  rowspan="<%=size%>">
-				
 				</td>
 				<td   rowspan="<%=size%>">
 					<h4><%=dp.getLotnum()%></h4>
@@ -161,7 +156,8 @@ catch(Exception e)
 			</td>
 				<td class="clsnowrap">
 				<% for(int i=0;i<1;i++)
-		       {z=z+1;
+		      	   {
+					z=z+1;		      	   
 					ls.add(dp.getLotnum());
 		    	  //System.out.println(i);%>
 				<h4><%out.println(dp.getName());System.out.println(dp.getName()); %></h4>

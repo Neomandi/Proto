@@ -60,7 +60,7 @@ overflow:auto;
 	String minutes=sdf1.format(new Date());
 	int hour=Integer.parseInt(hours);
 	int minute=Integer.parseInt(minutes);
-	System.out.println("current time is "+hour+":"+minute+"  ");
+	//System.out.println("current time is "+hour+":"+minute+"  ");
 	/*if(hour<10)
 	{
 		 System.out.println("inside if ");

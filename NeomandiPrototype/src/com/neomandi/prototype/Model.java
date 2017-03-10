@@ -2785,7 +2785,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 @SuppressWarnings("resource")
 	public Myclass2 orderstatus(String name, String pwd) 
 	{
-		System.out.println("inside Model()->.....orderstatus");
+		//System.out.println("inside Model()->.....orderstatus");
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
 		Connection con = null;
@@ -2971,7 +2971,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 						al.add(osbn1);
 					}
 				}
-				System.out.println("inside model indide al is "+al);
+				//System.out.println("inside model indide al is "+al);
 				mc.setAl(al);
 			}				
 		}
@@ -3411,20 +3411,20 @@ public void TraderProductAccept(String lotnum,String accno)
 				System.out.println("from-> "+from+" to->"+to );
 				String st[]=to.split("/");
 				String ft[]=from.split("/");
-				System.out.println("st[0]"+st[0]);
-				System.out.println("st[1]"+st[1]);
-				System.out.println("st[2]"+st[2]);
+				//System.out.println("st[0]"+st[0]);
+				//System.out.println("st[1]"+st[1]);
+				//System.out.println("st[2]"+st[2]);
 				int date=Integer.parseInt(st[1])+1;
-				System.out.println("ate is"+date);
+				//System.out.println("ate is"+date);
 				st[1]=String.valueOf(date);
 				if(date<10)
 					to=st[2]+"-"+st[0]+"-"+st[1];
 				else
 					to=st[2]+"-"+st[0]+"-"+st[1];
-				System.out.println(to);
+				//System.out.println(to);
 				from=ft[2]+"-"+ft[0]+"-"+ft[1];
 				from=from.replace("/","-");
-				System.out.println(from);
+				//System.out.println(from);
 				
 				ps =con.prepareStatement("SELECT a.quantityassigned FROM auction_result a, treg t where t.name=? and t.aadharnumber=a.aadharnumber");
 				ps.setString(1,name);
@@ -3465,7 +3465,7 @@ public void TraderProductAccept(String lotnum,String accno)
 							tsb.setMarketcess(rs.getString("marketcess"));
 							tsb.setMyfinalcost(rs.getString("myfinalcost"));
 							String created=((String)rs.getString("created_at")).split(" ")[0];
-							System.out.println(created);
+						//	System.out.println(created);
 							tsb.setCreated(created);
 							
 							ps=con.prepareStatement("SELECT ar.quantityassigned FROM auction_result ar,treg tr where ar.lotnumber=? and tr.name=? and tr.aadharnumber=ar.aadharnumber");//this checks whether the trader has won in auction by checking his name in auction result table

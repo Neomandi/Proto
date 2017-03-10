@@ -31,7 +31,8 @@ table:nth-child(even) {
 .table > tbody + tbody { 
 border-top:0px;
 }
-#div{   		
+#div
+{   		
 			padding:30px;
 			margin:200px;
 			width:50%;
@@ -39,8 +40,7 @@ border-top:0px;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-    	}
- 
+}
 </style>
 <%EmployeeLoginBean elbn = null;
 HttpSession elog = request.getSession(); %>
@@ -90,6 +90,6 @@ HttpSession elog = request.getSession(); %>
 				</div>
 				</div>
 				</div>
-				<center><div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div></center>
+				<center><div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen hence, no revenue summary is available.</b></p></div></center>
 </body>
 </html>

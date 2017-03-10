@@ -17,10 +17,8 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
 <body class="">
 <!---menu bar------>
-
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
@@ -33,7 +31,6 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
         <li><a href="HomePage.html">About Us</a></li>
         <li><a href="Vision.html">Vision</a></li>
         <li><a href="Mission.html">Mission</a></li>
@@ -41,12 +38,10 @@
         <li><a href="News.html">News</a></li>
 		<li><a href="ContactUs.html">Contact Us</a></li>
 		<li  class="dropdown">
-          <a class="dropdown-toggle" href="Register.html">Register</a>
-          
+          <a class="dropdown-toggle" href="Register.html">Register</a>          
         </li>
         <li class="active"><a width="130px;"  href="Login.html">Login</a></li>
-      </ul>
-      
+      </ul>      
     </div>
   </div>
 </nav> 

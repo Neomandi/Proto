@@ -22,6 +22,16 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style>
+#div
+{   		
+	padding:22px;
+	margin:10px;
+	width:90%;
+	background-color:#BFBFBF;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+} 
 .whiteclsbc{
 background-color:#ffffff;
 width:5%;
@@ -84,8 +94,8 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 		{
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
-			  %><center><h3>You have not performed any trade operations today</h3></center>
-			  <input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>">
+			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
+			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>You have not performed any trade operations today.</b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -232,10 +242,11 @@ function fun2()
 </div></div>
 <%if(request.getAttribute("tradesummary")!=null)
 {
-if(request.getAttribute("tradesummary").equals("no"))
-{
-  %><b>YOU HAVE NOT MADE ANY TRADE OPERATIONS BETWEEN THESE DATE</b>
-  <%} 
+	if(request.getAttribute("tradesummary").equals("no"))
+	{
+  	%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>You have not performed any trade operations between these dates.</b></p></div></center>		 
+  	<%
+  	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
   	{%>
 <div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
