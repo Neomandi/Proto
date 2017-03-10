@@ -32,6 +32,16 @@ input[type="number"],input[type="text"]
 {
 	text-align: center;
 }
+#div
+{   		
+	padding:22px;
+	margin:10px;
+	width:90%;
+	background-color:#BFBFBF;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+} 
 #remove
 {
 	background: #3c4da0;
@@ -216,7 +226,7 @@ catch(NullPointerException e)
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
 	String stop=(String)context.getAttribute("endtime");
-	System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
+	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %>
   <div id="accord"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
@@ -419,7 +429,7 @@ catch(NullPointerException e)
   else
   {
     String msg=(String)request.getAttribute("msg");
-    System.out.println("msg"+msg);
+   // System.out.println("msg"+msg);
     
     if(msg!=null)
     {
@@ -450,9 +460,10 @@ catch(NullPointerException e)
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
 				//System.out.println("inside traderlist bean"+al);
 				//System.out.println("++++++++++++++++");
-				System.out.println(al.size()==0);
+				//System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
-					<h1 style="text-align: center;">None of the lots you have chosen come under slot-1</h1><br>
+					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+			<br>
 			<%	}for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;
@@ -467,9 +478,8 @@ catch(NullPointerException e)
 							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(l.size()==0){
-								%><br>
-								<h1 style="text-align: center;">None of the lots you have chosen come under slot-1</h1><br>
-						<%}
+								%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+						<br><%}
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{   
 								++p;
@@ -2328,7 +2338,7 @@ catch(NullPointerException e)
 	}
 	else
 	{	
-        System.out.println("inside else()");
+        //System.out.println("inside else()");
 		String msg2=(String)request.getAttribute("assigned");
 		if(msg2!=null)
 		{
@@ -2346,7 +2356,7 @@ catch(NullPointerException e)
 			{
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-				System.out.println("inside traderlist bean"+al);
+				//System.out.println("inside traderlist bean"+al);
 				for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;

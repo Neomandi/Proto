@@ -1082,7 +1082,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			String lotnumber = request.getParameter("s1");
 			String quantity= request.getParameter("quantity");
-			System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
+			//System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
 			Model m = new Model();
 			System.out.println("request.getParameter(again"+request.getParameter("again"));
 			if(request.getParameter("again")!=null)
@@ -1993,7 +1993,7 @@ public class ControllerServlet extends HttpServlet {
 		{
 			//System.out.println("time is "+sdf.format(new Date()));s
 			System.out.println("***************************************************************************");
-			System.out.println("inside CS");
+			//System.out.println("inside CS");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			String name=null;
@@ -2295,7 +2295,7 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("Dispatch"))
 		{
 			System.out.println("***************************************************************************");
-			System.out.println("inside CS");
+		//	System.out.println("inside CS");
 			Model m=new Model();
 			OrderStatusResult osrb=m.Dispatch();
 			System.out.println("osrb.getAl().size()"+osrb.getAl().size());
