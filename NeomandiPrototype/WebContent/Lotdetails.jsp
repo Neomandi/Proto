@@ -224,7 +224,7 @@ if((String)hs.getAttribute("name")==null){
 		else
 		{
 			 System.out.println("Inside else....");
-			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no  Lot details is available.</h2></div>");
+			 out.println("<div id='div'>Auction yet to happen, hence, no  Lot details is available.</div>");
 		}
 	}
 	}
@@ -530,8 +530,8 @@ var date=document.getElementById("date").value;
 function countdown(minutes,seconds,hours) 
 {
 	document.getElementById('ts').onclick = function() {
-		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/Lotdetails.jsp";
+		  
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes

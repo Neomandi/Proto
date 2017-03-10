@@ -648,8 +648,8 @@ var date=document.getElementById("date").value;
 function countdown(minutes,seconds,hours) 
 {
 	document.getElementById('ts').onclick = function() {
-		  window.alert("YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY");
-		  location="http://localhost:8080/NeomandiPrototype/FarmerProfile.jsp";
+		  
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
