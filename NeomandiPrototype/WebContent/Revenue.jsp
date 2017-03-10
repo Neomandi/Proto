@@ -49,7 +49,7 @@ footer {
     		padding:30px;
 			margin:200px;
 			width:50%;
-			background-color:#E5E4E2;
+			background-color:#BFBFBF;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
@@ -140,9 +140,9 @@ footer {
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		System.out.println(rs);
-		System.out.println(rs.getRow());
-		System.out.println(rs.first());
+		rs.first();
 		String lotnumber1 = rs.getString("lotnumber");
+		System.out.println(lotnumber1);
 		if(lotnumber1 != null)
 		{
 			System.out.println("Inside if....");

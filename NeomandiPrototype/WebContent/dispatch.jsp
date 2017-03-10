@@ -37,7 +37,7 @@ border-top:0px;
 			width:50%;
 			background-color:#BFBFBF;
 			text-align:center;
-			color: black;	 
+			color:darkblue;	 
 			font-size:18px;
     	}
  
@@ -90,6 +90,6 @@ HttpSession elog = request.getSession(); %>
 				</div>
 				</div>
 				</div>
-				<center><div id="div"><h2>Auction is yet to begin hence, no dispatch summary is available</h2></div></center>
+				<center><div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div></center>
 </body>
 </html>
