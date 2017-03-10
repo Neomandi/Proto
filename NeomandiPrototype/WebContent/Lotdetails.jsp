@@ -190,9 +190,13 @@ if((String)hs.getAttribute("name")==null){
 		System.out.println(rs);
 		System.out.println(rs.getRow());
 		System.out.println(rs.first());
-		String lotnumber1="";
-	
-	if(lotnumber1!=null)
+		String lotnumber1=null;
+		if(rs.next())
+		{
+			lotnumber1 = rs.getString("lotnumber");
+		}
+		
+		if(lotnumber1 != null)
 		{
 			System.out.println("Inside if....");
 			
@@ -221,10 +225,10 @@ if((String)hs.getAttribute("name")==null){
 					}
 		
 		}
-		else
+		else if(lotnumber1 == null)
 		{
 			 System.out.println("Inside else....");
-			 out.println("<div style='text-align: center;'><h2 style='position: absolute; top: 250px; left: 250px;'>Auction yet to happen, hence, no  Lot details is available.</h2></div>");
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div>");
 		}
 	}
 	}
