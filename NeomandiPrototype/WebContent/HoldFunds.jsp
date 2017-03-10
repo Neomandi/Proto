@@ -173,12 +173,13 @@ else
 			  console.log("inside balance!=null&")
 			if(bal<hld)
 			{
-					alert("YOU CANT HOLD FUNDS MORE THAN AVAILABLE BALANCE")
+					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
+					document.getElementById("hold").value="";
 			}
 			else if(hld<0||hld==0)
 			{
 					console.log("hld<0");
-					alert("PLEASE ENTER POSITIVE NUMBER");
+					alert("Please enter positive number");
 			}
 			else
 			{
