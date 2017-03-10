@@ -3946,7 +3946,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			{}
 			else
 			{
-				con.setAutoCommit(false);
+				//con.setAutoCommit(false);
 				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
 				ps.setString(1, tname);
 				ps.setString(2, tpwd);
@@ -4218,7 +4218,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					mc.setMsg(msg);
 				}		*/							
 			}						
-			con.commit();		
+		//	con.commit();		
 		}
 		catch(Exception e)
 		{

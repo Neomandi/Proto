@@ -947,7 +947,8 @@ public class ControllerServlet extends HttpServlet {
 				hc.setAttribute("time",time);
 				hc.setAttribute("name", name);
 //				System.out.println("dt is "+date+" time is "+time);
-			
+				 HttpSession psr=request.getSession();		           
+		         psr.setAttribute("msg",null);
 				
 				PrintWriter out = null;
 				try {
