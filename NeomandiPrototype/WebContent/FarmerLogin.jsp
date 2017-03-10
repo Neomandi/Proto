@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 
-<body class="">
+<body class="" onkeypress="myFunction(event)">
  <%
 if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Register first ")))
 {    
@@ -67,43 +67,36 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" method="post" action="FarmerLogin.do" autocomplete="off">
 <table class="table login">
-
-
 <tbody>
-                                <tr>
-                                    <td>
-                                        <h2 class="head">Farmer Login</h2></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="User name">
-                                    </td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr align="center">
-                                    <td>
-                                    <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-									<tr align="center"><td><button class="btn btn-primary" style="width: 150px; border-radius:0px; background-color:#149DDA">Login</button></td></tr><br>
-   
-                                    </td>
-                                </tr>
-                                <br>
-                                <tr align="center">
-                                    <td><a href="" class="frgt">Forgot password?</a></td>
-                                </tr>
-                            </tbody>
+<tr><td><h2 style="color:white;">Farmer Login</h2></td></tr>
+<tr><td><input type="text" class="form-control" id="name" name="name" placeholder="User name"></td></td></tr>
+<tr><td><input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password"></td></td></tr>
+<!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
+<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#149DDA" id="login">Login</button></td></tr><br>
+<tr align="center"><td><a href="" onclick="fp()" class"frgt">Forgot password?</a></td></tr>
 </tbody></table>
-</form>
 <script>
-                        function login() {
+document.getElementById("pwd").addEventListener("keyup", function(event) {
+	event.preventDefault();
+	console.log("inside func");
+	if (event.keyCode == 13) {
+	    document.getElementById("login").click();
+	}
+	});
+	document.getElementById("name").addEventListener("keyup", function(event) {
+		event.preventDefault();
+		console.log("inside func");
+		if (event.keyCode == 13) {
+		    document.getElementById("login").click();
+		}
+		});
+	function fp()
+	{
+		alert("Please contact Admin for password regenaration");
+	}
+
+					function submitform() {
                             var msg = "";
                             if (document.getElementById("name").value == null || document.getElementById("name").value === undefined || document.getElementById("name").value === "") {
                                 console.log(document.getElementById("name").value);
@@ -114,11 +107,39 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
                                 msg = msg + "PASSWORD";
                             }
                             console.log(msg.length);
-                            if (msg.length != 0)
-                                window.alert("PLEASE ENTER " + msg);
-                            else
-                                document.getElementById("login").submit();
+                            console.log(msg.length);
+                        	if(msg.length!=0)
+                        		window.alert("PLEASE ENTER "+msg);
+                        	
+                        	else{
+                        	xmlhttp=new XMLHttpRequest();
+                        	xmlhttp.onreadystatechange=function()
+                        	{
+                        		if(this.readyState==4 && this.status==200)
+                        		{
+                        			 var string=xmlhttp.responseText;
+                        			 console.log("string is "+string);
+                        		    	if(string.includes("SUCCESS"))
+                        		    	{
+                        		    		window.location="FarmerMaster.jsp";
+                        		    	}
+                        		    	else 
+                        		    	{
+                        		    		alert(string);		
+                        		    	}
+                        		}		
+                        	};
+                        	xmlhttp.open("POST", "FarmerLogin.do", true);
+                        	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        	xmlhttp.send("name="+document.getElementById("name").value+"&pwd="+document.getElementById("pwd").value);
+                          }
                         }
+					function myFunction(event) {
+					    var x = event.which || event.keyCode;
+					    if(x == 13){
+					    	submitform();
+					    }
+					}
                     </script>
 </div>
 </div>

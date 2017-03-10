@@ -248,22 +248,31 @@ public class ControllerServlet extends HttpServlet {
 				ServletContext context = request.getSession().getServletContext();
 				starttime=(String)context.getAttribute("starttime");
 				endtime=(String)context.getAttribute("endtime");
-				rd=request.getRequestDispatcher("FarmerMaster.jsp");
-				
-				try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (ServletException e) {
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("SUCCESS");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
+				
 			}
 			else
 			{
+
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println(msg);
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 				request.setAttribute("errmsg", msg);
 			    rd=request.getRequestDispatcher("FarmerLogin.jsp");
 				try 
