@@ -551,7 +551,7 @@ catch(NullPointerException e)
 		setInterval(function()
 				  {
 					funny();
-				  },2000);
+				  },1000);
 		
 		function funny()
  		{		  
@@ -1145,18 +1145,19 @@ catch(NullPointerException e)
 				  console.log(" new bid is "+newbids);
 				  console.log("quantityneeded is "+needed);
 				  console.log("assigned is "+assigned);
+				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
+				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
 					  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 					  }
-				  if(currentbids>newbids)
+				  else  if(currentbids>newbids)
 				  {	  
 					  alert('You are allowed only to increment the bid.');
-					 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
-				  }
-				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
-				  var bestbid=new Number(bestbids);
-				  if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
+					  console.log("===================="+currentbids);
+					  document.getElementById('demo6<%out.print(tlb.getLotnum());%>').value=currentbids;
+				  }				  
+				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
@@ -1995,18 +1996,19 @@ catch(NullPointerException e)
 			  var newbid=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
 			  var newbids=new Number(newbid);
 			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
+				var bestbid=new Number(bestbids);
 			  if(currentbids===newbids)
 				  {
 					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 				  }
-			  if(currentbids>newbids)
+			  else if(currentbids>newbids)
 			  {	  
 				  alert('You are allowed only to increment the bid.');
-				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+				  document.getElementById('demo6<%out.print(tlbr.getLotnum());%>').value=currentbids;
 			  }
-			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
-				var bestbid=new Number(bestbids);
-				if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
+			 
+			  else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 					  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }
