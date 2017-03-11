@@ -27,7 +27,10 @@
     {
     height:34px;
     }
-    
+    .table{
+    	position: relative;
+    	right: 8px
+    }
     </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +82,7 @@
 			{
 				width: 300px;
 				height: 300px;
-			}ps://github.com/Neomandi/Proto.git
+			}ps://github.com//Proto.git
         </style>
         <script>
         function populate(s1, s2)
@@ -170,8 +173,8 @@
                     <table class="table">
                         <tr>
                             <td>
-                            	<form id="myForm" action="ProductSearchInt.jsp" method = "post">
-                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')" >
+                            	 <form id="myForm" action="ProductSearchInt.jsp" method = "post">
+                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd; " onchange = "populate('category','produce')" >
                                     <option value="Category">Select Category</option>
                                     <option value="Vegetables">Vegetables</option>
                                     <option value="Fruits">Fruits</option>
@@ -268,16 +271,18 @@
             System.out.println(psr.getAttribute("msg")==null);
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	System.out.println("inside if()");
+            	 System.out.println(psr.getAttribute("msg"));
+            	
                 out.println("<script type=\"text/javascript\">");
        		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
+	       	  	psr.setAttribute("msg",null);
             }
             if(msg2!=null||msg3!=null)
 			{
 				Connection con = null;
 				 List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
-		            System.out.println("ist in jsp "+l);
+		           // System.out.println("ist in jsp "+l);
 				Statement stmt = null;
 				ResultSet rs = null;
 				String image = null;  
@@ -300,7 +305,7 @@
                                     <td>
                                         <h4>Quantity Available</h4></td>
                                     <td>
-                                        <h4></h4></td>
+                                        <h4>Slot</h4></td>
                                     <td>
                                         <h4></h4></td>
                                 </tr>
@@ -354,9 +359,7 @@
 								window.location="http://neomandi.in/AddTrade.do?s1="+product+"&&quantity="+neededs
 							}													
 						}
-						</script></td>--> 
-                               
-                                 
+						</script></td>-->                                  
                                 <tr class="gradeX">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
@@ -370,9 +373,12 @@
                                     <td>
                                         <h4><% out.println(psr1.getQuantity()); %></h4></td>
                                     <td>
-                                        <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity">
+                                    	<h4>slot1</h4>
+                                    <td>
+                                        <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(Kgs)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
+                                    <td></td><div id="product"></div>
                                 </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
@@ -409,7 +415,8 @@
 										}
 									else 
 									{
-										
+										var msg="ADDED TO LIST";
+										document.getElementById("product").textContent=msg;
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();
@@ -443,19 +450,17 @@
 										   	{
 										   		var startlotnum=xmlhttp.responseText.indexOf('fail');
 										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
-										         startlotnum=startlotnum+4;
-										         
+										         startlotnum=startlotnum+4;										         
 										         var ms=string.substring(startlotnum,endlotnum);
 											   		alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
 									   		}
 										   	else if(string.includes("msg"))
 										   		{
 												   		alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
-										   		}
-											
-											         document.getElementById("addtrade").innerHTML = string;
-											         document.getElementById("addtrade").value = string;
-											        // console.log("message sent from CS is "+string);
+										   		}											
+											    document.getElementById("addtrade").innerHTML = string;
+											    document.getElementById("addtrade").value = string;
+											    // console.log("message sent from CS is "+string);
 										}
 									};
 									xmlhttp.open("POST", "AddTrade.do", true);
@@ -463,8 +468,7 @@
 									xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
-						</script>
-                                
+						</script>                                
                                  <!---------modal image------------->
                 <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">

@@ -947,7 +947,8 @@ public class ControllerServlet extends HttpServlet {
 				hc.setAttribute("time",time);
 				hc.setAttribute("name", name);
 //				System.out.println("dt is "+date+" time is "+time);
-			
+				 HttpSession psr=request.getSession();		           
+		         psr.setAttribute("msg",null);
 				
 				PrintWriter out = null;
 				try {
@@ -1586,7 +1587,7 @@ public class ControllerServlet extends HttpServlet {
 		
 		if(uri.contains("refresh"))
 		{	
-			System.out.println("***************************************************************************");
+			//System.out.println("***************************************************************************");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
@@ -1627,7 +1628,7 @@ public class ControllerServlet extends HttpServlet {
 						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
 					    out.flush();
 					    out.close();
-					    System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+					 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
 					}
 					catch (IOException e) {
 						e.printStackTrace();
@@ -2383,7 +2384,7 @@ public class ControllerServlet extends HttpServlet {
 					}
 			}			
 			
-		    System.out.println(request.getParameter("lotnumber"));
+		   /* System.out.println(request.getParameter("lotnumber"));
 		    System.out.println(request.getParameter("number"));
 		    response.setContentType("text/plain");
 		    PrintWriter out = null;
@@ -2396,7 +2397,7 @@ public class ControllerServlet extends HttpServlet {
 } catch (IOException e) {
 			
 			e.printStackTrace();
-		}
+		}*/
 		}
 		
 		if(uri.contains("ajaxReleasefunds"))
