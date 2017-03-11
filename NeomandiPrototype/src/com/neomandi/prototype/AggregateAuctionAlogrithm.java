@@ -250,7 +250,6 @@ public class AggregateAuctionAlogrithm {
 			/*System.out.println("MAX-Vol "+maxvol);
 			System.out.println("MAX-Avg "+maxavg);*/
 			
-			pstmt3 = null;
 			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
 			pstmt3 = con.prepareStatement(sql4);
 			pstmt3.setDouble(1, avg);
