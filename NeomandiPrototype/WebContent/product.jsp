@@ -170,8 +170,8 @@
                     <table class="table">
                         <tr>
                             <td>
-                            	<form id="myForm" action="ProductSearchInt.jsp" method = "post">
-                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd;" onchange = "populate('category','produce')" >
+                            	 <form id="myForm" action="ProductSearchInt.jsp" method = "post">
+                                <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd; " onchange = "populate('category','produce')" >
                                     <option value="Category">Select Category</option>
                                     <option value="Vegetables">Vegetables</option>
                                     <option value="Fruits">Fruits</option>
@@ -356,9 +356,7 @@
 								window.location="http://neomandi.in/AddTrade.do?s1="+product+"&&quantity="+neededs
 							}													
 						}
-						</script></td>--> 
-                               
-                                 
+						</script></td>-->                                  
                                 <tr class="gradeX">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
@@ -375,8 +373,8 @@
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(Kgs)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                    <td></td>
-                                </tr><p id="product"></p>
+                                    <td></td><div id="product"></div>
+                                </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
 								{							
@@ -413,7 +411,7 @@
 									else 
 									{
 										var msg="ADDED TO LIST";
-										document.getElementById("product").textContent='<img src="Documents/cart.png">';
+										document.getElementById("product").textContent=msg;
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();
@@ -454,11 +452,10 @@
 										   	else if(string.includes("msg"))
 										   		{
 												   		alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
-										   		}
-											
-											         document.getElementById("addtrade").innerHTML = string;
-											         document.getElementById("addtrade").value = string;
-											        // console.log("message sent from CS is "+string);
+										   		}											
+											    document.getElementById("addtrade").innerHTML = string;
+											    document.getElementById("addtrade").value = string;
+											    // console.log("message sent from CS is "+string);
 										}
 									};
 									xmlhttp.open("POST", "AddTrade.do", true);

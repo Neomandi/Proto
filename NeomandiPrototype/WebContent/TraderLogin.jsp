@@ -106,14 +106,15 @@ function submitform(){
 	if(msg.length!=0)
 		window.alert("PLEASE ENTER "+msg);
 	
-	else{
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
+	else
 	{
-		if(this.readyState==4 && this.status==200)
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
 		{
-			 var string=xmlhttp.responseText;
-			 console.log("string is "+string);
+			if(this.readyState==4 && this.status==200)
+			{
+			 	var string=xmlhttp.responseText;
+			 	console.log("string is "+string);
 		    	if(string.includes("SUCCESS"))
 		    	{
 		    		window.location="product.jsp";
@@ -122,12 +123,12 @@ function submitform(){
 		    	{
 		    		alert(string);		
 		    	}
-		}		
-	};
-	xmlhttp.open("POST", "TraderLogin.do", true);
-	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("name="+document.getElementById("name").value+"&pwd="+document.getElementById("pwd").value);
-  }
+			}		
+		};
+		xmlhttp.open("POST", "TraderLogin.do", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.send("name="+document.getElementById("name").value+"&pwd="+document.getElementById("pwd").value);
+  	}
 }
 </script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>

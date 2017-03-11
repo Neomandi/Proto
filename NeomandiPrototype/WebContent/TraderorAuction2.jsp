@@ -32,6 +32,13 @@ input[type="number"],input[type="text"]
 {
 	text-align: center;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 #div
 {   		
 	padding:22px;
@@ -789,7 +796,7 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -834,8 +841,6 @@ catch(NullPointerException e)
 	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 	bid=bid+1;
-	
-	
 	
 	function submitbutton<%out.print(tlb.getLotnum());%>()
 	{	
@@ -1051,7 +1056,7 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1145,15 +1150,15 @@ catch(NullPointerException e)
 				//  console.log("quantityneeded is "+needed);
 				//  console.log("currentbids-bestbid!=0");
 				//  console.log(currentbids-bestbid!=0);
-				  console.log(!(currentbids-bestbid==0 && assigned==needed));
-				  console.log(currentbids>999);
+				  console.log(currentbids);
+				  console.log(newbids>999);
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
 					  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 					  }
-				  else if(currentbids>999)
+				  else if(newbids>999)
 					  {
 					  		alert("You cant bid more than 999 Rs for any lot");
 					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
@@ -1161,7 +1166,7 @@ catch(NullPointerException e)
 				  else if(currentbids>newbids)
 				  {	  
 					  alert('You are allowed only to increment the bid.');
-					  console.log("===================="+currentbids);
+					  console.log(currentbids);
 					  document.getElementById('demo6<%out.print(tlb.getLotnum());%>').value=currentbids;
 				  }				  
 				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
@@ -1408,7 +1413,7 @@ catch(NullPointerException e)
 		}		
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -1917,7 +1922,7 @@ catch(NullPointerException e)
 	}
  }*/
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -3541,8 +3546,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -3595,8 +3600,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
