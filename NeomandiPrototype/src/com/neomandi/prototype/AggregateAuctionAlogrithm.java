@@ -209,6 +209,10 @@ public class AggregateAuctionAlogrithm {
 					}
 				}	
 			}
+			
+			System.out.println("Maxvol end: "+maxvol);
+			System.out.println("Maxavg end: "+maxavg);
+			
 			//--------------------------------------------------------------------------------------------------
 			avg = avg/maxavg;
 			DecimalFormat twoDForm = new DecimalFormat("#.##");
@@ -243,13 +247,16 @@ public class AggregateAuctionAlogrithm {
 				pstmt.executeUpdate();
 			}
 			
+			/*System.out.println("MAX-Vol "+maxvol);
+			System.out.println("MAX-Avg "+maxavg);*/
+			
 			pstmt3 = null;
 			String sql4 = "UPDATE productentry SET averageprice = ?, quantitybidfor = ? WHERE lotnumber = ?";
 			pstmt3 = con.prepareStatement(sql4);
 			pstmt3.setDouble(1, avg);
-			pstmt3.setInt(2, maxavg-maxvol);
+			pstmt3.setInt(2, (maxavg+maxvol)-maxvol);
 			pstmt3.setString(3, lotnum);
-			//System.out.println(pstmt3);
+			System.out.println(pstmt3);
 			pstmt3.executeUpdate();
 			//System.out.println();
 			
