@@ -4057,9 +4057,8 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			        if (toTimeZone.inDaylightTime(calendar.getTime())) {
 			            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
 			        }
-
-			        System.out.println("************"+calendar.getTime());
-			        int diff=result-finalcost;
+			        int diff=result-finalcost;			        
+			        System.out.println("*****diff*******"+diff);
 			        if(diff<0)
 					{
 	                    diff=finalcost-result;
