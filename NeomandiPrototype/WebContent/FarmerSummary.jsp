@@ -10,8 +10,10 @@
 	 javax.servlet.http.HttpServletResponse,
 	 java.sql.SQLException,
 	 java.text.SimpleDateFormat,
+	 java.text.DateFormat,
 	 com.neomandi.prototype.FarmerHistoryBean,
-	 java.util.*"
+	 java.util.Date,
+	 java.sql.*"
 %>
 <!doctype html>
 <html>
@@ -106,9 +108,40 @@ if((String)hs.getAttribute("name")==null){
 <div class="container-fluid today">
 <div class="container"><h2>Today's Summary</h2></div>
 </div>
+  <%	
+  		String pass=(String)hs.getAttribute("pass");  
+    	System.out.println(" in accept summary password="+pass);
+    	 Connection con = null;
+	     Statement statement = null;
+	     ResultSet resultSet = null;    
+	       
+	     con = JDBCHelper.getConnection();
+		//display aadhar number 
+	     String s="";
+	     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	     Date d = new Date();
+	     String date=dateFormat.format(d);
+	     System.out.println(dateFormat.format(d)); 
+	     try
+	     	{	
+	     
+	     	statement = con.createStatement();
+	     	String sql = "select aadharnum,name from freg where pass='"+pass+"' ";
+	     	//System.out.println(sql);
+	     	resultSet = statement.executeQuery(sql);
+	    	while(resultSet.next()){
+	    		s+=resultSet.getString("aadharnum");
+			    name+=resultSet.getString("name");
+					}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();	
+			}
+	    	
 
 		
-		
+    	 %>		
 		  
      
 <div class="container-fluid sum1 pad">
@@ -119,7 +152,7 @@ if((String)hs.getAttribute("name")==null){
        <td></td>
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Lot Size</h4></td>
-	  <td><h4>Quantity</h4></td>
+	  <td><h4>Quantity sold</h4></td>
 	  <td><h4>Avg Price</h4></td>
 	  <td><h4>Gross Earnings</h4></td>
 	  <td><h4>TLC<sup>*</sup></h4></td>
@@ -128,17 +161,134 @@ if((String)hs.getAttribute("name")==null){
 	<td><h4>PMVA<sup>^</sup></h4></td>
 	<td><h4>Deductions</h4></td>
 	<td><h4>My Net Earnings</h4></td>
-	<td><h4>Status</h4></td>
+	
 	<td></td>
 	  </tr></thead>
+	  <tbody>
+	   
+	 <%
+	PreparedStatement pstmt = null;
+	PreparedStatement pstmt1 = null;
+	PreparedStatement pstmt2 = null;
+	
+	ResultSet rs = null;
+	ResultSet rs1 = null;
+	ResultSet rs2 = null;
+	String imgsrc="";
+   
+	String lotnumber="";
+	try
+	{
+	con = JDBCHelper.getConnection();
+	
+	if(con == null)
+	{
+		System.out.println("Connection not established.");
+	}
+	else
+	{
+		String sql = "select * from  history where farmerid='"+s+"'  and created_at>= CURDATE() AND created_at < CURDATE() + INTERVAL 1 DAY ORDER BY created_at";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		System.out.println(sql);
+		System.out.println(rs);
+		//System.out.println(rs.getRow());
+		//System.out.println(rs.first());
+		String lotnumber1=null;
+		if(rs.next())
+		{
+			lotnumber1 = rs.getString("lotnumber");
+			System.out.println("lotnumber="+lotnumber1);
+		}
+		
+	
+		if(lotnumber1!=null)
+		{
+			System.out.println("Inside if....");
+			
+				String sql2 = "select * from  history where farmerid='"+s+"'  and created_at>= CURDATE() AND created_at < CURDATE() + INTERVAL 1 DAY ORDER BY created_at";
+				pstmt1 = con.prepareStatement(sql2);
+				rs1 = pstmt1.executeQuery();
+				
+					while(rs1.next())
+					{
+
+						String quantity=rs1.getString("quantitybidfor");
+				  	    String average=rs1.getString("averageprice");
+				  	  	double aprice=Double.parseDouble(average);
+					    aprice=aprice*100;
+					    aprice=(int)aprice;
+					    aprice=aprice/100;
+					    double qsold=Double.parseDouble(quantity);
+					    qsold=qsold*100;
+					    qsold=(int)qsold;
+					    qsold=qsold/100;
+					    double fprice=aprice*qsold;
+					    fprice=fprice*100;
+					    fprice=(int)fprice;
+					    fprice=fprice/100;
+						double MUCharge=1*fprice/100;
+						double PACharge=100;
+						double EPUCharge=100;
+						double Transport=500;
+						double TCharge=MUCharge+PACharge+EPUCharge+Transport;
+					    double myEarn=fprice-TCharge;
+					    myEarn=myEarn*100;
+					    myEarn=(int)myEarn;
+					    myEarn=myEarn/100;
+					    double deduction=TCharge;
+					    deduction=deduction*100;
+					    deduction=(int)deduction;
+					    deduction=deduction/100;
+			%>
+		 	  
+	  <tr class="gradeX">
+	  	<td></td>
+	  	
+	  	
+	  	<td class="clspad0"><h4 style="color:#000080"><b><%=rs1.getString("lotnumber") %></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=rs1.getString("quantity") %></b></h4></td>
+	  	<td><h4  style="color:#000080 ;font-wieght:bold;"><b><%=rs1.getString("quantitybidfor")%></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=rs1.getString("averageprice") %></b></h4></td>
+	  	  
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=fprice %></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=Transport %></b></h4></td>
+	  	<td><h4  style="color:#000080;font-wieght:bold;"><b><%=MUCharge%></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=EPUCharge%></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=PACharge%><b></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=deduction%></b></h4></td>
+	  	<td  class="clspadr0"><h4 style="color:#000080"><b><%=myEarn %></b></h4></td>
+	  	
+	  	<td></td></tr>
 	  
+
+
+		
+		                        <%
+					}
+		
+		}
+		else
+		{
+			 System.out.println("Inside else....");
+			 out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
+		}
+	}
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+	%>
+	  
+	  
+	  
+	  </tbody>
 	  </table>
 </div>
 	  </div>
 	  </div>
-	  <% 
-			 out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
-	  %>
+	 
         <footer>
 	  <div id="grad1"></div>
 	 

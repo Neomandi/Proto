@@ -99,6 +99,24 @@ content: "";
         			name.focus();
         			    return false;
         		}
+        		 var EnteredDate = document.historyForm.to; //for javascript
+
+                 var EnteredDate = $("#txtdate").val(); // For JQuery
+
+                 var date = EnteredDate.substring(0, 2);
+                 var month = EnteredDate.substring(3, 5);
+                 var year = EnteredDate.substring(6, 10);
+
+                 var myDate = new Date(year, month - 1, date);
+
+                 var today = new Date();
+
+                 if (myDate > today) {
+                     alert("Entered date is greater than today's date ");
+                 }
+                 else {
+                     alert("Entered date is less than today's date ");
+                 }
         	}
         
         </script>
@@ -158,7 +176,9 @@ content: "";
                         FROM<div class='input-group date' id='from' name='from' >
 
                             <input type='text' class="form-control" name="from" id='from' value="${param. from}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
-
+								<script>
+								
+								</script>
 
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -211,9 +231,7 @@ content: "";
                     });
                     doc.save('FarmerHistory.pdf');
                 }*/
-                function validateDate(){
-                	
-                }
+                
             </script>
         </div>
 
@@ -259,25 +277,25 @@ content: "";
                                             <h4 style="font-size:15px;">Lot Size</h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4 style="font-size:15px;">Quantity</h4></th>
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">Avg. Price</h4></th>
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">Gross Earnings</h4></th>
                                         <th style="text-align:center; color:white">
                                             <h4 style="font-size:15px;">TLC<sup>*</sup></h4></th>
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">Market Cess</h4></th>
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
 
                                             <h4 style="font-size:15px;">EPC<sup>#</sup></h4></th>
 
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
 
                                             <h4 style="font-size:15px;">PMVA<sup>^</sup></h4></th>
 
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">Deductions</h4></th>
-                                        <th style="text-align:center; color:white">
+                                        <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">My Net Earnings</h4></th>
                                         <th></th>
                                     </tr>
