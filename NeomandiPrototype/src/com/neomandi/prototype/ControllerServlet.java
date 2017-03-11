@@ -2384,7 +2384,7 @@ public class ControllerServlet extends HttpServlet {
 					}
 			}			
 			
-		    System.out.println(request.getParameter("lotnumber"));
+		   /* System.out.println(request.getParameter("lotnumber"));
 		    System.out.println(request.getParameter("number"));
 		    response.setContentType("text/plain");
 		    PrintWriter out = null;
@@ -2397,7 +2397,7 @@ public class ControllerServlet extends HttpServlet {
 } catch (IOException e) {
 			
 			e.printStackTrace();
-		}
+		}*/
 		}
 		
 		if(uri.contains("ajaxReleasefunds"))

@@ -517,7 +517,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
@@ -551,7 +551,7 @@ catch(NullPointerException e)
 		setInterval(function()
 				  {
 					funny();
-				  },1000);
+				  },2000);
 		
 		function funny()
  		{		  
@@ -595,7 +595,7 @@ catch(NullPointerException e)
 
 					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 					         var assigned=string.substring(startassigned,endassigned);
-					         console.log("assigned is "+string.substring(startassigned,endassigned));
+					        // console.log("assigned is "+string.substring(startassigned,endassigned));
 					         if(assigned=="0")
 					         {					        	 
 					        	 var symbol="-";
@@ -616,7 +616,7 @@ catch(NullPointerException e)
 						      
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
-						         console.log(string.substring(startbestbid,endbestbid));
+						       //  console.log(string.substring(startbestbid,endbestbid));
 						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
 						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
@@ -633,7 +633,7 @@ catch(NullPointerException e)
 						        
 						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
 						 		 var quantityneeded=new  Number(quantityneededs);	
-						 		console.log(quantityneededs);
+						 		//console.log(quantityneededs);
 						 		 var assigneds=new Number(assigned);
 						 		if(assigneds==0)
 								{
@@ -657,7 +657,7 @@ catch(NullPointerException e)
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
 							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
-								console.log(mybid==0);
+								//console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
 								//	console.log("mybid<bestbid")
@@ -673,12 +673,12 @@ catch(NullPointerException e)
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 									//console.log("mybid==0");
 								}	
-								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+								// console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						         //console.log("assigned =0");
-						         console.log("my bid is "+mybid);
-						         console.log("needed is "+needed);
-						         console.log("asssigned="+assigned);
-						         console.log("trans= 0");
+						     //    console.log("my bid is "+mybid);
+						      //   console.log("needed is "+needed);
+						       //  console.log("asssigned="+assigned);
+						       //  console.log("trans= 0");
 					         }
 					         else
 					         {
@@ -775,12 +775,12 @@ catch(NullPointerException e)
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 									//console.log("mybid==0");
 								}
-								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+							//	 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						        // console.log("assigned ="+assigneds);
-						         console.log("my bid is "+mybid);
-						         console.log("needed is "+needed);
-						         console.log("asssigned="+assigned);
-						         console.log("trans= 3000");
+						    //     console.log("my bid is "+mybid);
+						     //    console.log("needed is "+needed);
+						      //   console.log("asssigned="+assigned);
+						      //   console.log("trans= 3000");
 					         }
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
@@ -1074,6 +1074,7 @@ catch(NullPointerException e)
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
 
 	}
+	
 	function fun<%=tlb.getLotnum()%>()
 	{
 		var Etime=document.getElementById("time").value;
@@ -1105,10 +1106,8 @@ catch(NullPointerException e)
 						
 				hours=res3;
 				minutes=res1;
-		}
-	
+		}	
 		var timedifference=+hours+":"+minutes+":"+seconds;
-		//if(timedifference.includes("-"))
 		{
 		      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
 		      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
@@ -1141,17 +1140,25 @@ catch(NullPointerException e)
 				  var assigned=new  Number(assigneds);
 				  var neededs=document.getElementById("needed<%=tlb.getLotnum() %>").value;
 				  var needed=new  Number(neededs);
-				  console.log("current bid is"+currentbids);
-				  console.log(" new bid is "+newbids);
-				  console.log("quantityneeded is "+needed);
-				  console.log("assigned is "+assigned);
+				  console.log("current is"+currentbids);
+				//  console.log(" new bid is "+newbids);
+				//  console.log("quantityneeded is "+needed);
+				//  console.log("currentbids-bestbid!=0");
+				//  console.log(currentbids-bestbid!=0);
+				  console.log(!(currentbids-bestbid==0 && assigned==needed));
+				  console.log(currentbids>999);
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
 					  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 					  }
-				  else  if(currentbids>newbids)
+				  else if(currentbids>999)
+					  {
+					  		alert("You cant bid more than 999 Rs for any lot");
+					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
+					  }
+				  else if(currentbids>newbids)
 				  {	  
 					  alert('You are allowed only to increment the bid.');
 					  console.log("===================="+currentbids);
@@ -1161,18 +1168,19 @@ catch(NullPointerException e)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-				  else  if(currentbids-bestbid!=0 && assigned!=needed)
+				  else if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
-					  xmlhttp = new XMLHttpRequest();
-					  xmlhttp.onreadystatechange = function() {
+					  	console.log("inside else");
+					  	xmlhttp = new XMLHttpRequest();
+					  	xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
 					    {					     
-					    	 var string=xmlhttp.responseText;			  
+					    	 var string=xmlhttp.responseText;		
 					    	if(string.includes("block"))
 					    	{
 					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
-					    		}
+					    	}
 					    	else
 					    	{	
 					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
@@ -1296,11 +1304,11 @@ catch(NullPointerException e)
 						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 						         console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						         console.log("assigned ="+assigneds);
-						         console.log("my bid is "+mybid);
+						         console.log("best bid is "+bestbid);						         
 						         console.log("needed is "+needed); var bid=new  Number(string.substring(startmybid,endmybid));
 						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
 					         }}}};
-			//document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+					        // console.log("before sending");
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" +k+"&lotnumber="+j);
@@ -1371,7 +1379,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3"  type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -3528,7 +3536,7 @@ catch(NullPointerException e)
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" max="999" maxlength="3"  id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 

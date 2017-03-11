@@ -268,16 +268,18 @@
             System.out.println(psr.getAttribute("msg")==null);
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	System.out.println("inside if()");
+            	 System.out.println("----------------------"+psr.getAttribute("msg"));
+            	
                 out.println("<script type=\"text/javascript\">");
        		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
+	       	  	psr.setAttribute("msg",null);
             }
             if(msg2!=null||msg3!=null)
 			{
 				Connection con = null;
 				 List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
-		            System.out.println("ist in jsp "+l);
+		           // System.out.println("ist in jsp "+l);
 				Statement stmt = null;
 				ResultSet rs = null;
 				String image = null;  
@@ -373,7 +375,8 @@
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(Kgs)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                </tr>
+                                    <td></td>
+                                </tr><p id="product"></p>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
 								{							
@@ -409,7 +412,8 @@
 										}
 									else 
 									{
-										
+										var msg="ADDED TO LIST";
+										document.getElementById("product").textContent='<img src="Documents/cart.png">';
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();
@@ -443,8 +447,7 @@
 										   	{
 										   		var startlotnum=xmlhttp.responseText.indexOf('fail');
 										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
-										         startlotnum=startlotnum+4;
-										         
+										         startlotnum=startlotnum+4;										         
 										         var ms=string.substring(startlotnum,endlotnum);
 											   		alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
 									   		}
@@ -463,8 +466,7 @@
 									xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
-						</script>
-                                
+						</script>                                
                                  <!---------modal image------------->
                 <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">
