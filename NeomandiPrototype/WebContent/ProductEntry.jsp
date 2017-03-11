@@ -107,6 +107,11 @@
     		farmerid.focus();
     		return false;
     	}
+		if(!/^[0-9]+$/.test(farmerid.value)){
+			alert("Please enter only numbers");
+			farmerid.focus();
+			return false;
+		}
     	if(isNaN(farmerid.value)){
     		alert("Enter a valid Farmer ID ");
     		farmerid.focus();
@@ -153,8 +158,18 @@
 		}
     	
     	//quantity validation
+    	if(quantity.value == ""){
+    		alert("Please enter quantity");
+    		quantity.focus();
+    		return false;
+    	}
     	if(isNaN(quantity.value)){
     		alert("Enter a valid quantity value. Only number from 0-9 ");
+    		quantity.focus();
+    		return false;
+    	}
+    	if(!/^[0-9]+$/.test(quantity.value)){
+    		alert("Please enter only numbers");
     		quantity.focus();
     		return false;
     	}
@@ -361,7 +376,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="lotnumber" name="lotnumber" value="${param. lotnumber}">
+                                        <input type="text" class="form-control" id="lotnumber" name="lotnumber" value="${param. lotnumber}" readonly>
                                     </td>
                                 </tr>
                                 <tr>

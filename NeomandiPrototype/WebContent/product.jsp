@@ -27,7 +27,10 @@
     {
     height:34px;
     }
-    
+    .table{
+    	position: relative;
+    	right: 8px
+    }
     </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -300,7 +303,7 @@
                                     <td>
                                         <h4>Quantity Available</h4></td>
                                     <td>
-                                        <h4></h4></td>
+                                        <h4>Slot</h4></td>
                                     <td>
                                         <h4></h4></td>
                                 </tr>
@@ -369,6 +372,8 @@
                                         <h4><% out.println(psr1.getQualitygrade()); %></h4></td>
                                     <td>
                                         <h4><% out.println(psr1.getQuantity()); %></h4></td>
+                                    <td>
+                                    	<h4>slot1</h4>
                                     <td>
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(Kgs)">
                                     </td>
