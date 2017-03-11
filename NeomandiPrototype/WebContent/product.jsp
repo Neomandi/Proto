@@ -268,7 +268,7 @@
             System.out.println(psr.getAttribute("msg")==null);
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	 System.out.println("----------------------"+psr.getAttribute("msg"));
+            	 System.out.println(psr.getAttribute("msg"));
             	
                 out.println("<script type=\"text/javascript\">");
        		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
