@@ -32,6 +32,13 @@ input[type="number"],input[type="text"]
 {
 	text-align: center;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 #div
 {   		
 	padding:22px;
@@ -462,7 +469,7 @@ catch(NullPointerException e)
 				//System.out.println("++++++++++++++++");
 				//System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
-					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 			<br>
 			<%	}for(Object o:al)
 				{
@@ -478,7 +485,7 @@ catch(NullPointerException e)
 							System.out.println("myfinalcostbean list size"+l.size()+l);
 							MyFinalCostBean mfcb=(MyFinalCostBean)m;
 							if(l.size()==0){
-								%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>None of the lots you have chosen come under slot-1.</b></p></div></center>
+								%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 						<br><%}
 							if(mfcb.getLotnum().equals(tlb.getLotnum()))
 							{   
@@ -517,7 +524,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
@@ -551,7 +558,7 @@ catch(NullPointerException e)
 		setInterval(function()
 				  {
 					funny();
-				  },3000);
+				  },2000);
 		
 		function funny()
  		{		  
@@ -595,7 +602,7 @@ catch(NullPointerException e)
 
 					         document.getElementById("demo1<%= tlb.getLotnum() %>").innerHTML = string.substring(startlotnum,endlotnum);
 					         var assigned=string.substring(startassigned,endassigned);
-					         console.log("assigned is "+string.substring(startassigned,endassigned));
+					        // console.log("assigned is "+string.substring(startassigned,endassigned));
 					         if(assigned=="0")
 					         {					        	 
 					        	 var symbol="-";
@@ -616,7 +623,7 @@ catch(NullPointerException e)
 						      
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").innerHTML =bestbid;
 						         document.getElementById("demo5<%= tlb.getLotnum() %>").value =bestbid;
-						         console.log(string.substring(startbestbid,endbestbid));
+						       //  console.log(string.substring(startbestbid,endbestbid));
 						       //  document.getElementById("demo6<%= tlb.getLotnum() %>").innerHTML = mybid;
 						      //   document.getElementById("demo6<%= tlb.getLotnum() %>").value = mybid;
 						         document.getElementById("demo7<%= tlb.getLotnum() %>").innerHTML = assigned;
@@ -633,7 +640,7 @@ catch(NullPointerException e)
 						        
 						         var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
 						 		 var quantityneeded=new  Number(quantityneededs);	
-						 		console.log(quantityneededs);
+						 		//console.log(quantityneededs);
 						 		 var assigneds=new Number(assigned);
 						 		if(assigneds==0)
 								{
@@ -657,7 +664,7 @@ catch(NullPointerException e)
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
 							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
-								console.log(mybid==0);
+								//console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
 								//	console.log("mybid<bestbid")
@@ -673,12 +680,12 @@ catch(NullPointerException e)
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 									//console.log("mybid==0");
 								}	
-								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+								// console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						         //console.log("assigned =0");
-						         console.log("my bid is "+mybid);
-						         console.log("needed is "+needed);
-						         console.log("asssigned="+assigned);
-						         console.log("trans= 0");
+						     //    console.log("my bid is "+mybid);
+						      //   console.log("needed is "+needed);
+						       //  console.log("asssigned="+assigned);
+						       //  console.log("trans= 0");
 					         }
 					         else
 					         {
@@ -775,12 +782,12 @@ catch(NullPointerException e)
 									document.getElementById("demo6<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 									//console.log("mybid==0");
 								}
-								 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
+							//	 console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						        // console.log("assigned ="+assigneds);
-						         console.log("my bid is "+mybid);
-						         console.log("needed is "+needed);
-						         console.log("asssigned="+assigned);
-						         console.log("trans= 3000");
+						    //     console.log("my bid is "+mybid);
+						     //    console.log("needed is "+needed);
+						      //   console.log("asssigned="+assigned);
+						      //   console.log("trans= 3000");
 					         }
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
@@ -789,7 +796,7 @@ catch(NullPointerException e)
  		}
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -834,8 +841,6 @@ catch(NullPointerException e)
 	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
 	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
 	bid=bid+1;
-	
-	
 	
 	function submitbutton<%out.print(tlb.getLotnum());%>()
 	{	
@@ -1051,7 +1056,7 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1074,6 +1079,7 @@ catch(NullPointerException e)
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
 
 	}
+	
 	function fun<%=tlb.getLotnum()%>()
 	{
 		var Etime=document.getElementById("time").value;
@@ -1105,10 +1111,8 @@ catch(NullPointerException e)
 						
 				hours=res3;
 				minutes=res1;
-		}
-	
+		}	
 		var timedifference=+hours+":"+minutes+":"+seconds;
-		//if(timedifference.includes("-"))
 		{
 		      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
 		      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
@@ -1141,37 +1145,47 @@ catch(NullPointerException e)
 				  var assigned=new  Number(assigneds);
 				  var neededs=document.getElementById("needed<%=tlb.getLotnum() %>").value;
 				  var needed=new  Number(neededs);
-				  console.log("current bid is"+currentbids);
-				  console.log(" new bid is "+newbids);
-				  console.log("quantityneeded is "+needed);
-				  console.log("assigned is "+assigned);
+				  console.log("current is"+currentbids);
+				//  console.log(" new bid is "+newbids);
+				//  console.log("quantityneeded is "+needed);
+				//  console.log("currentbids-bestbid!=0");
+				//  console.log(currentbids-bestbid!=0);
+				  console.log(currentbids);
+				  console.log(newbids>999);
+				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
+				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
 					  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 					  }
-				  if(currentbids>newbids)
+				  else if(newbids>999)
+					  {
+					  		alert("You cant bid more than 999 Rs for any lot");
+					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
+					  }
+				  else if(currentbids>newbids)
 				  {	  
 					  alert('You are allowed only to increment the bid.');
-					 // document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
-				  }
-				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
-				  var bestbid=new Number(bestbids);
-				  if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
+					  console.log(currentbids);
+					  document.getElementById('demo6<%out.print(tlb.getLotnum());%>').value=currentbids;
+				  }				  
+				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-				  else  if(currentbids-bestbid!=0 && assigned!=needed)
+				  else if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
-					  xmlhttp = new XMLHttpRequest();
-					  xmlhttp.onreadystatechange = function() {
+					  	console.log("inside else");
+					  	xmlhttp = new XMLHttpRequest();
+					  	xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
 					    {					     
-					    	 var string=xmlhttp.responseText;			  
+					    	 var string=xmlhttp.responseText;		
 					    	if(string.includes("block"))
 					    	{
 					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
-					    		}
+					    	}
 					    	else
 					    	{	
 					         var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
@@ -1295,11 +1309,11 @@ catch(NullPointerException e)
 						    //   console.log("input is "+input+"symbol is"+symbol+" best bid is"+string.substring(startbestbid,endbestbid));
 						         console.log(" best bid is"+string.substring(startbestbid,endbestbid));
 						         console.log("assigned ="+assigneds);
-						         console.log("my bid is "+mybid);
+						         console.log("best bid is "+bestbid);						         
 						         console.log("needed is "+needed); var bid=new  Number(string.substring(startmybid,endmybid));
 						         document.getElementById("demo6<%= tlb.getLotnum() %>").setAttribute("min",mybid);
 					         }}}};
-			//document.getElementById('number<%out.print(tlb.getLotnum());%>').value="";
+					        // console.log("before sending");
 			  xmlhttp.open("POST", "ajaxIncrement.do", true);
 			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xmlhttp.send("number=" +k+"&lotnumber="+j);
@@ -1370,7 +1384,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3"  type="number" min="<%= mfcb.getPrice()%>" value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -1399,7 +1413,7 @@ catch(NullPointerException e)
 		}		
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -1908,7 +1922,7 @@ catch(NullPointerException e)
 	}
  }*/
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1995,18 +2009,19 @@ catch(NullPointerException e)
 			  var newbid=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
 			  var newbids=new Number(newbid);
 			  console.log("current bid is"+currentbids+" new bid is "+newbids);
+			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
+				var bestbid=new Number(bestbids);
 			  if(currentbids===newbids)
 				  {
 					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 				  }
-			  if(currentbids>newbids)
+			  else if(currentbids>newbids)
 			  {	  
 				  alert('You are allowed only to increment the bid.');
-				 // document.getElementById('number<%out.print(tlbr.getLotnum());%>').value="";
+				  document.getElementById('demo6<%out.print(tlbr.getLotnum());%>').value=currentbids;
 			  }
-			  var bestbids=document.getElementById("demo5<%out.print(tlbr.getLotnum());%>").value;
-				var bestbid=new Number(bestbids);
-				if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
+			 
+			  else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 					  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }
@@ -3526,13 +3541,13 @@ catch(NullPointerException e)
 	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" max="999" maxlength="3"  id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -3585,8 +3600,8 @@ catch(NullPointerException e)
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:123px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
