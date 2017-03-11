@@ -151,7 +151,7 @@ content: "";
                 <h2>History</h2></div>
         </div>
         <div class="container from">
-            <form action="FarmerHistory.do" method="post" name="historyForm">
+            <form action="FarmerHistory.do" method="post" name="historyForm" >
                 <div class="datetable" align="center">
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
@@ -211,6 +211,9 @@ content: "";
                     });
                     doc.save('FarmerHistory.pdf');
                 }*/
+                function validateDate(){
+                	
+                }
             </script>
         </div>
 

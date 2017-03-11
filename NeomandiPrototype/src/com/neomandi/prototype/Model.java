@@ -775,6 +775,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			{
 				con.setAutoCommit(false);
 				
+				
 				ps = con.prepareStatement("insert into productentry(farmerid,lotnumber,marketcode,kindofpro,produce,qualitygrade,quantity,photo,Date,Time,slotnumber,averageprice,quantitybidfor) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				ps.setString(1, peb.getFarmerid());
 				ps.setString(2, peb.getlotnumber());

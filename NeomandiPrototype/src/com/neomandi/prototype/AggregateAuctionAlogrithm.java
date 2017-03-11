@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -208,9 +209,12 @@ public class AggregateAuctionAlogrithm {
 					}
 				}	
 			}
-			
+			//--------------------------------------------------------------------------------------------------
 			avg = avg/maxavg;
-			
+			DecimalFormat twoDForm = new DecimalFormat("#.##");
+		     
+			 avg=Double.valueOf(twoDForm.format(avg));
+			 //=================================================================================================
 			for(int i=0;i<li.size();i++)
 			{
 				b.add(li.get(i).getAadharnumber());
