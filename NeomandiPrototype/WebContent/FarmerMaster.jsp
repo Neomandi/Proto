@@ -219,7 +219,7 @@ if((String)hs.getAttribute("name")==null){
 			   System.out.println("in farmer master lotnumber="+lotnumber);
 			%>
 		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
-		  <td><h4 style="color:#000080"><b><%=rs1.getString("quantity") %></b></h4></td>
+		  <td><h4 style="color:#000080;text-align:center;"><b><%=rs1.getString("quantity") %></b></h4></td>
 		  <%
 		  	String empty="--"; 
 		  	if(rs1.getString("quantitybidfor")!=null){
@@ -233,7 +233,7 @@ if((String)hs.getAttribute("name")==null){
 	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%=y%></b></h4></td> 
 	          	<% }
 		  		else{ %>         
-		  	<td ><h4 id="q" style="color:#000080; font-weight:bold;"><b><%=empty %></b></h4></td><%} %>
+		  	<td ><h4  style="color:#000080; font-weight:bold;text-align:center;"><b><%=empty %></b></h4></td><%} %>
 		  	<%  	
 		  		if(rs1.getString("averageprice")!=null){
 				String average=(String)rs1.getString("averageprice");
@@ -246,7 +246,7 @@ if((String)hs.getAttribute("name")==null){
 		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%=Double.valueOf(two.format(x))%></b></h4></td>
 		  		<%}
 		  		else{ %>
-		  <td   style="color:#000080;"><h4 id="a" style="color:#000080;  font-weight:bold;"><%=empty %></h4></td>
+		  <td   style="color:#000080;"><h4 id="a" style="color:#000080;  font-weight:bold;text-align:center;"><%=empty %></h4></td>
 		  <%} %>
 		  <td>
 
@@ -538,7 +538,7 @@ function countdown(minutes,seconds,hours)
 {
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 
 	  }	
 	 
@@ -563,7 +563,7 @@ function countdown(minutes,seconds,hours)
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -612,7 +612,7 @@ function countdown(minutes,seconds,hours)
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
 
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 
 		        		            	}
 		        		            
@@ -639,7 +639,7 @@ function countdown(minutes,seconds,hours)
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
 
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -688,10 +688,10 @@ countdown(minutes,seconds,hours);
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
   </script> 
   

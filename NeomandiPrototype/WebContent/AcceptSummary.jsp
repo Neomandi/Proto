@@ -167,7 +167,7 @@ if((String)hs.getAttribute("name")==null){
        <td></td>
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Lot Size</h4></td>
-	  <td><h4>Quantity</h4></td>
+	  <td><h4>Quantity sold</h4></td>
 	  <td><h4>Avg Price</h4></td>
 	  <td><h4>Gross Earnings</h4></td>
 	  <td><h4>TLC<sup>*</sup></h4></td>

@@ -456,7 +456,18 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String quantity=rs.getString("quantity");
 				String averageprice=rs.getString("averageprice");
 				String quantitybidfor=rs.getString("quantitybidfor");
-				
+				if(averageprice==null){
+					averageprice="0";
+				}
+				else{
+					averageprice=averageprice;
+				}
+				if(quantitybidfor==null){
+					quantitybidfor="0";
+				}
+				else{
+					quantitybidfor=quantitybidfor;
+				}
 				l.add(lotnumber);
 				l.add(averageprice);
 				l.add(quantity);
