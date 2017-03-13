@@ -145,8 +145,8 @@ else
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch">Bank Branch</label></td></tr>
       <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); else out.println(tbb.getBranch()); %>" readonly></td></tr>
-      <tr><td><label for="address">Available Balance</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="balance" readonly></td></tr> 
+      <tr><td><label for="address">Available Balance</label></td></tr><br/>
+	  <tr><td><input  type="text"  class="form-control" id="balance" readonly placeholder="Rs."></td></tr>
 	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
 	  <script>
 	  function getbalance()
@@ -177,7 +177,7 @@ else
 <br><br>
 <form>
     <table class="table" >      
-	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount"></td></tr>
+	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs.)"></td></tr>
 	<tr><td><table align="center"><tr><td><a  onclick="hold()"class="reg" >Hold</a></td></tr></table></td></tr>
     <script>
 	function hold()
@@ -311,8 +311,8 @@ else
 	  <tr><td><label for="name">Fund Utilized</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" readonly></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly></td></tr>
-	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"></td></tr>	  
+	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly/></td></tr>
+	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"/></td ></tr>	  
 	  <tr><td><table align="center"><tr><td><a  onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
       <script>
       console.log("blocked amoutn is +"+document.getElementById("amount").value)

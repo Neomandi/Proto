@@ -149,7 +149,7 @@ if((String)hs.getAttribute("name")==null){
 	  <td><h4>Produce</h4></td>
 	  <td><h4>Product</h4></td>
 	  <td><h4>Grade</h4></td>
-	  <td><h4>Quantity</h4></td>
+	  <td><h4>Quantity(kg)</h4></td>
 	  <td></td><td></td>
 	  </tr></thead>
 

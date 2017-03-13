@@ -32,6 +32,9 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        .error {
+    border:2px solid red;
+}
     </style>
 </head>
 
@@ -447,6 +450,7 @@
                                 if (name.value=="" ) {
                                  
                                     window .alert("please enter your name");
+                                    document.getElementById("name").classname='error';
                                     name.focus();
                                     return false;
                                    

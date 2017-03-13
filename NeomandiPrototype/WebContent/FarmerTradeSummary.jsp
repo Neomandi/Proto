@@ -274,29 +274,29 @@ content: "";
                                         <th style="text-align:center; color:white">
                                             <h4 style="font-size:15px;">Lot Number</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Lot Size</h4></th>
+                                            <h4 style="font-size:15px;">Lot Size(kg)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Quantity</h4></th>
+                                            <h4 style="font-size:15px;">Quantity(kg)</h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Avg. Price</h4></th>
+                                            <h4 style="font-size:15px;">Avg. Price(Rs.)</h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Gross Earnings</h4></th>
+                                            <h4 style="font-size:15px;">Gross Earnings(Rs.)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">TLC<sup>*</sup></h4></th>
+                                            <h4 style="font-size:15px;">TLC(Rs.)<sup>*</sup></h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Market Cess</h4></th>
-                                        <th style="text-align:left; color:white">
-
-                                            <h4 style="font-size:15px;">EPC<sup>#</sup></h4></th>
-
+                                            <h4 style="font-size:15px;">Market Cess(Rs.)</h4></th>
                                         <th style="text-align:left; color:white">
 
-                                            <h4 style="font-size:15px;">PMVA<sup>^</sup></h4></th>
+                                            <h4 style="font-size:15px;">EPC(Rs.)<sup>#</sup></h4></th>
 
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Deductions</h4></th>
+
+                                            <h4 style="font-size:15px;">PMVA(Rs.)<sup>^</sup></h4></th>
+
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">My Net Earnings</h4></th>
+                                            <h4 style="font-size:15px;">Deductions(Rs.)</h4></th>
+                                        <th style="text-align:left; color:white">
+                                            <h4 style="font-size:15px;">My Net Earnings(Rs.)</h4></th>
                                         <th></th>
                                     </tr>
                                 </thead>

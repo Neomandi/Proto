@@ -151,9 +151,9 @@ if((String)hs.getAttribute("name")==null){
 <thead><tr>
           <td></td>
 	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Lot Size</h4></td>
-	  <td><h4>Quantity sold</h4></td>
-	  <td><h4>Avg Price</h4></td>
+	  <td><h4>Lot Size(kg)</h4></td>
+	  <td><h4>Quantity sold(kg)</h4></td>
+	  <td><h4>Avg Price(Rs.)</h4></td>
 	  <td><h4>Accept</h4></td>
 	  <td><h4>Reject</h4></td>
 	  <td><h4>Status</h4></td>
