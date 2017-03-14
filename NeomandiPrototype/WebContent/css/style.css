@@ -890,7 +890,7 @@ border: 0px;
     color: #fff;
 }
 .tabin .table > tbody > tr > td h4, .tabin1 .table > tbody > tr > td h4  {
-     text-align: left;
+     text-align: center;
 background: #cccccc;
 padding: 10px;
 color: #fff;

@@ -174,25 +174,25 @@
                                     <td>
                                         <h4>Lot Number</h4></td>
                                     <td>
-                                        <h4>Lot Size</h4></td>
+                                        <h4>Lot Size(kg)</h4></td>
                                     <td>
-                                        <h4>Quantity</h4></td>
+                                        <h4>Quantity sold(kg)</h4></td>
                                     <td>
-                                        <h4>Avg Price</h4></td>
+                                        <h4>Avg Price(Rs.)</h4></td>
                                     <td>
-                                        <h4>Gross Earnings</h4></td>
+                                        <h4>Gross Earnings(Rs.)</h4></td>
                                     <td>
-                                        <h4>TLC<sup>*</sup></h4></td>
+                                        <h4>TLC(Rs.)<sup>*</sup></h4></td>
                                     <td>
-                                        <h4>Market Cess</h4></td>
+                                        <h4>Market Cess(Rs.)</h4></td>
                                     <td>
-                                        <h4>EPC<sup>#</sup></h4></td>
+                                        <h4>EPC(Rs.)<sup>#</sup></h4></td>
                                     <td>
-                                        <h4>PMVA<sup>^</sup></h4></td>
+                                        <h4>PMVA(Rs.)<sup>^</sup></h4></td>
                                     <td>
-                                        <h4>Deductions</h4></td>
+                                        <h4>Deductions(Rs.)</h4></td>
                                     <td>
-                                        <h4>My Net Earnings</h4></td>
+                                        <h4>My Net Earnings(Rs.)</h4></td>
                                     <td>
                                         <h4>status</h4></td>
                                     <td></td>
@@ -210,7 +210,7 @@
                                     <td>
                                         <h4 style="color:#000080"><b><%= aprice%></b></h4></td>
                                     <td>
-                                        <h4 style="color:#000080"><b><%=fprice %></b></h4></td>
+                                        <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
                                         <h4 style="color:#000080"><b>--</b></h4></td>
                                     <td>
