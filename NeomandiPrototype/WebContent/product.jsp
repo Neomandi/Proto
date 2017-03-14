@@ -378,7 +378,7 @@
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(Kgs)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                    <td></td><div id="product"></div>
+                                    <td><div id="product" style="width:90%;"></div></td>
                                 </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
