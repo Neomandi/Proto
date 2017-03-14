@@ -146,7 +146,7 @@ else
       <tr><td><label for="branch">Bank Branch</label></td></tr>
       <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); else out.println(tbb.getBranch()); %>" readonly></td></tr>
       <tr><td><label for="address">Available Balance</label></td></tr><br/>
-	  <tr><td><input  type="text"  class="form-control" id="balance" readonly placeholder="Rs."></td></tr>
+	  <tr><td><input type="text"  class="form-control" id="balance" readonly></td></tr>
 	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
 	  <script>
 	  function getbalance()
