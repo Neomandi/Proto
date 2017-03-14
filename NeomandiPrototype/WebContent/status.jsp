@@ -224,7 +224,9 @@ if((String)tlbn.getTname()==null)
 </tbody></table></div>
 </div>
 </div>
-    </div></div><%}}}}%>
+    </div></div><%}}if(request.getAttribute("errmsg")==null){
+    	out.println("You have not taken part in Auction ");
+    }}}%>
 	<!---row 1 end--->
 	<!----row2---><!--  
 	<div class="two">
