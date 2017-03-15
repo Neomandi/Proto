@@ -4515,9 +4515,9 @@ public List traderHistory(String name, String pwd, String from, String to)
 			st[0]=String.valueOf(date);
 			if(date<10)
 				//to=st[0]+"-0"+st[1]+"-"+st[2];
-				to=st[2]+"-0"+st[0]+"-"+st[1];
+				to=st[2]+"-"+st[1]+"-0"+st[0];
 			else
-				to=st[2]+"-"+st[0]+"-"+st[1];
+				to=st[2]+"-"+st[1]+"-"+st[0];
 			System.out.println(to);
 			from=ft[2]+"-"+ft[0]+"-"+ft[1];
 			from=from.replace("/","-");
@@ -4560,7 +4560,7 @@ public List traderHistory(String name, String pwd, String from, String to)
 				}
 				else
 				{
-					tsb.setVolumesold("--");
+					tsb.setVolumesold("----");
 					tsb.setResult("LOST");
 				}
 				al.add(tsb);					
@@ -4714,6 +4714,7 @@ public void PostAuction()
 					String pass = rs.getString("pass");
 					if(pass.equals(apwd))
 					{
+						System.out.println("Success: "+pass.equals(apwd));
 						msg = msg + "SUCCESS";
 					}
 					else

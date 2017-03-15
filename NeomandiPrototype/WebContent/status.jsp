@@ -22,6 +22,16 @@
 font-size:24px !important;
 line-height:36px;
 }
+#div
+{   		
+	padding:22px;
+	margin:10px;
+	width:90%;
+	background-color:#BFBFBF;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+}
 .whiteclsbc{
 background-color:#ffffff;
 width:5%;
@@ -134,12 +144,18 @@ if((String)tlbn.getTname()==null)
   int check=0;
   Myclass2 mc=(Myclass2)request.getAttribute("errmsg");
   List al=mc.getAl();
-  for(Object o:al)
+  if(al.size()==0)
   {
-	OrderStatusBean osbn=(OrderStatusBean)o;
-	if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
-	{		
-		System.out.println("inside syatus.jsp "+osbn);
+  	%><br><br><br><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trade operations that took place.</b></p></div></center><%
+  }
+  else
+  {
+  	for(Object o:al)
+  	{
+		OrderStatusBean osbn=(OrderStatusBean)o;
+		if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
+		{		
+			System.out.println("inside syatus.jsp "+osbn);
 %>
 	<div class="one" id="one<%= osbn.getLotnum()%>">
 	<div class="container-fluid status">
@@ -224,9 +240,7 @@ if((String)tlbn.getTname()==null)
 </tbody></table></div>
 </div>
 </div>
-    </div></div><%}}if(request.getAttribute("errmsg")==null){
-    	out.println("You have not taken part in Auction ");
-    }}}%>
+    </div></div><%}}}}}%>
 	<!---row 1 end--->
 	<!----row2---><!--  
 	<div class="two">

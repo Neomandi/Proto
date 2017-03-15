@@ -271,7 +271,7 @@ function fun2()
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCreated() %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
 </div>

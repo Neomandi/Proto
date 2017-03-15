@@ -2554,6 +2554,9 @@ public class ControllerServlet extends HttpServlet {
 			String aname = request.getParameter("aname");
 			String apwd = request.getParameter("apwd");
 			
+			System.out.println("Aname: "+aname);
+			System.out.println("Apwd: "+apwd);
+			
 			Model m = new Model();
 			String msg = m.adminLogin(aname,apwd);
 			

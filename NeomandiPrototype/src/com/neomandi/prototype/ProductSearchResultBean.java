@@ -50,7 +50,7 @@ public class ProductSearchResultBean implements Serializable {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
-		System.out.println("in psrb photo="+photo);
+	//	System.out.println("in psrb photo="+photo);
 	}
 	@Override
 	public int hashCode() {
