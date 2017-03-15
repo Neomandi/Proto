@@ -53,7 +53,7 @@
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/logo.jpg" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
-<form id="login" action="Admin.do" method = "get"  name = "AdminLoginform" autocomplete="off">
+<form id="login" action="Admin.do" method = "post"  name = "AdminLoginform" autocomplete="off">
 <table class="table login">
 <tbody>
 <tr><td><h2>Admin Login</h2></td></tr>
