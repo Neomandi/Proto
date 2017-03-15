@@ -12,6 +12,13 @@ public class ProductSearchResultBean implements Serializable {
 	private String qualitygrade;
 	private String quantity;
 	private String photo;
+	private String slotnumber;
+	public String getSlotnumber() {
+		return slotnumber;
+	}
+	public void setSlotnumber(String slotnumber) {
+		this.slotnumber = slotnumber;
+	}
 	public ProductSearchResultBean(){
 //		System.out.println("inside no arg cons of psrb");
 	}
@@ -62,6 +69,7 @@ public class ProductSearchResultBean implements Serializable {
 		result = prime * result + ((produce == null) ? 0 : produce.hashCode());
 		result = prime * result + ((qualitygrade == null) ? 0 : qualitygrade.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+		result = prime * result + ((slotnumber == null) ? 0 : slotnumber.hashCode());
 		return result;
 	}
 	@Override
@@ -103,12 +111,18 @@ public class ProductSearchResultBean implements Serializable {
 				return false;
 		} else if (!quantity.equals(other.quantity))
 			return false;
+		if (slotnumber == null) {
+			if (other.slotnumber != null)
+				return false;
+		} else if (!slotnumber.equals(other.slotnumber))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "ProductSearchResultBean [lotnumber=" + lotnumber + ", marketcode=" + marketcode + ", produce=" + produce
-				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + ", photo=" + photo + "]";
+				+ ", qualitygrade=" + qualitygrade + ", quantity=" + quantity + ", photo=" + photo + ", slotnumber="
+				+ slotnumber + "]";
 	}
 	public ProductSearchResultBean(String lotnumber, String marketcode, String produce, String qualitygrade,
 			String quantity, String photo) {

@@ -204,8 +204,22 @@ catch(NullPointerException e)
 	 	 out.println("</script>");
 }%>
 <p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
+<script>
+	function logout()
+	{
+		var msg=document.getElementById("auction1").value;
+		if(!(msg.includes('has ended')))
+		if (confirm('Auction is still under progress do you want to Logout?? ')) 
+        {
+			window.location='logout.do';
+        }
+		else if(msg.includes('has ended'))
+			{}
+	}
+	
+</script>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
@@ -1171,7 +1185,7 @@ catch(NullPointerException e)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-				  else if(!(currentbids-bestbid==0 && assigned==needed))
+				  else// if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
 					  	console.log("inside else");
 					  	xmlhttp = new XMLHttpRequest();

@@ -317,7 +317,7 @@
 									ProductSearchResultBean psr1=(ProductSearchResultBean)o;
 									lotnum=psr1.getLotnumber();		
 									quantity=psr1.getQuantity();
-									System.out.println("in for loop"+psr1.getPhoto());
+									
 							%>
 							<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 							<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">	
@@ -373,12 +373,12 @@
                                     <td>
                                         <h4><% out.println(psr1.getQuantity()); %></h4></td>
                                     <td>
-                                    	<h4>slot1</h4>
+                                    	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                    <td><div id="product" style="width:90%;"></div></td>
+                                    <td></td>
                                 </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
@@ -392,8 +392,7 @@
 									var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
 									console.log(product);
 									var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-									neededs=Math.ceil(neededs);
-																		
+									neededs=Math.ceil(neededs);																		
 									if(neededs>totals)
 									{
 										alert("Please enter a quantity same as or less than the Quantity Available");
@@ -405,18 +404,16 @@
 										alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
 									}
 									else if(neededs<=0)
-										{
+									{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 											alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
-										}
+									}
 									else if(neededs%50!=0)
-										{
+									{
 											alert("PLEASE ENTER THE LOTSIZE IN MULTIPLES OF 50");
-										}
+									}
 									else 
 									{
-										var msg="ADDED TO LIST";
-										document.getElementById("product").textContent=msg;
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();
@@ -448,19 +445,19 @@
 										   	}
 										   	else if(string.includes("fail"))
 										   	{
-										   		var startlotnum=xmlhttp.responseText.indexOf('fail');
+										   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
 										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
 										         startlotnum=startlotnum+4;										         
 										         var ms=string.substring(startlotnum,endlotnum);
-											   		alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+											   	 alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
 									   		}
 										   	else if(string.includes("msg"))
-										   		{
-												   		alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
-										   		}											
-											    document.getElementById("addtrade").innerHTML = string;
-											    document.getElementById("addtrade").value = string;
-											    // console.log("message sent from CS is "+string);
+										   	{
+											 	 alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+										   	}											
+											document.getElementById("addtrade").innerHTML = string;
+											document.getElementById("addtrade").value = string;
+											// console.log("message sent from CS is "+string);
 										}
 									};
 									xmlhttp.open("POST", "AddTrade.do", true);
