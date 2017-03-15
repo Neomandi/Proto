@@ -378,7 +378,7 @@
                                         <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                    <td><div id="product" style="width:90%;"></div></td>
+                                    <td></td>
                                 </tr>
                                 <script> 
 								function fun<%=psr1.getLotnumber() %>()
@@ -415,8 +415,6 @@
 										}
 									else 
 									{
-										var msg="ADDED TO LIST";
-										document.getElementById("product").textContent=msg;
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();

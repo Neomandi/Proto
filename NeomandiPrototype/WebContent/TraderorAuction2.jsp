@@ -1171,7 +1171,7 @@ catch(NullPointerException e)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-				  else if(!(currentbids-bestbid==0 && assigned==needed))
+				  else //if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
 					  	console.log("inside else");
 					  	xmlhttp = new XMLHttpRequest();
