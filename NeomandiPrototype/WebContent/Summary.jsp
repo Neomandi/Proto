@@ -95,7 +95,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
-			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>You have not performed any trade operations today.</b></p></div></center>
+			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -210,15 +210,13 @@ if(request.getAttribute("tradesummary").equals("no"))
 	<div class="container tsum from">
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	<div align="center">
-	<form action = "tradeSummary.do" method = "post" id="myForm">
-	
+	<form action = "tradeSummary.do" method = "post" id="myForm">	
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
                     <input type='text' class="form-control" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
-                </div></div>
-                
+                </div></div>                
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
                     <input type='text' class="form-control" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
@@ -244,7 +242,7 @@ function fun2()
 {
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
-  	%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>You have not performed any trade operations between these dates.</b></p></div></center>		 
+  	%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
   	<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
@@ -273,7 +271,7 @@ function fun2()
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCreated() %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
 </div>
