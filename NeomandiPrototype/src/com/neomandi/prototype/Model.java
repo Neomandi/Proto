@@ -4714,6 +4714,7 @@ public void PostAuction()
 					String pass = rs.getString("pass");
 					if(pass.equals(apwd))
 					{
+						System.out.println("Success: "+pass.equals(apwd));
 						msg = msg + "SUCCESS";
 					}
 					else
