@@ -145,7 +145,8 @@ if((String)tlbn.getTname()==null)
   Myclass2 mc=(Myclass2)request.getAttribute("errmsg");
   List al=mc.getAl();
   if(al.size()==0)
-  {%><br><br><br><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trade operations that took place.</b></p></div></center><%
+  {
+  	%><br><br><br><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trade operations that took place.</b></p></div></center><%
   }
   else
   {
