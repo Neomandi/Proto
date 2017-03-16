@@ -92,6 +92,12 @@
 			color:darkblue;	 
 			font-size:18px;
     		}
+    		.psearch select{
+    			background-image: url(images/Arrow.png);
+    			background-repeat: no-repeat;
+    			background-size: 15px 15px;
+    			background-position: right;
+    		}
         </style>
         <script>
         function populate(s1, s2)
