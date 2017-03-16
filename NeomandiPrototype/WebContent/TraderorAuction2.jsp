@@ -520,7 +520,7 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size (kg) (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
@@ -540,11 +540,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -1400,7 +1400,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>"style="width:164px; height:30px;" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>

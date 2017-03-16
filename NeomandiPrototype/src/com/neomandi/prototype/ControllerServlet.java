@@ -2482,12 +2482,12 @@ public class ControllerServlet extends HttpServlet {
 					}
 					request.setAttribute("blockmsg",msg[0]);
 					rd=request.getRequestDispatcher("TraderBlock.jsp");
-					try {
-						rd.forward(request, response);
+				/*	try {
+						//rd.forward(request, response);
 					} catch (ServletException | IOException e) 
 					{
 						e.printStackTrace();
-					}	
+					}	*/
 				}
 				else
 				{

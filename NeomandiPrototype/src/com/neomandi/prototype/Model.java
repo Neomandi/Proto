@@ -1189,13 +1189,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					}
 					else
 					{
-						ps =con.prepareStatement("insert into traders_blocked_amount(tradername,aadharnumber,blockamount,bankname) values(?,?,?,?)");
+						ps =con.prepareStatement("insert into traders_blocked_amount(tradername,aadharnumber,blockamount,bankname,balance) values(?,?,?,?,?)");
 						ps.setString(1, name);
 						ps.setString(2, aadharnumber);
 						ps.setString(3,String.valueOf(block));
 						ps.setString(4,bankname);						
-						ps.execute();									
-						rs = ps.getResultSet();		
+						ps.setString(5,String.valueOf(balance));						
+						ps.execute();
+						System.out.println(ps);	
 					}							
 			}								
 			//con.commit();						
