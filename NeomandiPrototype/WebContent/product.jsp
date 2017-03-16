@@ -176,10 +176,10 @@
                             	 <form id="myForm" action="ProductSearchInt.jsp" method = "post">
                                 <select class="form-control" id="category" name="category" style="border-top: -4px solid #ddd; " onchange = "populate('category','produce')" >
                                     <option value="Category">Select Category</option>
-                                    <option value="Vegetables">Vegetables</option>
-                                    <option value="Fruits">Fruits</option>
-                                    <option value="Grains">Grains</option>
-                                    <option value="Pulses">Pulses</option>
+                                    <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
+                                    <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
+                                    <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
+                                    <option value="Pulses" ${param.category == 'Pulses' ? 'selected' :''}>Pulses</option>
                                 </select>
                             </td>
                             <td>
@@ -193,9 +193,6 @@
                                     <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
                                     <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
                                     <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
-                                    <!-- <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>-->
                                 </select>
                             </td>
                             <td>
@@ -210,9 +207,9 @@
                         		%>
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base">Auction Slot</option>                                  
-                                    <option value="slot1">Slot 1 (<%=start %>-<%=stop %>)</option>                                                                      
-                                    <option value="slot2">Slot 2 (10:40-10:45)</option>
-                                    <option value="slot3">Slot 3 (10:50-10:55)</option>
+                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}>Slot 1 (<%=start %>-<%=stop %>)</option>                                                                      
+                                    <option value="slot2" ${param.slot == 'slot2' ? 'selected' :''}>Slot 2 (10:40-10:45)</option>
+                                    <option value="slot3" ${param.slot == 'slot3' ? 'selected' :''}>Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
                             <%}
@@ -220,9 +217,9 @@
                             		%>
                                     <select class="form-control" id="slot" name="slot">
                                         <option selected value="base">Auction Slot</option>                                  
-                                        <option value="slot1">Slot 1 (10:30-10:40)</option>                                                                      
-                                        <option value="slot2">Slot 2 (10:40-10:45)</option>
-                                        <option value="slot3">Slot 3 (10:50-10:55)</option>
+                                        <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}>Slot 1 (10:30-10:40)</option>                                                                      
+                                        <option value="slot2" ${param.slot == 'slot2' ? 'selected' :''}>Slot 2 (10:40-10:45)</option>
+                                    	<option value="slot3" ${param.slot == 'slot3' ? 'selected' :''}>Slot 3 (10:50-10:55)</option>
                                     </select>
                                 </td>
                                 <%
