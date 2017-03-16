@@ -271,9 +271,10 @@
             <%  
             HttpSession psr=request.getSession(false);  
             System.out.println("***");
+            System.out.println(msg2);
             System.out.println(psr.getAttribute("msg")==null);
-            if(psr.getAttribute("msg")==null)
-            	out.println("Please select the choices");
+            if((String)request.getAttribute("productsearchresult")==null)
+            {	out.println("Please select the choices");System.out.println("inside if");}
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
             	 //System.out.println(psr.getAttribute("msg"));            	
