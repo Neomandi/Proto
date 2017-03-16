@@ -432,7 +432,7 @@
 											         var newsize=new Number(ms);
 											         
 											         if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
-											         {
+											         {											        	 
 											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
 											        	 	xmlhttp.open("POST", "AddTrade.do", true);
 															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -465,8 +465,11 @@
 									xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
-						</script>                                
-                                 <!---------modal image------------->
+						</script>    
+						                        
+                                 <!---------modal image- <div id="dialog" title="Basic dialog">
+						  <p style="display: none;">This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+						</div>------------>
                 <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
