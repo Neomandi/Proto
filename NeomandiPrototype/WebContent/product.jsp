@@ -98,7 +98,7 @@
         	}
         	else if(s1.value == "Fruits")
         	{
-        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANA|Banana", "MANGO|Mango"];
+        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANNA|Bananna", "MANGO|Mango"];
         	}
         	else if(s1.value == "Grains")
         	{
@@ -266,13 +266,14 @@
 				</script>
             </div>
             <%  
-            HttpSession psr=request.getSession(false);
-           
+            HttpSession psr=request.getSession(false);  
+            System.out.println("***");
             System.out.println(psr.getAttribute("msg")==null);
+            if(psr.getAttribute("msg")==null)
+            	out.println("Please select the choices");
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	 System.out.println(psr.getAttribute("msg"));
-            	
+            	 //System.out.println(psr.getAttribute("msg"));            	
                 out.println("<script type=\"text/javascript\">");
        		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
