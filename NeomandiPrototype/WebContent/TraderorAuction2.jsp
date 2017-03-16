@@ -204,8 +204,22 @@ catch(NullPointerException e)
 	 	 out.println("</script>");
 }%>
 <p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
-<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
+<script>
+	function logout()
+	{
+		var msg=document.getElementById("auction1").value;
+		if(!(msg.includes('has ended')))
+		if (confirm('Auction is still under progress do you want to Logout?? ')) 
+        {
+			window.location='logout.do';
+        }
+		else if(msg.includes('has ended'))
+			{}
+	}
+	
+</script>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
@@ -522,11 +536,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Per Kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Per Kg)</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -1171,7 +1185,7 @@ catch(NullPointerException e)
 				  {
 					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
-				  else //if(!(currentbids-bestbid==0 && assigned==needed))
+				  else// if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
 					  	console.log("inside else");
 					  	xmlhttp = new XMLHttpRequest();

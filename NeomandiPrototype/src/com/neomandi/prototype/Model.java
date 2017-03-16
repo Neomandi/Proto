@@ -632,8 +632,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		ResultSet rs = null;
 		try
 		{
-			con = JDBCHelper.getConnection();
-			
+			con = JDBCHelper.getConnection();			
 			if(con == null)
 			{
 				System.out.println("Connection not established. Please check.");
@@ -645,15 +644,13 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String produce = psb.getProduce();
 				String quality = psb.getGrade();
 				String slot=psb.getSlot();
-			//	System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);
-				
-					
+			//	System.out.println("produce "+produce+" quality"+quality+" slot"+slot+"kproduce+"+kproduce);					
 				if(kproduce.equals("Category"))
 				{			
 				//	System.out.println("inside if()->slot is "+slot);
 					if(slot!=null&&slot.equals("slot3"))
 						slot=null;
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber,slotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE slotnumber=?");
 					//System.out.println(pstmt);
 					pstmt.setString(1,slot);				
 					rs = pstmt.executeQuery();
@@ -727,7 +724,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else
 				{
 					
-					pstmt = con.prepareStatement("SELECT lotnumber, marketcode, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
+					pstmt = con.prepareStatement("SELECT lotnumber, marketcode,slotnumber, produce, qualitygrade, quantity,photo FROM productentry WHERE kindofpro = ? and qualitygrade=? and produce = ? and slotnumber=?");
 					pstmt.setString(1, kproduce);
 					pstmt.setString(2, quality);
 					pstmt.setString(3, produce);	
@@ -744,6 +741,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						psrb.setQualitygrade(rs.getString("qualitygrade"));
 						psrb.setQuantity(rs.getString("quantity"));
 						psrb.setPhoto(rs.getString("photo"));
+						psrb.setSlotnumber(slot);
 				//		System.out.println("in model photo="+rs.getString("photo"));
 						l.add(psrb);	
 						//System.out.println(l);

@@ -166,6 +166,7 @@ function fun1()
 		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
 		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		  xmlhttp.send("stopauction="+stop);
+		  
 }
 
 function fun2()
