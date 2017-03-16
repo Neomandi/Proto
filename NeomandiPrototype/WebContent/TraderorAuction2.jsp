@@ -210,6 +210,7 @@ catch(NullPointerException e)
 	function logout()
 	{
 		var msg=document.getElementById("auction1").value;
+		if(msg!=null||msg.length!=0){
 		if(!(msg.includes('has ended')))
 		if (confirm('Auction is still under progress do you want to Logout?? ')) 
         {
@@ -217,6 +218,9 @@ catch(NullPointerException e)
         }
 		else if(msg.includes('has ended'))
 			{}
+		}
+		else
+			window.location='logout.do';
 	}
 	
 </script>
@@ -511,36 +515,36 @@ catch(NullPointerException e)
   	<table>
 	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-	<table align="center">
-	<tbody>
+	<table align="center" style="width:119%;">
+	<tbody >
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
-	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; width:29%; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println(mfcb.getMyfinalcost()); %>"readonly></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println(mfcb.getMyfinalcost()); %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Per Kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Per Kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -891,7 +895,7 @@ catch(NullPointerException e)
 	//console.log("time difference is "+timedifference);
 	/*if(!timedifference.includes("-"))
 	{
-		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
 	{
@@ -915,12 +919,12 @@ catch(NullPointerException e)
 	{
 		console.log("assigned=needed");
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
-		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
 	else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 	{
 			console.log("currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned!=needed");
-			alert("YOU CANT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
+			alert("YOU CANNOT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
 	}
 	else
 	{
@@ -1143,7 +1147,7 @@ catch(NullPointerException e)
 				
 				if(assigned-needed==0)
 				{
-					alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+					alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 					console.log("assigned=needed");
 				}
 				else
@@ -1172,7 +1176,7 @@ catch(NullPointerException e)
 					  }
 				  else if(newbids>999)
 					  {
-					  		alert("You cant bid more than 999 Rs for any lot");
+					  		alert("You cannot bid more than 999 Rs for any lot");
 					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
 					  }
 				  else if(currentbids>newbids)
@@ -1183,7 +1187,7 @@ catch(NullPointerException e)
 				  }				  
 				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
-					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
 				  else// if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
@@ -1332,7 +1336,7 @@ catch(NullPointerException e)
 	  }}}}
 	/*else
 		{	console.log(!timedifference.includes("-"));
-			alert('YOU CANT BID BEFORE AUCTION STARTS');
+			alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 		}*/}
 	</script>
 	</tbody></table></div>
@@ -1376,27 +1380,27 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
+	<tr><td><h4>Available Lot Size (kg) (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>"style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" style="text-align: right;"readonly></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>"style="text-align: right;" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" style="text-align: right;"type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>"style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" style="text-align: right;"readonly></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>"style="text-align: right;" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" style="text-align: right;"type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>"style="width:164px; height:30px;" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3"  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -1763,7 +1767,7 @@ catch(NullPointerException e)
 	console.log("time difference is "+timedifference);
 	/*if(!timedifference.includes("-"))
 	{
-		alert('YOU CANT BID BEFORE AUCTION STARTS');
+		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
 	{
@@ -1781,7 +1785,7 @@ catch(NullPointerException e)
 	console.log("volume needed is "+needed+"");
 	if(assigned-needed==0)
 	{
-		alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 	}
@@ -1790,7 +1794,7 @@ catch(NullPointerException e)
 	if(currentbids-bestbid==0 && currentbids!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 		  {
 				console.log("currentbids-bestbid==0");
-		  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+		  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 		  }
 	else if(currentbids-bestbid!=0 &&assigned!=needed)
 	{
@@ -1952,7 +1956,7 @@ catch(NullPointerException e)
 		console.log(mybid==0);
 		if(quantityassigned>0)
 		{
-			alert("YOU CANT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+			alert("YOU CANNOT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
 		}
 		else
 			window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
@@ -2010,7 +2014,7 @@ catch(NullPointerException e)
 			
 			if(assigned-needed==0)
 			{
-				alert("YOU CANT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ");
+				alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ");
 				console.log("assigned=needed");
 			}
 			else
@@ -2035,7 +2039,7 @@ catch(NullPointerException e)
 			 
 			  else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 					  {
-					  		alert('YOU CANT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }
 			  else if(currentbids-bestbid!=0)
 			  {
@@ -2180,7 +2184,7 @@ catch(NullPointerException e)
 	  }}}}
 	/*else
 		{	console.log(!timedifference.includes("-"));
-			alert('YOU CANT BID BEFORE AUCTION STARTS');
+			alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 		}*/}
 	</script>
 	</tbody></table></div>
@@ -2204,25 +2208,25 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
 	<table>
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2251,26 +2255,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2301,26 +2305,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2354,26 +2358,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="198BEAA0060"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" value="Beans" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" value="4200" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" value="4200" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" max="999" maxlength="3"  id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2406,26 +2410,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="876GARA0304"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" value="Garlic" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2462,26 +2466,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2512,26 +2516,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
 	<table>
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2562,25 +2566,25 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
@@ -2610,26 +2614,26 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
+	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control ight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
