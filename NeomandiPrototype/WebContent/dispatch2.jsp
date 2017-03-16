@@ -137,7 +137,7 @@ catch(Exception e)
 					<th ></th>
 					<th colspan="2"></th>
 					<th  style="text-align:center;">Name</th>
-					<th  colspan="2" style="text-align:center;">Quantity</th>
+					<th  colspan="2" style="text-align:center;">Quantity(kg)</th>
 					<th   ></th>
 			   		<th   ></th>
 				</tr>

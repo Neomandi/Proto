@@ -57,15 +57,11 @@
     	.ltable thead {
     	background: #00B0B2 !important;
     	}
-    	 #div{
-    		padding:30px;
-			margin:200px;
-			width:30%;
-			background-color:#BFBFBF;
-			text-align:center;
-			color:darkblue;	 
-			font-size:18px;
-    }
+    .auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
+   color: #fff;
+font-size: 14px;
+margin: 5px auto; 
+}	 
 </style>
 </head>
 
@@ -226,7 +222,7 @@ if((String)hs.getAttribute("name")==null){
 		{
 			 System.out.println("Inside else....");
 
-			 out.println("<div id='div' style='position: absolute; top: 100px; left: 230px;'><p ><b>No lot entries were found.</b></p></div>");
+			 out.println("<div id='div' style='position: absolute; top:3px; left: 230px;'><p ><b>No lot entries were found.</b></p></div>");
 
 		}
 	}
@@ -534,7 +530,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -556,7 +552,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://neomandi.in/BeforeAuction.do";
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -606,7 +602,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -630,7 +626,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -675,10 +671,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
     <script>
