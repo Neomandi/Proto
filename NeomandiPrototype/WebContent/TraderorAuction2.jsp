@@ -523,7 +523,7 @@ catch(NullPointerException e)
 	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
-	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; width:90px; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
