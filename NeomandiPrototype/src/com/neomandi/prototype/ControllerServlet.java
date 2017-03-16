@@ -273,19 +273,19 @@ public class ControllerServlet extends HttpServlet {
 				catch (IOException e) {
 					e.printStackTrace();
 				}
-				request.setAttribute("errmsg", msg);
-			    rd=request.getRequestDispatcher("FarmerLogin.jsp");
-				try 
-				{
-					rd.forward(request, response);			
-				}			
-				catch (ServletException e) {
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
+//				request.setAttribute("errmsg", msg);
+//			    rd=request.getRequestDispatcher("FarmerLogin.jsp");
+//				try 
+//				{
+//					rd.forward(request, response);			
+//				}			
+//				catch (ServletException e) {
+//					
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					
+//					e.printStackTrace();
+//				}
 			}
 		}						
 		if(uri.contains("Averageprice")){
