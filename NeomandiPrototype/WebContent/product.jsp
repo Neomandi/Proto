@@ -83,16 +83,18 @@
 				width: 300px;
 				height: 300px;
 			}
-			#div{
-    		padding:30px;
-			margin:200px;
-			width:50%;
-			background-color:#BFBFBF;
-			text-align:center;
-			color:darkblue;	 
-			font-size:18px;
+			#div
+			{
+	    		padding:30px;
+				margin:200px;
+				width:50%;
+				background-color:#BFBFBF;
+				text-align:center;
+				color:darkblue;	 
+				font-size:18px;
     		}
-    		.psearch select{
+    		.psearch select
+    		{
     			background-image: url(images/Arrow.png);
     			background-repeat: no-repeat;
     			background-size: 15px 15px;
@@ -216,9 +218,10 @@
                             try
                             {
                             	System.out.println("starttime is "+(String)context.getAttribute("starttime"));
-                            	if((String)context.getAttribute("starttime")!=null){
-                        		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
-                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
+                            	if((String)context.getAttribute("starttime")!=null)
+                            	{
+	                        		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
+	                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
                         		%>
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base">Auction Slot</option>                                  

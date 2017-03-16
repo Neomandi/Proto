@@ -3228,7 +3228,6 @@ public void TraderProductAccept(String lotnum,String accno)
 {		
 		System.out.println("TraderProductAccept.do");
 		System.out.println("***********************************************");
-		System.out.println("inside model->........farmer has accpeted the bid price for lot"+lotnum+" whose account number is "+accno);
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
 		PreparedStatement ps3= null;
@@ -3257,7 +3256,6 @@ public void TraderProductAccept(String lotnum,String accno)
 				{
 					aadharnumber[i]=rs.getString("aadharnumber");
 					name[i]=rs.getString("name");
-					System.out.println("aadharnumber of trader who are bidding is "+aadharnumber[i]+" name is "+name[i]);
 					i++;
 				}
 				int j=1;
@@ -3271,7 +3269,6 @@ public void TraderProductAccept(String lotnum,String accno)
 					if(rs2.next())
 					{	
 						//now if he has won the auction select volume assigned to him and hs bid price						
-						System.out.println("trader "+name[j]+" has won this lot");
 						ps3 =con.prepareStatement("select ar.quantityassigned,tbp.bidprice from traders_bid_price tbp, auction_result ar,treg tr where tr.aadharnumber=tbp.aadharnumber and ar.aadharnumber=tr.aadharnumber and tr.aadharnumber=?");
 						ps3.setString(1, aadharnumber[j]);
 						ps3.execute();
@@ -3296,6 +3293,8 @@ public void TraderProductAccept(String lotnum,String accno)
 							System.out.println("market cess       = "+lotcost+" * 0.01 = "+marketcess);
 							System.out.println("final cost        = "+lotcost+" + "+commission+" + "+marketcess+" +  3000 +  eplatfrom charges");
 							System.out.println("traders final cost="+myfinalcost);
+							
+							
 							int block=0;
 							ps4 =con.prepareStatement("select blockamount from traders_blocked_amount where tradername=?");
 							ps4.setString(1, name[j]);
@@ -3310,6 +3309,23 @@ public void TraderProductAccept(String lotnum,String accno)
 							String bloc=String.valueOf(block);
 							System.out.println("blocked amount from trader before deduction = "+result);
 							System.out.println("blocked amount from trader after  deduction = "+result+" - "+myfinalcost+" = "+bloc);
+							
+							ps =con.prepareStatement("select fund_utilized from traders_blocked_amount where aadharnumber=?");//					
+							ps.setString(1,aadharnumber[j]);
+							ps.execute();		
+							ResultSet rs51 = ps.executeQuery();
+							int fund=0;
+							while(rs51.next())
+							{
+								fund= Integer.parseInt(rs51.getString("fund_utilized"));	
+							}
+							fund+=myfinalcost;
+							
+							ps =con.prepareStatement("update traders_blocked_amount set fund_utilized=? where aadharnumber=?");//					
+							ps.setInt(1,fund);
+							ps.setString(2,aadharnumber[j]);
+							ps.execute();				
+							System.out.println(ps);						
 							
 							//after deducting all the cost from blocked amount we are updating the traders_blocked_amount
 							ps5 =con.prepareStatement("update traders_blocked_amount set blockamount=? where aadharnumber=?");
@@ -4091,12 +4107,6 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 						ps.setString(8,lotnumber);					
 						ps.execute();				
 						
-						ps =con.prepareStatement("update traders_blocked_amount set fund_utilized=? where aadharnumber=? and lotnum=?");//					
-						ps.setInt(1,diff);
-						ps.setString(2,aadharnumber);
-						ps.setString(3,lotcosts);
-						ps.execute();				
-						System.out.println(ps);
 						
 						ps =con.prepareStatement("select tb.lotnum,tb.bidprice,tb.lotcost,tb.commission,tb.marketcess,tb.myfinalcost,tb.bestbid,tb.quantityassigned,tl.quantityneeded from traders_bid_price tb,tradelist tl where tb.aadharnumber=? and tb.lotnum=? and tb.aadharnumber=tl.aadharnumber and tl.lotnum=? ");
 						ps.setString(1,aadharnumber);
@@ -4667,11 +4677,16 @@ public void PostAuction()
 					ps5.execute();
 					System.out.println(ps5+" Data deleted from productentry");
 					*/
-					ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0");
+					ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0 and fund_utilized=0");
 					ps6.execute();
 					System.out.println(ps6+" Data updated from traders_blocked_amount");
 				}
 			}
+			ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0, fund_utilized=0");
+			ps6.execute();
+			System.out.println(ps6);
+			
+			
 		}
 	}
 	catch(Exception e)
