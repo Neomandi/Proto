@@ -98,7 +98,7 @@
         	}
         	else if(s1.value == "Fruits")
         	{
-        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANNA|Bananna", "MANGO|Mango"];
+        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANA|Banana", "MANGO|Mango"];
         	}
         	else if(s1.value == "Grains")
         	{
