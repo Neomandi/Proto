@@ -100,14 +100,13 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
 			    if(summary=="no")
-			    	{
+			    {
 			    	 document.getElementById("summary").style.display='none';
-			    	 //document.getElementById("todaypdf").style.display="none";
-			    	}
+			    }
 			    else
-			    	{
+			    {
 			    	 document.getElementById("summary").style.marginLeft='10px';
-			    	}
+			    }
 			  </script>
 			  <%} 
 			   else if(tradeSummary.getAttribute("todaysummarymsg")!=null && tradeSummary.getAttribute("todaysummarymsg").equals("success"))
@@ -140,7 +139,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	  </table>
 	  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><!--  <a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>-->
-&nbsp; &nbsp; &nbsp;<button class="btn btn-primary" id="summary" onclick="update(true)" style="border-color:#3C4DA0;background-color:#3C4DA0;">Export as PDF</button></td><%}}%>
+&nbsp; &nbsp; &nbsp;<br><br><br><button class="btn btn-primary" id="summary" onclick="update(true)" style="border-color:#3C4DA0;background-color:#3C4DA0;">Export as PDF</button></td><%}}%>
 </div><br>
 </tr>
 	   </tbody>

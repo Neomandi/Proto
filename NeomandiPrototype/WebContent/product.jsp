@@ -190,9 +190,12 @@
                             <td>
                                 <select class="form-control" id="grade" name="grade">
                                     <option selected value="base">Choose Grade</option>
-                                    <option value="A">A</option>
+                                    <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
+                                    <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
+                                    <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
+                                    <!-- <option value="A">A</option>
                                     <option value="B">B</option>
-                                    <option value="C">C</option>
+                                    <option value="C">C</option>-->
                                 </select>
                             </td>
                             <td>
