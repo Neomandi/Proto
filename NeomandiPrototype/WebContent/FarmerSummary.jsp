@@ -74,6 +74,11 @@ footer {
 			color:darkblue;	 
 			font-size:18px;
     }
+   .auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
+   color: #fff;
+font-size: 13px;
+margin: 5px auto; 
+}
 </style>
 </head>
 
@@ -149,18 +154,18 @@ if((String)hs.getAttribute("name")==null){
 <div class="sum1tab table-responsive">
 	  <table class="table sum1table last">
 <thead><tr>
-       <td></td>
+      <td></td>
 	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Lot Size(kg)</h4></td>
-	  <td><h4>Quantity sold(Rs.)</h4></td>
-	  <td><h4>Avg Price(Rs.)</h4></td>
-	  <td><h4>Gross Earnings(Rs.)</h4></td>
-	  <td><h4>TLC(Rs.)<sup>*</sup></h4></td>
-	<td><h4>Market Cess(Rs.)</h4></td>
-	<td><h4>EPC(Rs.)<sup>#</sup></h4></td>
-	<td><h4>PMVA(Rs.)<sup>^</sup></h4></td>
-	<td><h4>Deductions(Rs.)</h4></td>
-	<td><h4>My Net Earnings(Rs.)</h4></td>
+	  <td><h4>Lot Size<br/>(kg)</h4></td>
+	  <td><h4>Quantity sold<br/>(Rs)</h4></td>
+	  <td><h4>Avg Price<br/>(Rs)</h4></td>
+	  <td><h4>Gross Earnings<br/>(Rs)</h4></td>
+	  <td><h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
+	<td><h4>Market Cess<br/>(Rs)</h4></td>
+	<td><h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
+	<td><h4>PMVA<sup>^</sup><br/>(Rs)</h4></td>
+	<td><h4>Deductions<br/>(Rs)</h4></td>
+	<td><h4>My Net Earnings<br/>(Rs)</h4></td>
 	
 	<td></td>
 	  </tr></thead>
@@ -618,7 +623,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 	  }
 	document.getElementById('ts').disabled='true';
 	 	var seconds =seconds;
@@ -641,7 +646,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://neomandi.in/BeforeAuction.do";
+		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -691,7 +696,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -715,7 +720,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://neomandi.in/GetSummary.do";
+			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
 						            		document.getElementById("accept").disabled=false;
@@ -766,10 +771,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
  </script>
 </body>

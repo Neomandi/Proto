@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="com.neomandi.prototype.EmployeeLoginBean,java.util.*,com.neomandi.prototype.OrderStatusResult, com.neomandi.prototype.DispatchBean"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" errorPage = "Error.jsp" pageEncoding="ISO-8859-1" import="com.neomandi.prototype.EmployeeLoginBean,java.util.*,com.neomandi.prototype.OrderStatusResult, com.neomandi.prototype.DispatchBean"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -137,7 +137,7 @@ catch(Exception e)
 					<th ></th>
 					<th colspan="2"></th>
 					<th  style="text-align:center;">Name</th>
-					<th  colspan="2" style="text-align:center;">Quantity</th>
+					<th  colspan="2" style="text-align:center;">Quantity(kg)</th>
 					<th   ></th>
 			   		<th   ></th>
 				</tr>

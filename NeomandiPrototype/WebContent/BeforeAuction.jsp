@@ -66,6 +66,11 @@
 .sum1 .table thead {
     background: #000080;
 }
+.auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
+   color: #fff;
+font-size: 13px;
+margin: 5px auto; 
+}
       </style>
     </head>
 
@@ -140,32 +145,20 @@
                         <table class="table sum1table last">
                             <thead>
                                 <tr>
-                                    <td></td>
-                                    <td>
-                                        <h4>Lot Number</h4></td>
-                                    <td>
-                                        <h4>Lot Size(kg)</h4></td>
-                                    <td>
-                                        <h4>Quantity sold(kg)</h4></td>
-                                    <td>
-                                        <h4>Avg Price(Rs.)</h4></td>
-                                    <td>
-                                        <h4>Gross Earnings(Rs.)</h4></td>
-                                    <td>
-                                        <h4>TLC(Rs.)<sup>*</sup></h4></td>
-                                    <td>
-                                        <h4>Market Cess(Rs.)</h4></td>
-                                    <td>
-                                        <h4>EPC(Rs.)<sup>#</sup></h4></td>
-                                    <td>
-                                        <h4>PMVA(Rs.)<sup>^</sup></h4></td>
-                                    <td>
-                                        <h4>Deductions(Rs.)</h4></td>
-                                    <td>
-                                        <h4>My Net Earnings(Rs.)</h4></td>
-                                    <td>
-                                        <h4>status</h4></td>
-                                    <td></td>
+                                   <td></td>
+	  <td><h4>Lot Number</h4></td>
+	  <td><h4>Lot Size<br/>(kg)</h4></td>
+	  <td><h4>Quantity sold<br/>(kg)</h4></td>
+	  <td><h4>Avg Price<br/>(Rs)</h4></td>
+	  <td><h4 >Gross Earnings<br/>(Rs)</h4></td>
+	  <td><h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
+	<td><h4>Market Cess<br/>(Rs)</h4></td>
+	<td><h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
+	<td><h4>PMVA<sup>^</sup><br/>(Rs)</h4></td>
+	<td><h4>Deductions<br/>(Rs)</h4></td>
+	<td><h4>My Net Earnings<br/>(Rs)</h4></td>
+	<td><h4>Status</h4></td>
+	<td></td>
                                 </tr>
                             </thead>
                             <tbody>

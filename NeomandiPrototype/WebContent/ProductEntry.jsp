@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image1/png" href="Images/Neomandi1.png">
     <title>NeoMandi</title>
-    <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -78,6 +78,10 @@
     	else if(s1.value == "Grains")
     	{
     		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "RAGI|Ragi", "BARLEY|Barley", "RICE|Rice"];
+    	}
+    	else if(s1.value == "Pulses")
+    	{
+    		var optionArray = ["produce|Produce", "CHICKPEA|Chickpea", "HORSEGRAM|Horsegram", "PEAS|Peas"];
     	}
     	for(var option in optionArray)
     	{
@@ -272,7 +276,7 @@
                 <br>
                 <br>
                 <div class="col-lg-offset-0 col-lg-4 col-md-offset-0 col-md-4 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 det">
-                    <h4>Produce Details</h4>
+                    <h4 style="background: #bdd102;">Produce Details</h4>
                     <div class="detail">
                             <table class="table">
                                 <tr>
@@ -299,9 +303,9 @@
                                     <td>
                                         <select class="form-control" id="category" name="category" onchange = "populate('category','produce')">
                                             <option value="Category">Category</option>
-                                            <option value="Vegetables">Vegetables</option>
-                                            <option value="Fruits">Fruits</option>
-                                            <option value="Grains">Grains</option>
+                                            <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
+                                            <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
+                                            <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -316,15 +320,15 @@
                                     <td>
                                         <select class="form-control" id="quality" name="quality">
                                             <option value="Grade">Grade</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
+		                                    <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
+		                                    <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
+		                                    <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="pin">Quantity</label>
+                                        <label for="pin">Quantity (kg)</label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -336,7 +340,7 @@
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 gen">
-                    <h4>Produce Image</h4>
+                    <h4 style="background: #bdd102;">Produce Image</h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
                             <div id="showtext">Click here to upload image</div>
@@ -365,7 +369,7 @@
                     <br>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 release">
-                    <h4>My Password</h4>
+                    <h4 style="background:#149DDA;">My Password</h4>
                     <div class="password">
                             <table class="table">
 
@@ -391,7 +395,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="pwd">Enter a Password</label>
+                                        <label for="pwd">Enter Password</label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -406,7 +410,7 @@
                     <br>
                     <table align="center">
                         <tr>
-                            <td><a href="javascript: submitform()" class="reg1">Submit</a></td>
+                            <td><a href="javascript: submitform()" class="reg1" style="font-weight:bold;color:white; font-size:16px;">Submit</a></td>
                         </tr>
                     </table>
                 </div>
