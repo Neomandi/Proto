@@ -7,7 +7,7 @@
 <title>NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -118,14 +118,15 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
                         		if(this.readyState==4 && this.status==200)
                         		{
                         			 var string=xmlhttp.responseText;
-                        			 console.log("string is "+string);
+                        			 //console.log("string is "+string);
                         		    	if(string.includes("SUCCESS"))
                         		    	{
                         		    		window.location="FarmerMaster.jsp";
                         		    	}
                         		    	else 
                         		    	{
-                        		    		alert(string);		
+                        		    		if(string != null)
+                        		    			alert(string);		
                         		    	}
                         		}		
                         	};
