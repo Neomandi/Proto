@@ -82,7 +82,16 @@
 			{
 				width: 300px;
 				height: 300px;
-			}ps://github.com//Proto.git
+			}
+			#div{
+    		padding:30px;
+			margin:200px;
+			width:50%;
+			background-color:#BFBFBF;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+    		}
         </style>
         <script>
         function populate(s1, s2)
@@ -269,8 +278,11 @@
             HttpSession psr=request.getSession(false);  
             System.out.println("***");
             System.out.println(psr.getAttribute("msg")==null);
-            if(psr.getAttribute("msg")==null)
-            	out.println("Please select the choices");
+            if(psr.getAttribute("msg")==null){
+            	System.out.println("Inside if..."+psr.getAttribute("msg"));
+            	out.println("<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
+            }
+            
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
             	 //System.out.println(psr.getAttribute("msg"));            	
