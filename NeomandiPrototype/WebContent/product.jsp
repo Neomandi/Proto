@@ -334,7 +334,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <% 
+                            <% int i=0;
 	                            for(Object o:l)
 								{						
 									ProductSearchResultBean psr1=(ProductSearchResultBean)o;
@@ -345,10 +345,10 @@
 							<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 							<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">	
                                                       
-                                <tr class="gradeX">
+                                <tr class="gradeX" id="<%= psr1.getLotnumber()%>">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
-                                    </td>
+                                    </td><input type="hidden" id="color" value="<%out.println(i);%>"/>
                                     <td>
                                         <h4><% out.println(psr1.getMarketcode()); %></h4></td>
                                     <td>
@@ -364,8 +364,18 @@
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                     <td></td>
-                                </tr>
+                                </tr>                                
                                 <script> 
+                                var i=<%=i%>;
+                                console.log("**i is"+i);
+                                console.log(i%2==0);
+                                if(i%2==0)
+                                {
+                                	//console.log("inside if");
+                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";
+                                }
+                                else
+                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
 								function fun<%=psr1.getLotnumber() %>()
 								{							
 									var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
@@ -471,7 +481,7 @@
                         </div>
                     </div>
                 </div>
-                <!--------modal image end------------> <%}}%>                 
+                <!--------modal image end------------> <%++i;}}%>                 
         </div>
         <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
