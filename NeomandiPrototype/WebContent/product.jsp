@@ -115,7 +115,7 @@
         	}
         	else if(s1.value == "Fruits")
         	{
-        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANNA|Bananna", "MANGO|Mango"];
+        		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANA|Banana", "MANGO|Mango"];
         	}
         	else if(s1.value == "Grains")
         	{
@@ -442,7 +442,6 @@
 										   	}											
 											document.getElementById("addtrade").innerHTML = string;
 											document.getElementById("addtrade").value = string;
-											// console.log("message sent from CS is "+string);
 										}
 									};
 									xmlhttp.open("POST", "AddTrade.do", true);
