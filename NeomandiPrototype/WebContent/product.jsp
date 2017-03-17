@@ -344,7 +344,7 @@
 							%>
 							<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 							<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">	
-                                                        
+                                                      
                                 <tr class="gradeX">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
@@ -451,9 +451,7 @@
 								}													
 							}
 						</script>    						                        
-                                 <!---------modal image- <div id="dialog" title="Basic dialog">
-						  <p style="display: none;">This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-						</div>------------>
+                                 
                 <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -463,8 +461,11 @@
                                 <h4 class="modal-title">Product Image</h4>
                             </div>
                             <div class="modal-body">
+                            <%if(psr1.getSlotnumber().toUpperCase().equals("SLOT1")){ %>
+                              <img src="ProductImages/<%=psr1.getLotnumber()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  id="img">
+                          <%}else{ %>
                                 <img src="ProductImages/<%=psr1.getProduce()+"-"+psr1.getQualitygrade()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  id="img">
-                            </div>
+                           <%} %> </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
