@@ -238,6 +238,16 @@
 		    height: 60px;
 		    width: 65px;
 		}
+		.detail select{
+				background-image: url(images/icon2.png);
+    			background-repeat: no-repeat;
+    			background-size: 10px 13px;
+    			/*background-position:98% 5%;*/
+    			background-position:262px 10px;
+    			
+    			
+    			
+		}
     </style>
 </head>
 <body class="">

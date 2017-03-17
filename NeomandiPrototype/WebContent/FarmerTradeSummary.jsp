@@ -65,6 +65,9 @@
    
     height:5px;
     }
+    .pad {
+    padding-right:100px;
+}
   
 #div{
     		padding:30px;
@@ -84,7 +87,12 @@ content: "";
     left: -16px !important;
     top: 0
 }
-
+.auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
+   color: #fff;
+font-size: 14px;
+margin: 3px auto;
+padding:5px; 
+}
         </style>
         <script>
         	function historyForm(){
@@ -167,7 +175,7 @@ content: "";
 
         <div class="container-fluid  history">
             <div class="container">
-                <h2>History</h2></div>
+                <h2 style="font-weight:bold; color:white;">History</h2></div>
         </div>
         <div class="container from">
             <form action="FarmerHistory.do" method="post" name="historyForm" >
@@ -198,20 +206,18 @@ content: "";
                         </div>
                     </div>
                    <br/>
-                    <!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad">
-                     <div><a href="javascript:history()" class="get">Get Summary</a></div>
-                    </div>-->
+                    
                 
             
-<!-- 			<button id="download-btn" class="pure-button export">Download PDF</button> -->
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div></form>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   id="download-btn"  style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
+
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-left:0px;"><button   id="download-btn"  style="border-color:#3C4DA0;background-color:#3C4DA0; " class="btn btn-primary">Export as PDF</button></div></form>
 
 <!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
 <button id="download-btn" class="pure-button export">-->
-<font color="white"><b>Download PDF</b></font></button><br/>
+
 </div>
-</div>
+
 
 <script>
                 /*function callme() {
@@ -275,29 +281,29 @@ content: "";
                                         <th style="text-align:center; color:white">
                                             <h4 style="font-size:15px;">Lot Number</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Lot Size(kg)</h4></th>
+                                            <h4 style="font-size:15px;">Lot Size<br/>(kg)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Quantity(kg)</h4></th>
+                                            <h4 style="font-size:15px;">Quantity<br/>(kg)</h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Avg. Price(Rs.)</h4></th>
+                                            <h4 style="font-size:15px;">Avg. Price<br/>(Rs)</h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Gross Earnings(Rs.)</h4></th>
+                                            <h4 style="font-size:15px;">Gross Earnings<br/>(Rs)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">TLC(Rs.)<sup>*</sup></h4></th>
+                                            <h4 style="font-size:15px;">TLC<sup>*</sup><br/>(Rs)</h4></th>
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Market Cess(Rs.)</h4></th>
-                                        <th style="text-align:left; color:white">
-
-                                            <h4 style="font-size:15px;">EPC(Rs.)<sup>#</sup></h4></th>
-
+                                            <h4 style="font-size:15px;">Market Cess<br/>(Rs)</h4></th>
                                         <th style="text-align:left; color:white">
 
-                                            <h4 style="font-size:15px;">PMVA(Rs.)<sup>^</sup></h4></th>
+                                            <h4 style="font-size:15px;">EPC<sup>#</sup><br/>(Rs)</h4></th>
 
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Deductions(Rs.)</h4></th>
+
+                                            <h4 style="font-size:15px;">PMVA<br/>(Rs)<sup>^</sup></h4></th>
+
                                         <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">My Net Earnings(Rs.)</h4></th>
+                                            <h4 style="font-size:15px;">Deductions<br/>(Rs)</h4></th>
+                                        <th style="text-align:left; color:white">
+                                            <h4 style="font-size:15px;">My Net Earnings<br/>(Rs)</h4></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -376,6 +382,7 @@ content: "";
                 </div>
                 <!---table2 end-->
                 <%}} %>
+                <div id="div" style='position: absolute; top: 10px; left: 170px; float:left; font-weight:bold;'>Please choose the dates above to get your trade history</div>
                     <footer>
                         <div id="grad1"></div>
 
