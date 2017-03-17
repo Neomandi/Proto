@@ -344,45 +344,7 @@
 							%>
 							<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
 							<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">	
-                          <!--      <td></td>
-						<td></td>
-						<td><% out.println(psr1.getQualitygrade()); %></td>
-						<td><% out.println(psr1.getQuantity());%></td>
-						<input type="hidden" id="quantity<%= psr1.getLotnumber()%>" value="<%= psr1.getQuantity()%>">
-						<input type="hidden" id="product<%= psr1.getLotnumber()%>" value="<%= psr1.getLotnumber()%>">						
-						<td><input type="number" name="quantityneeded" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="enter quantity" required step="100" min="100"/></td>
-					    <!-- <td><a href="AddTrade.do?s1=<%=psr1.getLotnumber() %>" onclick="fun()">ADD TO TRADE LIST</a></td> 
-						<td><input type="button" onclick="fun<%=psr1.getLotnumber() %>()" value="ADD TO TRADE LIST"/>	
-						<script> 
-						function fun<%=psr1.getLotnumber() %>()
-						{							
-							var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
-							var totals=parseInt(total);
-							var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-							var neededs=parseInt(needed);
-							console.log("QUANTITY needed IS needed="+needed);
-							console.log("total is "+totals)
-							var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
-							console.log(product);
-							var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-							if(neededs>totals)
-							{
-								alert("YOU CANT BID FOR MORE QUANTITY THAN AVAILABLE");
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-							}
-							else if(isNaN(neededs))
-							{
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-								alert("YOU SHOULD ENTER THE QUANTITY YOU WILL BID FOR BEFORE SELECTING THE LOT ");									
-							}
-							else 
-							{
-								alert("SUCCESSFULLY ADDED THE LOT "+product+" WITH QUANTITY "+neededs+"  Kgs");
-								document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-								window.location="http://neomandi.in/AddTrade.do?s1="+product+"&&quantity="+neededs
-							}													
-						}
-						</script></td>-->                                  
+                                                        
                                 <tr class="gradeX">
                                     <td>
                                         <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius: 9px; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal<% out.println(psr1.getLotnumber()); %>"><% out.println(psr1.getLotnumber()); %></button>
@@ -488,8 +450,7 @@
 									xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
-						</script>    
-						                        
+						</script>    						                        
                                  <!---------modal image- <div id="dialog" title="Basic dialog">
 						  <p style="display: none;">This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
 						</div>------------>
@@ -510,46 +471,7 @@
                         </div>
                     </div>
                 </div>
-                <!--------modal image end------------> <%}}%> 
-                             <!--    <tr class="gradeX">
-                                    <td>
-                                        <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button>
-                                    </td>
-                                    <td>
-                                        <h4>CBPCARA0173</h4></td>
-                                    <td>
-                                        <h4>Carrot</h4></td>
-                                    <td>
-                                        <h4>A</h4></td>
-                                    <td>
-                                        <h4>2500</h4></td>
-                                    <td>
-                                        <input type="number" class="form-control" min='0' id="pwd" placeholder="Enter Required quantity">
-                                    </td>
-                                    <td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>
-                                        <button onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border: 3px solid #808080;" class="btn" data-toggle="modal" data-target="#myModal">CBPCARA0173</button>
-                                    </td>
-                                    <td>
-                                        <h4>CBPCARA0173</h4></td>
-                                    <td>
-                                        <h4>Carrot</h4></td>
-                                    <td>
-                                        <h4>A</h4></td>
-                                    <td>
-                                        <h4>2500</h4></td>
-                                    <td>
-                                        <input type="text" class="form-control" id="pwd" placeholder="Enter Required quantity">
-                                    </td>
-                                    <td class="tdfit"><a href="#" class="reg">Add to Trade List</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>-->
-                
+                <!--------modal image end------------> <%}}%>                 
         </div>
         <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>

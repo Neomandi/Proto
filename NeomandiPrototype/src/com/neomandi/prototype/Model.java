@@ -1050,7 +1050,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{
 					blockamount=rs.getInt("blockamount");
 				}				
-				//System.out.println("total blocked amount is "+blockamount);
+				System.out.println("total blocked amount is "+blockamount);
 				tbb.setBlock(blockamount);
 					return tbb;			
 			}
@@ -1202,6 +1202,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						System.out.println(ps);	
 						msg[0]=String.valueOf(balance);
 						msg[1]=String.valueOf(block);
+						
+						ps =con.prepareStatement("update tbankaccount set balance =? where  aadharnumber= ?");									
+						ps.setInt(1, balance);										
+						ps.setString(2, aadharnumber);
+						ps.execute();
 					}							
 			}								
 			//con.commit();						

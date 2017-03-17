@@ -290,17 +290,19 @@ else
 			
 		try
 		{
-			 result=0;
+			result=0;
 			con = JDBCHelper.getConnection();
 			ps =con.prepareStatement("SELECT tb.fund_utilized,tb.blockamount FROM traders_blocked_amount tb,treg tr where tr.name=? and tr.aadharnumber=tb.aadharnumber ");
 			ps.setString(1, tlbn.getTname());
 			ps.execute();
+			System.out.println(ps);
 			rs = ps.getResultSet();	
 			while(rs.next())
 			{
 				result=rs.getInt("blockamount");	
 				funds=rs.getInt("fund_utilized");
 			}	
+			System.out.println(result+" "+funds);
 		}
 		catch(Exception e)
 		{
