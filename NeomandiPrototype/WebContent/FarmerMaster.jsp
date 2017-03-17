@@ -220,7 +220,13 @@ if((String)hs.getAttribute("name")==null){
 		 
 		  
 		  	<% lotnumber=rs1.getString("lotnumber");
+		  	
+		  		if(rs1.getString("slotnumber").equals("slot1")){
 			   imgsrc="ProductImages/"+lotnumber+".jpg";
+		  		}
+		  		else{
+		  			imgsrc="ProductImages/"+rs1.getString("produce")+"-"+rs1.getString("qualitygrade")+".jpg";
+		  		}
 			   System.out.println("in farmer master lotnumber="+lotnumber);
 			%>
 		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
