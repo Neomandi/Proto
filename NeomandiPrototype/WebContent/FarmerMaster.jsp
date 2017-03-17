@@ -207,7 +207,7 @@ if((String)hs.getAttribute("name")==null){
 		{
 			System.out.println("Inside if....");
 			
-				String sql2 = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
+				String sql2 = "select slotnumber,produce,qualitygrade,lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				pstmt1 = con.prepareStatement(sql2);
 				rs1 = pstmt1.executeQuery();
 				
