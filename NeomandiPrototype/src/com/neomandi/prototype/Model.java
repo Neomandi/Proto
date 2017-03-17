@@ -456,14 +456,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				String quantity=rs.getString("quantity");
 				String averageprice=rs.getString("averageprice");
 				String quantitybidfor=rs.getString("quantitybidfor");
-				if(averageprice==null){
-					averageprice="0";
+				if(averageprice.toUpperCase().contains("NULL")){
+					averageprice="--";
 				}
 				else{
 					averageprice=averageprice;
 				}
-				if(quantitybidfor==null){
-					quantitybidfor="0";
+				if(quantitybidfor.toUpperCase().contains("NULL")){
+					quantitybidfor="--";
 				}
 				else{
 					quantitybidfor=quantitybidfor;

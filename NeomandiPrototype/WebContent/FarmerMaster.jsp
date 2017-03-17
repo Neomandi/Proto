@@ -207,7 +207,7 @@ if((String)hs.getAttribute("name")==null){
 		{
 			System.out.println("Inside if....");
 			
-				String sql2 = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
+				String sql2 = "select slotnumber,produce,qualitygrade,lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				pstmt1 = con.prepareStatement(sql2);
 				rs1 = pstmt1.executeQuery();
 				
@@ -232,33 +232,36 @@ if((String)hs.getAttribute("name")==null){
 		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
 		  <td><h4 style="color:#000080;text-align:center;"><b><%=rs1.getString("quantity") %></b></h4></td>
 		  <%
-		  	String empty="--"; 
-		  	if(rs1.getString("quantitybidfor")!=null){
+		  
 				String quantity =(String)rs1.getString("quantitybidfor");
-				double y=Double.parseDouble(quantity);
-			    y=y*100;
-				y=(int)y;
-				y=y/100;
-				System.out.println("before"+quantity+" after"+y);
+		  			double y=0.0;
+		  			if(!quantity.toUpperCase().contains("NULL")){
+						y=Double.parseDouble(quantity);
+					    y=y*100;
+						y=(int)y;
+						y=y/100;
+						System.out.println("before"+quantity+" after"+y);
+		  			}
+
 	          	%>  
-	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%=y%></b></h4></td> 
-	          	<% }
-		  		else{ %>         
-		  	<td ><h4  style="color:#000080; font-weight:bold;text-align:center;"><b><%=empty %></b></h4></td><%} %>
+	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%if(!quantity.toUpperCase().contains("NULL")){out.println(y);}else{out.println("--");}%></b></h4></td> 
+	          	        
+		  	
 		  	<%  	
-		  		if(rs1.getString("averageprice")!=null){
+		  		
 				String average=(String)rs1.getString("averageprice");
-				double x=Double.parseDouble(average);
+		  	double x=0.0;
+		  	if(!average.toUpperCase().contains("NULL")){
+				 x=Double.parseDouble(average);
 			    
 			    DecimalFormat two = new DecimalFormat("#.##");
 			     Double.valueOf(two.format(x));
 				System.out.println("before"+average+" after"+x);
+		  	}
 		  		%>
-		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%=Double.valueOf(two.format(x))%></b></h4></td>
-		  		<%}
-		  		else{ %>
-		  <td   style="color:#000080;"><h4 id="a" style="color:#000080;  font-weight:bold;text-align:center;"><%=empty %></h4></td>
-		  <%} %>
+		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(!average.toUpperCase().contains("NULL")){out.println(x);}else{out.println("--");}%></b></h4></td>
+		  		
+		
 		  <td>
 
 

@@ -247,10 +247,7 @@
     			background-repeat: no-repeat;
     			background-size: 10px 13px;
     			/*background-position:98% 5%;*/
-    			background-position:262px 10px;
-    			
-    			
-    			
+    			background-position:98% 50%;	
 		}
     </style>
 </head>

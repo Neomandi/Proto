@@ -206,9 +206,14 @@ if((String)hs.getAttribute("name")==null){
 						String quantity=rs1.getString("quantity");
 						
 						slot+=rs1.getString("slotnumber");
+						if(rs1.getString("slotnumber").equals("slot1")){
+							   imgsrc="ProductImages/"+lotnumber+".jpg";
+						  		}
+						  		else{
+						  			imgsrc="ProductImages/"+rs1.getString("produce")+"-"+rs1.getString("qualitygrade")+".jpg";
+						  		}
 						
-						
-						  imgsrc="ProductImages/"+lotnumber+".jpg";
+						  
 					
 						
 		%>
