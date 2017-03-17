@@ -4690,6 +4690,9 @@ public void PostAuction()
 					ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0 and fund_utilized=0");
 					ps6.execute();
 					System.out.println(ps6+" Data updated from traders_blocked_amount");
+					
+					ps6=con.prepareStatement("update tbankaccount set balance=1000000");
+					ps6.execute();
 				}
 			}
 			ps6=con.prepareStatement("update traders_blocked_amount set blockamount=0, fund_utilized=0");
