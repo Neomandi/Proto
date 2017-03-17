@@ -2029,8 +2029,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				rd.forward(request, response);			
 			}			
-			catch (ServletException e) {
-				
+			catch (ServletException e) {				
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
