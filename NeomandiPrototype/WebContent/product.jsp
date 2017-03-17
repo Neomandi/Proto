@@ -111,7 +111,7 @@
         	s2.innerHTML = "";
         	if(s1.value == "Vegetables")
         	{
-        		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato"];	
+        		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato", "CUCUMBER|Cucumber", "RADISH|Radish", "GARLIC|Garlic", "CAPSICUM|Capsicum", "CABBAGE|Cabbage", "GREEN CHILLI|Green Chilli"];	
         	}
         	else if(s1.value == "Fruits")
         	{
