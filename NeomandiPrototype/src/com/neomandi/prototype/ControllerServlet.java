@@ -1948,7 +1948,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//EmployeeLogout
-		if(uri.equals("ELogout.do"))
+		if(uri.equals("/NeomandiPrototype/ELogout.do"))
 		{
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;
