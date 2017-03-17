@@ -73,7 +73,7 @@
     	}
     	else if(s1.value == "Fruits")
     	{
-    		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANNA|Bananna", "MANGO|Mango"];
+    		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANA|Banana", "MANGO|Mango"];
     	}
     	else if(s1.value == "Grains")
     	{
@@ -242,6 +242,16 @@
 		    height: 60px;
 		    width: 65px;
 		}
+		.detail select{
+				background-image: url(images/icon2.png);
+    			background-repeat: no-repeat;
+    			background-size: 10px 13px;
+    			/*background-position:98% 5%;*/
+    			background-position:262px 10px;
+    			
+    			
+    			
+		}
     </style>
 </head>
 <body class="">
@@ -276,7 +286,7 @@
                 <br>
                 <br>
                 <div class="col-lg-offset-0 col-lg-4 col-md-offset-0 col-md-4 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 det">
-                    <h4 style="background: #bdd102;">Produce Details</h4>
+                    <h4 style="background: #bdd102;color:black; ">Produce Details</h4>
                     <div class="detail">
                             <table class="table">
                                 <tr>
@@ -340,7 +350,7 @@
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 gen">
-                    <h4 style="background: #bdd102;">Produce Image</h4>
+                    <h4 style="background: #bdd102;color:black;">Produce Image</h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
                             <div id="showtext">Click here to upload image</div>
@@ -369,7 +379,7 @@
                     <br>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 release">
-                    <h4 style="background:#149DDA;">My Password</h4>
+                    <h4 style="background:#149DDA; ">My Password</h4>
                     <div class="password">
                             <table class="table">
 
@@ -410,7 +420,7 @@
                     <br>
                     <table align="center">
                         <tr>
-                            <td><a href="javascript: submitform()" class="reg1" style="font-weight:bold;color:white; font-size:16px;">Submit</a></td>
+                            <td><a href="javascript: submitform()"  style="font-weight:bold; color:black; ">Submit</a></td>
                         </tr>
                     </table>
                 </div>
