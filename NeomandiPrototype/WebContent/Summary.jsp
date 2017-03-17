@@ -224,7 +224,6 @@ if(request.getAttribute("tradesummary").equals("no"))
                   </div>
                 </div><br>
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="fun()" class="btn btn-primary">Get History</button></div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
@@ -246,9 +245,10 @@ function fun2()
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
   	{%>
-<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
-<table id="basic-table1"  class="table sum1table ">
-<thead class="none"><tr>
+  	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
+	<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
+	<table id="basic-table1"  class="table sum1table ">
+	<thead class="none"><tr>
 	  <td>&nbsp;</td>
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Assigned Lot size</h4></td>

@@ -95,10 +95,11 @@
     		}
     		.psearch select
     		{
-    			background-image: url(images/Arrow.png);
+				background-image: url(images/icon2.png);
     			background-repeat: no-repeat;
-    			background-size: 15px 15px;
-    			background-position: right;
+    			background-size: 10px 13px;
+    			/*background-position:98% 5%;*/
+    			background-position:98% 50%;
     		}
         </style>
         <script>
