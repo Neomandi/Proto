@@ -1115,8 +1115,11 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				{					
 					balance=rs.getInt("balance");				
 				}				
-											
-				balance=balance-block;								
+							System.out.println("old balance "+balance);
+							
+				balance=balance-block;					
+				System.out.println("new balance "+balance);
+				System.out.println("amount to be blocked is "+block);
 				if(balance<0)								
 				{									
 					balance=balance+block;									
@@ -1197,6 +1200,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						ps.setString(5,String.valueOf(balance));						
 						ps.execute();
 						System.out.println(ps);	
+						msg[0]=String.valueOf(balance);
+						msg[1]=String.valueOf(block);
 					}							
 			}								
 			//con.commit();						
