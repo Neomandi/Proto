@@ -1,4 +1,4 @@
-<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.SQLException" errorPage="Error.jsp"%>
 <%@page import="com.neomandi.prototype.JDBCHelper,java.sql.Connection,java.sql.ResultSet,
      java.sql.PreparedStatement,java.util.*,
     java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
@@ -105,7 +105,7 @@ catch(Exception e)
 	  <br><br>
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4>My Details</h4>
+<h4 style="background: #bdd102;">My Details</h4>
 <div class="detail">
 <%
 					Connection con = null;
@@ -186,7 +186,7 @@ catch(Exception e)
 
             </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
-<h4>My License Details</h4>
+<h4 style="background:#149DDA;">My License Details</h4>
 <div class="password">
 <form>
     <table class="table">
@@ -276,7 +276,7 @@ catch(Exception e)
 		update();
     </script>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4>My Account Details</h4>
+<h4 style="background: #bdd102;">My Account Details</h4>
 <div class="detail">
 <form>
     <table class="table"> 
