@@ -279,26 +279,30 @@ else
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
 <h4>Release Funds</h4>
 <div class="password">
-    <%
-	  	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+    <%	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 		if(tlbn.getTname()==null)
 			{}
 	  	Connection con = null;
 		ResultSet rs = null;	
     	PreparedStatement ps = null;
     	int result=0;
+    	 int funds=0;
+			
 		try
 		{
-			 result=0;
+			result=0;
 			con = JDBCHelper.getConnection();
-			ps =con.prepareStatement("SELECT tb.blockamount FROM traders_blocked_amount tb,treg tr where tr.name=? and tr.aadharnumber=tb.aadharnumber ");
+			ps =con.prepareStatement("SELECT tb.fund_utilized,tb.blockamount FROM traders_blocked_amount tb,treg tr where tr.name=? and tr.aadharnumber=tb.aadharnumber ");
 			ps.setString(1, tlbn.getTname());
 			ps.execute();
+			System.out.println(ps);
 			rs = ps.getResultSet();	
 			while(rs.next())
 			{
-				result=rs.getInt("blockamount");						
+				result=rs.getInt("blockamount");	
+				funds=rs.getInt("fund_utilized");
 			}	
+			System.out.println(result+" "+funds);
 		}
 		catch(Exception e)
 		{
@@ -309,13 +313,13 @@ else
 	  <form>
       <table class="table">   
 	  <tr><td><label for="name">Fund Utilized</label></td></tr>
-	  <tr><td><input type="text" class="form-control" id="usr" readonly></td></tr>
+	  <tr><td><input type="text" class="form-control" id="usr" value="<%=funds %>" readonly></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly/></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"/></td ></tr>	  
 	  <tr><td><table align="center"><tr><td><a  onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
       <script>
-      console.log("blocked amoutn is +"+document.getElementById("amount").value)
+      	console.log("blocked amoutn is +"+document.getElementById("amount").value)
 		function holdfundsrelease()
 		{		  
 		    var netamount=document.getElementById("netamount").value;
@@ -332,33 +336,35 @@ else
 			{
 					alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
 			}
-		  else
-		  {
+		 	else
+		    {
 			  xmlhttp = new XMLHttpRequest();
-			  xmlhttp.onreadystatechange = function() {
-			  if (this.readyState == 4 && this.status == 200) 
+			  xmlhttp.onreadystatechange = function() 
 			  {
-				  	 var string=xmlhttp.responseText; 	   			      
-        			 /*var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-	   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-	   			     starttotalblocked=starttotalblocked+12;	
-	   			     console.log(string);
-	   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-	   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-	   				 console.log("total blocked amount is "+blocked);*/
-	   				 console.log("string is "+string);
-	   			     document.getElementById("netamount").innerHTML = string;
-	   			  	 document.getElementById("netamount").value = string;
-	   			     document.getElementById("hold").value = "";
-	   				 document.getElementById("balance").value = "";
-	   				 document.getElementById("release").value = "";
-	   			     alert('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
-	   			     
-			  }};
-				  xmlhttp.open("POST", "ajaxReleasefunds.do", true);
-				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				  xmlhttp.send("release="+rel+"&bank="+bank);
-			 }
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					  	 var string=xmlhttp.responseText; 	   			      
+	        			 /*var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+		   			     starttotalblocked=starttotalblocked+12;	
+		   			     console.log(string);
+		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+		   				 console.log("total blocked amount is "+blocked);*/
+		   				 console.log("string is "+string);
+		   			     document.getElementById("netamount").innerHTML = string;
+		   			  	 document.getElementById("netamount").value = string;
+		   			     document.getElementById("hold").value = "";
+		   				 document.getElementById("balance").value = "";
+		   				 document.getElementById("release").value = "";
+		   			     alert('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
+		   			     
+				  }
+			  };
+			  xmlhttp.open("POST", "ajaxReleasefunds.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("release="+rel+"&bank="+bank);
+		     }
 		  }		 
 		</script>
     </table>

@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image1/png" href="Images/Neomandi1.png">
     <title>NeoMandi</title>
-    <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -69,7 +69,7 @@
     	s2.innerHTML = "";
     	if(s1.value == "Vegetables")
     	{
-    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato"];	
+    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato", "CUCUMBER|Cucumber", "RADISH|Radish", "GARLIC|Garlic", "CAPSICUM|Capsicum", "CABBAGE|Cabbage", "GREEN CHILLI|Green Chilli"];	
     	}
     	else if(s1.value == "Fruits")
     	{
@@ -78,6 +78,10 @@
     	else if(s1.value == "Grains")
     	{
     		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "RAGI|Ragi", "BARLEY|Barley", "RICE|Rice"];
+    	}
+    	else if(s1.value == "Pulses")
+    	{
+    		var optionArray = ["produce|Produce", "CHICKPEA|Chickpea", "HORSEGRAM|Horsegram", "PEAS|Peas"];
     	}
     	for(var option in optionArray)
     	{
@@ -309,9 +313,9 @@
                                     <td>
                                         <select class="form-control" id="category" name="category" onchange = "populate('category','produce')">
                                             <option value="Category">Category</option>
-                                            <option value="Vegetables">Vegetables</option>
-                                            <option value="Fruits">Fruits</option>
-                                            <option value="Grains">Grains</option>
+                                            <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
+                                            <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
+                                            <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -326,9 +330,9 @@
                                     <td>
                                         <select class="form-control" id="quality" name="quality">
                                             <option value="Grade">Grade</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
+		                                    <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
+		                                    <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
+		                                    <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
                                         </select>
                                     </td>
                                 </tr>

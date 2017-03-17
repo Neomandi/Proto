@@ -1948,7 +1948,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//EmployeeLogout
-		if(uri.contains("ELogout"))
+		if(uri.equals("ELogout.do"))
 		{
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;
@@ -2029,8 +2029,7 @@ public class ControllerServlet extends HttpServlet {
 			{
 				rd.forward(request, response);			
 			}			
-			catch (ServletException e) {
-				
+			catch (ServletException e) {				
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -2597,7 +2596,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//Admin Logout
-		if(uri.contains("AdminLogout"))
+		if(uri.contains("ALogout"))
 		{
 			HttpSession alog = request.getSession(false);
 			RequestDispatcher rdal = null;
@@ -2607,12 +2606,14 @@ public class ControllerServlet extends HttpServlet {
 				alog.removeAttribute("name");
 				alog.removeAttribute("pwd");
 				alog.invalidate();
-				try {
-					request.logout();
-				} catch (ServletException e1) {
-					
-					e1.printStackTrace();
-				}
+				//System.out.println(request.getAttribute("errmsg"));
+//				try {
+//					request.logout();
+//				} catch (ServletException e1) {
+//					
+//					e1.printStackTrace();
+//				}
+
 				rdal = request.getRequestDispatcher("AdminLogin.jsp");
 				try {
 					rdal.forward(request, response);

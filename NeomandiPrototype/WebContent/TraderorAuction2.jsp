@@ -209,20 +209,27 @@ catch(NullPointerException e)
 <script>
 	function logout()
 	{
-		var msg=document.getElementById("auction1").value;
-		if(msg!=null||msg.length!=0){
-		if(!(msg.includes('has ended')))
-		if (confirm('Auction is still under progress do you want to Logout?? ')) 
-        {
-			window.location='logout.do';
-        }
-		else if(msg.includes('has ended'))
-			{}
+		var msg=document.getElementById("timer").textContent;
+		var msg1=document.getElementById("auction1").textContent;
+		console.log(msg);
+		if(msg!=null)
+		{
+			if((msg.includes('begun'))&&!(msg1.includes("end")))
+			{
+				if (confirm('Auction is under progress do you want to Logout?? ')) 
+	    	    {
+					window.location='logout.do';
+	    	    }
+				else //if(msg.includes('has ended'))
+				{
+				}				
+			}
+			else
+				window.location='logout.do';
 		}
 		else
-			window.location='logout.do';
-	}
-	
+		window.location='logout.do';
+	}	
 </script>
 </div>
 <div class="container-fluid tradtab">
@@ -239,7 +246,7 @@ catch(NullPointerException e)
 </div>
 </div>
 <div class="maindiv">
-<div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord"><span>Auction Slot-1</span>	
+<div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-1</span>	
 	  <div id="msg" style="display:inline; " > will begin in</div>&nbsp;&nbsp;
 	 <div id="timer" style="display:inline;  " ></div>
 	  	<div id="auction" style="display:inline;   "></div>
@@ -253,7 +260,7 @@ catch(NullPointerException e)
 	String stop=(String)context.getAttribute("endtime");
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %>
-  <div id="accord"> 
+  <div id="accord1"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
   <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
@@ -481,9 +488,6 @@ catch(NullPointerException e)
 			{
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
-				//System.out.println("inside traderlist bean"+al);
-				//System.out.println("++++++++++++++++");
-				//System.out.println(al.size()==0);
 				if(al.size()==0){%><br>
 					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 			<br>
@@ -515,7 +519,7 @@ catch(NullPointerException e)
   	<table>
 	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-	<table align="center" style="width:119%;">
+	<table align="center">
 	<tbody >
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
@@ -523,7 +527,7 @@ catch(NullPointerException e)
 	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
-	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; width:29%; padding:5px;white-space:nowrap;font-weight:bold">
+</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
@@ -2192,211 +2196,69 @@ catch(NullPointerException e)
 	</div>
     </div></div>
     <%}}}}}}}}}%>    
+    </div>
     
-	<!---row 1 end--->
-	<!----row2--->
-	<!--  <div class="one">
+    <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord2"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+  <div id="accord2" class="collapse">
+    <div class="one">
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
- 	<table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">2</td>
+  	<table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf; width:9%;text-align:center;font-weight:bold"><%out.println(1); %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<table align="center" >
+	<tbody >
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control"  type="text" value="198BEAA0060" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="Beans"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
 	</table>
-	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf;  padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
 	</tbody>
 	</table>
-	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
-	<table>
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	</td>
+	</tr>
 	</tbody>
-	</table>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-	<tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button  type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
 	</tbody></table></div>
 	</div>
 	</div>
     </div></div>
-	<!---row 2 end--->
-	<!----row3--->
-	<!-- <div class="one">
-	<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-	<div class="table-responsive"> 
-	<table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">3</td>
-	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 3 end--->
-	<!----row 4--->
-	<!-- <div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">4</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 4 end--->
- </div><!-- in documents auctionslot2.txt has working slot2 -->    <!--********************************************THIS DUMMY SLOT-2****************************************** -->
-    <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-  <div id="accord3" class="collapse">
-        <!----row1--->
-	 <div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="198BEAA0060"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" value="Beans" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" value="4200" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table >
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" max="999" maxlength="3"  id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.println();%>();" class="sub">Submit</button></td></tr></tbody></table>
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
     </div>
-    
+ <!-- in documents auctionslot2.txt has working slot2 -->    <!--********************************************THIS DUMMY SLOT-2******************************************     
         <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord2"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> -->
+<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> --
   <div id="accord2" class="collapse">
-        <!----row1--->
+        <!----row1---
 	 <div class="one">
 <div class="container-fluid status">
 	<div class="row">
@@ -2410,32 +2272,33 @@ catch(NullPointerException e)
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="876GARA0304"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" value="Garlic" type="text"></td></tr>
 	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
+	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Lot Cost</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
+	<tr><td><h4>Commission Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Market Cess</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>Transportation Charges</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
+	<tr><td><h4>My Final Cost</h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
+	<tr><td><h4>Required Lot Size</h4></td><td><h4>Assigned Lot Size</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td><h4>Best Bid</h4></td><td><h4>My Bid</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
 	</tbody>
 	</table>
 
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.println();%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton
+();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
@@ -2446,208 +2309,68 @@ catch(NullPointerException e)
 </div>
     </div></div>
     </div>    
-    <!-- 
 <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> -->
+<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> --
   <div id="accord3" class="collapse">
-    
- 
-        <!----row1---
-	 <div class="one">
-<div class="container-fluid status">
+	<!---row 4 end--->
+	 
+    <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+  <div id="accord3" class="collapse">
+    <div class="one">
+	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<div class="table-responsive"> 
+  	<table>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf; width:9%;text-align:center;font-weight:bold"><%out.println(1); %></td>
+	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
+	<table align="center" >
+	<tbody >
+	<tr><td><h4>Lot Number</h4></td><td><input class="form-control"  type="text" value="198CARA0060" readonly></td></tr>
+	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
+	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
+	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
 	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
+	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf;  padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
 	</tbody>
 	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
+	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
+	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
+	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	</td>
+	</tr>
 	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub">Submit</button></td></tr></tbody></table>
+	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
+	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
+	</td></tr>
+	</tbody></table></div>
+	</div>
+	</div>
     </div></div>
-	<!---row 1 end--->
-	<!----row2
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
- <table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">2</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center" >
-	<table>
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 2 end--->
-	<!----row3--
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">3</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a  class="sub">Submit</a></td></tr></tbody></table>
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-</div>
-</div>
-	<!---row 3 end--->
-	<!----row 4
-	<div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">4</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table align="center">
-	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"></td><td class="clspadt5"><input class="form-control ight" id="usr" type="text"></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td><td class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><a href="#" class="reg" style="white-space:nowrap">Increment by 1</a></td></tr>
-				 <tr><td><br><a href="#" class="sub">Submit</a></td></tr></tbody></table>
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-	<!---row 4 end--->
+    </div>
+    
  </div>
 </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
