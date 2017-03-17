@@ -442,7 +442,6 @@
 										   	}											
 											document.getElementById("addtrade").innerHTML = string;
 											document.getElementById("addtrade").value = string;
-											// console.log("message sent from CS is "+string);
 										}
 									};
 									xmlhttp.open("POST", "AddTrade.do", true);
