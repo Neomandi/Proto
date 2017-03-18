@@ -272,7 +272,7 @@
 									alert("You should choose the Category ")
 								else if(document.getElementById("produce").value=="produce")
 									alert("You should choose the Produce ")
-									else if(document.getElementById("grade").value=="base")
+								else if(document.getElementById("grade").value=="base")
 									alert("You should choose the Grade ")
 								else if(document.getElementById("slot").value=="base")
 									alert("You should choose the Slot ")								
