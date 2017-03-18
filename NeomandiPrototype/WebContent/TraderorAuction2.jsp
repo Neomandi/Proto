@@ -31,14 +31,14 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 input[type="number"],input[type="text"]
 {
 	text-align: center;
-}/*
+}
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
-}*/
+}
 #div
 {   		
 	padding:22px;
@@ -390,7 +390,7 @@ catch(NullPointerException e)
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-								        //    	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
+								            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
 								            	console.log("AUCTION IS OVER");
 								            	xmlhttp = new XMLHttpRequest();
 								      		  	xmlhttp.onreadystatechange = function() {
@@ -400,6 +400,8 @@ catch(NullPointerException e)
 								      		  xmlhttp.open("POST", "Slotchange.do", true);
 								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 											  xmlhttp.send("number=1");
+											  document.getElementById('increment').removeAttribute("onclick");
+											  document.getElementById('increment1').removeAttribute("onclick");
 								      	   }
 				        		    	}
 			        		     	}
@@ -1076,7 +1078,7 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1175,9 +1177,9 @@ catch(NullPointerException e)
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
-					  {
+				  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
-					  }
+				  }
 				  else if(newbids>999)
 					  {
 					  		alert("You cannot bid more than 999 Rs for any lot");

@@ -95,7 +95,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
-			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trade recorded for the day.</b></p></div></center>
+			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -244,8 +244,9 @@ function fun2()
   	<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
-  	{%>
-  	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button   onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></div>
+  	{
+  	%>
+  	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"></div>
 	<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
 	<table id="basic-table1"  class="table sum1table ">
 	<thead class="none"><tr>
@@ -273,7 +274,7 @@ function fun2()
 	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCreated() %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
-</div>
+</div><center><button onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></center>
 <%}}%>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
