@@ -2553,14 +2553,8 @@ public class ControllerServlet extends HttpServlet {
 			String aname = request.getParameter("aname");
 			String apwd = request.getParameter("apwd");
 			
-			System.out.println("Aname: "+aname);
-			System.out.println("Apwd: "+apwd);
-			
 			Model m = new Model();
 			String msg = m.adminLogin(aname,apwd);
-			
-			RequestDispatcher rda = null;
-			
 			if(msg.equals("SUCCESS"))
 			{
 				System.out.println("SUCCESS");
@@ -2568,30 +2562,29 @@ public class ControllerServlet extends HttpServlet {
 				alog.setAttribute("name", aname);
 				alog.setAttribute("pwd", apwd);
 				
-				request.setAttribute("errmsg", msg);
-				rda=request.getRequestDispatcher("Admin.jsp");
+				PrintWriter out = null;
 				try {
-					rda.forward(request, response);
-					return;
-				} catch (ServletException | IOException e) 
-				{
+					out = response.getWriter();
+					out.println("SUCCESS");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 			else
 			{
-				System.out.println("Failure");
-				request.setAttribute("errmsg", msg);
-				rda=request.getRequestDispatcher("AdminLogin.jsp");
+				PrintWriter out = null;
 				try {
-					rda.forward(request, response);
-					return;
-				} catch (ServletException | IOException e) {
-					
+					out = response.getWriter();
+					out.println(msg);
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
-				
-				
 			}
 		}
 		
