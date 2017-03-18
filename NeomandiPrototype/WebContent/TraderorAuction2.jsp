@@ -259,7 +259,7 @@ catch(NullPointerException e)
 	String start=(String)context.getAttribute("starttime");
 	String stop=(String)context.getAttribute("endtime");
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
-%>
+%><input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
@@ -400,8 +400,10 @@ catch(NullPointerException e)
 								      		  xmlhttp.open("POST", "Slotchange.do", true);
 								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 											  xmlhttp.send("number=1");
-											  document.getElementById('increment').removeAttribute("onclick");
-											  document.getElementById('increment1').removeAttribute("onclick");
+											  //document.getElementById('increment').removeAttribute("onclick");
+											 // document.getElementById('increment1').removeAttribute("onclick");
+											 // document.getElementById('POSTAUCTION').innerhtml='end';
+											  document.getElementById('POSTAUCTION').value='end';
 								      	   }
 				        		    	}
 			        		     	}
@@ -904,13 +906,37 @@ catch(NullPointerException e)
 		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
+	/*if((document.getElementById('POSTAUCTION').value).includes('end'))
+	{																			THIS IS THE MOST RECENT WORKING CODE
+			alert("YOU CANT BID AFTER AUCTION IS OVER");
+	}
+	else*/
+	var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
 	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
+	{
+		//console.log(document.getElementById('POSTAUCTION').value);
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     
     var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
     var currentbid=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 	var currentbids=new Number(currentbid);
-	console.log("****************current bid*************** "+currentbids);
+	console.log("****************current bid*************** "+currentbid);
 	var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 	var bestbid=new Number(bestbids);
 	console.log("best bid is"+bestbid);
@@ -1135,6 +1161,26 @@ catch(NullPointerException e)
 				minutes=res1;
 		}	
 		var timedifference=+hours+":"+minutes+":"+seconds;
+		//if((document.getElementById('POSTAUCTION').value).includes('end'))
+		{
+		//	alert("YOU CANT BID AFTER AUCTION IS OVER");
+		}
+		var msg=document.getElementById("timer").textContent;
+		var msg1=document.getElementById("auction1").textContent;
+		console.log(msg);
+		console.log(msg1);
+		if(!(msg.includes('begun')))
+		{
+		//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+			//else
+			//	window.location='logout.do';
+		}
+		else if(msg1!=null &&msg1.includes("end"))
+		{
+					alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		else
 		{
 		      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
 		      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
@@ -1776,6 +1822,24 @@ catch(NullPointerException e)
 		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
+		var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
+	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
 	{
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
@@ -2002,6 +2066,24 @@ catch(NullPointerException e)
 	var timedifference=+hours+":"+minutes+":"+seconds;
 	console.log("time difference isss "+timedifference);	
 	//if(timedifference.includes("-"))
+		var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
+	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
 	{
 	      var i= document.getElementById("mybid<%out.print(tlbr.getLotnum());%>").value;
 	      var k=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
