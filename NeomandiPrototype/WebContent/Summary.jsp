@@ -60,6 +60,14 @@ border-top:2px solid #fff !important;
 .tradtab a{
     background-color:#0082B2;
     }
+#tb1 h4{
+	color: darkblue;
+	font-weight: bold;
+}
+#tb2 h4{
+	color: darkblue;
+	font-weight: bold;
+}
 </style>
 </head>
 <body class="" >
@@ -126,7 +134,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	  <td><h4>Date</h4></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
-	  <tbody class="clsm10">
+	  <tbody class="clsm10" id="tb1">
 	  <tr class="gradeX">	<% 
 		HttpSession todaysummary=request.getSession(false);
 		List al=(List)todaysummary.getAttribute("todaysummary");
@@ -262,7 +270,7 @@ function fun2()
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
-	  <tbody class="clsm10">
+	  <tbody class="clsm10" id="tb2">
 	  <tr class="gradeX">
 	  	<% 
 		HttpSession tradesummary=request.getSession(false);
@@ -273,7 +281,7 @@ function fun2()
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
 	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCreated() %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
-	  </table>
+	  </table><br><br>
 </div><center><button onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></center>
 <%}}%>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
