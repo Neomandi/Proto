@@ -20,6 +20,7 @@
         <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NeoMandi</title>
+        <script type="text/javascript" src="js/jquery-3.2.0.js"></script>
         <link rel="stylesheet" href="libs/pure-min.css">
 		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
 		<link rel="stylesheet" href="libs/grids-responsive-min.css">
@@ -65,9 +66,7 @@
    
     height:5px;
     }
-    .pad {
-    padding-right:100px;
-}
+    
   
 #div{
     		padding:30px;
@@ -77,6 +76,21 @@
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
+			position: absolute; 
+			top: 10px; left: 170px; float:left;
+			 font-weight:bold;
+    }
+    #div1{
+    		padding:30px;
+			margin:200px;
+			width:40%;
+			background-color:#BFBFBF;
+			text-align:center;
+			color:darkblue;	 
+			font-size:18px;
+			position: relative; 
+			top: 10px; left: 170px; float:left;
+			 font-weight:bold;
     }
  
 .from .pad .get::before {
@@ -210,7 +224,8 @@ padding:5px;
                 
             
 
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button id="hide" style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div>
+
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-left:0px;"><button   id="download-btn"  style="border-color:#3C4DA0;background-color:#3C4DA0; " class="btn btn-primary">Export as PDF</button></div></form>
 
 <!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
@@ -220,6 +235,12 @@ padding:5px;
 
 
 <script>
+$(document).ready(function(){  
+    $("#hide").click(function(){  
+    	 $('#div1').css('visibility', 'hidden');  
+    });  
+}); 
+
                 /*function callme() {
                     var table = tableToJson($('#mytable').get(0));
                     var doc = new jsPDF('l', 'pt', 'letter', true);
@@ -305,6 +326,7 @@ padding:5px;
                                         <th style="text-align:left; color:white">
                                             <h4 style="font-size:15px;">My Net Earnings<br/>(Rs)</h4></th>
                                         <th></th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -382,7 +404,7 @@ padding:5px;
                 </div>
                 <!---table2 end-->
                 <%}} %>
-                <div id="div" style='position: absolute; top: 10px; left: 170px; float:left; font-weight:bold;'>Please choose the dates above to get your trade history</div>
+                <div id="div1" >Please choose the dates above to get your trade history</div>
                     <footer>
                         <div id="grad1"></div>
 
@@ -423,16 +445,19 @@ padding:5px;
                             });
                         });
                     </script>
+                    
                     <script>
                         function history() {
                         	
-                          
+                          console.log("inside the history function");
                             var bool =historyForm();
                         	console.log("Bool: "+bool);
                         	console.log()
                         	
                         	
                         		document.historyForm.submit();
+                        	
+                        	
                         	
                         }
                     </script>
@@ -941,6 +966,7 @@ countdown(minutes,seconds,hours);
  function reject(){
    	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
+ 
  </script>
     </body>
     </html>
