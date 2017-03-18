@@ -17,13 +17,10 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <style>
     	#div{
-    		
-    		
 			padding:30px;
 			margin:200px;
 			width:70%;
 			background-color:#E5E4E2;
-				 
     	}
     	.img-responsive{
     	height: 60px;

@@ -31,14 +31,14 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 input[type="number"],input[type="text"]
 {
 	text-align: center;
-}/*
+}
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
-}*/
+}
 #div
 {   		
 	padding:22px;
@@ -259,7 +259,7 @@ catch(NullPointerException e)
 	String start=(String)context.getAttribute("starttime");
 	String stop=(String)context.getAttribute("endtime");
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
-%>
+%><input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
@@ -390,7 +390,7 @@ catch(NullPointerException e)
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-								        //    	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
+								            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
 								            	console.log("AUCTION IS OVER");
 								            	xmlhttp = new XMLHttpRequest();
 								      		  	xmlhttp.onreadystatechange = function() {
@@ -400,6 +400,10 @@ catch(NullPointerException e)
 								      		  xmlhttp.open("POST", "Slotchange.do", true);
 								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 											  xmlhttp.send("number=1");
+											  //document.getElementById('increment').removeAttribute("onclick");
+											 // document.getElementById('increment1').removeAttribute("onclick");
+											 // document.getElementById('POSTAUCTION').innerhtml='end';
+											  document.getElementById('POSTAUCTION').value='end';
 								      	   }
 				        		    	}
 			        		     	}
@@ -544,11 +548,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -902,13 +906,37 @@ catch(NullPointerException e)
 		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
+	/*if((document.getElementById('POSTAUCTION').value).includes('end'))
+	{																			THIS IS THE MOST RECENT WORKING CODE
+			alert("YOU CANT BID AFTER AUCTION IS OVER");
+	}
+	else*/
+	var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
 	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
+	{
+		//console.log(document.getElementById('POSTAUCTION').value);
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     
     var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
     var currentbid=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 	var currentbids=new Number(currentbid);
-	console.log("****************current bid*************** "+currentbids);
+	console.log("****************current bid*************** "+currentbid);
 	var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 	var bestbid=new Number(bestbids);
 	console.log("best bid is"+bestbid);
@@ -1076,7 +1104,7 @@ catch(NullPointerException e)
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -1133,6 +1161,26 @@ catch(NullPointerException e)
 				minutes=res1;
 		}	
 		var timedifference=+hours+":"+minutes+":"+seconds;
+		//if((document.getElementById('POSTAUCTION').value).includes('end'))
+		{
+		//	alert("YOU CANT BID AFTER AUCTION IS OVER");
+		}
+		var msg=document.getElementById("timer").textContent;
+		var msg1=document.getElementById("auction1").textContent;
+		console.log(msg);
+		console.log(msg1);
+		if(!(msg.includes('begun')))
+		{
+		//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+			//else
+			//	window.location='logout.do';
+		}
+		else if(msg1!=null &&msg1.includes("end"))
+		{
+					alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		else
 		{
 		      var i= document.getElementById("mybid<%out.print(tlb.getLotnum());%>").value;
 		      var k=document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
@@ -1175,9 +1223,9 @@ catch(NullPointerException e)
 				  var bestbids=document.getElementById("demo5<%out.print(tlb.getLotnum());%>").value;
 				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
-					  {
+				  {
 						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
-					  }
+				  }
 				  else if(newbids>999)
 					  {
 					  		alert("You cannot bid more than 999 Rs for any lot");
@@ -1404,7 +1452,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>"style="width:164px; height:30px;" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -1774,6 +1822,24 @@ catch(NullPointerException e)
 		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
+		var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
+	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
 	{
     var obj, dbParam, xmlhttp, myObj, x, txt = "", dbParam1;
     var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
@@ -2000,6 +2066,24 @@ catch(NullPointerException e)
 	var timedifference=+hours+":"+minutes+":"+seconds;
 	console.log("time difference isss "+timedifference);	
 	//if(timedifference.includes("-"))
+		var msg=document.getElementById("timer").textContent;
+	var msg1=document.getElementById("auction1").textContent;
+	console.log(msg);
+	console.log(msg1);
+	if(!(msg.includes('begun')))
+	{
+	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
+		{
+			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+		//else
+		//	window.location='logout.do';
+	}
+	else if(msg1!=null &&msg1.includes("end"))
+		{
+				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+		}
+	else
 	{
 	      var i= document.getElementById("mybid<%out.print(tlbr.getLotnum());%>").value;
 	      var k=document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value;
@@ -2233,11 +2317,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
@@ -2349,11 +2433,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>

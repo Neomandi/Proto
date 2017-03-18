@@ -336,6 +336,10 @@ else
 			{
 					alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
 			}
+			else if(rel<0)
+			{
+				alert("Please Enter positive number");	
+			}
 		 	else
 		    {
 			  xmlhttp = new XMLHttpRequest();

@@ -257,7 +257,7 @@
                 <h4>My Account Details</h4>
                 <div class="bankacc">
                     <form>
-                        <table class="table table-bordered" id="tbl2">
+                        <table class="table" id="tbl2">
 
                             <tr>
                                 <td>
