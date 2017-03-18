@@ -544,11 +544,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	<script>
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
@@ -1404,7 +1404,7 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>"style="width:164px; height:30px;" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
 	<script>
@@ -2233,11 +2233,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
@@ -2349,11 +2349,11 @@ catch(NullPointerException e)
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here(Rs/kg)" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
+	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here(Rs/kg)</font></b>
+	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
