@@ -235,7 +235,7 @@ if((String)hs.getAttribute("name")==null){
 		  
 				String quantity =(String)rs1.getString("quantitybidfor");
 		  			double y=0.0;
-		  			if(!quantity.toUpperCase().contains("NULL")){
+		  			if(quantity!=null){
 						y=Double.parseDouble(quantity);
 					    y=y*100;
 						y=(int)y;
@@ -244,14 +244,14 @@ if((String)hs.getAttribute("name")==null){
 		  			}
 
 	          	%>  
-	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%if(!quantity.toUpperCase().contains("NULL")){out.println(y);}else{out.println("--");}%></b></h4></td> 
+	          	<td ><h4 id="q" style="color:#000080;font-weight:bold;"><b><%if(quantity!=null){out.println(y);}else{out.println("--");}%></b></h4></td> 
 	          	        
 		  	
 		  	<%  	
 		  		
 				String average=(String)rs1.getString("averageprice");
 		  	double x=0.0;
-		  	if(!average.toUpperCase().contains("NULL")){
+		  	if(average!=null){
 				 x=Double.parseDouble(average);
 			    
 			    DecimalFormat two = new DecimalFormat("#.##");
@@ -259,7 +259,7 @@ if((String)hs.getAttribute("name")==null){
 				System.out.println("before"+average+" after"+x);
 		  	}
 		  		%>
-		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(!average.toUpperCase().contains("NULL")){out.println(x);}else{out.println("--");}%></b></h4></td>
+		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("--");}%></b></h4></td>
 		  		
 		
 		  <td>
