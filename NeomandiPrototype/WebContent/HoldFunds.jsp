@@ -140,7 +140,7 @@ else
 		  String acc=tbb.getAccountnumber();
 		  String bank=tbb.getDbbankname();*/
 %>
-<h4 style="background: #bdd102;">My Account Details</h4>
+<h4 style="background: #bdd102; color: black;">My Account Details</h4>
 <div class="detail">
 <form>
     <table class="table">
@@ -179,7 +179,7 @@ else
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hold">
-<h4 style="background: #bdd102;">Hold Funds</h4>
+<h4 style="background: #bdd102; color: black;">Hold Funds</h4>
 <div class="bankacc">
 <br><br>
 <form>
