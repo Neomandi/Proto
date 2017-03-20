@@ -1620,28 +1620,28 @@ public class ControllerServlet extends HttpServlet {
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			if(!mfcb.getMsg().equals("block")){
-			try 
-			{
-					PrintWriter out = null;
-					try {
-						//System.out.println(mfcb);
-						out = response.getWriter();
-						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
-					    out.flush();
-					    out.close();
-					 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-				//	rd3.forward(request, response);
-					return;
-			}
-			catch ( Exception e) 
-			{
-				e.printStackTrace();
-			}					
+			if(!(mfcb.getMsg().equals("block"))){
+				try 
+				{
+						PrintWriter out = null;
+						try {
+							//System.out.println(mfcb);
+							out = response.getWriter();
+							out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+						    out.flush();
+						    out.close();
+						 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+					//	rd3.forward(request, response);
+						return;
+				}
+				catch ( Exception e) 
+				{
+					e.printStackTrace();
+				}					
 			}
 			else
 			{
