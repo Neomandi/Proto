@@ -189,7 +189,7 @@ padding:5px;
 
         <div class="container-fluid  history">
             <div class="container">
-                <h2 style="font-weight:bold; color:white;">History</h2></div>
+                <h2 style="font-weight:bold; color:black;">History</h2></div>
         </div>
         <div class="container from">
             <form action="FarmerHistory.do" method="post" name="historyForm" >
@@ -224,7 +224,7 @@ padding:5px;
                 
             
 
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button id="hide" style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="javascript:history()" class="btn btn-primary">Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button id="hide" style="border-color:#BDD102 ;background-color:#BDD102; color:black; font-weight:bold;"  onclick="javascript:history()" class="btn btn-primary" >Get History</button></div>
 
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-left:0px;"><button   id="download-btn"  style="border-color:#3C4DA0;background-color:#3C4DA0; " class="btn btn-primary">Export as PDF</button></div></form>
 
@@ -235,11 +235,18 @@ padding:5px;
 
 
 <script>
-$(document).ready(function(){  
+/*$(document).ready(function(){  
     $("#hide").click(function(){  
     	 $('#div1').css('visibility', 'hidden');  
     });  
-}); 
+}); */
+$(document).ready(function() {
+    $('#hide').on('click', function(event) {
+
+        $('#div1').toggle('hide');
+
+    });
+});
 
                 /*function callme() {
                     var table = tableToJson($('#mytable').get(0));
