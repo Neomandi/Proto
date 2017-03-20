@@ -21,6 +21,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NeoMandi</title>
         <script type="text/javascript" src="js/jquery-3.2.0.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
         <link rel="stylesheet" href="libs/pure-min.css">
 		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
 		<link rel="stylesheet" href="libs/grids-responsive-min.css">
@@ -64,7 +65,8 @@
     }
     .sum2 .table thead th{
    
-    height:5px;
+  
+    background:#000080;
     }
     
   
@@ -88,7 +90,7 @@
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
-			position: relative; 
+			position: absolute; 
 			top: 10px; left: 170px; float:left;
 			 font-weight:bold;
     }
@@ -103,13 +105,15 @@ content: "";
 }
 .auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
    color: #fff;
-font-size: 14px;
+font-size: 13px;
 margin: 3px auto;
 padding:5px; 
 }
         </style>
         <script>
         	function historyForm(){
+        		console.log("inside the history form()");
+        		
         		var from=document.historyForm.from;
         		var to=document.historyForm.to;
         		if(from.value==""){
@@ -122,24 +126,9 @@ padding:5px;
         			name.focus();
         			    return false;
         		}
-        		 var EnteredDate = document.historyForm.to; //for javascript
-
-                 var EnteredDate = $("#txtdate").val(); // For JQuery
-
-                 var date = EnteredDate.substring(0, 2);
-                 var month = EnteredDate.substring(3, 5);
-                 var year = EnteredDate.substring(6, 10);
-
-                 var myDate = new Date(year, month - 1, date);
-
-                 var today = new Date();
-
-                 if (myDate > today) {
-                     alert("Entered date is greater than today's date ");
-                 }
-                 else {
-                     alert("Entered date is less than today's date ");
-                 }
+        		console.log("before div");
+        		
+        		 
         	}
         
         </script>
@@ -224,7 +213,7 @@ padding:5px;
                 
             
 
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button id="hide" style="border-color:#BDD102 ;background-color:#BDD102; color:black; font-weight:bold;"  onclick="javascript:history()" class="btn btn-primary" >Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-right:0px;"><button id="button" style="border-color:#BDD102 ;background-color:#BDD102; color:black; font-weight:bold;"  onclick="javascript:history()" class="btn btn-primary" >Get History</button></div>
 
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-left:0px;"><button   id="download-btn"  style="border-color:#3C4DA0;background-color:#3C4DA0; " class="btn btn-primary">Export as PDF</button></div></form>
 
@@ -235,18 +224,7 @@ padding:5px;
 
 
 <script>
-/*$(document).ready(function(){  
-    $("#hide").click(function(){  
-    	 $('#div1').css('visibility', 'hidden');  
-    });  
-}); */
-$(document).ready(function() {
-    $('#hide').on('click', function(event) {
 
-        $('#div1').toggle('hide');
-
-    });
-});
 
                 /*function callme() {
                     var table = tableToJson($('#mytable').get(0));
@@ -269,9 +247,14 @@ $(document).ready(function() {
                 
             </script>
         </div>
+	
 
-
-        <%if(request.getAttribute("farmerhistory")!=null)
+        <%
+        if(request.getAttribute("farmerhistory")==null){
+        	%><div id="div1" >Please choose the dates above to get your trade history</div>
+        	<% 
+        }
+        if(request.getAttribute("farmerhistory")!=null)
 
 
 		{
@@ -301,37 +284,37 @@ $(document).ready(function() {
                                    		
                                         
                                         <th style="text-align:center; color:white;">
-                                            <h4 style="font-size:15px;">Date/Time</h4></th>
-                                       <th style="text-align:center; color:white;">
-                                            <h4 style="font-size:15px;">Farmer Name</h4></th> 
+                                            <h4 style="font-size:13px;margin: 22px;">Date/Time<br/></h4></th>
+                                       <th style="text-align:center; color:white;margin: 5px auto;">
+                                            <h4 style="font-size:13px;margin: 22px;">Farmer Name<br/></h4></th> 
                                          <!--  <th style="text-align:center; color:white;">
                                             <h4 style="font-size:15px;">Farmer ID</h4></th>-->
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Lot Number</h4></th>
+                                            <h4 style="font-size:13px;margin: 22px;">Lot Number<br/></h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Lot Size<br/>(kg)</h4></th>
+                                            <h4 style="font-size:13px;">Lot Size<br/>(kg)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">Quantity<br/>(kg)</h4></th>
-                                        <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Avg. Price<br/>(Rs)</h4></th>
-                                        <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Gross Earnings<br/>(Rs)</h4></th>
+                                            <h4 style="font-size:13px;">Quantity<br/>(kg)</h4></th>
                                         <th style="text-align:center; color:white">
-                                            <h4 style="font-size:15px;">TLC<sup>*</sup><br/>(Rs)</h4></th>
-                                        <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Market Cess<br/>(Rs)</h4></th>
-                                        <th style="text-align:left; color:white">
+                                            <h4 style="font-size:13px;">Avg. Price<br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
+                                            <h4 style="font-size:13px;">Gross Earnings<br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
+                                            <h4 style="font-size:13px;">TLC<sup>*</sup><br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
+                                            <h4 style="font-size:13px;">Market Cess<br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
 
-                                            <h4 style="font-size:15px;">EPC<sup>#</sup><br/>(Rs)</h4></th>
+                                            <h4 style="font-size:13px;">EPC<sup>#</sup><br/>(Rs)</h4></th>
 
-                                        <th style="text-align:left; color:white">
+                                        <th style="text-align:center; color:white">
 
-                                            <h4 style="font-size:15px;">PMVA<br/>(Rs)<sup>^</sup></h4></th>
+                                            <h4 style="font-size:13px;">PMVA<sup>^</sup><br/>(Rs)</h4></th>
 
-                                        <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">Deductions<br/>(Rs)</h4></th>
-                                        <th style="text-align:left; color:white">
-                                            <h4 style="font-size:15px;">My Net Earnings<br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
+                                            <h4 style="font-size:13px;">Deductions<br/>(Rs)</h4></th>
+                                        <th style="text-align:center; color:white">
+                                            <h4 style="font-size:13px;">My Net Earnings<br/>(Rs)</h4></th>
                                         <th></th>
                                       
                                     </tr>
@@ -343,6 +326,9 @@ $(document).ready(function() {
 		HttpSession farmerhistory=request.getSession(false);
 		List al=(List)farmerhistory.getAttribute("farmerhistory");
 		//request.setAttribute("theList", al);
+		if(al.size()==0){
+			%> <%
+		}else{
 		for(Object o:al)
 		{
 			FarmerHistoryBean fhb=(FarmerHistoryBean)o;
@@ -383,24 +369,24 @@ $(document).ready(function() {
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=fhb.getQuantitybidfor()%></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=fhb.getAverageprice()%></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=fhb.getAverageprice()%></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=fhb.getFinalprice() %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=fhb.getFinalprice() %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=transport %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=transport %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=MUCharge1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=MUCharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=EPUCharge1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=EPUCharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=PACharge1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=PACharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080"><b><%=deduction1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=deduction1 %></b></h4></td>
                                                 <td class="clspadr0">
-                                                    <h4  style="color:#000080"><b><%= myEarn1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%= myEarn1 %></b></h4></td>
                                                 <td></td>
                                     </tr>
-                                    <%} %>
+                                    <%}} %>
                                 </tbody>
                             </table>
 
@@ -411,7 +397,7 @@ $(document).ready(function() {
                 </div>
                 <!---table2 end-->
                 <%}} %>
-                <div id="div1" >Please choose the dates above to get your trade history</div>
+               
                     <footer>
                         <div id="grad1"></div>
 
