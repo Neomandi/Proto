@@ -309,6 +309,7 @@ catch(NullPointerException e)
 	//console.log("differences in hours is "+hours);
 		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
+		var i=0;
 		countdown(minutes,seconds,hours);	
 		var five=300000;
 		timedif=diff+five;
@@ -380,30 +381,35 @@ catch(NullPointerException e)
 					        			   }
 					        		       else
 					        		       {
-					        		           	var str1="has ended";
-					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
-								            	var waitseconds = seconds;
-								            	var timeOutPeriod = waitseconds * 1000;
-								            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);								            	
-								            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
-								            	var waitseconds = seconds;
-								            	var timeOutPeriod = waitseconds * 1000;
-								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
-								            	document.getElementById("auction1").innerHTML=str1;
-								            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
-								            	console.log("AUCTION IS OVER");
-								            	xmlhttp = new XMLHttpRequest();
-								      		  	xmlhttp.onreadystatechange = function() {
-								      		    if (this.readyState == 4 && this.status == 200) 
-								      		    {}};
-								      		    //console.log("your auction has ended");
-								      		  xmlhttp.open("POST", "Slotchange.do", true);
-								      		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-											  xmlhttp.send("number=1");
-											  //document.getElementById('increment').removeAttribute("onclick");
-											 // document.getElementById('increment1').removeAttribute("onclick");
-											 // document.getElementById('POSTAUCTION').innerhtml='end';
-											  document.getElementById('POSTAUCTION').value='end';
+					        		    	   if(i==0)
+					        		    	   {
+						        		           	var str1="has ended";
+						        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
+									            	var waitseconds = seconds;
+									            	var timeOutPeriod = waitseconds * 1000;
+									            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);								            	
+									            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
+									            	var waitseconds = seconds;
+									            	var timeOutPeriod = waitseconds * 1000;
+									            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
+									            	document.getElementById("auction1").innerHTML=str1;
+									            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
+									            	console.log("AUCTION IS OVER");
+									            	xmlhttp = new XMLHttpRequest();
+									      		  	xmlhttp.onreadystatechange = function() {
+									      		    if (this.readyState == 4 && this.status == 200) 
+									      		    {}};
+									      		    //console.log("your auction has ended");
+										      		xmlhttp.open("POST", "Slotchange.do", true);
+										      		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+													xmlhttp.send("number=1");
+													 //document.getElementById('increment').removeAttribute("onclick");
+													 // document.getElementById('increment1').removeAttribute("onclick");
+													 // document.getElementById('POSTAUCTION').innerhtml='end';
+													document.getElementById('POSTAUCTION').value='end';
+													i++;
+												}
+					        		    	    else{}
 								      	   }
 				        		    	}
 			        		     	}
