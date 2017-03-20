@@ -227,6 +227,7 @@ public class ControllerServlet extends HttpServlet {
 			String pass=request.getParameter("pwd");
 			Model m = new Model();
 			String msg = m.farmerLogin(name,pass);
+			System.out.println("mag is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
 				HttpSession fss = request.getSession(false);

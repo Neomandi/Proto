@@ -194,8 +194,9 @@ function fun2()
 {
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
-  	%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
-  	<%
+  		%>
+  		<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
+  		<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
   	{
