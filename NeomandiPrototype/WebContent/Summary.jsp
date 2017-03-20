@@ -236,12 +236,14 @@ function fun2()
 <script src="js/moment.js" type="text/javascript"></script>
 <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script type="text/javascript">$(function () {
-$('#idfrom').datetimepicker({
+$('#idfrom').datetimepicker(
+		{
                  format: 'DD/MM/YYYY'
-           });
-$('#idto').datetimepicker({
+        });
+$('#idto').datetimepicker(
+		{
                  format: 'DD/MM/YYYY'
-           });
+        });
 });
         </script>
         <script src="libs/jspdf.min.js"></script>					
