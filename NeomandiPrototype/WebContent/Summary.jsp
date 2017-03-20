@@ -32,11 +32,14 @@
 			color:darkblue;	 
 			font-size:18px;
 } 
-.whiteclsbc{
-background-color:#ffffff;
-width:5%;
-border-top:1px solid #fff !important;
+
+.whiteclsbc
+{
+	background-color:#ffffff;
+	width:5%;
+	border-top:1px solid #fff !important;
 }
+
 tbody:before {
     content: "-";
     display: block;
@@ -122,16 +125,16 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	  %>
 <div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
 <table class="table sum1table" id="basic-table">
-<thead class="none"><tr>
+<thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Assigned Lot size</h4></td>
-	  <td><h4>Lot Cost</h4></td>
-	  <td><h4>Commission Charges</h4></td>
-	  <td><h4>Transportation Charges</h4></td>
-	  <td><h4>Market Cess</h4></td>
-	  <td><h4>My Final cost</h4></td>
-	  <td><h4>Date</h4></td>
+	  <td><h5>Lot Number</h5></td>
+	  <td><h5>Assigned Lot size(kg)</h5></td>
+	  <td><h5>Lot Cost(Rs)</h5></td>
+	  <td><h5>Commission Charges(Rs)</h5></td>
+	  <td><h5>Transportation Charges(Rs)</h5></td>
+	  <td><h5>Market Cess(Rs)</h5></td>
+	  <td><h5>My Final cost(Rs)</h5></td>
+	  <td><h5>Date</h5></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10" id="tb1">
@@ -142,7 +145,8 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%=tsb.getCreated() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%String date=tsb.getCreated();
+	  String str[]=date.split("-");String res=str[2]+"-"+str[1]+"-"+str[0]; out.println(res);%></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
 	  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
@@ -152,65 +156,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 </tr>
 	   </tbody>
 	  </table>
-</div><!-- 
-<div class="container-fluid sum1"  style="display:none">
-	  <div class="container1 tabin tsum">
-	  <div class="row tfrom">
-	  <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-	  <div class="sum1tab table-responsive">
-	  <table class="table sum1table">
-	  <thead class="none"><tr>
-<%/*
-if(request.getAttribute("tradesummary")!=null)
-{
-if(request.getAttribute("tradesummary").equals("no"))
-{
-  %><b>You have not performed any trade operations today</b>
-  <%} else if(request.getAttribute("tradesummary").equals("success"))
-  {%>
-	  <td><h4>Lot </h4></td>
-	  <td><h4>Assigned Lot size</h4></td>
-	  <td><h4>Lot Cost</h4></td>
-	  <td><h4>Commission Charges</h4></td>
-	  <td><h4>Transportation Charges</h4></td>
-	  <td><h4>Market Cess</h4></td>
-	  <td><h4>My Final cost</h4></td>
-	  </tr></thead>
-	  <tbody>
-	  <tr class="gradeX"><% 
-		HttpSession todaysummary=request.getSession(false);
-		List al=(List)todaysummary.getAttribute("todaysummary");
-		//request.setAttribute("theList", al);
-		for(Object o:al)
-		{
-			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
-      <br><br></tr><%}%></tbody>
-	  </table>
 </div>
-<%}}*/%></tr>
-	   </tbody>
-	  </table>
-</div></div>
-<div class="col-lg-3 col-md-5 col-sm-5 col-xs-12 from">
-<table class="table" align="center">
-<tr>
-   <td></td>
-   <td></td>
-<td><a id="summary"  href="#" class="reg">Get Summary</a></td>
-</tr>
-</table>
-<table class="table" align="center">
-<tr>
-   <td></td>
-   <td></td>
-<td></td>
-<td><a id="todaypdf"  href="#" class="reg">Export as PDF</a></td>
-</tr>
-</table>
-</div>
-</div>
-	  </div>-->
 	  </div>
 	<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
 	<div class="container-fluid tfrom">
@@ -257,16 +203,16 @@ function fun2()
   	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"></div>
 	<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
 	<table id="basic-table1"  class="table sum1table ">
-	<thead class="none"><tr>
+	<thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Assigned Lot size</h4></td>
-	  <td><h4>Lot Cost</h4></td>
-	  <td><h4>Commission Charges</h4></td>
-	  <td><h4>Transportation Charges</h4></td>
-	  <td><h4>Market Cess</h4></td>
-	  <td><h4>My Final cost</h4></td>
-	  <td><h4>Date</h4></td>
+	  <td><h5>Lot Number</h5></td>
+	  <td><h5>Assigned Lot size(Rs)</h5></td>
+	  <td><h5>Lot Cost(Rs)</h5></td>
+	  <td><h5>Commission Charges(Rs)</h5></td>
+	  <td><h5>Transportation Charges(Rs)</h5></td>
+	  <td><h5>Market Cess(Rs)</h5></td>
+	  <td><h5>My Final cost(Rs)</h5></td>
+	  <td><h5>Date</h5></td>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
@@ -279,7 +225,7 @@ function fun2()
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCreated() %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
+	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%String date=tsb.getCreated(); String str[]=date.split("-");String res=str[2]+"-"+str[1]+"-"+str[0]; out.println(res); %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table><br><br>
 </div><center><button onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></center>
