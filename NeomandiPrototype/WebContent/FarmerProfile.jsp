@@ -105,7 +105,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 det">
-                <h4>My Details</h4>
+                <h4 style="color:black;">My Details</h4>
                 <div class="detail">
                 
 <%	 	
@@ -254,7 +254,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 aut">
-                <h4>My Account Details</h4>
+                <h4 style="color:black;">My Account Details</h4>
                 <div class="bankacc">
                     <form>
                         <table class="table" id="tbl2">
