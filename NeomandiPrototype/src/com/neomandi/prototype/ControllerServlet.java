@@ -1620,6 +1620,7 @@ public class ControllerServlet extends HttpServlet {
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
+			if(!mfcb.getMsg().equals("block")){
 			try 
 			{
 					PrintWriter out = null;
@@ -1641,6 +1642,22 @@ public class ControllerServlet extends HttpServlet {
 			{
 				e.printStackTrace();
 			}					
+			}
+			else
+			{
+				PrintWriter out = null;
+				try {
+					//System.out.println(mfcb);
+					out = response.getWriter();
+					out.println("block");
+				    out.flush();
+				    out.close();
+				 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		//Increment
