@@ -276,7 +276,6 @@ catch(Exception e)
 		update();
     </script>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-
 <h4 style="background: #bdd102;color:black;">My Account Details</h4>
 <div class="detail">
 <form>
