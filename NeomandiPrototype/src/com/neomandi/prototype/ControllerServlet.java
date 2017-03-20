@@ -772,19 +772,19 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				
-//				rd=request.getRequestDispatcher("ProductEntry.jsp");
-//				try 
-//				{
-//					rd.forward(request, response);	
-//					return;
-//				}			
-//				catch (ServletException e) {
-//					
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					
-//					e.printStackTrace();
-//				}
+				/*rd=request.getRequestDispatcher("ProductEntry.jsp");
+				try 
+				{
+					rd.forward(request, response);	
+					return;
+				}			
+				catch (ServletException e) {
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}*/
 			}
 			else
 			{
@@ -800,20 +800,20 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				
-//				request.setAttribute("errmsg", msg);
-//			    rd=request.getRequestDispatcher("EmployeeLogin.jsp");
-//				try 
-//				{
-//					rd.forward(request, response);
-//					return;
-//				}			
-//				catch (ServletException e) {
-//					
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					
-//					e.printStackTrace();
-//				}
+				/*request.setAttribute("errmsg", msg);
+			    rd=request.getRequestDispatcher("EmployeeLogin.jsp");
+				try 
+				{
+					rd.forward(request, response);
+					return;
+				}			
+				catch (ServletException e) {
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}*/
 			}
 		}
 		
@@ -1982,6 +1982,7 @@ public class ControllerServlet extends HttpServlet {
 				rde=request.getRequestDispatcher("Login.html");
 				try {
 					rde.forward(request, response);
+					return;
 				} catch (ServletException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
