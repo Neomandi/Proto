@@ -105,7 +105,11 @@ catch(Exception e)
 	  <br><br>
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4 style="background: #bdd102;">My Details</h4>
+<<<<<<< HEAD
+<h4 style="background: #bdd102;color:black;">My Details</h4>
+=======
+<h4 style="background: #bdd102; color: black;">My Details</h4>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="detail">
 <%
 					Connection con = null;
@@ -276,7 +280,11 @@ catch(Exception e)
 		update();
     </script>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4 style="background: #bdd102;">My Account Details</h4>
+<<<<<<< HEAD
+<h4 style="background: #bdd102;color:black;">My Account Details</h4>
+=======
+<h4 style="background: #bdd102; color: black;">My Account Details</h4>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="detail">
 <form>
     <table class="table"> 

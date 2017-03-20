@@ -1395,7 +1395,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			while(rs.next())
 			{
 				aadharnumber=rs.getString("aadharnumber");
-			//	System.out.println("aadharnumber of "+name+" is "+aadharnumber);
+				System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 			}		
 			String lotnum=null;
 			ps =con.prepareStatement("SELECT lotnum FROM tradelist where aadharnumber=?");
@@ -1428,12 +1428,12 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			int bidprice=0;
 			
 			
-			//System.out.println("lotnum which trader is bidding for is "+lotnum);
+			System.out.println("lotnum which trader is bidding for is "+lotnum);
 			ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 			ps.setString(1, aadharnumber);
 			ps.setString(2, lotnum);
 			ps.execute();
-			//System.out.println(ps);
+			System.out.println(ps);
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
