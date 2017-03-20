@@ -188,18 +188,18 @@ if((String)hs.getAttribute("name")==null){
 	  <tbody>
 	  <tr class="gradeX">
 	  	<td></td>
-	  	<td class="clspad0"><h4 style="color:#000080"><%=lotnumber %></h4></td>
-	  	<td><h4  style="color:#000080"><%=lotsize%></h4></td>
-	  	<td><h4  style="color:#000080"><%=quantitysold %></h4></td>
-	  	<td><h4  style="color:#000080"><%= aprice%>0</h4></td>
-	  	<td><h4  style="color:#000080"><%=fprice %></h4></td>
-	  	<td><h4  style="color:#000080">500</h4></td>
-	  	<td style=" width:20px;"><h4  style="color:#000080"><%=MUCharge%>0</h4></td>
-	  	<td><h4  style="color:#000080">100.00</h4></td>
-	  	<td><h4  style="color:#000080">100.00</h4></td>
-	  	<td><h4  style="color:#000080"><%=deduction%>0</h4></td>
-	  	<td  class="clspadr0"><h4 style="color:#000080"><%=myEarn %>0</h4></td>
-	  	<td width="25%"><h4 style="color:#000080"><%=status%></h4></td>
+	  	<td class="clspad0"><h4 style="color:#000080; font-weight:bold;"><%=lotnumber %></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;"><%=lotsize%></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;"><%=quantitysold %></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;"><%= aprice%></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;"><%=fprice %></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;">500</h4></td>
+	  	<td style=" width:20px;"><h4  style="color:#000080; font-weight:bold;"><%=MUCharge%></h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;">100.00</h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;">100.00</h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;"><%=deduction%></h4></td>
+	  	<td  class="clspadr0"><h4 style="color:#000080; font-weight:bold;"><%=myEarn %></h4></td>
+	  	<td width="25%"><h4 style="color:#000080; font-weight:bold;"><%=status%></h4></td>
 	  	<td></td></tr>
 	  
 	  </tbody>

@@ -140,7 +140,11 @@ else
 		  String acc=tbb.getAccountnumber();
 		  String bank=tbb.getDbbankname();*/
 %>
+<<<<<<< HEAD
 <h4 style="background: #bdd102;color:black;">My Account Details</h4>
+=======
+<h4 style="background: #bdd102; color: black;">My Account Details</h4>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="detail">
 <form>
     <table class="table">
@@ -179,7 +183,11 @@ else
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hold">
+<<<<<<< HEAD
 <h4 style="background: #bdd102;color:black;">Hold Funds</h4>
+=======
+<h4 style="background: #bdd102; color: black;">Hold Funds</h4>
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="bankacc">
 <br><br>
 <form>

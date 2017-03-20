@@ -136,7 +136,7 @@ catch(Exception e)
 					<th  rowspan="<%=size%>" style="text-align:center;">Lot Number</th>
 					<th ></th>
 					<th colspan="2"></th>
-					<th  style="text-align:center;">Name</th>
+					<th  style="text-align:center;">Trader Name</th>
 					<th  colspan="2" style="text-align:center;">Quantity(kg)</th>
 					<th   ></th>
 			   		<th   ></th>

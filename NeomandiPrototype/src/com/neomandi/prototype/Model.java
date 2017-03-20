@@ -461,14 +461,14 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					
 				}
 				else{
-					averageprice="--";
+					averageprice="0";
 				}
 				if(quantitybidfor!=null){
 					quantitybidfor=quantitybidfor;
 					
 				}
 				else{
-					quantitybidfor="--";
+					quantitybidfor="0";
 				}
 				l.add(lotnumber);
 				l.add(averageprice);
