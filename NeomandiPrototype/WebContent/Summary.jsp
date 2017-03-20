@@ -165,13 +165,13 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	<div align="center">
 	<form action = "tradeSummary.do" method = "post" id="myForm">	
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
-                    <input type='text' class="form-control" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
+                    <input type='text' class="form-control" value="${param. from}" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div></div>                
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
-                    <input type='text' class="form-control" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
+                    <input type='text' class="form-control" value="${param. to}" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
