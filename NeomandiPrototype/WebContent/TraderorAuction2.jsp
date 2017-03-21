@@ -1408,6 +1408,10 @@ catch(NullPointerException e)
 	 		  int j=0;
 	  		  HttpSession remove=request.getSession(false);
 			  List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
+			  if(l.size()==0){System.out.println("hey");%><br>
+				<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
+		<br>
+		<%	}
 		  	  for(Object m:l)		
 		   	  {
 		   		TradeListBean tlbr=(TradeListBean)m;

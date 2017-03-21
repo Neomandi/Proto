@@ -264,14 +264,8 @@ if((String)hs.getAttribute("name")==null){
 	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=deduction%></b></h4></td>
 	  	<td  class="clspadr0"><h4 style="color:#000080"><b><%=myEarn %></b></h4></td>
 	  	
-	  	<td></td></tr>
-	  
-
-
-		
-		                        <%
-					}
-		
+	  	<td></td></tr><%
+					}	
 		}
 		else
 		{

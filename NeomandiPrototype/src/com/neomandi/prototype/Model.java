@@ -1448,6 +1448,24 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						myfinalcost=100+lotcost+commission+marketcess+3000;
 				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
 			}
+			int block=0;
+			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
+			ps.setString(1, aadharnumber);
+			ps.execute();
+			System.out.println(ps);
+			rs = ps.getResultSet();
+			while(rs.next())
+			{
+				block=Integer.parseInt(rs.getString("blockamount"));
+			}
+			if(myfinalcost>block)
+			{
+				mfcb=new MyFinalCostBean();				
+				mfcb.setMsg("block");
+				return mfcb;
+			}
+			else
+			{
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
 				ps.setString(2,String.valueOf(commission));
@@ -1500,7 +1518,8 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 
 					
 				}//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
-		}						
+		}		
+		}
 		con.commit();		
 		return mfcb;
 	}

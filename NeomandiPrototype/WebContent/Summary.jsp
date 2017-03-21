@@ -154,7 +154,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	  </table>
 	  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle;align:center;"><!--  <a id="summary" href="#" class="greenarrowcls" style="margin-left:10px">Get Summary</a>-->
-&nbsp; &nbsp; &nbsp;<br><center><button class="btn btn-primary" id="summary" onclick="update(true)" style="border-color:#3C4DA0;background-color:#3C4DA0;">Export as PDF</button></center></td><%}}%>
+&nbsp; &nbsp; &nbsp;<!-- <br><center><button class="btn btn-primary" id="summary" onclick="update(true)" style="border-color:#3C4DA0;background-color:#3C4DA0;">Export as PDF</button></center>--></td><%}}%> 
 </div><br>
 </tr>
 	   </tbody>
@@ -168,13 +168,13 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 	<div align="center">
 	<form action = "tradeSummary.do" method = "post" id="myForm">	
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
-                    <input type='text' class="form-control" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
+                    <input type='text' class="form-control" value="${param. from}" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div></div>                
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
-                    <input type='text' class="form-control" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
+                    <input type='text' class="form-control" value="${param. to}" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
@@ -197,8 +197,9 @@ function fun2()
 {
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
-  	%><center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
-  	<%
+  		%>
+  		<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
+  		<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
   	{
@@ -238,12 +239,14 @@ function fun2()
 <script src="js/moment.js" type="text/javascript"></script>
 <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script type="text/javascript">$(function () {
-$('#idfrom').datetimepicker({
+$('#idfrom').datetimepicker(
+		{
                  format: 'DD/MM/YYYY'
-           });
-$('#idto').datetimepicker({
+        });
+$('#idto').datetimepicker(
+		{
                  format: 'DD/MM/YYYY'
-           });
+        });
 });
         </script>
         <script src="libs/jspdf.min.js"></script>					

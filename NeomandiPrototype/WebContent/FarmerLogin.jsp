@@ -118,7 +118,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
                         		if(this.readyState==4 && this.status==200)
                         		{
                         			 var string=xmlhttp.responseText;
-                        			 //console.log("string is "+string);
+                        			 console.log("string is "+string);
                         		    	if(string.includes("SUCCESS"))
                         		    	{
                         		    		window.location="FarmerMaster.jsp";
