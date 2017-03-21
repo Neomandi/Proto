@@ -68,7 +68,19 @@
   
     background:#000080;
     }
+    .glyphicon{
     
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    }
   
 #div{
     		padding:30px;
@@ -109,6 +121,7 @@ font-size: 13px;
 margin: 3px auto;
 padding:5px; 
 }
+
 .datepicker{
 background-color:white;
 }

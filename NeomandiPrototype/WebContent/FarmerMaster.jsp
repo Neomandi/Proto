@@ -492,7 +492,9 @@ catch(Exception e)
 					
 				
 			}
+			
 			//-----------------------for slot3--------------------------------------------------------------------
+			if(slot==s3)
 			var Etime=document.getElementById("time").value;
 				var Btime=stime;
 				var Btime1=etime;
