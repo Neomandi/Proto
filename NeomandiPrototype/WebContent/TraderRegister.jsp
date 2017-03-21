@@ -556,7 +556,7 @@ if(!(license.length >1) && (license.length < 10)){
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " >
 <div id="h1">
-<h4 >My Details</h4>
+<h4 style="background: #bdd102;color:black;">My Details</h4>
 <div class="detail" id="d1">
 <form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform" autocomplete="off"  >
     <table class="table">
@@ -630,7 +630,7 @@ if(!(license.length >1) && (license.length < 10)){
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" >
 
 <div id="h2">
-<h4 >My Bank Account Details</h4>
+<h4 style="background: #bdd102;color:black;">My Bank Account Details</h4>
 <div class="bankacc" id="d2">
 
     <table class="table">
@@ -701,7 +701,7 @@ if(!(license.length >1) && (license.length < 10)){
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" >
 <div id="h3">
-<h4 >My License Details</h4>
+<h4 style="background:#149DDA;">My License Details</h4>
 <div class="detail1" id="d3">
 
     <table class="table">
@@ -772,7 +772,7 @@ if(!(license.length >1) && (license.length < 10)){
 <table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
 <div id="h4">
 <div class="pass1"  >
-<h4 >My Password</h4>
+<h4 style="background:#149DDA;">My Password</h4>
 <div class="password" >
    <table class="table">
 	 <tr><td><label for="pwd">Enter a Password</label></td></tr>

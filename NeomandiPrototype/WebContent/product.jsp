@@ -101,6 +101,9 @@
     			/*background-position:98% 5%;*/
     			background-position:98% 50%;
     		}
+    		#tb h4{
+    			color: darkblue;
+    		}
         </style>
         <script>
         function populate(s1, s2)
@@ -315,7 +318,7 @@
 			%>
                 <div class="container tabin">
                     <div class="pstable">
-                        <table class="table pstab">
+                        <table class="table pstab" id="tb">
                             <thead>
                                 <tr align="center">
                                     <td>

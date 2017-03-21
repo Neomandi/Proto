@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
                     <div id="h1">
-                        <h4>My Details</h4>
+                        <h4 style="background: #bdd102;color:black;">My Details</h4>
                         <div class="detail">
                            
                                 <table class="table">
@@ -209,7 +209,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
                     <div id="h2">
-                        <h4>My Bank Account Details</h4>
+                        <h4 style="background: #bdd102;color:black;">My Bank Account Details</h4>
                         <div class="bankacc">
 
                                 <table class="table">
@@ -334,7 +334,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass" id="class">
                     <div id="h3">
-                        <h4>My Password</h4>
+                        <h4 style="background:#149DDA;">My Password</h4>
                         <div class="password">
                            
                                 <table class="table">

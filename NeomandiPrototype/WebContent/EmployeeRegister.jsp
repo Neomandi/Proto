@@ -175,7 +175,7 @@ function validateEForm()
 <form name = "EregForm1" method = "post" action = "" autocomplete="off">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <div id="d1">
-<h4 id="h1">My Details</h4>
+<h4 id="h1" style="background: #bdd102;color:black;">My Details</h4>
 <div class="detail">
     <table class="table">
       <tr><td><label for="name">Name</label></td></tr>
@@ -189,7 +189,7 @@ function validateEForm()
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <div id="d2">
-<h4 id="h2">My Password</h4>
+<h4 id="h2" style="background:#149DDA;">My Password</h4>
 <div class="password" id="d2">
     <table class="table">
 	 
