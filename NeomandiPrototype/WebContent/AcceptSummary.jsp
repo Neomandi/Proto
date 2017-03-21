@@ -65,7 +65,7 @@ footer {
 }
 .auct .table thead td h4, .lots .table thead td h4, .sum1 .table thead td h4, .sum2 .table thead td h4 {
    color: #fff;
-font-size: 14px;
+font-size: 13px;
 margin: 3px auto;
 padding:5px; 
 }
@@ -174,7 +174,7 @@ if((String)hs.getAttribute("name")==null){
 	  <td><h4>Lot Number</h4></td>
 	  <td><h4>Lot Size<br/>(kg)</h4></td>
 	  <td><h4>Quantity sold<br/>(kg)</h4></td>
-	  <td><h4>Avg Price<br/>(Rs)</h4></td>
+	  <td><h4>Avg. Price<br/>(Rs)</h4></td>
 	  <td><h4 >Gross Earnings<br/>(Rs)</h4></td>
 	  <td><h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
 	<td><h4>Market Cess<br/>(Rs)</h4></td>
