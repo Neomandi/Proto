@@ -11,11 +11,6 @@
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
-$(function(){
-  $("#header").load("Header.html"); 
-  $("#footer").load("Footer.html");
- 
-});
 function populate1(s1, s2)
 {
 	var s1 = document.getElementById(s1);
@@ -525,7 +520,7 @@ if(!(license.length >1) && (license.length < 10)){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="img-responsive"></a>
+      <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive" style="width: 65px; height: 60px;"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
