@@ -206,7 +206,7 @@ function fun2()
   	%>
   	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"></div>
 	<div class="container-fluid sum1 tabin sum1tab  " style="padding-left:0px;padding-right:0px">
-	<table id="basic-table1"  class="table sum1table ">
+	<table id="basic-table"  class="table sum1table ">
 	<thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
 	  <td><h5>Lot Number</h5></td>
@@ -232,7 +232,7 @@ function fun2()
 	  <td class="whiteclsbc"></td><td><h4 style="text-align:center;"><%=tsb.getLotnum() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getVolumesold() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getLotcost() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getCommission() %></h4></td><td><h4 style="text-align:center;">3000</h4></td><td><h4 style="text-align:center;"><%=tsb.getMarketcess() %></h4></td><td><h4 style="text-align:center;"><%=tsb.getMyfinalcost() %></h4></td><td><h4 style="text-align:center;"><%String date=tsb.getCreated(); String str[]=date.split("-");String res=str[2]+"-"+str[1]+"-"+str[0]; out.println(res); %></h4></td><td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table><br><br>
-</div><center><button onclick="fun2()" id="pdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></center>
+</div><center><button  id="todaypdf" style="border-color:#3C4DA0; background-color:#3C4DA0;" class="btn btn-primary">Export as PDF</button></center>
 <%}}%>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
@@ -256,9 +256,9 @@ $('#idto').datetimepicker(
 					    document.getElementById('todaypdf').onclick = function () {
 					        update(true);
 					    };
-					    document.getElementById('pdf').onclick = function () {
+					    /* document.getElementById('pdf').onclick = function () {
 					        update1(true);
-					    };
+					    }; */
 					    function update(shouldDownload) {
 					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
 					        var doc = examples['html']();
@@ -275,22 +275,7 @@ $('#idto').datetimepicker(
 					        }
 					    }
 					    update();
-					    function update1(shouldDownload) {
-					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
-					        var doc = examples1['html']();
-					
-					        /*doc.setProperties({
-					            title: 'Example: ' + funcStr,
-					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
-					        });*/
-					
-					        if (shouldDownload) {
-					            doc.save('TraderSummary.pdf');
-					        } else {
-					            document.getElementById("output").src = doc.output('datauristring');
-					        }
-					    }
-					    update1();
+					   
 					</script>
 </body>
 </html>
