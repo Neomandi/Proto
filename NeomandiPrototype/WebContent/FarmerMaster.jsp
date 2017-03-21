@@ -359,21 +359,18 @@ catch(Exception e)
 %>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-<% InetAddress addr = InetAddress.getLocalHost();
-	String ip=addr.getHostAddress();
-%> 
+ 
 <form>
 <input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
 	<input type="hidden" value="<%=endtime%>" id="etime" />
-	<input type="hidden" value="<%=s1%>" id="slot" />
+	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
-	<input type="hidden" value="<%=ip %>" id="IP"/>
+	
 </form>
 <script type="text/javascript">
 
-			var IP=document.getElementById("IP").value;
-			console.log("ip="+IP);
+			
 
 			var Etime=document.getElementById("time").value;
 			var stime=document.getElementById("stime").value;
@@ -495,7 +492,9 @@ catch(Exception e)
 					
 				
 			}
+			
 			//-----------------------for slot3--------------------------------------------------------------------
+			if(slot==s3)
 			var Etime=document.getElementById("time").value;
 				var Btime=stime;
 				var Btime1=etime;

@@ -276,7 +276,7 @@ if((String)hs.getAttribute("name")==null){
 		else
 		{
 			 System.out.println("Inside else....");
-			 out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
+			 out.println("<div id='div' style='position: absolute; top: 10px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
 		}
 	}
 }
