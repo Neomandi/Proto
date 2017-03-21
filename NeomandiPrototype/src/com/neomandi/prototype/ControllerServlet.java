@@ -1619,8 +1619,9 @@ public class ControllerServlet extends HttpServlet {
 			Model m=new Model();
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
+			System.out.println("inside cs mfcb.getmsg()"+mfcb.getMsg());
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			if((mfcb.getMsg()!=null)&&(!(mfcb.getMsg().equals("block"))))
+			if((mfcb.getMsg()==null))
 			{
 				try 
 				{
@@ -1644,7 +1645,7 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}					
 			}
-			else
+			else if(mfcb.getMsg().equals("block"))
 			{
 				PrintWriter out = null;
 				try {

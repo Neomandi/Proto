@@ -1458,14 +1458,20 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			{
 				block=Integer.parseInt(rs.getString("blockamount"));
 			}
+			System.out.println("block is "+block+" final cost is "+myfinalcost);
+			System.out.println("quantityassigned "+quantityassigned);
+			System.out.println(myfinalcost>block);
 			if(myfinalcost>block)
 			{
+				System.out.println("inside if");
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
+				System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 				return mfcb;
 			}
 			else
 			{
+				System.out.println("inside else");
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
 				ps.setString(2,String.valueOf(commission));
