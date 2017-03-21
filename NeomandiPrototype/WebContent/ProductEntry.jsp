@@ -283,7 +283,7 @@
                 <br>
                 <br>
                 <div class="col-lg-offset-0 col-lg-4 col-md-offset-0 col-md-4 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 det">
-                    <h4 style="background: #bdd102;color:black; ">Produce Details</h4>
+                    <h4 style="background: #bdd102;color:black;">Produce Details</h4>
                     <div class="detail">
                             <table class="table">
                                 <tr>
@@ -376,7 +376,7 @@
                     <br>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 release">
-                    <h4 style="background:#149DDA; ">My Password</h4>
+                    <h4 style="background:#149DDA;">My Password</h4>
                     <div class="password">
                             <table class="table">
 
