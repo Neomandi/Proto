@@ -1561,6 +1561,20 @@ public class ControllerServlet extends HttpServlet {
 			/*first code*/
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
+			if(mc.getBl().size()==0)
+			{
+				request.setAttribute("msg","block");
+				RequestDispatcher rd2 =request.getRequestDispatcher("TraderorAuction2.jsp");
+				try 
+				{									
+						rd2.forward(request, response);					
+				}
+				catch (ServletException | IOException| NullPointerException e) 
+				{
+					e.printStackTrace();
+				}	
+			}
+			else{
 			HttpSession traderlistbean=request.getSession();
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
@@ -1584,6 +1598,7 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 			
+		}
 		}
 		
 		if(uri.contains("refresh"))

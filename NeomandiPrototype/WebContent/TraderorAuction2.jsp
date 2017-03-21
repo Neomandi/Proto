@@ -981,6 +981,7 @@ catch(NullPointerException e)
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
 		    	 var string=xmlhttp.responseText;
+		    	 console.log("***strng is "+string);
 		    	 if(string.includes("block"))
 		    	 {
 		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
