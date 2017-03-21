@@ -1317,19 +1317,19 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 					ps.setString(1, aadharnumber);
 					ps.execute();
-					System.out.println(ps);
+					//System.out.println(ps);
 					rs = ps.getResultSet();
 					while(rs.next())
 					{
 						block=Integer.parseInt(rs.getString("blockamount"));
 					}
-					System.out.println(myfinalcost>block);
+				//	System.out.println(myfinalcost>block);
 					if(myfinalcost>block)
 					{
-						System.out.println("inside if");
+					//	System.out.println("inside if");
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
-						System.out.println("mfcb.getMsg()"+mfcb.getMsg());
+					//	System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 						return mc;
 					}
 					else
