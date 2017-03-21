@@ -71,6 +71,9 @@ border-top:2px solid #fff !important;
 	color: darkblue;
 	font-weight: bold;
 }
+.datepicker{
+background-color:white;
+}
 </style>
 </head>
 <body class="" >

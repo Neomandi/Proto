@@ -125,7 +125,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
                         		    	}
                         		    	else 
                         		    	{
-                        		    		if(string != null&&string.length!=0)
+                        		    		if(string != null && string.length!=0)
                         		    			alert(string);		
                         		    	}
                         		}		

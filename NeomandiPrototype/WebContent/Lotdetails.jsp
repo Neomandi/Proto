@@ -290,7 +290,7 @@ if((String)hs.getAttribute("name")==null){
 <input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
 	<input type="hidden" value="<%=endtime%>" id="etime" />
-	<input type="hidden" value="<%=s1%>" id="slot" />
+	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 </form>
 
@@ -535,7 +535,7 @@ function countdown(minutes,seconds,hours)
 {
 	document.getElementById('ts').onclick = function() {
 		  
-		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+		  location="http://neomandi.in/FarmerSummary.jsp";
 	  }
 	 	var seconds =seconds;
 	    var mins = minutes
@@ -557,7 +557,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
-		            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -607,7 +607,7 @@ function countdown(minutes,seconds,hours)
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
 		        		        else 
@@ -631,7 +631,7 @@ function countdown(minutes,seconds,hours)
 						            	
 						            	document.getElementById('ts').onclick = function() {
 			        		            console.log("inside the count function");
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		            location="http://neomandi.in/GetSummary.do";
 			        		            }
 						            	document.getElementById("auction1").innerHTML=str1;
 			        		       }
@@ -676,10 +676,10 @@ countdown(minutes,seconds,hours);
 	 document.getElementById("reject").disabled=false;
  }*/
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
  </script>
     <script>

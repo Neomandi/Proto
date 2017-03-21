@@ -1418,12 +1418,12 @@ public class ControllerServlet extends HttpServlet {
 		//		System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
 				request.setAttribute("msg","you dont have account in this bank...Please select other bank");
 				rd=request.getRequestDispatcher("HoldFunds.jsp");
-				try {
-					rd.forward(request, response);
+				/*try {
+				//	rd.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
 					e.printStackTrace();
-				}
+				}*/
 			}			
 		}
 		
@@ -1967,7 +1967,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//EmployeeLogout
-		if(uri.equals("/NeomandiPrototype/ELogout.do"))
+		if(uri.contains("ELogout"))
 		{
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;
