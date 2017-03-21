@@ -2349,7 +2349,7 @@ catch(NullPointerException e)
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
+	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
@@ -2465,7 +2465,7 @@ catch(NullPointerException e)
 	</td>
 	</tr>
 	</tbody>
-	</table><b><font size="2" id="msg" style="float: right; margin-left: 60px;">  Enter your bid here</font></b>
+	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<script>
