@@ -408,6 +408,8 @@ catch(NullPointerException e)
 													 // document.getElementById('increment1').removeAttribute("onclick");
 													 // document.getElementById('POSTAUCTION').innerhtml='end';
 													document.getElementById('POSTAUCTION').value='end';
+													
+													
 													xmlhttp = new XMLHttpRequest();
 									      		  	xmlhttp.onreadystatechange = function() {
 									      		    if (this.readyState == 4 && this.status == 200) 
