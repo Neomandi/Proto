@@ -1620,7 +1620,8 @@ public class ControllerServlet extends HttpServlet {
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			if(!(mfcb.getMsg().equals("block"))){
+			if((mfcb.getMsg()!=null)&&(!(mfcb.getMsg().equals("block"))))
+			{
 				try 
 				{
 						PrintWriter out = null;
