@@ -227,6 +227,7 @@ public class ControllerServlet extends HttpServlet {
 			String pass=request.getParameter("pwd");
 			Model m = new Model();
 			String msg = m.farmerLogin(name,pass);
+			System.out.println("mag is "+msg);
 			if(msg.equals("SUCCESS"))
 			{
 				HttpSession fss = request.getSession(false);
@@ -1417,12 +1418,12 @@ public class ControllerServlet extends HttpServlet {
 		//		System.out.println("msg sen to model is you dont have account in this bank...Please select other bank");
 				request.setAttribute("msg","you dont have account in this bank...Please select other bank");
 				rd=request.getRequestDispatcher("HoldFunds.jsp");
-				try {
-					rd.forward(request, response);
+				/*try {
+				//	rd.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
 					e.printStackTrace();
-				}
+				}*/
 			}			
 		}
 		
@@ -1560,6 +1561,20 @@ public class ControllerServlet extends HttpServlet {
 			/*first code*/
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
+			if(mc.getBl().size()==0)
+			{
+				request.setAttribute("msg","block");
+				RequestDispatcher rd2 =request.getRequestDispatcher("TraderorAuction2.jsp");
+				try 
+				{									
+						rd2.forward(request, response);					
+				}
+				catch (ServletException | IOException| NullPointerException e) 
+				{
+					e.printStackTrace();
+				}	
+			}
+			else{
 			HttpSession traderlistbean=request.getSession();
 			traderlistbean.setAttribute("tlb",mc.getAl());
 			HttpSession MyFinalCost=request.getSession(true);
@@ -1583,6 +1598,7 @@ public class ControllerServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 			
+		}
 		}
 		
 		if(uri.contains("refresh"))
@@ -1618,28 +1634,47 @@ public class ControllerServlet extends HttpServlet {
 			Model m=new Model();
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
+			System.out.println("inside cs mfcb.getmsg()"+mfcb.getMsg());
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			try 
+			if((mfcb.getMsg()==null))
 			{
-					PrintWriter out = null;
-					try {
-						//System.out.println(mfcb);
-						out = response.getWriter();
-						out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
-					    out.flush();
-					    out.close();
-					 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-				//	rd3.forward(request, response);
-					return;
+				try 
+				{
+						PrintWriter out = null;
+						try {
+							//System.out.println(mfcb);
+							out = response.getWriter();
+							out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+						    out.flush();
+						    out.close();
+						 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+					//	rd3.forward(request, response);
+						return;
+				}
+				catch ( Exception e) 
+				{
+					e.printStackTrace();
+				}					
 			}
-			catch ( Exception e) 
+			else if(mfcb.getMsg().equals("block"))
 			{
-				e.printStackTrace();
-			}					
+				PrintWriter out = null;
+				try {
+					//System.out.println(mfcb);
+					out = response.getWriter();
+					out.println("block");
+				    out.flush();
+				    out.close();
+				 //   System.out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		//Increment
@@ -1948,7 +1983,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		//EmployeeLogout
-		if(uri.equals("/NeomandiPrototype/ELogout.do"))
+		if(uri.contains("ELogout"))
 		{
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;

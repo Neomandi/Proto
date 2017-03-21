@@ -599,6 +599,13 @@ catch(NullPointerException e)
 					    if (this.readyState == 4 && this.status == 200) 
 					    {	
 					    	 var string=xmlhttp.responseText;
+					    	 if(string.includes("block"))
+					    	 {
+					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+					  	  	       window.location='TraderBlock.do';
+					    	}
+					    	else
+					    	{	
 					    	 var startlotnum=xmlhttp.responseText.indexOf('lotnum');
 					         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnum');
 					         startlotnum=startlotnum+6;
@@ -820,6 +827,7 @@ catch(NullPointerException e)
 						      //   console.log("asssigned="+assigned);
 						      //   console.log("trans= 3000");
 					         }
+					    	}
 					    }};
 					    xmlhttp.open("POST", "refresh.do", true);
 						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
@@ -973,6 +981,7 @@ catch(NullPointerException e)
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
 		    	 var string=xmlhttp.responseText;
+		    	 console.log("***strng is "+string);
 		    	 if(string.includes("block"))
 		    	 {
 		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
@@ -1408,6 +1417,10 @@ catch(NullPointerException e)
 	 		  int j=0;
 	  		  HttpSession remove=request.getSession(false);
 			  List<TradeListBean> l=(List<TradeListBean>)remove.getAttribute("list");
+			  if(l.size()==0){System.out.println("hey");%><br>
+				<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
+		<br>
+		<%	}
 		  	  for(Object m:l)		
 		   	  {
 		   		TradeListBean tlbr=(TradeListBean)m;

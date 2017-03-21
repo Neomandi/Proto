@@ -140,11 +140,7 @@ else
 		  String acc=tbb.getAccountnumber();
 		  String bank=tbb.getDbbankname();*/
 %>
-<<<<<<< HEAD
 <h4 style="background: #bdd102;color:black;">My Account Details</h4>
-=======
-<h4 style="background: #bdd102; color: black;">My Account Details</h4>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="detail">
 <form>
     <table class="table">
@@ -183,26 +179,24 @@ else
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hold">
-<<<<<<< HEAD
 <h4 style="background: #bdd102;color:black;">Hold Funds</h4>
-=======
-<h4 style="background: #bdd102; color: black;">Hold Funds</h4>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="bankacc">
 <br><br>
 <form>
     <table class="table" >      
 	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs)"></td></tr>
-	<tr><td><table align="center"><tr><td><a id="hld" onclick="holdfunds()"class="reg" >Hold</a></td></tr></table></td></tr>
+	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" >Hold</a></td></tr></table></td></tr>
     <script>
     document.getElementById("hold").addEventListener("keyup", function(event) {
-      	event.preventDefault();
-      	console.log("inside func");
-      	if (event.keyCode == 13) {
-      	  //  document.getElementById("release").click();
-      		hold1();
-      	}
-      	});
+      	//event.preventDefault();
+     // 	console.log("inside func");
+      	if (event.keyCode == 13) 
+      	{
+      		alert("");
+      		event.preventDefault();
+      	    document.getElementById("hld").click();
+      		//hold1();
+      	}});
       	function hold1()
 		{		  
       		 var balance=document.getElementById("balance").value;
@@ -294,28 +288,6 @@ else
    			 }
    		  }
 		  }		
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /*
     document.getElementById("hold").addEventListener("keyup", function(event) {
@@ -469,7 +441,8 @@ else
       document.getElementById("release").addEventListener("keyup", function(event) {
       	event.preventDefault();
       	console.log("inside func");
-      	if (event.keyCode == 13) {
+      	if (event.keyCode == 13) 
+      	{
       	  //  document.getElementById("release").click();
       		holdfundsrelease();
       	}
