@@ -72,7 +72,7 @@
             <div class="">
 				<%HttpSession hs=request.getSession(false);
 				if((String)hs.getAttribute("name")==null){
-					out.println("<script>window.alert('YOU HAVE NOT LOGGED IN,PLEASE LOGIN'); window.location='Login.html';</script>");
+					out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
 				}
 				String name=(String)hs.getAttribute("name"); %>
 				
