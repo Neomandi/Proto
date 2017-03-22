@@ -350,6 +350,10 @@ catch(NullPointerException e)
 							else
 							{
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
+				            	if(i==0){
+				            		location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            		i=9;
+				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
@@ -457,7 +461,7 @@ catch(NullPointerException e)
 				//	console.log("inside else)")
 		}
 		
-		countdown(minutes,seconds,hours);
+		//countdown(minutes,seconds,hours);
 	</script>
         <%
   int z=1;
