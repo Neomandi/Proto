@@ -67,7 +67,7 @@ footer {
    color: #fff;
 font-size: 13px;
 margin: 3px auto;
-padding:5px; 
+ 
 }
 </style>
 </head>
