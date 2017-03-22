@@ -312,6 +312,7 @@ catch(NullPointerException e)
 		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
 		var i=0;
+		var j=0;
 		countdown(minutes,seconds,hours);	
 		var five=300000;
 		timedif=diff+five;
@@ -351,10 +352,10 @@ catch(NullPointerException e)
 							else
 							{
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-				            	if(i==0){
+				            	if(j==0){
 				            	
-				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
-				            		i=9;
+				            		location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            		j=9;
 				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
