@@ -311,11 +311,10 @@ catch(NullPointerException e)
 	//console.log("differences in hours is "+hours);
 		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
-		var i=0;
+		var m=0;
 		countdown(minutes,seconds,hours);	
 		var five=300000;
 		timedif=diff+five;
-//	console.log("count"+timedif);	
 		function countdown(minutes,seconds,hours) 
 		{			  			 
 			 	var seconds =seconds;
@@ -351,10 +350,14 @@ catch(NullPointerException e)
 							else
 							{
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-				            	if(i==0){
-				            	
+				            	console.log(m)
+				            	if(m==0)
+				            	{				            	
 				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
-				            		i=9;
+				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		  $( "#auction1" ).load(window.location.href + " #auction1" );
+				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		m=9;
 				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
@@ -2327,7 +2330,7 @@ catch(NullPointerException e)
     <%}}}}}}}}}%>    
     </div>
     
-    <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord2"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+    <div id="slot2" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord2"><span>Auction Slot-2</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
   <div id="accord2" class="collapse">
     <div class="one">
 	<div class="container-fluid status">
@@ -2443,7 +2446,7 @@ catch(NullPointerException e)
   <div id="accord3" class="collapse">
 	<!---row 4 end--->
 	 
-    <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+    <div id="slot3" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
   <div id="accord3" class="collapse">
     <div class="one">
 	<div class="container-fluid status">
