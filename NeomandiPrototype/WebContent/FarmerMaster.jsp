@@ -68,7 +68,13 @@ margin: 5px auto;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<%HttpSession hs=request.getSession(false); 
+<%
+response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+
+HttpSession hs=request.getSession(false); 
 if((String)hs.getAttribute("name")==null){
 	out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
 }

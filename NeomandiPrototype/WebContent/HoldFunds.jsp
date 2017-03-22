@@ -170,7 +170,7 @@ else
 				         document.getElementById("balance").value = string;				         
 		  }};
 		  xmlhttp.open("POST", "holdfundsgetbalance.do", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 		  xmlhttp.send("accountnumber="+accountnumber);
 	 }
 	 </script>
@@ -182,217 +182,110 @@ else
 <h4 style="background: #bdd102;color:black;">Hold Funds</h4>
 <div class="bankacc">
 <br><br>
-<form>
-    <table class="table" >      
+<form id="form"><table class="table" >      
 	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs)"></td></tr>
 	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" >Hold</a></td></tr></table></td></tr>
-    <script>
-    document.getElementById("hold").addEventListener("keyup", function(event) {
-      	//event.preventDefault();
-     // 	console.log("inside func");
-      	if (event.keyCode == 13) 
-      	{
-      		alert("");
-      		event.preventDefault();
-      	    document.getElementById("hld").click();
-      		//hold1();
-      	}});
-      	function hold1()
-		{		  
-      		 var balance=document.getElementById("balance").value;
-   		  var bal=new Number(balance);
-   		  var account=document.getElementById("a1").value;
-   		  var bank=document.getElementById("a2").value;
-   		  var hold=document.getElementById("hold").value;
-   		  var hld=new Number(hold);
-   		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
-   		  console.log(hld<0);
-   		  if(hold.length==0)
-   			  alert("PLEASE ENTER AMOUNT TO BE HELD ")
-   		  else if(balance!=null&&balance.length!=0)
-   		  {
-   			  console.log("inside balance!=null&")
-   			if(bal<hld)
-   			{
-   					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
-   					document.getElementById("hold").value="";
-   			}
-   			else if(hld<0||hld==0)
-   			{
-   					console.log("hld<0");
-   					alert("Please enter positive number");
-   			}
-   			else
-   			{
-   				  xmlhttp = new XMLHttpRequest();
-   				  xmlhttp.onreadystatechange = function() {
-   				  if (this.readyState == 4 && this.status == 200) 
-   				  {
-   					  	 var string=xmlhttp.responseText; 	   			      
-   	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-   		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-   		   			     starttotalblocked=starttotalblocked+12;	
-   		   			     console.log(string);
-   		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-   		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-   		   				 console.log("total blocked amount is "+blocked);
-   		   			     document.getElementById("netamount").innerHTML = blocked;
-   		   			  	 document.getElementById("netamount").value = blocked;
-   		   			     document.getElementById("hold").value = "";
-   		   			  	 document.getElementById("balance").value = "";
-   		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
-   		   			     
-   				  }};
-   					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
-   					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
-   			 }
-   		  }
-   		  else
-   		  {
-   			  if(hld<0||hld==0)
-   				{
-   					console.log("hld<0");
-   					alert("PLEASE ENTER POSITIVE NUMBER");
-   				}
-   			  else
-   				  {
-   			  xmlhttp = new XMLHttpRequest();
-   			  xmlhttp.onreadystatechange = function() {
-   			  if (this.readyState == 4 && this.status == 200) 
-   			  {
-   				  	 var string=xmlhttp.responseText;
-   				  	 console.log("string is"+string);
-   				  	 if(string.includes("fail"))
-   				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
-   				  	 else
-   				  	 {
-   	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-   		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-   		   			     starttotalblocked=starttotalblocked+12;	
-   		   			     console.log(string);
-   		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-   		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-   		   				 console.log("total blocked amount is "+blocked);
-   		   			     document.getElementById("netamount").innerHTML = blocked;
-   		   			  	 document.getElementById("netamount").value = blocked;
-   		   			     document.getElementById("hold").value = "";
-   		   			  	 document.getElementById("balance").value = "";
-   		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
-   				  	 }
-   	   			     
-   			  }};
-   				  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
-   				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
-   			 }
-   		  }
-		  }		
-    
-    /*
-    document.getElementById("hold").addEventListener("keyup", function(event) {
-      	event.preventDefault();
-      	console.log("inside func");
-      	if (event.keyCode == 13) {
-      	  //  document.getElementById("release").click();
-      		holdfunds();
-      	}
+    </table></form>
+      <script>
+    document.getElementById("hold").addEventListener("keyup", function(event1){
+    event1.preventDefault();
+    if(event1.which == 13 || event1.keyCode == 13) 
+    {
+	      	  event1.preventDefault();      	   
+	      	  var balance=document.getElementById("balance").value;
+	  		  var bal=new Number(balance);
+	  		  var account=document.getElementById("a1").value;
+	  		  var bank=document.getElementById("a2").value;
+	  		  var hold=document.getElementById("hold").value;
+	  		  var hld=new Number(hold);
+	  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
+	  		  console.log(hld<0);
+	  		  if(hold.length==0)
+	  			  {lert("PLEASE ENTER AMOUNT TO BE HELD ");}
+	  		  else if(balance!=null&&balance.length!=0)
+	  		  {
+	  			  console.log("inside balance!=null&")
+	  			if(bal<hld)
+	  			{
+	  					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
+	  					document.getElementById("hold").value="";
+	  			}
+	  			else if(hld<0||hld==0)
+	  			{
+	  					console.log("hld<0");
+	  					alert("Please enter positive number");
+	  			}
+	  			else
+	  			{
+	  				  xmlhttp = new XMLHttpRequest();
+	  				  xmlhttp.onreadystatechange = function() {
+	  				  if (this.readyState == 4 && this.status == 200) 
+	  				  {
+	  					  	 var string=xmlhttp.responseText; 	   			      
+	  	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+	  		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+	  		   			     starttotalblocked=starttotalblocked+12;	
+	  		   			     console.log(string);
+	  		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+	  		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+	  		   				 console.log("total blocked amount is "+blocked);
+	  		   			     document.getElementById("netamount").innerHTML = blocked;
+	  		   			  	 document.getElementById("netamount").value = blocked;
+	  		   			     document.getElementById("hold").value = "";
+	  		   			  	 document.getElementById("balance").value = "";
+	  		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+	  		   			     
+	  				  }};
+	  					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+	  					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
+	  			 }
+	  		  }
+	  		  else
+	  		  {
+	  			  if(hld<0||hld==0)
+	  				{
+	  					console.log("hld<0");
+	  					alert("PLEASE ENTER POSITIVE NUMBER");
+	  				}
+	  			  else
+	  				  {
+	  			  xmlhttp = new XMLHttpRequest();
+	  			  xmlhttp.onreadystatechange = function() {
+	  			  if (this.readyState == 4 && this.status == 200) 
+	  			  {
+	  				  	 var string=xmlhttp.responseText;
+	  				  	 console.log("string is"+string);
+	  				  	 if(string.includes("fail"))
+	  				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
+	  				  	 else
+	  				  	 {
+	  	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
+	  		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
+	  		   			     starttotalblocked=starttotalblocked+12;	
+	  		   			     console.log(string);
+	  		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
+	  		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
+	  		   				 console.log("total blocked amount is "+blocked);
+	  		   			     document.getElementById("netamount").innerHTML = blocked;
+	  		   			  	 document.getElementById("netamount").value = blocked;
+	  		   			     document.getElementById("hold").value = "";
+	  		   			  	 document.getElementById("balance").value = "";
+	  		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+	  				  	 }
+	  	   			     
+	  			  }};
+	  				  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
+	  				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
+	  			 }
+	  		  }    }   	
       	});
-    console.log("inside function3");	
-	function holdfunds()
-	{	
-		  var balance=document.getElementById("balance").value;
-		  var bal=new Number(balance);
-		  var account=document.getElementById("a1").value;
-		  var bank=document.getElementById("a2").value;
-		  var hold=document.getElementById("hold").value;
-		  var hld=new Number(hold);
-		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
-		  console.log(hld<0);
-		  if(hold.length==0)
-			  alert("PLEASE ENTER AMOUNT TO BE HELD ")
-		  else if(balance!=null&&balance.length!=0)
-		  {
-			  console.log("inside balance!=null&")
-			if(bal<hld)
-			{
-					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
-					document.getElementById("hold").value="";
-			}
-			else if(hld<0||hld==0)
-			{
-					console.log("hld<0");
-					alert("Please enter positive number");
-			}
-			else
-			{
-				  xmlhttp = new XMLHttpRequest();
-				  xmlhttp.onreadystatechange = function() {
-				  if (this.readyState == 4 && this.status == 200) 
-				  {
-					  	 var string=xmlhttp.responseText; 	   			      
-	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-		   			     starttotalblocked=starttotalblocked+12;	
-		   			     console.log(string);
-		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-		   				 console.log("total blocked amount is "+blocked);
-		   			     document.getElementById("netamount").innerHTML = blocked;
-		   			  	 document.getElementById("netamount").value = blocked;
-		   			     document.getElementById("hold").value = "";
-		   			  	 document.getElementById("balance").value = "";
-		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
-		   			     
-				  }};
-					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
-					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
-			 }
-		  }
-		  else
-		  {
-			  if(hld<0||hld==0)
-				{
-					console.log("hld<0");
-					alert("PLEASE ENTER POSITIVE NUMBER");
-				}
-			  else
-				  {
-			  xmlhttp = new XMLHttpRequest();
-			  xmlhttp.onreadystatechange = function() {
-			  if (this.readyState == 4 && this.status == 200) 
-			  {
-				  	 var string=xmlhttp.responseText;
-				  	 console.log("string is"+string);
-				  	 if(string.includes("fail"))
-				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
-				  	 else
-				  	 {
-	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
-		   			     var endtotalblocked=xmlhttp.responseText.lastIndexOf('totalblocked');
-		   			     starttotalblocked=starttotalblocked+12;	
-		   			     console.log(string);
-		   			     console.log(string.substring(starttotalblocked,endtotalblocked));
-		   				 var blocked= string.substring(starttotalblocked,endtotalblocked);
-		   				 console.log("total blocked amount is "+blocked);
-		   			     document.getElementById("netamount").innerHTML = blocked;
-		   			  	 document.getElementById("netamount").value = blocked;
-		   			     document.getElementById("hold").value = "";
-		   			  	 document.getElementById("balance").value = "";
-		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
-				  	 }
-	   			     
-			  }};
-				  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
-				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
-			 }
-		  }
-	}		 */
+	$('#form').submit(function(e){
+	    e.preventDefault();
+	});
 	</script>
-    </table>
-  </form><br><br>
+  <br><br>
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
@@ -440,7 +333,6 @@ else
       <script>
       document.getElementById("release").addEventListener("keyup", function(event) {
       	event.preventDefault();
-      	console.log("inside func");
       	if (event.keyCode == 13) 
       	{
       	  //  document.getElementById("release").click();

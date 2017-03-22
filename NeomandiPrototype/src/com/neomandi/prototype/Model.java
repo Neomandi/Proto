@@ -1308,7 +1308,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						commission=(int)(lotcost*0.05);
 						marketcess=(int)(lotcost*0.01);
 						if(quantityassigned==0)
-							myfinalcost=100;
+							myfinalcost=0;
 						else
 							myfinalcost=100+lotcost+commission+marketcess+3000;
 					}
@@ -1323,13 +1323,13 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					{
 						block=Integer.parseInt(rs.getString("blockamount"));
 					}
-				//	System.out.println(myfinalcost>block);
+					System.out.println("myfinalcost "+myfinalcost);
+					System.out.println(myfinalcost>block);
 					if(myfinalcost>block)
 					{
-					//	System.out.println("inside if");
+						System.out.println("inside if");
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
-					//	System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 						return mc;
 					}
 					else
@@ -1418,7 +1418,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			while(rs.next())
 			{
 				aadharnumber=rs.getString("aadharnumber");
-				System.out.println("aadharnumber of "+name+" is "+aadharnumber);
+				//System.out.println("aadharnumber of "+name+" is "+aadharnumber);
 			}		
 			String lotnum=null;
 			ps =con.prepareStatement("SELECT lotnum FROM tradelist where aadharnumber=?");
@@ -1451,12 +1451,12 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			int bidprice=0;
 			
 			
-			System.out.println("lotnum which trader is bidding for is "+lotnum);
+			//System.out.println("lotnum which trader is bidding for is "+lotnum);
 			ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 			ps.setString(1, aadharnumber);
 			ps.setString(2, lotnum);
 			ps.execute();
-			System.out.println(ps);
+		//	System.out.println(ps);
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
@@ -1471,30 +1471,30 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						myfinalcost=100+lotcost+commission+marketcess+3000;
 				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
 			}
+			System.out.println("myfinalcost "+myfinalcost);
 			int block=0;
 			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 			ps.setString(1, aadharnumber);
 			ps.execute();
-			System.out.println(ps);
+			//System.out.println(ps);
 			rs = ps.getResultSet();
 			while(rs.next())
 			{
 				block=Integer.parseInt(rs.getString("blockamount"));
 			}
-			System.out.println("block is "+block+" final cost is "+myfinalcost);
-			System.out.println("quantityassigned "+quantityassigned);
+			//System.out.println("block is "+block+" final cost is "+myfinalcost);
+			//System.out.println("quantityassigned "+quantityassigned);
 			System.out.println(myfinalcost>block);
 			if(myfinalcost>block)
 			{
-				System.out.println("inside if");
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
-				System.out.println("mfcb.getMsg()"+mfcb.getMsg());
+				//System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 				return mfcb;
 			}
 			else
 			{
-				System.out.println("inside else");
+				//System.out.println("inside else");
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
 				ps.setString(2,String.valueOf(commission));
@@ -4150,6 +4150,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 						System.out.println("Your final cost is more than the blocked amount...!!! please increase the blocked amount by "+diff);					
 						msg="Your final cost is more than the blocked amount...!!! please increase the blocked amount by atleast "+diff;
 						mc.setMsg(msg);
+						return mc;
 					}
 					else
 					{
@@ -4269,7 +4270,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					System.out.println("inside model() mfcb-> "+mfcb);
 				}				
 				
-				int res[]=new int[19];
+				/*int res[]=new int[19];
 				int j=0;
 				ps =con.prepareStatement("select myfinalcost from traders_bid_price where aadharnumber=?");
 				ps.setString(1,aadharnumber);
@@ -4289,7 +4290,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 				System.out.println("total blocked amount = "+result);
 				int diff=result-finalcost;
 				System.out.println("finalcost-result     = "+diff);
-			/*	if(diff<0)
+				if(diff<0)
 				{
                     diff=finalcost-result;
 					System.out.println("Your final cost is more than the blocked amount...!!! please increase the blocked amount by "+diff);					
@@ -4301,8 +4302,7 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					msg="success";
 					mc.setMsg(msg);
 				}		*/							
-			}						
-		//	con.commit();		
+			}					
 		}
 		catch(Exception e)
 		{
@@ -4926,10 +4926,10 @@ public void PostAuction()
 			}
 			else
 			{
-				ps=con.prepareStatement("update productentry set slotnumber='nill' where slotnumber='slot1'");
+				/*ps=con.prepareStatement("update productentry set slotnumber='nill' where slotnumber='slot1'");
 				ps.execute();
 				System.out.println(ps);
-				
+				*/
 				ps=con.prepareStatement("select * from productentry where slotnumber='slot1'");
 				ps.execute();
 				rs=ps.getResultSet();

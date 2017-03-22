@@ -27,7 +27,7 @@ public class AggregatingData {
 		List<Trader> li = new ArrayList<Trader>();
 		List<String> a = new ArrayList<String>();
 		List<String> b = new ArrayList<String>();
-		int maxvol = ControllerServlet.getVal();
+		int maxvol = 0; //ControllerServlet.getVal();
 		double avg = 0;
 		int price1 = 0;
 		String tid = "";
