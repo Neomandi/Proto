@@ -182,19 +182,17 @@ else
 <h4 style="background: #bdd102;color:black;">Hold Funds</h4>
 <div class="bankacc">
 <br><br>
-<form>
+<form id="form">
     <table class="table" >      
 	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs)"></td></tr>
-	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" >Hold</a></td></tr></table></td></tr>
+	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" >Hold</a></td></tr></table></td></tr></form>
     <script>
     document.getElementById("hold").addEventListener("keyup", function(event1){
-      	event1.preventDefault();
-      	console.log(event1.keyCode);
-    	if(event1.keyCode==13) 
-      	{
-    		console.log(event1.keyCode);
-      		event1.preventDefault();
-      	   
+      event1.preventDefault();
+      console.log(event1.keyCode);
+    	 if(event1.which == 13 || event1.keyCode == 13) 
+      	 {
+	      	  event1.preventDefault();      	   
 	      	  var balance=document.getElementById("balance").value;
 	  		  var bal=new Number(balance);
 	  		  var account=document.getElementById("a1").value;
@@ -204,7 +202,7 @@ else
 	  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
 	  		  console.log(hld<0);
 	  		  if(hold.length==0)
-	  			  alert("PLEASE ENTER AMOUNT TO BE HELD ")
+	  			  {lert("PLEASE ENTER AMOUNT TO BE HELD ");}
 	  		  else if(balance!=null&&balance.length!=0)
 	  		  {
 	  			  console.log("inside balance!=null&")
@@ -282,8 +280,8 @@ else
 	  				  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	  				  xmlhttp.send("block="+hold+"&account="+account+"&bank="+bank);
 	  			 }
-	  		  }      	
-      	}});
+	  		  }    }   	
+      	});
     
       	function hold1()
 		{		  
@@ -479,9 +477,12 @@ else
 			 }
 		  }
 	}		 */
+	$('#form').submit(function(e){
+	    e.preventDefault();
+	});
 	</script>
     </table>
-  </form><br><br>
+  <br><br>
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
@@ -529,7 +530,6 @@ else
       <script>
       document.getElementById("release").addEventListener("keyup", function(event) {
       	event.preventDefault();
-      	console.log("inside func");
       	if (event.keyCode == 13) 
       	{
       	  //  document.getElementById("release").click();

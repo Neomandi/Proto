@@ -2507,7 +2507,8 @@ public class ControllerServlet extends HttpServlet {
 				{
 					System.out.println("msg[1]==null");
 					PrintWriter out = null;
-					try {
+					try 
+					{
 						out = response.getWriter();
 						out.println("fail");
 					    out.flush();
