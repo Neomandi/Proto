@@ -408,6 +408,16 @@ catch(NullPointerException e)
 													 // document.getElementById('increment1').removeAttribute("onclick");
 													 // document.getElementById('POSTAUCTION').innerhtml='end';
 													document.getElementById('POSTAUCTION').value='end';
+													
+													
+													xmlhttp = new XMLHttpRequest();
+									      		  	xmlhttp.onreadystatechange = function() {
+									      		    if (this.readyState == 4 && this.status == 200) 
+									      		    {}};
+									      		    //console.log("your auction has ended");
+										      		xmlhttp.open("POST", "TraderorAuction2.jsp", true);
+										      		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+													xmlhttp.send("");
 													i++;
 												}
 					        		    	    else{}
