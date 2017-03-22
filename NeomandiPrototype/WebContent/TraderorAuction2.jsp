@@ -352,7 +352,8 @@ catch(NullPointerException e)
 							{
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	if(i==0){
-				            		location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            	
+				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
 				            		i=9;
 				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
@@ -490,19 +491,12 @@ catch(NullPointerException e)
  	 out.println("</script>");
   }
   else
-  {
-	/* if(request.getParameter("msg")!=null && request.getParameter("msg").equals("end"))
-	    	request.setAttribute("msg",null);
-	System.out.println("+"+msg);
-	if(msg!=null && msg.equals("start"))
-    {
-	   msg=(String)request.getAttribute("msg");
-	}
-    System.out.println("checking now");
-    System.out.println(msg); */
+  {		  
     msg=(String)request.getAttribute("msg");
+    System.out.println("___---"+msg);
     if(msg!=null)
     {
+    	System.out.println("inside if");
 		  out.println("<script type=\"text/javascript\">");
 	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 	  	  out.println("window.location='TraderBlock.do';");
