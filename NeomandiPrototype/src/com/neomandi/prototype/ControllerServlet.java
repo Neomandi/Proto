@@ -32,10 +32,11 @@ public class ControllerServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    static int maxvol = 0;
+    
+    //static int maxvol = 0;
 	private static String traderPin;
     
-    private static void setVal(int maxvol2) {
+    /*private static void setVal(int maxvol2) {
 		maxvol = maxvol2;
 		
 	}
@@ -43,7 +44,7 @@ public class ControllerServlet extends HttpServlet {
     public static int getVal()
     {
     	return maxvol;
-    }
+    }*/
 	
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{		
