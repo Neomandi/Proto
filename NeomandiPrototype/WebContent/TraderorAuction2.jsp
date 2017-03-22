@@ -354,11 +354,10 @@ catch(NullPointerException e)
 				            	if(m==0)
 				            	{				            	
 				            		//location="TradeorAuction.do";				            		 
-				            		  m=9;
-				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
-				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		  //location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            		  /* $( "#auction" ).load(window.location.href + " #auction" );
 				            		  $( "#auction1" ).load(window.location.href + " #auction1" );
-				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		  $( "#auction" ).load(window.location.href + " #auction" ); */
 				            		m=9;
 				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
@@ -433,7 +432,7 @@ catch(NullPointerException e)
 														if(request.getAttribute("msg").equals("block"))
 														{msg=null;}
 														System.out.println(msg); */
-														%>
+													%>
 													i++;
 												}
 					        		    	    else{}
@@ -485,40 +484,39 @@ catch(NullPointerException e)
 		
 		//countdown(minutes,seconds,hours);
 	</script>
-        <%
-  int z=1;
-  String msg1=(String)request.getAttribute("notlogged");
-  if(msg1!=null)
-  {
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-  	 out.println("location='TraderLogin.jsp';");
- 	 out.println("</script>");
-  }
-  else
-  {		  
-    msg=(String)request.getAttribute("msg");
-    System.out.println("___---"+msg);
-    if(msg!=null)
-    {
-    	System.out.println("inside if");
-		  out.println("<script type=\"text/javascript\">");
-	  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
-	  	  out.println("window.location='TraderBlock.do';");
-	 	  out.println("</script>");
-	}
-	else 
-	{	
-		String msg2=(String)request.getAttribute("assigned");
-		if(msg2!=null)
-		{
-			out.println("<script type=\"text/javascript\">");
-		  	out.println("alert('You need to enter the number of bid to be increased before');");
-		  	out.println("location='TradeorAuction.do';");
-		 	out.println("</script>");
+     <%
+	  int z=1;
+	  String msg1=(String)request.getAttribute("notlogged");
+	  if(msg1!=null)
+	  {
+		 out.println("<script type=\"text/javascript\">");
+	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+	  	 out.println("location='TraderLogin.jsp';");
+	 	 out.println("</script>");
+	  }
+	  else
+	  {		  
+	    msg=(String)request.getAttribute("msg");
+	    if(msg!=null)
+	    {
+	    	System.out.println("inside if");
+			  out.println("<script type=\"text/javascript\">");
+		  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
+		  	  out.println("window.location='TraderBlock.do';");
+		 	  out.println("</script>");
 		}
-		else
-		{
+		else 
+		{	
+			String msg2=(String)request.getAttribute("assigned");
+			if(msg2!=null)
+			{
+				out.println("<script type=\"text/javascript\">");
+			  	out.println("alert('You need to enter the number of bid to be increased before');");
+			  	out.println("location='TradeorAuction.do';");
+			 	out.println("</script>");
+			}
+			else
+			{
 			int i=0;
 			int finalcostlist=0;
 			int tradelist=0;
@@ -529,10 +527,13 @@ catch(NullPointerException e)
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
 				System.out.println(al);
-				if(al.size()==0){%><br>
+				if(al.size()==0){
+				%><br>
 					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
-			<br>
-			<%	}for(Object o:al)
+				<br>
+				<%	
+				}
+				for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;
 					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
@@ -869,7 +870,7 @@ catch(NullPointerException e)
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
-		});
+		}); 
 	</script>
 	<% 
 		String quantityneededs=tlb.getQuantityneeded();

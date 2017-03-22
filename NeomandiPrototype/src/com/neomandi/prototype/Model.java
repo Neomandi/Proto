@@ -1299,11 +1299,13 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					ps.setString(2, lotnumber.get(i));
 				//	System.out.println(lotnumber.get(i));
 					ps.execute();
-					rs = ps.getResultSet();				
+					rs = ps.getResultSet();	
+					int bidprice=0;
+					int quantityassigned=0;
 					while(rs.next())
 					{
-						int quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
-						int bidprice=Integer.parseInt(rs.getString("bidprice"));
+						quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
+						bidprice=Integer.parseInt(rs.getString("bidprice"));
 						lotcost=bidprice*quantityassigned;
 						commission=(int)(lotcost*0.05);
 						marketcess=(int)(lotcost*0.01);
@@ -1330,6 +1332,27 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						System.out.println("inside if");
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
+						
+						ps =con.prepareStatement("SELECT bestbid FROM traders_bid_price where aadharnumber=? and lotnum=?");
+						ps.setString(1, aadharnumber);
+						ps.setString(2, lotnumber.get(i));
+						ps.execute();
+						ResultSet rs3 = ps.getResultSet();				
+						while(rs3.next())
+						{
+							mfcb=new MyFinalCostBean();
+							mfcb.setCommission(String.valueOf(commission));
+							mfcb.setLotcost(String.valueOf(lotcost));
+							mfcb.setMarketcess(String.valueOf(marketcess));
+							mfcb.setMyfinalcost(String.valueOf(myfinalcost));
+							String prices=String.valueOf(bidprice);
+							mfcb.setPrice(prices);
+							mfcb.setLotnum(lotnum);			
+							mfcb.setBestbid(rs3.getString("bestbid"));
+							mfcb.setQuantityassigned(String.valueOf(quantityassigned));
+							bl.add(mfcb);
+						}
+						mc.setBl(bl);
 						return mc;
 					}
 					else
