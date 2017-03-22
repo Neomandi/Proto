@@ -1308,7 +1308,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						commission=(int)(lotcost*0.05);
 						marketcess=(int)(lotcost*0.01);
 						if(quantityassigned==0)
-							myfinalcost=100;
+							myfinalcost=0;
 						else
 							myfinalcost=100+lotcost+commission+marketcess+3000;
 					}
@@ -1323,13 +1323,13 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					{
 						block=Integer.parseInt(rs.getString("blockamount"));
 					}
-				//	System.out.println(myfinalcost>block);
+					System.out.println("myfinalcost "+myfinalcost);
+					System.out.println(myfinalcost>block);
 					if(myfinalcost>block)
 					{
-					//	System.out.println("inside if");
+						System.out.println("inside if");
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
-					//	System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 						return mc;
 					}
 					else
@@ -1471,6 +1471,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						myfinalcost=100+lotcost+commission+marketcess+3000;
 				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
 			}
+			System.out.println("myfinalcost "+myfinalcost);
 			int block=0;
 			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 			ps.setString(1, aadharnumber);
@@ -1483,10 +1484,9 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			}
 			//System.out.println("block is "+block+" final cost is "+myfinalcost);
 			//System.out.println("quantityassigned "+quantityassigned);
-			//System.out.println(myfinalcost>block);
+			System.out.println(myfinalcost>block);
 			if(myfinalcost>block)
 			{
-				//System.out.println("inside if");
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
 				//System.out.println("mfcb.getMsg()"+mfcb.getMsg());

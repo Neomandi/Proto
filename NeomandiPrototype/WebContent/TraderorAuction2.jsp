@@ -259,6 +259,7 @@ catch(NullPointerException e)
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
 	String stop=(String)context.getAttribute("endtime");
+	String msg="start";
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %><input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
@@ -394,7 +395,7 @@ catch(NullPointerException e)
 									            	var timeOutPeriod = waitseconds * 1000;
 									            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 									            	document.getElementById("auction1").innerHTML=str1;
-									            	alert("AUCTION IS OVER YOU CAN CHECK THE STATUS IN STATUS TAB");
+									            	alert("Auction is over you can check the status in status tab");
 									            	console.log("AUCTION IS OVER");
 									            	xmlhttp = new XMLHttpRequest();
 									      		  	xmlhttp.onreadystatechange = function() {
@@ -407,17 +408,22 @@ catch(NullPointerException e)
 													 //document.getElementById('increment').removeAttribute("onclick");
 													 // document.getElementById('increment1').removeAttribute("onclick");
 													 // document.getElementById('POSTAUCTION').innerhtml='end';
-													document.getElementById('POSTAUCTION').value='end';
+													document.getElementById('POSTAUCTION').value='end';													
 													
-													
-													xmlhttp = new XMLHttpRequest();
+													/* xmlhttp = new XMLHttpRequest();
 									      		  	xmlhttp.onreadystatechange = function() {
 									      		    if (this.readyState == 4 && this.status == 200) 
-									      		    {}};
+									      		    {}}; */
 									      		    //console.log("your auction has ended");
-										      		xmlhttp.open("POST", "TraderorAuction2.jsp", true);
+										      		/* xmlhttp.open("POST", "TraderorAuction2.jsp", true);
 										      		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-													xmlhttp.send("");
+													xmlhttp.send("msg=end"); */
+													<%
+														/* System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
+														if(request.getAttribute("msg").equals("block"))
+														{msg=null;}
+														System.out.println(msg); */
+														%>
 													i++;
 												}
 					        		    	    else{}
@@ -481,7 +487,16 @@ catch(NullPointerException e)
   }
   else
   {
-    String msg=(String)request.getAttribute("msg");    
+	/* if(request.getParameter("msg")!=null && request.getParameter("msg").equals("end"))
+	    	request.setAttribute("msg",null);
+	System.out.println("+"+msg);
+	if(msg!=null && msg.equals("start"))
+    {
+	   msg=(String)request.getAttribute("msg");
+	}
+    System.out.println("checking now");
+    System.out.println(msg); */
+    msg=(String)request.getAttribute("msg");
     if(msg!=null)
     {
 		  out.println("<script type=\"text/javascript\">");
@@ -489,7 +504,7 @@ catch(NullPointerException e)
 	  	  out.println("window.location='TraderBlock.do';");
 	 	  out.println("</script>");
 	}
-	else
+	else 
 	{	
 		String msg2=(String)request.getAttribute("assigned");
 		if(msg2!=null)
@@ -505,10 +520,12 @@ catch(NullPointerException e)
 			int finalcostlist=0;
 			int tradelist=0;
 			int p=0;
+			System.out.println(request.getAttribute("remove"));
 			if(request.getAttribute("remove")==null)//not removed any row
 			{
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
+				System.out.println(al);
 				if(al.size()==0){%><br>
 					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 			<br>
