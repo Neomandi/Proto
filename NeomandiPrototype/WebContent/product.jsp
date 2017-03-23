@@ -364,15 +364,15 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                     <td></td>
                                 </tr>                                
                                 <script> 
                                 var i=<%=i%>;
-                                console.log("**i is"+i);
-                                console.log(i%2==0);
+                               // console.log("**i is"+i);
+                                //console.log(i%2==0);
                                 if(i%2==0)
                                 {
                                 	//console.log("inside if");

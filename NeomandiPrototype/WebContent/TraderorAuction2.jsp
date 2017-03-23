@@ -20,7 +20,7 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.text.SimpleDateFormat,
  java.io.IOException,
  java.io.InputStream,
- javax.imageio.ImageIO" errorPage="Error.jsp"%>
+ javax.imageio.ImageIO" %>
 <html>
 <head><title>NeoMandi</title><!-- 
 <meta http-equiv="refresh"  content="3; URL=TradeorAuction.do"> -->
@@ -248,13 +248,12 @@ catch(NullPointerException e)
 </div>
 <div class="maindiv">
 <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-1</span>	
-	  <div id="msg" style="display:inline; " > will begin in</div>&nbsp;&nbsp;
-	 <div id="timer" style="display:inline;  " ></div>
-	  	<div id="auction" style="display:inline;   "></div>
-		<div id="auction1" style="display:inline; "></div>
+	  <div id="msg" style="display:inline;"> will begin in</div>&nbsp;&nbsp;
+	 <div id="timer" style="display:inline;" ></div>
+	  	<div id="auction" style="display:inline;"></div>
+		<div id="auction1" style="display:inline;"></div>
 		<span class="pull-right">
 		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button>-->
 <%
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
@@ -269,57 +268,43 @@ catch(NullPointerException e)
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
   <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
   <script>
+  var i=0;
   var start=document.getElementById("start").value;
   var stop=document.getElementById("stop").value;
   var Etime=document.getElementById("time").value;
-	//var Btime="10:30:00";
-	//var Btime1="10:35:00";
-	var Btime=start;
-	var Btime1=stop;
-	start = Etime.split(":");
-	end =Btime.split(":");
-	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-	 diff = endDate.getTime() - startDate.getTime();
-	/*console.log("start time is "+Btime);
-	console.log("end time is "+Btime1);
-	console.log("current time is "+Etime);
-	console.log("difference in milliseconds is "+diff);*/
-	var hours = Math.floor(diff / 1000 / 60 / 60);
-	//diff -= hours* 60 * 60;
-	var seconds= Math.floor(diff /1000);
-	var minutes = Math.floor(diff / 1000 / 60);
-	var res3=0;
-	//console.log("differences in minutes before calc "+minutes);		
-	//console.log("differences in seconds before calc "+seconds);		
-	if(seconds>60)
-	{
+  var Btime=start;
+  var Btime1=stop;
+  start = Etime.split(":");
+  end =Btime.split(":");
+  var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+  var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+  diff = endDate.getTime() - startDate.getTime();
+  var hours = Math.floor(diff / 1000 / 60 / 60);
+  var seconds= Math.floor(diff /1000);
+  var minutes = Math.floor(diff / 1000 / 60);
+  var res3=0;
+  if(seconds>60)
+  {
 			res1=seconds%60;
 			res2=Math.floor(seconds/60);
 					
 			seconds=res1;
 			minutes=res2;
-	}
-	if(minutes>60)
-	{
+  }
+  if(minutes>60)
+  {
 			res1=minutes%60;
 			res3=Math.floor(minutes/60);
 					
 			hours=res3;
 			minutes=res1;
-	}
-//	console.log("differences in minutes is "+minutes);
-	//console.log("differences in seconds is "+seconds);
-	//console.log("differences in hours is "+hours);
-		var timedifference=+hours+":"+minutes+":"+seconds;
-	//console.log("differences in time is "+timedifference);	
-
-		var m=0;
-
-		countdown(minutes,seconds,hours);	
-		var five=300000;
-		timedif=diff+five;
-		function countdown(minutes,seconds,hours) 
+  }
+  var timedifference=+hours+":"+minutes+":"+seconds;
+  var m=0;
+  countdown(minutes,seconds,hours);	
+  var five=300000;
+  timedif=diff+five; 	
+		<%-- function countdown(minutes,seconds,hours) 
 		{			  			 
 			 	var seconds =seconds;
 			    var mins = minutes
@@ -334,8 +319,8 @@ catch(NullPointerException e)
 			        var current_minutes = mins
 		    		seconds--;
 			        var hour=hours;
-			        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-			        if( seconds > 0 )
+			        counter.innerHTML =hour.toString()+":"+current_minutes.toString()+":"+(seconds < 10 ?"0":"")+String(seconds);
+			        if(seconds>0)
 			        {
 			            setTimeout(tick,1000);
 			        } 
@@ -353,13 +338,22 @@ catch(NullPointerException e)
 			 				}	
 							else
 							{
+								(function(){
+									  if( window.localStorage )
+									  {
+									    if( !localStorage.getItem( 'firstLoad' ) )
+									    {
+									      localStorage[ 'firstLoad' ] = true;
+									      console.log("Before reload");
+									      window.location.reload();
+									    }  
+									    else{
+									    	console.log("Before reload");
+									    	localStorage.removeItem( 'firstLoad' );								      
+									    }
+									  }
+							})();
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
-
-
-
-				            	console.log("before if m="+m);
-				            	m=undefined;
-
 				            	if(m==0)
 				            	{				            	
 
@@ -433,10 +427,10 @@ catch(NullPointerException e)
 										      		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 													xmlhttp.send("msg=end"); */
 													<%
-														/* System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
+														 System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
 														if(request.getAttribute("msg").equals("block"))
 														{msg=null;}
-														System.out.println(msg); */
+														System.out.println(msg); 
 													%>
 													i++;
 												}
@@ -473,11 +467,169 @@ catch(NullPointerException e)
 					}		       
 		 		}
 		 tick();
+		} --%>
+		function countdown(minutes,seconds,hours) 
+		{	
+			 /*  document.getElementById('ts').onclick = function() {
+				  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+			  }	 */			 
+			 	var seconds =seconds;
+			    var mins = minutes
+			    var hour=hours;
+			    var res1=0;
+			    var res2=0;
+			    var timedifference=+hours+":"+minutes+":"+seconds;
+			    
+				function tick() 
+				{
+			        var counter = document.getElementById("timer");
+			        var current_minutes = mins
+		    		seconds--;
+			        var hour=hours;
+			        counter.innerHTML =hour.toString()+":"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+			        if( seconds > 0 )
+			        {
+			            setTimeout(tick,1000);			            
+			        } 
+			        else 
+		     		{
+						if(mins > 0)
+						{
+							setTimeout(function (){	countdown(mins - 1,60,hour); },1000);
+						}			 				
+						else
+						{
+							if(hour>1)
+							{
+			 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
+			 				}	
+							else
+							{	
+								//To Reload page once
+								(function(){
+										  if( window.localStorage )
+										  {
+										    if( !localStorage.getItem( 'firstLoad' ) )
+										    {
+										      localStorage[ 'firstLoad' ] = true;
+										      console.log("Before reload");
+										      window.location.reload();
+										    }  
+										    else{
+										    	console.log("Before reload");
+										    	localStorage.removeItem( 'firstLoad' );								      
+										    }
+										  }
+								})();
+								console.log("refreshing");
+				            	var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
+				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
+				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
+				            	var waitseconds = seconds;
+				            	var timeOutPeriod = waitseconds * 1000;
+				            	var hideTimer = setTimeout(strCmd, timeOutPeriod);
+				            	
+				            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
+				            	var waitseconds = seconds;
+				            	var timeOutPeriod = waitseconds * 1000;
+				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
+				            	
+				            	document.getElementById("timer").innerHTML=str;
+				            	function count(minutes1,seconds1) 
+				            	{
+				            		var seconds =seconds1;
+				        		    var mins = minutes1;
+				        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
+				        		    function tick() 
+				        		    {
+				        		        var counter = document.getElementById("hms");
+				        		        var current_minutes = mins
+				        		       	seconds--;
+				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+				        		        if( seconds > 0 ) {
+				        		            setTimeout(tick,1000);
+				        		        } 
+				        		        else 
+				        		        {
+					        		       if(mins > 0)
+					        		       {
+					        		 		setTimeout(function () { count(mins - 1,60); },1000);
+					        			   }
+					        		       else
+					        		       {
+					        		    	   console.log("before i= "+i);
+					        		    	   if(i==0)
+					        		    	   {					        		           	
+								            	var str1="has ended";
+					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
+								            	var waitseconds = seconds;
+								            	var timeOutPeriod = waitseconds * 1000;
+								            	var hideTimer = setTimeout(strCmd2, timeOutPeriod);								            	
+								            	var strCmd3 = "document.getElementById('a1').style.cssText ='display:none'";
+								            	var waitseconds = seconds;
+								            	var timeOutPeriod = waitseconds * 1000;
+								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
+								            	document.getElementById("auction1").innerHTML=str1;
+								            	alert("Auction is over you can check the status in status tab");
+								            	console.log("AUCTION IS OVER");
+								            	xmlhttp = new XMLHttpRequest();
+								      		  	xmlhttp.onreadystatechange = function() {
+								      		    if (this.readyState == 4 && this.status == 200) 
+								      		    {}};
+								      		    xmlhttp.open("POST", "Slotchange.do", true);
+									      		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+												xmlhttp.send("number=1");
+												document.getElementById('POSTAUCTION').value='end';												
+												<%
+												try{
+													 System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
+													if(request.getAttribute("msg").equals("block"))
+													{	
+														msg=null;
+													}
+													System.out.println(msg); 
+												}
+												catch(Exception e)
+												{
+													e.printStackTrace();
+												}
+												%>
+												i=9;
+					        		    	   }else{}
+					        		    	   console.log("i= "+i);
+					        		       }
+				        		    	}
+			        		     	}
+			        		   	 	tick();
+			        			}		
+				            	var Etime1=document.getElementById("time").value;
+				            	start1 = Etime1.split(":");
+				            	end1 =Btime1.split(":");
+				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+				            	var td = endDate1.getTime() - startDate1.getTime();					            	
+				            	var hours1 = Math.floor(td / 1000 / 60 / 60);
+				            	var seconds1= Math.floor(td /1000);
+				            	var minutes1 = Math.floor(td / 1000 / 60);
+				            	var res1;
+				            	var res2;
+				            	if(seconds1>60)
+				            	{
+				            			res1=seconds1%60;
+				            			res2=Math.floor(seconds1/60);
+				            					
+				            			seconds1=res1;
+				            			minutes1=res2;
+				            	}
+				            	count(minutes1,seconds1);			        			
+							}
+						}
+					}		       
+		 		}
+		 tick();
 		}
 			
-		var a=document.getElementById("timer").value;
-	//	console.log("document.getElementById"+ document.getElementById("timer").value);
-	//	console.log("document.getElementById"+ typeof a);
+		/* var a=document.getElementById("timer").value;
 		if(typeof a==="undefined")
 		{		
 			//console.log("inside if()")	 		 
@@ -485,9 +637,7 @@ catch(NullPointerException e)
 		else
 		{
 				//	console.log("inside else)")
-		}
-		
-		//countdown(minutes,seconds,hours);
+		} */
 	</script>
      <%
 	  int z=1;
@@ -501,10 +651,12 @@ catch(NullPointerException e)
 	  }
 	  else
 	  {		  
-	    msg=(String)request.getAttribute("msg");
+	   	if(msg!=null&&msg.equals("start"))
+	   	 	msg=(String)request.getAttribute("msg");
+	   	System.out.println("inside jsp in body msg is "+msg);
 	    if(msg!=null)
 	    {
-	    	System.out.println("inside if");
+	    	  System.out.println("inside if");
 			  out.println("<script type=\"text/javascript\">");
 		  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 		  	  out.println("window.location='TraderBlock.do';");

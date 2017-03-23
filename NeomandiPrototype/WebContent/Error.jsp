@@ -15,6 +15,7 @@
 	<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9" style="position: absolute; top: 30%; left: 0%;">
 		<h1 align="center" style="color: red;">Error!!!</h1>
 		<h3 align="center">Please contact admin</h3>
+		<%exception.printStackTrace(new java.io.PrintWriter(out));%>
 	</div>
 </div>
 </body>

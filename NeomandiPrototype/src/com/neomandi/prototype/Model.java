@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import javax.servlet.ServletContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
@@ -325,8 +326,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		String pwd=tlbn.getTpwd();
 		try
 		{
-			con = JDBCHelper.getConnection();
-			
+			con = JDBCHelper.getConnection();			
 			if(con == null)
 			{
 				return msg + "Connection not established.";
@@ -353,6 +353,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					msg = msg + "Register first and then login.";
 				}				
 				con.commit();
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
 			}
 		}
 		catch(SQLException e)
@@ -1325,6 +1327,14 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					{
 						block=Integer.parseInt(rs.getString("blockamount"));
 					}
+					
+					/*String time1 = "16:00:00";
+					String time2 = "19:00:00";					
+					SimpleDateFormat format= new SimpleDateFormat("HH:mm:ss");
+					Date date = new Date();
+					Date date1=format1.parse((String)context.getAttribute("starttime"));
+					Date date2 = format.parse(time2);
+					long difference = date2.getTime() - date1.getTime(); */
 					System.out.println("myfinalcost "+myfinalcost);
 					System.out.println(myfinalcost>block);
 					if(myfinalcost>block)
