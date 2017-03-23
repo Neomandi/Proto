@@ -45,12 +45,7 @@
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-
-<<<<<<< HEAD
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%out.println((String)alog.getAttribute("name"));System.out.println((String)alog.getAttribute("name")); %>, welcome to e-auction at NeoMandi.</p></div>
-=======
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("aname") %>, welcome to e-auction at NeoMandi.</p></div>
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ALogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
