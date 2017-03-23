@@ -371,7 +371,7 @@ catch(Exception e)
 	<input type="hidden" value="<%=endtime%>" id="etime" />
 	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
-	
+	<input name="refreshed" value="no" id="refreshed" type="hidden"/>
 </form>
 <script type="text/javascript">
 
@@ -609,7 +609,7 @@ function countdown(minutes,seconds,hours)
 								      window.location.reload();
 								    }  
 								    else{
-								    	console.log("Before reload");
+								    	console.log("After reload");
 								    	localStorage.removeItem( 'firstLoad' );								      
 								    }
 								  }

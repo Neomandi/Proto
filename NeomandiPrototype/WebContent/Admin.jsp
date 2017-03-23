@@ -36,7 +36,7 @@
 		response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 		
 		HttpSession alog = request.getSession(false);
-	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
+	    if((String)alog.getAttribute("aname")==null && (String)alog.getAttribute("apwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.jsp';</script>");
@@ -47,7 +47,7 @@
 <div class="container-fluid headertop">
 <div class="">
 
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("name") %>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("aname") %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ALogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -158,31 +158,39 @@ function fun()
 }
 function fun1()
 {
-	var stop = 1;
-	  xmlhttp = new XMLHttpRequest();
-	  xmlhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) 
-	  {
-		    				         
-	  }};
-		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("stopauction="+stop);
-		  
+	if(confirm("Are you sure you want to stop?")){
+		var stop = 1;
+		  xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) 
+		  {
+			    				         
+		  }};
+			  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("stopauction="+stop);
+	}
+	else{
+		return;
+	}  
 }
 
 function fun2()
 {
-	var stop = 1;
-	  xmlhttp = new XMLHttpRequest();
-	  xmlhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) 
-	  {
-		    				         
-	  }};
-		  xmlhttp.open("POST", "PostAuction.do", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+	if(confirm("Are you sure you want to reset?")){
+		var stop = 1;
+		  xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) 
+		  {
+			    				         
+		  }};
+			  xmlhttp.open("POST", "PostAuction.do", true);
+			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+	}else{
+		return;
+	}
 }
 
 
