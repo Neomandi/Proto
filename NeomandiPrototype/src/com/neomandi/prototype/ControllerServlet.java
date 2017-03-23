@@ -759,9 +759,9 @@ public class ControllerServlet extends HttpServlet {
 				String date2=df1.format(new Date());
 				
 				HttpSession elog = request.getSession();
-				elog.setAttribute("name", elbn.getEname());
-				elog.setAttribute("pwd", elbn.getEpwd());
-				elog.setAttribute("empnumber", arr[1]);
+				elog.setAttribute("ename", elbn.getEname());
+				elog.setAttribute("epwd", elbn.getEpwd());
+				elog.setAttribute("eempnumber", arr[1]);
 				
 				PrintWriter out = null;
 				try {

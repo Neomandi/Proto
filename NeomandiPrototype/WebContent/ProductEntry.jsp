@@ -55,7 +55,7 @@
 	    response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 	    
 		HttpSession elog = request.getSession(false);
-	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
+	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/Login.html';</script>");
@@ -257,7 +257,7 @@
         <div class="container-fluid headertop">
             <div class="">
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-auction at NeoMandi.</p></div>
+                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
