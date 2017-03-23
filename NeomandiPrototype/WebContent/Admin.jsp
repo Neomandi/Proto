@@ -29,14 +29,12 @@
     </style>
 </head>
 <body>
-<%  
-		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+<% 		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
 		response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
 		response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 		response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-		
 		HttpSession alog = request.getSession(false);
-	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
+	    if((String)alog.getAttribute("name")==null || (String)alog.getAttribute("pwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.jsp';</script>");
@@ -47,7 +45,7 @@
 <div class="container-fluid headertop">
 <div class="">
 
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("name") %>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%out.println((String)alog.getAttribute("name"));System.out.println((String)alog.getAttribute("name")); %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ALogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>

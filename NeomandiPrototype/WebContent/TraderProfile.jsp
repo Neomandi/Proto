@@ -233,7 +233,7 @@ catch(Exception e)
     </table>
   </form>
   </div><br>
- <table align="center"><tr><td><a id="download-btn" class="reg">Export as PDF</a></td></tr></table>
+ <table align="center"><tr><td><!-- <a id="download-btn" class="reg">Export as PDF</a> --></td></tr></table>
 </div>
  <script src="libs/jspdf.min.js"></script>					
 	<script src="libs/jspdf.plugin.autotable.src.js"></script>					
