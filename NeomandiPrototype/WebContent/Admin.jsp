@@ -220,7 +220,7 @@ function fun2()
 			 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
 			 				}	
 							else
-							{
+							{								
 				            	var str="<div id='a1'style='display:inline; '>Auction has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";

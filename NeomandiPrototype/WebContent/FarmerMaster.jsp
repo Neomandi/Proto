@@ -35,6 +35,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
 <style>
     .img-responsive{
     	height: 60px;
@@ -362,10 +364,7 @@ catch(Exception e)
 			JDBCHelper.Close(pstmt1);
 			con.close();
 		}					
-%>
-<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
- 
+%> 
 <form>
 <input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
@@ -599,11 +598,28 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{	
+						//To Reload page once
+						(function(){
+								  if( window.localStorage )
+								  {
+								    if( !localStorage.getItem( 'firstLoad' ) )
+								    {
+								      localStorage[ 'firstLoad' ] = true;
+								      console.log("Before reload");
+								      window.location.reload();
+								    }  
+								    else{
+								    	console.log("Before reload");
+								    	localStorage.removeItem( 'firstLoad' );								      
+								    }
+								  }
+						})();
+						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
-		            	if(i==0){
+		            	/*if(i==0){
 		            		location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
 		            		i=9;
-		            	}
+		            	}*/
 		            		
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
