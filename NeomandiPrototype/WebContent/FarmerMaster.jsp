@@ -395,23 +395,23 @@ catch(Exception e)
 				var Etime=document.getElementById("time").value;
 				var Btime=stime;
 				var Btime1=etime;
-				console.log("Btime="+Btime);
-				console.log("Btime1="+Btime1);
+				//console.log("Btime="+Btime);
+				//console.log("Btime1="+Btime1);
 				start = Etime.split(":");
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
 				var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
 				 diff = endDate.getTime() - startDate.getTime();
-				console.log("end time is "+Btime);
+				/*console.log("end time is "+Btime);
 				console.log("current time is "+Etime);
-				console.log("difference in milliseconds is "+diff);
+				console.log("difference in milliseconds is "+diff);*/
 				var hours = Math.floor(diff / 1000 / 60 / 60);
 				//diff -= hours* 60 * 60;
 				var seconds= Math.floor(diff /1000);
 				var minutes = Math.floor(diff / 1000 / 60);
 				var res3=0;
-				console.log("differences in minutes before calc "+minutes);		
-				console.log("differences in seconds before calc "+seconds);		
+				/*console.log("differences in minutes before calc "+minutes);		
+				console.log("differences in seconds before calc "+seconds);		*/
 				if(seconds>60)
 				{
 						res1=seconds%60;
@@ -428,18 +428,18 @@ catch(Exception e)
 						hours=res3;
 						minutes=res1;
 				}
-				console.log("differences in minutes is "+minutes);
+				/*console.log("differences in minutes is "+minutes);
 				console.log("differences in seconds is "+seconds);
-				console.log("differences in hours is "+hours);
+				console.log("differences in hours is "+hours);*/
 
 				var timedifference=+hours+":"+minutes+":"+seconds;
-				console.log("differences in time is "+timedifference);
+				//console.log("differences in time is "+timedifference);
 				
 				countdown(minutes,seconds,hours);
 
 				var five=300000;
 				timedif=diff+five;
-				console.log("count"+timedif);
+				//console.log("count"+timedif);
 					
 				
 			}
@@ -534,12 +534,12 @@ catch(Exception e)
 						hours=res3;
 						minutes=res1;
 				}
-				console.log("differences in minutes is "+minutes);
+			/*	console.log("differences in minutes is "+minutes);
 				console.log("differences in seconds is "+seconds);
-				console.log("differences in hours is "+hours);
+				console.log("differences in hours is "+hours);*/
 
 				var timedifference=+hours+":"+minutes+":"+seconds;
-				console.log("differences in time is "+timedifference);
+				//console.log("differences in time is "+timedifference);
 				
 				countdown(minutes,seconds,hours);
 
@@ -616,7 +616,10 @@ function countdown(minutes,seconds,hours)
 						})();
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
+
+		            	console.log(" before if i="+i);
 		            	/*if(i==0){
+		            		console.log(" after i="+i);
 		            		location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
 		            		i=9;
 		            	}*/
@@ -743,7 +746,7 @@ setInterval(function()
 		  },3000);
 		  
 		  function funny(){
-			  console.log("inside function");
+			 // console.log("inside function");
 			  xmlhttp = new XMLHttpRequest();
 			    xmlhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) 
@@ -762,17 +765,17 @@ setInterval(function()
 			          document.getElementById("q").value=quantitybidfor;
 			          document.getElementById("a").innerHTML=avg;
 			          document.getElementById("q").innerHTML=quantitybidfor;
-			          console.log(avg+" "+quantitybidfor);
+			         // console.log(avg+" "+quantitybidfor);
 			         
 			    }
 			    };
 			    xmlhttp.open("POST", "Averageprice.do", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 				var farmerid=document.getElementById("farmerid").value;
-				console.log("farmerid="+farmerid);
+				//console.log("farmerid="+farmerid);
 				//console.log("xmlhttp.send(farmerid)"+xmlhttp.send(farmerid));
 				xmlhttp.send("farmerid="+farmerid);
-				console.log("end of function");
+				//console.log("end of function");
 		  }
 </script>
 
