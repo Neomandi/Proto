@@ -356,16 +356,24 @@ catch(NullPointerException e)
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 
 
+
 				            	console.log("before if m="+m);
 				            	m=undefined;
+
 				            	if(m==0)
 				            	{				            	
+
 				            		location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
 				            		/*$( "#auction" ).load(window.location.href + " #auction" );
+=======
+				            		//location="TradeorAuction.do";				            		 
+				            		  m=9;
+				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            		  $( "#auction" ).load(window.location.href + " #auction" );
+>>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
 				            		  $( "#auction1" ).load(window.location.href + " #auction1" );
 				            		  $( "#auction" ).load(window.location.href + " #auction" );*/
 				            		m=9;
-
 				            	}
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
