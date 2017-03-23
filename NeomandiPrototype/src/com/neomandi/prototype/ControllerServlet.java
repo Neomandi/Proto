@@ -2596,8 +2596,8 @@ public class ControllerServlet extends HttpServlet {
 			{
 				System.out.println("SUCCESS");
 				HttpSession alog = request.getSession();
-				alog.setAttribute("name", aname);
-				alog.setAttribute("pwd", apwd);
+				alog.setAttribute("aname", aname);
+				alog.setAttribute("apwd", apwd);
 				
 				PrintWriter out = null;
 				try {
@@ -2633,8 +2633,8 @@ public class ControllerServlet extends HttpServlet {
 			
 			if(alog != null)
 			{
-				alog.removeAttribute("name");
-				alog.removeAttribute("pwd");
+				alog.removeAttribute("aname");
+				alog.removeAttribute("apwd");
 				alog.invalidate();
 				//System.out.println(request.getAttribute("errmsg"));
 //				try {
