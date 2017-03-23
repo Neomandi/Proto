@@ -66,11 +66,11 @@
 <form method="post" name="admin" class="form-inline">
 		<div class="form-group form-group-lg">	
 			<label for="starttime">Start Time: </label>
-			<input type="text" name="starttime" class="form-control" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
+			<input type="text" name="starttime" class="form-control" value="${param.starttime}" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
 		</div>
 		<div class="form-group form-group-lg">
 			<label for="endtime">End Time: </label>
-			<input type="text" name="endtime" class="form-control" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
+			<input type="text" name="endtime" class="form-control" value="${param.endtime}" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
 		</div><br/><br/>
 	<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" name="stop" value="Stop Auction" class="btn btn-danger btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -220,7 +220,7 @@ function fun2()
 			 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
 			 				}	
 							else
-							{								
+							{									
 				            	var str="<div id='a1'style='display:inline; '>Auction has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
