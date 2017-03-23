@@ -1504,7 +1504,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						myfinalcost=100+lotcost+commission+marketcess+3000;
 				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
 			}
-			System.out.println("myfinalcost "+myfinalcost);
 			int block=0;
 			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 			ps.setString(1, aadharnumber);
@@ -1517,7 +1516,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			}
 			//System.out.println("block is "+block+" final cost is "+myfinalcost);
 			//System.out.println("quantityassigned "+quantityassigned);
-			System.out.println(myfinalcost>block);
 			if(myfinalcost>block)
 			{
 				mfcb=new MyFinalCostBean();				
@@ -1577,9 +1575,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 					mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
 					mfcb.setBestbid(bestbid);
 				//	System.out.println("inside model mfcb is "+mfcb);
-
-					
-				}//System.out.println("bid price before storing in an array "+mfcb.getPrice()+" final price "+mfcb.getMyfinalcost()+" lotnum"+mfcb.getLotnum());
+				}
 		}		
 		}
 		con.commit();		
@@ -1592,7 +1588,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 		try {
 			con.rollback();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}

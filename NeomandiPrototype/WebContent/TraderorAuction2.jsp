@@ -302,8 +302,8 @@ catch(NullPointerException e)
   var timedifference=+hours+":"+minutes+":"+seconds;
   var m=0;
   countdown(minutes,seconds,hours);	
-  var five=300000;
-  timedif=diff+five; 	
+/*   var five=300000;
+  timedif=diff+five;  */	
 		<%-- function countdown(minutes,seconds,hours) 
 		{			  			 
 			 	var seconds =seconds;
@@ -482,6 +482,7 @@ catch(NullPointerException e)
 			    
 				function tick() 
 				{
+					console.log("2.2");
 			        var counter = document.getElementById("timer");
 			        var current_minutes = mins
 		    		seconds--;
@@ -512,17 +513,17 @@ catch(NullPointerException e)
 										    if( !localStorage.getItem( 'firstLoad' ) )
 										    {
 										      localStorage[ 'firstLoad' ] = true;
-										      console.log("Before reload");
+										      console.log("Before reload1");
 										      window.location.reload();
 										    }  
 										    else{
-										    	console.log("Before reload");
+										    	console.log("Before reload2");
 										    	localStorage.removeItem( 'firstLoad' );								      
 										    }
 										  }
 								})();
-								console.log("refreshing");
-				            	var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
+								
+								var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
@@ -532,9 +533,9 @@ catch(NullPointerException e)
 				            	var strCmd1 = "document.getElementById('msg').style.cssText ='display:none'";
 				            	var waitseconds = seconds;
 				            	var timeOutPeriod = waitseconds * 1000;
-				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);
-				            	
+				            	var hideTimer = setTimeout(strCmd1, timeOutPeriod);				            	
 				            	document.getElementById("timer").innerHTML=str;
+				            	
 				            	function count(minutes1,seconds1) 
 				            	{
 				            		var seconds =seconds1;
@@ -542,24 +543,29 @@ catch(NullPointerException e)
 				        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
 				        		    function tick() 
 				        		    {
-				        		        var counter = document.getElementById("hms");
+				        		    	debugger;
+				        		    	var counter = document.getElementById("hms");
 				        		        var current_minutes = mins
 				        		       	seconds--;
 				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-				        		        if( seconds > 0 ) {
+				        		        if( seconds > 0 )
+				        		        {
 				        		            setTimeout(tick,1000);
 				        		        } 
 				        		        else 
 				        		        {
 					        		       if(mins > 0)
 					        		       {
-					        		 		setTimeout(function () { count(mins - 1,60); },1000);
+					        		 			setTimeout(function () { count(mins - 1,60); },1000);
 					        			   }
 					        		       else
 					        		       {
-					        		    	   console.log("before i= "+i);
-					        		    	   if(i==0)
-					        		    	   {					        		           	
+					        		    	   console.log("before i= "+i);					        		    	  			
+					        		    		  <%
+					        		    		   	/*  HttpSession countdown=request.getSession(false);
+					        		    		   System.out.println("countdown.getAttribute( "+countdown.getAttribute("timer"));
+													 if(countdown.getAttribute("timer").equals("0")){
+													 System.out.println("isnide if"); */%>
 								            	var str1="has ended";
 					        		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
 								            	var waitseconds = seconds;
@@ -572,6 +578,7 @@ catch(NullPointerException e)
 								            	document.getElementById("auction1").innerHTML=str1;
 								            	alert("Auction is over you can check the status in status tab");
 								            	console.log("AUCTION IS OVER");
+								            	
 								            	xmlhttp = new XMLHttpRequest();
 								      		  	xmlhttp.onreadystatechange = function() {
 								      		    if (this.readyState == 4 && this.status == 200) 
@@ -582,25 +589,25 @@ catch(NullPointerException e)
 												document.getElementById('POSTAUCTION').value='end';												
 												<%
 												try{
-													 System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
-													if(request.getAttribute("msg").equals("block"))
-													{	
-														msg=null;
-													}
+													System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
+													if(request.getAttribute("msg")!=null &&request.getAttribute("msg").equals("block"))
+													{msg=null;}
 													System.out.println(msg); 
 												}
 												catch(Exception e)
-												{
-													e.printStackTrace();
-												}
+												{e.printStackTrace();}
 												%>
 												i=9;
-					        		    	   }else{}
-					        		    	   console.log("i= "+i);
-					        		       }
+					        		    	   <%
+					        		    	   	/* countdown.setAttribute("timer",1);
+												}else
+					        		    	   {
+					        		    	   } */%>
+					        		    	   
+					        		       } 
 				        		    	}
 			        		     	}
-			        		   	 	tick();
+				        		   tick();
 			        			}		
 				            	var Etime1=document.getElementById("time").value;
 				            	start1 = Etime1.split(":");
@@ -755,7 +762,7 @@ catch(NullPointerException e)
 		var mybid=new  Number(mybids);
 		console.log("best bid is"+bestbid);
 		console.log(" my bid is"+mybid+" ");
-		console.log(mybid==0);
+		//console.log(mybid==0);
 		if(mybid<bestbid&&mybid>0)
 		{
 				console.log("mybid<bestbid")
@@ -992,7 +999,7 @@ catch(NullPointerException e)
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
 							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
-								console.log(mybid==0);
+								//console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
 									//console.log("mybid<bestbid")

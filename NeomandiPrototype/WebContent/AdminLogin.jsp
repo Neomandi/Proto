@@ -31,8 +31,7 @@
       <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        
+      <ul class="nav navbar-nav">        
         <li><a href="HomePage.html">About Us</a></li>
         <li><a href="Vision.html">Vision</a></li>
         <li><a href="Mission.html">Mission</a></li>

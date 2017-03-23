@@ -315,7 +315,7 @@
                 <br>
                 <table align="center">
                     <tr>
-                        <td><a href="#" id="download-btn" class="reg">Export as PDF</a></td>
+                        <td><!-- <a href="#" id="download-btn" class="reg">Export as PDF</a> --></td>
                     </tr>
                 </table>
             </div>

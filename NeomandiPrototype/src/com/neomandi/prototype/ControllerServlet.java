@@ -1024,8 +1024,7 @@ public class ControllerServlet extends HttpServlet {
 				psr.setAttribute("category",psb.getCategory());
 				psr.setAttribute("produce",psb.getProduce());
 				psr.setAttribute("grade",psb.getGrade());
-				psr.setAttribute("slot",psb.getSlot());
-				
+				psr.setAttribute("slot",psb.getSlot());				
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
@@ -1040,17 +1039,16 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				HttpSession psr=request.getSession();
-				psr.setAttribute("beans", msg);
-				
+				psr.setAttribute("beans", msg);				
 				request.setAttribute("productsearchresult", "productsearchresult");
 				request.setAttribute("category",psb.getCategory());
 				request.setAttribute("produce",psb.getProduce());
 				request.setAttribute("grade",psb.getGrade());
 				request.setAttribute("slot",psb.getSlot());
-				rd=request.getRequestDispatcher("product.jsp");
+				RequestDispatcher rd1 = request.getRequestDispatcher("product.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd1.forward(request, response);			
 				}			
 				catch (ServletException e) {
 					e.printStackTrace();
@@ -1560,6 +1558,8 @@ public class ControllerServlet extends HttpServlet {
 				}*/
 			}
 			/*first code*/
+			HttpSession countdown=request.getSession();
+			countdown.setAttribute("timer",0);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			if(mc.getBl().size()==0)
@@ -1635,7 +1635,6 @@ public class ControllerServlet extends HttpServlet {
 			Model m=new Model();
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
-			System.out.println("inside cs mfcb.getmsg()"+mfcb.getMsg());
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
 			if((mfcb.getMsg()==null))
 			{
