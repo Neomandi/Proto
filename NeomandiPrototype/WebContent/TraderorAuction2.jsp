@@ -258,7 +258,9 @@ catch(NullPointerException e)
 <%
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
+	System.out.println("starttime="+start);
 	String stop=(String)context.getAttribute("endtime");
+	System.out.println("end="+stop);
 	String msg="start";
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %><input type="hidden" id="POSTAUCTION" value="start"/>
@@ -311,12 +313,9 @@ catch(NullPointerException e)
 	//console.log("differences in hours is "+hours);
 		var timedifference=+hours+":"+minutes+":"+seconds;
 	//console.log("differences in time is "+timedifference);	
-<<<<<<< HEAD
-		var i=0;
-		var j=0;
-=======
+
 		var m=0;
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+
 		countdown(minutes,seconds,hours);	
 		var five=300000;
 		timedif=diff+five;
@@ -357,13 +356,14 @@ catch(NullPointerException e)
 				            	var str="<div id='a1'style='display:inline; '> has begun. It will end in</div>&nbsp;&nbsp;<div id='hms' style='display:inline;' > 5:00</div>";
 
 
-				            	console.log(m)
+				            	console.log("before if m="+m);
+				            	m=undefined;
 				            	if(m==0)
 				            	{				            	
-				            		//location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
-				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		location="http://localhost:8080/NeomandiPrototype/TraderorAuction2.jsp";
+				            		/*$( "#auction" ).load(window.location.href + " #auction" );
 				            		  $( "#auction1" ).load(window.location.href + " #auction1" );
-				            		  $( "#auction" ).load(window.location.href + " #auction" );
+				            		  $( "#auction" ).load(window.location.href + " #auction" );*/
 				            		m=9;
 
 				            	}
