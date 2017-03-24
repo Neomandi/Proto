@@ -501,13 +501,13 @@ catch(NullPointerException e)
 	   	/* if(msg!=null&&msg.equals("start"))
 	   	 */ 	msg=(String)request.getAttribute("msg");
 	   	msg=null;
-	   	System.out.println("inside jsp in body msg is "+msg);
+	 //  	System.out.println("inside jsp in body msg is "+msg);
 	    if(msg!=null)
 	    {
 	    	  System.out.println("inside if");
 			  out.println("<script type=\"text/javascript\">");
 		  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
-		  	  out.println("window.location='TraderBlock.do';");
+		  	//  out.println("window.location='TraderBlock.do';");
 		 	  out.println("</script>");
 		}
 		else 

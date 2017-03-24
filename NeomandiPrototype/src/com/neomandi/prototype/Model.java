@@ -1298,10 +1298,20 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					int marketcess=0;
 					int myfinalcost=0;
 				
-					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
+					int quantityneeded=0;
+					ps =con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
 					ps.setString(1, aadharnumber);
 					ps.setString(2, lotnumber.get(i));
 				//	System.out.println(lotnumber.get(i));
+					ps.execute();
+					while(rs.next())
+					{
+						quantityneeded=rs.getInt("quantityneeded");
+					}
+					
+					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
+					ps.setString(1, aadharnumber);
+					ps.setString(2, lotnumber.get(i));
 					ps.execute();
 					rs = ps.getResultSet();	
 					int bidprice=0;
@@ -1310,6 +1320,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					{
 						quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
 						bidprice=Integer.parseInt(rs.getString("bidprice"));
+						//lotcost=bidprice*quantityassigned; ****** I HAVE CHANGED LOTCOST ****
 						lotcost=bidprice*quantityassigned;
 						commission=(int)(lotcost*0.05);
 						marketcess=(int)(lotcost*0.01);
@@ -1336,9 +1347,21 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					Date date1=format1.parse((String)context.getAttribute("starttime"));
 					Date date2 = format.parse(time2);
 					long difference = date2.getTime() - date1.getTime(); */
-					System.out.println("myfinalcost "+myfinalcost);
+					
+					  //********THIS IS NEW CODE*******
+			        int lotcost2=0;
+			        int finalcost2=0;
+			        int commission2=0;
+			        int marketcess2=0;
+			        lotcost2=bidprice*quantityneeded;
+					commission2 = (int) (lotcost2*0.05);
+					marketcess2 =(int) (lotcost2*0.01);
+					finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
+					//************END OF NEW CODE****
+					
+					System.out.println("myfinalcost "+finalcost2);
 					System.out.println(myfinalcost>block);
-					if(myfinalcost>block)
+					if(finalcost2>block)
 					{
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
@@ -1476,13 +1499,24 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			*/
 				lotnum=rs.getString("lotnum");
 			}	
+			
+			int quantityneeded=0;
+			ps =con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
+			ps.setString(1, aadharnumber);
+			ps.setString(2, lotnum);
+		//	System.out.println(lotnumber.get(i));
+			ps.execute();
+			while(rs.next())
+			{
+				quantityneeded=rs.getInt("quantityneeded");
+			}			
+			
 			int lotcost=0;
 			int commission=0;
 			int marketcess=0;
 			int myfinalcost=0;
 			int quantityassigned=0;
 			int bidprice=0;
-			
 			
 			//System.out.println("lotnum which trader is bidding for is "+lotnum);
 			ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
@@ -1492,7 +1526,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 		//	System.out.println(ps);
 			rs = ps.getResultSet();
 			while(rs.next())
-			{
+			{				
 					 quantityassigned=Integer.parseInt(rs.getString("quantityassigned"));
 					 bidprice=Integer.parseInt(rs.getString("bidprice"));
 					lotcost=bidprice*quantityassigned;
@@ -1514,9 +1548,19 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			{
 				block=Integer.parseInt(rs.getString("blockamount"));
 			}
-			//System.out.println("block is "+block+" final cost is "+myfinalcost);
-			//System.out.println("quantityassigned "+quantityassigned);
-			if(myfinalcost>block)
+			
+			//********THIS IS NEW CODE*******
+	        int lotcost2=0;
+	        int finalcost2=0;
+	        int commission2=0;
+	        int marketcess2=0;
+	        lotcost2=bidprice*quantityneeded;
+			commission2 = (int) (lotcost2*0.05);
+			marketcess2 =(int) (lotcost2*0.01);
+			finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
+			//************END OF NEW CODE****
+			
+			if(finalcost2>block)
 			{
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
@@ -4125,7 +4169,9 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					System.out.println("biddng price the trader is ready to pay = "+res);
 					quantityassigned=Integer.parseInt(quantityassigneds);
 					//lotcost = res * quantity;
-					lotcost = res * quantityassigned;
+					//lotcost = res * quantityassigned;   *******IMPORTANT*** MARCH 24** CODE CHANGE = LOTCOST IS (LOTCOST* QUANTITY REQUIRED)*****
+					lotcost = res * quantityassigned;   
+					//lotcost=res*Integer.parseInt(quantityneededs);
 					commission = (int) (lotcost*0.05);
 					marketcess =(int) (lotcost*0.01);
 					if(quantityassigned==0)						
@@ -4170,7 +4216,17 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			        if (toTimeZone.inDaylightTime(calendar.getTime())) {
 			            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
 			        }
-			        int diff=result-finalcost;			        
+			        //********THIS IS NEW CODE*******
+			        int lotcost2=0;
+			        int finalcost2=0;
+			        int commission2=0;
+			        int marketcess2=0;
+			        lotcost2=res*Integer.parseInt(quantityneededs);
+					commission = (int) (lotcost*0.05);
+					marketcess =(int) (lotcost*0.01);
+					finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
+					//************END OF NEW CODE****
+			        int diff=result-finalcost2;			        
 			        System.out.println("*****diff*******"+diff);
 			        if(diff<0)
 					{
