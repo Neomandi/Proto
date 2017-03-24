@@ -340,7 +340,7 @@ catch(NullPointerException e)
 							{	
 								//To Reload page once
 
-							/*	(function(){
+								/*(function(){
 										  if( window.sessionStorage )
 										  {
 										    if( !sessionStorage.getItem( 'firstLoad' ) )
@@ -355,12 +355,6 @@ catch(NullPointerException e)
 										    }
 										  }
 								})(); */
-								/* window.onload = function() {
-								    if(!window.location.hash) {
-								        window.location = window.location + '#loaded';
-								        window.location.reload();
-								    }
-								} */
 								
 								var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
