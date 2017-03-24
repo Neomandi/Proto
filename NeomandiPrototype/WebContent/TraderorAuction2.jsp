@@ -340,7 +340,7 @@ catch(NullPointerException e)
 							{	
 								//To Reload page once
 
-							/*	(function(){
+								(function(){
 										  if( window.sessionStorage )
 										  {
 										    if( !sessionStorage.getItem( 'firstLoad' ) )
@@ -354,7 +354,7 @@ catch(NullPointerException e)
 										    	sessionStorage.removeItem( 'firstLoad' );								      
 										    }
 										  }
-								})(); */
+								})(); 
 								window.onload = function() {
 								    if(!window.location.hash) {
 								        window.location = window.location + '#loaded';
