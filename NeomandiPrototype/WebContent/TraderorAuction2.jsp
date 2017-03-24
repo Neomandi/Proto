@@ -355,12 +355,12 @@ catch(NullPointerException e)
 										    }
 										  }
 								})(); */
-								window.onload = function() {
+								/* window.onload = function() {
 								    if(!window.location.hash) {
 								        window.location = window.location + '#loaded';
 								        window.location.reload();
 								    }
-								}
+								} */
 								
 								var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
@@ -448,7 +448,13 @@ catch(NullPointerException e)
 			        		     	}
 				        		   tick();
 			        			}		
-				            	var Etime1=document.getElementById("time").value;
+				            	//var Etime1=document.getElementById("time").value;
+				            	var d = new Date(); // for now
+				            	d.getHours(); // => 9
+				            	d.getMinutes(); // =>  30
+				            	d.getSeconds();
+				            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+				            	console.log("current time is "+Etime1);
 				            	start1 = Etime1.split(":");
 				            	end1 =Btime1.split(":");
 				            	console.log("end time is "+end1);
