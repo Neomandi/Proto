@@ -427,14 +427,14 @@ catch(NullPointerException e)
 												xmlhttp.send("number=1");
 												document.getElementById('POSTAUCTION').value='end';												
 												<%
-												try{
+												/* try{
 													System.out.println("request.getAttributemsg"+request.getAttribute("msg"));
 													if(request.getAttribute("msg")!=null &&request.getAttribute("msg").equals("block"))
 													{msg=null;}
 													System.out.println(msg); 
 												}
 												catch(Exception e)
-												{e.printStackTrace();}
+												{e.printStackTrace();} */
 												%>
 												i=9;
 					        		    	   <%
@@ -500,8 +500,9 @@ catch(NullPointerException e)
 	  }
 	  else
 	  {		  
-	   	if(msg!=null&&msg.equals("start"))
-	   	 	msg=(String)request.getAttribute("msg");
+	   	/* if(msg!=null&&msg.equals("start"))
+	   	 */ 	msg=(String)request.getAttribute("msg");
+	   	msg=null;
 	   	System.out.println("inside jsp in body msg is "+msg);
 	    if(msg!=null)
 	    {
@@ -533,8 +534,9 @@ catch(NullPointerException e)
 				HttpSession traderlistbean=request.getSession(false);
 				List<TradeListBean> al=(List<TradeListBean>)traderlistbean.getAttribute("tlb");
 				System.out.println(al);
-				try{
+				try{System.out.println(al.size()==0 );
 				if(al.size()==0){
+					System.out.println(al.size()==0 );
 				%><br>
 					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 				<br>

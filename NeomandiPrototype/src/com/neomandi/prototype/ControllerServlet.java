@@ -1562,7 +1562,7 @@ public class ControllerServlet extends HttpServlet {
 			countdown.setAttribute("timer",0);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
-			if(mc.getBl().size()==0)
+			if(mc.getBl().size()==0&&mc.getAl().size()!=0)
 			{
 				request.setAttribute("msg","block");
 				RequestDispatcher rd2 =request.getRequestDispatcher("TraderorAuction2.jsp");

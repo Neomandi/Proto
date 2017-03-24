@@ -1285,10 +1285,10 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					tlb.setQuantityneeded(rs.getString("quantityneeded"));
 					al.add(tlb);
 					lotnumber.add(rs.getString("lotnum"));
-				//	System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
+					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
 				}
 				mc.setAl(al);	
-				//System.out.println("model "+mc.getAl()+lotnumber.size());
+				System.out.println("model "+mc.getAl()+lotnumber.size());
 				for(int i=0;i<lotnumber.size();i++)
 				{
 					int lotcost=0;
@@ -1326,8 +1326,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					while(rs.next())
 					{
 						block=Integer.parseInt(rs.getString("blockamount"));
-					}
-					
+					}					
 					/*String time1 = "16:00:00";
 					String time2 = "19:00:00";					
 					SimpleDateFormat format= new SimpleDateFormat("HH:mm:ss");
@@ -1339,7 +1338,6 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					System.out.println(myfinalcost>block);
 					if(myfinalcost>block)
 					{
-						System.out.println("inside if");
 						mfcb=new MyFinalCostBean();				
 						mfcb.setMsg("block");
 						
