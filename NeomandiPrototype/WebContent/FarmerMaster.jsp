@@ -578,7 +578,6 @@ function countdown(minutes,seconds,hours)
 	        {
 	            setTimeout(tick,1000);
 	            document.getElementById('ts').onclick = function() {
-		            	console.log("inside the count function");
 		            	//alert("Auction under progress");
 		            	
 		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
@@ -599,7 +598,7 @@ function countdown(minutes,seconds,hours)
 					else
 					{	
 						//To Reload page once
-						(function(){
+						/* (function(){
 								  if( window.localStorage )
 								  {
 								    if( !localStorage.getItem( 'firstLoad' ) )
@@ -613,7 +612,7 @@ function countdown(minutes,seconds,hours)
 								    	localStorage.removeItem( 'firstLoad' );								      
 								    }
 								  }
-						})();
+						})(); */
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 
@@ -639,9 +638,7 @@ function countdown(minutes,seconds,hours)
 		            	document.getElementById("timer").innerHTML=str;
 		            	function count(minutes1,seconds1) 
 		            	{
-		            		console.log("minutes is"+minutes);
-		            		console.log("seconds is"+seconds1);
-		        		    var seconds =seconds1;
+		            		 var seconds =seconds1;
 		        		    var mins = minutes1;
 		        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
 		        		    function tick() 
@@ -653,13 +650,9 @@ function countdown(minutes,seconds,hours)
 		        		        if( seconds > 0 ) {
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
-		        		            	console.log("inside the count function");
 		        		            	//alert("Auction under progress");
-
 		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
-
-		        		            	}
-		        		            
+		        		            	}		        		            
 		        		        } 
 		        		        else 
 		        		        {
@@ -681,9 +674,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		            console.log("inside the count function");
-
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		           location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -719,10 +710,7 @@ function countdown(minutes,seconds,hours)
 		            			seconds1=res1;
 		            			minutes1=res2;
 		            	}
-		            	console.log("auction ends at "+Btime1);
-		            	console.log("time is  "+Etime1);
-		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
+		            	count(minutes1,seconds1);
 	        			
 					}
 				}
