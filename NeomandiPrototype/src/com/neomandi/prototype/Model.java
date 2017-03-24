@@ -1548,7 +1548,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			{
 				block=Integer.parseInt(rs.getString("blockamount"));
 			}
-			
 			//********THIS IS NEW CODE*******
 	        int lotcost2=0;
 	        int finalcost2=0;
@@ -4222,8 +4221,8 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			        int commission2=0;
 			        int marketcess2=0;
 			        lotcost2=res*Integer.parseInt(quantityneededs);
-					commission = (int) (lotcost*0.05);
-					marketcess =(int) (lotcost*0.01);
+					commission2 = (int) (lotcost2*0.05);
+					marketcess2 =(int) (lotcost2*0.01);
 					finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
 					//************END OF NEW CODE****
 			        int diff=result-finalcost2;			        

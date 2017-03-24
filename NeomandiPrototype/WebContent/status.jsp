@@ -172,7 +172,7 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center">Auction Complete.<output id="status<%= osbn.getLotnum()%>">
+	<table align="center"><tbody><tr><td><header><h4 class="text-center"><div id="msg"></div><output id="status"><!-- i have changed id from  statuslotcost<%= osbn.getLotnum()%>-->
 	<%
 		if(Integer.parseInt(osbn.getLotcost())==0) 
 			out.println("Lot Has Not been Assigned to you");
@@ -254,9 +254,18 @@ var td = endDate1.getTime() - startDate1.getTime();
 console.log("difference in time is "+ td);
 if(td>0)
 	{
-			alert("Auction is stll under progress, please visit this page after auction");
-			location='TradeorAuction.do';
+		//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
+			
+			document.getElementById("msg").textContent='Auction is stll under progress';
+			//location='TradeorAuction.do';
+			document.getElementById("status").textContent='';
 	}
+else
+{
+	document.getElementById("msg").textContent='Auction Complete.';
+	
+}
+	
 </script>
 </body>
 </html>
