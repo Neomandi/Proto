@@ -1188,8 +1188,8 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Name and pwd from form: "+ename+" "+epwd);
 			
 			HttpSession elog = request.getSession(false);
-			String name = (String) elog.getAttribute("name");
-			String pwd = (String) elog.getAttribute("pwd");
+			String name = (String) elog.getAttribute("ename");
+			String pwd = (String) elog.getAttribute("epwd");
 			System.out.println("Name and pwd from session: "+name+" "+pwd);
 			
 			
