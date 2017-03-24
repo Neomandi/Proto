@@ -448,11 +448,9 @@ catch(NullPointerException e)
 				            	d.getMinutes(); // =>  30
 				            	d.getSeconds();
 				            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-				            	console.log("current time is "+Etime1);
 				            	start1 = Etime1.split(":");
 				            	end1 =Btime1.split(":");
-				            	console.log("end time is "+end1);
-				            	console.log("current time is "+start1);
+				            	
 				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 				            	var td = endDate1.getTime() - startDate1.getTime();					            	

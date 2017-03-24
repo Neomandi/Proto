@@ -692,7 +692,8 @@ function countdown(minutes,seconds,hours)
 		            	d.getHours(); // => 9
 		            	d.getMinutes(); // =>  30
 		            	d.getSeconds();
-		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();start1 = Etime1.split(":");
+		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 		            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
