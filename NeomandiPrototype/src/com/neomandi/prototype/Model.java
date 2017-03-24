@@ -408,6 +408,8 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 				else
 					msg = msg + "Register first and then login.";				
 				con.commit();
+				JDBCHelper.Close(ps);
+				JDBCHelper.Close(con);
 			}
 		}
 		catch(SQLException e)
