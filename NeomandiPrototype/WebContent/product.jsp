@@ -105,6 +105,7 @@
     			color: darkblue;
     		}
         </style>
+        <script src="jquery.alerts.js"></script>
         <script>
         function populate(s1, s2)
         {
@@ -301,7 +302,7 @@
             {
             	 //System.out.println(psr.getAttribute("msg"));            	
                 out.println("<script type=\"text/javascript\">");
-       		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+               	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
 	       	  	psr.setAttribute("msg",null);
             }
@@ -407,9 +408,9 @@
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 											alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
 									}
-									else if(neededs%50!=0)
+									else if(neededs%50!=0 && neededs!=total)
 									{
-											alert("PLEASE ENTER THE LOTSIZE IN MULTIPLES OF 50");
+											alert("Please enter lot size in terms of 50 or bid for complete lot");
 									}
 									else 
 									{
@@ -431,7 +432,7 @@
 											         var newsize=new Number(ms);
 											         
 											         if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
-											         {											        	 
+											         {			
 											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
 											        	 	xmlhttp.open("POST", "AddTrade.do", true);
 															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
