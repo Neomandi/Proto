@@ -64,41 +64,51 @@ overflow:auto;
 </head>
 <body>
 <%
+	ServletContext context = request.getSession().getServletContext();
+	String start=(String)context.getAttribute("starttime");
+	System.out.println("starttime="+start);
+	String stop=(String)context.getAttribute("endtime");
+%>
+<input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
+<input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
+<script>
+var start=document.getElementById("start").value;
+var stop=document.getElementById("stop").value;
+var Btime=start;
+var Btime1=stop;
+var d = new Date(); // for now
+d.getHours(); // => 9
+d.getMinutes(); // =>  30
+d.getSeconds();
+var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+start1 = Etime1.split(":");
+end1 =Btime1.split(":");
+
+var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+var td = endDate1.getTime() - startDate1.getTime();			
+console.log("difference in time is "+ td);
+if(td>0)
+	{
+			alert("Auction is stll under progress, please come after auction");
+			location='TradeorAuction.do';
+	}
+</script>
+<%
 	SimpleDateFormat sdf=new SimpleDateFormat("HH");
 	SimpleDateFormat sdf1=new SimpleDateFormat("mm");
 	String hours=sdf.format(new Date());
 	String minutes=sdf1.format(new Date());
 	int hour=Integer.parseInt(hours);
-	int minute=Integer.parseInt(minutes);
-	//System.out.println("current time is "+hour+":"+minute+"  ");
-	/*if(hour<10)
-	{
-		 System.out.println("inside if ");
-		 out.println("<script type=\"text/javascript\">");
-		 out.println("alert('YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE');");
-		 out.println("location='TradeorAuction.do';");
-		 out.println("</script>");
-	}
-	else*/
-	{
-		/*
-		if(hour==10&&minute<35)
-		 {
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE');");
-	 		out.println("location='TradeorAuction.do';");
-	 		out.println("</script>");
-	 	  }
-		 else*/
-		 {
+	int minute=Integer.parseInt(minutes);	
 %>
 <input type="hidden" value="<%=hour%>" id="hour">
 <input type="hidden" value="<%=minute%>" id="minute">
 <script>
-var hour=document.getElementById("hour");
+/* var hour=document.getElementById("hour");
 var minute=document.getElementById("minute");
 console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
-if(hour!=10)
+if(hour!=10){}
 	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 	 else
 		 {
@@ -106,7 +116,7 @@ if(hour!=10)
 		 if(minute<35)
 		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
 				
-		 }
+		 } */
 </script>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -200,7 +210,7 @@ if((String)tlbn.getTname()==null)
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
 			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do">
+	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></output></h4></header>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
@@ -240,7 +250,7 @@ if((String)tlbn.getTname()==null)
 </tbody></table></div>
 </div>
 </div>
-    </div></div><%}}}}}%>
+    </div></div><%}}}%>
  </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>

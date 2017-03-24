@@ -100,7 +100,7 @@ overflow:auto;
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
-for (i = 0; i < acc.length; i++) {
+for (i = 0; i < acc.length; i) {
   acc[i].onclick = function() {
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
@@ -379,7 +379,7 @@ catch(NullPointerException e)
 				        		    	//debugger;				        		    	
 				        		    	var counter = document.getElementById("hms");
 				        		        var current_minutes = mins;
-				        		        console.log("++"+seconds);
+				        		      // console.log("++"+seconds);
 				        		       	seconds--;
 				        		        counter.innerHTML =current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 				        		        if( seconds > 0 )
