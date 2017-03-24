@@ -759,9 +759,9 @@ public class ControllerServlet extends HttpServlet {
 				String date2=df1.format(new Date());
 				
 				HttpSession elog = request.getSession();
-				elog.setAttribute("name", elbn.getEname());
-				elog.setAttribute("pwd", elbn.getEpwd());
-				elog.setAttribute("empnumber", arr[1]);
+				elog.setAttribute("ename", elbn.getEname());
+				elog.setAttribute("epwd", elbn.getEpwd());
+				elog.setAttribute("eempnumber", arr[1]);
 				
 				PrintWriter out = null;
 				try {
@@ -1188,8 +1188,8 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Name and pwd from form: "+ename+" "+epwd);
 			
 			HttpSession elog = request.getSession(false);
-			String name = (String) elog.getAttribute("name");
-			String pwd = (String) elog.getAttribute("pwd");
+			String name = (String) elog.getAttribute("ename");
+			String pwd = (String) elog.getAttribute("epwd");
 			System.out.println("Name and pwd from session: "+name+" "+pwd);
 			
 			

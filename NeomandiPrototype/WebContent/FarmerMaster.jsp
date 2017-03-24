@@ -617,7 +617,7 @@ function countdown(minutes,seconds,hours)
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 
-		            	console.log(" before if i="+i);
+		            	//console.log(" before if i="+i);
 		            	/*if(i==0){
 		            		console.log(" after i="+i);
 		            		location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";

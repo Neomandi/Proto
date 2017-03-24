@@ -339,18 +339,19 @@ catch(NullPointerException e)
 							else
 							{	
 								//To Reload page once
-								/* (function(){
-										  if( window.localStorage )
+
+							/*	(function(){
+										  if( window.sessionStorage )
 										  {
-										    if( !localStorage.getItem( 'firstLoad' ) )
+										    if( !sessionStorage.getItem( 'firstLoad' ) )
 										    {
-										      localStorage[ 'firstLoad' ] = true;
+										    	sessionStorage[ 'firstLoad' ] = true;
 										      console.log("Before reload1");
 										      window.location.reload();
 										    }  
 										    else{
 										    	console.log("Before reload2");
-										    	localStorage.removeItem( 'firstLoad' );								      
+										    	sessionStorage.removeItem( 'firstLoad' );								      
 										    }
 										  }
 								})(); */
