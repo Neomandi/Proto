@@ -64,37 +64,6 @@ overflow:auto;
 </head>
 <body>
 <%
-	ServletContext context = request.getSession().getServletContext();
-	String start=(String)context.getAttribute("starttime");
-	System.out.println("starttime="+start);
-	String stop=(String)context.getAttribute("endtime");
-%>
-<input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
-<input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
-<script>
-var start=document.getElementById("start").value;
-var stop=document.getElementById("stop").value;
-var Btime=start;
-var Btime1=stop;
-var d = new Date(); // for now
-d.getHours(); // => 9
-d.getMinutes(); // =>  30
-d.getSeconds();
-var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-start1 = Etime1.split(":");
-end1 =Btime1.split(":");
-
-var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-var td = endDate1.getTime() - startDate1.getTime();			
-console.log("difference in time is "+ td);
-if(td>0)
-	{
-			alert("Auction is stll under progress, please come after auction");
-			location='TradeorAuction.do';
-	}
-</script>
-<%
 	SimpleDateFormat sdf=new SimpleDateFormat("HH");
 	SimpleDateFormat sdf1=new SimpleDateFormat("mm");
 	String hours=sdf.format(new Date());
@@ -257,6 +226,37 @@ if((String)tlbn.getTname()==null)
 <script>
 var tt = $( window ).height();
 $(".maindiv").height(parseInt(tt)-60);
+</script>
+<%
+	ServletContext context = request.getSession().getServletContext();
+	String start=(String)context.getAttribute("starttime");
+	System.out.println("starttime="+start);
+	String stop=(String)context.getAttribute("endtime");
+%>
+<input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
+<input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
+<script>
+var start=document.getElementById("start").value;
+var stop=document.getElementById("stop").value;
+var Btime=start;
+var Btime1=stop;
+var d = new Date(); // for now
+d.getHours(); // => 9
+d.getMinutes(); // =>  30
+d.getSeconds();
+var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+start1 = Etime1.split(":");
+end1 =Btime1.split(":");
+
+var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+var td = endDate1.getTime() - startDate1.getTime();			
+console.log("difference in time is "+ td);
+if(td>0)
+	{
+			alert("Auction is stll under progress, please visit this page after auction");
+			location='TradeorAuction.do';
+	}
 </script>
 </body>
 </html>
