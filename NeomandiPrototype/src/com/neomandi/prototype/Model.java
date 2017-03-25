@@ -1240,7 +1240,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 
 @SuppressWarnings("resource")
 public Mynewclass tradeOrAuction(String name, String pwd) 
-	{
+{
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -1298,15 +1298,17 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					int marketcess=0;
 					int myfinalcost=0;
 				
-					int quantityneeded=0;
-					ps =con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
-					ps.setString(1, aadharnumber);
-					ps.setString(2, lotnumber.get(i));
-				//	System.out.println(lotnumber.get(i));
-					ps.execute();
-					while(rs.next())
+					int quantityneeded=06;
+					PreparedStatement ps2 = con.prepareStatement("SELECT quantityneeded FROM tradelist where aadharnumber=? and lotnum=?");
+					ps2.setString(1, aadharnumber);
+					ps2.setString(2, lotnumber.get(i));
+					System.out.println(ps2);
+					ps2.execute();
+					ResultSet rs1=ps2.getResultSet();
+					while(rs1.next())
 					{
-						quantityneeded=rs.getInt("quantityneeded");
+						quantityneeded=rs1.getInt("quantityneeded");
+						System.out.println("quantity needed "+rs1.getInt("quantityneeded"));
 					}
 					
 					ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
@@ -1329,7 +1331,8 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 						else
 							myfinalcost=100+lotcost+commission+marketcess+3000;
 					}
-					
+					System.out.println("lotcost "+lotcost);
+					System.out.println("myfinalcost "+myfinalcost+" quantityneeded"+quantityneeded);
 					int block=0;
 					ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
 					ps.setString(1, aadharnumber);
@@ -1358,15 +1361,13 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					marketcess2 =(int) (lotcost2*0.01);
 					finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
 					//************END OF NEW CODE****
-					
-					System.out.println("myfinalcost "+finalcost2);
+					System.out.println("lotcost2 "+lotcost2);
+					System.out.println("bidprice "+bidprice);
+					System.out.println("myfinalcost2 "+finalcost2);
 					System.out.println(myfinalcost>block);
 					if(finalcost2>block)
 					{
-						mfcb=new MyFinalCostBean();				
-						mfcb.setMsg("block");
-						
-						ps =con.prepareStatement("SELECT bestbid FROM traders_bid_price where aadharnumber=? and lotnum=?");
+						ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 						ps.setString(1, aadharnumber);
 						ps.setString(2, lotnumber.get(i));
 						ps.execute();
@@ -1380,10 +1381,12 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 							mfcb.setMyfinalcost(String.valueOf(myfinalcost));
 							String prices=String.valueOf(bidprice);
 							mfcb.setPrice(prices);
-							mfcb.setLotnum(lotnum);			
+							mfcb.setLotnum(lotnumber.get(i));			
 							mfcb.setBestbid(rs3.getString("bestbid"));
 							mfcb.setQuantityassigned(String.valueOf(quantityassigned));
+							mfcb.setMsg("block");							
 							bl.add(mfcb);
+							System.out.println("bl is "+bl);
 						}
 						mc.setBl(bl);
 						return mc;
@@ -2956,7 +2959,6 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 				rs = ps.getResultSet();
 				while(rs.next())
 				{
-						System.out.println("trader "+name+" has won the auction for lot"+rs.getString("lotnumber"));
 						ps2 =con.prepareStatement("select ar.lotnumber,ar.quantityassigned from auction_result ar,treg tr where ar.aadharnumber=tr.aadharnumber and ar.lotnumber=? and tr.name=? and tr.pass=?");//this checks whether the trader has won in auction by checking his name in auction result table
 						ps2.setString(1,rs.getString("lotnumber"));
 						ps2.setString(2,name);
@@ -2969,7 +2971,6 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 							volumes=rs1.getString("quantityassigned");
 							lotnum=rs1.getString("lotnumber");
 							con.setAutoCommit(false);
-							System.out.println("volume sold form lotnum"+lotnum+" is "+volumes);
 						}	
 						ps=con.prepareStatement("select aadharnumber from treg where name=?");
 						ps.setString(1, name);						
@@ -3328,6 +3329,56 @@ public Myclass2 orderstatus1(String name, String pwd)
 		JDBCHelper.Close(con);
 	}
 	return mc;
+}
+
+public String orderstatus2(String name,String pwd)
+{
+	Connection con = null;
+	setFarmeracceptresult("accept");
+	try
+	{
+		con = JDBCHelper.getConnection();
+		if(con == null)
+		{
+		}
+		else
+		{		
+			String aadharnumber=null;
+			PreparedStatement ps = con.prepareStatement("select aadharnumber from treg where name=? and pass=?");
+			ps.setString(1, name);
+			ps.setString(2,pwd);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next())
+			{
+				aadharnumber=rs.getString("aadharnumber");
+			}
+			
+			String status=null;
+			ps =con.prepareStatement("select farmerstatus from auction_result where aadharnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
+			ps.setString(1,aadharnumber);
+			ps.execute();
+			ResultSet rs1 = ps.getResultSet();
+			while(rs1.next())
+			{
+				status=rs1.getString("farmerstatus");
+			}
+			System.out.println(status);
+			return status;
+		}
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	finally
+	{
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return pwd;	
 }
 
 	public void TraderProductReject(String lotnum)

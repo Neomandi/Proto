@@ -556,7 +556,7 @@ function countdown(minutes,seconds,hours)
 
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+		  location="http://neomandi.in/FarmerSummary.jsp";
 
 	  }	
 	 
@@ -580,7 +580,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	//alert("Auction under progress");
 		            	
-		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   window.location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -619,7 +619,7 @@ function countdown(minutes,seconds,hours)
 		            	//console.log(" before if i="+i);
 		            	/*if(i==0){
 		            		console.log(" after i="+i);
-		            		location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
+		            		location="http://neomandi.in/FarmerMaster.jsp";
 		            		i=9;
 		            	}*/
 		            		
@@ -651,7 +651,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	//alert("Auction under progress");
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
+		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}		        		            
 		        		        } 
 		        		        else 
@@ -674,7 +674,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		           location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		           location="http://neomandi.in/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -724,10 +724,10 @@ function countdown(minutes,seconds,hours)
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
   </script> 
   

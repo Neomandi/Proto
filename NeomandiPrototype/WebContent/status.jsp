@@ -134,8 +134,61 @@ if((String)tlbn.getTname()==null)
 		OrderStatusBean osbn=(OrderStatusBean)o;
 		if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
 		{		
-			System.out.println("inside syatus.jsp "+osbn);
+			System.out.println("inside status.jsp "+osbn);
 %>
+<script>
+    //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
+		setInterval(function()
+				  {
+					funny();
+				  },3000);
+    function funny()
+    {
+    		console.log("func")
+    		xmlhttp = new XMLHttpRequest();
+		  	xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	var string=xmlhttp.responseText;		    	 
+		    	var status=string;
+		    	console.log(status);
+		    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
+		    	console.log(status===null);
+		    	console.log(typeof status );
+		    	 if(status==null||status.length==0||status.includes('null'))
+			    	{
+			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
+			    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+			    		console.log("inside pending");
+			    	}
+		    	if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
+		    	{
+		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		    		console.log("inside rej");
+		    		document.getElementById("sts").value="Farmer has rejected your bid";
+		    		
+		    	}
+		    	if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
+		    	{
+		        	document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
+		    		console.log("inside acp");
+		    		document.getElementById("sts").value="Farmer has accepted your bid";
+		    		
+		    	}
+		    	if(lotcost==0)
+		    	{
+		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		    		console.log("inside rej");
+		    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+		    		
+		    	}	    		
+		    }};
+		    xmlhttp.open("POST", "Status2.do", true);
+  			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("number=1");
+			
+    }    
+    </script>
 	<div class="one" id="one<%= osbn.getLotnum()%>">
 	<div class="container-fluid status">
 	<div class="row">
@@ -172,21 +225,20 @@ if((String)tlbn.getTname()==null)
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
-	<table align="center"><tbody><tr><td><header><h4 class="text-center"><div id="msg"></div><output id="status"><!-- i have changed id from  statuslotcost<%= osbn.getLotnum()%>-->
-	<%
+	<table align="center"><tbody><tr><td><header><h4 class="text-center"><div id="msg"></div><output id="status<%= osbn.getLotnum()%>"><!-- i have changed id from  statuslotcost<%= osbn.getLotnum()%>--></output></h4>
+<output id="sts"><%
 		if(Integer.parseInt(osbn.getLotcost())==0) 
 			out.println("Lot Has Not been Assigned to you");
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
 			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<meta http-equiv="refresh"  content="3; URL=http://localhost:8080/NeomandiPrototype/OrderStatus.do">
-	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></output></h4></header>
+	<!-- <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do"> -->
+	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
 	console.log(lotcost);
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
-//	status=status+".";
 	status=status.toUpperCase();
 	console.log(status);	
 	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
@@ -194,7 +246,6 @@ if((String)tlbn.getTname()==null)
 	//	$("#status").css("border-left: 60px solid yellow;");
 		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 		console.log("inside pending");
-		
 	}
 	if(status.includes("rejected")||status.toUpperCase() ==="REJECTED")
 	{
@@ -219,15 +270,8 @@ if((String)tlbn.getTname()==null)
 </tbody></table></div>
 </div>
 </div>
-    </div></div><%}}}%>
- </div>
-<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
-<script>
-var tt = $( window ).height();
-$(".maindiv").height(parseInt(tt)-60);
-</script>
-<%
+    </div></div>
+    <%
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
 	System.out.println("starttime="+start);
@@ -235,7 +279,7 @@ $(".maindiv").height(parseInt(tt)-60);
 %>
 <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
 <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
-<script>
+    <script>
 var start=document.getElementById("start").value;
 var stop=document.getElementById("stop").value;
 var Btime=start;
@@ -258,14 +302,20 @@ if(td>0)
 			
 			document.getElementById("msg").textContent='Auction is stll under progress';
 			//location='TradeorAuction.do';
-			document.getElementById("status").textContent='';
+			document.getElementById('sts').value='';
 	}
 else
 {
 	document.getElementById("msg").textContent='Auction Complete.';
-	
-}
-	
+}	
+</script>
+    <%}}}%>
+ </div>
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script>
+var tt = $( window ).height();
+$(".maindiv").height(parseInt(tt)-60);
 </script>
 </body>
 </html>

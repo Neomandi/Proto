@@ -372,15 +372,21 @@
                                 </tr>                                
                                 <script> 
                                 var i=<%=i%>;
-                               // console.log("**i is"+i);
-                                //console.log(i%2==0);
                                 if(i%2==0)
                                 {
                                 	//console.log("inside if");
                                 	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";
                                 }
                                 else
-                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
+                                {	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";}
+                                
+                                document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").addEventListener("keyup", function(event1){
+                                event1.preventDefault();
+                                if(event1.which == 13 || event1.keyCode == 13) 
+                                {
+                                	fun<%=psr1.getLotnumber() %>();
+                                }
+                                });
 								function fun<%=psr1.getLotnumber() %>()
 								{							
 									var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;

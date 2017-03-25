@@ -2072,6 +2072,59 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		
+		if(uri.contains("Status2"))
+		{
+			//System.out.println("time is "+sdf.format(new Date()));s
+			System.out.println("***************************************************************************");
+			//System.out.println("inside CS");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+				 name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
+				System.out.println(name);
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("status.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			Model m=new Model();
+			String m1=m.orderstatus2(name,pwd);
+			System.out.println("in cs msg is "+m1);
+			try 
+			{
+				PrintWriter out = null;
+				try
+				{
+						out = response.getWriter();
+						out.println(m1);
+					    out.flush();
+					    out.close();
+				}
+				catch (IOException e)
+				{
+					
+					e.printStackTrace();
+				}
+			}			
+			catch (Exception e) {				
+				e.printStackTrace();
+			} 
+		}
+		
 		if(uri.contains("farmeracceptstatus"))
 		{
 				System.out.println("***************************************************************************");
@@ -2418,21 +2471,6 @@ public class ControllerServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 			}			
-			
-		   /* System.out.println(request.getParameter("lotnumber"));
-		    System.out.println(request.getParameter("number"));
-		    response.setContentType("text/plain");
-		    PrintWriter out = null;
-			try {
-				out = response.getWriter();
-				out.println("lotnumber"+request.getParameter("lotnumber")+" number "+request.getParameter("number")+" number");
-			    out.flush();
-			    out.close();
-	
-} catch (IOException e) {
-			
-			e.printStackTrace();
-		}*/
 		}
 		
 		if(uri.contains("ajaxReleasefunds"))

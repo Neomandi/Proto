@@ -610,9 +610,9 @@ catch(NullPointerException e)
 		var bestbid=new  Number(bestbids);		
 		var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 		var mybid=new  Number(mybids);
-		console.log("best bid is"+bestbid);
+		/* console.log("best bid is"+bestbid);
 		console.log(" my bid is"+mybid+" ");
-		//console.log(mybid==0);
+		 *///console.log(mybid==0);
 		if(mybid<bestbid&&mybid>0)
 		{
 				console.log("mybid<bestbid")
@@ -629,7 +629,13 @@ catch(NullPointerException e)
 			console.log("mybid==0");
 		}	
 		
-		
+		document.getElementById("demo6<%=tlb.getLotnum()%>").addEventListener("keyup", function(event1){
+            event1.preventDefault();
+            if(event1.which == 13 || event1.keyCode == 13) 
+            {
+            	fun<%out.print(tlb.getLotnum());%>();
+            }
+            });
 		//**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
 		setInterval(function()
 				  {
@@ -1544,6 +1550,14 @@ catch(NullPointerException e)
 			document.getElementById("demo6<%=tlbr.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
 			console.log("after if ");
 		}		
+		
+		document.getElementById("demo6<%=tlbr.getLotnum()%>").addEventListener("keyup", function(event1){
+            event1.preventDefault();
+            if(event1.which == 13 || event1.keyCode == 13) 
+            {
+            	fun<%=tlbr.getLotnum()%>();
+            }
+            });
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
