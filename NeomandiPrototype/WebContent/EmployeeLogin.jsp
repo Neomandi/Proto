@@ -146,7 +146,7 @@ function validateELForm()
     }	
 	console.log(msg.length);
 	if(msg.length!=0)
-		window.swal("PLEASE ENTER "+msg);
+		swal("PLEASE ENTER "+msg);
 	
 	else{
 	xmlhttp=new XMLHttpRequest();

@@ -211,7 +211,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						msg = msg + "Your password does not match. Please provide correct password.";
 				}
 				else
-					msg = msg + "Register first and then login.";
+					msg = msg + "Username does not exist. Please register to login.";
 				
 				con.commit();
 			}
