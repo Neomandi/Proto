@@ -11,13 +11,14 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
+	<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <script>
 function validateELForm()
 {
@@ -27,7 +28,7 @@ function validateELForm()
 	//Name validation
 	if(name.value=="")
 	{
-		alert("Please provide username.");
+		swal("Please provide username.");
 		name.focus();
 		return false;
 	}
@@ -35,7 +36,7 @@ function validateELForm()
 	//Pwd validation
 	if(pwd.value=="")
 	{
-		alert("Please provide password.");
+		swal("Please provide password.");
 		pwd.focus();
 		return false;
 	}		
@@ -134,18 +135,18 @@ function validateELForm()
 	if(document.getElementById("ename").value==null|| document.getElementById("ename").value === undefined || document.getElementById("ename").value === "")
     {
     	console.log(document.getElementById("ename").value);
-    	//window.alert("ENTER USERNAME");
+    	//window.swal("ENTER USERNAME");
     	msg="USER NAME ";
     }	
 	if(document.getElementById("epwd").value==null|| document.getElementById("epwd").value === undefined || document.getElementById("epwd").value === "")
     {
     	console.log(document.getElementById("epwd").value);
-    	//window.alert("ENTER USERNAME");
+    	//window.swal("ENTER USERNAME");
     	msg=msg+"PASSWORD";
     }	
 	console.log(msg.length);
 	if(msg.length!=0)
-		window.alert("PLEASE ENTER "+msg);
+		window.swal("PLEASE ENTER "+msg);
 	
 	else{
 	xmlhttp=new XMLHttpRequest();
@@ -161,7 +162,7 @@ function validateELForm()
 		    	}
 		    	else 
 		    	{
-		    		alert(string);		
+		    		swal(string);		
 		    	}
 		}		
 	};

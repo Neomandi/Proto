@@ -12,6 +12,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,10 +65,11 @@ footer {
 	    response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 	    
 		HttpSession elog = request.getSession(false);
+	    System.out.println("Ename: "+(String)elog.getAttribute("ename")+" Epwd: "+(String)elog.getAttribute("epwd")==null);
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/Login.html';</script>");
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirect to login page.',timer: 3000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';}); </script>");
 	    }
 	%>
     <div class="logo_relative">
@@ -147,14 +150,14 @@ footer {
 		System.out.println(rs);
 		rs.first();
 		String lotnumber1 = rs.getString("lotnumber");
-		System.out.println(lotnumber1);
+		//System.out.println(lotnumber1);
 		if(lotnumber1 != null)
 		{
 			System.out.println("Inside if....");
 			/*if(rs.getString("COUNT(*)").equals("0"))
 			{
 				 out.println("<script type=\"text/javascript\">");
-			  	 out.println("alert('No Revenues');");
+			  	 out.println("swal('No Revenues');");
 			 	 out.println("</script>");
 			}
 			else*/

@@ -29,6 +29,8 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -133,12 +135,12 @@ background-color:white;
         		var from=document.historyForm.from;
         		var to=document.historyForm.to;
         		if(from.value==""){
-        			alert("Please select from date");
+        			swal("Please select from date");
         			name.focus();
         			    return false;
         		}
         		if(to.value==""){
-        			alert("Please select to date");
+        			swal("Please select to date");
         			name.focus();
         			    return false;
         		}
@@ -157,7 +159,7 @@ background-color:white;
                 <div class="">
 					<%HttpSession hs=request.getSession(false); 
 					if((String)hs.getAttribute("name")==null){
-						out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
+						out.println("<script>swal('You have not logged in,please login'); window.location='Login.html';</script>");
 					}
 				String name=(String)hs.getAttribute("name"); %>
                     <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
@@ -184,7 +186,7 @@ background-color:white;
         <!-- if(request.getAttribute("error").equals("error"))
 		{ 
 			out.println("<script type=\"text/javascript\">");
-  			out.println("alert('YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY');");
+  			out.println("swal('YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY');");
 		    out.println("location='FarmerProfile.jsp';");
 		    out.println("</script>");
 		}
@@ -844,7 +846,7 @@ function countdown(minutes,seconds,hours)
 	            setTimeout(tick,1000);
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
-		            	//alert("Auction under progress");
+		            	//swal("Auction under progress");
 		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
@@ -894,7 +896,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
-		        		            	//alert("Auction under progress");
+		        		            	//swal("Auction under progress");
 		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 
