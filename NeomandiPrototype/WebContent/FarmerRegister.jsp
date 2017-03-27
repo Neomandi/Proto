@@ -9,6 +9,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -449,7 +451,7 @@
                                 
                                 if (name.value=="" ) {
                                  
-                                    window .alert("please enter your name");
+                                    swal("Please enter your name");
                                     document.getElementById("name").classname='error';
                                     name.focus();
                                     return false;
@@ -457,7 +459,7 @@
                                 } 
                                 if(!name.value.match(letters))
                             	{
-                            		window.alert("Please enter only alphabets for name.");
+                            		swal("Please enter only alphabets for name.");
                             		name.focus();
                             		return false;
                             	}
@@ -465,18 +467,18 @@
                               var aadhar=document.fregform.farmeraadharnum;
                             	var aval = aadhar.value;
                             	if(aval==""){
-                            		alert("Please enter your Aadhar number");
+                            		swal("Please enter your Aadhar number");
                             		aadhar.focus();
                             		    return false;
                             	}
                             	if(isNaN(aval)){
-                            		alert("Enter the valid Aadhar Number");
+                            		swal("Enter the valid Aadhar Number");
                             		aadhar.focus();
                             		return false;
                             	}
                             	if(aval.length!=12){
                             		
-                            		alert(" Your Aadhar number must be 12 digits");
+                            		swal(" Your Aadhar number must be 12 digits");
                             		aadhar.focus();
                             		return false;
                             	}
@@ -484,12 +486,12 @@
                             	var mob=document.fregform.farmermobile;
                             	var val = mob.value;
                             	if(val==""){
-                            		alert("Please enter your mobile number");
+                            		swal("Please enter your mobile number");
                             		 mob.focus();
                             		    return false;
                             	}
                             	if(isNaN(val)){
-                            		alert("Enter the valid Mobile Number(Like : 9566137117)");
+                            		swal("Enter the valid Mobile Number(Like : 9566137117)");
                             		mob.focus();
                             		return false;
                             	}
@@ -499,7 +501,7 @@
                             		
                             	    // value is ok, use it
                             	} else {
-                            	    alert("Invalid mobile number, must be ten digits");
+                            	    swal("Invalid mobile number, must be ten digits");
                             	    mob.focus();
                             	    return false;
                             	}
@@ -508,19 +510,19 @@
                             	//Email validation
                             	var email=document.fregform.farmeremail;
                             	if(email.value==""){
-                            		window.alert("Please enter your email id");
+                            		swal("Please enter your email id");
                             		email.focus();
                             		return false;
                             	}
                             	if(email.value.indexOf("@", 0) < 0)
                             	{
-                            		window.alert("Please enter a valid email id");
+                            		swal("Please enter a valid email id");
                             		email.focus();
                             		return false;
                             	}
                             	if (email.value.indexOf(".", 0) < 0)
                                 {
-                                    window.alert("Please enter a valid e-mail address.");
+                                    swal("Please enter a valid e-mail address.");
                                     email.focus();
                                     return false;
                                 }
@@ -528,7 +530,7 @@
                             	//address validation
                             	var address=document.fregform.address;
                             	if(address.value==""){
-                            		window.alert("Please enter your address");
+                            		swal("Please enter your address");
                             		address.focus();
                             		return false;
                             	}
@@ -538,20 +540,20 @@
                             	var taluk=document.fregform.farmertaluk;
                             	
                             	if(taluk.value==""){
-                            		window.alert("Please enter your taluk name");
+                            		swal("Please enter your taluk name");
                             		taluk.focus();
                             		return false;
                             	}
                             	if(!taluk.value.match(letters))
                             	{
-                            		window.alert("Please enter only alphabets for taluk name.");
+                            		swal("Please enter only alphabets for taluk name.");
                             		taluk.focus();
                             		return false;
                             	}
                             	//PIN Code validation
                             	var pin=document.fregform.pin;
                             	if(pin.value==""){
-                            		window.alert("Please enter your pincode");
+                            		swal("Please enter your pincode");
                             		pin.focus();
                             		return false;
                             	}
@@ -562,7 +564,7 @@
                             	}
                             	else
                             	{
-                            		window.alert("Please enter valid PIN Code.");
+                            		swal("Please enter valid PIN Code.");
                             		pin.focus();
                             		return false;
                             	}
@@ -570,31 +572,31 @@
                             	var farmeraccountnum=document.fregform.farmeraccountnum;
                             	var acc = farmeraccountnum.value;
                             	if(acc==""){
-                            		alert("Please enter your Account number");
+                            		swal("Please enter your Account number");
                             		farmeraccountnum.focus();
                             		    return false;
                             	}
                             	if(isNaN(acc)){
-                            		alert("Enter the valid Account Number");
+                            		swal("Enter the valid Account Number");
                             		farmeraccountnum.focus();
                             		return false;
                             	}
                             	if(acc.length!=12){
                             		
-                            		alert(" Your Account number must be 12 digits");
+                            		swal(" Your Account number must be 12 digits");
                             		farmeraccountnum.focus();
                             		return false;
                             	}
                             	//Bank name validation
                             	var bankname=document.fregform.farmerbankname;
                             	if(bankname.value==""){
-                            		window.alert("Please enter your Bank name");
+                            		swal("Please enter your Bank name");
                             		bankname.focus();
                             		return false;
                             	}
                             	if(!bankname.value.match(letters))
                             	{
-                            		window.alert("Please enter only alphabets for bank name.");
+                            		swal("Please enter only alphabets for bank name.");
                             		bankname.focus();
                             		return false;
                             	}
@@ -602,20 +604,20 @@
                             	//Account Branch name validation
                             	var branch=document.fregform.farmerbranch;
                             	if(branch.value==""){
-                            		window.alert("Please enter your Branch name");
+                            		swal("Please enter your Branch name");
                             		branch.focus();
                             		return false;
                             	}
                             	if(!branch.value.match(letters))
                             	{
-                            		window.alert("Please enter only alphabets for branch name.");
+                            		swal("Please enter only alphabets for branch name.");
                             		branch.focus();
                             		return false;
                             	}
                             	//IFSC Code validation
                             	var ifsc=document.fregform.farmerifsccode;
                             	if(ifsc.value==""){
-                            		window.alert("Please enter your IFSC code");
+                            		swal("Please enter your IFSC code");
                             		ifsc.focus();
                             		return false;
                             	}
@@ -627,14 +629,14 @@
                             	}
                             	else
                             	{
-                            		window.alert("Please enter valid IFSC Code.");
+                            		swal("Please enter valid IFSC Code.");
                             		ifsc.focus();
                             		return false;
                             	}
                             	// bank taluk validation
                             	var btaluk=document.fregform.bTaluk;
                             	if( btaluk.value==""){
-                            		window.alert("Please enter taluk of your bank");
+                            		swal("Please enter taluk of your bank");
                             		 btaluk.focus();
                             		return false;
                             	}
@@ -642,7 +644,7 @@
                             	// bank pinncode validation
                             	var bpin=document.fregform.bpin;
                             	if(bpin.value==""){
-                            		window.alert("Please enter your pincode");
+                            		swal("Please enter your pincode");
                             		bpin.focus();
                             		return false;
                             	}
@@ -653,14 +655,14 @@
                             	}
                             	else
                             	{
-                            		window.alert("Please enter valid PIN Code.");
+                            		swal("Please enter valid PIN Code.");
                             		bpin.focus();
                             		return false;
                             	}
                             	//Password validation
                             	var password=document.fregform.password;
                             	if(password.value==""){
-                            		window.alert("Please enter your password");
+                            		swal("Please enter your password");
                             		password.focus();
                             		return false;
                             	}
@@ -668,14 +670,14 @@
                            
                             var cpassword=document.fregform.cpassword;
                             if(cpassword.value==""){
-                        		window.alert("Please enter your password again");
+                        		swal("Please enter your password again");
                         		cpassword.focus();
                         		return false;
                         	}
                         	
                         	if(password.value != cpassword.value)
                         	{
-                        		window.alert("Password does not match.")
+                        		swal("Password does not match.")
                         		return false;
                         	}
                         	//otp validation
@@ -683,12 +685,12 @@
                         	var otpval = otp.value;
                         	if(otp.value == "")
                         	{
-                        		alert("Please enter your OTP");
+                        		swal("Please enter your OTP");
                         		otp.focus();
                         		return false;
                         	}
                         	if(isNaN(otpval)){
-                        		alert("Enter the valid OTP number");
+                        		swal("Enter the valid OTP number");
                         		otp.focus();
                         		return false;
                         	}
@@ -696,7 +698,7 @@
                         		
                         	    // value is ok, use it
                         	} else {
-                        	    alert("Invalid OTP number, must be six digits");
+                        	    swal("Invalid OTP number, must be six digits");
                         	    otp.focus();
                         	    return false;
                         	}
@@ -704,7 +706,7 @@
                         	var tc=document.fregform.tc;
                         	if(tc.checked == false)
                         	{
-                        		alert("Please check T & C");
+                        		swal("Please check T & C");
                         	    tc.focus();
                         	    return false;
                         	}

@@ -15,6 +15,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <style>
 table:nth-child(even) {
     classname: container-fluid dispatch pad;
@@ -42,11 +44,17 @@ border-top:0px;
 			font-size:18px;
 }
 </style>
-<%EmployeeLoginBean elbn = null;
-HttpSession elog = request.getSession(); 
-%>
 </head>
 <body class="" >
+<%EmployeeLoginBean elbn = null;
+HttpSession elog = request.getSession(); 
+
+if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
+{
+	//System.out.println("Session invalid."+elog);
+	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';}); </script>");
+}
+%>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"  ></div>
 <div class="container-fluid headertop">
