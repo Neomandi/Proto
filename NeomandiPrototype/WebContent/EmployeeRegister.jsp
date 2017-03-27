@@ -67,7 +67,7 @@ function validateEForm()
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		swal(" Your Employee Number must be of 5 digits");
+		swal("Your Employee Number must be of 5 digits");
 		num.focus();
 		return false;
 	}
@@ -95,7 +95,7 @@ function validateEForm()
 		return false;	
 	}
 	if( cpwd.value!=pwd.value){
-		 swal("passwords do not match");
+		 swal("Passwords do not match");
 		 cpwd.focus();
 		    return false;
 	}
