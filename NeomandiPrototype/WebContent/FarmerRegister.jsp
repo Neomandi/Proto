@@ -451,7 +451,7 @@
                                 
                                 if (name.value=="" ) {
                                  
-                                    window .swal("please enter your name");
+                                    swal("Please enter your name");
                                     document.getElementById("name").classname='error';
                                     name.focus();
                                     return false;
@@ -459,7 +459,7 @@
                                 } 
                                 if(!name.value.match(letters))
                             	{
-                            		window.swal("Please enter only alphabets for name.");
+                            		swal("Please enter only alphabets for name.");
                             		name.focus();
                             		return false;
                             	}
@@ -510,19 +510,19 @@
                             	//Email validation
                             	var email=document.fregform.farmeremail;
                             	if(email.value==""){
-                            		window.swal("Please enter your email id");
+                            		swal("Please enter your email id");
                             		email.focus();
                             		return false;
                             	}
                             	if(email.value.indexOf("@", 0) < 0)
                             	{
-                            		window.swal("Please enter a valid email id");
+                            		swal("Please enter a valid email id");
                             		email.focus();
                             		return false;
                             	}
                             	if (email.value.indexOf(".", 0) < 0)
                                 {
-                                    window.swal("Please enter a valid e-mail address.");
+                                    swal("Please enter a valid e-mail address.");
                                     email.focus();
                                     return false;
                                 }
@@ -530,7 +530,7 @@
                             	//address validation
                             	var address=document.fregform.address;
                             	if(address.value==""){
-                            		window.swal("Please enter your address");
+                            		swal("Please enter your address");
                             		address.focus();
                             		return false;
                             	}
@@ -540,20 +540,20 @@
                             	var taluk=document.fregform.farmertaluk;
                             	
                             	if(taluk.value==""){
-                            		window.swal("Please enter your taluk name");
+                            		swal("Please enter your taluk name");
                             		taluk.focus();
                             		return false;
                             	}
                             	if(!taluk.value.match(letters))
                             	{
-                            		window.swal("Please enter only alphabets for taluk name.");
+                            		swal("Please enter only alphabets for taluk name.");
                             		taluk.focus();
                             		return false;
                             	}
                             	//PIN Code validation
                             	var pin=document.fregform.pin;
                             	if(pin.value==""){
-                            		window.swal("Please enter your pincode");
+                            		swal("Please enter your pincode");
                             		pin.focus();
                             		return false;
                             	}
@@ -564,7 +564,7 @@
                             	}
                             	else
                             	{
-                            		window.swal("Please enter valid PIN Code.");
+                            		swal("Please enter valid PIN Code.");
                             		pin.focus();
                             		return false;
                             	}
@@ -590,13 +590,13 @@
                             	//Bank name validation
                             	var bankname=document.fregform.farmerbankname;
                             	if(bankname.value==""){
-                            		window.swal("Please enter your Bank name");
+                            		swal("Please enter your Bank name");
                             		bankname.focus();
                             		return false;
                             	}
                             	if(!bankname.value.match(letters))
                             	{
-                            		window.swal("Please enter only alphabets for bank name.");
+                            		swal("Please enter only alphabets for bank name.");
                             		bankname.focus();
                             		return false;
                             	}
@@ -604,20 +604,20 @@
                             	//Account Branch name validation
                             	var branch=document.fregform.farmerbranch;
                             	if(branch.value==""){
-                            		window.swal("Please enter your Branch name");
+                            		swal("Please enter your Branch name");
                             		branch.focus();
                             		return false;
                             	}
                             	if(!branch.value.match(letters))
                             	{
-                            		window.swal("Please enter only alphabets for branch name.");
+                            		swal("Please enter only alphabets for branch name.");
                             		branch.focus();
                             		return false;
                             	}
                             	//IFSC Code validation
                             	var ifsc=document.fregform.farmerifsccode;
                             	if(ifsc.value==""){
-                            		window.swal("Please enter your IFSC code");
+                            		swal("Please enter your IFSC code");
                             		ifsc.focus();
                             		return false;
                             	}
@@ -629,14 +629,14 @@
                             	}
                             	else
                             	{
-                            		window.swal("Please enter valid IFSC Code.");
+                            		swal("Please enter valid IFSC Code.");
                             		ifsc.focus();
                             		return false;
                             	}
                             	// bank taluk validation
                             	var btaluk=document.fregform.bTaluk;
                             	if( btaluk.value==""){
-                            		window.swal("Please enter taluk of your bank");
+                            		swal("Please enter taluk of your bank");
                             		 btaluk.focus();
                             		return false;
                             	}
@@ -644,7 +644,7 @@
                             	// bank pinncode validation
                             	var bpin=document.fregform.bpin;
                             	if(bpin.value==""){
-                            		window.swal("Please enter your pincode");
+                            		swal("Please enter your pincode");
                             		bpin.focus();
                             		return false;
                             	}
@@ -655,14 +655,14 @@
                             	}
                             	else
                             	{
-                            		window.swal("Please enter valid PIN Code.");
+                            		swal("Please enter valid PIN Code.");
                             		bpin.focus();
                             		return false;
                             	}
                             	//Password validation
                             	var password=document.fregform.password;
                             	if(password.value==""){
-                            		window.swal("Please enter your password");
+                            		swal("Please enter your password");
                             		password.focus();
                             		return false;
                             	}
@@ -670,14 +670,14 @@
                            
                             var cpassword=document.fregform.cpassword;
                             if(cpassword.value==""){
-                        		window.swal("Please enter your password again");
+                        		swal("Please enter your password again");
                         		cpassword.focus();
                         		return false;
                         	}
                         	
                         	if(password.value != cpassword.value)
                         	{
-                        		window.swal("Password does not match.")
+                        		swal("Password does not match.")
                         		return false;
                         	}
                         	//otp validation
