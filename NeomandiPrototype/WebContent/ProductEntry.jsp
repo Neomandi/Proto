@@ -251,7 +251,7 @@
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirect to login page.',timer: 3000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirect to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
 	    }
 	%>
     <div class="logo_relative">
