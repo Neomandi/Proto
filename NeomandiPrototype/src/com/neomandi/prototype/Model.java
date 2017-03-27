@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import javax.servlet.ServletContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
@@ -450,7 +449,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			
 			ps = con.prepareStatement( "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?");
 			ps.setString(1,farmerid);
-			String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?";
+		//	String sql = "select lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid=?";
 			//System.out.println(sql);
 			ps.execute();
 			rs = ps.getResultSet();
@@ -4248,10 +4247,10 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 					//System.out.println("updating traders_bid_price by values=bidprices "+bidprices+" commissions "+commissions+" marketcesss "+marketcesss+" finalcosts "+finalcosts+" lotcosts "+lotcosts);
 					
 					//int biddate=Integer.parseInt(date);
-					String str[]=date.split(":");
+					/*String str[]=date.split(":");
 					int hour=Integer.parseInt(str[0]);
 					int minute=Integer.parseInt(str[1]);
-					
+					*/
 					Calendar calendar = Calendar.getInstance();
 			        TimeZone fromTimeZone = calendar.getTimeZone();
 			        TimeZone toTimeZone = TimeZone.getTimeZone("MST");

@@ -136,7 +136,6 @@ if((String)tlbn.getTname()==null)
 		OrderStatusBean osbn=(OrderStatusBean)o;
 		if(osbn.getSlotnumber()!=null && (osbn.getSlotnumber().equals("slot1")||osbn.getSlotnumber().equals("Slot1")))
 		{		
-			System.out.println("inside status.jsp "+osbn);
 %>
 <script>
     //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
@@ -157,12 +156,12 @@ if((String)tlbn.getTname()==null)
 		    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 		    	console.log(status===null);
 		    	console.log(typeof status );
-		    	 if(status==null||status.length==0||status.includes('null'))
-			    	{
+		    	if(status==null||status.length==0||status.includes('null'))
+			    {
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 			    		document.getElementById("sts").value="Waiting for farmer's acceptance";
 			    		console.log("inside pending");
-			    	}
+			    }
 		    	if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
 		    	{
 		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
@@ -177,18 +176,17 @@ if((String)tlbn.getTname()==null)
 		    		document.getElementById("sts").value="Farmer has accepted your bid";
 		    		
 		    	}
-		    	if(lotcost==0)
+		    	if(lotcost==0 &&status!=null)
 		    	{
 		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		    		console.log("inside rej");
 		    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
-		    		
 		    	}	    		
-		    }};
+		      }
+		    };
 		    xmlhttp.open("POST", "Status2.do", true);
   			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send("number=1");
-			
+			xmlhttp.send("number=1");			
     }    
     </script>
 	<div class="one" id="one<%= osbn.getLotnum()%>">
