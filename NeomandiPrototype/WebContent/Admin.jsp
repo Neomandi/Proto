@@ -15,6 +15,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <style>
     	#div{
 			padding:30px;
@@ -156,39 +158,70 @@ function fun()
 }
 function fun1()
 {
-	if(confirm("Are you sure you want to stop the auction?")){
-		var stop = 1;
-		  xmlhttp = new XMLHttpRequest();
-		  xmlhttp.onreadystatechange = function() {
-		  if (this.readyState == 4 && this.status == 200) 
-		  {
-			    				         
-		  }};
-			  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
-			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			  xmlhttp.send("stopauction="+stop);
-	}
-	else{
-		return;
-	}  
+	swal({
+		  title: "Are you sure you want to stop the auction?",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+			//console.log(isConfirm);
+			  if (isConfirm) {
+				  var stop = 1;
+				  xmlhttp = new XMLHttpRequest();
+				  xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					    				         
+				  }};
+					  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					  xmlhttp.send("stopauction="+stop);
+					  
+					swal("Stopped","Successfully", "success");
+			  } else {
+			    swal("Cancelled","Successfully", "error");
+				return;
+			  }
+			});
 }
 
 function fun2()
 {
-	if(confirm("Are you sure you want to reset the auction?")){
-		var stop = 1;
-		  xmlhttp = new XMLHttpRequest();
-		  xmlhttp.onreadystatechange = function() {
-		  if (this.readyState == 4 && this.status == 200) 
-		  {
-			    				         
-		  }};
-			  xmlhttp.open("POST", "PostAuction.do", true);
-			  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
-	}else{
-		return;
-	}
+	swal({
+		  title: "Are you sure you want to stop the auction?",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+			//console.log(isConfirm);
+			  if (isConfirm) {
+				  var stop = 1;
+				  xmlhttp = new XMLHttpRequest();
+				  xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					    				         
+				  }};
+					  xmlhttp.open("POST", "PostAuction.do", true);
+					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+					  
+					swal("Reseted","Successfully", "success");
+			  } else {
+			    swal("Cancelled","Successfully", "error");
+				return;
+			  }
+			});
 }
 
 
