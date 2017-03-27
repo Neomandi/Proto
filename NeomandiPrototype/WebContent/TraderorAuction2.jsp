@@ -205,7 +205,6 @@ try
 {
 	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 	if(tlbn.getTname()==null){}
-	System.out.println("------------"+tlbn.getTname());
 }
 catch(NullPointerException e)
 {
