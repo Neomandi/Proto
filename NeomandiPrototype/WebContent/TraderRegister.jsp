@@ -10,6 +10,8 @@
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <script> 
 function populate1(s1, s2)
 {
@@ -101,14 +103,14 @@ function validateTForm()
 	
 	//Name validation
 	if(name.value==""){
-		alert("Please enter your name");
+		swal("Please enter your name");
 		name.focus();
 		    return false;
 	}
 	
 	if(!name.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for name.");
+		swal("Please enter only alphabets for name.");
 		name.focus();
 		return false;
 	}
@@ -116,30 +118,30 @@ function validateTForm()
 	//Aadhar number validation
 	var aval = aadhar.value;
 	if(aval==""){
-		alert("Please enter your Aadhar number");
+		swal("Please enter your Aadhar number");
 		aadhar.focus();
 		    return false;
 	}
 	if(isNaN(aval)){
-		alert("Enter the valid Aadhar Number");
+		swal("Enter the valid Aadhar Number");
 		aadhar.focus();
 		return false;
 	}
 	if(aval.length!=12){
 		
-		alert(" Your Aadhar number must be 12 digits");
+		swal(" Your Aadhar number must be 12 digits");
 		aadhar.focus();
 		return false;
 	}
 	//Mobile number validation
 	var val = mob.value;
 	if(val==""){
-		alert("Please enter your mobile number");
+		swal("Please enter your mobile number");
 		 mob.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		alert("Enter the valid Mobile Number(Like : 9566137117)");
+		swal("Enter the valid Mobile Number(Like : 9566137117)");
 		mob.focus();
 		return false;
 	}
@@ -149,7 +151,7 @@ function validateTForm()
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid mobile number, must be ten digits");
+	    swal("Invalid mobile number, must be ten digits");
 	    mob.focus();
 	    return false;
 	}
@@ -158,32 +160,32 @@ function validateTForm()
 	
 	//Email validation
 	if(email.value==""){
-		window.alert("Please enter your email id");
+		swal("Please enter your email id");
 		email.focus();
 		return false;
 	}
 	if(email.value.indexOf("@", 0) < 0)
 	{
-		window.alert("Please enter a valid email id");
+		swal("Please enter a valid email id");
 		email.focus();
 		return false;
 	}
 	if (email.value.indexOf(".", 0) < 0)
     {
-        window.alert("Please enter a valid e-mail address.");
+        swal("Please enter a valid e-mail address.");
         email.focus();
         return false;
     }
 	//address validation
 	if(address.value==""){
-		window.alert("Please enter your address");
+		swal("Please enter your address");
 		address.focus();
 		return false;
 	}
 	
 	/*state validation
 	if(state.value==""){
-		window.alert("Please enter state name");
+		swal("Please enter state name");
 		state.focus();
 		return false;
 	}
@@ -192,20 +194,20 @@ function validateTForm()
 	district validation
 	
 	if(district.value==""){
-		window.alert("Please enter district ");
+		swal("Please enter district ");
 		district.focus();
 		return false;
 	}*/
 	
 	//Taluk name validation
 	if(taluk.value==""){
-		window.alert("Please enter your taluk name");
+		swal("Please enter your taluk name");
 		taluk.focus();
 		return false;
 	}
 	if(!taluk.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for taluk name.");
+		swal("Please enter only alphabets for taluk name.");
 		taluk.focus();
 		return false;
 	}
@@ -214,7 +216,7 @@ function validateTForm()
 	
 	//PIN Code validation
 	if(pin.value==""){
-		window.alert("Please enter your pincode");
+		swal("Please enter your pincode");
 		pin.focus();
 		return false;
 	}
@@ -225,7 +227,7 @@ function validateTForm()
 	}
 	else
 	{
-		window.alert("Please enter valid PIN Code.");
+		swal("Please enter valid PIN Code.");
 		pin.focus();
 		return false;
 	}
@@ -233,31 +235,31 @@ function validateTForm()
 	//accountnumber validation
 	var acc = accountnum.value;
 	if(acc==""){
-		alert("Please enter your Account number");
+		swal("Please enter your Account number");
 		accountnum.focus();
 		    return false;
 	}
 	if(isNaN(acc)){
-		alert("Enter the valid Account Number");
+		swal("Enter the valid Account Number");
 		accountnum.focus();
 		return false;
 	}
 	if(acc.length!=12){
 		
-		alert(" Your Account number must be 12 digits");
+		swal(" Your Account number must be 12 digits");
 		accountnum.focus();
 		return false;
 	}
 	
 	//Bank name validation
 	if(bankname.value==""){
-		window.alert("Please enter your Bank name");
+		swal("Please enter your Bank name");
 		bankname.focus();
 		return false;
 	}
 	if(!bankname.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for bank name.");
+		swal("Please enter only alphabets for bank name.");
 		bankname.focus();
 		return false;
 	}
@@ -266,20 +268,20 @@ function validateTForm()
 	
 	//Account Branch name validation
 	if(branch.value==""){
-		window.alert("Please enter your Branch name");
+		swal("Please enter your Branch name");
 		branch.focus();
 		return false;
 	}
 	if(!branch.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for branch name.");
+		swal("Please enter only alphabets for branch name.");
 		branch.focus();
 		return false;
 	}
 	
 	//IFSC Code validation
 	if(ifsc.value==""){
-		window.alert("Please enter your IFSC code");
+		swal("Please enter your IFSC code");
 		ifsc.focus();
 		return false;
 	}
@@ -291,7 +293,7 @@ function validateTForm()
 	}
 	else
 	{
-		window.alert("Please enter valid IFSC Code.");
+		swal("Please enter valid IFSC Code.");
 		ifsc.focus();
 		return false;
 	}
@@ -299,7 +301,7 @@ function validateTForm()
 	//state bank validation
 	
 	 if( bstate.value==""){
-			window.alert("Please enter statee");
+			swal("Please enter statee");
 			 bstate.focus();
 			return false;
 		}
@@ -307,7 +309,7 @@ function validateTForm()
 	//district bank validation
 	
 	if( bdistrict.value==""){
-		window.alert("Please enter district");
+		swal("Please enter district");
 		bdistrict.focus();
 		return false;
 	}
@@ -315,7 +317,7 @@ function validateTForm()
 	*/
 	//taluk bank validation
 	if( btaluk.value==""){
-		window.alert("Please enter taluk of your bank");
+		swal("Please enter taluk of your bank");
 		 btaluk.focus();
 		return false;
 	}
@@ -323,7 +325,7 @@ function validateTForm()
 	
 	// bank pinncode validation
 	if(bpin.value==""){
-		window.alert("Please enter your pincode");
+		swal("Please enter your pincode");
 		bpin.focus();
 		return false;
 	}
@@ -334,7 +336,7 @@ function validateTForm()
 	}
 	else
 	{
-		window.alert("Please enter valid PIN Code.");
+		swal("Please enter valid PIN Code.");
 		bpin.focus();
 		return false;
 	}
@@ -342,7 +344,7 @@ function validateTForm()
 	//license validation
 	var license=licensenumber.value;
 	if(licensenumber.value==""){
-		window.alert("Please enter your License number ");
+		swal("Please enter your License number ");
 		licensenumber.focus();
 		return false;
 	}
@@ -350,7 +352,7 @@ function validateTForm()
 	
 	
 	if(isNaN(license)){
-		alert("Enter the valid License Number");
+		swal("Enter the valid License Number");
 		licensenumber.focus();
 		return false;
 	}
@@ -358,14 +360,14 @@ function validateTForm()
 	
 if(!(license.length >1) && (license.length < 10)){
 		
-		alert(" Your License number must be greater than 1 digit and less than 10 digit");
+		swal(" Your License number must be greater than 1 digit and less than 10 digit");
 		licensenumber.focus();
 		return false;
 	}
 	// date of registraion
 	
 	if(registerdate.value==""){
-		window.alert("Please enter date of registration");
+		swal("Please enter date of registration");
 		registerdate.focus();
 		return false;
 	}
@@ -374,20 +376,20 @@ if(!(license.length >1) && (license.length < 10)){
 	var placereg=placeofregistration.value;
 	if(!placeofregistration.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for place of registration.");
+		swal("Please enter only alphabets for place of registration.");
 		placeofregistration.focus();
 		return false;
 	}
 	
 	if(placeofregistration.value==""){
-		window.alert("Please enter place of registration");
+		swal("Please enter place of registration");
 		placeofregistration.focus();
 		return false;
 	}
 	//license address
 	
 	if(ltraderAddress.value==""){
-		window.alert("Please enter address");
+		swal("Please enter address");
 		ltraderAddress.focus();
 		return false;
 	}
@@ -395,34 +397,34 @@ if(!(license.length >1) && (license.length < 10)){
 	//lstate validation
 	
 	if(lstate.value==""){
-		window.alert("Please enter state");
+		swal("Please enter state");
 		lstate.focus();
 		return false;
 	}
 	//ldistrict validation
 	
 	if(ldistrict.value==""){
-		window.alert("Please enter district");
+		swal("Please enter district");
 		ldistrict.focus();
 		return false;
 	}
 	*/
 	//LTaluk Validation
 	if(ltaluk.value==""){
-		window.alert("Please enter taluk");
+		swal("Please enter taluk");
 		ltaluk.focus();
 		return false;
 	}
 	if(!ltaluk.value.match(letters))
 	{
-		window.alert("Please enter only alphabets for taluk.");
+		swal("Please enter only alphabets for taluk.");
 		ltaluk.focus();
 		return false;
 	}
 	
 	//lPIN Code validation
 	if(lpin.value==""){
-		window.alert("Please enter pincode");
+		swal("Please enter pincode");
 		lpin.focus();
 		return false;
 	}
@@ -434,33 +436,33 @@ if(!(license.length >1) && (license.length < 10)){
 	}
 	else
 	{
-		window.alert("Please enter valid PIN Code.");
+		swal("Please enter valid PIN Code.");
 		lpin.focus();
 		return false;
 	}
 	
 	//Password validation
 	if(password.value==""){
-		window.alert("Please enter your password");
+		swal("Please enter your password");
 		password.focus();
 		return false;
 	}
 	
 /*if(!(password.value.length >8)){
 		
-		alert(" Your password must be greater than 8 digits");
+		swal(" Your password must be greater than 8 digits");
 		password.focus();
 		return false;
 	}*/
 	if(rpassword.value==""){
-		window.alert("Please enter your password again");
+		swal("Please enter your password again");
 		rpassword.focus();
 		return false;
 	}
 	
 	if(password.value != rpassword.value)
 	{
-		window.alert("Password does not match.")
+		swal("Password does not match.")
 		return false;
 	}
 	
@@ -468,12 +470,12 @@ if(!(license.length >1) && (license.length < 10)){
 	var otpval = otp.value;
 	if(otp.value == "")
 	{
-		alert("Please enter your OTP");
+		swal("Please enter your OTP");
 		otp.focus();
 		return false;
 	}
 	if(isNaN(otpval)){
-		alert("Enter the valid OTP number");
+		swal("Enter the valid OTP number");
 		otp.focus();
 		return false;
 	}
@@ -481,14 +483,14 @@ if(!(license.length >1) && (license.length < 10)){
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid OTP number, must be six digits");
+	    swal("Invalid OTP number, must be six digits");
 	    otp.focus();
 	    return false;
 	}
 	//Terms & condn validation
 	if(tc.checked == false)
 	{
-		alert("Please check T & C");
+		swal("Please check T & C");
 	    tc.focus();
 	    return false;
 	}
