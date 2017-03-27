@@ -20,9 +20,11 @@ pageEncoding="ISO-8859-1" import="java.util.*,
  java.text.SimpleDateFormat,
  java.io.IOException,
  java.io.InputStream,
- javax.imageio.ImageIO" %>
+ javax.imageio.ImageIO" %><%@ page session="false" %>
 <html>
-<head><title>NeoMandi</title><!-- 
+<head>
+<script src="js/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css"><title>NeoMandi</title><!-- 
 <meta http-equiv="refresh"  content="3; URL=TradeorAuction.do"> -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +42,11 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
+#slot,#slot2,#slot3
+{
+	cursor:pointer;
+}
+
 #div
 {   		
 	padding:22px;
@@ -190,21 +197,32 @@ border-top:0px solid #fff !important;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><%HttpSession tlog=request.getSession(false);
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
+<%
+HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn =null;
 try
 {
 	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 	if(tlbn.getTname()==null){}
+	System.out.println("------------"+tlbn.getTname());
 }
 catch(NullPointerException e)
 {
-		out.println("<script type=\"text/javascript\">");
-	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-	  	 out.println("location='TraderLogin.jsp';");
-	 	 out.println("</script>");
-}%>
-<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
+		
+		 out.println("<script type=\"text/javascript\">");
+		 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ location='TraderLogin.jsp';}} ;");
+	  	 out.println("</script>");
+}
+try
+{%>
+	<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
+<%}catch(NullPointerException e)
+{
+	 out.println("<script type=\"text/javascript\">");
+  	 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ console.log('2');location='TraderLogin.jsp';}} ;");
+  	 out.println("</script>");
+} %>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 <script>
@@ -217,13 +235,36 @@ catch(NullPointerException e)
 		{
 			if((msg.includes('begun'))&&!(msg1.includes("end")))
 			{
-				if (confirm('Auction is under progress do you want to Logout?? ')) 
+				/* if (confirm('Auction is under progress do you want to Logout?? ')) 
 	    	    {
 					window.location='logout.do';
 	    	    }
 				else //if(msg.includes('has ended'))
 				{
-				}				
+				}	 */	
+				
+				 swal(
+				        	{
+					        	  title: "Auction is under progress do you want to Logout?? ",
+					        	 /*  text: "You will not be able to recover this imaginary file!",
+					        	  */ type: "warning",
+					        	  showCancelButton: true,
+					        	  confirmButtonColor: "green",
+					        	  confirmButtonText: "Yes",
+					        	  cancelButtonText: "No",
+					        	  closeOnConfirm: false,
+					        	  closeOnCancel: false
+				        	},
+				        	function(isConfirm)
+				        	{
+				        		  if(isConfirm)
+				        		  {
+				        			  window.location='logout.do';
+								  }
+				        		  else 
+				        		  { }
+				             }
+				        	);	
 			}
 			else
 				window.location='logout.do';
@@ -247,7 +288,7 @@ catch(NullPointerException e)
 </div>
 </div>
 <div class="maindiv">
-<div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-1</span>	
+<div id="slot" class="container-fluid slot"><h5 id=""class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-1</span>	
 	  <div id="msg" style="display:inline;"> will begin in</div>&nbsp;&nbsp;
 	 <div id="timer" style="display:inline;" ></div>
 	  	<div id="auction" style="display:inline;"></div>
@@ -409,7 +450,7 @@ catch(NullPointerException e)
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-								            	alert("Auction is over you can check the status in status tab");
+								            	swal("Auction is over you can check the status in status tab");
 								            	console.log("AUCTION IS OVER");
 								            	
 								            	xmlhttp = new XMLHttpRequest();
@@ -492,7 +533,7 @@ catch(NullPointerException e)
 	  if(msg1!=null)
 	  {
 		 out.println("<script type=\"text/javascript\">");
-	  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+	  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 	  	 out.println("location='TraderLogin.jsp';");
 	 	 out.println("</script>");
 	  }
@@ -506,7 +547,7 @@ catch(NullPointerException e)
 	    {
 	    	  System.out.println("inside if");
 			  out.println("<script type=\"text/javascript\">");
-		  	  out.println("alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
+		  	  out.println("swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 		  	//  out.println("window.location='TraderBlock.do';");
 		 	  out.println("</script>");
 		}
@@ -516,7 +557,7 @@ catch(NullPointerException e)
 			if(msg2!=null)
 			{
 				out.println("<script type=\"text/javascript\">");
-			  	out.println("alert('You need to enter the number of bid to be increased before');");
+			  	out.println("swal('You need to enter the number of bid to be increased before');");
 			  	out.println("location='TradeorAuction.do';");
 			 	out.println("</script>");
 			}
@@ -652,7 +693,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;
 					    	 if(string.includes("block"))
 					    	 {
-					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    	}
 					    	else
@@ -969,12 +1010,12 @@ catch(NullPointerException e)
 	//console.log("time difference is "+timedifference);
 	/*if(!timedifference.includes("-"))
 	{
-		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
+		swal('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
 	/*if((document.getElementById('POSTAUCTION').value).includes('end'))
 	{																			THIS IS THE MOST RECENT WORKING CODE
-			alert("YOU CANT BID AFTER AUCTION IS OVER");
+			swal("YOU CANT BID AFTER AUCTION IS OVER");
 	}
 	else*/
 	var msg=document.getElementById("timer").textContent;
@@ -985,14 +1026,14 @@ catch(NullPointerException e)
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 	else
 	{
@@ -1017,12 +1058,12 @@ catch(NullPointerException e)
 	{
 		console.log("assigned=needed");
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
-		alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 	}
 	else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 	{
 			console.log("currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned!=needed");
-			alert("YOU CANNOT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
+			swal("YOU CANNOT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
 	}
 	else
 	{
@@ -1035,7 +1076,7 @@ catch(NullPointerException e)
 		    	 console.log("***strng is "+string);
 		    	 if(string.includes("block"))
 		    	 {
-		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+		    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    	}
 		    	else
@@ -1188,7 +1229,7 @@ catch(NullPointerException e)
 		console.log(mybid==0);
 		if(quantityassigned>0)
 		{
-			alert("Lot could be removed only when no lot has been assigned to you during auction")
+			swal("Lot could be removed only when no lot has been assigned to you during auction")
 		}
 		else
 			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
@@ -1230,7 +1271,7 @@ catch(NullPointerException e)
 		var timedifference=+hours+":"+minutes+":"+seconds;
 		//if((document.getElementById('POSTAUCTION').value).includes('end'))
 		{
-		//	alert("YOU CANT BID AFTER AUCTION IS OVER");
+		//	swal("YOU CANT BID AFTER AUCTION IS OVER");
 		}
 		var msg=document.getElementById("timer").textContent;
 		var msg1=document.getElementById("auction1").textContent;
@@ -1239,13 +1280,13 @@ catch(NullPointerException e)
 		if(!(msg.includes('begun')))
 		{
 		//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
-				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("YOU CAN BID ONLY DURING AUCTION TIME");
 			//else
 			//	window.location='logout.do';
 		}
 		else if(msg1!=null &&msg1.includes("end"))
 		{
-					alert("YOU CAN BID ONLY DURING AUCTION TIME");
+					swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 		else
 		{
@@ -1255,7 +1296,7 @@ catch(NullPointerException e)
 			  var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;
 			  if(k==""||document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value==null)
 			  { 
-				  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
+				  swal('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
 			  }
 		      else
 			  {
@@ -1266,7 +1307,7 @@ catch(NullPointerException e)
 				
 				if(assigned-needed==0)
 				{
-					alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+					swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 					console.log("assigned=needed");
 				}
 				else
@@ -1291,22 +1332,22 @@ catch(NullPointerException e)
 				  var bestbid=new Number(bestbids);
 				  if(currentbids===newbids)
 				  {
-						  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+						  swal('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 				  }
 				  else if(newbids>999)
 					  {
-					  		alert("You cannot bid more than 999 Rs for any lot");
+					  		swal("You cannot bid more than 999 Rs for any lot");
 					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
 					  }
 				  else if(currentbids>newbids)
 				  {	  
-					  alert('You are allowed only to increment the bid.');
+					  swal('You are allowed only to increment the bid.');
 					  console.log(currentbids);
 					  document.getElementById('demo6<%out.print(tlb.getLotnum());%>').value=currentbids;
 				  }				  
 				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
-					  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  		swal('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 				  }
 				  else// if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
@@ -1318,7 +1359,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;		
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    	}
 					    	else
@@ -1455,7 +1496,7 @@ catch(NullPointerException e)
 	  }}}}
 	/*else
 		{	console.log(!timedifference.includes("-"));
-			alert('YOU CANNOT BID BEFORE AUCTION STARTS');
+			swal('YOU CANNOT BID BEFORE AUCTION STARTS');
 		}*/}
 	</script>
 	</tbody></table></div>
@@ -1898,7 +1939,7 @@ catch(NullPointerException e)
 	console.log("time difference is "+timedifference);
 	/*if(!timedifference.includes("-"))
 	{
-		alert('YOU CANNOT BID BEFORE AUCTION STARTS');
+		swal('YOU CANNOT BID BEFORE AUCTION STARTS');
 	}*/
 	//else
 		var msg=document.getElementById("timer").textContent;
@@ -1909,14 +1950,14 @@ catch(NullPointerException e)
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 	else
 	{
@@ -1934,7 +1975,7 @@ catch(NullPointerException e)
 	console.log("volume needed is "+needed+"");
 	if(assigned-needed==0)
 	{
-		alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 	}
@@ -1943,7 +1984,7 @@ catch(NullPointerException e)
 	if(currentbids-bestbid==0 && currentbids!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 		  {
 				console.log("currentbids-bestbid==0");
-		  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+		  		swal('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 		  }
 	else if(currentbids-bestbid!=0 &&assigned!=needed)
 	{
@@ -1955,7 +1996,7 @@ catch(NullPointerException e)
 		    	 var string=xmlhttp.responseText;
 		    	 if(string.includes("block"))
 		    		{
-		    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+		    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 		  	  	       window.location='TraderBlock.do';
 		    		}
 		    	else
@@ -2105,7 +2146,7 @@ catch(NullPointerException e)
 		console.log(mybid==0);
 		if(quantityassigned>0)
 		{
-			alert("YOU CANNOT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
+			swal("YOU CANNOT REMOVE THE LOT WHEN IT HAS BEEN ASSIGNED TO YOU PARTIALLY OR COMPLETELY")
 		}
 		else
 			window.location.href="removelotnumber.do?lotnum=<%=tlbr.getLotnum() %>";
@@ -2153,14 +2194,14 @@ catch(NullPointerException e)
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			alert("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				alert("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("YOU CAN BID ONLY DURING AUCTION TIME");
 		}
 	else
 	{
@@ -2170,7 +2211,7 @@ catch(NullPointerException e)
 		  var j= document.getElementById("lotnumber<%out.print(tlbr.getLotnum());%>").value;
 		  if(k==""||document.getElementById("demo6<%out.print(tlbr.getLotnum());%>").value==null)
 		  { 
-			  alert('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
+			  swal('YOU SHOULD ENTER YOUR NEW BID BEFORE SUBMITING');
 		  }
 	      else
 		  {
@@ -2181,7 +2222,7 @@ catch(NullPointerException e)
 			
 			if(assigned-needed==0)
 			{
-				alert("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ");
+				swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ");
 				console.log("assigned=needed");
 			}
 			else
@@ -2196,17 +2237,17 @@ catch(NullPointerException e)
 				var bestbid=new Number(bestbids);
 			  if(currentbids===newbids)
 				  {
-					  alert('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
+					  swal('YOU SHOULD INCREASE YOUR BID BY ATLEAST ONE RUPEE BEFORE SUBMITTING');
 				  }
 			  else if(currentbids>newbids)
 			  {	  
-				  alert('You are allowed only to increment the bid.');
+				  swal('You are allowed only to increment the bid.');
 				  document.getElementById('demo6<%out.print(tlbr.getLotnum());%>').value=currentbids;
 			  }
 			 
 			  else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 					  {
-					  		alert('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  		swal('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
 					  }
 			  else if(currentbids-bestbid!=0)
 			  {
@@ -2217,7 +2258,7 @@ catch(NullPointerException e)
 					    	 var string=xmlhttp.responseText;			  
 					    	if(string.includes("block"))
 					    	{
-					    		   alert('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
+					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       window.location='TraderBlock.do';
 					    		}
 					    	else
@@ -2351,7 +2392,7 @@ catch(NullPointerException e)
 	  }}}}
 	/*else
 		{	console.log(!timedifference.includes("-"));
-			alert('YOU CANNOT BID BEFORE AUCTION STARTS');
+			swal('YOU CANNOT BID BEFORE AUCTION STARTS');
 		}*/}
 	</script>
 	</tbody></table></div>

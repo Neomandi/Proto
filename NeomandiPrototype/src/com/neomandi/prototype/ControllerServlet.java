@@ -1641,7 +1641,8 @@ public class ControllerServlet extends HttpServlet {
 				try 
 				{
 						PrintWriter out = null;
-						try {
+						try 
+						{
 							//System.out.println(mfcb);
 							out = response.getWriter();
 							out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");

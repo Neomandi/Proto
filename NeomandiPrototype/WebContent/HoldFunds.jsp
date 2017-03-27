@@ -17,6 +17,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="js/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <style>
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -90,7 +92,7 @@ if(hour!=10){}
 	if((String)tlbn.getTname()==null)
 	{   
 		out.println("<script type=\"text/javascript\">");
-		out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+		out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 		out.println("location='TraderLogin.jsp';");
 		out.println("</script>");
 	}
@@ -121,7 +123,7 @@ TraderBlockBean tbb=(TraderBlockBean)hcs.getAttribute("bean");
 hcs.setAttribute("bean",tbb);
 if((String)tlbn.getTname()==null)
 {    out.println("<script type=\"text/javascript\">");
-  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
   	 out.println("location='TraderLogin.jsp';");
  	 out.println("</script>");
 }
@@ -201,19 +203,19 @@ else
 	  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
 	  		  console.log(hld<0);
 	  		  if(hold.length==0)
-	  			  {lert("PLEASE ENTER AMOUNT TO BE HELD ");}
+	  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
 	  		  else if(balance!=null&&balance.length!=0)
 	  		  {
 	  			  console.log("inside balance!=null&")
 	  			if(bal<hld)
 	  			{
-	  					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
+	  					swal("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
 	  					document.getElementById("hold").value="";
 	  			}
 	  			else if(hld<0||hld==0)
 	  			{
 	  					console.log("hld<0");
-	  					alert("Please enter positive number");
+	  					swal("Please enter positive number");
 	  			}
 	  			else
 	  			{
@@ -233,7 +235,7 @@ else
 	  		   			  	 document.getElementById("netamount").value = blocked;
 	  		   			     document.getElementById("hold").value = "";
 	  		   			  	 document.getElementById("balance").value = "";
-	  		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+	  		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
 	  		   			     
 	  				  }};
 	  					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
@@ -246,7 +248,7 @@ else
 	  			  if(hld<0||hld==0)
 	  				{
 	  					console.log("hld<0");
-	  					alert("PLEASE ENTER POSITIVE NUMBER");
+	  					swal("PLEASE ENTER POSITIVE NUMBER");
 	  				}
 	  			  else
 	  				  {
@@ -257,7 +259,7 @@ else
 	  				  	 var string=xmlhttp.responseText;
 	  				  	 console.log("string is"+string);
 	  				  	 if(string.includes("fail"))
-	  				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
+	  				  		 swal("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
 	  				  	 else
 	  				  	 {
 	  	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
@@ -271,7 +273,7 @@ else
 	  		   			  	 document.getElementById("netamount").value = blocked;
 	  		   			     document.getElementById("hold").value = "";
 	  		   			  	 document.getElementById("balance").value = "";
-	  		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+	  		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
 	  				  	 }
 	  	   			     
 	  			  }};
@@ -295,19 +297,19 @@ else
  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
  		  console.log(hld<0);
  		  if(hold.length==0)
- 			  {lert("PLEASE ENTER AMOUNT TO BE HELD ");}
+ 			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
  		  else if(balance!=null&&balance.length!=0)
  		  {
  			  console.log("inside balance!=null&")
  			if(bal<hld)
  			{
- 					alert("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
+ 					swal("You are trying to hold funds more than the balance in your bank account. Please enter an amount same or less than the available balance")
  					document.getElementById("hold").value="";
  			}
  			else if(hld<0||hld==0)
  			{
  					console.log("hld<0");
- 					alert("Please enter positive number");
+ 					swal("Please enter positive number");
  			}
  			else
  			{
@@ -327,7 +329,7 @@ else
  		   			  	 document.getElementById("netamount").value = blocked;
  		   			     document.getElementById("hold").value = "";
  		   			  	 document.getElementById("balance").value = "";
- 		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+ 		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
  		   			     
  				  }};
  					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
@@ -340,7 +342,7 @@ else
  			  if(hld<0||hld==0)
  				{
  					console.log("hld<0");
- 					alert("PLEASE ENTER POSITIVE NUMBER");
+ 					swal("PLEASE ENTER POSITIVE NUMBER");
  				}
  			  else
  				  {
@@ -351,7 +353,7 @@ else
  				  	 var string=xmlhttp.responseText;
  				  	 console.log("string is"+string);
  				  	 if(string.includes("fail"))
- 				  		 alert("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
+ 				  		 swal("YOU DONT HAVE SUFFICIENT BANK BALANCE TO BLOCK MONEY");
  				  	 else
  				  	 {
  	        			 var starttotalblocked=xmlhttp.responseText.indexOf('totalblocked');
@@ -365,7 +367,7 @@ else
  		   			  	 document.getElementById("netamount").value = blocked;
  		   			     document.getElementById("hold").value = "";
  		   			  	 document.getElementById("balance").value = "";
- 		   			     alert('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+ 		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
  				  	 }
  	   			     
  			  }};
@@ -441,15 +443,15 @@ else
 			console.log("netamout"+net+" release"+rel+"bank"+bank);
 			if(net<rel)
 			{
-					alert("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
+					swal("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
 			}
 			else if(release.length==0)
 			{
-					alert("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
+					swal("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
 			}
 			else if(rel<0)
 			{
-				alert("Please Enter positive number");	
+				swal("Please Enter positive number");	
 			}
 		 	else
 		    {
@@ -472,7 +474,7 @@ else
 		   			     document.getElementById("hold").value = "";
 		   				 document.getElementById("balance").value = "";
 		   				 document.getElementById("release").value = "";
-		   			     alert('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
+		   			     swal('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
 		   			     
 				  }
 			  };

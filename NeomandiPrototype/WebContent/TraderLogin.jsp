@@ -121,7 +121,7 @@ function submitform(){
 		    	}
 		    	else 
 		    	{
-		    		alert(string);		
+		    		alert("Username does not exist. Please register and then login");		
 		    	}
 			}		
 		};
