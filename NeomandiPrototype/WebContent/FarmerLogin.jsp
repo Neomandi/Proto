@@ -15,6 +15,16 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+.farmlogcls {
+    border: 0px;
+    border-left: 30px solid #b6e41f;
+    border-right: 30px solid #b6e41f;
+    background: #1D73BE;
+     margin-top: 11%; 
+    position: relative;
+}
+</style>
 </head>
 
 <body class="" onkeypress="myFunction(event)">
@@ -149,5 +159,48 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <%}%>
 
+	<!--  <div class="carousel slide" id="mycarousel" data-ride="carousel" >
+	<!--dot notation -->
+	<ol class="carousel-indicators" >
+			<li data-target="#mycarousel" data-list-to="0"></li>
+			<li data-target="#mycarousel" data-list-to="1"></li>
+			<li data-target="#mycarousel" data-list-to="2" class="active"></li>
+
+	</ol>
+	<!--wrapper image -->
+		<div class="carousel-inner" data-target="#mycarousel" width="1300px" >
+			
+			<div class="item" >
+				<img src="images1/cauliflower.jpg" alt="image not found" width="1300px" >
+				<div class="carousel-caption">
+					
+					<button type="button" class="btn btn-primary">know more</button>
+				</div>
+			</div>
+			
+
+			<div class="item">
+				<img src="images1/beans.jpg" alt="image not found" width="1300px">
+				<div class="carousel-caption">
+					
+					<button type="button" class="btn btn-primary">know more</button>
+				</div>
+			</div>
+			<div class="item active">
+				<img src="images1/carrots.jpg" alt="image not found" width="1300px"  >
+				<div class="carousel-caption">
+					
+					<button type="button" class="btn btn-primary">know more</button>
+				</div>
+			</div>
+			<a href="#mycarousel"  class="left carousel-control" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a href="#mycarousel"  class="right carousel-control" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+	
 </body>
 </html>
