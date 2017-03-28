@@ -9,8 +9,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
-<script src="js/blurt.min.js" type="text/javascript"></script>
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -25,7 +25,6 @@
 <script>
 function validateEForm()
 {
-	
 	var num = document.EregForm1.employeenum;
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
@@ -37,17 +36,17 @@ function validateEForm()
 	//Name validation
 	console.log("inside name validation");
 	if(name.value==""){
-		blurt({title:"Error!",text:"Please enter your name.",type:"error"});
+		swal("Please enter your name.");
 		name.focus();
 		return false;
 	}
 	if(!isNaN(name.value)){
-		blurt({title:"Error!",text:"Your name should contain only alphtabets.",type:"error"});
+		swal("Your name should contain only alphtabets.");
 		document.Eregform.employeename.focus();
 		return false;
 	}
 	if ((name.value.length < 1) || (name.value.length > 20)){
-		blurt({title:"Error!",text:"Your Character must be 1 to 20 Character",type:"error"});
+		swal("Your Character must be 1 to 20 Character");
 		document.Eregform.employeename.focus();
 	//	name.focus();
 		return false;
@@ -56,18 +55,18 @@ function validateEForm()
 	//Mobile number validation
 	var val = num.value;
 	if(val==""){
-		blurt({title:"Error!",text:"Please enter your Employee Number",type:"error"});
+		swal("Please enter your Employee Number");
 		 num.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		blurt({title:"Error!",text:"Enter the valid Employee Number(Like : 12345)",type:"error"});
+		swal("Enter the valid Employee Number(Like : 12345)");
 		num.focus();
 		return false;
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		blurt({title:"Error!",text:"Your Employee Number must be of 5 digits",type:"error"});
+		swal("Your Employee Number must be of 5 digits");
 		num.focus();
 		return false;
 	}
@@ -76,7 +75,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    blurt({title:"Error!",text:"Invalid Employee Number, must be five digits",type:"error"});
+	    swal("Invalid Employee Number, must be five digits");
 	    num.focus();
 	    return false;
 	}
@@ -84,18 +83,18 @@ function validateEForm()
 	//password validation
 	if(pwd.value == "")
 	{
-		blurt({title:"Error!",text:"Please enter your password",type:"error"});
+		swal("Please enter your password");
 		pwd.focus();
 		return false;
 	}
 	if(cpwd.value == "")
 	{
-		blurt({title:"Error!",text:"Please enter your password",type:"error"});
+		swal("Please enter your password");
 		cpwd.focus();
 		return false;	
 	}
 	if( cpwd.value!=pwd.value){
-		 blurt({title:"Error!",text:"Passwords do not match",type:"error"});
+		 swal("Passwords do not match");
 		 cpwd.focus();
 		    return false;
 	}
@@ -104,12 +103,12 @@ function validateEForm()
 	var otpval = otp.value;
 	if(otp.value == "")
 	{
-		blurt({title:"Error!",text:"Please enter your OTP",type:"error"});
+		swal("Please enter your OTP");
 		otp.focus();
 		return false;
 	}
 	if(isNaN(otpval)){
-		blurt({title:"Error!",text:"Enter the valid OTP number",type:"error"});
+		swal("Enter the valid OTP number");
 		otp.focus();
 		return false;
 	}
@@ -117,7 +116,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    blurt({title:"Error!",text:"Invalid OTP number, must be six digits",type:"error"});
+	    swal("Invalid OTP number, must be six digits");
 	    otp.focus();
 	    return false;
 	}
@@ -126,7 +125,7 @@ function validateEForm()
 	//console.log("TC: "+tc.value);
 	if(tc.checked == false)
 	{
-		blurt({title:"Error!",text:"Please check T & C",type:"error"});
+		swal("Please check T & C");
 	    tc.focus();
 	    return false;
 	}

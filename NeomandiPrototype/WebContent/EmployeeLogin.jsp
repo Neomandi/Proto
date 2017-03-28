@@ -11,14 +11,14 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-	<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
+	<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-	<script src="js/blurt.min.js" type="text/javascript"></script>
 <script>
 function validateELForm()
 {
@@ -28,7 +28,7 @@ function validateELForm()
 	//Name validation
 	if(name.value=="")
 	{
-		blurt({title:"Error!",text:"Please provide username.",type:"error"});
+		swal("Please provide username.");
 		name.focus();
 		return false;
 	}
@@ -36,7 +36,7 @@ function validateELForm()
 	//Pwd validation
 	if(pwd.value=="")
 	{
-		blurt({title:"Error!",text:"Please provide password.",type:"error"});
+		swal("Please provide password.");
 		pwd.focus();
 		return false;
 	}		
@@ -147,7 +147,7 @@ function validateELForm()
 	console.log(msg.length);
 	if(msg.length!=0){
 		msg = "PLEASE ENTER "+msg;
-		blurt({title:"Error!",text: msg,type:"error"});}
+		swal( msg);}
 	
 	else{
 	xmlhttp=new XMLHttpRequest();
@@ -163,7 +163,7 @@ function validateELForm()
 		    	}
 		    	else 
 		    	{
-		    		blurt({title:"Error!",text:string,type:"error"});		
+		    		swal(string);		
 		    	}
 		}		
 	};
