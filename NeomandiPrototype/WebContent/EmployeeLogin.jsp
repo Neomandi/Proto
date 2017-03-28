@@ -11,14 +11,14 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-	<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-	<script src="js/sweetalert.min.js" type="text/javascript"></script>
+	<script src="js/blurt.min.js" type="text/javascript"></script>
 <script>
 function validateELForm()
 {
@@ -28,7 +28,7 @@ function validateELForm()
 	//Name validation
 	if(name.value=="")
 	{
-		swal("Please provide username.");
+		blurt({title:"Error!",text:"Please provide username.",type:"error"});
 		name.focus();
 		return false;
 	}
@@ -36,7 +36,7 @@ function validateELForm()
 	//Pwd validation
 	if(pwd.value=="")
 	{
-		swal("Please provide password.");
+		blurt({title:"Error!",text:"Please provide password.",type:"error"});
 		pwd.focus();
 		return false;
 	}		
@@ -135,18 +135,19 @@ function validateELForm()
 	if(document.getElementById("ename").value==null|| document.getElementById("ename").value === undefined || document.getElementById("ename").value === "")
     {
     	console.log(document.getElementById("ename").value);
-    	//window.swal("ENTER USERNAME");
+    	//window.blurt("ENTER USERNAME");
     	msg="USER NAME ";
     }	
 	if(document.getElementById("epwd").value==null|| document.getElementById("epwd").value === undefined || document.getElementById("epwd").value === "")
     {
     	console.log(document.getElementById("epwd").value);
-    	//window.swal("ENTER USERNAME");
+    	//window.blurt("ENTER USERNAME");
     	msg=msg+"PASSWORD";
     }	
 	console.log(msg.length);
-	if(msg.length!=0)
-		swal("PLEASE ENTER "+msg);
+	if(msg.length!=0){
+		msg = "PLEASE ENTER "+msg;
+		blurt({title:"Error!",text: msg,type:"error"});}
 	
 	else{
 	xmlhttp=new XMLHttpRequest();
@@ -162,7 +163,7 @@ function validateELForm()
 		    	}
 		    	else 
 		    	{
-		    		swal(string);		
+		    		blurt({title:"Error!",text:string,type:"error"});		
 		    	}
 		}		
 	};

@@ -12,8 +12,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
-	<script src="js/sweetalert.min.js" type="text/javascript"></script>
+	<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
+	<script src="js/blurt.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -69,7 +69,7 @@ footer {
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';}); </script>");
+	    	out.println("<script>blurt({title: 'You have not logged in. Please login',text: 'You will be redirected to login page. Click Ok',type:'error'}); location = 'http://www.neomandi.in/Login.html'</script>");
 	    }
 	%>
     <div class="logo_relative">

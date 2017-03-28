@@ -14,8 +14,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
-	<script src="js/sweetalert.min.js" type="text/javascript"></script>
+	<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
+	<script src="js/blurt.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -96,23 +96,23 @@
     	
     	//farmerid validation
     	if(farmerid.value == ""){
-    		swal("Please enter farmerid");
+    		blurt({title:"Error!",text:"Please enter farmerid",type:"error"});
     		farmerid.focus();
     		return false;
     	}
 		if(!/^[0-9]+$/.test(farmerid.value)){
-			swal("Please enter only numbers");
+			blurt({title:"Error!",text:"Please enter only numbers",type:"error"});
 			farmerid.focus();
 			return false;
 		}
     	if(isNaN(farmerid.value)){
-    		swal("Enter a valid Farmer ID ");
+    		blurt({title:"Error!",text:"Enter a valid Farmer ID ",type:"error"});
     		farmerid.focus();
     		return false;
     	}
     	if(farmerid.value.length !=12){
     		
-    		swal(" Your Farmerid must contain 12 digits");
+    		blurt({title:"Error!",text:" Your Farmerid must contain 12 digits",type:"error"});
     		farmerid.focus();
     		return false;
     	}
@@ -120,7 +120,7 @@
     	//marketcode validation
     	var letters = /^[0-9a-zA-Z]+$/;
     	if(marketcode.value == ""){
-    		swal("Please enter Marketcode");
+    		blurt({title:"Error!",text:"Please enter Marketcode",type:"error"});
     		marketcode.focus();
     		return false;
     	}
@@ -129,7 +129,7 @@
 		//console.log(category.value);
 		if(category.value == "Category")
 		{
-			swal("Please select proper Category");
+			blurt({title:"Error!",text:"Please select proper Category",type:"error"});
 			return false;
 		}
 		
@@ -138,7 +138,7 @@
 // 		console.log(produce.value == "Produce");
 		if(produce.value == "produce")
 		{
-			swal("Please select proper Produce");
+			blurt({title:"Error!",text:"Please select proper Produce",type:"error"});
 			return false;
 		}
 		
@@ -146,28 +146,28 @@
 		//console.log(grade.value);
 		if(grade.value == "Grade")
 		{
-			swal("Please select proper Grade");
+			blurt({title:"Error!",text:"Please select proper Grade",type:"error"});
 			return false;
 		}
     	
     	//quantity validation
     	if(quantity.value == ""){
-    		swal("Please enter quantity");
+    		blurt({title:"Error!",text:"Please enter quantity",type:"error"});
     		quantity.focus();
     		return false;
     	}
     	if(isNaN(quantity.value)){
-    		swal("Enter a valid quantity value. Only number from 0-9 ");
+    		blurt({title:"Error!",text:"Enter a valid quantity value. Only number from 0-9",type:"error"});
     		quantity.focus();
     		return false;
     	}
     	if(!/^[0-9]+$/.test(quantity.value)){
-    		swal("Please enter only numbers");
+    		blurt({title:"Error!",text:"Please enter only numbers",type:"error"});
     		quantity.focus();
     		return false;
     	}
     	if(quantity.value==0){
-    		swal("Please enter atleast minimum 1 kg");
+    		blurt({title:"Error!",text:"Please enter atleast minimum 1 kg",type:"error"});
     		quantity.focus();
     		return false;
     	}
@@ -175,21 +175,21 @@
     	//Lotnumber Validation
     	if(lotnumber.value == "")
     	{
-    		swal("Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber");
+    		blurt({title:"Error!",text:"Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber",type:"error"});
     		return false;
     	}
     	
     	//EmployeeNumber Validation
     	if(empnumber.value == "")
     	{
-    		swal("Please enter Employee Number");
+    		blurt({title:"Error!",text:"Please enter Employee Number",type:"error"});
     		return false;
     	}
     	
     	//EmployeePassword Validation
     	if(epwd.value == "")
     	{
-    		swal("Please enter Employee Password");
+    		blurt({title:"Error!",text:"Please enter Employee Password",type:"error"});
     		return false;
     	}
     	return true;
@@ -251,7 +251,7 @@
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+	    	out.println("<script>blurt({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',typetype:'error'},function(){window.location='http://neomandi.in/Login.html';});</script>");
 	    }
 	%>
     <div class="logo_relative">
@@ -481,7 +481,7 @@
         	
         	if(farmerid == "" || produce == "Produce" || quality == "Grade")
         	{
-        		swal("Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber");
+        		blurt({title:"Error!",text:"Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber",type:"error"});
         		return false;
         	}
         	else
