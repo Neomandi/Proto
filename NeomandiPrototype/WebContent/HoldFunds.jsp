@@ -443,11 +443,11 @@ else
 			console.log("netamout"+net+" release"+rel+"bank"+bank);
 			if(net<rel)
 			{
-					swal("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
+					swal("You cannot release more funds than the net amount on hold ");
 			}
 			else if(release.length==0)
 			{
-					swal("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
+					swal("Please enter the amount to be released")
 			}
 			else if(rel<0)
 			{
@@ -474,7 +474,7 @@ else
 		   			     document.getElementById("hold").value = "";
 		   				 document.getElementById("balance").value = "";
 		   				 document.getElementById("release").value = "";
-		   			     swal('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
+		   			     swal('Successfully released amount Rs. '+ release);	
 		   			     
 				  }
 			  };

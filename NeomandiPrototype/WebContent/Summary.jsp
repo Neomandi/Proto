@@ -109,7 +109,7 @@ TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
-			  <center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
+			  <center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -198,7 +198,7 @@ function fun2()
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
   		%>
-  		<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
+  		<center><div id='div' style=' background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
   		<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))

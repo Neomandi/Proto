@@ -288,12 +288,12 @@ try
 </div>
 <div class="maindiv">
 <div id="slot" class="container-fluid slot"><h5 id=""class="text-center"  data-toggle="collapse" data-target="#accord1"><span>Auction Slot-1</span>	
-	  <div id="msg" style="display:inline;"> will begin in</div>&nbsp;&nbsp;
-	 <div id="timer" style="display:inline;" ></div>
+		<div id="msg" style="display:inline;"> will begin in</div>&nbsp;&nbsp;
+		<div id="timer" style="display:inline;" ></div>
 	  	<div id="auction" style="display:inline;"></div>
 		<div id="auction1" style="display:inline;"></div>
 		<span class="pull-right">
-		<i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
+		<i class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
 <%
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
@@ -302,7 +302,8 @@ try
 	System.out.println("end="+stop);
 	String msg="start";
 	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
-%><input type="hidden" id="POSTAUCTION" value="start"/>
+%>
+  <input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
   <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
@@ -314,7 +315,7 @@ try
   var Etime=document.getElementById("time").value;
   var Btime=start;
   var Btime1=stop;
- console.log("end time above is "+stop);
+  console.log("end time above is "+stop);
   start = Etime.split(":");
   end =Btime.split(":");
   var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -343,8 +344,7 @@ try
   var timedifference=+hours+":"+minutes+":"+seconds;
   var m=0;
   countdown(minutes,seconds,hours);	
-/*   var five=300000;
-  timedif=diff+five;  */	
+
 		function countdown(minutes,seconds,hours) 
 		{				 		 
 			 	var seconds =seconds;
@@ -353,9 +353,9 @@ try
 			    var res1=0;
 			    var res2=0;
 			    var timedifference=+hours+":"+minutes+":"+seconds;
-			   function tick() 
+			    function tick() 
 				{
-				     var counter = document.getElementById("timer");
+				    var counter = document.getElementById("timer");
 			        var current_minutes = mins
 		    		seconds--;
 			        var hour=hours;
@@ -449,7 +449,7 @@ try
 								            	var timeOutPeriod = waitseconds * 1000;
 								            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);						            	
 								            	document.getElementById("auction1").innerHTML=str1;
-								            	swal("Auction is over you can check the status in status tab");
+								            	swal({title:'',text:"Auction is over you can check the status in status tab",});
 								            	console.log("AUCTION IS OVER");
 								            	
 								            	xmlhttp = new XMLHttpRequest();
@@ -576,7 +576,7 @@ try
 				if(al.size()==0){
 					System.out.println(al.size()==0 );
 				%><br>
-					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
+					<center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
 				<br>
 				<%	
 				}}
@@ -886,15 +886,14 @@ try
 								}
 								else if(assigneds<quantityneeded&&assigneds>0)
 								{
-								//	console.log("quantityneeded<quantityassigned");
+										//console.log("quantityneeded<quantityassigned");
 										document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
-								}
-						 		
+								}						 		
 						 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 								var bestbid=new  Number(bestbids);		
 								var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
 								var mybid=new  Number(mybids);
-							//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
+								//	console.log("best bid is"+bestbid+" my bid is"+mybid+" ");
 								//console.log(mybid==0);
 								if(mybid<bestbid&&mybid>0)
 								{
@@ -924,64 +923,63 @@ try
 						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 						xmlhttp.send("number="+1+"&lotnumber="+1);
  		}
-	</script>
-	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-	<script>
+		</script>
+		</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
+		<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%out.print(tlb.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+		<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
 		}); 
-	</script>
-	<% 
-		String quantityneededs=tlb.getQuantityneeded();
-		int quantityneeded=Integer.parseInt(quantityneededs); 
-		String quantityassigneds=mfcb.getQuantityassigned();
-		int quantityassigned=Integer.parseInt(quantityassigneds);
-	%>
-	<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
-	<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
-	<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
-	<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
-	<script>
-	var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
-	var quantityneeded=new  Number(quantityneededs);		
-	var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
-	var quantityassigned=new  Number(quantityassigneds);
-	console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
-	console.log("quantityneeded<quantityassigned");
-	console.log(quantityneeded<quantityassigned);
-	console.log("quantityneeded>0"+quantityneeded>0);
-	if(quantityassigned==0)
-	{
-		console.log("quantityneeded==0");
-		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
-	}	
-	
-	else if(quantityneeded-quantityassigned==0)
-	{
-		document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
-		console.log("quantityneeded-quantityassigned==0");
-	}
-	else if(quantityassigned<quantityneeded&&quantityassigned>0)
-	{
+		</script>
+		<% 
+			String quantityneededs=tlb.getQuantityneeded();
+			int quantityneeded=Integer.parseInt(quantityneededs); 
+			String quantityassigneds=mfcb.getQuantityassigned();
+			int quantityassigned=Integer.parseInt(quantityassigneds);
+		%>
+		<input type="hidden" name="lotnum" id="mybid<%out.print(tlb.getLotnum());%>" value="<%out.print(mfcb.getPrice());%>"/>
+		<input type="hidden" name="lotnum" id="lotnumber<%out.print(tlb.getLotnum());%>" value="<%out.print(tlb.getLotnum());%>"/>
+		<input type="hidden" name="quantityassigned" value="<%=quantityassigned %>" id="<%=tlb.getLotnum()%>"/>
+		<input type="hidden" name="quantityneeded" value="<%=quantityneeded %>" id="quantityneeded<%=tlb.getLotnum()%>"/>
+		<script>
+		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;
+		var quantityneeded=new  Number(quantityneededs);		
+		var quantityassigneds=document.getElementById("demo7<%=tlb.getLotnum()%>").value;
+		var quantityassigned=new  Number(quantityassigneds);
+		console.log("quantityassigned"+quantityassigned+" quantityneeded"+quantityneeded+" ");
 		console.log("quantityneeded<quantityassigned");
+		console.log(quantityneeded<quantityassigned);
+		console.log("quantityneeded>0"+quantityneeded>0);
+		if(quantityassigned==0)
+		{
+			console.log("quantityneeded==0");
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px red inset";
+		}	
+		
+		else if(quantityneeded-quantityassigned==0)
+		{
+			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px green inset";
+			console.log("quantityneeded-quantityassigned==0");
+		}
+		else if(quantityassigned<quantityneeded&&quantityassigned>0)
+		{
+			console.log("quantityneeded<quantityassigned");
 			document.getElementById("demo7<%=tlb.getLotnum()%>").style["boxShadow"]="0 0 65px #FFA500 inset";
-	}	
-	
-	var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
-	var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
-	bid=bid+1;
-	
-	function submitbutton<%out.print(tlb.getLotnum());%>()
-	{	
-	 var Etime=document.getElementById("time").value;
-	 var Btime="10:30:00";
-	 var Btime1="10:35:00";
-   	 start = Etime.split(":");
-	 end =Btime.split(":");
-	 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
-	 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
-	 diff = endDate.getTime() - startDate.getTime();
+		}		
+		var input = document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value;
+		var bid=new  Number(document.getElementById("demo6<%= tlb.getLotnum() %>").value);
+		bid=bid+1;
+		
+		function submitbutton<%out.print(tlb.getLotnum());%>()
+		{	
+		 var Etime=document.getElementById("time").value;
+		 var Btime="10:30:00";
+		 var Btime1="10:35:00";
+	   	 start = Etime.split(":");
+		 end =Btime.split(":");
+		 var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
+		 var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
+		 diff = endDate.getTime() - startDate.getTime();
 		console.log("***********INCREMENT**********");
 		var hours = Math.floor(diff / 1000 / 60 / 60);
 		//diff -= hours* 60 * 60;

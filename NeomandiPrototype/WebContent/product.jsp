@@ -10,16 +10,18 @@
 	 java.sql.SQLException,
 	 java.sql.Statement,
 	 java.awt.image.BufferedImage,
- java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,
- java.io.ByteArrayOutputStream,
- java.io.File,
- java.io.IOException,
- java.io.InputStream,
- javax.imageio.ImageIO" errorPage="Error.jsp"%>
+	 java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,
+	 java.io.ByteArrayOutputStream,
+	 java.io.File,
+	 java.io.IOException,
+	 java.io.InputStream,
+	 javax.imageio.ImageIO" errorPage="Error.jsp"%>
     <html>
     <head>
-    <script src="js/sweetalert.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+     <script src="js/jquery-3.2.0.js" type="text/javascript"></script>
+     <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-confirm.min.css">
     <style>
     a
     {
@@ -27,9 +29,10 @@
     }
     .psearch
     {
-    height:34px;
+  		height:34px;
     }
-    .table{
+    .table
+    {
     	position: relative;
     	right: 8px
     }
@@ -167,22 +170,20 @@
 					try{
 						if((String)tlbn.getTname()==null)
 						{    out.println("<script type=\"text/javascript\">");
-						  	 out.println("var delayMillis = 199999; setTimeout(function() {swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  }, delayMillis);");	
+						  	 out.println("$.alert({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '})");	
 						  	 out.println("function(){location='TraderLogin.jsp';}");
 						 	 out.println("</script>");
 						 	 out.println(tlbn.getTname());
 						}
 						System.out.println(tlbn.getTname());
 						name=tlbn.getTname();
-					//	out.println(tlbn.getTname());
 						((String)tlbn.getTname()).split(":");
-						//out.println(tlbn.getTname());
 				}
 				catch(Exception e)
 				{
-					out.println("<script type=\"text/javascript\">");
-				  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-				  	 out.println("location='TraderLogin.jsp';");
+					 out.println("<script type=\"text/javascript\">");
+					 out.println("$.alert({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '})");	
+					 out.println("location='TraderLogin.jsp';");
 				 	 out.println("</script>");
 				}
 			    %>
@@ -277,25 +278,22 @@
                                		</select>                            		
                             		<% 
                             	}%>
-                            <td><a onclick="func()" onclick="func()" id="search" class="reg">Search</a></td>                           
+                            <td><a onclick="func()"  id="search" class="reg">Search</a></td>                           
 						</form>
                         </tr>
                     </table>
                 </div>
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script type="text/javascript">
-                            document.getElementById("search").addEventListener("click", func);
-                            function func()
-                            {								
-                            	console.log("inside func");
-								if(document.getElementById("category").value=="Category")
-									swal("You should choose the Category ")
+                             function func()
+                             {
+                            	if(document.getElementById("category").value=="Category")
+									$.alert({title:'Error', content: 'You should choose the Category'});
 								else if(document.getElementById("produce").value=="produce")
-									swal("You should choose the Produce ")
+									$.alert({title:'Error', content: 'You should choose the Produce'});
 								else if(document.getElementById("grade").value=="base")
-									swal("You should choose the Grade ")
+									$.alert({title:'Error', content: 'You should choose the Grade'});
 								else if(document.getElementById("slot").value=="base")
-									swal("You should choose the Slot ")								
+									$.alert({title:'Error', content: 'You should choose the Slot'});							
 								else
 								{			
 									console.log("inside else");
@@ -306,19 +304,18 @@
             </div>
             <%  
             HttpSession psr=request.getSession(false);  
-            System.out.println("***");
             System.out.println(msg2);
             System.out.println(psr.getAttribute("msg")==null);
 
             if((String)request.getAttribute("productsearchresult")==null){
             	System.out.println("Inside if..."+psr.getAttribute("msg"));
-            	out.println("<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
+            	out.println("<div id='div' style='position: absolute; background-color:#F2F2F2; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
             }
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	 //System.out.println(psr.getAttribute("msg"));            	
+            	 //System.out.println(psr.getAttribute("msg"));  $.alert({title:'Error', text: 'You should choose the Category', type:'error'});          	
                 out.println("<script type=\"text/javascript\">");
-               	out.println("swal('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+               	out.println("$.alert({title:'Error',content:'There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"'});");
        	  	    out.println("</script>");
 	       	  	psr.setAttribute("msg",null);
             }
@@ -417,27 +414,26 @@
 									neededs=Math.ceil(neededs);																		
 									if(neededs>totals)
 									{
-										swal("Please enter a quantity same as or less than the Quantity Available");
-										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+											$.alert({title:'Error',content:'Please enter a quantity same as or less than the Quantity Available'});
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 									}
 									else if(isNaN(neededs))
 									{
-										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+											$.alert({title:'Error', content: 'Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.'});    //swal("");									
 									}
 									else if(neededs<=0)
 									{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-											swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
+											$.alert({title:'Error', content: 'Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.'});    //	swal("");								
 									}
 									else if(neededs%50!=0 && neededs!=total)
 									{
-											swal("Please enter lot size in terms of 50 or bid for complete lot");
+											$.alert({title:'Error', content: 'Please enter lot size in terms of 50 or bid for complete lot'});    //swal("");
 									}
 									else 
 									{
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 										xmlhttp = new XMLHttpRequest();
 										xmlhttp.onreadystatechange = function() {
 										if(this.readyState == 4 && this.status == 200) 
@@ -464,33 +460,26 @@
 											         {
 											        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
 											         }	 */
-											         swal(
-											        	{
-												        	  title: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
-												        	 /*  text: "You will not be able to recover this imaginary file!",
-												        	  */ type: "warning",
-												        	  showCancelButton: true,
-												        	  confirmButtonColor: "green",
-												        	  confirmButtonText: "Yes",
-												        	  cancelButtonText: "No",
-												        	  closeOnConfirm: false,
-												        	  closeOnCancel: false
-											        	},
-											        	function(isConfirm)
-											        	{
-											        		  if(isConfirm)
-											        		  {
-											        			swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
-											        	 		xmlhttp.open("POST", "AddTrade.do", true);
-																xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-																xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
-															  }
-											        		  else 
-											        		  { 
-											        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+											         $.confirm(
+											        {
+											        	 title:'',
+												        	  content: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+												        			offsetTop:'10', 
+												        	  buttons: 
+												        	  {
+												        	        Increase: function () 
+												        	        {
+												        	        	$.alert({title:'Success', content: 'This lot has been added for auction with new quantity of '+neededs+' Kgs'});																
+													        			xmlhttp.open("POST", "AddTrade.do", true);
+																		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																		xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+												        	        },
+												        	        No: function () 
+												        	        {
+												        	        	$.alert({title:'Success', content: 'You will be auctioning for this lot with previous mentioned quantity of '+ms+' Kg'});//
+														        	},												        	       
 											        		  }
-											             }
-											        	);												     
+											         })										     
 										   	}
 										   	else if(string.includes("fail"))
 										   	{
@@ -498,11 +487,11 @@
 										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
 										         startlotnum=startlotnum+4;										         
 										         var ms=string.substring(startlotnum,endlotnum);
-											   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+										         $.alert({title:'Success', content: 'During auction, the required lot size is allowed only to be increased. Please enter a lot size more than '+ms+' Kg'});
 									   		}
 										   	else if(string.includes("msg"))
 										   	{
-											 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+											 	 $.alert({title:'Success', content: 'The lot '+product+' for '+neededs+'kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. '});
 										   	}											
 											document.getElementById("addtrade").innerHTML = string;
 											document.getElementById("addtrade").value = string;
@@ -535,9 +524,7 @@
                         </div>
                     </div>
                 </div>
-                <!--------modal image end------------> <%++i;}}%>                 
-        </div>
-        <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
+                <!--------modal image end------------> <% ++i;}}%>                 
+        </div>       
     </body>
     </html>
