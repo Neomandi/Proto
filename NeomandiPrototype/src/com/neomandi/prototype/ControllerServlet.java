@@ -21,6 +21,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.collections4.bag.SynchronizedSortedBag;
 
+import sun.print.PrinterJobWrapper;
+
 @MultipartConfig(maxFileSize = 16177215)
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -759,9 +761,9 @@ public class ControllerServlet extends HttpServlet {
 				String date2=df1.format(new Date());
 				
 				HttpSession elog = request.getSession();
-				elog.setAttribute("name", elbn.getEname());
-				elog.setAttribute("pwd", elbn.getEpwd());
-				elog.setAttribute("empnumber", arr[1]);
+				elog.setAttribute("ename", elbn.getEname());
+				elog.setAttribute("epwd", elbn.getEpwd());
+				elog.setAttribute("eempnumber", arr[1]);
 				
 				PrintWriter out = null;
 				try {
@@ -1024,8 +1026,7 @@ public class ControllerServlet extends HttpServlet {
 				psr.setAttribute("category",psb.getCategory());
 				psr.setAttribute("produce",psb.getProduce());
 				psr.setAttribute("grade",psb.getGrade());
-				psr.setAttribute("slot",psb.getSlot());
-				
+				psr.setAttribute("slot",psb.getSlot());				
 				rd=request.getRequestDispatcher("product.jsp");
 				try 
 				{
@@ -1040,17 +1041,16 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				HttpSession psr=request.getSession();
-				psr.setAttribute("beans", msg);
-				
+				psr.setAttribute("beans", msg);				
 				request.setAttribute("productsearchresult", "productsearchresult");
 				request.setAttribute("category",psb.getCategory());
 				request.setAttribute("produce",psb.getProduce());
 				request.setAttribute("grade",psb.getGrade());
 				request.setAttribute("slot",psb.getSlot());
-				rd=request.getRequestDispatcher("product.jsp");
+				RequestDispatcher rd1 = request.getRequestDispatcher("product.jsp");
 				try 
 				{
-					rd.forward(request, response);			
+					rd1.forward(request, response);			
 				}			
 				catch (ServletException e) {
 					e.printStackTrace();
@@ -1190,8 +1190,8 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Name and pwd from form: "+ename+" "+epwd);
 			
 			HttpSession elog = request.getSession(false);
-			String name = (String) elog.getAttribute("name");
-			String pwd = (String) elog.getAttribute("pwd");
+			String name = (String) elog.getAttribute("ename");
+			String pwd = (String) elog.getAttribute("epwd");
 			System.out.println("Name and pwd from session: "+name+" "+pwd);
 			
 			
@@ -1560,9 +1560,11 @@ public class ControllerServlet extends HttpServlet {
 				}*/
 			}
 			/*first code*/
+			HttpSession countdown=request.getSession();
+			countdown.setAttribute("timer",0);
 			Model m=new Model();
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
-			if(mc.getBl().size()==0)
+			if(mc.getBl().size()==0&&mc.getAl().size()!=0)
 			{
 				request.setAttribute("msg","block");
 				RequestDispatcher rd2 =request.getRequestDispatcher("TraderorAuction2.jsp");
@@ -1635,14 +1637,14 @@ public class ControllerServlet extends HttpServlet {
 			Model m=new Model();
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
-			System.out.println("inside cs mfcb.getmsg()"+mfcb.getMsg());
 			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
 			if((mfcb.getMsg()==null))
 			{
 				try 
 				{
 						PrintWriter out = null;
-						try {
+						try 
+						{
 							//System.out.println(mfcb);
 							out = response.getWriter();
 							out.println("lotnum"+mfcb.getLotnum()+"lotnum lotcost"+mfcb.getLotcost()+"lotcost bestbid"+mfcb.getBestbid()+"bestbid commission"+mfcb.getCommission()+"commission final"+mfcb.getMyfinalcost()+"final market"+mfcb.getMarketcess()+"market mybid"+mfcb.getPrice()+"mybid assigned"+mfcb.getQuantityassigned()+"assigned");
@@ -1989,6 +1991,7 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;
 			HttpSession elog = request.getSession(false);
+			
 			if(elog!=null)
 			{ 
 				System.out.println("Inside if---invalidate session");
@@ -2071,6 +2074,59 @@ public class ControllerServlet extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		if(uri.contains("Status2"))
+		{
+			//System.out.println("time is "+sdf.format(new Date()));s
+			System.out.println("***************************************************************************");
+			//System.out.println("inside CS");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn=null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+				if(tlbn.getTname()==null)
+				{}
+				 name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
+				System.out.println(name);
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("status.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			Model m=new Model();
+			String m1=m.orderstatus2(name,pwd);
+			System.out.println("in cs msg is "+m1);
+			try 
+			{
+				PrintWriter out = null;
+				try
+				{
+						out = response.getWriter();
+						out.println(m1);
+					    out.flush();
+					    out.close();
+				}
+				catch (IOException e)
+				{
+					
+					e.printStackTrace();
+				}
+			}			
+			catch (Exception e) {				
+				e.printStackTrace();
+			} 
 		}
 		
 		if(uri.contains("farmeracceptstatus"))
@@ -2419,21 +2475,6 @@ public class ControllerServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 			}			
-			
-		   /* System.out.println(request.getParameter("lotnumber"));
-		    System.out.println(request.getParameter("number"));
-		    response.setContentType("text/plain");
-		    PrintWriter out = null;
-			try {
-				out = response.getWriter();
-				out.println("lotnumber"+request.getParameter("lotnumber")+" number "+request.getParameter("number")+" number");
-			    out.flush();
-			    out.close();
-	
-} catch (IOException e) {
-			
-			e.printStackTrace();
-		}*/
 		}
 		
 		if(uri.contains("ajaxReleasefunds"))
@@ -2597,8 +2638,8 @@ public class ControllerServlet extends HttpServlet {
 			{
 				System.out.println("SUCCESS");
 				HttpSession alog = request.getSession();
-				alog.setAttribute("name", aname);
-				alog.setAttribute("pwd", apwd);
+				alog.setAttribute("aname", aname);
+				alog.setAttribute("apwd", apwd);
 				
 				PrintWriter out = null;
 				try {
@@ -2634,8 +2675,8 @@ public class ControllerServlet extends HttpServlet {
 			
 			if(alog != null)
 			{
-				alog.removeAttribute("name");
-				alog.removeAttribute("pwd");
+				alog.removeAttribute("aname");
+				alog.removeAttribute("apwd");
 				alog.invalidate();
 				//System.out.println(request.getAttribute("errmsg"));
 //				try {

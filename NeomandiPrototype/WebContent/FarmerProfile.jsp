@@ -32,7 +32,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-
+	<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,7 +73,7 @@
             <div class="">
 				<%HttpSession hs=request.getSession(false);
 				if((String)hs.getAttribute("name")==null){
-					out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
+					out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
 				}
 				String name=(String)hs.getAttribute("name"); %>
 				
@@ -315,7 +316,7 @@
                 <br>
                 <table align="center">
                     <tr>
-                        <td><a href="#" id="download-btn" class="reg">Export as PDF</a></td>
+                        <td><!-- <a href="#" id="download-btn" class="reg">Export as PDF</a> --></td>
                     </tr>
                 </table>
             </div>
@@ -677,7 +678,7 @@ function countdown(minutes,seconds,hours)
 	            setTimeout(tick,1000);
 	            document.getElementById('ts').onclick = function() {
 		            	console.log("inside the count function");
-		            	//alert("Auction under progress");
+		            	//swal("Auction under progress");
 		            	   location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
@@ -727,7 +728,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	console.log("inside the count function");
-		        		            	//alert("Auction under progress");
+		        		            	//swal("Auction under progress");
 		        		            	   location="http://neomandi.in/DuringAuction.do";
 		        		            	}
 		        		        } 

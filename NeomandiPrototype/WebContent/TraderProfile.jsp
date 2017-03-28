@@ -74,11 +74,7 @@ if((String)tlbn.getTname()==null||((String)tlbn.getTname()).equals("hi"))
   	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
   	 out.println("location='TraderLogin.jsp';");
  	 out.println("</script>");
-} }
-catch(Exception e)
-{
-	e.printStackTrace();
-}
+} 
 %>
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
@@ -87,7 +83,11 @@ catch(Exception e)
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
-</div>
+</div><%}
+catch(Exception e)
+{
+	e.printStackTrace();
+} %>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
@@ -233,7 +233,7 @@ catch(Exception e)
     </table>
   </form>
   </div><br>
- <table align="center"><tr><td><a id="download-btn" class="reg">Export as PDF</a></td></tr></table>
+ <table align="center"><tr><td><!-- <a id="download-btn" class="reg">Export as PDF</a> --></td></tr></table>
 </div>
  <script src="libs/jspdf.min.js"></script>					
 	<script src="libs/jspdf.plugin.autotable.src.js"></script>					

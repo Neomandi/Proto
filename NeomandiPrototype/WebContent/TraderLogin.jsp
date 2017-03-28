@@ -9,7 +9,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -85,7 +86,7 @@ document.getElementById("name").addEventListener("keyup", function(event) {
 	});
 function fp()
 {
-	alert("Please contact Admin for password regenaration");
+	swal("Please contact Admin for password regenaration");
 }
 
 function submitform(){
@@ -93,18 +94,18 @@ function submitform(){
 	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.alert("ENTER USERNAME");
+    	//window.swal("ENTER USERNAME");
     	msg="USER NAME ";
     }	
 	if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.alert("ENTER USERNAME");
+    	//window.swal("ENTER USERNAME");
     	msg=msg+"PASSWORD";
     }	
 	console.log(msg.length);
 	if(msg.length!=0)
-		window.alert("PLEASE ENTER "+msg);
+		swal("PLEASE ENTER "+msg);
 	
 	else
 	{
@@ -121,7 +122,7 @@ function submitform(){
 		    	}
 		    	else 
 		    	{
-		    		alert(string);		
+		    		swal("Username does not exist. Please register and then login");		
 		    	}
 			}		
 		};

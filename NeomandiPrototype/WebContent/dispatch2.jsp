@@ -15,6 +15,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <style>
 table:nth-child(even) {
     classname: container-fluid dispatch pad;
@@ -62,9 +64,9 @@ border-top:0px;
 else{
 EmployeeLoginBean elbn = null;
 HttpSession elog = request.getSession();
-elog.getAttribute("pwd");
+elog.getAttribute("epwd");
 try{
-if(((String)elog.getAttribute("name")).equals("e1"))
+if(((String)elog.getAttribute("ename")).equals("e1"))
 {}
 }
 catch(Exception e)
@@ -75,7 +77,7 @@ catch(Exception e)
 	 out.println("</script>");
 }
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>

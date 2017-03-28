@@ -15,6 +15,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <style>
     	#div{
 			padding:30px;
@@ -29,14 +31,13 @@
     </style>
 </head>
 <body>
-<%  
-		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+<% 		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
 		response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
 		response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 		response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-		
 		HttpSession alog = request.getSession(false);
-	    if((String)alog.getAttribute("name")==null && (String)alog.getAttribute("pwd")==null)
+
+	    if((String)alog.getAttribute("aname")==null || (String)alog.getAttribute("apwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
 	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/AdminLogin.jsp';</script>");
@@ -46,8 +47,7 @@
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-
-<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("name") %>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%= (String)alog.getAttribute("aname") %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="ALogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -66,11 +66,11 @@
 <form method="post" name="admin" class="form-inline">
 		<div class="form-group form-group-lg">	
 			<label for="starttime">Start Time: </label>
-			<input type="text" name="starttime" class="form-control" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
+			<input type="text" name="starttime" class="form-control" value="${param.starttime}" id="starttime" placeholder="10:30:00" style="width:200px; height: 50px;"/>&nbsp;&nbsp;
 		</div>
 		<div class="form-group form-group-lg">
 			<label for="endtime">End Time: </label>
-			<input type="text" name="endtime" class="form-control" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
+			<input type="text" name="endtime" class="form-control" value="${param.endtime}" id="endtime" placeholder="10:35:00" style="width:200px; height: 50px;"/>
 		</div><br/><br/>
 	<input type="button" name="start" value="Start Auction" class="btn btn-success btn-lg" onClick="fun()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" name="stop" value="Stop Auction" class="btn btn-danger btn-lg" onClick="fun1()" style="width:200px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -158,31 +158,70 @@ function fun()
 }
 function fun1()
 {
-	var stop = 1;
-	  xmlhttp = new XMLHttpRequest();
-	  xmlhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) 
-	  {
-		    				         
-	  }};
-		  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("stopauction="+stop);
-		  
+	swal({
+		  title: "Are you sure you want to stop the auction?",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+			//console.log(isConfirm);
+			  if (isConfirm) {
+				  var stop = 1;
+				  xmlhttp = new XMLHttpRequest();
+				  xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					    				         
+				  }};
+					  xmlhttp.open("POST", "PostAuctionOperationServlet", true);
+					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					  xmlhttp.send("stopauction="+stop);
+					  
+					swal("Stopped","Successfully", "success");
+			  } else {
+			    swal("Cancelled","Successfully", "error");
+				return;
+			  }
+			});
 }
 
 function fun2()
 {
-	var stop = 1;
-	  xmlhttp = new XMLHttpRequest();
-	  xmlhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) 
-	  {
-		    				         
-	  }};
-		  xmlhttp.open("POST", "PostAuction.do", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+	swal({
+		  title: "Are you sure you want to stop the auction?",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+			//console.log(isConfirm);
+			  if (isConfirm) {
+				  var stop = 1;
+				  xmlhttp = new XMLHttpRequest();
+				  xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) 
+				  {
+					    				         
+				  }};
+					  xmlhttp.open("POST", "PostAuction.do", true);
+					  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					  xmlhttp.send("starttime="+starttime+"&&endtime="+endtime);
+					  
+					swal("Reseted","Successfully", "success");
+			  } else {
+			    swal("Cancelled","Successfully", "error");
+				return;
+			  }
+			});
 }
 
 
@@ -281,10 +320,14 @@ function fun2()
 			        		     	}
 			        		   	 	tick();
 			        			}	
-				            	var Btime=document.getElementById("starttime").value;
-				            	var Etime1=document.getElementById("starttime").value;
-				            	start1 = Btime.split(":");
+				            	var d = new Date(); // for now
+				            	d.getHours(); // => 9
+				            	d.getMinutes(); // =>  30
+				            	d.getSeconds();
+				            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+				            	start1 = Etime1.split(":");
 				            	end1 =Btime1.split(":");
+				            	
 				            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 				            	var td = endDate1.getTime() - startDate1.getTime();					            	

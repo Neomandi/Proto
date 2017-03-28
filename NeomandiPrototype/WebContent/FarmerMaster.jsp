@@ -29,12 +29,16 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
 <style>
     .img-responsive{
     	height: 60px;
@@ -76,7 +80,7 @@ response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
 HttpSession hs=request.getSession(false); 
 if((String)hs.getAttribute("name")==null){
-	out.println("<script>window.alert('You have not logged in,please login'); window.location='Login.html';</script>");
+	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
 }
 	String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>,&nbsp;welcome to e-auction at NeoMandi.</p></div>
@@ -362,17 +366,14 @@ catch(Exception e)
 			JDBCHelper.Close(pstmt1);
 			con.close();
 		}					
-%>
-<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
- 
+%> 
 <form>
 <input type="hidden" value="<%=time%>" id="time" />
 	<input type="hidden" value="<%=starttime%>" id="stime" />
 	<input type="hidden" value="<%=endtime%>" id="etime" />
 	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
-	
+	<input name="refreshed" value="no" id="refreshed" type="hidden"/>
 </form>
 <script type="text/javascript">
 
@@ -557,7 +558,7 @@ function countdown(minutes,seconds,hours)
 
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+		  location="http://neomandi.in/FarmerSummary.jsp";
 
 	  }	
 	 
@@ -579,10 +580,9 @@ function countdown(minutes,seconds,hours)
 	        {
 	            setTimeout(tick,1000);
 	            document.getElementById('ts').onclick = function() {
-		            	console.log("inside the count function");
-		            	//alert("Auction under progress");
+		            	//swal("Auction under progress");
 		            	
-		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
+		            	   window.location="http://neomandi.in/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -599,14 +599,31 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{	
+						//To Reload page once
+						/* (function(){
+								  if( window.localStorage )
+								  {
+								    if( !localStorage.getItem( 'firstLoad' ) )
+								    {
+								      localStorage[ 'firstLoad' ] = true;
+								      console.log("Before reload");
+								      window.location.reload();
+								    }  
+								    else{
+								    	console.log("After reload");
+								    	localStorage.removeItem( 'firstLoad' );								      
+								    }
+								  }
+						})(); */
+						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
-		            	console.log(" before if i="+i);
-		            	if(i==0){
+
+		            	//console.log(" before if i="+i);
+		            	/*if(i==0){
 		            		console.log(" after i="+i);
-		            	
-		            		location="http://localhost:8080/NeomandiPrototype/FarmerMaster.jsp";
+		            		location="http://neomandi.in/FarmerMaster.jsp";
 		            		i=9;
-		            	}
+		            	}*/
 		            		
 		            	
 		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
@@ -623,9 +640,7 @@ function countdown(minutes,seconds,hours)
 		            	document.getElementById("timer").innerHTML=str;
 		            	function count(minutes1,seconds1) 
 		            	{
-		            		console.log("minutes is"+minutes);
-		            		console.log("seconds is"+seconds1);
-		        		    var seconds =seconds1;
+		            		 var seconds =seconds1;
 		        		    var mins = minutes1;
 		        		    var timedifference=+hours+":"+minutes1+":"+seconds1;
 		        		    function tick() 
@@ -637,13 +652,9 @@ function countdown(minutes,seconds,hours)
 		        		        if( seconds > 0 ) {
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
-		        		            	console.log("inside the count function");
-		        		            	//alert("Auction under progress");
-
-		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
-
-		        		            	}
-		        		            
+		        		            	//swal("Auction under progress");
+		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	}		        		            
 		        		        } 
 		        		        else 
 		        		        {
@@ -665,9 +676,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		            console.log("inside the count function");
-
-			        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
+			        		           location="http://neomandi.in/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -681,7 +690,11 @@ function countdown(minutes,seconds,hours)
 	        		     	}
 	        		   	 	tick();
 	        			}		
-		            	var Etime1=document.getElementById("time").value;
+		            	var d = new Date(); // for now
+		            	d.getHours(); // => 9
+		            	d.getMinutes(); // =>  30
+		            	d.getSeconds();
+		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
@@ -700,10 +713,7 @@ function countdown(minutes,seconds,hours)
 		            			seconds1=res1;
 		            			minutes1=res2;
 		            	}
-		            	console.log("auction ends at "+Btime1);
-		            	console.log("time is  "+Etime1);
-		            	console.log("differences in time remainins is "+minutes1+":"+seconds1);
-	        			count(minutes1,seconds1);
+		            	count(minutes1,seconds1);
 	        			
 					}
 				}
@@ -716,10 +726,10 @@ function countdown(minutes,seconds,hours)
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+	 window.location="http://neomandi.in/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+   	 window.location="http://neomandi.in/RejectSummary.do";
     }
   </script> 
   

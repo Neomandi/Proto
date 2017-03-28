@@ -18,6 +18,8 @@
  javax.imageio.ImageIO" errorPage="Error.jsp"%>
     <html>
     <head>
+    <script src="js/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <style>
     a
     {
@@ -104,7 +106,7 @@
     		#tb h4{
     			color: darkblue;
     		}
-        </style>
+        </style>       
         <script>
         function populate(s1, s2)
         {
@@ -158,18 +160,33 @@
 					String msg3=request.getParameter("addtrade");
 				//	String msg3=(String)request.getAttribute("errmsg");
 					String msg4=(String)request.getAttribute("quantity");
-				//	HttpSession psr=request.getSession(false);
-					//List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+				
 					HttpSession tlog=request.getSession(false);
 					TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
-					if((String)tlbn.getTname()==null)
-					{    out.println("<script type=\"text/javascript\">");
-					  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-					  	 out.println("location='TraderLogin.jsp';");
-					 	 out.println("</script>");
-					}
+					String name=null;
+					try{
+						if((String)tlbn.getTname()==null)
+						{    out.println("<script type=\"text/javascript\">");
+						  	 out.println("var delayMillis = 199999; setTimeout(function() {swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  }, delayMillis);");	
+						  	 out.println("function(){location='TraderLogin.jsp';}");
+						 	 out.println("</script>");
+						 	 out.println(tlbn.getTname());
+						}
+						System.out.println(tlbn.getTname());
+						name=tlbn.getTname();
+					//	out.println(tlbn.getTname());
+						((String)tlbn.getTname()).split(":");
+						//out.println(tlbn.getTname());
+				}
+				catch(Exception e)
+				{
+					out.println("<script type=\"text/javascript\">");
+				  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
+				  	 out.println("location='TraderLogin.jsp';");
+				 	 out.println("</script>");
+				}
 			    %>
-                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
+                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
                 </div>
             </div>
@@ -272,13 +289,13 @@
                             {								
                             	console.log("inside func");
 								if(document.getElementById("category").value=="Category")
-									alert("You should choose the Category ")
+									swal("You should choose the Category ")
 								else if(document.getElementById("produce").value=="produce")
-									alert("You should choose the Produce ")
+									swal("You should choose the Produce ")
 								else if(document.getElementById("grade").value=="base")
-									alert("You should choose the Grade ")
+									swal("You should choose the Grade ")
 								else if(document.getElementById("slot").value=="base")
-									alert("You should choose the Slot ")								
+									swal("You should choose the Slot ")								
 								else
 								{			
 									console.log("inside else");
@@ -301,7 +318,7 @@
             {
             	 //System.out.println(psr.getAttribute("msg"));            	
                 out.println("<script type=\"text/javascript\">");
-       		 	out.println("alert('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
+               	out.println("swal('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
 	       	  	psr.setAttribute("msg",null);
             }
@@ -364,22 +381,28 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                     <td></td>
                                 </tr>                                
                                 <script> 
                                 var i=<%=i%>;
-                                console.log("**i is"+i);
-                                console.log(i%2==0);
                                 if(i%2==0)
                                 {
                                 	//console.log("inside if");
-                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";
+                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
                                 }
                                 else
-                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
+                                {	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";}
+                                
+                                document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").addEventListener("keyup", function(event1){
+                                event1.preventDefault();
+                                if(event1.which == 13 || event1.keyCode == 13) 
+                                {
+                                	fun<%=psr1.getLotnumber() %>();
+                                }
+                                });
 								function fun<%=psr1.getLotnumber() %>()
 								{							
 									var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
@@ -394,22 +417,22 @@
 									neededs=Math.ceil(neededs);																		
 									if(neededs>totals)
 									{
-										alert("Please enter a quantity same as or less than the Quantity Available");
+										swal("Please enter a quantity same as or less than the Quantity Available");
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 									}
 									else if(isNaN(neededs))
 									{
 										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
+										swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
 									}
 									else if(neededs<=0)
 									{
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-											alert("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
+											swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
 									}
-									else if(neededs%50!=0)
+									else if(neededs%50!=0 && neededs!=total)
 									{
-											alert("PLEASE ENTER THE LOTSIZE IN MULTIPLES OF 50");
+											swal("Please enter lot size in terms of 50 or bid for complete lot");
 									}
 									else 
 									{
@@ -430,17 +453,44 @@
 											         var ms=string.substring(startlotnum,endlotnum);
 											         var newsize=new Number(ms);
 											         
-											         if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
-											         {											        	 
-											        	 	alert("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+											         /* if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
+											         {			
+											        	 	swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
 											        	 	xmlhttp.open("POST", "AddTrade.do", true);
 															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 															xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
 											         }
 											         else
 											         {
-											        	 alert("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
-											         }											        
+											        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+											         }	 */
+											         swal(
+											        	{
+												        	  title: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+												        	 /*  text: "You will not be able to recover this imaginary file!",
+												        	  */ type: "warning",
+												        	  showCancelButton: true,
+												        	  confirmButtonColor: "green",
+												        	  confirmButtonText: "Yes",
+												        	  cancelButtonText: "No",
+												        	  closeOnConfirm: false,
+												        	  closeOnCancel: false
+											        	},
+											        	function(isConfirm)
+											        	{
+											        		  if(isConfirm)
+											        		  {
+											        			swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+											        	 		xmlhttp.open("POST", "AddTrade.do", true);
+																xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+															  }
+											        		  else 
+											        		  { 
+											        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+											        		  }
+											             }
+											        	);												     
 										   	}
 										   	else if(string.includes("fail"))
 										   	{
@@ -448,11 +498,11 @@
 										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
 										         startlotnum=startlotnum+4;										         
 										         var ms=string.substring(startlotnum,endlotnum);
-											   	 alert("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+											   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
 									   		}
 										   	else if(string.includes("msg"))
 										   	{
-											 	 alert("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+											 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
 										   	}											
 											document.getElementById("addtrade").innerHTML = string;
 											document.getElementById("addtrade").value = string;

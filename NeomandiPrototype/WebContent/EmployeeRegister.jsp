@@ -9,6 +9,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -35,17 +37,17 @@ function validateEForm()
 	//Name validation
 	console.log("inside name validation");
 	if(name.value==""){
-		alert("Please enter your name.");
+		swal("Please enter your name.");
 		name.focus();
 		return false;
 	}
 	if(!isNaN(name.value)){
-		window.alert("Your name should contain  only alphtabets.");
+		swal("Your name should contain  only alphtabets.");
 		document.Eregform.employeename.focus();
 		return false;
 	}
 	if ((name.value.length < 1) || (name.value.length > 20)){
-		alert("Your Character must be 1 to 20 Character");
+		swal("Your Character must be 1 to 20 Character");
 		document.Eregform.employeename.focus();
 	//	name.focus();
 		return false;
@@ -54,18 +56,18 @@ function validateEForm()
 	//Mobile number validation
 	var val = num.value;
 	if(val==""){
-		alert("Please enter your Employee Number");
+		swal("Please enter your Employee Number");
 		 num.focus();
 		    return false;
 	}
 	if(isNaN(val)){
-		alert("Enter the valid Employee Number(Like : 12345)");
+		swal("Enter the valid Employee Number(Like : 12345)");
 		num.focus();
 		return false;
 	}
 	if((val.length < 1) || (val.length > 5)){
 		
-		alert(" Your Employee Number must be of 5 digits");
+		swal("Your Employee Number must be of 5 digits");
 		num.focus();
 		return false;
 	}
@@ -74,7 +76,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid Employee Number, must be five digits");
+	    swal("Invalid Employee Number, must be five digits");
 	    num.focus();
 	    return false;
 	}
@@ -82,18 +84,18 @@ function validateEForm()
 	//password validation
 	if(pwd.value == "")
 	{
-		alert("Please enter your password");
+		swal("Please enter your password");
 		pwd.focus();
 		return false;
 	}
 	if(cpwd.value == "")
 	{
-		alert("Please enter your password");
+		swal("Please enter your password");
 		cpwd.focus();
 		return false;	
 	}
 	if( cpwd.value!=pwd.value){
-		 alert("passwords do not match");
+		 swal("Passwords do not match");
 		 cpwd.focus();
 		    return false;
 	}
@@ -102,12 +104,12 @@ function validateEForm()
 	var otpval = otp.value;
 	if(otp.value == "")
 	{
-		alert("Please enter your OTP");
+		swal("Please enter your OTP");
 		otp.focus();
 		return false;
 	}
 	if(isNaN(otpval)){
-		alert("Enter the valid OTP number");
+		swal("Enter the valid OTP number");
 		otp.focus();
 		return false;
 	}
@@ -115,7 +117,7 @@ function validateEForm()
 		
 	    // value is ok, use it
 	} else {
-	    alert("Invalid OTP number, must be six digits");
+	    swal("Invalid OTP number, must be six digits");
 	    otp.focus();
 	    return false;
 	}
@@ -124,7 +126,7 @@ function validateEForm()
 	//console.log("TC: "+tc.value);
 	if(tc.checked == false)
 	{
-		alert("Please check T & C");
+		swal("Please check T & C");
 	    tc.focus();
 	    return false;
 	}

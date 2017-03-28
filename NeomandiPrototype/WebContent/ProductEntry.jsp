@@ -14,6 +14,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,19 +50,6 @@
     background-color:#0082B2;
     }
     </style>
-    <% 
-	    response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-	    response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-	    response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-	    response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-	    
-		HttpSession elog = request.getSession(false);
-	    if((String)elog.getAttribute("name")==null && (String)elog.getAttribute("pwd")==null)
-	    {
-	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>alert('Youve not logged in. Please login'); window.location='http://neomandi.in/Login.html';</script>");
-	    }
-	%>
     <script>
     function populate(s1, s2)
     {
@@ -107,23 +96,23 @@
     	
     	//farmerid validation
     	if(farmerid.value == ""){
-    		alert("Please enter farmerid");
+    		swal("Please enter farmerid");
     		farmerid.focus();
     		return false;
     	}
 		if(!/^[0-9]+$/.test(farmerid.value)){
-			alert("Please enter only numbers");
+			swal("Please enter only numbers");
 			farmerid.focus();
 			return false;
 		}
     	if(isNaN(farmerid.value)){
-    		alert("Enter a valid Farmer ID ");
+    		swal("Enter a valid Farmer ID ");
     		farmerid.focus();
     		return false;
     	}
     	if(farmerid.value.length !=12){
     		
-    		alert(" Your Farmerid must contain 12 digits");
+    		swal(" Your Farmerid must contain 12 digits");
     		farmerid.focus();
     		return false;
     	}
@@ -131,7 +120,7 @@
     	//marketcode validation
     	var letters = /^[0-9a-zA-Z]+$/;
     	if(marketcode.value == ""){
-    		alert("Please enter Marketcode");
+    		swal("Please enter Marketcode");
     		marketcode.focus();
     		return false;
     	}
@@ -140,7 +129,7 @@
 		//console.log(category.value);
 		if(category.value == "Category")
 		{
-			alert("Please select proper Category");
+			swal("Please select proper Category");
 			return false;
 		}
 		
@@ -149,7 +138,7 @@
 // 		console.log(produce.value == "Produce");
 		if(produce.value == "produce")
 		{
-			alert("Please select proper Produce");
+			swal("Please select proper Produce");
 			return false;
 		}
 		
@@ -157,28 +146,28 @@
 		//console.log(grade.value);
 		if(grade.value == "Grade")
 		{
-			alert("Please select proper Grade");
+			swal("Please select proper Grade");
 			return false;
 		}
     	
     	//quantity validation
     	if(quantity.value == ""){
-    		alert("Please enter quantity");
+    		swal("Please enter quantity");
     		quantity.focus();
     		return false;
     	}
     	if(isNaN(quantity.value)){
-    		alert("Enter a valid quantity value. Only number from 0-9 ");
+    		swal("Enter a valid quantity value. Only number from 0-9 ");
     		quantity.focus();
     		return false;
     	}
     	if(!/^[0-9]+$/.test(quantity.value)){
-    		alert("Please enter only numbers");
+    		swal("Please enter only numbers");
     		quantity.focus();
     		return false;
     	}
     	if(quantity.value==0){
-    		alert("Please enter atleast minimum 1 kg");
+    		swal("Please enter atleast minimum 1 kg");
     		quantity.focus();
     		return false;
     	}
@@ -186,21 +175,21 @@
     	//Lotnumber Validation
     	if(lotnumber.value == "")
     	{
-    		alert("Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber");
+    		swal("Lotnumber is empty. Please press 'Genereate Lot Number button' to generate lotnumber");
     		return false;
     	}
     	
     	//EmployeeNumber Validation
     	if(empnumber.value == "")
     	{
-    		alert("Please enter Employee Number");
+    		swal("Please enter Employee Number");
     		return false;
     	}
     	
     	//EmployeePassword Validation
     	if(epwd.value == "")
     	{
-    		alert("Please enter Employee Password");
+    		swal("Please enter Employee Password");
     		return false;
     	}
     	return true;
@@ -252,12 +241,25 @@
     </style>
 </head>
 <body class="">
+    <% 
+	    response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+	    response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+	    response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+	    response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+	    
+		HttpSession elog = request.getSession(false);
+	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
+	    {
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+	    }
+	%>
     <div class="logo_relative">
         <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
             <div class="">
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("name"))%>, welcome to e-auction at NeoMandi.</p></div>
+                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
@@ -479,7 +481,7 @@
         	
         	if(farmerid == "" || produce == "Produce" || quality == "Grade")
         	{
-        		alert("Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber");
+        		swal("Please give proper Farmerid, Produce and Quality Grade to generate Lotnumber");
         		return false;
         	}
         	else

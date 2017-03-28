@@ -8,7 +8,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -31,8 +32,7 @@
       <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        
+      <ul class="nav navbar-nav">        
         <li><a href="HomePage.html">About Us</a></li>
         <li><a href="Vision.html">Vision</a></li>
         <li><a href="Mission.html">Mission</a></li>
@@ -88,7 +88,7 @@ function submitform(){
     }	
 	console.log(msg.length);
 	if(msg.length!=0)
-		window.alert("PLEASE ENTER "+msg);
+		swal("PLEASE ENTER "+msg);
 	else
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -104,7 +104,7 @@ function submitform(){
 			    	}
 			    	else 
 			    	{
-			    		alert(string);		
+			    		swal(string);		
 			    	}
 			}		
 		};

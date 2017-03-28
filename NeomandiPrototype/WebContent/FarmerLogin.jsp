@@ -8,7 +8,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -32,7 +33,7 @@
 if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Register first ")))
 {    
 	 out.println("<script type=\"text/javascript\">");
-	 out.println("alert('YOUR HAVE NOT REGISTERED PLEASE REGISTER BEFORE LOGGING IN');");
+	 out.println("swal('YOUR HAVE NOT REGISTERED PLEASE REGISTER BEFORE LOGGING IN');");
 	 out.println("location='FarmerRegister.jsp';");
      out.println("</script>");
 }
@@ -103,7 +104,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
 		});
 	function fp()
 	{
-		alert("Please contact Admin for password regenaration");
+		swal("Please contact Admin for password regenaration");
 	}
 
 					function submitform() {
@@ -119,7 +120,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
                             console.log(msg.length);
                             console.log(msg.length);
                         	if(msg.length!=0)
-                        		window.alert("PLEASE ENTER "+msg);
+                        		window.swal("PLEASE ENTER "+msg);
                         	
                         	else{
                         	xmlhttp=new XMLHttpRequest();
@@ -136,7 +137,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
                         		    	else 
                         		    	{
                         		    		if(string != null && string.length!=0)
-                        		    			alert(string);		
+                        		    			swal(string);		
                         		    	}
                         		}		
                         	};
