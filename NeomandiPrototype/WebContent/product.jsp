@@ -287,13 +287,13 @@
                             {								
                             	console.log("inside func");
 								if(document.getElementById("category").value=="Category")
-									swal("You should choose the Category ")
+									swal({title:"ERROR",text:"You should choose the Category"})
 								else if(document.getElementById("produce").value=="produce")
-									swal("You should choose the Produce ")
+									swal({title:"ERROR",text:"You should choose the Produce"})
 								else if(document.getElementById("grade").value=="base")
-									swal("You should choose the Grade ")
+									swal({title:"ERROR",text:"You should choose the Grade"})
 								else if(document.getElementById("slot").value=="base")
-									swal("You should choose the Slot ")								
+									swal({title:"ERROR",text:"You should choose the Slot"})							
 								else
 								{			
 									console.log("inside else");
@@ -304,17 +304,15 @@
             </div>
             <%  
             HttpSession psr=request.getSession(false);  
-            System.out.println("***");
             System.out.println(msg2);
             System.out.println(psr.getAttribute("msg")==null);
-            if((String)request.getAttribute("productsearchresult")==null){
-            	System.out.println("Inside if..."+psr.getAttribute("msg"));
+            if((String)request.getAttribute("productsearchresult")==null)
+            {
             	out.println("<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
             }
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
-            	 //System.out.println(psr.getAttribute("msg"));            	
-                out.println("<script type=\"text/javascript\">");
+            	out.println("<script type=\"text/javascript\">");
                	out.println("swal('There are no lots that belong to the category of "+psr.getAttribute("category")+" and "+psr.getAttribute("produce")+" produce with "+psr.getAttribute("grade")+" grade in "+psr.getAttribute("slot")+"');");
        	  	    out.println("</script>");
 	       	  	psr.setAttribute("msg",null);
@@ -322,9 +320,8 @@
             if(msg2!=null||msg3!=null)
 			{
 				Connection con = null;
-				 List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
-		           // System.out.println("ist in jsp "+l);
-				Statement stmt = null;
+				List<ProductSearchResultBean> l=(List<ProductSearchResultBean>)psr.getAttribute("beans");
+		        Statement stmt = null;
 				ResultSet rs = null;
 				String image = null;  
 				byte[] imgData = null;
@@ -463,7 +460,8 @@
 											         }	 */
 											         swal(
 											        	{
-												        	  title: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+											        		  title:"",
+												        	  text: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
 												        	 /*  text: "You will not be able to recover this imaginary file!",
 												        	  */ type: "warning",
 												        	  showCancelButton: true,

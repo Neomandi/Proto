@@ -39,6 +39,7 @@
 <![endif]-->
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.0.js" type="text/javascript"></script>
 <style>
     .img-responsive{
     	height: 60px;
