@@ -1,11 +1,8 @@
-body.stop-scrolling 
-{
+body.stop-scrolling {
   height: 100%;
-  overflow: hidden; 
-}
+  overflow: hidden; }
 
-.sweet-overlay 
-{
+.sweet-overlay {
   background-color: black;
   /* IE8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -17,19 +14,14 @@ body.stop-scrolling
   top: 0;
   bottom: 0;
   display: none;
-  z-index: 10000; 
-}
+  z-index: 10000; }
 
-.sweet-alert 
-{
+.sweet-alert {
   background-color: white;
-  border:1px solid black;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  width: 508px;
-  height:175px;
-  padding: 2px;
-  border-radius: 7px;
-  font-size:10px;
+  width: 478px;
+  padding: 17px;
+  border-radius: 5px;
   text-align: center;
   position: fixed;
   left: 50%;
@@ -38,21 +30,17 @@ body.stop-scrolling
   margin-top: -200px;
   overflow: hidden;
   display: none;
-  z-index: 99999;
-}
-  @media all and (max-width: 540px) 
-  {
+  z-index: 99999; }
+  @media all and (max-width: 540px) {
     .sweet-alert {
       width: auto;
       margin-left: 0;
       margin-right: 0;
       left: 15px;
-      right: 15px; } 
-   }
-  .sweet-alert h2 
-  {
-    color: black;
-    font-size: 19px;
+      right: 15px; } }
+  .sweet-alert h2 {
+    color: #575757;
+    font-size: 30px;
     text-align: center;
     font-weight: 600;
     text-transform: none;
@@ -60,9 +48,9 @@ body.stop-scrolling
     margin: 25px 0;
     padding: 0;
     line-height: 40px;
-  }
+    display: block; }
   .sweet-alert p {
-    color: black;
+    color: #797979;
     font-size: 16px;
     text-align: center;
     font-weight: 300;
@@ -71,8 +59,7 @@ body.stop-scrolling
     float: none;
     margin: 0;
     padding: 0;
-    line-height: normal; 
-  }
+    line-height: normal; }
   .sweet-alert fieldset {
     border: none;
     position: relative; }
