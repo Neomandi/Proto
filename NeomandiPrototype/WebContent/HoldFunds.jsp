@@ -203,7 +203,13 @@ else
 	  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
 	  		  console.log(hld<0);
 	  		  if(hold.length==0)
-	  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
+	  		  {
+	  			 	swal("PLEASE ENTER AMOUNT TO BE HELD ");	  			  	
+	  		  }
+	  		  if(hold.length>6)
+			  {
+	  			  swal("Please enter valid amount ");
+			  }
 	  		  else if(balance!=null&&balance.length!=0)
 	  		  {
 	  			  console.log("inside balance!=null&")
@@ -298,6 +304,9 @@ else
  		  console.log(hld<0);
  		  if(hold.length==0)
  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
+ 		  console.log("hold.length"+hold.length);
+ 		 if(hold.length>6)
+		  {swal("Please enter valid amount ");}
  		  else if(balance!=null&&balance.length!=0)
  		  {
  			  console.log("inside balance!=null&")
@@ -443,11 +452,11 @@ else
 			console.log("netamout"+net+" release"+rel+"bank"+bank);
 			if(net<rel)
 			{
-					swal("YOU CANT RELEASE FUNDS MORE THAN NET AMOUNT HELD ");
+					swal("You cannot release more funds than the net amount on hold ");
 			}
 			else if(release.length==0)
 			{
-					swal("YOU HAVE TO MENTION THE AMOUNT TO BE RELASED BEFORE CLICKING ")
+					swal("Please enter the amount to be released")
 			}
 			else if(rel<0)
 			{
@@ -474,7 +483,7 @@ else
 		   			     document.getElementById("hold").value = "";
 		   				 document.getElementById("balance").value = "";
 		   				 document.getElementById("release").value = "";
-		   			     swal('SUCCESSFULLY RELEASED AMOUNT Rs. '+ release);	
+		   			     swal('Successfully released amount Rs. '+ release);	
 		   			     
 				  }
 			  };

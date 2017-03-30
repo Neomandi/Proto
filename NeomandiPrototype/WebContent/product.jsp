@@ -180,7 +180,7 @@
 				}
 				catch(Exception e)
 				{
-					out.println("<script type=\"text/javascript\">");
+					 out.println("<script type=\"text/javascript\">");
 				  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
 				  	 out.println("location='TraderLogin.jsp';");
 				 	 out.println("</script>");
@@ -266,7 +266,6 @@
                             	}
                             	catch(Exception e)
                             	{
-                            		System.out.println("inside catch");
                             		e.printStackTrace();
                             		%>
                             		 <select class="form-control" id="slot" name="slot">
@@ -277,14 +276,13 @@
                                		</select>                            		
                             		<% 
                             	}%>
-                            <td><a onclick="func()" onclick="func()" id="search" class="reg">Search</a></td>                           
+                            <td><a onclick="func()" id="search" class="reg">Search</a></td>                           
 						</form>
                         </tr>
                     </table>
                 </div>
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script type="text/javascript">
-                            document.getElementById("search").addEventListener("click", func);
                             function func()
                             {								
                             	console.log("inside func");
@@ -309,7 +307,6 @@
             System.out.println("***");
             System.out.println(msg2);
             System.out.println(psr.getAttribute("msg")==null);
-
             if((String)request.getAttribute("productsearchresult")==null){
             	System.out.println("Inside if..."+psr.getAttribute("msg"));
             	out.println("<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
