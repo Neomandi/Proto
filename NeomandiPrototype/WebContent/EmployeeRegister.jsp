@@ -25,7 +25,6 @@
 <script>
 function validateEForm()
 {
-	
 	var num = document.EregForm1.employeenum;
 	var name = document.EregForm1.employeename;
 	var pwd = document.EregForm1.employeepwd;
@@ -42,7 +41,7 @@ function validateEForm()
 		return false;
 	}
 	if(!isNaN(name.value)){
-		swal("Your name should contain  only alphtabets.");
+		swal("Your name should contain only alphtabets.");
 		document.Eregform.employeename.focus();
 		return false;
 	}
