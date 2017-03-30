@@ -203,7 +203,13 @@ else
 	  		  console.log("balance"+balance+"block"+hold+"bank is "+bank+"account is "+account);
 	  		  console.log(hld<0);
 	  		  if(hold.length==0)
-	  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
+	  		  {
+	  			 	swal("PLEASE ENTER AMOUNT TO BE HELD ");	  			  	
+	  		  }
+	  		  if(hold.length>6)
+			  {
+	  			  swal("Please enter valid amount ");
+			  }
 	  		  else if(balance!=null&&balance.length!=0)
 	  		  {
 	  			  console.log("inside balance!=null&")
@@ -298,6 +304,9 @@ else
  		  console.log(hld<0);
  		  if(hold.length==0)
  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
+ 		  console.log("hold.length"+hold.length);
+ 		 if(hold.length>6)
+		  {swal("Please enter valid amount ");}
  		  else if(balance!=null&&balance.length!=0)
  		  {
  			  console.log("inside balance!=null&")
