@@ -706,9 +706,9 @@ public class ControllerServlet extends HttpServlet {
 			String quantitysold=sb.getQuantitysold();
 			String averageprice=sb.getAverageprice();
 			String finalprice=sb.getFinalprice();
-			int lsize=Integer.parseInt(lotsize);
+			/*int lsize=Integer.parseInt(lotsize);
 			int qsold=Integer.parseInt(quantitysold);
-			
+			*/
 			
 			
 			System.out.println(("in cs avg="+averageprice));
@@ -755,11 +755,11 @@ public class ControllerServlet extends HttpServlet {
 			String arr[] = msg.split(":");
 			if(arr[0].equals("SUCCESS"))
 			{
-				SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
+				/*SimpleDateFormat df=new SimpleDateFormat("E dd MMMM yyyy");
 				SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 				String date=df.format(new Date());
 				String date2=df1.format(new Date());
-				
+				*/
 				HttpSession elog = request.getSession();
 				elog.setAttribute("ename", elbn.getEname());
 				elog.setAttribute("epwd", elbn.getEpwd());
@@ -1140,20 +1140,23 @@ public class ControllerServlet extends HttpServlet {
 					    out.flush();
 					    out.close();
 					}
-					catch (IOException e) {
+					catch (IOException e) 
+					{
 						e.printStackTrace();
 					}
 				}
 				else
 				{
 					PrintWriter out = null;
-					try {
+					try 
+					{
 						out = response.getWriter();
 						out.println("lotnumber"+ms+"lotnumber");
 					    out.flush();
 					    out.close();
 					}
-					catch (IOException e) {
+					catch (IOException e) 
+					{
 						e.printStackTrace();
 					}
 				}
@@ -1166,9 +1169,12 @@ public class ControllerServlet extends HttpServlet {
 				{
 					rd.forward(request, response);			
 				}			
-				catch (ServletException e) {
+				catch (ServletException e) 
+				{
 					e.printStackTrace();
-				} catch (IOException e) {
+				} 
+				catch (IOException e) 
+				{
 					e.printStackTrace();
 				}
 			}		  
@@ -1637,8 +1643,8 @@ public class ControllerServlet extends HttpServlet {
 			Model m=new Model();
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
-			RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			if((mfcb.getMsg()==null))
+			/*RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
+			*/if((mfcb.getMsg()==null))
 			{
 				try 
 				{
@@ -2023,7 +2029,7 @@ public class ControllerServlet extends HttpServlet {
 					rde.forward(request, response);
 					return;
 				} catch (ServletException | IOException e) {
-					// TODO Auto-generated catch block
+					// 
 					e.printStackTrace();
 				}
 			}
@@ -2708,13 +2714,13 @@ public class ControllerServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// 
 		
 		process(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		process(request,response);
 	}
 }
