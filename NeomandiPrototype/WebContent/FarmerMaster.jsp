@@ -375,7 +375,6 @@ catch(Exception e)
 	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 	<input name="refreshed" value="no" id="refreshed" type="hidden"/>
-		
 </form>
 <script type="text/javascript">
 
@@ -692,18 +691,11 @@ function countdown(minutes,seconds,hours)
 	        		     	}
 	        		   	 	tick();
 	        			}		
-		            	/*var d = new Date(); // for now
+		            	var d = new Date(); // for now
 		            	d.getHours(); // => 9
 		            	d.getMinutes(); // =>  30
-		            	d.getSeconds();*/
-		            	<%
-		            	SimpleDateFormat d=new SimpleDateFormat("HH:mm:ss");
-		    	     	String t=df1.format(new Date());
-		            	%>
-		            	
-		            	document.write("<input type='hidden' value='<%=t%>' id='t' /></form>");
-		            	
-		            	var Etime1=document.getElementById("t").value;
+		            	d.getSeconds();
+		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
