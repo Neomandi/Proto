@@ -68,8 +68,8 @@ footer {
 	    System.out.println("Ename: "+(String)elog.getAttribute("ename")+" Epwd: "+(String)elog.getAttribute("epwd")==null);
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
-	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>blurt({title: 'You have not logged in. Please login',text: 'You will be redirected to login page. Click Ok',type:'error'}); location = 'http://www.neomandi.in/Login.html'</script>");
+	    	System.out.println("Session invalid."+elog);
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',type:'error'},function(){window.location='http://neomandi.in/Login.html';});</script>");
 	    }
 	%>
     <div class="logo_relative">
