@@ -40,7 +40,7 @@
 	    if((String)alog.getAttribute("aname")==null || (String)alog.getAttribute("apwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/AdminLogin.jsp';});</script>");
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page. Click OK',type:'error'},function(){window.location='http://neomandi.in/AdminLogin.jsp';});</script>");
 	    }
 %>
 <div class="logo_relative">
