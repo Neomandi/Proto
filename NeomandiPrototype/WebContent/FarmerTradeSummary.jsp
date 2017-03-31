@@ -31,6 +31,8 @@
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
         <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
 <script src="js/sweetalert.min.js" type="text/javascript"></script>
+<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -134,6 +136,10 @@ background-color:white;
         		
         		var from=document.historyForm.from;
         		var to=document.historyForm.to;
+        		if(to.value<from.value){
+        			swal("Please select valid date");
+        			return false;
+        		}
         		if(from.value==""){
         			swal("Please select from date");
         			name.focus();
@@ -144,7 +150,6 @@ background-color:white;
         			name.focus();
         			    return false;
         		}
-        		console.log("before div");
         		
         		 
         	}

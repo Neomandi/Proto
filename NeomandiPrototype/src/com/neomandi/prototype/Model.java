@@ -3863,9 +3863,28 @@ public List traderHistory(String name, String pwd, String from, String to)
 						String st[]=to.split("/");
 						String st1[]=from.split("/");
 						int date=Integer.parseInt(st[0]);
-						if(date==31){
+						int month=Integer.parseInt(st[1]);
+						if(month==12 && date==31){
+							month=1;
+							date=1;
+							from=st1[2]+"-"+st1[1]+"-"+st1[0];
+							to=st[2]+"-"+month+"-"+date;
+						}
+						else if(date==31){
 						
-							int month=Integer.parseInt(st[1])+1;
+							 month=Integer.parseInt(st[1])+1;
+							date=1;
+							from=st1[2]+"-"+st1[1]+"-"+st1[0];
+							to=st[2]+"-"+month+"-"+date;
+						}
+						else if(date==28 || date==29 && month==2){
+							month=3;
+							date=1;
+							from=st1[2]+"-"+st1[1]+"-"+st1[0];
+							to=st[2]+"-"+month+"-"+date;
+						}
+						else if(date==30){
+							 month=Integer.parseInt(st[1])+1;
 							date=1;
 							from=st1[2]+"-"+st1[1]+"-"+st1[0];
 							to=st[2]+"-"+month+"-"+date;
