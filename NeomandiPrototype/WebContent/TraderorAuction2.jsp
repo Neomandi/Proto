@@ -540,11 +540,9 @@ try
 	  {		  
 	   	/* if(msg!=null&&msg.equals("start"))
 	   	 */ 	msg=(String)request.getAttribute("msg");
-	   	msg=null;
-	 //  	System.out.println("inside jsp in body msg is "+msg);
+	   	System.out.println("inside jsp in body msg is "+msg);
 	    if(msg!=null)
 	    {
-	    	  System.out.println("inside if");
 			  out.println("<script type=\"text/javascript\">");
 		  	  out.println("swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
 		  	//  out.println("window.location='TraderBlock.do';");
@@ -590,7 +588,6 @@ try
 				for(Object o:al)
 				{
 					TradeListBean tlb=(TradeListBean)o;
-					System.out.println("produce is "+tlb.getProduce()+" slotnumber of that produce is "+tlb.getSlotnumber());
 					if(tlb.getSlotnumber()!=null && (tlb.getSlotnumber().equals("slot1")||tlb.getSlotnumber().equals("Slot1")))
 					{				
 						HttpSession MyFinalCost=request.getSession(false);
@@ -693,7 +690,7 @@ try
 					    	 if(string.includes("block"))
 					    	 {
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
-					  	  	       window.location='TraderBlock.do';
+					  	  	       //window.location='TraderBlock.do';
 					    	}
 					    	else
 					    	{	
@@ -2557,11 +2554,7 @@ try
 	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-	<script>
-		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip();   
-		});
-	</script>
+	
 	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
@@ -2571,7 +2564,11 @@ try
 	</div>
     </div></div>
     </div>
-    
+    <script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
  </div>
 </div>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>

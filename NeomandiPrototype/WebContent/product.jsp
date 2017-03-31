@@ -475,7 +475,7 @@
 											        	{
 											        		  if(isConfirm)
 											        		  {
-											        			swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+											        			swal({text:"",title:"This lot has been added for auction with new quantity of "+neededs+" Kgs"});
 											        	 		xmlhttp.open("POST", "AddTrade.do", true);
 																xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 																xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
@@ -484,8 +484,7 @@
 											        		  { 
 											        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
 											        		  }
-											             }
-											        	);												     
+											            });												     
 										   	}
 										   	else if(string.includes("fail"))
 										   	{
@@ -508,9 +507,8 @@
 									xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
-						</script>    						                        
-                                 
-                <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
+						</script>    						                       
+	              <div class="modal fade" id="myModal<%=psr1.getLotnumber()%>" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">

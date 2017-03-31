@@ -42,7 +42,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 
 	@SuppressWarnings("resource")
 	public String employeeRegister(EmployeeRegisterBean erb) {
-		// TODO Auto-generated method stub
+		// 
 		String msg = "";
 		PreparedStatement ps = null;
 		Connection con = null;
@@ -88,7 +88,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -102,7 +102,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 
 	@SuppressWarnings("resource")
 	public String farmerRegister(FarmerRegisterBean frb) {
-		// TODO Auto-generated method stub
+		// 
 		
 		String msg = null;
 		PreparedStatement ps = null;
@@ -163,7 +163,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -221,7 +221,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -300,7 +300,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -362,7 +362,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -417,7 +417,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -489,7 +489,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -616,7 +616,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -810,7 +810,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 					slot = TimeSlots.time(date+" "+date2);
 					System.out.println(slot);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					// 
 					e.printStackTrace();
 				}
 				
@@ -835,7 +835,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -1286,7 +1285,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 					tlb.setQuantityneeded(rs.getString("quantityneeded"));
 					al.add(tlb);
 					lotnumber.add(rs.getString("lotnum"));
-					System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
+				//	System.out.println("produce that trader "+name+" is bidding for "+rs.getString("lotnum")+" "+rs.getString("produce")+" for quanity "+rs.getString("quantityneeded"));
 				}
 				mc.setAl(al);	
 				System.out.println("model "+mc.getAl()+lotnumber.size());
@@ -1438,7 +1437,7 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -1535,10 +1534,10 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 					commission=(int)(lotcost*0.05);
 					marketcess=(int)(lotcost*0.01);
 					if(quantityassigned==0)
-						myfinalcost=100;
+						myfinalcost=0;
 					else
 						myfinalcost=100+lotcost+commission+marketcess+3000;
-				//	System.out.println("lotcost is "+lotcost+"commission"+commission+" marketcess"+marketcess+" bidprice "+bidprice+" quantityassigned "+quantityassigned+" myfinalcost "+myfinalcost);
+					
 			}
 			int block=0;
 			ps =con.prepareStatement("SELECT blockamount FROM traders_blocked_amount where aadharnumber=? ");
@@ -1558,19 +1557,20 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 	        lotcost2=bidprice*quantityneeded;
 			commission2 = (int) (lotcost2*0.05);
 			marketcess2 =(int) (lotcost2*0.01);
-			finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
+			if(bidprice==0)
+				finalcost2=0;
+			else
+				finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
 			//************END OF NEW CODE****
 			
 			if(finalcost2>block)
 			{
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
-				//System.out.println("mfcb.getMsg()"+mfcb.getMsg());
 				return mfcb;
 			}
 			else
 			{
-				//System.out.println("inside else");
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
 				ps.setString(2,String.valueOf(commission));
@@ -1578,7 +1578,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 				ps.setString(4,String.valueOf(myfinalcost));
 				ps.setString(5,String.valueOf(aadharnumber));
 				ps.setString(6,lotnum);
-			//	System.out.println(ps);
 				ps.execute();
 				
 				ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
@@ -1590,8 +1589,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 				while(rs3.next())
 				{
 					int price=rs3.getInt("bidprice");
-					String prices=String.valueOf(price);
-					
+					String prices=String.valueOf(price);					
 					mfcb=new MyFinalCostBean();
 					mfcb.setCommission(String.valueOf(commission));
 					mfcb.setLotcost(String.valueOf(lotcost));
@@ -1601,14 +1599,10 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 					mfcb.setLotnum(rs3.getString("lotnum"));
 					mfcb.setQuantityassigned(String.valueOf(quantityassigned));
 					
-					
-					
 					lotcost=Integer.parseInt(String.valueOf(lotcost));
 					commission=Integer.parseInt(String.valueOf(commission));
 					marketcess=Integer.parseInt(String.valueOf(marketcess));
 					myfinalcost=Integer.parseInt(String.valueOf(myfinalcost));
-					
-			//		System.out.println("lotcost is "+lotcost+" commission "+commission+" myfinalcost "+myfinalcost);
 					
 					String bestbid=null;
 					if(rs3.getString("bestbid")==null)
@@ -1619,9 +1613,8 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						bestbid=rs3.getString("bestbid");
 					mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
 					mfcb.setBestbid(bestbid);
-				//	System.out.println("inside model mfcb is "+mfcb);
 				}
-		}		
+			}		
 		}
 		con.commit();		
 		return mfcb;
@@ -1630,9 +1623,12 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 	{
 		e.printStackTrace();
 		
-		try {
+		try 
+		{
 			con.rollback();
-		} catch (SQLException e1) {
+		} 
+		catch (SQLException e1) 
+		{
 			e1.printStackTrace();
 		}
 	}
@@ -1771,7 +1767,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 		}
@@ -1883,7 +1879,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -2143,7 +2138,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -2387,7 +2381,6 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -2914,7 +2907,6 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -3208,7 +3200,6 @@ public Myclass2 orderstatus1(String name, String pwd)
 						int eplatform=100;
 						int myfinalcost=commission+marketcess+3000+lotcost+eplatform;
 						String myfinalcosts=String.valueOf(myfinalcost);
-						String lotcosts=String.valueOf(lotcost);
 						osbn.setCommission(String.valueOf(commission));
 						osbn.setMarketcess((String.valueOf(marketcess)));
 						osbn.setBestbid(rs1.getString("bestbid"));
@@ -3603,7 +3594,6 @@ public void TraderProductAccept(String lotnum,String accno)
 
 	public List<TradeSummaryBean> tradeSummary(String name, String pwd, String from, String to) 
 	{
-		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -3715,7 +3705,6 @@ public void TraderProductAccept(String lotnum,String accno)
 
 	@SuppressWarnings("resource")
 	public List<FarmerHistoryBean> farmerHistory(String name,String pass,String from,String to){
-		// TODO Auto-generated method stub2016-12-22   SELECT * FROM tradelist WHERE created_at > '2016-12-22' and created_at < '2016-12-27';
 				PreparedStatement ps = null;
 				Connection con = null;
 				ResultSet rs = null;
@@ -3958,7 +3947,6 @@ public void TraderProductAccept(String lotnum,String accno)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -4035,7 +4023,6 @@ public void TraderProductAccept(String lotnum,String accno)
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}			
 			e.printStackTrace();
@@ -4444,7 +4431,6 @@ public Myajaxclass1 ajaxIncrement(String tname, String tpwd, String lotnumber, S
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -4481,8 +4467,6 @@ public String holdfundsgetbalance(String account)
 				balance=rs.getString("balance");
 			}
 	return balance;
-	// TODO Auto-generated method stub
-	
 }
 	}
 	catch(Exception e)
@@ -4491,7 +4475,6 @@ public String holdfundsgetbalance(String account)
 	try {
 		con.rollback();
 	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 	}
@@ -4678,7 +4661,6 @@ public int release(String name, String pwd, String release,String bank)
 	try {
 		con.rollback();
 	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 	}
@@ -4950,8 +4932,7 @@ public void PostAuction()
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			e1.printStackTrace();
 			}
 		}
 		finally

@@ -18,10 +18,11 @@ body.stop-scrolling {
 
 .sweet-alert {
   background-color: white;
+  border:1px solid black;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 478px;
   padding: 17px;
-  border-radius: 5px;
+  border-radius: 7px;
   text-align: center;
   position: fixed;
   left: 50%;
@@ -39,18 +40,17 @@ body.stop-scrolling {
       left: 15px;
       right: 15px; } }
   .sweet-alert h2 {
-    color: #575757;
-    font-size: 30px;
+    color: black;
+    font-size: 19px;
     text-align: center;
     font-weight: 600;
     text-transform: none;
     position: relative;
     margin: 25px 0;
     padding: 0;
-    line-height: 40px;
-    display: block; }
+    line-height: 40px; }
   .sweet-alert p {
-    color: #797979;
+    color: black;
     font-size: 16px;
     text-align: center;
     font-weight: 300;
