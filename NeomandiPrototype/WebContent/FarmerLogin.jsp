@@ -242,7 +242,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       <div class="item active">
         <img src="Farmer/onion3.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
-          <h3>Onion</h3>
+          <p>Onion</p>
           
         </div>
       </div>
