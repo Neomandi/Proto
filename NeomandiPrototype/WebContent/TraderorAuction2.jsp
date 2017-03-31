@@ -635,7 +635,7 @@ try
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
+	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text" onclick="quantneeded<%=tlb.getLotnum()%>()"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
 	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
@@ -644,6 +644,14 @@ try
 	</tbody>
 	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b></p>
 	<script>
+		function quantneeded<%=tlb.getLotnum()%>() {
+		 swal('You can increase the lotsize  in Product Search tab');
+	    }
+		<%-- document.getElementById("needed<%=tlb.getLotnum() %>").addEventListener("keypress ", function(){
+			 console.log('here');
+		   	 swal('You can increase the lotsize  in Product Search tab');		    
+            }); --%>
+		
 		var bestbids=document.getElementById("demo5<%=tlb.getLotnum()%>").value;
 		var bestbid=new  Number(bestbids);		
 		var mybids=document.getElementById("demo6<%=tlb.getLotnum()%>").value;
@@ -1227,8 +1235,34 @@ try
 			swal("Lot could be removed only when no lot has been assigned to you during auction")
 		}
 		else
-			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
-
+			{
+			swal(
+		        	{
+		        		  title:"",
+			        	  text: "Do you want to remove the lot?",
+			        	 /*  text: "You will not be able to recover this imaginary file!",
+			        	  */ type: "warning",
+			        	  showCancelButton: true,
+			        	  confirmButtonColor: "green",
+			        	  confirmButtonText: "Yes",
+			        	  cancelButtonText: "No",
+			        	  closeOnConfirm: false,
+			        	  closeOnCancel: false
+		        	},
+		        	function(isConfirm)
+		        	{
+		        		  if(isConfirm)
+		        		  {
+		        			swal({text:"Removed lot Successfully",title:"",timer: 5000, type:"success"},function (){setTimeout(function(){ }, 3000);});		        			
+		        			window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+						  }
+		        		  else 
+		        		  { 
+		        			  swal({text:"",title:"The lot has not been removed"});
+			        	 }
+		            });		
+			//window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
+			}
 	}
 	
 	function fun<%=tlb.getLotnum()%>()
@@ -1498,7 +1532,7 @@ try
 	</div>
 	</div>
     </div></div>
-    <%}if(p==0) {out.println("THERE ARE NO LOTS IN SLOT-1");} System.out.println("*************************"+p);}}}}
+    <%}if(p==0) {}}}}}
 			else//removed row
             {	
 	 		  int j=0;
