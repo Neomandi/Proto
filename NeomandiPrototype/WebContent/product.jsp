@@ -426,7 +426,7 @@
 									}
 									else if(neededs%50!=0 && neededs!=total)
 									{
-											swal("Please enter lot size in terms of 50 or bid for complete lot");
+											swal("Please enter the lot size in multiples of 50kg or enter the complete lot size");
 									}
 									else 
 									{
