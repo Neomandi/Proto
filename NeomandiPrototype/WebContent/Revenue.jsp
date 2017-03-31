@@ -12,8 +12,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-	<link href="css/blurt.min.css" rel="stylesheet" type="text/css">
-	<script src="js/blurt.min.js" type="text/javascript"></script>
+	<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="js/sweetalert.min.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,18 +58,17 @@ footer {
     }
 </style>
 <body class="">
-	<% 
-		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+    <% 
+	    response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
 	    response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
 	    response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 	    response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 	    
 		HttpSession elog = request.getSession(false);
-	    System.out.println("Ename: "+(String)elog.getAttribute("ename")+" Epwd: "+(String)elog.getAttribute("epwd")==null);
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
-	    	System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page. Click OK',type:'error'},function(){window.location='http://neomandi.in/Login.html';});</script>");
+	    	//System.out.println("Session invalid."+elog);
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
 	    }
 	%>
     <div class="logo_relative">
@@ -78,7 +77,7 @@ footer {
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
-                   <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
+                   <p style="font-size:16px; color:white;"><%=(String)elog.getAttribute("ename")%>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
