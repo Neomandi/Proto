@@ -142,7 +142,7 @@ if((String)tlbn.getTname()==null)
 		setInterval(function()
 				  {
 					funny();
-				  },3000);
+				  },100);
     function funny()
     {
     		console.log("func")
