@@ -181,8 +181,8 @@
 				catch(Exception e)
 				{
 					 out.println("<script type=\"text/javascript\">");
-				  	 out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-				  	 out.println("location='TraderLogin.jsp';");
+				  	 out.println("swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});");
+				  	 //out.println("location='TraderLogin.jsp';");
 				 	 out.println("</script>");
 				}
 			    %>
