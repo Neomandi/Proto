@@ -77,7 +77,7 @@ $('#myCarousel').on('slid.bs.carousel', function (ev) {
 
 <body class="" onkeypress="myFunction(event)">
  <%
-if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Register first ")))
+if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Username does not exist ")))
 {    
 	 out.println("<script type=\"text/javascript\">");
 	 out.println("swal('Username does not exist. Please register to login.');");
@@ -88,7 +88,7 @@ else{
 if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Your password does not match")))
 {    
 	 out.println("<script type=\"text/javascript\">");
-	 out.println("confirm('YOUR PASSWORD IS WRONG!! PLEASE ENTER CORRECT PASSWORD');");
+	 out.println("swal('YOUR PASSWORD IS WRONG!! PLEASE ENTER CORRECT PASSWORD');");
      out.println("</script>");
 }%>
 <!---menu bar------>
@@ -223,6 +223,16 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
         <li data-target="#myCarousel" data-slide-to="9"></li>
        <li data-target="#myCarousel" data-slide-to="10"></li>
         <li data-target="#myCarousel" data-slide-to="11"></li>
+        <li data-target="#myCarousel" data-slide-to="12"></li>
+         <li data-target="#myCarousel" data-slide-to="13"></li>
+         <li data-target="#myCarousel" data-slide-to="14"></li>
+         <li data-target="#myCarousel" data-slide-to="15"></li>
+         <li data-target="#myCarousel" data-slide-to="16"></li>
+           <li data-target="#myCarousel" data-slide-to="17"></li>
+            <li data-target="#myCarousel" data-slide-to="18"></li>
+              <li data-target="#myCarousel" data-slide-to="19"></li>
+                 <li data-target="#myCarousel" data-slide-to="20"></li>
+                      <li data-target="#myCarousel" data-slide-to="21"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -245,7 +255,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       </div>
     
       <div class="item">
-        <img src="Farmer/cucumber.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/cucumber.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Cucumber</h3>
           
@@ -253,41 +263,35 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       </div>
 
       <div class="item">
-        <img src="Farmer/carrot.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/carrot.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Carrot</h3>
           
         </div>
       </div>
     <div class="item">
-        <img src="Farmer/Apples.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/Apples.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Apple</h3>
           
         </div>
       </div>
         <div class="item">
-        <img src="Farmer/orange.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/orange.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Orange</h3>
           
         </div>
       </div>
         <div class="item">
-        <img src="Farmer/mango.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/mango.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Mango</h3>
           
         </div>
-          <div class="item">
-        <img src="Farmer/rice1.jpg" alt="Flower" width="100%" height="345">
-        <div class="carousel-caption">
-          <h3>Rice</h3>
-          
-        </div>
-      </div>
+        
         <div class="item">
-        <img src="Farmer/wheat.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/wheat.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Wheat</h3>
           
@@ -295,37 +299,107 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       </div>
       </div>
         <div class="item">
-        <img src="Farmer/aracanut.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/aracanut.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Carrot</h3>
           
         </div>
       </div>
         <div class="item">
-        <img src="Farmer/corn.jpeg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/corn.jpeg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Corn</h3>
           
         </div>
       </div>
       <div class="item">
-        <img src="Farmer/roses.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/rose.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Rose</h3>
           
         </div>
       </div>
       <div class="item">
-        <img src="Farmer/jasmine1.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/jasmine1.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Jasmine</h3>
           
         </div>
       </div>
        <div class="item">
-        <img src="Farmer/cotton.jpg" alt="Flower" width="100%" height="345">
+        <img src="Farmer/cotton.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Cotton</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/coconut.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Coconut</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/wheat.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Wheat</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/rice1.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Rice</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/green gram.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Green gram</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/groundnut.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Groung nut</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/chickpea.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Chick pea</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/horsegram.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Horse gram</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/pea.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3> pea</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/grapes.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Grapes</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/banana.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Banana</h3>
           
         </div>
       </div>
@@ -344,7 +418,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
 </div>
  <script>
   $('.carousel').carousel({
-   interval: 3000
+   interval: 2000
   });
  </script> 
 	
