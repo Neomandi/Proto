@@ -261,7 +261,8 @@ try
 				        			  window.location='logout.do';
 								  }
 				        		  else 
-				        		  { }
+				        		  {  swal("Cancelled","Successfully", "error");
+				  				return; }
 				             }
 				        	);	
 			}
@@ -1020,14 +1021,14 @@ try
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			swal("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("You can bid only during auction time");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				swal("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("You can bid only during auction time");
 		}
 	else
 	{
@@ -1052,12 +1053,12 @@ try
 	{
 		console.log("assigned=needed");
 		//document.getElementById('submitbutton<%=tlb.getLotnum()%>').removeAttribute("href");
-		swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		swal("You cannot bid when lot needed has been assigned to you")
 	}
 	else if(currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned==needed)
 	{
 			console.log("currentbid-bestbid==0&&(currentbid!=0||bestbid!=0)&&assigned!=needed");
-			swal("YOU CANNOT INCREASE BID WHEN BEST BID IS EQUAL TO YOUR BID ");
+			swal("You cannot increase bid when your bid is equal to best bid ");
 	}
 	else
 	{
@@ -1071,7 +1072,7 @@ try
 		    	 if(string.includes("block"))
 		    	 {
 		    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
-		  	  	       window.location='TraderBlock.do';
+		  	  	       //window.location='TraderBlock.do';
 		    	}
 		    	else
 		    	{	
@@ -1274,13 +1275,13 @@ try
 		if(!(msg.includes('begun')))
 		{
 		//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
-				swal("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("You can bid only during auction time");
 			//else
 			//	window.location='logout.do';
 		}
 		else if(msg1!=null &&msg1.includes("end"))
 		{
-					swal("YOU CAN BID ONLY DURING AUCTION TIME");
+					swal("You can bid only during auction time");
 		}
 		else
 		{
@@ -1301,7 +1302,7 @@ try
 				
 				if(assigned-needed==0)
 				{
-					swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+					swal("You cannot bid when lot needed has been assigned to you")
 					console.log("assigned=needed");
 				}
 				else
@@ -1341,7 +1342,7 @@ try
 				  }				  
 				  else if(currentbids-bestbid==0 && currentbid!=0 &&(currentbid!=0||bestbid!=0)&&assigned==needed)
 				  {
-					  		swal('YOU CANNOT INCREASE YOUR BID WHEN YOUR BID IS THE BEST BID');
+					  		swal('You cannot increase bid when your bid is equal to best bid');
 				  }
 				  else// if(!(currentbids-bestbid==0 && assigned==needed))
 				  {
@@ -1354,7 +1355,7 @@ try
 					    	if(string.includes("block"))
 					    	{
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
-					  	  	       window.location='TraderBlock.do';
+					  	  	      // window.location='TraderBlock.do';
 					    	}
 					    	else
 					    	{	
@@ -1944,14 +1945,14 @@ try
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			swal("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("You can bid only during auction time");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				swal("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("You can bid only during auction time");
 		}
 	else
 	{
@@ -1969,7 +1970,7 @@ try
 	console.log("volume needed is "+needed+"");
 	if(assigned-needed==0)
 	{
-		swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ")
+		swal("You cannot bid when lot needed has been assigned to you")
 		console.log("assigned=needed");
 		document.getElementById('submit1<%=tlbr.getLotnum()%>').removeAttribute("href");
 	}
@@ -2188,14 +2189,14 @@ try
 	{
 	//	if(!(msg.includes('begun'))&&(msg1.includes("end")))
 		{
-			swal("YOU CAN BID ONLY DURING AUCTION TIME");
+			swal("You can bid only during auction time");
 		}
 		//else
 		//	window.location='logout.do';
 	}
 	else if(msg1!=null &&msg1.includes("end"))
 		{
-				swal("YOU CAN BID ONLY DURING AUCTION TIME");
+				swal("You can bid only during auction time");
 		}
 	else
 	{
@@ -2216,7 +2217,7 @@ try
 			
 			if(assigned-needed==0)
 			{
-				swal("YOU CANNOT BID WHEN LOT NEEDED HAS BEEN ASSIGNED TO YOU ");
+				swal("You cannot bid when lot needed has been assigned to you");
 				console.log("assigned=needed");
 			}
 			else
@@ -2253,7 +2254,7 @@ try
 					    	if(string.includes("block"))
 					    	{
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
-					  	  	       window.location='TraderBlock.do';
+					  	  	      // window.location='TraderBlock.do';
 					    		}
 					    	else
 					    	{	

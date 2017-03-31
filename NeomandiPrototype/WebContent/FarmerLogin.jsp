@@ -232,7 +232,8 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
             <li data-target="#myCarousel" data-slide-to="18"></li>
               <li data-target="#myCarousel" data-slide-to="19"></li>
                  <li data-target="#myCarousel" data-slide-to="20"></li>
-                      <li data-target="#myCarousel" data-slide-to="21"></li>
+                   <li data-target="#myCarousel" data-slide-to="21"></li>
+                     
     </ol>
 
     <!-- Wrapper for slides -->
@@ -284,7 +285,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
         </div>
       </div>
         <div class="item">
-        <img src="Farmer/mango.jpg" alt="Image not found" width="100%" height="345">
+        <img src="Farmer/mango.png" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Mango</h3>
           
@@ -326,10 +327,17 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
           
         </div>
       </div>
-       <div class="item">
-        <img src="Farmer/cotton.jpg" alt="Image not found" width="100%" height="345">
+      <div class="item">
+        <img src="Farmer/marygold.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
-          <h3>Cotton</h3>
+          <h3>MaryGold</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/capsicum.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Capsicum</h3>
           
         </div>
       </div>
@@ -347,13 +355,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
           
         </div>
       </div>
-      <div class="item">
-        <img src="Farmer/rice1.jpg" alt="Image not found" width="100%" height="345">
-        <div class="carousel-caption">
-          <h3>Rice</h3>
-          
-        </div>
-      </div>
+      
       <div class="item">
         <img src="Farmer/green gram.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">

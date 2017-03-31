@@ -69,7 +69,9 @@ public class ControllerServlet extends HttpServlet {
 		String starttime = "";
 		String endtime = "";
 		String uri=request.getRequestURI();		
-		System.out.println(uri);		
+		if(uri.contains("refresh")||uri.contains("Status2"))
+		{}else
+			System.out.println(uri);		
 		//Employee Registration
 		
 		
@@ -1018,7 +1020,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			//System.out.println("msg received from model in CS is "+msg.isEmpty());
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();
@@ -2085,7 +2086,6 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("Status2"))
 		{
 			//System.out.println("time is "+sdf.format(new Date()));s
-			System.out.println("***************************************************************************");
 			//System.out.println("inside CS");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
@@ -2113,7 +2113,6 @@ public class ControllerServlet extends HttpServlet {
 			
 			Model m=new Model();
 			String m1=m.orderstatus2(name,pwd);
-			System.out.println("in cs msg is "+m1);
 			try 
 			{
 				PrintWriter out = null;

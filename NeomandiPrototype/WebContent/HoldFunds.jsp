@@ -338,7 +338,7 @@ else
  		   			  	 document.getElementById("netamount").value = blocked;
  		   			     document.getElementById("hold").value = "";
  		   			  	 document.getElementById("balance").value = "";
- 		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+ 		   			     swal('Successfully blocked amount Rs. '+ hold);	
  		   			     
  				  }};
  					  xmlhttp.open("POST", "ajaxBlockfunds.do", true);
@@ -351,7 +351,7 @@ else
  			  if(hld<0||hld==0)
  				{
  					console.log("hld<0");
- 					swal("PLEASE ENTER POSITIVE NUMBER");
+ 					swal("Please enter positive number");
  				}
  			  else
  				  {
@@ -376,7 +376,7 @@ else
  		   			  	 document.getElementById("netamount").value = blocked;
  		   			     document.getElementById("hold").value = "";
  		   			  	 document.getElementById("balance").value = "";
- 		   			     swal('SUCCESSFULLY BLOCKED AMOUNT Rs. '+ hold);	
+ 		   			     swal('Successfully blocked amount  Rs. '+ hold);	
  				  	 }
  	   			     
  			  }};
