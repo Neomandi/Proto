@@ -81,7 +81,7 @@ response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
 HttpSession hs=request.getSession(false); 
 if((String)hs.getAttribute("name")==null){
-	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://localhost:8080/NeomandiPrototype//Login.html';});</script>");
 }
 	String name=(String)hs.getAttribute("name"); %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>,&nbsp;welcome to e-auction at NeoMandi.</p></div>
@@ -375,6 +375,7 @@ catch(Exception e)
 	<input type="hidden" value="<%=slot%>" id="slot" />
 	<input type="hidden" value="<%=date%>" id="date" />
 	<input name="refreshed" value="no" id="refreshed" type="hidden"/>
+		
 </form>
 <script type="text/javascript">
 
@@ -559,7 +560,7 @@ function countdown(minutes,seconds,hours)
 
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype//FarmerSummary.jsp";
 
 	  }	
 	 
@@ -583,7 +584,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	//swal("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype//BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -622,7 +623,7 @@ function countdown(minutes,seconds,hours)
 		            	//console.log(" before if i="+i);
 		            	/*if(i==0){
 		            		console.log(" after i="+i);
-		            		location="http://neomandi.in/FarmerMaster.jsp";
+		            		location="http://localhost:8080/NeomandiPrototype//FarmerMaster.jsp";
 		            		i=9;
 		            	}*/
 		            		
@@ -654,7 +655,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	//swal("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype//DuringAuction.do";
 		        		            	}		        		            
 		        		        } 
 		        		        else 
@@ -677,7 +678,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		           location="http://neomandi.in/GetSummary.do";
+			        		           location="http://localhost:8080/NeomandiPrototype//GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -691,11 +692,18 @@ function countdown(minutes,seconds,hours)
 	        		     	}
 	        		   	 	tick();
 	        			}		
-		            	var d = new Date(); // for now
+		            	/*var d = new Date(); // for now
 		            	d.getHours(); // => 9
 		            	d.getMinutes(); // =>  30
-		            	d.getSeconds();
-		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		            	d.getSeconds();*/
+		            	<%
+		            	SimpleDateFormat d=new SimpleDateFormat("HH:mm:ss");
+		    	     	String t=df1.format(new Date());
+		            	%>
+		            	
+		            	document.write("<input type='hidden' value='<%=t%>' id='t' /></form>");
+		            	
+		            	var Etime1=document.getElementById("t").value;
 		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
@@ -727,10 +735,10 @@ function countdown(minutes,seconds,hours)
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype//AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype//RejectSummary.do";
     }
   </script> 
   
