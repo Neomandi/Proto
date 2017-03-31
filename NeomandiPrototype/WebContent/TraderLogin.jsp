@@ -17,6 +17,44 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+.tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 319px !important;
+}
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {}
+
+.container-fluid {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.emplog {
+    border: 0px;
+    border-left: 30px solid #149dda;
+	border-right: 30px solid #149dda;
+	background: #bdd102;
+	margin-top: 3%;
+position: relative;
+}
+</style>
 </head>
 <body class="">
 <!---menu bar------>
@@ -64,7 +102,7 @@
 </div>
 </div>
 </div>
-<br/>
+
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b><% if(msg != null)
 							out.print(msg);
@@ -134,5 +172,221 @@ function submitform(){
 </script>
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<div class="container-fluid" style="margin-top: 0%; margin-bottom: 0%;">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+       <li data-target="#myCarousel" data-slide-to="6"></li>
+       <li data-target="#myCarousel" data-slide-to="7"></li>
+        <li data-target="#myCarousel" data-slide-to="8"></li>
+        <li data-target="#myCarousel" data-slide-to="9"></li>
+       <li data-target="#myCarousel" data-slide-to="10"></li>
+        <li data-target="#myCarousel" data-slide-to="11"></li>
+        <li data-target="#myCarousel" data-slide-to="12"></li>
+         <li data-target="#myCarousel" data-slide-to="13"></li>
+         <li data-target="#myCarousel" data-slide-to="14"></li>
+         <li data-target="#myCarousel" data-slide-to="15"></li>
+         <li data-target="#myCarousel" data-slide-to="16"></li>
+           <li data-target="#myCarousel" data-slide-to="17"></li>
+            <li data-target="#myCarousel" data-slide-to="18"></li>
+              <li data-target="#myCarousel" data-slide-to="19"></li>
+                 <li data-target="#myCarousel" data-slide-to="20"></li>
+                      <li data-target="#myCarousel" data-slide-to="21"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="Farmer/onion3.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Onion</h3>
+          
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="Farmer/tomato.jpg" alt="image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Tomato</h3>
+         
+        </div>
+      </div>
+    
+      <div class="item">
+        <img src="Farmer/cucumber.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Cucumber</h3>
+          
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="Farmer/carrot.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Carrot</h3>
+          
+        </div>
+      </div>
+    <div class="item">
+        <img src="Farmer/Apples.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Apple</h3>
+          
+        </div>
+      </div>
+        <div class="item">
+        <img src="Farmer/orange.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Orange</h3>
+          
+        </div>
+      </div>
+        <div class="item">
+        <img src="Farmer/mango.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Mango</h3>
+          
+        </div>
+        
+        <div class="item">
+        <img src="Farmer/wheat.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Wheat</h3>
+          
+        </div>
+      </div>
+      </div>
+        <div class="item">
+        <img src="Farmer/aracanut.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Carrot</h3>
+          
+        </div>
+      </div>
+        <div class="item">
+        <img src="Farmer/corn.jpeg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Corn</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/rose.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Rose</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/jasmine1.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Jasmine</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/cotton.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Cotton</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/coconut.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Coconut</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/wheat.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Wheat</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/rice1.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Rice</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/green gram.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Green gram</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/groundnut.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Groung nut</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/chickpea.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Chick pea</h3>
+          
+        </div>
+      </div>
+       <div class="item">
+        <img src="Farmer/horsegram.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Horse gram</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/pea.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3> pea</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/grapes.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Grapes</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/banana.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Banana</h3>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+ <script>
+  $('.carousel').carousel({
+   interval: 2000
+  });
+ </script> 
+	
 </body>
 </html>
