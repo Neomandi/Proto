@@ -131,7 +131,7 @@
         	{
         		var optionArray = ["produce|Produce", "CHICKPEA|Chickpea", "HORSEGRAM|Horsegram", "PEAS|Peas"];
         	}
-        	else if(s1.value == "Horticuls")
+        	else if(s1.value == "Horticultural")
         	{
         		var optionArray = ["produce|Produce","ARECA NUT|Areca nut"];
         	}
@@ -222,7 +222,7 @@
                                     <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
                                     <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
                                     <option value="Pulses" ${param.category == 'Pulses' ? 'selected' :''}>Pulses</option>
-                                     <option value="Horticuls" ${param.category == 'Horticuls' ? 'selected' :''}>Horticuls</option>
+                                     <option value="Horticultural" ${param.category == 'Horticultural' ? 'selected' :''}>Horticultural</option>
                                 </select>
                             </td>
                             <td>
