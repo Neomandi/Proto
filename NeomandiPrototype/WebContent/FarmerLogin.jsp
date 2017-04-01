@@ -233,6 +233,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
               <li data-target="#myCarousel" data-slide-to="19"></li>
                  <li data-target="#myCarousel" data-slide-to="20"></li>
                    <li data-target="#myCarousel" data-slide-to="21"></li>
+                    <li data-target="#myCarousel" data-slide-to="22"></li>
                      
     </ol>
 
@@ -300,7 +301,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       </div>
       </div>
         <div class="item">
-        <img src="Farmer/aracanut.jpg" alt="Image not found" width="100%" height="345">
+        <img src="Farmer/arecanut.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Carrot</h3>
           
@@ -402,6 +403,13 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
         <img src="Farmer/banana.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Banana</h3>
+          
+        </div>
+      </div>
+      <div class="item">
+        <img src="Farmer/ARECANUT-C.jpg" alt="Image not found" width="100%" height="345">
+        <div class="carousel-caption">
+          <h3>Areca nut</h3>
           
         </div>
       </div>
