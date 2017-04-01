@@ -3353,6 +3353,7 @@ public String orderstatus2(String name,String pwd)
 			{
 				status=rs1.getString("farmerstatus");
 			}
+			System.out.println("status is "+status);
 			return status;
 		}
 	}

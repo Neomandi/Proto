@@ -145,14 +145,13 @@ if((String)tlbn.getTname()==null)
 				  },100);
     function funny()
     {
-    		console.log("func")
     		xmlhttp = new XMLHttpRequest();
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
 		    	var string=xmlhttp.responseText;		    	 
 		    	var status=string;
-		    	console.log(status);
+		    	console.log("status is"+status);
 		    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 		    	console.log(status===null);
 		    	console.log(typeof status );
