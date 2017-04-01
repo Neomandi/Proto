@@ -2085,8 +2085,6 @@ public class ControllerServlet extends HttpServlet {
 		
 		if(uri.contains("Status2"))
 		{
-			//System.out.println("time is "+sdf.format(new Date()));s
-			//System.out.println("inside CS");
 			HttpSession tlog=request.getSession(false);
 			TraderLoginBean tlbn=null;
 			String name=null;
@@ -2098,7 +2096,6 @@ public class ControllerServlet extends HttpServlet {
 				{}
 				 name=tlbn.getTname();
 				pwd=tlbn.getTpwd();
-				System.out.println(name);
 			}
 			catch(NullPointerException e)
 			{			

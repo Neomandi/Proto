@@ -72,6 +72,10 @@
     	{
     		var optionArray = ["produce|Produce", "CHICKPEA|Chickpea", "HORSEGRAM|Horsegram", "PEAS|Peas"];
     	}
+    	else if(s1.value == "Horticultural")
+    	{
+    		var optionArray = ["produce|Produce", "ARECA NUT|Areca nut"];
+    	}
     	for(var option in optionArray)
     	{
     		var pair = optionArray[option].split("|");
@@ -315,6 +319,7 @@
                                             <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
                                             <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
                                             <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
+                                            <option value="Horticultural" ${param.category == 'Horticultural' ? 'selected' :''}>Horticultural</option>
                                         </select>
                                     </td>
                                 </tr>

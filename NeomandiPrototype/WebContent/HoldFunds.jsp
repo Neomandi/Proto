@@ -305,7 +305,7 @@ else
  		  if(hold.length==0)
  			  {swal("PLEASE ENTER AMOUNT TO BE HELD ");}
  		  console.log("hold.length"+hold.length);
- 		 if(hold.length>6)
+ 		 if(hold.length>7)
 		  {swal("Please enter valid amount ");}
  		  else if(balance!=null&&balance.length!=0)
  		  {
