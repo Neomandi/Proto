@@ -3325,6 +3325,7 @@ public String orderstatus2(String name,String pwd)
 {
 	Connection con = null;
 	setFarmeracceptresult("accept");
+	String status=null;
 	try
 	{
 		con = JDBCHelper.getConnection();
@@ -3344,11 +3345,11 @@ public String orderstatus2(String name,String pwd)
 				aadharnumber=rs.getString("aadharnumber");
 			}
 			
-			String status=null;
 			ps =con.prepareStatement("select farmerstatus from auction_result where aadharnumber=?");//this checks whether the trader has won in auction by checking his name in auction result table
 			ps.setString(1,aadharnumber);
 			ps.execute();
 			ResultSet rs1 = ps.getResultSet();
+			System.out.println(ps);
 			while(rs1.next())
 			{
 				status=rs1.getString("farmerstatus");
@@ -3368,7 +3369,7 @@ public String orderstatus2(String name,String pwd)
 			e.printStackTrace();
 		}
 	}
-	return pwd;	
+	return status;	
 }
 
 	public void TraderProductReject(String lotnum)

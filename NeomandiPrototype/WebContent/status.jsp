@@ -142,7 +142,7 @@ if((String)tlbn.getTname()==null)
 		setInterval(function()
 				  {
 					funny();
-				  },100);
+				  },1000);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -154,28 +154,27 @@ if((String)tlbn.getTname()==null)
 		    	console.log("status is"+status);
 		    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 		    	console.log(status===null);
-		    	console.log(typeof status );
-		    	if(status==null||status.length==0||status.includes('null'))
+		    	if(status===null||status.length==0||status.includes('null'))
 			    {
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 			    		document.getElementById("sts").value="Waiting for farmer's acceptance";
 			    		console.log("inside pending");
 			    }
-		    	if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
+		    	else if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
 		    	{
 		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		    		console.log("inside rej");
 		    		document.getElementById("sts").value="Farmer has rejected your bid";
 		    		
 		    	}
-		    	if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
+		    	else if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
 		    	{
 		        	document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
 		    		console.log("inside acp");
 		    		document.getElementById("sts").value="Farmer has accepted your bid";
 		    		
 		    	}
-		    	if(lotcost==0 &&status!=null)
+		    	else if(lotcost==0 &&status!=null)
 		    	{
 		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 		    		console.log("inside rej");
@@ -239,7 +238,6 @@ if((String)tlbn.getTname()==null)
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	status=status.toUpperCase();
-	console.log(status);	
 	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
 	{
 	//	$("#status").css("border-left: 60px solid yellow;");
