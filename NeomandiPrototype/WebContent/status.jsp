@@ -142,45 +142,70 @@ if((String)tlbn.getTname()==null)
 		setInterval(function()
 				  {
 					funny();
-				  },100);
+				  },1000);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
-		    	var string=xmlhttp.responseText;		    	 
-		    	var status=string;
-		    	console.log("status is"+status);
-		    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
-		    	console.log(status===null);
-		    	console.log(typeof status );
-		    	if(status==null||status.length==0||status.includes('null'))
-			    {
-			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
-			    		document.getElementById("sts").value="Waiting for farmer's acceptance";
-			    		console.log("inside pending");
-			    }
-		    	if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
+		    	var start=document.getElementById("start").value;
+		    	var stop=document.getElementById("stop").value;
+		    	var Btime=start;
+		    	var Btime1=stop;
+		    	var d = new Date(); // for now
+		    	d.getHours(); // => 9
+		    	d.getMinutes(); // =>  30
+		    	d.getSeconds();
+		    	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		    	start1 = Etime1.split(":");
+		    	end1 =Btime1.split(":");
+
+		    	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+		    	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+		    	var td = endDate1.getTime() - startDate1.getTime();			
+		    	console.log("difference in time is "+ td);
+		    	if(td>0)
+		    		{
+		    			//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
+		    				document.getElementById("msg").textContent='Auction is still under progress';
+		    				document.getElementById('sts').value='';
+		    		}
+		    	else
 		    	{
-		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
-		    		console.log("inside rej");
-		    		document.getElementById("sts").value="Farmer has rejected your bid";
-		    		
+		    		document.getElementById("msg").textContent='Auction Complete.';
+			    	var string=xmlhttp.responseText;		    	 
+			    	var status=string;
+			    	console.log("status is"+status);
+			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
+			    	console.log(status===null);
+			    	if(status===null||status.length==0||status.includes('null'))
+				    {
+				    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
+				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+				    		console.log("inside pending");
+				    }
+			    	else if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
+			    	{
+			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+			    		console.log("inside rej");
+			    		document.getElementById("sts").value="Farmer has rejected your bid";
+			    		
+			    	}
+			    	else if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
+			    	{
+			        	document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
+			    		console.log("inside acp");
+			    		document.getElementById("sts").value="Farmer has accepted your bid";
+			    		
+			    	}
+			    	else if(lotcost==0 &&status!=null)
+			    	{
+			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+			    		console.log("inside rej");
+			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    	}	    
 		    	}
-		    	if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
-		    	{
-		        	document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
-		    		console.log("inside acp");
-		    		document.getElementById("sts").value="Farmer has accepted your bid";
-		    		
-		    	}
-		    	if(lotcost==0 &&status!=null)
-		    	{
-		    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
-		    		console.log("inside rej");
-		    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
-		    	}	    		
 		      }
 		    };
 		    xmlhttp.open("POST", "Status2.do", true);
@@ -210,11 +235,11 @@ if((String)tlbn.getTname()==null)
 	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="lotcost<%= osbn.getLotnum()%>" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
 	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getCommission()==null) out.println("0"); else out.println(osbn.getCommission());  %>" style="text-align: right;" readonly></td></tr>
 	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getMarketcess()==null) out.println("0"); else out.println(osbn.getMarketcess());  %>" style="text-align: right;" readonly></td></tr>
-	<tr><td  style="white-space:nowrap !important"><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
+	<tr><td style="white-space:nowrap !important"><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
 	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
 	</tbody>
 	</table>
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
+	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
 	<tr><td><h4>Required Lot Size(kg)</h4></td><td><h4>Assigned Lot Size(kg)</h4></td></tr>
@@ -225,8 +250,8 @@ if((String)tlbn.getTname()==null)
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
 	<table align="center"><tbody><tr><td><header><h4 class="text-center"><div id="msg"></div><output id="status<%= osbn.getLotnum()%>"><!-- i have changed id from  statuslotcost<%= osbn.getLotnum()%>--></output></h4>
-<output id="sts"><%
-		if(Integer.parseInt(osbn.getLotcost())==0) 
+	<output id="sts"><%
+		if(Integer.parseInt(osbn.getLotcost())==0 && osbn.getBestbid()!=null) 
 			out.println("Lot Has Not been Assigned to you");
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
@@ -239,7 +264,6 @@ if((String)tlbn.getTname()==null)
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	status=status.toUpperCase();
-	console.log(status);	
 	if(status.includes("pending")||status.toUpperCase() ==="PENDING")
 	{
 	//	$("#status").css("border-left: 60px solid yellow;");
@@ -299,7 +323,7 @@ if(td>0)
 	{
 		//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
 			
-			document.getElementById("msg").textContent='Auction is stll under progress';
+			document.getElementById("msg").textContent='Auction is still under progress';
 			//location='TradeorAuction.do';
 			document.getElementById('sts').value='';
 	}
