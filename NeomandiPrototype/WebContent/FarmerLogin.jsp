@@ -52,7 +52,7 @@
 </style>
 <script>
 
-$('.left').hide();
+/*$('.left').hide();
 $('#myCarousel').on('slid.bs.carousel', function (ev) {
   var carouselData = $(this).data('bs.carousel');
   var currentIndex = carouselData.getActiveIndex();
@@ -71,7 +71,7 @@ $('#myCarousel').on('slid.bs.carousel', function (ev) {
   else {
     $('.right').show();
   }
-})
+})*/
 </script>
 </head>
 
@@ -209,7 +209,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
 <div class="container-fluid" style="margin-top: 0%; margin-bottom: 0%;">
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+    <!-- Indicators 
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -235,7 +235,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
       <li data-target="#myCarousel" data-slide-to="21"></li>
       <li data-target="#myCarousel" data-slide-to="22"></li>
                      
-    </ol>
+    </ol>-->
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
@@ -286,7 +286,7 @@ document.getElementById("pwd").addEventListener("keyup", function(event) {
         </div>
       </div>
         <div class="item">
-        <img src="Farmer/mango.png" alt="Image not found" width="100%" height="345">
+        <img src="Farmer/mango.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Mango</h3>
           
