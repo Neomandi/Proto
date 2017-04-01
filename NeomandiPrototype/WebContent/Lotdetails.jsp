@@ -228,7 +228,7 @@ if((String)hs.getAttribute("name")==null){
 		{
 			 System.out.println("Inside else....");
 
-			 out.println("<div id='div' style='position: absolute; top:3px; left: 230px;'><p ><b>No lot entries were found.</b></p></div>");
+			 out.println("<div id='div' style='position: absolute; top:3px; left: 230px;'><p ><b>No lot entries are found.</b></p></div>");
 
 		}
 	}
