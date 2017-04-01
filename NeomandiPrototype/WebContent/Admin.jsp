@@ -193,7 +193,7 @@ function fun1()
 function fun2()
 {
 	swal({
-		  title: "Are you sure you want to stop the auction?",
+		  title: "Are you sure you want to reset the auction?",
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",

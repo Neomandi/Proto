@@ -168,7 +168,8 @@
 					HttpSession tlog=request.getSession(false);
 					TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 					String name=null;
-					try{
+					try
+					{
 						if((String)tlbn.getTname()==null)
 						{    out.println("<script type=\"text/javascript\">");
 						  	 out.println("var delayMillis = 199999; setTimeout(function() {swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  }, delayMillis);");	
@@ -178,17 +179,15 @@
 						}
 						System.out.println(tlbn.getTname());
 						name=tlbn.getTname();
-					//	out.println(tlbn.getTname());
 						((String)tlbn.getTname()).split(":");
-						//out.println(tlbn.getTname());
-				}
-				catch(Exception e)
-				{
-					 out.println("<script type=\"text/javascript\">");
-				  	 out.println("swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});");
-				  	 //out.println("location='TraderLogin.jsp';");
-				 	 out.println("</script>");
-				}
+					}
+					catch(Exception e)
+					{
+						 out.println("<script type=\"text/javascript\">");
+					  	 out.println("swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});");
+					  	 //out.println("location='TraderLogin.jsp';");
+					 	 out.println("</script>");
+					}
 			    %>
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
@@ -382,8 +381,8 @@
                                     <td>
                                         <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
                                     </td>
-                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
-                                    <td></td>
+                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>>
+                                  <td></td>
                                 </tr>                                
                                 <script> 
                                 var i=<%=i%>;
@@ -393,58 +392,58 @@
                                 	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
                                 }
                                 else
-                                {	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";}
-                                
-                                document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").addEventListener("keyup", function(event1){
-                                event1.preventDefault();
-                                if(event1.which == 13 || event1.keyCode == 13) 
-                                {
-                                	fun<%=psr1.getLotnumber() %>();
-                                }
-                                });
-								function fun<%=psr1.getLotnumber() %>()
-								{							
-									var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
-									var totals=parseInt(total);
-									var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-									var neededs=parseInt(needed);
-									console.log("QUANTITY needed IS needed="+needed);
-									console.log("total is "+totals)
-									var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
-									console.log(product);
-									var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
-									neededs=Math.ceil(neededs);																		
-									if(neededs>totals)
-									{
-										swal("Please enter a quantity same as or less than the Quantity Available");
-										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-									}
-									else if(isNaN(neededs))
-									{
-										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
-									}
-									else if(neededs<=0)
-									{
-											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-											swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
-									}
-									else if(neededs%50!=0 && neededs!=total)
-									{
-											swal("Please enter the lot size in multiples of 50kg or enter the complete lot size");
-									}
-									else 
-									{
-										document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
-										//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
-										xmlhttp = new XMLHttpRequest();
-										xmlhttp.onreadystatechange = function() {
-										if(this.readyState == 4 && this.status == 200) 
+                                {	
+                                	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #d99694";}                                
+	                                document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").addEventListener("keyup", function(event1){
+	                                event1.preventDefault();
+	                                if(event1.which == 13 || event1.keyCode == 13) 
+	                                {
+	                                	fun<%=psr1.getLotnumber() %>();
+	                                }
+	                                });
+									function fun<%=psr1.getLotnumber() %>()
+									{							
+										var total=document.getElementById("quantity<%= psr1.getLotnumber()%>").value;
+										var totals=parseInt(total);
+										var needed=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
+										var neededs=parseInt(needed);
+										console.log("QUANTITY needed IS needed="+needed);
+										console.log("total is "+totals)
+										var product=document.getElementById("product<%= psr1.getLotnumber()%>").value;
+										console.log(product);
+										var quantity=document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value;
+										neededs=Math.ceil(neededs);																		
+										if(neededs>totals)
 										{
-										   	 var string=xmlhttp.responseText;
-										   	 console.log("string is"+string);	
-										   	 if(string.includes("lotnumber"))
-										   	 {
+											swal("Please enter a quantity same as or less than the Quantity Available");
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+										}
+										else if(isNaN(neededs))
+										{
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+											swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");									
+										}
+										else if(neededs<=0)
+										{
+												document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+												swal("Please enter your required quantity of produce for trade. During auction, this quantity is allowed only to be increased.");								
+										}
+										else if(neededs%50!=0 && neededs!=total)
+										{
+												swal("Please enter the lot size in multiples of 50kg or enter the complete lot size");
+										}
+										else 
+										{
+											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+											//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+											xmlhttp = new XMLHttpRequest();
+											xmlhttp.onreadystatechange = function() {
+											if(this.readyState == 4 && this.status == 200) 
+											{
+											   	 var string=xmlhttp.responseText;
+											   	 console.log("string is"+string);	
+											   	 if(string.includes("lotnumber"))
+											   	 {
 											   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
 											         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
 											         startlotnum=startlotnum+9;
@@ -490,26 +489,26 @@
 											        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
 											        		  }
 											            });												     
-										   	}
-										   	else if(string.includes("fail"))
-										   	{
-										   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
-										         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
-										         startlotnum=startlotnum+4;										         
-										         var ms=string.substring(startlotnum,endlotnum);
-											   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
-									   		}
-										   	else if(string.includes("msg"))
-										   	{
-											 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
-										   	}											
-											document.getElementById("addtrade").innerHTML = string;
-											document.getElementById("addtrade").value = string;
-										}
-									};
-									xmlhttp.open("POST", "AddTrade.do", true);
-									xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-									xmlhttp.send("s1="+product+"&quantity="+neededs);
+											   	}
+											   	else if(string.includes("fail"))
+											   	{
+											   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
+											         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+											         startlotnum=startlotnum+4;										         
+											         var ms=string.substring(startlotnum,endlotnum);
+												   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+										   		}
+											   	else if(string.includes("msg"))
+											   	{
+												 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+											   	}											
+												document.getElementById("addtrade").innerHTML = string;
+												document.getElementById("addtrade").value = string;
+											}
+										};
+										xmlhttp.open("POST", "AddTrade.do", true);
+										xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+										xmlhttp.send("s1="+product+"&quantity="+neededs);
 								}													
 							}
 						</script>    						                       
