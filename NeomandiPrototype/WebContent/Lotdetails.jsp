@@ -50,7 +50,7 @@
     		padding:30px;
 			margin:200px;
 			width:30%;
-			background-color:#BFBFBF;
+			background-color:#F2F2F2;
 			text-align:center;
 			color:darkblue;	 
 			font-size:18px;
