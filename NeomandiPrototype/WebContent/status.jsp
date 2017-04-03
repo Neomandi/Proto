@@ -139,10 +139,10 @@ if((String)tlbn.getTname()==null)
 %>
 <script>
     //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-		setInterval(function()
-				  {
+	setInterval(function()
+	{
 					funny();
-				  },1000);
+	},1000);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -219,8 +219,37 @@ if((String)tlbn.getTname()==null)
   			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("number=1");			
     }    
+    </script><div class="one" id="one<%= osbn.getLotnum()%>">
+    <%
+	if(Integer.parseInt(osbn.getLotcost())==0 && osbn.getBestbid()!=null) 
+		//out.println("Lot Has Not been Assigned to you");
+   { %>
+    <script>
+    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';	
     </script>
-	<div class="one" id="one<%= osbn.getLotnum()%>">
+    <%}
+	else if(Integer.parseInt(osbn.getLotcost())!=0) 
+	{
+		if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) 		 
+		{%>
+			<script>
+					document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
+			</script>
+		<%}
+		else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) 
+		{%>
+		<script>
+				document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
+		</script>
+		<%}
+		else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) 
+		{%>
+		<script>
+				document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		</script>
+		<%}
+	}
+    %>	
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">

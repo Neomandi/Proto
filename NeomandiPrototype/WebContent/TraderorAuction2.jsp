@@ -696,8 +696,10 @@ try
 					    xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
 					    {	
+					    	 var msg=document.getElementById("timer").textContent;
+							 var msg1=document.getElementById("auction1").textContent;							
 					    	 var string=xmlhttp.responseText;
-					    	 if(string.includes("block"))
+					    	 if(msg!=null && (msg.includes('begun'))&&!(msg1.includes("end"))&& string.includes("block"))
 					    	 {
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       //window.location='TraderBlock.do';
