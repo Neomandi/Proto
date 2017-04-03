@@ -1563,13 +1563,13 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 				finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
 			//************END OF NEW CODE****
 			
-			if(finalcost2>block)
+			/*if(finalcost2>block)
 			{
 				mfcb=new MyFinalCostBean();				
 				mfcb.setMsg("block");
 				return mfcb;
 			}
-			else
+			else*/
 			{
 				ps=con.prepareStatement("update traders_bid_price set lotcost=?,commission=?,marketcess=?,myfinalcost=? where aadharnumber=? and lotnum=?" );
 				ps.setString(1,String.valueOf(lotcost));
