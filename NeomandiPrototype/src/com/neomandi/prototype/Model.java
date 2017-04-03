@@ -3325,7 +3325,7 @@ public String orderstatus2(String name,String pwd)
 {
 	Connection con = null;
 	setFarmeracceptresult("accept");
-	String status=null;
+	String status="not";
 	try
 	{
 		con = JDBCHelper.getConnection();

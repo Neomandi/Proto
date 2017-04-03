@@ -205,6 +205,13 @@ if((String)tlbn.getTname()==null)
 			    		console.log("inside rej");
 			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
 			    	}	    
+			    	else if(status.includes("not"))
+			    	{
+			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+			    		console.log("inside rej");
+			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    	}
+			    	
 		    	}
 		      }
 		    };
