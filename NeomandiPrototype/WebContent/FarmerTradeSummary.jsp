@@ -322,6 +322,9 @@ background-color:white;
 			fprice1=(int)fprice1;
 			fprice1=fprice1/100;
 			double MUCharge1=1*fprice1/100;
+			MUCharge1=MUCharge1*100;
+			MUCharge1=(int)MUCharge1;
+			MUCharge1=MUCharge1/100;
 			double PACharge1=100;
 			double EPUCharge1=100;
 			double TCharge1=MUCharge1+PACharge1+EPUCharge1;
@@ -358,13 +361,13 @@ background-color:white;
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=fprice1%></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080;text-align:center;"><b><%=transport %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b>500</b></h4></td>
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=MUCharge1 %></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080;text-align:center;"><b><%=EPUCharge1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b>100</b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080;text-align:center;"><b><%=PACharge1 %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b>100</b></h4></td>
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=deduction1 %></b></h4></td>
                                                 <td class="clspadr0">

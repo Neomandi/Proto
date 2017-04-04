@@ -233,6 +233,9 @@ if((String)hs.getAttribute("name")==null){
 					    fprice=(int)fprice;
 					    fprice=fprice/100;
 						double MUCharge=1*fprice/100;
+						MUCharge=MUCharge*100;
+						MUCharge=(int)MUCharge;
+						MUCharge=MUCharge/100;
 						double PACharge=100;
 						double EPUCharge=100;
 						double Transport=500;
@@ -257,10 +260,10 @@ if((String)hs.getAttribute("name")==null){
 	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=rs1.getString("averageprice") %></b></h4></td>
 	  	  
 	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=fprice %></b></h4></td>
-	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=Transport %></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b>500</b></h4></td>
 	  	<td><h4  style="color:#000080;font-wieght:bold;"><b><%=MUCharge%></b></h4></td>
-	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=EPUCharge%></b></h4></td>
-	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=PACharge%><b></b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b>100</b></h4></td>
+	  	<td><h4  style="color:#000080; font-wieght:bold;"><b>100</b></h4></td>
 	  	<td><h4  style="color:#000080; font-wieght:bold;"><b><%=deduction%></b></h4></td>
 	  	<td  class="clspadr0"><h4 style="color:#000080"><b><%=myEarn %></b></h4></td>
 	  	
