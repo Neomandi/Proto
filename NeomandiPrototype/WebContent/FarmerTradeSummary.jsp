@@ -29,10 +29,8 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
-<script src="js/sweetalert.min.js" type="text/javascript"></script>
-<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
-<script src="js/sweetalert.min.js" type="text/javascript"></script>
+       <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+		<script src="js/sweetalert.min.js" type="text/javascript"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -134,23 +132,20 @@ background-color:white;
         	function historyForm(){
         		console.log("inside the history form()");
         		
-        		var from=document.historyForm.from;
-        		var to=document.historyForm.to;
-        		if(to.value<from.value){
-        			swal("Please select valid date");
-        			return false;
-        		}
-        		if(from.value==""){
-        			swal("Please select from date");
-        			name.focus();
-        			    return false;
-        		}
-        		if(to.value==""){
-        			swal("Please select to date");
-        			name.focus();
-        			    return false;
-        		}
+        		var frmdate=document.historyForm.from;
+        		var todate=document.historyForm.to;
         		
+        		if(frmdate.value==""){
+        			swal("Please enter from date");
+            		frmdate.focus();
+            		return false;
+        		}
+        		if(todate.value==""){
+        			swal("Please enter to date");
+            		todate.focus();
+            		return false;
+        		}
+        		return true;
         		 
         	}
         
@@ -185,21 +180,7 @@ background-color:white;
                 </div>
             </div>
         </div>
-
-        </div>
-
-        <!-- if(request.getAttribute("error").equals("error"))
-		{ 
-			out.println("<script type=\"text/javascript\">");
-  			out.println("swal('YOU HAVE NOT TAKEN PART IN AUCTION TO DISPLAY SUMMARY');");
-		    out.println("location='FarmerProfile.jsp';");
-		    out.println("</script>");
-		}
-		 -->
-
-	 
-
-        <div class="container-fluid  history">
+  <div class="container-fluid  history">
             <div class="container">
                 <h2 style="font-weight:bold; color:black;">History</h2></div>
         </div>
@@ -208,7 +189,7 @@ background-color:white;
                 <div class="datetable" align="center">
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                        FROM<div class='input-group date' id='from' name='from' >
+                        FROM<div class='input-group date' id='from'  >
 
                             <input type='text' class="form-control" name="from" id='from' value="${param. from}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
 								<script>
@@ -231,6 +212,7 @@ background-color:white;
                             </span>
                         </div>
                     </div>
+                    </div>
                    <br/>
                     
                 
@@ -240,36 +222,13 @@ background-color:white;
 
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 " style="padding-left:0px;"><button   id="download-btn"  style="border-color:#3C4DA0;background-color:#3C4DA0; " class="btn btn-primary">Export as PDF</button></div></form>
 
-<!--  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad" style=" color:white;">
-<button id="download-btn" class="pure-button export">-->
+
 
 </div>
 
 
-<script>
 
-
-                /*function callme() {
-                    var table = tableToJson($('#mytable').get(0));
-                    var doc = new jsPDF('l', 'pt', 'letter', true);
-                    $.each(table, function(i, row) {
-                        $.each(row, function(j, cell) {
-                            //	if(j=="Lot Number"){
-                            doc.cell(1, 10, 180, 20, cell, i);
-                            //}
-                            //else{
-                            //doc.cell(1,10,90,20,cell,i);
-                            //}
-
-
-
-                        });
-                    });
-                    doc.save('FarmerHistory.pdf');
-                }*/
-                
-            </script>
-        </div>
+       
 	
 
         <%
@@ -359,6 +318,9 @@ background-color:white;
             String finalprice=fhb.getFinalprice();
 
 			double fprice1=Double.parseDouble(finalprice);
+			fprice1=fprice1*100;
+			fprice1=(int)fprice1;
+			fprice1=fprice1/100;
 			double MUCharge1=1*fprice1/100;
 			double PACharge1=100;
 			double EPUCharge1=100;
@@ -394,7 +356,7 @@ background-color:white;
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=fhb.getAverageprice()%></b></h4></td>
                                                 <td>
-                                                    <h4  style="color:#000080;text-align:center;"><b><%=fhb.getFinalprice() %></b></h4></td>
+                                                    <h4  style="color:#000080;text-align:center;"><b><%=fprice1%></b></h4></td>
                                                 <td>
                                                     <h4  style="color:#000080;text-align:center;"><b><%=transport %></b></h4></td>
                                                 <td>
@@ -575,7 +537,8 @@ background-color:white;
 		con.close();
   }
 %>
-<div id="msg" style="visibility:hidden;" ></div>&nbsp;<font color='blue' ><div id="timer" style="visibility:hidden;" ></div></font></h4>
+<div id="msg" style="visibility:hidden;" ></div>
+<div id="timer" style="visibility:hidden;" ></div>
 <div id="auction" style="visibility:hidden;"></div>
 <div id="auction1" style="visibility:hidden;"></div>
 <form>

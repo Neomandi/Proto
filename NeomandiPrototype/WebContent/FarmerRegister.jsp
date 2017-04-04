@@ -530,7 +530,7 @@
                             	//address validation
                             	var address=document.fregform.address;
                             	if(address.value==""){
-                            		swal("Please enter your address");
+                            		swal("Please enter your address.");
                             		address.focus();
                             		return false;
                             	}
@@ -540,7 +540,7 @@
                             	var taluk=document.fregform.farmertaluk;
                             	
                             	if(taluk.value==""){
-                            		swal("Please enter your taluk name");
+                            		swal("Please enter your taluk name.");
                             		taluk.focus();
                             		return false;
                             	}
@@ -553,7 +553,7 @@
                             	//PIN Code validation
                             	var pin=document.fregform.pin;
                             	if(pin.value==""){
-                            		swal("Please enter your pincode");
+                            		swal("Please enter your pincode.");
                             		pin.focus();
                             		return false;
                             	}
@@ -572,25 +572,25 @@
                             	var farmeraccountnum=document.fregform.farmeraccountnum;
                             	var acc = farmeraccountnum.value;
                             	if(acc==""){
-                            		swal("Please enter your Account number");
+                            		swal("Please enter your Account number.");
                             		farmeraccountnum.focus();
                             		    return false;
                             	}
                             	if(isNaN(acc)){
-                            		swal("Enter the valid Account Number");
+                            		swal("Enter the valid Account Number.");
                             		farmeraccountnum.focus();
                             		return false;
                             	}
                             	if(acc.length!=12){
                             		
-                            		swal(" Your Account number must be 12 digits");
+                            		swal(" Your Account number must be 12 digits.");
                             		farmeraccountnum.focus();
                             		return false;
                             	}
                             	//Bank name validation
                             	var bankname=document.fregform.farmerbankname;
                             	if(bankname.value==""){
-                            		swal("Please enter your Bank name");
+                            		swal("Please enter your Bank name.");
                             		bankname.focus();
                             		return false;
                             	}
@@ -604,7 +604,7 @@
                             	//Account Branch name validation
                             	var branch=document.fregform.farmerbranch;
                             	if(branch.value==""){
-                            		swal("Please enter your Branch name");
+                            		swal("Please enter your Branch name.");
                             		branch.focus();
                             		return false;
                             	}
