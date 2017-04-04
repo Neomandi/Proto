@@ -205,6 +205,13 @@ if((String)tlbn.getTname()==null)
 			    		console.log("inside rej");
 			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
 			    	}	    
+			    	else if(status.includes("not"))
+			    	{
+			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+			    		console.log("inside rej");
+			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    	}
+			    	
 		    	}
 		      }
 		    };
@@ -245,19 +252,19 @@ if((String)tlbn.getTname()==null)
 	<tr><td><h4>Required Lot Size(kg)</h4></td><td><h4>Assigned Lot Size(kg)</h4></td></tr>
 	<tr><td class="clspad10"><input style="text-align: center;" class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" style="text-align: center;" value="<%if(osbn.getVolumesold()==null) out.println("0"); else out.println(osbn.getVolumesold());  %>"readonly></td></tr>
 	<tr><td><h4>Best Bid(Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"  style="text-align: center;" value="<%= osbn.getBestbid()%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"  style="text-align: center;"readonly></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"  style="text-align: center;" value="<%if(osbn.getBestbid()==null) out.println("-"); else out.println(osbn.getBestbid());%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"  style="text-align: center;"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 second" id="border">	
 	<table align="center"><tbody><tr><td><header><h4 class="text-center"><div id="msg"></div><output id="status<%= osbn.getLotnum()%>"><!-- i have changed id from  statuslotcost<%= osbn.getLotnum()%>--></output></h4>
-	<output id="sts"><%
+	<center><output id="sts"><%
 		if(Integer.parseInt(osbn.getLotcost())==0 && osbn.getBestbid()!=null) 
 			out.println("Lot Has Not been Assigned to you");
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
 			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
 	<!-- <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do"> -->
-	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output>
+	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output></center>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
 	console.log(lotcost);

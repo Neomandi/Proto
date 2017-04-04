@@ -261,8 +261,9 @@ try
 				        			  window.location='logout.do';
 								  }
 				        		  else 
-				        		  {  swal("Cancelled","Successfully", "error");
-				  				return; }
+				        		  { /*  swal("Cancelled","Successfully", "error");
+				  				return; */
+				  				window.location='TradeorAuction.do';}
 				             }
 				        	);	
 			}
@@ -1258,7 +1259,8 @@ try
 						  }
 		        		  else 
 		        		  { 
-		        			  swal({text:"",title:"The lot has not been removed"});
+		        			 // swal({text:"",title:"The lot has not been removed"});
+		        			  window.location='TradeorAuction.do';
 			        	 }
 		            });		
 			//window.location.href="removelotnumber.do?lotnum=<%=tlb.getLotnum() %>";
