@@ -81,7 +81,12 @@ background-color:white;
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<%HttpSession tlog=request.getSession(false);
+<%
+response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
