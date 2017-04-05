@@ -175,12 +175,12 @@
 					try
 					{
 						if((String)tlbn.getTname()==null)
-						{    out.println("<script type=\"text/javascript\">");
-						  	 out.println("var delayMillis = 199999; setTimeout(function() {swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  }, delayMillis);");	
-						  	 out.println("function(){location='TraderLogin.jsp';}");
-						 	 out.println("</script>");
-						 	 out.println(tlbn.getTname());
-						}
+						{   %> 
+							<script type="text/javascript\">
+						  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+						  	 location='TraderLogin.jsp';
+						 	 </script>						 	 
+						<%}
 						System.out.println(tlbn.getTname());
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");
