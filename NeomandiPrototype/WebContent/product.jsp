@@ -345,7 +345,7 @@
                                     <td>
                                         <h4>Grade</h4></td>
                                     <td>
-                                        <h4>Quantity Available</h4></td>
+                                        <h4>Quantity Available(kg)</h4></td>
                                     <td>
                                         <h4>Slot</h4></td>
                                     <td>
