@@ -162,6 +162,10 @@
                 <div class="">
                 <input type="hidden" name="addtrade" id="addtrade">
                 <%
+	                response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+	        		response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+	        		response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+	        		response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 					String lotnum="null";
 					String quantity="null";
 					String msg1=(String)request.getAttribute("notlogged");
@@ -176,12 +180,12 @@
 					try
 					{
 						if((String)tlbn.getTname()==null)
-						{    out.println("<script type=\"text/javascript\">");
-						  	 out.println("var delayMillis = 199999; setTimeout(function() {swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  }, delayMillis);");	
-						  	 out.println("function(){location='TraderLogin.jsp';}");
-						 	 out.println("</script>");
-						 	 out.println(tlbn.getTname());
-						}
+						{   %> 
+							<script type="text/javascript\">
+						  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+						  	 location='TraderLogin.jsp';
+						 	 </script>						 	 
+						<%}
 						System.out.println(tlbn.getTname());
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");

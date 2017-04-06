@@ -140,6 +140,9 @@ if((String)hs.getAttribute("name")==null){
 	    fprice=(int)fprice;
 	    fprice=fprice/100;
 		double MUCharge=1*fprice/100;
+		MUCharge=MUCharge*100;
+		MUCharge=(int)MUCharge;
+		MUCharge=MUCharge/100;
 		double PACharge=100;
 		double EPUCharge=100;
 		double Transport=500;
@@ -200,8 +203,8 @@ if((String)hs.getAttribute("name")==null){
 	  	<td><h4  style="color:#000080; font-weight:bold;"><%=fprice %></h4></td>
 	  	<td><h4  style="color:#000080; font-weight:bold;">500</h4></td>
 	  	<td style=" width:20px;"><h4  style="color:#000080; font-weight:bold;"><%=MUCharge%></h4></td>
-	  	<td><h4  style="color:#000080; font-weight:bold;">100.00</h4></td>
-	  	<td><h4  style="color:#000080; font-weight:bold;">100.00</h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;">100</h4></td>
+	  	<td><h4  style="color:#000080; font-weight:bold;">100</h4></td>
 	  	<td><h4  style="color:#000080; font-weight:bold;"><%=deduction%></h4></td>
 	  	<td  class="clspadr0"><h4 style="color:#000080; font-weight:bold;"><%=myEarn %></h4></td>
 	  	<td width="25%"><h4 style="color:#000080; font-weight:bold;"><%=status%></h4></td>
