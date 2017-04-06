@@ -89,8 +89,8 @@
     		}
     		body {
 		    background-image: url("images/nm-white-background-pattern.png");
-		    background-repeat:no-repeat;
-		    background-size:cover;
+		    
+		    background-size: contain;
 		}
         </style>       
         <script>
@@ -160,12 +160,14 @@
 					try
 					{
 						if((String)tlbn.getTname()==null)
-						{   %> 
+						{  System.out.println("inside"); %> 
 							<script type="text/javascript\">
 						  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
 						  		location='TraderLogin.jsp';
 						 	 </script>						 	 
-						<%}//						System.out.println(tlbn.getTname());
+						<%}
+						System.out.println((String)tlbn.getTname()==null);
+						System.out.println((String)tlbn.getTpwd()==null);
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");
 					}
