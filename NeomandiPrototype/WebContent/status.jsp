@@ -93,7 +93,12 @@ if(hour!=10){}
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
 <div class="">
-<%HttpSession tlog=request.getSession(false);
+<%
+response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 if((String)tlbn.getTname()==null)
 {    out.println("<script type=\"text/javascript\">");
@@ -139,10 +144,10 @@ if((String)tlbn.getTname()==null)
 %>
 <script>
     //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-		setInterval(function()
-				  {
+	setInterval(function()
+	{
 					funny();
-				  },1000);
+	},1000);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -219,8 +224,38 @@ if((String)tlbn.getTname()==null)
   			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("number=1");			
     }    
+    </script><div class="one" id="one<%= osbn.getLotnum()%>">
+    <%
+	if(Integer.parseInt(osbn.getLotcost())==0 && osbn.getBestbid()!=null) 
+		//out.println("Lot Has Not been Assigned to you");
+   { %>
+    <script>
+    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';	
     </script>
-	<div class="one" id="one<%= osbn.getLotnum()%>">
+    <%}
+	else if(Integer.parseInt(osbn.getLotcost())!=0) 
+	{
+		if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) 		 
+		{%>
+			<script>
+					document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
+			</script>
+		<%}
+		else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) 
+		{%>
+		<script>
+				document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
+		</script>
+		<%}
+		else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) 
+		{
+		%>
+		<script>
+				document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
+		</script>
+		<%}
+	}
+    %>	
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">

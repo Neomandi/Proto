@@ -199,6 +199,10 @@ border-top:0px solid #fff !important;
 <div class="">
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
 <%
+response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn =null;
 try
@@ -529,6 +533,7 @@ try
 		} */
 	</script>
      <%
+     
 	  int z=1;
 	  String msg1=(String)request.getAttribute("notlogged");
 	  if(msg1!=null)
@@ -696,8 +701,11 @@ try
 					    xmlhttp.onreadystatechange = function() {
 					    if (this.readyState == 4 && this.status == 200) 
 					    {	
+					    	 var msg=document.getElementById("timer").textContent;
+							 var msg1=document.getElementById("auction1").textContent;							
 					    	 var string=xmlhttp.responseText;
-					    	 if(string.includes("block"))
+					    	 console.log(msg);
+					    	 if(msg!=null && (msg.includes('begun'))&&!(msg1.includes("end"))&& string.includes("block"))
 					    	 {
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
 					  	  	       //window.location='TraderBlock.do';
