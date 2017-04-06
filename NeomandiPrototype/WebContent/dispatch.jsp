@@ -43,6 +43,11 @@ border-top:0px;
 			color:darkblue;	 
 			font-size:18px;
 }
+body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
 </style>
 </head>
 <body class="" >

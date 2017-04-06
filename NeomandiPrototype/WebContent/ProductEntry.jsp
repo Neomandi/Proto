@@ -242,9 +242,14 @@
     			/*background-position:98% 5%;*/
     			background-position:98% 50%;	
 		}
+		body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
     </style>
 </head>
-<body class="">
+<body class="" >
     <% 
 	    response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
 	    response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
