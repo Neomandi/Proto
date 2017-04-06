@@ -498,6 +498,11 @@ if(!(license.length >1) && (license.length < 10)){
 }
 </script> 
 <style>
+		body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat: no-repeat;
+		    background-size: cover;
+		}
 #myclass1
 {
 	margin-right: 5px;

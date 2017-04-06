@@ -87,11 +87,10 @@
     		#tb h4{
     			color: darkblue;
     		}
-    		body {
-		    background-image: url("images/nm-white-background-pattern.png");
-		    background-repeat:no-repeat;
-		    background-size:cover;
-		}
+     		body { 
+ 		    background-image: url("images/nm-white-background-pattern.png");
+ 		    background-size: contain; 
+ 		} 
         </style>       
         <script>
         function populate(s1, s2)
@@ -136,7 +135,7 @@
         }
         </script>
     </head>
-    <body class="">
+    <body class="" id="bg">
         <div class="logo_relative">
             <div class="col-lg-1 col-md-1  hidden-sm hidden-xs logo"><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
