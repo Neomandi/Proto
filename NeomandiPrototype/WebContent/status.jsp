@@ -106,10 +106,12 @@ response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 HttpSession tlog=request.getSession(false);
 TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 if((String)tlbn.getTname()==null)
-{    out.println("<script type=\"text/javascript\">");
-	out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-	out.println("location='TraderLogin.jsp';");
-	out.println("</script>");
+{    %> 
+<script type="text/javascript\">
+	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+	 location='TraderLogin.jsp';
+ </script>						 	 
+<%
 } %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
