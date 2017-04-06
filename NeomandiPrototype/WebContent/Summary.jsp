@@ -87,8 +87,31 @@ response.setHeader("Cache-Control", "no-store"); //Directs caches not to store t
 response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 HttpSession tlog=request.getSession(false);
-TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");%>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
+TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
+try
+{
+	if(tlbn.getTname()==null)
+	{
+		%> 
+		<script type="text/javascript\">
+	  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+	  	 location='TraderLogin.jsp';
+	 	 </script>						 	 
+	<%
+	}
+	tlbn.getTname().split(";");
+}
+catch(Exception e)
+{
+	%> 
+	<script type="text/javascript\">
+  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+  	 location='TraderLogin.jsp';
+ 	 </script>						 	 
+<%
+}
+%>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
@@ -260,27 +283,17 @@ $('#idto').datetimepicker(
 					<script>					
 					    document.getElementById('todaypdf').onclick = function () {
 					        update(true);
-					    };
-					    /* document.getElementById('pdf').onclick = function () {
-					        update1(true);
-					    }; */
+					    };					   
 					    function update(shouldDownload) {
 					        var funcStr = window.location.hash.replace(/#/g, '') || 'auto';
-					        var doc = examples['html']();
-					
-					        /*doc.setProperties({
-					            title: 'Example: ' + funcStr,
-					            subject: 'A jspdf-autotable example pdf (' + funcStr + ')'
-					        });*/
-					
+					        var doc = examples['html']();					
 					        if (shouldDownload) {
 					            doc.save('TraderSummary.pdf');
 					        } else {
 					            document.getElementById("output").src = doc.output('datauristring');
 					        }
 					    }
-					    update();
-					   
+					    update();					   
 					</script>
 </body>
 </html>

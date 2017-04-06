@@ -1,21 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1" import="java.util.*,
-    java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
-    com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
-    java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
-	  java.io.IOException,
-	 java.io.InputStream,
-	 java.sql.Blob,
-	 java.sql.Connection,
-	 java.sql.ResultSet,
-	 java.sql.SQLException,
-	 java.sql.Statement,
-	 java.awt.image.BufferedImage,
- java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,
- java.io.ByteArrayOutputStream,
- java.io.File,
- java.io.IOException,
- java.io.InputStream,
- javax.imageio.ImageIO" errorPage="Error.jsp"%>
+    java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream,com.neomandi.prototype.ProductSearchResultBean,
+    java.io.BufferedInputStream,java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,java.io.IOException,
+    java.io.InputStream,java.sql.Blob,java.sql.Connection, java.sql.ResultSet,java.sql.SQLException, java.sql.Statement,
+    java.awt.image.BufferedImage,java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,java.io.ByteArrayOutputStream,
+    java.io.File,java.io.IOException,java.io.InputStream,javax.imageio.ImageIO" errorPage="Error.jsp"%>
     <html>
     <head>
     <script src="js/sweetalert.min.js"></script>
@@ -42,12 +30,6 @@
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
         <style>
             .whiteclsbc {
                 background-color: #ffffff;
@@ -64,7 +46,6 @@
             .from table {
                 margin-top: 0px;
             }
-            
             .autable .table tbody tr td,
             .lottable .table tbody tr td,
             .pstable .table tbody tr td,
@@ -166,7 +147,6 @@
 					String msg1=(String)request.getAttribute("notlogged");
 					String msg2=(String)request.getAttribute("productsearchresult");
 					String msg3=request.getParameter("addtrade");
-				//	String msg3=(String)request.getAttribute("errmsg");
 					String msg4=(String)request.getAttribute("quantity");
 				
 					HttpSession tlog=request.getSession(false);
@@ -177,20 +157,21 @@
 						if((String)tlbn.getTname()==null)
 						{   %> 
 							<script type="text/javascript\">
-						  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
-						  	 location='TraderLogin.jsp';
+						  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
+						  		location='TraderLogin.jsp';
 						 	 </script>						 	 
-						<%}
-						System.out.println(tlbn.getTname());
+						<%}//						System.out.println(tlbn.getTname());
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");
 					}
 					catch(Exception e)
 					{
-						 out.println("<script type=\"text/javascript\">");
-					  	 out.println("swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});");
-					  	 //out.println("location='TraderLogin.jsp';");
-					 	 out.println("</script>");
+						%> 
+						 <script type="text/javascript\">
+					  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
+					  	 	location='TraderLogin.jsp';
+					 	 </script>						 	 
+					<%
 					}
 			    %>
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p></div>
@@ -349,7 +330,7 @@
                                     <td>
                                         <h4>Grade</h4></td>
                                     <td>
-                                        <h4>Quantity Available</h4></td>
+                                        <h4>Quantity Available (kg)</h4></td>
                                     <td>
                                         <h4>Slot</h4></td>
                                     <td>
@@ -383,7 +364,7 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity  (kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                   <td></td>
@@ -391,7 +372,7 @@
                                 <script> 
                                 var i=<%=i%>;
                                 if(i%2==0)
-                                {
+                    	        {
                                 	//console.log("inside if");
                                 	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
                                 }

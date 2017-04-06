@@ -95,10 +95,12 @@ if(hour!=10){}
 	TraderLoginBean tlbn=(TraderLoginBean)tlog.getAttribute("tlog");
 	if((String)tlbn.getTname()==null)
 	{   
-		out.println("<script type=\"text/javascript\">");
-		out.println("swal('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
-		out.println("location='TraderLogin.jsp';");
-		out.println("</script>");
+		%> 
+		<script type="text/javascript\">
+	  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+	  	 location='TraderLogin.jsp';
+	 	 </script>						 	 
+	<%
 	}
 %>
 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>

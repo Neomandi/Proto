@@ -212,19 +212,24 @@ try
 }
 catch(NullPointerException e)
 {
-		
-		 out.println("<script type=\"text/javascript\">");
-		 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ location='TraderLogin.jsp';}} ;");
-	  	 out.println("</script>");
+	%> 
+	<script type="text/javascript\">
+  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+  	 location='TraderLogin.jsp';
+ 	 </script>						 	 
+<%
 }
 try
 {%>
 	<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
 <%}catch(NullPointerException e)
 {
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ console.log('2');location='TraderLogin.jsp';}} ;");
-  	 out.println("</script>");
+	%> 
+	<script type="text/javascript\">
+  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+  	 location='TraderLogin.jsp';
+ 	 </script>						 	 
+<%
 } %>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
