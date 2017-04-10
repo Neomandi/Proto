@@ -89,10 +89,21 @@
     		}
      		body { 
  		    background-image: url("images/nm-white-background-pattern.png");
- 		    background-size: contain; 
+		    background-size: contain;
  		} 
+ 		/*This will work for firefox*/
+		@-moz-document url-prefix() {
+		    body{
+		        background-size: cover;
+		    }
+		}
         </style>       
         <script>
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        
+        console.log(w+" and "+h);
+        
         function populate(s1, s2)
         {
         	var s1 = document.getElementById(s1);
