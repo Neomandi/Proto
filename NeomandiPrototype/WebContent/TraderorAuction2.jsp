@@ -1239,9 +1239,9 @@ try
 	<tbody>
 		<tr>
 			<td><%if(tlb.getRigid().equals("y")){ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">RIGID ORDER</div></button><br><br><%} else{ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">FLEXIBLE ORDER</div></button><br><br><%} %>
-				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">Rigid Order</div></button><br><br><%} else{ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">Flexible Order</div></button><br><br><%} %>
+				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;">Remove<br>lot</button>
 			</td>
 		</tr>
 	</tbody>
@@ -1261,12 +1261,12 @@ try
 		     console.log("current state "+string)	
 	    	 if(string.includes('y'))
 		     {
-			    document.getElementById("rg").textContent=" FLEXIBLE ORDER";
+			    document.getElementById("rg").textContent="Flexible Order";
 			    document.getElementById("rigid").className ="btn btn-success"
 		     }
 	    	 else if(string.includes('n'))
 	    	 {
-	    		document.getElementById("rg").textContent="RIGID ORDER";
+	    		document.getElementById("rg").textContent="Rigid Order";
 	    		document.getElementById("rigid").className ="btn btn-info" 
 			 }
 		 }
