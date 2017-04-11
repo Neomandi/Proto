@@ -1212,12 +1212,12 @@ public class ControllerServlet extends HttpServlet {
 			}         
 	        String photo="";
 
-	        String path="C:/Users/NeoMandi-PC1/git/Proto/NeomandiPrototype/WebContent/ProductImages";
+	        String path="/usr/local/easy/share/easy-tomcat7/webapps/NeomandiPrototype/ProductImages";
 
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();
-	         //String fileName = getFileName(filePart);
+	        //String fileName = getFileName(filePart);
 	        String nfileName = lotnumber + ".jpg";  
 	        OutputStream out = null;	          
 	        InputStream filecontent = null;    
