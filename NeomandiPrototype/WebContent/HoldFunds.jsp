@@ -27,6 +27,9 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
+input[type=number] {
+    -moz-appearance:textfield;
+}
 .whiteclsbc{
 background-color:#ffffff;
 width:5%;

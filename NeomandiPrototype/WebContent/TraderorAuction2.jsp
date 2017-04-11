@@ -658,7 +658,7 @@ try
 	</td>
 	</tr>
 	</tbody>
-	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b></p>
+	</table><p style="font-size: 14px; position:absolute; left: 62%;"><b>Enter your bid here</b></p>
 	<script>
 		function quantneeded<%=tlb.getLotnum()%>() {
 		 swal('You can increase the lotsize  in Product Search tab');
