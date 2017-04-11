@@ -312,8 +312,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		return msg;
 	}
 	
-	
-	
 	//Trader Login
 	public String traderLogin(TraderLoginBean tlbn)
 	{		
@@ -631,8 +629,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 		return sb;
 	}
 	
-	
-	
 	public List<ProductSearchResultBean> productSearch(ProductSearchBean psb) 
 	{
 		List<ProductSearchResultBean> l = new ArrayList<>();
@@ -848,6 +844,150 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			JDBCHelper.Close(con);
 		}
 		return msg;
+	}
+
+	@SuppressWarnings("resource")
+	public String addTrade(String lotnumber,TraderLoginBean tlbn,String quantityneeded,String rigid) 
+	{
+		System.out.println("inside Model-> inside AddTrade()->quantityneeded is "+quantityneeded);
+		String msg = null;
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		String produce="";
+		String aadharnumber="";
+		try
+		{
+			con = JDBCHelper.getConnection();
+			
+			if(con == null)
+			{
+				return msg + "Connection not established";
+			}
+			else
+			{			
+				Calendar calendar = Calendar.getInstance();
+		        TimeZone fromTimeZone = calendar.getTimeZone();
+		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+
+		        calendar.setTimeZone(fromTimeZone);
+		        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+		        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+		            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
+		        }
+
+		        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+		        if (toTimeZone.inDaylightTime(calendar.getTime())) 
+		        {
+		            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+		        }
+		        System.out.println("************"+calendar.getTime());
+		        
+				
+				con.setAutoCommit(false);
+		//		System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
+				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
+				ps.setString(1, tlbn.getTname());
+				ps.setString(2, tlbn.getTpwd());
+				ps.execute();
+				rs = ps.getResultSet();
+				while(rs.next())
+				{
+					 aadharnumber=rs.getString("aadharnumber");
+				}	
+				
+				ps =con.prepareStatement("select * from productentry where lotnumber = ?");
+				ps.setString(1, lotnumber);
+				ps.execute();
+				rs = ps.getResultSet();
+				String lotnum = "";
+				String marketcode = "";
+				produce = "";
+				String qualitygrade = "";
+				String quantity ="";
+				String slotnumber=null;
+				while(rs.next())
+				{
+					lotnum = rs.getString("lotnumber");
+					marketcode = rs.getString("marketcode");
+					produce = rs.getString("produce");
+					qualitygrade = rs.getString("qualitygrade");
+					quantity = rs.getString("quantity");
+					slotnumber=rs.getString("slotnumber");
+				}			
+				String lot[]=new String[100];
+				int i=0;
+				ps = con.prepareStatement("select lotnum from tradelist where aadharnumber=?");
+				ps.setString(1,aadharnumber);
+				ps.execute();
+				rs = ps.getResultSet();
+				while(rs.next())
+				{
+					lot[i]=rs.getString("lotnum");
+					i++;
+				}
+				if(Arrays.asList(lot).contains(lotnum))
+				{					
+						lot[i]=lotnum;
+						i++;			
+						ps = con.prepareStatement("select quantityneeded from tradelist where aadharnumber=? and lotnum=?");
+						ps.setString(1,aadharnumber);
+						ps.setString(2,lotnum);
+						ps.execute();
+						rs = ps.getResultSet();
+						while(rs.next())
+						{
+							return "fail"+rs.getString("quantityneeded");	
+						}						
+				}
+				else
+				{					
+					//	System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
+					ps = con.prepareStatement("insert into tradelist(lotnum,marketcode,produce,qualitygrade,quantity,aadharnumber,price,slotnumber,quantityneeded,rigid) values(?,?,?,?,?,?,?,?,?,?)");
+					ps.setString(1, lotnum);
+					ps.setString(2, marketcode);
+					ps.setString(3, produce);
+					ps.setString(4, qualitygrade);
+					ps.setString(5, quantity);
+					ps.setString(6, aadharnumber);
+					ps.setInt(7, 0);
+					ps.setString(8, slotnumber);
+					ps.setString(9, quantityneeded);
+					ps.setString(10, rigid);
+					ps.execute();				
+					//con.commit();	
+					//System.out.println("values inserted into traders_bid_price is lotnum"+lotnum+" aadharnumber "+aadharnumber+"bidprice,lotcost,commission,marketcess,myfinalcost as 0	0	0	0	0 "+sdf.format(new Date()));
+					ps=con.prepareStatement("insert into traders_bid_price(aadharnumber,lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,quantityassigned) values(?,?,?,?,?,?,?,?)");
+					ps.setString(1, aadharnumber);
+					ps.setString(2, lotnum);
+					ps.setInt(3, 0);
+					ps.setString(4,"0");
+					ps.setString(5,"0");
+					ps.setString(6,"0");
+					ps.setString(7,"0");
+					ps.setString(8,"0");
+					ps.execute();				
+					con.commit();					
+				}
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			
+			try {
+				con.rollback();
+			} catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+		}
+		finally
+		{
+			JDBCHelper.Close(ps);
+			JDBCHelper.Close(con);
+		}
+		return "SUCCESS "+produce;
 	}
 	
     //the ver first time when trader clicks on hold funds ths page pop ups
@@ -1096,159 +1236,6 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			return msg;			
 	}
 	
-	
-	@SuppressWarnings("resource")
-	public String addTrade(String lotnumber,TraderLoginBean tlbn,String quantityneeded,String rigid) 
-	{
-		System.out.println("inside Model-> inside AddTrade()->quantityneeded is "+quantityneeded);
-		String msg = null;
-		PreparedStatement ps = null;
-		Connection con = null;
-		ResultSet rs = null;
-		String produce="";
-		String aadharnumber="";
-		try
-		{
-			con = JDBCHelper.getConnection();
-			
-			if(con == null)
-			{
-				return msg + "Connection not established";
-			}
-			else
-			{			
-				Calendar calendar = Calendar.getInstance();
-		        TimeZone fromTimeZone = calendar.getTimeZone();
-		        TimeZone toTimeZone = TimeZone.getTimeZone("MST");
-
-		        calendar.setTimeZone(fromTimeZone);
-		        calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
-		        if (fromTimeZone.inDaylightTime(calendar.getTime())) {
-		            calendar.add(Calendar.MILLISECOND, calendar.getTimeZone().getDSTSavings() * -1);
-		        }
-
-		        calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
-		        if (toTimeZone.inDaylightTime(calendar.getTime())) 
-		        {
-		            calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
-		        }
-		        System.out.println("************"+calendar.getTime());
-		        
-				
-				con.setAutoCommit(false);
-		//		System.out.println("traders name and password has been saved in setters in model as "+tlbn.getTname()+" and "+tlbn.getTpwd());
-				ps =con.prepareStatement("select aadharnumber from treg where name = ? and pass=?");
-				ps.setString(1, tlbn.getTname());
-				ps.setString(2, tlbn.getTpwd());
-				ps.execute();
-				rs = ps.getResultSet();
-				while(rs.next())
-				{
-					 aadharnumber=rs.getString("aadharnumber");
-				}	
-				
-				ps =con.prepareStatement("select * from productentry where lotnumber = ?");
-				ps.setString(1, lotnumber);
-				ps.execute();
-				rs = ps.getResultSet();
-				String lotnum = "";
-				String marketcode = "";
-				produce = "";
-				String qualitygrade = "";
-				String quantity ="";
-				String slotnumber=null;
-				while(rs.next())
-				{
-					lotnum = rs.getString("lotnumber");
-					marketcode = rs.getString("marketcode");
-					produce = rs.getString("produce");
-					qualitygrade = rs.getString("qualitygrade");
-					quantity = rs.getString("quantity");
-					slotnumber=rs.getString("slotnumber");
-				}			
-				String lot[]=new String[100];
-				int i=0;
-				ps = con.prepareStatement("select lotnum from tradelist where aadharnumber=?");
-				ps.setString(1,aadharnumber);
-				ps.execute();
-				rs = ps.getResultSet();
-				while(rs.next())
-				{
-					lot[i]=rs.getString("lotnum");
-					i++;
-				}
-				if(Arrays.asList(lot).contains(lotnum))
-				{					
-						lot[i]=lotnum;
-						i++;			
-						ps = con.prepareStatement("select quantityneeded from tradelist where aadharnumber=? and lotnum=?");
-						ps.setString(1,aadharnumber);
-						ps.setString(2,lotnum);
-						ps.execute();
-						rs = ps.getResultSet();
-						while(rs.next())
-						{
-							return "fail"+rs.getString("quantityneeded");	
-						}						
-				}
-				else
-				{					
-					//	System.out.println("inserting into tradelist values are "+lotnum+" "+marketcode+" "+produce+" "+slotnumber+" "+quantityneeded);
-					ps = con.prepareStatement("insert into tradelist(lotnum,marketcode,produce,qualitygrade,quantity,aadharnumber,price,slotnumber,quantityneeded,rigid) values(?,?,?,?,?,?,?,?,?,?)");
-					ps.setString(1, lotnum);
-					ps.setString(2, marketcode);
-					ps.setString(3, produce);
-					ps.setString(4, qualitygrade);
-					ps.setString(5, quantity);
-					ps.setString(6, aadharnumber);
-					ps.setInt(7, 0);
-					ps.setString(8, slotnumber);
-					ps.setString(9, quantityneeded);
-					ps.setString(10, rigid);
-					ps.execute();				
-					//con.commit();	
-					//System.out.println("values inserted into traders_bid_price is lotnum"+lotnum+" aadharnumber "+aadharnumber+"bidprice,lotcost,commission,marketcess,myfinalcost as 0	0	0	0	0 "+sdf.format(new Date()));
-					ps=con.prepareStatement("insert into traders_bid_price(aadharnumber,lotnum,bidprice,lotcost,commission,marketcess,myfinalcost,quantityassigned) values(?,?,?,?,?,?,?,?)");
-					ps.setString(1, aadharnumber);
-					ps.setString(2, lotnum);
-					ps.setInt(3, 0);
-					ps.setString(4,"0");
-					ps.setString(5,"0");
-					ps.setString(6,"0");
-					ps.setString(7,"0");
-					ps.setString(8,"0");
-					ps.execute();				
-					con.commit();					
-				}
-			}
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			
-			try {
-				con.rollback();
-			} catch (SQLException e1) 
-			{
-				e1.printStackTrace();
-			}
-		}
-		finally
-		{
-			JDBCHelper.Close(ps);
-			JDBCHelper.Close(con);
-		}
-		return "SUCCESS "+produce;
-	}
-
-
-
-
-
-
-
-
-
 
 @SuppressWarnings("resource")
 public Mynewclass tradeOrAuction(String name, String pwd) 
@@ -1463,78 +1450,6 @@ public Mynewclass tradeOrAuction(String name, String pwd)
 		}
 		return mc;
 	}
-
-
-  @SuppressWarnings("resource")
-	public String changerigidity(String name, String pwd, String lotnum)
-	  {
-	    PreparedStatement ps = null;
-	    Connection con = null;
-	    ResultSet rs = null;
-	    String rigid = null;
-	    try
-	    {
-	      con = JDBCHelper.getConnection();
-	      
-	      if (con != null)
-	      {
-	        ps = con.prepareStatement("select aadharnumber from treg where name=? and pass=?");
-	        ps.setString(1, name);
-	        ps.setString(2, pwd);
-	        ps.execute();
-	        rs = ps.getResultSet();
-	        String aadhar = null;
-	        while (rs.next())
-	        {
-	          aadhar = rs.getString("aadharnumber");
-	        }
-	       
-	        ps = con.prepareStatement("select rigid from tradelist where aadharnumber=? and lotnum=?");
-	        ps.setString(1, aadhar);
-	        ps.setString(2, lotnum);
-	        ps.execute();
-	        rs = ps.getResultSet();
-	        while (rs.next())
-	        {
-	          rigid = rs.getString("rigid");
-	        }
-	        if (rigid.equals("y"))
-	        {
-	          ps = con.prepareStatement("update tradelist set rigid='n' where aadharnumber=? and lotnum=?");
-	          ps.setString(1, aadhar);
-	          ps.setString(2, lotnum);
-	          ps.execute();
-	          rigid="y";
-	        }
-	        else
-	        {
-	          ps = con.prepareStatement("update tradelist set rigid='y' where aadharnumber=? and lotnum=?");
-	          ps.setString(1, aadhar);
-	          ps.setString(2, lotnum);
-	          ps.execute();
-	          rigid="n";
-	        }
-	      }
-	    }
-	    catch (SQLException e)
-	    {
-	      e.printStackTrace();
-	      try
-	      {
-	        con.rollback();
-	      }
-	      catch (SQLException e1) {
-	        e1.printStackTrace();
-	      }
-	    }
-	    finally
-	    {
-	      JDBCHelper.Close(ps);
-	      JDBCHelper.Close(con);
-	    }
-	    
-	    return rigid;
-	  }
 
 @SuppressWarnings("resource")
 public MyFinalCostBean tradeOrAuction1(String name, String pwd) 
@@ -3688,7 +3603,6 @@ public void TraderProductAccept(String lotnum,String accno)
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		ResultSet rs4 = null;
-		ResultSet rs5 = null;
 		List<TradeSummaryBean> al=new ArrayList<TradeSummaryBean>();	
 		try
 		{
@@ -3823,7 +3737,7 @@ public List traderHistory(String name, String pwd, String from, String to)
 			from=ft[2]+"-"+ft[1]+"-"+ft[0];
 			System.out.println(st);
 			
-			int date=(Integer.parseInt(st[0]));
+			int date=(Integer.parseInt(st[0]))+1;
 			st[0]=String.valueOf(date);
 			if(date<10)
 				to=st[2]+"-"+st[1]+"-0"+st[0];
@@ -5217,7 +5131,76 @@ public void PostAuction()
 			JDBCHelper.Close(ps);
 			JDBCHelper.Close(con);
 		}
-		return null;
-		
+		return null;		
 	}
-}
+
+	  @SuppressWarnings("resource")
+	public String changerigidity(String name, String pwd, String lotnum)
+	  {
+	    PreparedStatement ps = null;
+	    Connection con = null;
+	    ResultSet rs = null;
+	    String rigid = null;
+	    try
+	    {
+	      con = JDBCHelper.getConnection();
+	      
+	      if (con != null)
+	      {
+	        ps = con.prepareStatement("select aadharnumber from treg where name=? and pass=?");
+	        ps.setString(1, name);
+	        ps.setString(2, pwd);
+	        ps.execute();
+	        rs = ps.getResultSet();
+	        String aadhar = null;
+	        while (rs.next())
+	        {
+	          aadhar = rs.getString("aadharnumber");
+	        }
+	       
+	        ps = con.prepareStatement("select rigid from tradelist where aadharnumber=? and lotnum=?");
+	        ps.setString(1, aadhar);
+	        ps.setString(2, lotnum);
+	        ps.execute();
+	        rs = ps.getResultSet();
+	        while (rs.next())
+	        {
+	          rigid = rs.getString("rigid");
+	        }
+	        if (rigid.equals("y"))
+	        {
+	          ps = con.prepareStatement("update tradelist set rigid='n' where aadharnumber=? and lotnum=?");
+	          ps.setString(1, aadhar);
+	          ps.setString(2, lotnum);
+	          ps.execute();
+	          rigid="y";
+	        }
+	        else
+	        {
+	          ps = con.prepareStatement("update tradelist set rigid='y' where aadharnumber=? and lotnum=?");
+	          ps.setString(1, aadhar);
+	          ps.setString(2, lotnum);
+	          ps.execute();
+	          rigid="n";
+	        }
+	      }
+	    }
+	    catch (SQLException e)
+	    {
+	      e.printStackTrace();
+	      try
+	      {
+	        con.rollback();
+	      }
+	      catch (SQLException e1) {
+	        e1.printStackTrace();
+	      }
+	    }
+	    finally
+	    {
+	      JDBCHelper.Close(ps);
+	      JDBCHelper.Close(con);
+	    }
+	    
+	    return rigid;
+	  }}
