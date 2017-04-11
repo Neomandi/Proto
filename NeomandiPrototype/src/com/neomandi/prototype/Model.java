@@ -3737,7 +3737,7 @@ public List traderHistory(String name, String pwd, String from, String to)
 			from=ft[2]+"-"+ft[1]+"-"+ft[0];
 			System.out.println(st);
 			
-			int date=(Integer.parseInt(st[0]));
+			int date=(Integer.parseInt(st[0]))+1;
 			st[0]=String.valueOf(date);
 			if(date<10)
 				to=st[2]+"-"+st[1]+"-0"+st[0];
