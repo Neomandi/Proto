@@ -441,7 +441,7 @@ else
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=funds %>" readonly></td></tr>
       <tr><td><label for="aadhar">Net Amount on Hold</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly/></td></tr>
-	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount"/></td ></tr>	  
+	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount(Rs)"/></td ></tr>	  
 	  <tr><td><table align="center"><tr><td><a id="release" onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
       <script>
       document.getElementById("release").addEventListener("keyup", function(event) {
