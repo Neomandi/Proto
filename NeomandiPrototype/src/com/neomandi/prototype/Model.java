@@ -5203,5 +5203,4 @@ public void PostAuction()
 	    }
 	    
 	    return rigid;
-	  }
-}
+	  }}
