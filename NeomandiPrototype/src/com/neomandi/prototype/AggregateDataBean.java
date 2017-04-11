@@ -5,7 +5,7 @@ public class AggregateDataBean {
 	private long aadharnumber;
 	private int bidprice;
 	private int quantityneeded;
-	
+	private String rgBid;
 	public long getAadharnumber() {
 		return aadharnumber;
 	}
@@ -24,6 +24,12 @@ public class AggregateDataBean {
 	public void setQuantityneeded(int quantityneeded) {
 		this.quantityneeded = quantityneeded;
 	}
+	public String getRgBid() {
+		return rgBid;
+	}
+	public void setRgBid(String rgBid) {
+		this.rgBid = rgBid;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -31,6 +37,7 @@ public class AggregateDataBean {
 		result = prime * result + (int) (aadharnumber ^ (aadharnumber >>> 32));
 		result = prime * result + bidprice;
 		result = prime * result + quantityneeded;
+		result = prime * result + ((rgBid == null) ? 0 : rgBid.hashCode());
 		return result;
 	}
 	@Override
@@ -48,11 +55,19 @@ public class AggregateDataBean {
 			return false;
 		if (quantityneeded != other.quantityneeded)
 			return false;
+		if (rgBid == null) {
+			if (other.rgBid != null)
+				return false;
+		} else if (!rgBid.equals(other.rgBid))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "AggregateDataBean [aadharnumber=" + aadharnumber + ", bidprice=" + bidprice + ", quantityneeded="
-				+ quantityneeded + "]";
+				+ quantityneeded + ", rgBid=" + rgBid + "]";
 	}
+	
+	
+	
 }

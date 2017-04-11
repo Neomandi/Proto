@@ -1239,8 +1239,8 @@ try
 	<tbody>
 		<tr>
 			<td><%if(tlb.getRigid().equals("y")){ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:110px;text-align: center;"><div id="rg">RIGID ORDER</div></button><br><br><%} else{ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:110px; text-align: center;"><div id="rg">FLEXIBLE ORDER</div></button><br><br><%} %>
+				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">RIGID ORDER</div></button><br><br><%} else{ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">FLEXIBLE ORDER</div></button><br><br><%} %>
 				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button>
 			</td>
 		</tr>
