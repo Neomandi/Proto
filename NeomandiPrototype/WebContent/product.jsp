@@ -436,6 +436,195 @@
 										}
 										else 
 										{
+											swal({
+										        		  title:"",
+											        	  text: "Do you want your order to be a rigid order? By being a rigid order you will be assigned with full lot you have subscribed or no lot will be assigned.",
+											        	 /*  text: "You will not be able to recover this imaginary file!",
+											        	  */ type: "warning",
+											        	  showCancelButton: true,
+											        	  confirmButtonColor: "green",
+											        	  confirmButtonText: "Yes",
+											        	  cancelButtonText: "No",
+											        	  closeOnConfirm: false,
+											        	  closeOnCancel: false
+										        	},
+										        	function(isConfirm)
+										        	{
+										        		  if(isConfirm)
+										        		  {
+										        			  document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+																//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+																xmlhttp = new XMLHttpRequest();
+																xmlhttp.onreadystatechange = function() {
+																if(this.readyState == 4 && this.status == 200) 
+																{
+																   	 var string=xmlhttp.responseText;
+																   	 console.log("string is"+string);	
+																   	 if(string.includes("lotnumber"))
+																   	 {
+																   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+																         startlotnum=startlotnum+9;
+																         
+																         var ms=string.substring(startlotnum,endlotnum);
+																         var newsize=new Number(ms);
+																         
+																         /* if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
+																         {			
+																        	 	swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+																        	 	xmlhttp.open("POST", "AddTrade.do", true);
+																				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																				xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																         }
+																         else
+																         {
+																        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																         }	 */
+																         swal(
+																        	{
+																        		  title:"",
+																	        	  text: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+																	        	 /*  text: "You will not be able to recover this imaginary file!",
+																	        	  */ type: "warning",
+																	        	  showCancelButton: true,
+																	        	  confirmButtonColor: "green",
+																	        	  confirmButtonText: "Yes",
+																	        	  cancelButtonText: "No",
+																	        	  closeOnConfirm: false,
+																	        	  closeOnCancel: false
+																        	},
+																        	function(isConfirm)
+																        	{
+																        		  if(isConfirm)
+																        		  {
+																        			swal({text:"",title:"This lot has been added for auction with new quantity of "+neededs+" Kgs"});
+																        	 		xmlhttp.open("POST", "AddTrade.do", true);
+																					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																					xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																				  }
+																        		  else 
+																        		  { 
+																        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																        		  }
+																            });												     
+																   	}
+																   	else if(string.includes("fail"))
+																   	{
+																   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+																         startlotnum=startlotnum+4;										         
+																         var ms=string.substring(startlotnum,endlotnum);
+																	   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+															   		}
+																   	else if(string.includes("msg"))
+																   	{
+																	 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+																   	}											
+																	document.getElementById("addtrade").innerHTML = string;
+																	document.getElementById("addtrade").value = string;
+																}
+															};
+															xmlhttp.open("POST", "AddTrade.do", true);
+															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															xmlhttp.send("s1="+product+"&quantity="+neededs+"&rigid=y");
+														  }
+										        		  else 
+										        		  { 
+										        			  document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+																//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+																xmlhttp = new XMLHttpRequest();
+																xmlhttp.onreadystatechange = function() {
+																if(this.readyState == 4 && this.status == 200) 
+																{
+																   	 var string=xmlhttp.responseText;
+																   	 console.log("string is"+string);	
+																   	 if(string.includes("lotnumber"))
+																   	 {
+																   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+																         startlotnum=startlotnum+9;
+																         
+																         var ms=string.substring(startlotnum,endlotnum);
+																         var newsize=new Number(ms);
+																         
+																         /* if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
+																         {			
+																        	 	swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+																        	 	xmlhttp.open("POST", "AddTrade.do", true);
+																				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																				xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																         }
+																         else
+																         {
+																        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																         }	 */
+																         swal(
+																        	{
+																        		  title:"",
+																	        	  text: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+																	        	 /*  text: "You will not be able to recover this imaginary file!",
+																	        	  */ type: "warning",
+																	        	  showCancelButton: true,
+																	        	  confirmButtonColor: "green",
+																	        	  confirmButtonText: "Yes",
+																	        	  cancelButtonText: "No",
+																	        	  closeOnConfirm: false,
+																	        	  closeOnCancel: false
+																        	},
+																        	function(isConfirm)
+																        	{
+																        		  if(isConfirm)
+																        		  {
+																        			swal({text:"",title:"This lot has been added for auction with new quantity of "+neededs+" Kgs"});
+																        	 		xmlhttp.open("POST", "AddTrade.do", true);
+																					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																					xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																				  }
+																        		  else 
+																        		  { 
+																        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																        		  }
+																            });												     
+																   	}
+																   	else if(string.includes("fail"))
+																   	{
+																   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+																         startlotnum=startlotnum+4;										         
+																         var ms=string.substring(startlotnum,endlotnum);
+																	   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+															   		}
+																   	else if(string.includes("msg"))
+																   	{
+																	 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+																   	}											
+																	document.getElementById("addtrade").innerHTML = string;
+																	document.getElementById("addtrade").value = string;
+																}
+															};
+															xmlhttp.open("POST", "AddTrade.do", true);
+															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															xmlhttp.send("s1="+product+"&quantity="+neededs+"&rigid=n");
+														  }
+										            });	<%-- 
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 											//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 											xmlhttp = new XMLHttpRequest();
@@ -510,7 +699,7 @@
 										};
 										xmlhttp.open("POST", "AddTrade.do", true);
 										xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-										xmlhttp.send("s1="+product+"&quantity="+neededs);
+										xmlhttp.send("s1="+product+"&quantity="+neededs); --%>
 								}													
 							}
 						</script>    						                       

@@ -21,9 +21,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.collections4.bag.SynchronizedSortedBag;
 
-import sun.print.PrinterJobWrapper;
 
-@MultipartConfig(maxFileSize = 16177215)
+//@MultipartConfig(maxFileSize = 16177215)
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -1086,7 +1085,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			String lotnumber = request.getParameter("s1");
 			String quantity= request.getParameter("quantity");
-			//System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
+			String rigid=request.getParameter("rigid");
 			Model m = new Model();
 			System.out.println("request.getParameter(again"+request.getParameter("again"));
 			if(request.getParameter("again")!=null)
@@ -1095,7 +1094,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-			String msg = m.addTrade(lotnumber,tlbn,quantity);
+			String msg = m.addTrade(lotnumber,tlbn,quantity,rigid);
 			if(msg.contains("SUCCESS"))
 			{				
 				String msg1=msg.substring(7);
@@ -1181,7 +1180,49 @@ public class ControllerServlet extends HttpServlet {
 			}		  
 			}
 	}
-		
+		if(uri.contains("changerigidity"))
+		{
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn =null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+				//System.out.println(tlbn.getTname());
+				System.out.println(tlbn.getTpwd());
+				name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			System.out.println("***************************************************************************");			
+			Model m=new Model();
+			String lot=request.getParameter("lotnumber");
+			String rigid =m.changerigidity(name,pwd,lot);
+			 PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println(rigid);
+					out.flush();
+				    out.close();
+				}
+				 catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+			
+		}
 		//Product Entry
 		if(uri.contains("ProductEntry"))
 		{			
@@ -1570,6 +1611,7 @@ public class ControllerServlet extends HttpServlet {
 			HttpSession countdown=request.getSession();
 			countdown.setAttribute("timer",0);
 			Model m=new Model();
+			
 			Mynewclass mc=(Mynewclass) m.tradeOrAuction(name,pwd);
 			if(mc.getBl().size()==0&&mc.getAl().size()!=0)
 			{

@@ -714,7 +714,6 @@ try
 					    	 var msg=document.getElementById("timer").textContent;
 							 var msg1=document.getElementById("auction1").textContent;							
 					    	 var string=xmlhttp.responseText;
-					    	 console.log(msg);
 					    	 if(msg!=null && (msg.includes('begun'))&&!(msg1.includes("end"))&& string.includes("block"))
 					    	 {
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
@@ -1236,11 +1235,47 @@ try
 	</script>
 	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center">
+	<tbody>
+		<tr>
+			<td><%if(tlb.getRigid().equals("y")){ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:110px;text-align: center;"><div id="rg">RIGID ORDER</div></button><br><br><%} else{ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change status" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:110px; text-align: center;"><div id="rg">FLEXIBLE ORDER</div></button><br><br><%} %>
+				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button>
+			</td>
+		</tr>
+	</tbody>
+	</table>
 	</td></tr>
 	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
 	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
 	<script>
+	function rigid()
+	{ 
+		var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;	   
+		xmlhttp = new XMLHttpRequest();
+	  	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) 
+	    {
+	    	 var string=xmlhttp.responseText;		
+		     console.log("current state "+string)	
+	    	 if(string.includes('y'))
+		     {
+			    document.getElementById("rg").textContent=" FLEXIBLE ORDER";
+			    document.getElementById("rigid").className ="btn btn-success"
+		     }
+	    	 else if(string.includes('n'))
+	    	 {
+	    		document.getElementById("rg").textContent="RIGID ORDER";
+	    		document.getElementById("rigid").className ="btn btn-info" 
+			 }
+		 }
+	    };
+	      xmlhttp.open("POST", "changerigidity.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("&lotnumber="+j);
+	}
+	
 	function remove()
 	{
 		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;

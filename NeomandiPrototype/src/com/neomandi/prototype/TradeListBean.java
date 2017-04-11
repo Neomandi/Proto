@@ -11,8 +11,12 @@ String qualitygrade;
 int quantity;
 String slotnumber;
 String quantityneeded;
+String rigid;
 
 
+public String getRigid() {
+	return rigid;
+}
 public String getQuantityneeded() {
 	return quantityneeded;
 }
@@ -117,5 +121,8 @@ public boolean equals(Object obj) {
 	} else if (!slotnumber.equals(other.slotnumber))
 		return false;
 	return true;
+}
+public void setRigid(String rigid) {
+	this.rigid = rigid;
 }
 }
