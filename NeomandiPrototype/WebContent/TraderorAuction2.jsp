@@ -317,11 +317,10 @@ try
 	String stop=(String)context.getAttribute("endtime");
 	System.out.println("end="+stop);
 	String msg="start";
-	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %>
   <input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
-  <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
+  <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); System.out.println("currn time is "+date); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
   <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
   <script>
@@ -332,6 +331,7 @@ try
   var Btime=start;
   var Btime1=stop;
   console.log("end time above is "+stop);
+  console.log("current time is "+Etime);
   start = Etime.split(":");
   end =Btime.split(":");
   var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -359,6 +359,7 @@ try
   }
   var timedifference=+hours+":"+minutes+":"+seconds;
   var m=0;
+  console.log("difference is "+timedifference);
   countdown(minutes,seconds,hours);	
 
 		function countdown(minutes,seconds,hours) 
@@ -411,7 +412,11 @@ try
 										    }
 										  }
 								})(); */
-								
+								if (window.location.href.indexOf('reload')==-1) {
+							         window.location.replace(window.location.href+'?reload');
+							    }
+								else
+								{
 								var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
@@ -486,18 +491,25 @@ try
 												catch(Exception e)
 												{e.printStackTrace();} */
 												%>
-												i=9;
-					        		    	   <%
-					        		    	   	/* countdown.setAttribute("timer",1);
-												}else
-					        		    	   {
-					        		    	   } */%>
-					        		    	   
+												i=9; 	
 					        		       } 
 				        		    	}
 			        		     	}
 				        		   tick();
 			        			}		
+				            	<%
+						            	String pattern = "HH:mm:ss";
+						            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+						            	String start1 = simpleDateFormat.format(new Date());	
+						            	String stop1=(String)context.getAttribute("endtime");						            	
+						            	
+						            	Date d1 = new SimpleDateFormat(pattern).parse(start1);
+						            	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+						            	long diffMs = d2.getTime() - d1.getTime();
+						            	long diffSec = diffMs / 1000;
+						            	long min = diffSec / 60;
+						            	long sec = diffSec % 60;
+			            		%>
 				            	//var Etime1=document.getElementById("time").value;
 				            	var d = new Date(); // for now
 				            	d.getHours(); // => 9
@@ -511,20 +523,22 @@ try
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 				            	var td = endDate1.getTime() - startDate1.getTime();					            	
 				            	var hours1 = Math.floor(td / 1000 / 60 / 60);
-				            	var seconds1= Math.floor(td /1000);
-				            	var minutes1 = Math.floor(td / 1000 / 60);
+				            	//var seconds1= Math.floor(td /1000);
+				            	var seconds1= <%=sec%>
+				            	//var minutes1 = Math.floor(td / 1000 / 60);
+				            	var minutes1 = <%=min%>
 				            	var res1;
 				            	var res2;
 				            	if(seconds1>60)
 				            	{
 				            			res1=seconds1%60;
-				            			res2=Math.floor(seconds1/60);
-				            					
+				            			res2=Math.floor(seconds1/60);				            					
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
 				            	console.log("difference in seconds is "+seconds1);
 				            	count(minutes1,seconds1);			        			
+							}
 							}
 						}
 					}		       
@@ -621,13 +635,14 @@ try
 							{   
 								++p;
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
-%>	<div class="one">
+%>	
+	<div class="one">
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
   	<table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%=z%><%z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody >
