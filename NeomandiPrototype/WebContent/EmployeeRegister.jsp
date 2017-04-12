@@ -21,6 +21,11 @@
 .error {
     border:2px solid red;
 }
+body {
+    background-image: url("images/nm-white-background-pattern.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 </style>
 <script>
 function validateEForm()

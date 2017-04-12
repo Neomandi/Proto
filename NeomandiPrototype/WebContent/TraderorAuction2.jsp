@@ -73,6 +73,11 @@ a
 {
 	cursor:pointer;
 }
+body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
 </style>
 <link rel="icon" type="image1/png" href="Images/Neomandi1.png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -212,19 +217,24 @@ try
 }
 catch(NullPointerException e)
 {
-		
-		 out.println("<script type=\"text/javascript\">");
-		 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ location='TraderLogin.jsp';}} ;");
-	  	 out.println("</script>");
+	%> 
+	<script type="text/javascript\">
+  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+  	 location='TraderLogin.jsp';
+ 	 </script>						 	 
+<%
 }
 try
 {%>
 	<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
 <%}catch(NullPointerException e)
 {
-	 out.println("<script type=\"text/javascript\">");
-  	 out.println("swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN ',type: 'warning',confirmButtonColor: 'green',confirmButtonText: 'take me to Login page',closeOnConfirm: false,closeOnCancel: false}),function(isConfirm){if!(isConfirm){ console.log('2');location='TraderLogin.jsp';}} ;");
-  	 out.println("</script>");
+	%> 
+	<script type="text/javascript\">
+  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
+  	 location='TraderLogin.jsp';
+ 	 </script>						 	 
+<%
 } %>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
@@ -307,11 +317,10 @@ try
 	String stop=(String)context.getAttribute("endtime");
 	System.out.println("end="+stop);
 	String msg="start";
-	//System.out.println("INSIDE TOA2.JSP start is "+(String)context.getAttribute("starttime"));
 %>
   <input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
-  <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); out.println(date);%>" id="time">
+  <input type="hidden" value="<%SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss"); String date=df1.format(new Date()); System.out.println("currn time is "+date); out.println(date);%>" id="time">
   <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
   <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
   <script>
@@ -322,6 +331,7 @@ try
   var Btime=start;
   var Btime1=stop;
   console.log("end time above is "+stop);
+  console.log("current time is "+Etime);
   start = Etime.split(":");
   end =Btime.split(":");
   var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -349,6 +359,7 @@ try
   }
   var timedifference=+hours+":"+minutes+":"+seconds;
   var m=0;
+  console.log("difference is "+timedifference);
   countdown(minutes,seconds,hours);	
 
 		function countdown(minutes,seconds,hours) 
@@ -401,7 +412,11 @@ try
 										    }
 										  }
 								})(); */
-								
+								if (window.location.href.indexOf('reload')==-1) {
+							         window.location.replace(window.location.href+'?reload');
+							    }
+								else
+								{
 								var str="<div id='a1'style='display:inline;color:white; '>has begun. It will end in</div>&nbsp;&nbsp;<font color='white;'><div id='hms' style='display:inline;color:white;' > 5:00</div></font>";	          						            	
 				            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 				            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
@@ -476,18 +491,25 @@ try
 												catch(Exception e)
 												{e.printStackTrace();} */
 												%>
-												i=9;
-					        		    	   <%
-					        		    	   	/* countdown.setAttribute("timer",1);
-												}else
-					        		    	   {
-					        		    	   } */%>
-					        		    	   
+												i=9; 	
 					        		       } 
 				        		    	}
 			        		     	}
 				        		   tick();
 			        			}		
+				            	<%
+						            	String pattern = "HH:mm:ss";
+						            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+						            	String start1 = simpleDateFormat.format(new Date());	
+						            	String stop1=(String)context.getAttribute("endtime");						            	
+						            	
+						            	Date d1 = new SimpleDateFormat(pattern).parse(start1);
+						            	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+						            	long diffMs = d2.getTime() - d1.getTime();
+						            	long diffSec = diffMs / 1000;
+						            	long min = diffSec / 60;
+						            	long sec = diffSec % 60;
+			            		%>
 				            	//var Etime1=document.getElementById("time").value;
 				            	var d = new Date(); // for now
 				            	d.getHours(); // => 9
@@ -501,20 +523,22 @@ try
 				            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 				            	var td = endDate1.getTime() - startDate1.getTime();					            	
 				            	var hours1 = Math.floor(td / 1000 / 60 / 60);
-				            	var seconds1= Math.floor(td /1000);
-				            	var minutes1 = Math.floor(td / 1000 / 60);
+				            	//var seconds1= Math.floor(td /1000);
+				            	var seconds1= <%=sec%>
+				            	//var minutes1 = Math.floor(td / 1000 / 60);
+				            	var minutes1 = <%=min%>
 				            	var res1;
 				            	var res2;
 				            	if(seconds1>60)
 				            	{
 				            			res1=seconds1%60;
-				            			res2=Math.floor(seconds1/60);
-				            					
+				            			res2=Math.floor(seconds1/60);				            					
 				            			seconds1=res1;
 				            			minutes1=res2;
 				            	}
 				            	console.log("difference in seconds is "+seconds1);
 				            	count(minutes1,seconds1);			        			
+							}
 							}
 						}
 					}		       
@@ -611,13 +635,14 @@ try
 							{   
 								++p;
 								System.out.println("lot number is "+mfcb.getLotnum()+" cost->"+mfcb.getLotcost()+" quantityassigned->"+mfcb.getQuantityassigned());
-%>	<div class="one">
+%>	
+	<div class="one">
 	<div class="container-fluid status">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
 	<div class="table-responsive"> 
   	<table>
-	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%out.println(z);z++; %></td>
+	<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold"><%=z%><%z++; %></td>
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody >
@@ -648,7 +673,7 @@ try
 	</td>
 	</tr>
 	</tbody>
-	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b>Enter your bid here</b></p>
+	</table><p style="font-size: 14px; position:absolute; left: 62%;"><b>Enter your bid here</b></p>
 	<script>
 		function quantneeded<%=tlb.getLotnum()%>() {
 		 swal('You can increase the lotsize  in Product Search tab');
@@ -704,7 +729,6 @@ try
 					    	 var msg=document.getElementById("timer").textContent;
 							 var msg1=document.getElementById("auction1").textContent;							
 					    	 var string=xmlhttp.responseText;
-					    	 console.log(msg);
 					    	 if(msg!=null && (msg.includes('begun'))&&!(msg1.includes("end"))&& string.includes("block"))
 					    	 {
 					    		   swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');
@@ -1226,11 +1250,47 @@ try
 	</script>
 	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center">
+	<tbody>
+		<tr>
+			<td><%if(tlb.getRigid().equals("y")){ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">Rigid Order</div></button><br><br><%} else{ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">Flexible Order</div></button><br><br><%} %>
+				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;">Remove lot</button>
+			</td>
+		</tr>
+	</tbody>
+	</table>
 	</td></tr>
 	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
 	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
 	<script>
+	function rigid()
+	{ 
+		var j= document.getElementById("lotnumber<%out.print(tlb.getLotnum());%>").value;	   
+		xmlhttp = new XMLHttpRequest();
+	  	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) 
+	    {
+	    	 var string=xmlhttp.responseText;		
+		     console.log("current state "+string)	
+	    	 if(string.includes('y'))
+		     {
+			    document.getElementById("rg").textContent="Flexible Order";
+			    document.getElementById("rigid").className ="btn btn-success"
+		     }
+	    	 else if(string.includes('n'))
+	    	 {
+	    		document.getElementById("rg").textContent="Rigid Order";
+	    		document.getElementById("rigid").className ="btn btn-info" 
+			 }
+		 }
+	    };
+	      xmlhttp.open("POST", "changerigidity.do", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xmlhttp.send("&lotnumber="+j);
+	}
+	
 	function remove()
 	{
 		var quantityneededs=document.getElementById("needed<%=tlb.getLotnum()%>").value;

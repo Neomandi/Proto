@@ -56,6 +56,11 @@ footer {
 			color:darkblue;	 
 			font-size:18px;
     }
+    body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
 </style>
 <body class="">
     <% 
@@ -197,7 +202,7 @@ footer {
 		                            <td>
 		                                <h4>100</h4></td>
 		                            <td>
-		                                <h4>3000</h4></td>
+		                                <h4>500</h4></td>
 		                            <td>
 		                                <h4><%= fmarketcess %></h4></td>
 		                            <td>

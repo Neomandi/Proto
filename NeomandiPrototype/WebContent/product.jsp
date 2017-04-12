@@ -1,21 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1" import="java.util.*,
-    java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream, 
-    com.neomandi.prototype.ProductSearchResultBean,java.io.BufferedInputStream,
-    java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,
-	  java.io.IOException,
-	 java.io.InputStream,
-	 java.sql.Blob,
-	 java.sql.Connection,
-	 java.sql.ResultSet,
-	 java.sql.SQLException,
-	 java.sql.Statement,
-	 java.awt.image.BufferedImage,
- java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,
- java.io.ByteArrayOutputStream,
- java.io.File,
- java.io.IOException,
- java.io.InputStream,
- javax.imageio.ImageIO" errorPage="Error.jsp"%>
+    java.io.InputStream,java.io.InputStreamReader,java.io.Reader,java.io.OutputStream,com.neomandi.prototype.ProductSearchResultBean,
+    java.io.BufferedInputStream,java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,java.io.IOException,
+    java.io.InputStream,java.sql.Blob,java.sql.Connection, java.sql.ResultSet,java.sql.SQLException, java.sql.Statement,
+    java.awt.image.BufferedImage,java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,java.io.ByteArrayOutputStream,
+    java.io.File,java.io.IOException,java.io.InputStream,javax.imageio.ImageIO" errorPage="Error.jsp"%>
     <html>
     <head>
     <script src="js/sweetalert.min.js"></script>
@@ -42,12 +30,6 @@
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
         <style>
             .whiteclsbc {
                 background-color: #ffffff;
@@ -64,7 +46,6 @@
             .from table {
                 margin-top: 0px;
             }
-            
             .autable .table tbody tr td,
             .lottable .table tbody tr td,
             .pstable .table tbody tr td,
@@ -106,8 +87,23 @@
     		#tb h4{
     			color: darkblue;
     		}
+     		body { 
+ 		    background-image: url("images/nm-white-background-pattern.png");
+		    background-size: contain;
+ 		} 
+ 		/*This will work for firefox*/
+		@-moz-document url-prefix() {
+		    body{
+		        background-size: cover;
+		    }
+		}
         </style>       
         <script>
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        
+        console.log(w+" and "+h);
+        
         function populate(s1, s2)
         {
         	var s1 = document.getElementById(s1);
@@ -150,7 +146,7 @@
         }
         </script>
     </head>
-    <body class="">
+    <body class="" id="bg">
         <div class="logo_relative">
             <div class="col-lg-1 col-md-1  hidden-sm hidden-xs logo"><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
@@ -166,7 +162,6 @@
 					String msg1=(String)request.getAttribute("notlogged");
 					String msg2=(String)request.getAttribute("productsearchresult");
 					String msg3=request.getParameter("addtrade");
-				//	String msg3=(String)request.getAttribute("errmsg");
 					String msg4=(String)request.getAttribute("quantity");
 				
 					HttpSession tlog=request.getSession(false);
@@ -175,22 +170,25 @@
 					try
 					{
 						if((String)tlbn.getTname()==null)
-						{   %> 
+						{  System.out.println("inside"); %> 
 							<script type="text/javascript\">
-						  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
-						  	 location='TraderLogin.jsp';
+						  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
+						  		location='TraderLogin.jsp';
 						 	 </script>						 	 
 						<%}
-						System.out.println(tlbn.getTname());
+						System.out.println((String)tlbn.getTname()==null);
+						System.out.println((String)tlbn.getTpwd()==null);
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");
 					}
 					catch(Exception e)
 					{
-						 out.println("<script type=\"text/javascript\">");
-					  	 out.println("swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});");
-					  	 //out.println("location='TraderLogin.jsp';");
-					 	 out.println("</script>");
+						%> 
+						 <script type="text/javascript\">
+					  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
+					  	 	location='TraderLogin.jsp';
+					 	 </script>						 	 
+					<%
 					}
 			    %>
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p></div>
@@ -349,7 +347,7 @@
                                     <td>
                                         <h4>Grade</h4></td>
                                     <td>
-                                        <h4>Quantity Available</h4></td>
+                                        <h4>Quantity Available (kg)</h4></td>
                                     <td>
                                         <h4>Slot</h4></td>
                                     <td>
@@ -383,7 +381,7 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity(kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity  (kg)">
                                     </td>
                                     <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg">Add to Trade List</a></td>
                                   <td></td>
@@ -391,7 +389,7 @@
                                 <script> 
                                 var i=<%=i%>;
                                 if(i%2==0)
-                                {
+                    	        {
                                 	//console.log("inside if");
                                 	document.getElementById("<%= psr1.getLotnumber()%>").style.background=" #feb858";
                                 }
@@ -438,6 +436,195 @@
 										}
 										else 
 										{
+											swal({
+										        		  title:"",
+											        	  text: "Do you want your order to be a rigid order? By being a rigid order you will be assigned with full lot you have subscribed or no lot will be assigned.",
+											        	 /*  text: "You will not be able to recover this imaginary file!",
+											        	  */ type: "warning",
+											        	  showCancelButton: true,
+											        	  confirmButtonColor: "green",
+											        	  confirmButtonText: "Yes",
+											        	  cancelButtonText: "No",
+											        	  closeOnConfirm: false,
+											        	  closeOnCancel: false
+										        	},
+										        	function(isConfirm)
+										        	{
+										        		  if(isConfirm)
+										        		  {
+										        			  document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+																//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+																xmlhttp = new XMLHttpRequest();
+																xmlhttp.onreadystatechange = function() {
+																if(this.readyState == 4 && this.status == 200) 
+																{
+																   	 var string=xmlhttp.responseText;
+																   	 console.log("string is"+string);	
+																   	 if(string.includes("lotnumber"))
+																   	 {
+																   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+																         startlotnum=startlotnum+9;
+																         
+																         var ms=string.substring(startlotnum,endlotnum);
+																         var newsize=new Number(ms);
+																         
+																         /* if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
+																         {			
+																        	 	swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+																        	 	xmlhttp.open("POST", "AddTrade.do", true);
+																				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																				xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																         }
+																         else
+																         {
+																        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																         }	 */
+																         swal(
+																        	{
+																        		  title:"",
+																	        	  text: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+																	        	 /*  text: "You will not be able to recover this imaginary file!",
+																	        	  */ type: "warning",
+																	        	  showCancelButton: true,
+																	        	  confirmButtonColor: "green",
+																	        	  confirmButtonText: "Yes",
+																	        	  cancelButtonText: "No",
+																	        	  closeOnConfirm: false,
+																	        	  closeOnCancel: false
+																        	},
+																        	function(isConfirm)
+																        	{
+																        		  if(isConfirm)
+																        		  {
+																        			swal({text:"",title:"This lot has been added for auction with new quantity of "+neededs+" Kgs"});
+																        	 		xmlhttp.open("POST", "AddTrade.do", true);
+																					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																					xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																				  }
+																        		  else 
+																        		  { 
+																        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																        		  }
+																            });												     
+																   	}
+																   	else if(string.includes("fail"))
+																   	{
+																   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+																         startlotnum=startlotnum+4;										         
+																         var ms=string.substring(startlotnum,endlotnum);
+																	   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+															   		}
+																   	else if(string.includes("msg"))
+																   	{
+																	 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+																   	}											
+																	document.getElementById("addtrade").innerHTML = string;
+																	document.getElementById("addtrade").value = string;
+																}
+															};
+															xmlhttp.open("POST", "AddTrade.do", true);
+															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															xmlhttp.send("s1="+product+"&quantity="+neededs+"&rigid=y");
+														  }
+										        		  else 
+										        		  { 
+										        			  document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
+																//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
+																xmlhttp = new XMLHttpRequest();
+																xmlhttp.onreadystatechange = function() {
+																if(this.readyState == 4 && this.status == 200) 
+																{
+																   	 var string=xmlhttp.responseText;
+																   	 console.log("string is"+string);	
+																   	 if(string.includes("lotnumber"))
+																   	 {
+																   	  	 var startlotnum=xmlhttp.responseText.indexOf('lotnumber');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('lotnumber');
+																         startlotnum=startlotnum+9;
+																         
+																         var ms=string.substring(startlotnum,endlotnum);
+																         var newsize=new Number(ms);
+																         
+																         /* if (confirm('This lot is already present in your trade list with '+ms+' kg. Do you want to increase it to '+neededs+' kg? ')) 
+																         {			
+																        	 	swal("This lot has been added for auction with new quantity of "+neededs+" Kgs");
+																        	 	xmlhttp.open("POST", "AddTrade.do", true);
+																				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																				xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																         }
+																         else
+																         {
+																        	 swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																         }	 */
+																         swal(
+																        	{
+																        		  title:"",
+																	        	  text: "This lot is already present in your trade list with "+ms+" kg. Do you want to increase it to "+neededs+" kg?",
+																	        	 /*  text: "You will not be able to recover this imaginary file!",
+																	        	  */ type: "warning",
+																	        	  showCancelButton: true,
+																	        	  confirmButtonColor: "green",
+																	        	  confirmButtonText: "Yes",
+																	        	  cancelButtonText: "No",
+																	        	  closeOnConfirm: false,
+																	        	  closeOnCancel: false
+																        	},
+																        	function(isConfirm)
+																        	{
+																        		  if(isConfirm)
+																        		  {
+																        			swal({text:"",title:"This lot has been added for auction with new quantity of "+neededs+" Kgs"});
+																        	 		xmlhttp.open("POST", "AddTrade.do", true);
+																					xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+																					xmlhttp.send("s1="+product+"&quantity="+needed+"&again=yes");
+																				  }
+																        		  else 
+																        		  { 
+																        			  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+																        		  }
+																            });												     
+																   	}
+																   	else if(string.includes("fail"))
+																   	{
+																   		 var startlotnum=xmlhttp.responseText.indexOf('fail');
+																         var endlotnum=xmlhttp.responseText.lastIndexOf('fail');
+																         startlotnum=startlotnum+4;										         
+																         var ms=string.substring(startlotnum,endlotnum);
+																	   	 swal("During auction, the required lot size is allowed only to be increased. Please enter a lot size more than "+ms+" Kg");
+															   		}
+																   	else if(string.includes("msg"))
+																   	{
+																	 	 swal("The lot "+product+" for "+neededs+" kgs has been added to your trade list. During auction, this quantity is allowed only to be increased. ");
+																   	}											
+																	document.getElementById("addtrade").innerHTML = string;
+																	document.getElementById("addtrade").value = string;
+																}
+															};
+															xmlhttp.open("POST", "AddTrade.do", true);
+															xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															xmlhttp.send("s1="+product+"&quantity="+neededs+"&rigid=n");
+														  }
+										            });	<%-- 
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
 											document.getElementById("quantityneeded<%=psr1.getLotnumber() %>").value="";
 											//window.location="http://localhost:8080/NeomandiPrototype/AddTrade.do?s1="+product+"&&quantity="+neededs;
 											xmlhttp = new XMLHttpRequest();
@@ -512,7 +699,7 @@
 										};
 										xmlhttp.open("POST", "AddTrade.do", true);
 										xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-										xmlhttp.send("s1="+product+"&quantity="+neededs);
+										xmlhttp.send("s1="+product+"&quantity="+neededs); --%>
 								}													
 							}
 						</script>    						                       

@@ -64,6 +64,11 @@
     text-align: center;
     margin-bottom: 0px;
 }
+body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
 </style>
 </head>
 <body class="">

@@ -123,7 +123,11 @@ font-size: 13px;
 margin: 3px auto;
 padding:5px; 
 }
-
+body {
+		    background-image: url("images/nm-white-background-pattern.png");
+		    background-repeat:no-repeat;
+		    background-size:cover;
+		}
 .datepicker{
 background-color:white;
 }

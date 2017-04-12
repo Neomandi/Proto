@@ -1,4 +1,6 @@
+
 package com.neomandi.prototype;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -1082,6 +1084,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}
 			String lotnumber = request.getParameter("s1");
+			String rigid=request.getParameter("rigid");
 			String quantity= request.getParameter("quantity");
 			//System.out.println("inside CS-> inside AddTrade()->lotnumber is "+lotnumber+" quantity needed is "+quantity);
 			Model m = new Model();
@@ -1092,7 +1095,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
-			String msg = m.addTrade(lotnumber,tlbn,quantity);
+			String msg = m.addTrade(lotnumber,tlbn,quantity,rigid);
 			if(msg.contains("SUCCESS"))
 			{				
 				String msg1=msg.substring(7);
@@ -1216,7 +1219,7 @@ public class ControllerServlet extends HttpServlet {
 	        System.out.println("Path "+path);
 	        File file=new File(path);
 	        file.mkdir();
-	         //String fileName = getFileName(filePart);
+	        //String fileName = getFileName(filePart);
 	        String nfileName = lotnumber + ".jpg";  
 	        OutputStream out = null;	          
 	        InputStream filecontent = null;    
@@ -1371,6 +1374,171 @@ public class ControllerServlet extends HttpServlet {
 		    return null;
 		}*/
 				
+		
+		if(uri.contains("AddTrade"))
+		{
+			System.out.println("***************************************************************************");
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn =null;
+			try
+			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+				System.out.println(tlbn.getTname());
+				if(tlbn.getTname().equals("ki"))
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("product.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			String lotnumber = request.getParameter("s1");
+			String quantity= request.getParameter("quantity");
+			String rigid=request.getParameter("rigid");
+			Model m = new Model();
+			System.out.println("request.getParameter(again"+request.getParameter("again"));
+			if(request.getParameter("again")!=null)
+			{
+				m.addTradeAgain(lotnumber,tlbn,quantity);
+			}
+			else
+			{
+			String msg = m.addTrade(lotnumber,tlbn,quantity,rigid);
+			if(msg.contains("SUCCESS"))
+			{				
+				String msg1=msg.substring(7);
+				msg="Product "+msg1+" with lotnumber "+lotnumber+" has been added successfully to trade";
+				System.out.println("message sent is "+msg);
+				msg="success";
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println("msg"+msg+"msg");
+				    out.flush();
+				    out.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+				request.setAttribute("errmsg", msg);
+				rd=request.getRequestDispatcher("product.jsp");
+				/*try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) {
+							e.printStackTrace();
+				} catch (IOException e) {
+							e.printStackTrace();
+				}*/ 
+				return;
+			}
+			else if(msg.contains("fail"))
+			{
+				String ms=msg.substring(4);
+				System.out.println("quantityalready bid for first time is"+ms);
+				int old=Integer.parseInt(ms);
+				int news=Integer.parseInt(quantity);
+				if(news<old)
+				{
+					PrintWriter out = null;
+					try 
+					{
+						out = response.getWriter();
+						out.println("fail"+old+"fail");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					PrintWriter out = null;
+					try 
+					{
+						out = response.getWriter();
+						out.println("lotnumber"+ms+"lotnumber");
+					    out.flush();
+					    out.close();
+					}
+					catch (IOException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+			else
+			{
+				request.setAttribute("errmsg", msg);
+			    rd=request.getRequestDispatcher("product.jsp");
+				try 
+				{
+					rd.forward(request, response);			
+				}			
+				catch (ServletException e) 
+				{
+					e.printStackTrace();
+				} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}		  
+			}
+	}
+		if(uri.contains("changerigidity"))
+		{
+			HttpSession tlog=request.getSession(false);
+			TraderLoginBean tlbn =null;
+			String name=null;
+			String pwd=null;
+			try
+			{
+				tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
+				//System.out.println(tlbn.getTname());
+				System.out.println(tlbn.getTpwd());
+				name=tlbn.getTname();
+				pwd=tlbn.getTpwd();
+				if(tlbn.getTname()==null)
+				{}
+			}
+			catch(NullPointerException e)
+			{			
+				request.setAttribute("notlogged","not loggedin");
+				rd=request.getRequestDispatcher("HoldFunds.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			System.out.println("***************************************************************************");			
+			Model m=new Model();
+			String lot=request.getParameter("lotnumber");
+			String rigid =m.changerigidity(name,pwd,lot);
+			 PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.println(rigid);
+					out.flush();
+				    out.close();
+				}
+				 catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+			
+		}
+		
+		
 		//Trader Block Bank
 		if(uri.contains("TraderBlock"))
 		{
@@ -2717,3 +2885,4 @@ public class ControllerServlet extends HttpServlet {
 		process(request,response);
 	}
 }
+
