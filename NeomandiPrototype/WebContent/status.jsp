@@ -343,19 +343,13 @@ if((String)tlbn.getTname()==null)
 </div>
 </div>
     </div></div>
-    <%
-	ServletContext context = request.getSession().getServletContext();
-	String start=(String)context.getAttribute("starttime");
-	System.out.println("starttime="+start);
-	String stop=(String)context.getAttribute("endtime");
-%>
-<input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
-<input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
     <script>
     <%
 	String pattern = "HH:mm:ss";
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
 	String start1 = simpleDateFormat.format(new Date());//current time	
+	
+	ServletContext context = request.getSession().getServletContext();
 	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
 	
 	Date d1 = new SimpleDateFormat(pattern).parse(start1);
@@ -364,30 +358,14 @@ if((String)tlbn.getTname()==null)
 	long diffSec = diffMs / 1000;
 	long min = diffSec / 60;
 	long sec = diffSec % 60;
-	if(diffMs<0){
+	if(diffMs<0)
+	{
 %>
-/* var start=document.getElementById("start").value;
-var stop=document.getElementById("stop").value;
-var Btime=start;
-var Btime1=stop;
-var d = new Date(); // for now
-d.getHours(); // => 9
-d.getMinutes(); // =>  30
-d.getSeconds();
-var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-start1 = Etime1.split(":");
-end1 =Btime1.split(":");
-
-var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-var td = endDate1.getTime() - startDate1.getTime();			
-console.log("difference in time is "+ td);
-if(td>0)
-	 */
-			document.getElementById("msg").textContent='Auction is still under progress';
-			//location='TradeorAuction.do';
-			document.getElementById('sts').value='';
-	<%}else
+	document.getElementById("msg").textContent='Auction is still under progress';
+	document.getElementById('sts').value='';
+	<%
+	}
+	else
 	{
 	%>
 	document.getElementById("msg").textContent='Auction Complete.';
