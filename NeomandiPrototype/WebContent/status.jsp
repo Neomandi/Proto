@@ -352,7 +352,21 @@ if((String)tlbn.getTname()==null)
 <input type="hidden" value="<%System.out.println("star time is"+start); out.println(start);%>" id="start">
 <input type="hidden" value="<%System.out.println("stop time is"+stop); out.println(stop);%>" id="stop">
     <script>
-var start=document.getElementById("start").value;
+    <%
+	String pattern = "HH:mm:ss";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+	String start1 = simpleDateFormat.format(new Date());//current time	
+	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
+	
+	Date d1 = new SimpleDateFormat(pattern).parse(start1);
+	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+	long diffMs = d2.getTime() - d1.getTime();
+	long diffSec = diffMs / 1000;
+	long min = diffSec / 60;
+	long sec = diffSec % 60;
+	if(diffMs<0){
+%>
+/* var start=document.getElementById("start").value;
 var stop=document.getElementById("stop").value;
 var Btime=start;
 var Btime1=stop;
@@ -369,17 +383,15 @@ var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 var td = endDate1.getTime() - startDate1.getTime();			
 console.log("difference in time is "+ td);
 if(td>0)
-	{
-		//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
-			
+	 */
 			document.getElementById("msg").textContent='Auction is still under progress';
 			//location='TradeorAuction.do';
 			document.getElementById('sts').value='';
-	}
-else
-{
+	<%}else
+	{
+	%>
 	document.getElementById("msg").textContent='Auction Complete.';
-}	
+	<%}%>
 </script>
     <%}}}%>
  </div>
