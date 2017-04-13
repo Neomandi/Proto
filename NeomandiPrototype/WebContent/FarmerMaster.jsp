@@ -14,7 +14,7 @@
 	 java.sql.SQLException,
 	 java.net.InetAddress,
 	 java.text.SimpleDateFormat,
-	 sun.misc.BASE64Encoder,
+	 
 	java.util.Date,java.sql.*"%>
 <!doctype html>
 <html>
@@ -594,34 +594,10 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{	
-						//To Reload page once
-						/* (function(){
-								  if( window.localStorage )
-								  {
-								    if( !localStorage.getItem( 'firstLoad' ) )
-								    {
-								      localStorage[ 'firstLoad' ] = true;
-								      console.log("Before reload");
-								      window.location.reload();
-								    }  
-								    else{
-								    	console.log("After reload");
-								    	localStorage.removeItem( 'firstLoad' );								      
-								    }
-								  }
-						})(); */
+						
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 
-		            	//console.log(" before if i="+i);
-		            	/*if(i==0){
-		            		console.log(" after i="+i);
-		            		location="http://neomandi.in/FarmerMaster.jsp";
-		            		i=9;
-		            	}*/
-		            		
-		            	
-		            	//str+="<h4><div id='hms'style='display:inline;' >5:00</div></h4>";
 		            	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
 		            	var waitseconds = seconds;
 		            	var timeOutPeriod = waitseconds * 1000;
@@ -690,6 +666,7 @@ function countdown(minutes,seconds,hours)
 		            	d.getMinutes(); // =>  30
 		            	d.getSeconds();
 		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		            	
 		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
@@ -716,8 +693,7 @@ function countdown(minutes,seconds,hours)
  		}
  tick();
 }
-//countdown(minutes,seconds,hours);		   
-//console.log("time="+timedif);
+
  console.log("count"+timedif);
 				
  function accept(){
