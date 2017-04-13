@@ -116,9 +116,9 @@ if((String)hs.getAttribute("name")==null){
 	<!--   <div id="div">Auction yet to happen, hence, no  Lot details is available.</div>-->
 	 <% 
 // }else{
-	 		System.out.println("inside else");
+	 		//System.out.println("inside else");
 	     	String pass=(String)hs.getAttribute("pass"); 
- 		     System.out.println("original password="+pass);
+ 		    // System.out.println("original password="+pass);
  		   String starttime=(String)hs.getAttribute("starttime"); 
  		 
  		 String endtime=(String)hs.getAttribute("endtime"); 
@@ -128,13 +128,13 @@ if((String)hs.getAttribute("name")==null){
 		  ServletContext context = request.getSession().getServletContext();
 			starttime=(String)context.getAttribute("starttime");
 			endtime=(String)context.getAttribute("endtime");
-			System.out.println("in farmer page starttime="+starttime);
-			System.out.println("in farmer page endtime="+endtime);
+			//System.out.println("in farmer page starttime="+starttime);
+			//System.out.println("in farmer page endtime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 	     	String time=df1.format(new Date());
-		 	System.out.println("password="+pass);
-			System.out.println("new time="+time);
+		 	//System.out.println("password="+pass);
+		//	System.out.println("new time="+time);
 			HttpSession hs1=request.getSession(false);  
 	   	     hs1.setAttribute("pass",pass); 
 		     Connection con = null;
@@ -200,28 +200,28 @@ if((String)hs.getAttribute("name")==null){
 	
 	if(con == null)
 	{
-		System.out.println("Connection not established.");
+		//System.out.println("Connection not established.");
 	}
 	else
 	{
 		String sql = "select * from productentry where farmerid='"+s+"'";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		System.out.println(sql);
-		System.out.println(rs);
+		//System.out.println(sql);
+	//	System.out.println(rs);
 		//System.out.println(rs.getRow());
 		//System.out.println(rs.first());
 		String lotnumber1=null;
 		if(rs.next())
 		{
 			lotnumber1 = rs.getString("lotnumber");
-			System.out.println("lotnumber="+lotnumber1);
+			//System.out.println("lotnumber="+lotnumber1);
 		}
 		
 	
 		if(lotnumber1!=null)
 		{
-			System.out.println("Inside if....");
+			//System.out.println("Inside if....");
 			
 				String sql2 = "select slotnumber,produce,qualitygrade,lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				pstmt1 = con.prepareStatement(sql2);
@@ -243,7 +243,7 @@ if((String)hs.getAttribute("name")==null){
 		  		else{
 		  			imgsrc="ProductImages/"+rs1.getString("produce")+"-"+rs1.getString("qualitygrade")+".jpg";
 		  		}
-			   System.out.println("in farmer master lotnumber="+lotnumber);
+			 //  System.out.println("in farmer master lotnumber="+lotnumber);
 			%>
 		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
 		  <td><h4 style="color:#000080;text-align:center;"><b><%=rs1.getString("quantity") %></b></h4></td>
@@ -256,7 +256,7 @@ if((String)hs.getAttribute("name")==null){
 					    y=y*100;
 						y=(int)y;
 						y=y/100;
-						System.out.println("before"+quantity+" after"+y);
+						//System.out.println("before"+quantity+" after"+y);
 		  			}
 
 	          	%>  
@@ -272,7 +272,7 @@ if((String)hs.getAttribute("name")==null){
 			    
 			    DecimalFormat two = new DecimalFormat("#.##");
 			     Double.valueOf(two.format(x));
-				System.out.println("before"+average+" after"+x);
+				//System.out.println("before"+average+" after"+x);
 		  	}
 		  		%>
 		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("--");}%></b></h4></td>
@@ -297,7 +297,7 @@ if((String)hs.getAttribute("name")==null){
 		}
 		else
 		{
-			 System.out.println("Inside else....");
+			// System.out.println("Inside else....");
 			 out.println("<div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b>No lot entries found, hence, auction details are not available.</b></p></div>");
 		}
 	}
@@ -347,8 +347,8 @@ catch(Exception e)
 			date+=resultSet.getString("Date");
 			slot+=resultSet.getString("slotnumber");
 			
-			System.out.println("date="+date);
-			System.out.println("slot="+slot);
+			//System.out.println("date="+date);
+			//System.out.println("slot="+slot);
 			
 			}
 		}
@@ -599,7 +599,11 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{	
-						
+						if (window.location.href.indexOf('reload')==-1) {
+					         window.location.replace(window.location.href+'?reload');
+					    }
+						else
+						{
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 
@@ -707,13 +711,17 @@ function countdown(minutes,seconds,hours)
 		            			minutes1=res2;
 		            	}
 		            	count(minutes1,seconds1);
-	        			
+						}
+					
+						}
+						
 					}
 				}
-			}		       
+			}
+		 tick();
  		}
- tick();
-}
+
+
 
  console.log("count"+timedif);
 				
