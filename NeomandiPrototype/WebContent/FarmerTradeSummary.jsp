@@ -621,7 +621,7 @@ var etime=document.getElementById("etime").value;
 				
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
-		else if(slot==s2){
+	/*	//else if(slot==s2){
 			var Etime=document.getElementById("time").value;
 			var Btime=stime;
 			var Btime1=etime;
@@ -792,7 +792,7 @@ var etime=document.getElementById("etime").value;
 			timedif=diff+five;
 			console.log("count"+timedif);
 			
-		}
+		}*/
 		//---------------------for count down timer----------------------------------	
 			
 function countdown(minutes,seconds,hours) 

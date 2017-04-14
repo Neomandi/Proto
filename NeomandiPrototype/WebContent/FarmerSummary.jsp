@@ -447,7 +447,7 @@ var etime=document.getElementById("etime").value;
 				
 			}
 		//--------------------------for slot2------------------------------------------------------------------------
-		else if(slot==s2){
+		/*else if(slot==s2){
 			var Etime=document.getElementById("time").value;
 			var Btime=stime;
 			var Btime1=etime;
@@ -618,7 +618,7 @@ var etime=document.getElementById("etime").value;
 			timedif=diff+five;
 			console.log("count"+timedif);
 			
-		}
+		}*/
 		//---------------------for count down timer----------------------------------	
 			
 function countdown(minutes,seconds,hours) 
@@ -734,15 +734,36 @@ function countdown(minutes,seconds,hours)
 	        		     	}
 	        		   	 	tick();
 	        			}		
-		            	var Etime1=document.getElementById("time").value;
+		            	<%
+		            	String pattern = "HH:mm:ss";
+		            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+		            	String start1 = simpleDateFormat.format(new Date());	
+		            	String stop1=(String)context.getAttribute("endtime");						            	
+		            	
+		            	Date d1 = new SimpleDateFormat(pattern).parse(start1);
+		            	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+		            	long diffMs = d2.getTime() - d1.getTime();
+		            	long diffSec = diffMs / 1000;
+		            	long min = diffSec / 60;
+		            	long sec = diffSec % 60;
+        		%>
+		            	var d = new Date(); // for now
+		            	d.getHours(); // => 9
+		            	d.getMinutes(); // =>  30
+		            	d.getSeconds();
+		            	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		            	
 		            	start1 = Etime1.split(":");
 		            	end1 =Btime1.split(":");
 		            	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
 		            	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
 		            	var td = endDate1.getTime() - startDate1.getTime();					            	
 		            	var hours1 = Math.floor(td / 1000 / 60 / 60);
-		            	var seconds1= Math.floor(td /1000);
-		            	var minutes1 = Math.floor(td / 1000 / 60);
+		            	//var seconds1= Math.floor(td /1000);
+		            	//var minutes1 = Math.floor(td / 1000 / 60);
+		            	var seconds1= <%=sec%>
+				            	
+				        var minutes1 = <%=min%>
 		            	var res1;
 		            	var res2;
 		            	if(seconds1>60)

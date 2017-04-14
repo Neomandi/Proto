@@ -446,7 +446,7 @@ catch(Exception e)
 				
 			}
 			//-----------------------for slot2--------------------------------------------------------------------
-			if(slot==s2)
+			/*if(slot==s2)
 			{
 				var Etime=document.getElementById("time").value;
 				var Btime=stime;
@@ -538,7 +538,7 @@ catch(Exception e)
 				}
 			/*	console.log("differences in minutes is "+minutes);
 				console.log("differences in seconds is "+seconds);
-				console.log("differences in hours is "+hours);*/
+				console.log("differences in hours is "+hours);
 
 				var timedifference=+hours+":"+minutes+":"+seconds;
 				//console.log("differences in time is "+timedifference);
@@ -547,7 +547,7 @@ catch(Exception e)
 
 				var five=300000;
 				timedif=diff+five;
-				console.log("count"+timedif);
+				console.log("count"+timedif);*/
 					
 				
 		//---------------------for count down timer----------------------------------	
