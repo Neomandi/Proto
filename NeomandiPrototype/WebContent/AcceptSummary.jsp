@@ -127,6 +127,10 @@ if((String)hs.getAttribute("name")==null){
 	    String lotsize=(String)hsr.getAttribute("lotsize");
 	    String quantitysold=(String)hsr.getAttribute("quantitysold");
 	    String averageprice=(String)hsr.getAttribute("averageprice");
+	    if( averageprice==null && quantitysold==null){
+	    	averageprice="0";
+	    	quantitysold="0";
+	    }
 	    double aprice=Double.parseDouble(averageprice);
 	    aprice=aprice*100;
 	    aprice=(int)aprice;
