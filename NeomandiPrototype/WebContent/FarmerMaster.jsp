@@ -71,9 +71,22 @@ body {
 		    background-size:cover;
 		}
     </style>
+    <style>
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+body { font-family: "Noto Sans Kannada", sans-serif; font-size: 19.0px; line-height: 1.11em; }
+</style>
+
 </head>
 
 <body class="" >
+   <!--  <div style="position:top right;">
+    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,kn,ta,te', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+    </div>-->
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
@@ -97,9 +110,9 @@ if((String)hs.getAttribute("name")==null){
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
     <li class="active"><a href="FarmerMaster.jsp"> Auction </a></li>
-    <li><a href="Lotdetails.jsp"> My Lots </a></li>
+    <li><a href="Lotdetails.jsp"> Lot details </a></li>
     <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-    <li><a href="FarmerProfile.jsp">My Profile</a></li>
+    <li><a href="FarmerProfile.jsp"> Profile</a></li>
     <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
 </div>
@@ -382,6 +395,9 @@ catch(Exception e)
 			var Etime=document.getElementById("time").value;
 			var stime=document.getElementById("stime").value;
 			var etime=document.getElementById("etime").value;
+			
+			
+			
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
 			var s1="slot1";
@@ -391,6 +407,12 @@ catch(Exception e)
 			var timedif;
 			var Btime1;
 			var diff;
+
+			  document.getElementById('ts').onclick = function() {
+
+				  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+
+			  }	
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(slot==s1)
 			{
@@ -399,6 +421,7 @@ catch(Exception e)
 				var Btime1=etime;
 				//console.log("Btime="+Btime);
 				//console.log("Btime1="+Btime1);
+				
 				start = Etime.split(":");
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -558,7 +581,7 @@ function countdown(minutes,seconds,hours)
 
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 
 	  }	
 	 
@@ -582,7 +605,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	//swal("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -633,7 +656,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	//swal("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}		        		            
 		        		        } 
 		        		        else 
@@ -656,7 +679,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		           location="http://neomandi.in/GetSummary.do";
+			        		           location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -726,10 +749,10 @@ function countdown(minutes,seconds,hours)
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
   </script> 
   

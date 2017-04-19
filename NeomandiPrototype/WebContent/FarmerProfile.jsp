@@ -70,8 +70,10 @@ body {
 		    background-size:cover;
 		}
 </style>
+
 </head>
 <body class="">
+
     <div class="logo_relative">
         <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
         <div class="container-fluid headertop">
@@ -243,7 +245,7 @@ body {
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="pin">Pin</label>
+                                    <label for="pin">PIN</label>
                                 </td>
                             </tr>
                             <tr>

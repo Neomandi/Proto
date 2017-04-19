@@ -79,6 +79,7 @@ body {
     </head>
 
     <body class="">
+ 
         <div class="logo_relative">
             <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
             <div class="container-fluid headertop">
@@ -129,6 +130,11 @@ body {
 	    String lotsize=(String)hsr.getAttribute("lotsize");
 	    String quantitysold=(String)hsr.getAttribute("quantitysold");
 	    String averageprice=(String)hsr.getAttribute("averageprice");
+	    if( averageprice==null && quantitysold==null){
+	    	averageprice="0";
+	    	quantitysold="0";
+	    }
+	    
 	    double aprice=Double.parseDouble(averageprice);
 	    aprice=aprice*100;
 	    aprice=(int)aprice;

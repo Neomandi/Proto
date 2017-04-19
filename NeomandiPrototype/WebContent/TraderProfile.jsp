@@ -177,7 +177,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="pin">Pin</label>
+                                    <label for="pin">PIN</label>
                                 </td>
                             </tr>
                             <tr>
