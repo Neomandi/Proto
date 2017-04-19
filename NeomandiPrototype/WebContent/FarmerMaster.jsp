@@ -79,6 +79,8 @@ body { font-family: "Noto Sans Kannada", sans-serif; font-size: 19.0px; line-hei
 </head>
 
 <body class="" >
+
+
    <!--  <div style="position:top right;">
     <div id="google_translate_element"></div><script type="text/javascript">
 function googleTranslateElementInit() {
@@ -110,7 +112,7 @@ if((String)hs.getAttribute("name")==null){
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
     <li class="active"><a href="FarmerMaster.jsp"> Auction </a></li>
-    <li><a href="Lotdetails.jsp"> Lot details </a></li>
+    <li><a href="Lotdetails.jsp"> My lots</a></li>
     <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
     <li><a href="FarmerProfile.jsp"> Profile</a></li>
     <li ><a href="FarmerSummaryInt.jsp">History</a></li>

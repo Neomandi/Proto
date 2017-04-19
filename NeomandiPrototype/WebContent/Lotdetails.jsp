@@ -150,8 +150,9 @@ if((String)hs.getAttribute("name")==null){
 <thead><tr>
           <td></td>
 	  <td><h4>Lot Number</h4></td>
-	  <td><h4>Produce</h4></td>
+	  
 	  <td><h4>Product</h4></td>
+	  <td><h4>Produce</h4></td>
 	  <td><h4>Grade</h4></td>
 	  <td><h4>Quantity(kg)</h4></td>
 	  <td></td><td></td>
@@ -225,7 +226,13 @@ if((String)hs.getAttribute("name")==null){
 					
 						
 		%>
-	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td><td><h4  style="color:#000080"><%=rs1.getString("produce")%></h4></td><td><h4  style="color:#000080"><%=product%></h4></td><td><h4  style="color:#000080"><%=grade%></h4></td><td><h4  style="color:#000080"><%=quantity %></h4></td><td></td></tr>
+	<tr class="gradeX"><td></td><td><button type="button" class="btn popup" data-toggle="modal" data-target="#myModal1" style="color:#000080; border-radius:9px; border: 1px solid #808080;"> <%=lotnumber %></button></td>
+
+	<td><h4  style="color:#000080"><%=product%></h4></td>
+	<td><h4  style="color:#000080"><%=rs1.getString("produce")%></h4></td>
+	<td><h4  style="color:#000080"><%=grade%></h4></td>
+	<td><h4  style="color:#000080"><%=quantity %></h4></td>
+	<td></td></tr>
 	 
 		                        <%
 					}
