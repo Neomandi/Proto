@@ -71,10 +71,7 @@ body {
 		    background-size:cover;
 		}
     </style>
-    <style>
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
-body { font-family: "Noto Sans Kannada", sans-serif; font-size: 19.0px; line-height: 1.11em; }
-</style>
+    
 
 </head>
 
