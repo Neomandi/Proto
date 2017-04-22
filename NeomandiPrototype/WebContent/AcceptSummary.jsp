@@ -154,6 +154,10 @@
          averageprice="0";
          quantitysold="0";
          }
+         else if(averageprice.equals("0") && quantitysold.equals("0")){
+        	 averageprice="0";
+             quantitysold="0";
+         }
          double aprice=Double.parseDouble(averageprice);
          aprice=aprice*100;
          aprice=(int)aprice;

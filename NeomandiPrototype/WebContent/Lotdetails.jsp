@@ -80,19 +80,21 @@
 						}
 							String name=(String)hs.getAttribute("name"); %>
 					<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-						<p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p>
-					</div>
+						<p style="font-size:16px; color:white;" class="english"><%=name %>,&nbsp;welcome to e-auction at NeoMandi.</p> 
+             		</div>
 					<div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="Login.html"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 				</div>
 			</div>
 			<div class="container-fluid tradtab">
 				<div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
 					<ul class="nav nav-tabs">
-						<li><a href="FarmerMaster.jsp">Auction</a></li>
-						<li class="active"><a href="Lotdetails.jsp">My Lots</a></li>
-						<li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-						<li><a href="FarmerProfile.jsp">My Profile</a></li>
-						<li><a href="FarmerSummaryInt.jsp">History</a></li>
+				  		<li ><a href="FarmerMaster.jsp"> Auction </a></li> 
+                  		<li class="active"><a href="Lotdetails.jsp" >My lots</a></li>
+                  		<li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
+                  		<li><a href="FarmerProfile.jsp" > Profile</a></li>
+                  		<li ><a href="FarmerSummaryInt.jsp" >History</a></li>
+              
+              
 					</ul>
 				</div>
 			</div>
@@ -148,13 +150,13 @@
 									<h4>Lot Number</h4>
 								</td>
 								<td>
-									<h4>Product</h4>
+									<h4 >Product</h4>
 								</td>
 								<td>
-									<h4>Produce</h4>
+									<h4 >Produce</h4>
 								</td>
 								<td>
-									<h4>Grade</h4>
+									<h4> Grade</h4>
 								</td>
 								<td>
 									<h4>Quantity(kg)</h4>
@@ -277,25 +279,32 @@
 				</div>
 			</div>
 		</div>
-		<!---------modal image--------------->
-		<div class="modal fade" id="myModal1" role="dialog">
-			<div class="modal-dialog">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Product Image</h4>
-					</div>
-					<div class="modal-body">
-						<img src="<%=imgsrc%>" class="img-responsive trad" id="image">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--------modal image end------------>   
+		 
+  <!---------modal image--------------->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title english">Product Image</h4>
+                         <h4 class="modal-title kannada">&#3209;&#3236;&#3277;&#3242;&#3240;&#3277;&#3240;&#3238; &#3226;&#3263;&#3236;&#3277;&#3248;</h4>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <img src="<%=imgsrc%>" class="img-responsive trad" id="image">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default english" data-dismiss="modal">Close</button>
+                    	<button type="button" class="btn btn-default kannada" data-dismiss="modal">&#3246;&#3265;&#3226;&#3277;&#3226;&#3263;</button>
+                    	
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<!--------modal image end------------>    
 		<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.js" type="text/javascript"></script>
 		<div id="msg" style="visibility:hidden;" ></div>
@@ -736,5 +745,33 @@
 			 
 			 
 		</script>
+		<script type="text/javascript">
+ $(document).ready(function()
+ {
+     $('.english').fadeIn(500);
+     $('.kannada').fadeOut(500);
+ });
+
+
+ function changeLang()
+ {
+     var language = document.getElementById('change').innerHTML;
+    
+     if(language === "Kannada")
+     {
+         $('.english').fadeOut(500);
+         $('.kannada').fadeIn(500);
+         document.getElementById('change').innerHTML = "English";
+     }
+   
+     else if(language === "English")
+     {
+         $('.kannada').fadeOut(500);
+         $('.english').fadeIn(500);
+         document.getElementById('change').innerHTML = "Kannada";
+     }
+
+ }
+ </script>
 	</body>
 </html>
