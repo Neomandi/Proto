@@ -197,7 +197,7 @@ border-top:0px solid #fff !important;
 }
 </style>
 </head>
-<body class="" >
+<body class="" id="body">
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
@@ -2681,6 +2681,13 @@ try
 <script>
 var tt = $( window ).height();
 $(".maindiv").height(parseInt(tt)-60);
+</script>
+
+<script type="text/javascript">
+$('#body').css('opacity', 0);
+$(window).load(function() {
+  $('#body').css('opacity', 1);
+});
 </script>
 </body>
 </html>
