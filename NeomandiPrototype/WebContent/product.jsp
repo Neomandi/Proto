@@ -3,7 +3,7 @@
     java.io.BufferedInputStream,java.io.FileInputStream,java.awt.Image,javax.imageio.ImageIO,java.io.IOException,
     java.io.InputStream,java.sql.Blob,java.sql.Connection, java.sql.ResultSet,java.sql.SQLException, java.sql.Statement,
     java.awt.image.BufferedImage,java.io.ByteArrayInputStream,com.neomandi.prototype.TraderLoginBean,java.io.ByteArrayOutputStream,
-    java.io.File,java.io.IOException,java.io.InputStream,javax.imageio.ImageIO" errorPage="Error.jsp"%>
+    java.io.File,java.io.IOException,java.io.InputStream,javax.imageio.ImageIO,java.text.DateFormat,java.util.Date" errorPage="Error.jsp"%>
     <html>
     <head>
     <script src="js/sweetalert.min.js"></script>
@@ -238,10 +238,16 @@
                                     <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
                                     <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
                                 </select>
-                            </td>
+                            </td>                            
+							<%
+							 	
+							/* Date now=new Date();
+							DateFormat.getTimeInstance(DateFormat.MEDIUM).format(now);
+							System.out.println(DateFormat.getTimeInstance(DateFormat.MEDIUM).format(now));
+							 */%>							
                             <td>
                             <%
-                            	ServletContext context = request.getSession().getServletContext();
+                            ServletContext context = request.getSession().getServletContext();		
                             try
                             {
                             	System.out.println("starttime is "+(String)context.getAttribute("starttime"));
@@ -249,14 +255,30 @@
                             	{
 	                        		String start=(((String)context.getAttribute("starttime")).split(":"))[0]+":"+(((String)context.getAttribute("starttime")).split(":"))[1];
 	                        		String stop=(((String)context.getAttribute("endtime")).split(":"))[0]+":"+(((String)context.getAttribute("endtime")).split(":"))[1];
-                        		%>
+                        		%>                        		
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base">Auction Slot</option>                                  
-                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}>Slot 1 (<%=start %>-<%=stop %>)</option>                                                                      
+                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}>Slot 1 (<div id="sd"></div>-<div id="ed"></div>)</option>                                                                      
                                     <option value="slot2" ${param.slot == 'slot2' ? 'selected' :''}>Slot 2 (10:40-10:45)</option>
                                     <option value="slot3" ${param.slot == 'slot3' ? 'selected' :''}>Slot 3 (10:50-10:55)</option>
                                 </select>
                             </td>
+                           <%--  <script>
+									var sd1 = new Date('04/13/2017 <%=(String)context.getAttribute("starttime")%> PM UTC+05:30');
+									var ed = new Date('04/13/2017 <%=(String)context.getAttribute("endtime")%> PM UTC+05:30');
+									console.log(sd1.toString());
+									var sd=sd1.toString();
+									var start=sd.split(":");
+									console.log(start[0]);
+									var s=start[0].split(" ");
+									console.log(s[4])
+									console.log(start[1]);
+									console.log(start[2]);
+									var st=s[4]+":"+start[1]+":"+start[2];
+									
+									document.getElementById("sd").textContent=st;
+									document.getElementById("ed").textContent=ed.toString();
+							</script> --%>
                             <%}
                             	else{
                             		%>

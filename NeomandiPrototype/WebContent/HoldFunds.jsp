@@ -220,7 +220,7 @@ else
 	  		  {
 	  			 	swal("PLEASE ENTER AMOUNT TO BE HELD ");	  			  	
 	  		  }
-	  		  if(hold.length>6)
+	  		  if(hold.length>7)
 			  {
 	  			  swal("Please enter valid amount ");
 			  }
