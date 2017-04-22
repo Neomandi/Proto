@@ -71,9 +71,21 @@ body {
 		    background-size:cover;
 		}
     </style>
+    
+
 </head>
 
 <body class="" >
+
+
+   <!--  <div style="position:top right;">
+    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,kn,ta,te', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+    </div>-->
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
@@ -97,9 +109,9 @@ if((String)hs.getAttribute("name")==null){
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
     <li class="active"><a href="FarmerMaster.jsp"> Auction </a></li>
-    <li><a href="Lotdetails.jsp"> My Lots </a></li>
+    <li><a href="Lotdetails.jsp"> My lots</a></li>
     <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-    <li><a href="FarmerProfile.jsp">My Profile</a></li>
+    <li><a href="FarmerProfile.jsp"> Profile</a></li>
     <li ><a href="FarmerSummaryInt.jsp">History</a></li>
   </ul>
 </div>
@@ -116,9 +128,9 @@ if((String)hs.getAttribute("name")==null){
 	<!--   <div id="div">Auction yet to happen, hence, no  Lot details is available.</div>-->
 	 <% 
 // }else{
-	 		System.out.println("inside else");
+	 		//System.out.println("inside else");
 	     	String pass=(String)hs.getAttribute("pass"); 
- 		     System.out.println("original password="+pass);
+ 		    // System.out.println("original password="+pass);
  		   String starttime=(String)hs.getAttribute("starttime"); 
  		 
  		 String endtime=(String)hs.getAttribute("endtime"); 
@@ -128,13 +140,13 @@ if((String)hs.getAttribute("name")==null){
 		  ServletContext context = request.getSession().getServletContext();
 			starttime=(String)context.getAttribute("starttime");
 			endtime=(String)context.getAttribute("endtime");
-			System.out.println("in farmer page starttime="+starttime);
-			System.out.println("in farmer page endtime="+endtime);
+			//System.out.println("in farmer page starttime="+starttime);
+			//System.out.println("in farmer page endtime="+endtime);
 	     	// String time=(String)hs.getAttribute("time");
 	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
 	     	String time=df1.format(new Date());
-		 	System.out.println("password="+pass);
-			System.out.println("new time="+time);
+		 	//System.out.println("password="+pass);
+		//	System.out.println("new time="+time);
 			HttpSession hs1=request.getSession(false);  
 	   	     hs1.setAttribute("pass",pass); 
 		     Connection con = null;
@@ -200,28 +212,28 @@ if((String)hs.getAttribute("name")==null){
 	
 	if(con == null)
 	{
-		System.out.println("Connection not established.");
+		//System.out.println("Connection not established.");
 	}
 	else
 	{
 		String sql = "select * from productentry where farmerid='"+s+"'";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		System.out.println(sql);
-		System.out.println(rs);
+		//System.out.println(sql);
+	//	System.out.println(rs);
 		//System.out.println(rs.getRow());
 		//System.out.println(rs.first());
 		String lotnumber1=null;
 		if(rs.next())
 		{
 			lotnumber1 = rs.getString("lotnumber");
-			System.out.println("lotnumber="+lotnumber1);
+			//System.out.println("lotnumber="+lotnumber1);
 		}
 		
 	
 		if(lotnumber1!=null)
 		{
-			System.out.println("Inside if....");
+			//System.out.println("Inside if....");
 			
 				String sql2 = "select slotnumber,produce,qualitygrade,lotnumber,quantity,averageprice,quantitybidfor from productentry where farmerid='"+s+"' ";
 				pstmt1 = con.prepareStatement(sql2);
@@ -243,7 +255,7 @@ if((String)hs.getAttribute("name")==null){
 		  		else{
 		  			imgsrc="ProductImages/"+rs1.getString("produce")+"-"+rs1.getString("qualitygrade")+".jpg";
 		  		}
-			   System.out.println("in farmer master lotnumber="+lotnumber);
+			 //  System.out.println("in farmer master lotnumber="+lotnumber);
 			%>
 		 	 <td> <button type="button" class="btn popup" data-toggle="modal" data-target="#myModal" style="color:#000080"><%=lotnumber %></button></td>
 		  <td><h4 style="color:#000080;text-align:center;"><b><%=rs1.getString("quantity") %></b></h4></td>
@@ -256,7 +268,7 @@ if((String)hs.getAttribute("name")==null){
 					    y=y*100;
 						y=(int)y;
 						y=y/100;
-						System.out.println("before"+quantity+" after"+y);
+						//System.out.println("before"+quantity+" after"+y);
 		  			}
 
 	          	%>  
@@ -272,7 +284,7 @@ if((String)hs.getAttribute("name")==null){
 			    
 			    DecimalFormat two = new DecimalFormat("#.##");
 			     Double.valueOf(two.format(x));
-				System.out.println("before"+average+" after"+x);
+				//System.out.println("before"+average+" after"+x);
 		  	}
 		  		%>
 		  		<td><h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("--");}%></b></h4></td>
@@ -297,7 +309,7 @@ if((String)hs.getAttribute("name")==null){
 		}
 		else
 		{
-			 System.out.println("Inside else....");
+			// System.out.println("Inside else....");
 			 out.println("<div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b>No lot entries found, hence, auction details are not available.</b></p></div>");
 		}
 	}
@@ -347,8 +359,8 @@ catch(Exception e)
 			date+=resultSet.getString("Date");
 			slot+=resultSet.getString("slotnumber");
 			
-			System.out.println("date="+date);
-			System.out.println("slot="+slot);
+			//System.out.println("date="+date);
+			//System.out.println("slot="+slot);
 			
 			}
 		}
@@ -382,6 +394,9 @@ catch(Exception e)
 			var Etime=document.getElementById("time").value;
 			var stime=document.getElementById("stime").value;
 			var etime=document.getElementById("etime").value;
+			
+			
+			
 			var slot=document.getElementById("slot").value;
 			var date=document.getElementById("date").value;
 			var s1="slot1";
@@ -391,6 +406,12 @@ catch(Exception e)
 			var timedif;
 			var Btime1;
 			var diff;
+
+			  document.getElementById('ts').onclick = function() {
+
+				  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+
+			  }	
 			//-----------------------for slot1-----------------------------------------------------------------------------
 			if(slot==s1)
 			{
@@ -399,6 +420,7 @@ catch(Exception e)
 				var Btime1=etime;
 				//console.log("Btime="+Btime);
 				//console.log("Btime1="+Btime1);
+				
 				start = Etime.split(":");
 				end =Btime.split(":");
 				var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
@@ -446,7 +468,7 @@ catch(Exception e)
 				
 			}
 			//-----------------------for slot2--------------------------------------------------------------------
-			if(slot==s2)
+			/*if(slot==s2)
 			{
 				var Etime=document.getElementById("time").value;
 				var Btime=stime;
@@ -538,7 +560,7 @@ catch(Exception e)
 				}
 			/*	console.log("differences in minutes is "+minutes);
 				console.log("differences in seconds is "+seconds);
-				console.log("differences in hours is "+hours);*/
+				console.log("differences in hours is "+hours);
 
 				var timedifference=+hours+":"+minutes+":"+seconds;
 				//console.log("differences in time is "+timedifference);
@@ -547,7 +569,7 @@ catch(Exception e)
 
 				var five=300000;
 				timedif=diff+five;
-				console.log("count"+timedif);
+				console.log("count"+timedif);*/
 					
 				
 		//---------------------for count down timer----------------------------------	
@@ -558,7 +580,7 @@ function countdown(minutes,seconds,hours)
 
 	  document.getElementById('ts').onclick = function() {
 
-		  location="http://neomandi.in/FarmerSummary.jsp";
+		  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 
 	  }	
 	 
@@ -582,7 +604,7 @@ function countdown(minutes,seconds,hours)
 	            document.getElementById('ts').onclick = function() {
 		            	//swal("Auction under progress");
 		            	
-		            	   window.location="http://neomandi.in/BeforeAuction.do";
+		            	   window.location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 		            	}
 	        } 
 	        else 
@@ -599,7 +621,11 @@ function countdown(minutes,seconds,hours)
 	 				}	
 					else
 					{	
-						
+						if (window.location.href.indexOf('reload')==-1) {
+					         window.location.replace(window.location.href+'?reload');
+					    }
+						else
+						{
 						
 		            	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
 
@@ -629,7 +655,7 @@ function countdown(minutes,seconds,hours)
 		        		            setTimeout(tick,1000);
 		        		            document.getElementById('ts').onclick = function() {
 		        		            	//swal("Auction under progress");
-		        		            	   location="http://neomandi.in/DuringAuction.do";
+		        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 		        		            	}		        		            
 		        		        } 
 		        		        else 
@@ -652,7 +678,7 @@ function countdown(minutes,seconds,hours)
 						            	var hideTimer = setTimeout(strCmd3, timeOutPeriod);
 						            	
 						            	document.getElementById('ts').onclick = function() {
-			        		           location="http://neomandi.in/GetSummary.do";
+			        		           location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 
 			        		            }
 						            	if(document.getElementById("auction1")!=null){
@@ -707,21 +733,25 @@ function countdown(minutes,seconds,hours)
 		            			minutes1=res2;
 		            	}
 		            	count(minutes1,seconds1);
-	        			
+						}
+					
+						}
+						
 					}
 				}
-			}		       
+			}
+		 tick();
  		}
- tick();
-}
+
+
 
  console.log("count"+timedif);
 				
  function accept(){
-	 window.location="http://neomandi.in/AcceptSummary.do";
+	 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
  }
  function reject(){
-   	 window.location="http://neomandi.in/RejectSummary.do";
+   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
     }
   </script> 
   

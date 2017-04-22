@@ -96,6 +96,22 @@ public class ControllerServlet extends HttpServlet {
 			SchedulerServlet.process(starttime, endtime, flag);
 		}
 		
+		if(uri.contains("openLang")){
+			
+			RequestDispatcher rdl=request.getRequestDispatcher("HomePage.jsp");
+			try 
+			{
+				rdl.forward(request, response);			
+			}			
+			catch (ServletException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
 		if(uri.contains("EmployeeRegister"))
 		{
 			System.out.println("********************************************");

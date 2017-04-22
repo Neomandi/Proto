@@ -76,6 +76,7 @@ $('#myCarousel').on('slid.bs.carousel', function (ev) {
 </head>
 
 <body class="" onkeypress="myFunction(event)">
+
  <%
 if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errmsg")).contains("Username does not exist ")))
 {    
