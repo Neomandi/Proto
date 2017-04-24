@@ -20,8 +20,6 @@ Welcome To NeoMandi
 Please select a language:</p>
 <form action="openLang.do" method="post" align="center">
 English <input type="radio" name="lang" value="English" checked>
-Deutsch <input type="radio" name="lang" value="German">
-Français <input type="radio" name="lang" value="French">
 &#3221;&#3240;&#3277;&#3240;&#3233; <input type="radio" name="lang" value="Kannada">
 <input type="submit" value="Continue">
 </form>
