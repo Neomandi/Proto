@@ -103,7 +103,7 @@
                   }
                   	String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                  <p style="font-size:16px; color:white;" ><%=name %>,&nbsp;&nbsp;welcome to e-auction at NeoMandi. </p> 
+                  <p style="font-size:15px; color:white;" ><%=name %>,&nbsp;&nbsp;<%=session.getValue("f.welcome") %> </p> 
              
                </div>
                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
@@ -112,11 +112,11 @@
          <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
                <ul class="nav nav-tabs">
-                  <li class="active"><a href="FarmerMaster.jsp"> Auction </a></li> 
-                  <li><a href="Lotdetails.jsp">My lots</a></li>
-                  <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-                  <li><a href="FarmerProfile.jsp" > Profile</a></li>
-                  <li ><a href="FarmerSummaryInt.jsp" >History</a></li>
+                  <li class="active"><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
+                  <li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
+                  <li><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  <li><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
+                  <li ><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
             </div>
          </div>
@@ -181,28 +181,28 @@
                      <tr>
                         <td></td>
                         <td>
-                           <h4 >Lot Number</h4>
+                           <h4 ><%= session.getValue("f.lotnumber")%></h4>
                         </td>
                         <td>
-                           <h4 >Lot Size(kg)</h4>
+                           <h4 ><%= session.getValue("f.lotsize")%></h4>
                         </td>
                         <td>
-                           <h4 >Quantity sold(kg)</h4>
+                           <h4 ><%=session.getValue("f.quantitysold")%></h4>
                         </td>
                         <td>
-                           <h4>Avg Price(Rs)</h4>
+                           <h4><%=session.getValue("f.averageprice")%></h4>
 
                         </td>
                         <td>
-                           <h4 >Accept</h4>
+                           <h4 ><%=session.getValue("f.accept")%></h4>
                           
                         </td>
                         <td>
-                           <h4 >Reject</h4>
+                           <h4 ><%=session.getValue("f.reject")%></h4>
                          
                          </td> 
                         <td>
-                           <h4 >Status</h4>
+                           <h4 ><%=session.getValue("f.status")%></h4>
                        
                         </td>
                         <td></td>
@@ -303,21 +303,21 @@
                            <h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("--");}%></b></h4>
                         </td>
                         <td>
-                           <button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Accept</button>
+                           <button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal"><%=session.getValue("f.accepted") %></button>
                         </td>
                         <td>
-                           <button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal">Reject</button>
+                           <button type="button" id="reject" class="btn reject" onclick="javascript:reject()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal"><%=session.getValue("f.rejected") %></button>
                         </td>
                         <td class="clsnowrap" >
                            <b>
                               <h4>
                                  <b>
-                                    <div id="msg"  style="display:inline; color:#000080;" >Auction will begin in</div>
-                                    &nbsp;&nbsp;
+                                   
                                    
                                    
                                        <div id="timer" style="display:inline;  color:#000080; " ></div> &nbsp;&nbsp;
-                                   
+                                    <div id="msg"  style="display:inline; color:#000080;" ><%=session.getValue("f.before") %></div>
+                                    &nbsp;&nbsp;
                                     <div id="auction" style="display:inline;  color:#000080; "></div>
                                     <div id="auction1" style="display:inline;  color:#000080;"></div>
                                  </b>
@@ -331,9 +331,10 @@
                         }
                         else
                         {
-                        // System.out.println("Inside else....");
-                        out.println("<div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b>No lot entries found, hence, auction details are not available.</b></p></div>");
-                        }
+                        	%>
+                        
+                       <div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b>No lot entries found, hence, auction details are not available.</b></p></div>
+                      <%   }
                         }
                         }
                         catch(Exception e)
@@ -354,16 +355,16 @@
             <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title english" >Product Image</h4>
-                   <h4 class="modal-title kannada">&#3209;&#3236;&#3277;&#3242;&#3240;&#3277;&#3240;&#3238; &#3226;&#3263;&#3236;&#3277;&#3248;</h4>
-               </div>
+                    <h4 class="modal-title"><%=session.getValue("f.productimage") %></h4>
+                 
+                   </div>
                <div class="modal-body">
                   <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%" id="image">
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-default english" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn btn-default kannada" data-dismiss="modal">&#3246;&#3265;&#3226;&#3277;&#3226;&#3263;</button>
-               </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><%=session.getValue("f.close")%></button>
+                  
+                </div>
             </div>
          </div>
       </div>

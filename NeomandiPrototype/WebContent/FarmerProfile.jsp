@@ -82,7 +82,7 @@
                   }
                   String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                  <p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p>
+                  <p style="font-size:16px; color:white;"><%=name %>,<%=session.getValue("f.welcome") %>.</p>
                </div>
                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
@@ -95,11 +95,11 @@
          <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
                <ul class="nav nav-tabs">
-                  <li><a href="FarmerMaster.jsp">Auction</a></li>
-                  <li><a href="Lotdetails.jsp">My Lots</a></li>
-                  <li><a class="classbeauty" id="ts" href="#"> Summary </a></li>
-                  <li class="active"><a href="FarmerProfile.jsp">My Profile</a></li>
-                  <li><a href="FarmerSummaryInt.jsp">History</a></li>
+                  <li ><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
+                  		<li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
+                  		<li ><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  		<li  class="active"><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
+                  		<li><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
             </div>
          </div>
@@ -107,7 +107,7 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 det">
-               <h4 style="color:black;">My Details</h4>
+               <h4 style="color:black;"><%=session.getValue("profile.details") %></h4>
                <div class="detail">
                   <%	 	
                      String pass=(String)hs.getAttribute("pass");  
@@ -152,7 +152,7 @@
                      <table class="table" id="basic-table">
                         <tr>
                            <td>
-                              <label for="name">Name</label>
+                              <label for="name"><%=session.getValue("profile.name") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -162,7 +162,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="aadhar">Aadhar Number</label>
+                              <label for="aadhar"><%=session.getValue("profile.aadhar") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -172,7 +172,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="mobno">Mobile Number</label>
+                              <label for="mobno"><%=session.getValue("profile.mobile") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -182,7 +182,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="email">Email:</label>
+                              <label for="email"><%=session.getValue("profile.email") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -192,7 +192,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="address">Address</label>
+                              <label for="address"><%=session.getValue("profile.address") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -202,7 +202,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="name">State</label>
+                              <label for="name"><%=session.getValue("profile.state") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -212,7 +212,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="name">District</label>
+                              <label for="name"><%=session.getValue("profile.district") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -222,7 +222,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="name">Taluk</label>
+                              <label for="name"><%=session.getValue("profile.taluk") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -232,7 +232,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="pin">PIN</label>
+                              <label for="pin"><%=session.getValue("profile.PIN") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -245,13 +245,13 @@
                </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-offset-1 col-xs-10 aut">
-               <h4 style="color:black;">My Account Details</h4>
+               <h4 style="color:black;"><%=session.getValue("profile.account") %></h4>
                <div class="bankacc">
                   <form>
                      <table class="table" id="tbl2">
                         <tr>
                            <td>
-                              <label for="aadhar">Bank Name</label>
+                              <label for="aadhar"><%=session.getValue("profile.bankname") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -261,7 +261,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="name">Account Number</label>
+                              <label for="name"><%=session.getValue("profile.Accountnumber") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -271,7 +271,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="address">IFSC</label>
+                              <label for="address"><%=session.getValue("profile.IFSC") %></label>
                            </td>
                         </tr>
                         <tr>
@@ -281,7 +281,7 @@
                         </tr>
                         <tr>
                            <td>
-                              <label for="mobno">Bank Branch</label>
+                              <label for="mobno"><%=session.getValue("profile.bankbranch") %></label>
                            </td>
                         </tr>
                         <tr>

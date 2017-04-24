@@ -20,8 +20,7 @@ Welcome To NeoMandi
 Please select a language:</p>
 <form action="openLang.do" method="post" align="center">
 English <input type="radio" name="lang" value="English" checked>
-Deutsch <input type="radio" name="lang" value="German">
-Français <input type="radio" name="lang" value="French">
+
 &#3221;&#3240;&#3277;&#3240;&#3233; <input type="radio" name="lang" value="Kannada">
 <input type="submit" value="Continue">
 </form>
@@ -44,7 +43,7 @@ Français <input type="radio" name="lang" value="French">
      }
      session.putValue("myLocale",locale);
      ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
-     System.out.println(bundle.getBaseBundleName());
+     //System.out.println(bundle.getBaseBundleName());
      for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
          String key = (String)e.nextElement();
          String s = bundle.getString(key);
