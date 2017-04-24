@@ -60,17 +60,17 @@ function validateELForm()
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="HomePage.html">About Us</a></li>
-			        <li><a href="Vision.html">Vision</a></li>
-			        <li><a href="Mission.html">Mission</a></li>
-					<li><a href="Howitworks.html">How it works</a></li>
-			        <li><a href="News.html">News</a></li>
-					<li><a href="ContactUs.html">Contact Us</a></li>
+                    <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+			        <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
+			        <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+					<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+			        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+					<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 					<li class="dropdown">
-			          <a class="dropdown-toggle" href="Register.html">Register</a>
+			          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
 			          
 			        </li>
-			        <li  class="active"><a href="Login.html">Login</a></li>
+			        <li class="active"><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
                 </ul>
 
             </div>
@@ -87,7 +87,7 @@ function validateELForm()
                     <tbody>
                         <tr>
                             <td>
-                                <h2 class="text-center">Employee Login</h2></td>
+                                <h2 class="text-center"><%=session.getValue("employee.login.h2") %></h2></td>
                         </tr>
                         <tr>
                             <td>
@@ -101,11 +101,11 @@ function validateELForm()
                         </tr>
                         <tr align="center">
                             <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-							<td><button class="btn btn-primary" onclick="submitform();" style="width: 244px; border-radius:0px; background-color:#149DDA">Login</button></td><br/>
+							<td><button class="btn btn-primary" onclick="submitform();" style="width: 244px; border-radius:0px; background-color:#149DDA"><%=session.getValue("employee.login.button") %></button></td><br/>
 
                         </tr>
                         <tr align="center">
-                            <td><a href="" class="frgt">Forgot password?</a></td>
+                            <td><a href="" class="frgt"><%=session.getValue("employee.login.forgotpassword") %></a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -156,7 +156,7 @@
                   }
                   String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                  <p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p>
+                  <p style="font-size:16px; color:white;"><%=name %>,&nbsp;&nbsp;<%=session.getValue("f.welcome") %>.</p>
                </div>
                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
@@ -164,25 +164,25 @@
          <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
                <ul class="nav nav-tabs">
-                  <li><a href="FarmerMaster.jsp">Auction</a></li>
-                  <li><a href="Lotdetails.jsp">My Lots</a></li>
-                  <li ><a class="classbeauty" id="ts" href="#">Summary</a></li>
-                  <li><a href="FarmerProfile.jsp">My Profile</a></li>
-                  <li class="active"><a href="FarmerSummaryInt.jsp">History</a></li>
+                  <li ><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
+                  		<li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
+                  		<li ><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  		<li><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
+                  		<li class="active"><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
             </div>
          </div>
       </div>
       <div class="container-fluid  history">
          <div class="container">
-            <h2 style="font-weight:bold; color:black;">History</h2>
+            <h2 style="font-weight:bold; color:black;"><%=session.getValue("f.history") %>
          </div>
       </div>
       <div class="container from">
          <form action="FarmerHistory.do" method="post" name="historyForm" >
             <div class="datetable" align="center">
                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                  FROM
+                 <%=session.getValue("summary.from") %>
                   <div class='input-group date' id='from'  >
                      <input type='text' class="form-control" name="from" id='from' value="${param. from}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                      <script></script>
@@ -192,7 +192,7 @@
                   </div>
                </div>
                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">
-                  TO
+                    <%=session.getValue("summary.to") %>
                   <div class='input-group date' id='to'>
                      <input type='text' class="form-control" name="to" value="${param. to}" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                      <span class="input-group-addon">
@@ -209,7 +209,7 @@
       <%
          if(request.getAttribute("farmerhistory")==null){
          	%>
-      <div id="div1" >Please choose the dates above to get your trade history</div>
+      <div id="div1" ><%=session.getValue("history.message") %></div>
       <% 
          }
          if(request.getAttribute("farmerhistory")!=null)
@@ -217,10 +217,10 @@
          
          {
          if(request.getAttribute("farmerhistory").equals("no"))
-         {
-         out.println("<div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b>There are no trades recorded for this period.</b></p></div>");
+         {%>
+        <div id='div' style='position: absolute; top: 100px; left: 170px;'><p ><b><%=session.getValue("history.Emessage") %>.</b></p></div>
          
-         %>
+         
       <%
          } else if(request.getAttribute("farmerhistory").equals("success"))
          {%>
@@ -234,45 +234,45 @@
                      <tr>
                         <th></th>
                         <th style="text-align:center; color:white;">
-                           <h4 style="font-size:13px;margin: 22px;">Date/Time<br/></h4>
+                           <h4 style="font-size:13px;margin: 22px;"><%=session.getValue("history.date") %></h4>
                         </th>
                         <th style="text-align:center; color:white;margin: 5px auto;">
-                           <h4 style="font-size:13px;margin: 22px;">Farmer Name<br/></h4>
+                           <h4 style="font-size:13px;margin: 22px;"><%=session.getValue("history.fname") %></h4>
                         </th>
                         <!--  <th style="text-align:center; color:white;">
                            <h4 style="font-size:15px;">Farmer ID</h4></th>-->
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;margin: 22px;">Lot Number<br/></h4>
+                           <h4 style="font-size:13px;margin: 22px;"><%=session.getValue("history.lotnumber") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Lot Size<br/>(kg)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.lotsize") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Quantity<br/>(kg)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.quantitysold") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Avg. Price<br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.average") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Gross Earnings<br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.gross") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">TLC<sup>*</sup><br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.TLC") %>)</h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Market Cess<br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.Mcess") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">EPC<sup>#</sup><br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.EPC") %></h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">PMVA<sup>^</sup><br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.PMVA") %>)</h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">Deductions<br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.deduction") %>)</h4>
                         </th>
                         <th style="text-align:center; color:white">
-                           <h4 style="font-size:13px;">My Net Earnings<br/>(Rs)</h4>
+                           <h4 style="font-size:13px;"><%=session.getValue("history.Netearnings") %></h4>
                         </th>
                         <th></th>
                      </tr>

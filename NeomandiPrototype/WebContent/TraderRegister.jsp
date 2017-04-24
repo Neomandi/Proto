@@ -520,37 +520,37 @@ if(!(license.length >1) && (license.length < 10)){
 <!---menu bar------>
 
  <nav class="navbar navbar-inverse menu">
-  <div class="container-fluid">
-    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><img src="images/trad_logo.png" class="img-responsive" style="width: 65px; height: 60px;"></a>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li ><a href="HomePage.html">About Us</a></li>
-        <li><a href="Vision.html">Vision</a></li>
-        <li><a href="Mission.html">Mission</a></li>
-		<li><a href="Howitworks.html">How it works</a></li>
-        <li><a href="News.html">News</a></li>
-		<li><a href="ContactUs.html">Contact Us</a></li>
-		<li class="active" class="dropdown">
-          <a class="dropdown-toggle" href="Register.html" >Register</a>
-          
-        </li>
-        <li><a href="Login.html">Login</a></li>
-      </ul>
-      
-    </div>
-  </div>
-</nav> 
+		<div class="container-fluid">
+			<div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="images/trad_logo.png"
+					class="img-responsive" style="width: 65px; height: 60px;"></a>
+			</div>
+			<div
+				class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse"
+				id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="HomePage.jsp"><%=session.getValue("About.Us")%></a></li>
+					<li><a href="Vision.jsp"><%=session.getValue("Vision")%></a></li>
+					<li><a href="Mission.jsp"><%=session.getValue("Mission")%></a></li>
+					<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works")%></a></li>
+					<li><a href="News.jsp"><%=session.getValue("News")%></a></li>
+					<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us")%></a></li>
+					<li class="active" class="dropdown"><a class="dropdown-toggle"
+						href="Register.jsp"><%=session.getValue("Register")%></a></li>
+					<li><a href="Login.jsp"><%=session.getValue("Login")%></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav> 
 <!-----menu bar end------>
 
 <div class="container  register">
-<h4>Welcome to NeoMandi's Trader registration page</h4>
+<h4><%=session.getValue("trader.register.h41")%></h4>
 </div>
 <!---my detail form----->
 
@@ -558,11 +558,11 @@ if(!(license.length >1) && (license.length < 10)){
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 det " >
 <div id="h1">
-<h4 style="background: #bdd102;color:black;">My Details</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("farmer.register.h42") %></h4>
 <div class="detail" id="d1">
 <form id="personal" method="post" action="TraderRegisterInt.jsp" name="tregform" autocomplete="off"  >
     <table class="table">
-      <tr><td><label for="name">Name</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("farmer.register.label.name") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="name"   onclick="fun()" name="traderName" required></td></tr>
 	   <script>
 	  function fun(){
@@ -573,18 +573,23 @@ if(!(license.length >1) && (license.length < 10)){
 		  $("#h4").css("box-shadow","0px 0px 0px black");
 	  }
 	  </script>
-      <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("farmer.register.label.aadharnumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderAadharnum" required></td></tr>
-      <tr><td><label for="mobno">Mobile Number</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("farmer.register.label.mobilenumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" onclick="fun()" name = "traderMobile" required></td></tr>	  
-      <tr><td><label for="email">Email:</label></td></tr>
+      <tr><td><label for="email"><%=session.getValue("farmer.register.label.email") %>:</label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email" name = "traderEmail" onclick="fun()" required></td></tr>
-      <tr><td><label for="address">Address</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("farmer.register.label.address") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" name="traderAddress" id="usr" onclick="fun()" required></td></tr>
        <tr><td><input type="text" class="form-control"  id="usr" onclick="fun()"></td></tr>
+       <tr>
+                              <td>
+                                 <label for="address"><%=session.getValue("farmer.register.label.state") %></label>
+                              </td>
+                           </tr>
        <tr><td>
        <select class="form-control" id="tstate" name="traderState" onchange = "populate1('tstate','tdistrict')" onclick="fun()">
-        <option>State</option>
+        <option><%=session.getValue("farmer.register.label.state") %></option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value = "Assam">Assam</option>
@@ -617,13 +622,20 @@ if(!(license.length >1) && (license.length < 10)){
       </select></td></tr>
      
 	  <tr><td>
-	  <label for = "district">District</label><br />
+	  <label for = "district"><%=session.getValue("farmer.register.label.district") %></label><br />
 		<select id = "tdistrict" name = "traderDistrict" onclick="fun()" class="form-control">
 		</select><br/>	  
-	  <tr><td>
-	  		<input type = "text" id = "sell" name = "traderTaluk" class="form-control" placeholder = "Taluk" onclick="fun()" required/><br/>
-    </td></tr>
-	  <tr><td><label for="pin">Pin</label></td></tr>
+
+								<tr>
+									<td><label for="district"><%=session.getValue("farmer.register.label.taluk")%></label>
+                                 <input type="text" id="sell"
+										name="farmertaluk" class="form-control" placeholder="Taluk"
+										onclick="fun()" required />
+                                 <br />
+                              </td>
+                           </tr>
+								
+	  <tr><td><label for="pin"><%=session.getValue("farmer.register.label.pin") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr"   onclick="fun()" name="traderPin"></td></tr>
     </table> 
   </div>
@@ -632,16 +644,16 @@ if(!(license.length >1) && (license.length < 10)){
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bank" >
 
 <div id="h2">
-<h4 style="background: #bdd102;color:black;">My Bank Account Details</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("farmer.register.h43") %></h4>
 <div class="bankacc" id="d2">
 
     <table class="table">
-      <tr><td><label for="name">Account Number</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("farmer.register.label.accountnumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderAccountNum"  onclick="fun1()"></td></tr>
 	  
-      <tr><td><label for="aadhar">Bank Name</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("farmer.register.label.bankname") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderBankName" onclick="fun1()"></td></tr>
-      <tr><td><label for="mobno">Branch</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("farmer.register.label.branch") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderBranch" onclick="fun1()"></td></tr>	  <script>
 	  function fun1(){	
 		  $("#h2").css("box-shadow","0px 0px 14px black");
@@ -653,9 +665,13 @@ if(!(license.length >1) && (license.length < 10)){
 
       <tr><td><label for="address">IFSC</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode" onclick="fun1()"></td></tr>
-      
+      <tr>
+                              <td>
+                                 <label for="address"><%=session.getValue("farmer.register.label.state") %></label>
+                              </td>
+                           </tr>
        <tr><td><select class="form-control" id="bstate" name="bState " onchange = "populate2('bstate','bdistrict')" onclick="fun1()">
-        <option>State</option>
+        <option><%=session.getValue("farmer.register.label.state") %></option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value = "Assam">Assam</option>
@@ -688,13 +704,17 @@ if(!(license.length >1) && (license.length < 10)){
       </select></td></tr>
      
 	  <tr><td>
-	  <label for = "district">District</label><br />
+	  <label for = "district"><%=session.getValue("farmer.register.label.district") %></label><br />
 		<select id = "bdistrict" name = "bdistrict" class="form-control">
 		</select><br/>
 		</td></tr>
-	  <tr><td><input type="text" class="form-control" id="sel1" name="bTaluk" placeholder = "Taluk" onclick="fun1()"/>
-        </td></tr>
-	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr>
+                              <td><label for="district"><%=session.getValue("farmer.register.label.taluk") %></label>
+                                 <input type="text" id="sell" name="farmertaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
+                                 <br/>
+                              </td>
+                           </tr>
+	  <tr><td><label for="pin"><%=session.getValue("farmer.register.label.pin") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="bPin" onclick="fun1()"></td></tr>
     </table>
   
@@ -703,11 +723,11 @@ if(!(license.length >1) && (license.length < 10)){
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pass" >
 <div id="h3">
-<h4 style="background:#149DDA;">My License Details</h4>
+<h4 style="background:#149DDA;"><%=session.getValue("trader.register.h42") %></h4>
 <div class="detail1" id="d3">
 
     <table class="table">
-      <tr><td><label for="name">Trader License Number</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("trader.register.label.traderlicense") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicenseNum" onclick="fun2()"></td></tr>
 	  <script>
 	  function fun2(){
@@ -718,15 +738,20 @@ if(!(license.length >1) && (license.length < 10)){
 	  
 	  }
 		  </script>
-      <tr><td><label for="aadhar">Date of Registration</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("trader.register.label.dateofregistration") %></label></td></tr>
 	  <tr><td><input type="date" class="form-control" id = "dateofregistration" placeholder="dd-mm-yyyy" name="traderDateOfRegistration" onclick="fun2()"></td></tr>
-      <tr><td><label for="mobno">Place of Registration</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("trader.register.label.placeofregistration") %></label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" name="traderPlaceOfRegistration" onclick="fun2()"></td></tr>	  
-      <tr><td><label for="address">Address</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("farmer.register.label.address") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="ltraderAddress" onclick="fun2()"></td></tr>
        <tr><td><input type="text" class="form-control" id="usr"  onclick="fun2()" ></td></tr>
+       <tr>
+                              <td>
+                                 <label for="address"><%=session.getValue("farmer.register.label.state") %></label>
+                              </td>
+                           </tr>
        <tr><td><select class="form-control" id="lstate" name="traderLicenseState" onchange = "populate3('lstate','ldistrict')" onclick="fun2()"> 
-         <option>State</option>
+         <option><%=session.getValue("farmer.register.label.state") %></option>
         <option value = "Andhra Pradesh">Andhra Pradesh</option>
 			<option value = "Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value = "Assam">Assam</option>
@@ -758,13 +783,17 @@ if(!(license.length >1) && (license.length < 10)){
 			<option value = "West Bengal">West Bengal</option>
       </select></td></tr>
 	  <tr><td>
-	  <label for = "district">District</label><br />
+	  <label for = "district"><%=session.getValue("farmer.register.label.district") %></label><br />
 		<select id = "ldistrict" name = "traderLiscenseDistrict" class="form-control">
 		</select><br/>
 		</td></tr>
-	  <tr><td><input type="text" class="form-control" id="sel1" name="traderLicenseTaluk" placeholder = "Taluk" onclick="fun2()"/>
-        </td></tr>
-	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr>
+	   <td><label for="district"><%=session.getValue("farmer.register.label.taluk") %></label>
+                                 <input type="text" id="sell" name="farmertaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
+                                 <br/>
+                              </td>
+                           </tr>
+	  <tr><td><label for="pin"><%=session.getValue("farmer.register.label.pin") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderLicensePin" onclick="fun2()"></td></tr>
     </table>  
   </div>
@@ -774,10 +803,10 @@ if(!(license.length >1) && (license.length < 10)){
 <table><tr><td> <img src="images/traderori.png" class="img-responsive trad" alt="Cinque Terre" ></td></tr></table>
 <div id="h4">
 <div class="pass1"  >
-<h4 style="background:#149DDA;">My Password</h4>
+<h4 style="background:#149DDA;"><%=session.getValue("farmer.register.h44") %></h4>
 <div class="password" >
    <table class="table">
-	 <tr><td><label for="pwd">Enter a Password</label></td></tr>
+	 <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.enterpassword") %></label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderPassword" onclick="fun3()"></td></tr>
 	   <script>
 	  function fun3(){
@@ -787,9 +816,9 @@ if(!(license.length >1) && (license.length < 10)){
 		  $("#h4").css("box-shadow","0px 0px 14px black");		 
 	  }
 		  </script>
-      <tr><td><label for="pwd">Confirm Password</label></td></tr>
+      <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.confirmpassword") %></label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="traderConfirmPassword" onclick="fun3()"></td></tr>
-      <tr><td><label for="pwd">Enter OTP</label></td></tr>
+      <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.otp") %></label></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="traderOTP" onclick="fun3()"></td></tr>	  	
     </table>  
   </div>
@@ -800,12 +829,12 @@ if(!(license.length >1) && (license.length < 10)){
                         <tr>
                             <td>
                                 <label>
-                                    <input type="checkbox" id="terms">I accept Terms and Condition</label>
+                                    <input type="checkbox" id="terms"><%=session.getValue("farmer.register.label.terms") %></label>
                             </td>
                         </tr>
                         <table align="center">
                             <tr>
-                                <td><a href="javascript:submitform()" id="reg" class="regi">Register</a></td>
+                                <td><a href="javascript:submitform()" id="reg" class="regi"><%=session.getValue("farmer.register.label.register") %></a></td>
                             </tr>
                         </table>
   </form>

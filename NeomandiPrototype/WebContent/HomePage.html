@@ -59,14 +59,19 @@
             font-family: Arial, Helvetica, sans-serif;
             line-height: 200%;
         }
+        
+        
 </style>
+
 </head>
 
 <body class="">
 <!---menu bar------>
 <div id="header">
+
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
+  
     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -74,28 +79,32 @@
         <span class="icon-bar"></span>                         
       </button>
       <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+  
     </div>
+    
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="HomePage.html">About Us</a></li>
-        <li><a href="Vision.html">Vision</a></li>
-        <li><a href="Mission.html">Mission</a></li>
-		<li><a href="Howitworks.html">How it works</a></li>
-        <li><a href="News.html">News</a></li>
+        <li><a href="Vision.html" >Vision</a></li>
+        <li><a href="Mission.html" >Mission</a></li>
+		<li><a href="Howitworks.html" >How it works</a></li>
+        <li><a href="News.html" >News</a></li>
 		<li><a href="ContactUs.html">Contact Us</a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.html">Register</a>
           
         </li>
-        <li><a href="Login.html">Login</a></li>
+        <li><a href="Login.html" >Login</a></li>
       </ul>
       
     </div>
   </div>
 </nav> 
 </div>
+
 <!-----menu bar end------>
 <br/><br/>
+
 <div class="container-fluid body">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="col-md-1 col-sm-1 col-xs-1 col-lg-1"></div>
@@ -151,5 +160,35 @@
 
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+ $(document).ready(function()
+ {
+     $('.english').fadeIn(500);
+     $('.kannada').fadeOut(500);
+ });
+
+
+ function changeLang()
+ {
+     var language = document.getElementById('change').innerHTML;
+    
+     if(language === "Kannada")
+     {
+         $('.english').fadeOut(500);
+         $('.kannada').fadeIn(500);
+         document.getElementById('change').innerHTML = "English";
+     }
+   
+     else if(language === "English")
+     {
+         $('.kannada').fadeOut(500);
+         $('.english').fadeIn(500);
+         document.getElementById('change').innerHTML = "Kannada";
+     }
+
+ }
+ </script>
+
+
 </body>
 </html>

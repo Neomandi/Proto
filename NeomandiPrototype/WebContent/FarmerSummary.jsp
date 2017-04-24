@@ -96,7 +96,7 @@
                   }
                    String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                  <p style="font-size:16px; color:white;"><%=name %>, welcome to e-auction at NeoMandi.</p>
+                  <p style="font-size:16px; color:white;"><%=name %>,&nbsp;&nbsp;<%=session.getValue("f.welcome") %>.</p>
                </div>
                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
@@ -104,18 +104,18 @@
          <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
                <ul class="nav nav-tabs">
-                  <li ><a href="FarmerMaster.jsp">Auction</a></li>
-                  <li ><a  href="Lotdetails.jsp" >My Lots</a></li>
-                  <li class="active"><a class="classbeauty" id="ts" href="#">Summary</a></li>
-                  <li><a href="FarmerProfile.jsp">My Profile</a></li>
-                  <li ><a href="FarmerSummaryInt.jsp">History</a></li>
+                 <li ><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
+                  		<li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
+                  		<li ><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  		<li class="active"><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
+                  		<li ><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
             </div>
          </div>
       </div>
       <div class="container-fluid today">
          <div class="container">
-            <h2>Today's Summary</h2>
+            <h2><%=session.getValue("f.summary") %></h2>
          </div>
       </div>
       <%	
@@ -159,38 +159,60 @@
                   <thead>
                      <tr>
                         <td></td>
+                       
                         <td>
-                           <h4>Lot Number</h4>
+                           <h4><%= session.getValue("summary.lotnumber")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>Lot Size<br/>(kg)</h4>
+                           <h4><%= session.getValue("summary.lotsize")%>
+                             
+                           </h4>
                         </td>
                         <td>
-                           <h4>Quantity sold<br/>(kg)</h4>
+                           <h4>
+                             <%= session.getValue("summary.quantitysold")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>Avg Price<br/>(Rs)</h4>
+                           <h4>
+                              <%= session.getValue("summary.average")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>Gross Earnings<br/>(Rs)</h4>
+                           <h4 >
+                             <%= session.getValue("summary.gross")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>TLC<sup>*</sup><br/>(Rs)</h4>
+                        	<h4>
+                                 <%= session.getValue("summary.TLC")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>Market Cess<br/>(Rs)</h4>
+                           <h4>
+                            <%= session.getValue("summary.Mcess")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>EPC<sup>#</sup><br/>(Rs)</h4>
+                           <h4>
+                            	<%= session.getValue("summary.EPC")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>PMVA<sup>^</sup><br/>(Rs)</h4>
+                           <h4>
+                            <%= session.getValue("summary.PMVA")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>Deductions<br/>(Rs)</h4>
+                           <h4>
+                           	<%= session.getValue("summary.deduction")%>
+                           </h4>
                         </td>
                         <td>
-                           <h4>My Net Earnings<br/>(Rs)</h4>
+                           <h4>
+                           	<%= session.getValue("summary.Netearnings")%>
+                           </h4>
                         </td>
                         <td></td>
                      </tr>
@@ -316,8 +338,10 @@
                         }
                         else
                         {
-                        System.out.println("Inside else....");
-                        out.println("<div id='div' style='position: absolute; top: 10px; left: 170px;'><p ><b>There are no trades recorded for the day.</b></p></div>");
+                        	%>
+                      
+                      <div id='div' style='position: absolute; top: 10px; left: 170px;'><p ><b><%=session.getValue("summary.Emessage") %></b></p></div>
+                       <%
                         }
                         }
                         }

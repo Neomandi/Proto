@@ -2189,7 +2189,7 @@ public class ControllerServlet extends HttpServlet {
 				elog.invalidate();
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
-				rde=request.getRequestDispatcher("Login.html");
+				rde=request.getRequestDispatcher("Login.jsp");
 				try 
 				{
 					rde.forward(request, response);	

@@ -82,7 +82,7 @@ footer {
             <div class="">
 
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 far">
-                   <p style="font-size:16px; color:white;"><%=(String)elog.getAttribute("ename")%>, welcome to e-auction at NeoMandi.</p></div>
+                   <p style="font-size:16px; color:white;"><%=(String)elog.getAttribute("ename")%>, <%=session.getValue("employee.ribbon") %></p></div>
                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
@@ -90,9 +90,9 @@ footer {
         <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-9 col-md-offset-1 col-md-10 col-xs-offset-1 col-xs-9 pad">
                 <ul class="nav nav-tabs">
-                    <li><a href="ProductEntry.jsp">Product Entry</a></li>
-                    <li class="active"><a href="Revenue.jsp">Revenue</a></li>
-                    <li><a href="Dispatch.do" id="ts">Dispatch</a></li>
+                    <li><a href="ProductEntry.jsp"><%=session.getValue("product.entry") %></a></li>
+                    <li class="active"><a href="Revenue.jsp"><%=session.getValue("revenue") %></a></li>
+                    <li><a href="Dispatch.do"><%=session.getValue("dispatch") %></a></li>
                 </ul>
             </div>
         </div>

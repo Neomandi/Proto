@@ -6,8 +6,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" type="image/png" href="Images1/Neomandi1.png">
-<title>NeoMandi | Empowering Farmers. Enabling Traders.</title>
+<link rel="icon" type="image/png" href="Images1/Neomandi1.png">
+<title>Contact Us | NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -18,10 +18,10 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style>
-  html { 
-             position: relative; 
-             min-height: 100%; 
-         } 
+ html {
+            position: relative;
+            min-height: 100%;
+        }
         
         .body {
             margin: 0 0 100px;
@@ -61,12 +61,12 @@
             font-family: Arial, Helvetica, sans-serif;
             line-height: 200%;
         }
-        @import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
 </style>
 </head>
 
 <body class="">
 <!---menu bar------>
+
 <div id="header">
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
@@ -74,61 +74,69 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                         
+        <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+        <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
         <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
-		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
+		<li class="active"><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
           
         </li>
         <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
+      
+    </div>
+  </div>
 </nav> 
 </div>
 <!-----menu bar end------>
 <br/><br/>
 <div class="container-fluid body">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="col-md-1 col-sm-1 col-xs-1 col-lg-1"></div>
-		<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-			<h1><%=session.getValue("About.Us") %></h1>
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<h1><%=session.getValue("Contact.Us") %></h1>
 
-			<p align = "justify">
-				<%=session.getValue("HomePage.p1") %>
-			</p>
-			
-			<video width = "640" height = "340" controls title = "video" id="myVideo" style="object-fit: fill;">
-				<source src = "Videos/NeoMandiVideo.mp4" type = "video/mp4">
-			</video>
-			
-			<p align = "justify">
-				<%=session.getValue("HomePage.p2") %>
-			</p>
-		</div>
-		<div class="col-md-1 col-sm-1 col-xs-1 col-lg-1"></div>
+        <p align="justify">
+        	<%=session.getValue("contact.us.p1") %>    
+        </p>
+        <!-- <div style="margin-right: 50%;">
+            <form action="contact" method="post">
+                <div class="form-group col-10">
+                    <label>Name* </label>
+                    <input type="text" name="name" placeholder="Name" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email* </label>
+                    <input type="text" name="email" placeholder="Email" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>phone* </label>
+                    <input type="text" name="phone" placeholder="Phone" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Message* </label>
+                    <input type="text" name="msg" placeholder="Message" required class="form-control" />
+                </div>
+                <input type="submit" class="btn btn-primary" value="Send" />
+            </form>
+	</div> -->
+	<div class="col-md-1"></div>
 	</div>
 </div>
+</div>
 
-<script> 
-    var video = document.getElementById("myVideo");
-	video.addEventListener('ended', myHandler, false);
-	
-	function myHandler(e){
-		video.currentTime=0;
-	} 
-</script>
 <div id="footer">
 <nav class="navbar navbar-inverse menu">
-	  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
+	    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myfNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -137,7 +145,7 @@
     </div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myfNavbar">
 		<ul class="nav navbar-nav">
-			<li><a title = "Follow us on twitter" href = "https://twitter.com/Neomanditech" target="_blank"><img src = "Images1/Twitter-icon.png" alt = "Can't display" width = "30" height = "30"></a></li>
+						<li><a title = "Follow us on twitter" href = "https://twitter.com/Neomanditech" target="_blank"><img src = "Images1/Twitter-icon.png" alt = "Can't display" width = "30" height = "30"></a></li>
 			<li><a title = "Follow Us on Youtube" href = "https://youtu.be/224nj8EdAPE" target="_blank"><img src = "Images1/Youtube-icon.png" alt = "Can't display" width = "30" height = "30"></a></li>
 			<li><a title = "Follow Us on Linkedin" href = "https://www.linkedin.com/company/neomandi-technologies-pvt.-ltd.?report%2Esuccess=KJ_KkFGTDCfMt-A7wV3Fn9Yvgwr02Kd6AZHGx4bQCDiP6-2rfP2oxyVoEQiPrcAQ7Bf" target="_blank"><img src = "Images1/Linkedin-icon.png" alt = "Can't display" width = "30" height = "30"></a></li>
 		</ul>
@@ -147,5 +155,6 @@
 
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+
 </body>
 </html>
