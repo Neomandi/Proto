@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="Images1/Neomandi1.png">
-<title>How it Works | NeoMandi</title>
+<title>News | NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -81,8 +83,8 @@
         <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
-		<li class="active"><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
-        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+        <li class="active"><a href="News.jsp"><%=session.getValue("News") %></a></li>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
@@ -101,22 +103,28 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<div class="col-md-6" style="text-align: center;">
-		<br/><br/>
-			<img src="Images1/FarmerPic.jpg" alt="Can't display" />
-				        <br/><br/><br/><br/>
-				        <button onclick="location.href='NeomandiFarmer.html'" class="btn btn-success">I AM A FARMER</button>
-		</div>
-		<div class="col-md-6" style="text-align: center;">
-			<br/><br/><br/><br/>
-			<img src="Images1/TraderPic.png" alt="Can't display" />
-				        <br/>
-				        <br/>
-				        <button onclick="location.href='NeomandiTrader.html'" class="btn btn-success">I AM A TRADER</button>
-		</div>
-	</div>
+		<h1><%=session.getValue("News") %></h1><br/>
+            <p>
+            <%=session.getValue("news.p1") %>
+            </p><br/>
+            <p align="justify">
+                <%=session.getValue("news.p2") %>
+            </p>
+
+            <h3><%=session.getValue("news.h3") %></h3>
+
+            <p align="justify">
+            	<%=session.getValue("news.p3") %>
+            </p>
+
+            <h3><%=session.getValue("news.h31") %></h3>
+
+            <p align="justify">
+            	<%=session.getValue("news.p4") %>
+            </p>
 	<div class="col-md-1"></div>
 	</div>
+</div>
 </div>
 
 <div id="footer">

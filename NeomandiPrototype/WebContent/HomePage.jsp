@@ -76,21 +76,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                         
       </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+      <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
-        <li><a href="Vision.html"><%=session.getValue("Vision") %></a></li>
-        <li><a href="Mission.html"><%=session.getValue("Mission") %></a></li>
-		<li><a href="Howitworks.html"><%=session.getValue("How.it.works") %></a></li>
-        <li><a href="News.html"><%=session.getValue("News") %></a></li>
-		<li><a href="ContactUs.html"><%=session.getValue("Contact.Us") %></a></li>
+        <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
+        <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
-          <a class="dropdown-toggle" href="Register.html"><%=session.getValue("Register") %></a>
+          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
           
         </li>
-        <li><a href="Login.html"><%=session.getValue("Login") %></a></li>
+        <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
 </nav> 
 </div>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html>
 <head>
@@ -74,7 +76,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+      <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -105,14 +107,14 @@
 		<br/><br/>
 			<img src="Images1/FarmerPic.jpg" alt="Can't display" />
 				        <br/><br/><br/><br/>
-				        <button onclick="location.href='NeomandiFarmer.html'" class="btn btn-success">I AM A FARMER</button>
+				        <button onclick="location.href='NeomandiFarmer.jsp'" class="btn btn-success"><%=session.getValue("imfarmer") %></button>
 		</div>
 		<div class="col-md-6" style="text-align: center;">
 			<br/><br/><br/><br/>
 			<img src="Images1/TraderPic.png" alt="Can't display" />
 				        <br/>
 				        <br/>
-				        <button onclick="location.href='NeomandiTrader.html'" class="btn btn-success">I AM A TRADER</button>
+				        <button onclick="location.href='NeomandiTrader.jsp'" class="btn btn-success"><%=session.getValue("imtrader") %></button>
 		</div>
 	</div>
 	<div class="col-md-1"></div>

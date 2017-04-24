@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="Images1/Neomandi1.png">
-<title>How it Works | NeoMandi</title>
+<title>How NeoMandi Works For A Trader? | NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -74,7 +76,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+      <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -101,19 +103,10 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<div class="col-md-6" style="text-align: center;">
-		<br/><br/>
-			<img src="Images1/FarmerPic.jpg" alt="Can't display" />
-				        <br/><br/><br/><br/>
-				        <button onclick="location.href='NeomandiFarmer.html'" class="btn btn-success">I AM A FARMER</button>
-		</div>
-		<div class="col-md-6" style="text-align: center;">
-			<br/><br/><br/><br/>
-			<img src="Images1/TraderPic.png" alt="Can't display" />
-				        <br/>
-				        <br/>
-				        <button onclick="location.href='NeomandiTrader.html'" class="btn btn-success">I AM A TRADER</button>
-		</div>
+		<h1><%=session.getValue("nmtrader") %></h1>
+	    <p align="justify">
+	    	<%=session.getValue("nmtrader.p1") %>
+	    </p>
 	</div>
 	<div class="col-md-1"></div>
 	</div>

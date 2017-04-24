@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="Images1/Neomandi1.png">
-<title>How it Works | NeoMandi</title>
+<title>Contact Us | NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -74,16 +76,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+      <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
-		<li class="active"><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
         <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
-		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
+		<li class="active"><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
           
@@ -101,22 +103,35 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<div class="col-md-6" style="text-align: center;">
-		<br/><br/>
-			<img src="Images1/FarmerPic.jpg" alt="Can't display" />
-				        <br/><br/><br/><br/>
-				        <button onclick="location.href='NeomandiFarmer.html'" class="btn btn-success">I AM A FARMER</button>
-		</div>
-		<div class="col-md-6" style="text-align: center;">
-			<br/><br/><br/><br/>
-			<img src="Images1/TraderPic.png" alt="Can't display" />
-				        <br/>
-				        <br/>
-				        <button onclick="location.href='NeomandiTrader.html'" class="btn btn-success">I AM A TRADER</button>
-		</div>
-	</div>
+		<h1><%=session.getValue("Contact.Us") %></h1>
+
+        <p align="justify">
+        	<%=session.getValue("contact.us.p1") %>    
+        </p>
+        <!-- <div style="margin-right: 50%;">
+            <form action="contact" method="post">
+                <div class="form-group col-10">
+                    <label>Name* </label>
+                    <input type="text" name="name" placeholder="Name" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email* </label>
+                    <input type="text" name="email" placeholder="Email" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>phone* </label>
+                    <input type="text" name="phone" placeholder="Phone" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Message* </label>
+                    <input type="text" name="msg" placeholder="Message" required class="form-control" />
+                </div>
+                <input type="submit" class="btn btn-primary" value="Send" />
+            </form>
+	</div> -->
 	<div class="col-md-1"></div>
 	</div>
+</div>
 </div>
 
 <div id="footer">

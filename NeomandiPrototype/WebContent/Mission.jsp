@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="Images1/Neomandi1.png">
-<title>How it Works | NeoMandi</title>
+<title>Mission | NeoMandi</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -34,7 +36,6 @@
 			position: absolute;
 			bottom: 0;	
         }
-        @media only screen and (min-width: 700px) {
         #header{
         	position: absolute;
             left: 0;
@@ -42,17 +43,6 @@
             height: 100px;
             width: 100%;
             overflow: hidden;
-        }
-        }
-        @media only screen and (max-width: 577px) and (max-height: 1300px) {
-        #header{
-        	/*position: absolute;
-            left: 0;
-            top: 0;
-            height: 100px;
-            width: 100%;
-            overflow: hidden;*/
-        }
         }
         p,a 
         {
@@ -62,10 +52,10 @@
 </style>
 </head>
 
-<body class="">
+<body>
 <!---menu bar------>
 
-<div id="header">
+<div class="header">
  <nav class="navbar navbar-inverse menu">
   <div class="container-fluid">
     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">
@@ -74,14 +64,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="HomePage.html"><img src="images/trad_logo.png" class="img-responsive"></a>
+      <a class="navbar-brand" href="HomePage.jsp"><img src="images/trad_logo.png" class="img-responsive"></a>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
-        <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
-		<li class="active"><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+        <li class="active"><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
         <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
@@ -96,29 +86,19 @@
 </nav> 
 </div>
 <!-----menu bar end------>
-<br/><br/>
 <div class="container-fluid body">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<div class="col-md-6" style="text-align: center;">
-		<br/><br/>
-			<img src="Images1/FarmerPic.jpg" alt="Can't display" />
-				        <br/><br/><br/><br/>
-				        <button onclick="location.href='NeomandiFarmer.html'" class="btn btn-success">I AM A FARMER</button>
-		</div>
-		<div class="col-md-6" style="text-align: center;">
-			<br/><br/><br/><br/>
-			<img src="Images1/TraderPic.png" alt="Can't display" />
-				        <br/>
-				        <br/>
-				        <button onclick="location.href='NeomandiTrader.html'" class="btn btn-success">I AM A TRADER</button>
-		</div>
+	<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+	<div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+		<h1><%=session.getValue("Mission") %></h1>
+
+        <p align="justify" class="ex1">
+        	<%=session.getValue("mission.p1") %>
+        </p>
 	</div>
-	<div class="col-md-1"></div>
+	<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
 	</div>
 </div>
-
 <div id="footer">
 <nav class="navbar navbar-inverse menu">
 	    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-10 navbar-header">

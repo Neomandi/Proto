@@ -154,17 +154,17 @@ function validateEForm()
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="HomePage.html">About Us</a></li>
-        <li><a href="Vision.html">Vision</a></li>
-        <li><a href="Mission.html">Mission</a></li>
-		<li><a href="Howitworks.html">How it works</a></li>
-        <li><a href="News.html">News</a></li>
-		<li><a href="ContactUs.html">Contact Us</a></li>
-		<li class="active" class="dropdown">
-          <a class="dropdown-toggle" href="Register.html">Register</a>
-          
-        </li>
-        <li><a href="Login.html">Login</a></li>
+	      <li class="active"><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+	      <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
+	      <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+			<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+	      <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+			<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
+			<li class="active" class="dropdown">
+	        <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
+	        
+	      </li>
+	      <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
       
     </div>
@@ -173,7 +173,7 @@ function validateEForm()
 <!-----menu bar end------>
 
 <div class="container  register">
-<h4>Welcome to NeoMandi's Employee registration page</h4>
+<h4><%=session.getValue("employee.register.h41") %></h4>
 </div>
 <!---my detail form----->
 <div class="container">
@@ -181,12 +181,12 @@ function validateEForm()
 <form name = "EregForm1" method = "post" action = "" autocomplete="off">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
 <div id="d1">
-<h4 id="h1" style="background: #bdd102;color:black;">My Details</h4>
+<h4 id="h1" style="background: #bdd102;color:black;"><%=session.getValue("farmer.register.h42") %></h4>
 <div class="detail">
     <table class="table">
-      <tr><td><label for="name">Name</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("farmer.register.label.name") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="name" name="employeename" onclick="fun()"></td></tr>
-      <tr><td><label for="aadhar">Employee Number</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("employee.register.label.employeenumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="employeenum" onclick="fun()"></td></tr>
          </table>
   
@@ -195,15 +195,15 @@ function validateEForm()
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <div id="d2">
-<h4 id="h2" style="background:#149DDA;">My Password</h4>
+<h4 id="h2" style="background:#149DDA;"><%=session.getValue("farmer.register.h44") %></h4>
 <div class="password" id="d2">
     <table class="table">
 	 
-      <tr><td><label for="pwd">Enter a Password</label></td></tr>
+      <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.enterpassword") %></label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="employeepwd" onclick="fun1()"></td></tr>
-      <tr><td><label for="pwd">Confirm Password</label></td></tr>
+      <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.confirmpassword") %></label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="cemployeepwd" onclick="fun1()"></td></tr>
-      <tr><td><label for="pwd">Enter OTP</label></td></tr>
+      <tr><td><label for="pwd"><%=session.getValue("farmer.register.label.otp") %></label></td></tr>
 	  <tr><td><input type="password" class="form-control" id="pwd" name="employeeotp" onclick="fun1()"></td></tr>	  
 
     </table>
@@ -211,13 +211,13 @@ function validateEForm()
   </div>
   </div>
   <table align="center">
-  <tr><td><label><input type="checkbox" name="empt">I accept Terms and Conditions</label></td></tr>
+  <tr><td><label><input type="checkbox" name="empt"><%=session.getValue("farmer.register.label.terms") %></label></td></tr>
   
   </table>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
 <table><tr><td><img src="images/Employee.png" class="img-responsive lap" alt="Cinque Terre" width="304" height="236"></td></tr></table>
-<table align="center"><tr><td><a href="javascript: submitform()" class="reg">Register</a></td></tr></table>
+<table align="center"><tr><td><a href="javascript: submitform()" class="reg"><%=session.getValue("farmer.register.label.register") %></a></td></tr></table>
 </div>
 </form>
 </div>

@@ -268,16 +268,16 @@
         <div class="container-fluid headertop">
             <div class="">
                 <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
+                    <p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, <%=session.getValue("employee.ribbon") %></p></div>
                 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>
         </div>
         <div class="container-fluid tradtab">
             <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="ProductEntry.jsp">Product Entry</a></li>
-                    <li><a href="Revenue.jsp">Revenue</a></li>
-                    <li><a href="Dispatch.do">Dispatch</a></li>
+                    <li class="active"><a href="ProductEntry.jsp"><%=session.getValue("product.entry") %></a></li>
+                    <li><a href="Revenue.jsp"><%=session.getValue("revenue") %></a></li>
+                    <li><a href="Dispatch.do"><%=session.getValue("dispatch") %></a></li>
 
                 </ul>
 
@@ -294,12 +294,12 @@
                 <br>
                 <br>
                 <div class="col-lg-offset-0 col-lg-4 col-md-offset-0 col-md-4 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 det">
-                    <h4 style="background: #bdd102;color:black;">Produce Details</h4>
+                    <h4 style="background: #bdd102;color:black;"><%=session.getValue("product.h41") %></h4>
                     <div class="detail">
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <label for="name">Farmer ID</label>
+                                        <label for="name"><%=session.getValue("product.label.farmerid") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -309,7 +309,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="aadhar">Market Code</label>
+                                        <label for="aadhar"><%=session.getValue("product.label.marketcode") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -320,7 +320,7 @@
                                 <tr>
                                     <td>
                                         <select class="form-control" id="category" name="category" onchange = "populate('category','produce')">
-                                            <option value="Category">Category</option>
+                                            <option value="Category"><%=session.getValue("product.label.category") %></option>
                                             <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
                                             <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
                                             <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
@@ -332,14 +332,14 @@
                                 <tr>
                                     <td>
                                         <select class="form-control" id="produce" name="produce">
-                                            <option value="Produce">Produce</option>
+                                            <option value="Produce"><%=session.getValue("product.label.produce") %></option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <select class="form-control" id="quality" name="quality">
-                                            <option value="Grade">Grade</option>
+                                            <option value="Grade"><%=session.getValue("product.label.grade") %></option>
 		                                    <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
 		                                    <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
 		                                    <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
@@ -348,7 +348,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="pin">Quantity (kg)</label>
+                                        <label for="pin"><%=session.getValue("product.label.quantity") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -360,10 +360,10 @@
                     </div>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-0 col-sm-5 col-xs-offset-1 col-xs-10 gen">
-                    <h4 style="background: #bdd102;color:black;">Produce Image</h4>
+                    <h4 style="background: #bdd102;color:black;"><%=session.getValue("product.h42") %></h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
-                            <div id="showtext">Click here to upload image</div>
+                            <div id="showtext"><%=session.getValue("product.image.upload") %></div>
 
                             <img id="blah" src="#" style="display:none">
                             <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" required/>
@@ -389,13 +389,13 @@
                     <br>
                 </div>
                 <div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 release">
-                    <h4 style="background:#149DDA;">My Password</h4>
+                    <h4 style="background:#149DDA;"><%=session.getValue("farmer.register.h44") %></h4>
                     <div class="password">
                             <table class="table">
 
                                 <tr>
                                     <td>
-                                        <label for="lot">Lot Number</label>
+                                        <label for="lot"><%=session.getValue("product.label.lotnumber") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -405,7 +405,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="emp">Employee Name</label>
+                                        <label for="emp"><%=session.getValue("product.label.employeename") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -415,7 +415,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="pwd">Enter Password</label>
+                                        <label for="pwd"><%=session.getValue("farmer.register.label.enterpassword") %></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -430,7 +430,7 @@
                     <br>
                     <table align="center">
                         <tr>
-                            <td><a href="javascript: submitform()"  style="font-weight:bold; color:black; ">Submit</a></td>
+                            <td><a href="javascript: submitform()"  style="font-weight:bold; color:black; "><%=session.getValue("product.submit") %></a></td>
                         </tr>
                     </table>
                 </div>
