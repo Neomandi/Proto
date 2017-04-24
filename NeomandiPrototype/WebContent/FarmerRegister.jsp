@@ -55,23 +55,24 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
                <ul class="nav navbar-nav">
-                  <li><a href="HomePage.html">About Us</a></li>
-                  <li><a href="Vission.html">Vision</a></li>
-                  <li><a href="Mission.html">Mission</a></li>
-                  <li><a href="Howitworks.html">How it works</a></li>
-                  <li><a href="News.html">News</a></li>
-                  <li><a href="ContactUs.html">Contact Us</a></li>
-                  <li class="active" class="dropdown">
-                     <a class="dropdown-toggle" href="Register.html">Register</a>
-                  </li>
-                  <li><a href="Login.html">Login</a></li>
+                    <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+			        <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
+			        <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+					<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+			        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+					<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
+					<li class="active" class="dropdown">
+			          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
+			          
+			        </li>
+			        <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
                </ul>
             </div>
          </div>
       </nav>
       <!-----menu bar end------>
       <div class="container  register">
-         <h4>Welcome to NeoMandi's farmer registration page</h4>
+         <h4><%=session.getValue("farmer.register.h41") %></h4>
       </div>
       <!---my detail form----->
       <form id="bank" method="get" action="FarmerRegisterInt.jsp" name="fregform" autocomplete="off">
@@ -79,12 +80,12 @@
             <div class="row">
                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 det">
                   <div id="h1">
-                     <h4 style="background: #bdd102;color:black;">My Details</h4>
+                     <h4 style="background: #bdd102;color:black;"><%=session.getValue("farmer.register.h42") %></h4>
                      <div class="detail">
                         <table class="table">
                            <tr>
                               <td>
-                                 <label for="name">Name</label>
+                                 <label for="name"><%=session.getValue("farmer.register.label.name") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -101,7 +102,7 @@
                            </script>
                            <tr>
                               <td>
-                                 <label for="number">Aadhar Number</label>
+                                 <label for="number"><%=session.getValue("farmer.register.label.aadharnumber") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -111,7 +112,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="mobno">Mobile Number</label>
+                                 <label for="mobno"><%=session.getValue("farmer.register.label.mobilenumber") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -121,7 +122,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="email">Email:</label>
+                                 <label for="email"><%=session.getValue("farmer.register.label.email") %>:</label>
                               </td>
                            </tr>
                            <tr>
@@ -131,7 +132,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="address">Address</label>
+                                 <label for="address"><%=session.getValue("farmer.register.label.address") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -142,6 +143,11 @@
                            <tr>
                               <td>
                                  <input type="text" class="form-control" onclick="fun()" id="usr">
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <label for="address"><%=session.getValue("farmer.register.label.state") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -183,20 +189,20 @@
                            <!-- id = "district" -->
                            <tr>
                               <td>
-                                 <label for="district">District</label>
+                                 <label for="district"><%=session.getValue("farmer.register.label.district") %></label>
                                  <br />
                                  <select class="form-control" id="district1" name="farmerdistrict" onclick="fun()">
                                  </select>
                                  <br/>
                            <tr>
-                              <td><label for="district">Taluk</label>
+                              <td><label for="district"><%=session.getValue("farmer.register.label.taluk") %></label>
                                  <input type="text" id="sell" name="farmertaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
                                  <br/>
                               </td>
                            </tr>
                            <tr>
                               <td>
-                                 <label for="pin">Pin</label>
+                                 <label for="pin"><%=session.getValue("farmer.register.label.pin") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -210,12 +216,12 @@
                </div>
                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
                   <div id="h2">
-                     <h4 style="background: #bdd102;color:black;">My Bank Account Details</h4>
+                     <h4 style="background: #bdd102;color:black;"><%=session.getValue("farmer.register.h43") %></h4>
                      <div class="bankacc">
                         <table class="table">
                            <tr>
                               <td>
-                                 <label for="name">Account Number</label>
+                                 <label for="name"><%=session.getValue("farmer.register.label.accountnumber") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -232,7 +238,7 @@
                            </script>
                            <tr>
                               <td>
-                                 <label for="aadhar">Bank Name</label>
+                                 <label for="aadhar"><%=session.getValue("farmer.register.label.bankname") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -242,7 +248,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="mobno">Branch</label>
+                                 <label for="mobno"><%=session.getValue("farmer.register.label.branch") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -258,6 +264,11 @@
                            <tr>
                               <td>
                                  <input type="text" class="form-control" id="ifsc" onclick="fun1()" placeholder="Bank IFSC" name="farmerifsccode" required>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <label for="address"><%=session.getValue("farmer.register.label.state") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -299,20 +310,20 @@
                            <!-- id = "district" -->
                            <tr>
                               <td>
-                                 <label for="district">District</label>
+                                 <label for="district"><%=session.getValue("farmer.register.label.district") %></label>
                                  <br />
                                  <select class="form-control" id="district" name="district" onclick="fun1()">
                                  </select>
                                  <br/>
-                           <tr>
-                              <td>
-                                 <input type="text" id="sell" name="bTaluk" class="form-control" placeholder="Taluk" onclick="fun1()" required/>
+                          <tr>
+                              <td><label for="district"><%=session.getValue("farmer.register.label.taluk") %></label>
+                                 <input type="text" id="sell" name="farmertaluk" class="form-control" placeholder="Taluk" onclick="fun()" required/>
                                  <br/>
                               </td>
                            </tr>
                            <tr>
                               <td>
-                                 <label for="pin">Pin</label>
+                                 <label for="pin"><%=session.getValue("farmer.register.label.pin") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -333,12 +344,12 @@
                </div>
                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pass" id="class">
                   <div id="h3">
-                     <h4 style="background:#149DDA;">My Password</h4>
+                     <h4 style="background:#149DDA;"><%=session.getValue("farmer.register.h44") %></h4>
                      <div class="password">
                         <table class="table">
                            <tr>
                               <td>
-                                 <label for="pwd">Enter a Password</label>
+                                 <label for="pwd"><%=session.getValue("farmer.register.label.enterpassword") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -348,7 +359,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="pwd">Confirm Password</label>
+                                 <label for="pwd"><%=session.getValue("farmer.register.label.confirmpassword") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -358,7 +369,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="pwd">Enter OTP</label>
+                                 <label for="pwd"><%=session.getValue("farmer.register.label.otp") %></label>
                               </td>
                            </tr>
                            <tr>
@@ -380,12 +391,12 @@
                      <tr>
                         <td>
                            <label>
-                           <input type="checkbox" id="terms" name="tc">I accept Terms and Condition</label>
+                           <input type="checkbox" id="terms" name="tc"><%=session.getValue("farmer.register.label.terms") %></label>
                         </td>
                      </tr>
                      <table align="center">
                         <tr>
-                           <td><a href="javascript:submitform()" id="reg" class="reg">Register</a></td>
+                           <td><a href="javascript:submitform()" id="reg" class="reg"><%=session.getValue("farmer.register.label.register") %></a></td>
                         </tr>
                      </table>
                   </table>
