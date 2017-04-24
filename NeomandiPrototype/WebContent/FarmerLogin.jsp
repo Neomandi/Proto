@@ -106,16 +106,17 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="HomePage.html">About Us</a></li>
-                        <li><a href="Vission.html">Vision</a></li>
-                        <li><a href="Mission.html">Mission</a></li>
-                        <li><a href="Howitworks.html">How it works</a></li>
-                        <li><a href="News.html">News</a></li>
-                        <li><a href="ContactUs.html">Contact Us</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="Register.html">Register</a>
-                        </li>
-                        <li class="active"><a href="Login.html">Login</a></li>
+        <li ><a href="HomePage.html">About Us</a></li>
+        <li><a href="Vision.html" >Vision</a></li>
+        <li><a href="Mission.html" >Mission</a></li>
+		<li><a href="Howitworks.html" >How it works</a></li>
+        <li ><a href="News.html" >News</a></li>
+		<li ><a href="ContactUs.html" >Contact Us</a></li>
+		<li class="dropdown">
+          <a class="dropdown-toggle" href="Register.html">Register</a>
+          
+        </li>
+        <li class="active"><a href="Login.html" >Login</a></li>  
       </ul>
       
     </div>

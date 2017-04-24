@@ -85,7 +85,6 @@ position: relative;
   </div>
 </nav> 
 <!-----menu bar end------>
-
 <div class="container-fluid emplog pad">
 <div class="row">
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs pad loginlogo"><img src="images/trad_logo.png" class="img-responsive" alt="Cinque Terre" style="height:100%"></div>
@@ -102,7 +101,6 @@ position: relative;
 </div>
 </div>
 </div>
-
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b><% if(msg != null)
 							out.print(msg);
@@ -143,8 +141,7 @@ function submitform(){
     }	
 	console.log(msg.length);
 	if(msg.length!=0)
-		swal("PLEASE ENTER "+msg);
-	
+		swal("PLEASE ENTER "+msg);	
 	else
 	{
 		xmlhttp=new XMLHttpRequest();
@@ -173,7 +170,6 @@ function submitform(){
 <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <div class="container-fluid" style="margin-top: 0%; margin-bottom: 0%;">
-
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators 
     <ol class="carousel-indicators">
@@ -199,34 +195,26 @@ function submitform(){
       <li data-target="#myCarousel" data-slide-to="19"></li>
       <li data-target="#myCarousel" data-slide-to="20"></li>
       <li data-target="#myCarousel" data-slide-to="21"></li>
-      <li data-target="#myCarousel" data-slide-to="22"></li>
-                     
+      <li data-target="#myCarousel" data-slide-to="22"></li>         
     </ol>-->
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-
       <div class="item active">
         <img src="Farmer/onion3.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
-          <h3>Onion</h3>
-          
+          <h3>Onion</h3>          
         </div>
       </div>
-
       <div class="item">
         <img src="Farmer/tomato.jpg" alt="image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Tomato</h3>
-         
         </div>
-      </div>
-    
+      </div>    
       <div class="item">
         <img src="Farmer/cucumber.jpg" alt="Image not found" width="100%" height="345">
         <div class="carousel-caption">
           <h3>Cucumber</h3>
-          
         </div>
       </div>
 

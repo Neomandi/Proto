@@ -155,14 +155,44 @@ if((String)tlbn.getTname()==null)
 	{
 					funny();
 	},1000);
+    
+	 <%
+		String pattern = "HH:mm:ss";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+		String start1 = simpleDateFormat.format(new Date());//current time	
+		
+		ServletContext context = request.getSession().getServletContext();
+		String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
+		
+		Date d1 = new SimpleDateFormat(pattern).parse(start1);
+		Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+		long diffMs = d1.getTime() - d2.getTime();
+		long diffSec = diffMs / 1000;
+		long min = diffSec / 60;
+		long sec = diffSec % 60;
+		System.out.println("differnece is "+diffMs);
+		if(diffMs<0)
+		{
+		%>
+		document.getElementById("msg").textContent='Auction is still under progress';
+		document.getElementById('sts').value='';
+		<%
+		}
+		else
+		{
+		%>
+		document.getElementById("msg").textContent='Auction Complete.';
+		<%}%>
+    
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
-		    	var start=document.getElementById("start").value;
-		    	var stop=document.getElementById("stop").value;
+		    	/* var start=document.getElementById("start1").value;
+		    	var stop=document.getElementById("stop1").value;
+		    	console.log(start)
 		    	var Btime=start;
 		    	var Btime1=stop;
 		    	var d = new Date(); // for now
@@ -183,7 +213,7 @@ if((String)tlbn.getTname()==null)
 		    				document.getElementById("msg").textContent='Auction is still under progress';
 		    				document.getElementById('sts').value='';
 		    		}
-		    	else
+		    	else */
 		    	{
 		    		document.getElementById("msg").textContent='Auction Complete.';
 			    	var string=xmlhttp.responseText;		    	 
@@ -309,7 +339,6 @@ if((String)tlbn.getTname()==null)
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output></center>
 	<script> 
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
-	console.log(lotcost);
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	status=status.toUpperCase();
@@ -344,32 +373,7 @@ if((String)tlbn.getTname()==null)
 </div>
     </div></div>
     <script>
-    <%
-	String pattern = "HH:mm:ss";
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
-	String start1 = simpleDateFormat.format(new Date());//current time	
-	
-	ServletContext context = request.getSession().getServletContext();
-	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
-	
-	Date d1 = new SimpleDateFormat(pattern).parse(start1);
-	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
-	long diffMs = d2.getTime() - d1.getTime();
-	long diffSec = diffMs / 1000;
-	long min = diffSec / 60;
-	long sec = diffSec % 60;
-	if(diffMs<0)
-	{
-%>
-	document.getElementById("msg").textContent='Auction is still under progress';
-	document.getElementById('sts').value='';
-	<%
-	}
-	else
-	{
-	%>
-	document.getElementById("msg").textContent='Auction Complete.';
-	<%}%>
+   
 </script>
     <%}}}%>
  </div>
