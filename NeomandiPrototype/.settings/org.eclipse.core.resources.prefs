@@ -1,12 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/Neomandi/Proto.git
 eclipse.preferences.version=1
 encoding//WebContent/FarmerMaster.jsp=UTF-8
 encoding//WebContent/FarmerRegister.jsp=UTF-8
-<<<<<<< HEAD
-encoding//WebContent/product2.jsp=UTF-8
-=======
-<<<<<<< HEAD
 encoding//WebContent/HomePage.jsp=UTF-8
-=======
 encoding//WebContent/Kannada.jsp=UTF-8
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
->>>>>>> branch 'master' of https://github.com/Neomandi/Proto.git
+encoding//WebContent/product2.jsp=UTF-8
+encoding//WebContent/status.jsp=UTF-8

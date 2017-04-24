@@ -11,12 +11,6 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <script src="js/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <style>
@@ -55,14 +49,16 @@ a
 {
 	cursor:pointer;
 }
-.tradtab a{
+.tradtab a
+{
     background-color:#0082B2;
-    }
-    body {
+}
+body 
+{
 		    background-image: url("images/nm-white-background-pattern.png");
 		    background-repeat:no-repeat;
 		    background-size:cover;
-		}
+}
 </style>
 </head>
 <body>
@@ -72,8 +68,8 @@ a
 	String hours=sdf.format(new Date());
 	String minutes=sdf1.format(new Date());
 	int hour=Integer.parseInt(hours);
-	int minute=Integer.parseInt(minutes);
-	System.out.println("current time is "+hour+":"+minute+"  ");
+	int minute=Integer.parseInt(minutes);/* 
+	System.out.println("current time is "+hour+":"+minute+"  "); */
 %>
 <input type="hidden" value="<%=hour%>" id="hour">
 <input type="hidden" value="<%=minute%>" id="minute">
@@ -111,19 +107,26 @@ if(hour!=10){}
 	<%
 	}
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, <%=session.getValue("trader.product.ribbon")%>.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    					<li ><a href="product.jsp">Product Search</a></li>
+    					<!-- <li ><a href="product.jsp">Product Search</a></li>
                         <li  class="active"><a href="TraderBlock.do">Hold Funds</a></li>
                         <li><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
                         <li><a href="Summary1.do">Summary</a></li>
                         <li><a href="TraderProfile.jsp">My Profile</a></li>
+                         -->
+                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li class="active"><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li><a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>
@@ -156,21 +159,21 @@ else
 		  String acc=tbb.getAccountnumber();
 		  String bank=tbb.getDbbankname();*/
 %>
-<h4 style="background: #bdd102;color:black;">My Account Details</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("trader.holdfunds.myaccountdetails") %></h4>
 <div class="detail">
 <form>
     <table class="table">
-      <tr><td><label for="name">Bank Name</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("trader.holdfunds.bankname")%></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a2" value="<%=tbb.getDbbankname() %>"readonly></td></tr>
-      <tr><td><label for="aadhar">Account Number</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("trader.holdfunds.accountnumber")%></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a1" value="<%=tbb.getAccountnumber() %>" readonly></td></tr>
-      <tr><td><label for="mobno">IFSC</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("trader.holdfunds.ifsc")%></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
-      <tr><td><label for="branch">Bank Branch</label></td></tr>
+      <tr><td><label for="branch"><%=session.getValue("trader.holdfunds.bankbranch")%></label></td></tr>
       <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); else out.println(tbb.getBranch()); %>" readonly></td></tr>
-      <tr><td><label for="address">Available Balance(Rs)</label></td></tr><br/>
+      <tr><td><label for="address"><%=session.getValue("trader.holdfunds.availablebalance")%>  (Rs)</label></td></tr><br/>
 	  <tr><td><input type="text"  class="form-control" id="balance" readonly></td></tr>
-	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg">Get Balance</a></td></tr></table></td></tr>
+	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg"><%=session.getValue("trader.holdfunds.getbalance")%></a></td></tr></table></td></tr>
 	  <script>
 	  function getbalance()
 	  {	
@@ -195,12 +198,12 @@ else
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hold">
-<h4 style="background: #bdd102;color:black;">Hold Funds</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("trader.product.holdfunds") %></h4>
 <div class="bankacc">
 <br><br>
 <form id="form"><table class="table" >      
 	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs)"></td></tr>
-	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" >Hold</a></td></tr></table></td></tr>
+	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" ><%=session.getValue("trader.holdfunds.hold")%></a></td></tr></table></td></tr>
     </table></form>
       <script>
     document.getElementById("hold").addEventListener("keyup", function(event1){
@@ -405,7 +408,7 @@ else
   </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 release">
-<h4 style="background:#149DDA;">Release Funds</h4>
+<h4 style="background:#149DDA;"><%=session.getValue("trader.holdfunds.releasefunds") %></h4>
 <div class="password">
     <%	tlbn = (TraderLoginBean)tlog.getAttribute("tlog");
 		if(tlbn.getTname()==null)
@@ -440,12 +443,12 @@ else
 		 %><input type="hidden" value="<%=result%>" id="amount">
 	  <form>
       <table class="table">   
-	  <tr><td><label for="name">Fund Utilized(Rs)</label></td></tr>
+	  <tr><td><label for="name"><%=session.getValue("trader.holdfunds.fundutilized")%>(Rs)</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=funds %>" readonly></td></tr>
-      <tr><td><label for="aadhar">Net Amount on Hold(Rs)</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("trader.holdfunds.netamountonhold")%>(Rs)</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly/></td></tr>
 	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount(Rs)"/></td ></tr>	  
-	  <tr><td><table align="center"><tr><td><a id="release" onclick="holdfundsrelease()" class="reg">Release</a></td></tr></table></td></tr>
+	  <tr><td><table align="center"><tr><td><a id="release" onclick="holdfundsrelease()" class="reg"><%=session.getValue("trader.holdfunds.release")%></a></td></tr></table></td></tr>
       <script>
       document.getElementById("release").addEventListener("keyup", function(event) {
       	event.preventDefault();

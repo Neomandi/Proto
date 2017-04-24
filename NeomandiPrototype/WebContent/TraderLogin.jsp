@@ -70,16 +70,16 @@ position: relative;
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="HomePage.html">About Us</a></li>
-        <li><a href="Vision.html">Vision</a></li>
-        <li><a href="Mission.html">Mission</a></li>
-		<li><a href="Howitworks.html">How it works</a></li>
-        <li><a href="News.html">News</a></li>
-		<li><a href="ContactUs.html">Contact Us</a></li>
+        <li><a href="HomePage.html"><%=session.getValue("About.Us")%></a></li>
+        <li><a href="Vision.html"><%=session.getValue("Vision") %></a></li>
+        <li><a href="Mission.html"><%=session.getValue("Mission")  %></a></li>
+		<li><a href="Howitworks.html"><%=session.getValue("How.it.works")%></a></li>
+        <li><a href="News.html"><%=session.getValue("News")%></a></li>
+		<li><a href="ContactUs.html"><%=session.getValue("Contact.Us")  %></a></li>
 		<li  class="dropdown">
-          <a class="dropdown-toggle" href="Register.html">Register</a>          
+          <a class="dropdown-toggle" href="Register.html"><%=session.getValue("Register")  %></a>          
         </li>
-        <li class="active"><a width="130px;"  href="Login.html">Login</a></li>
+        <li class="active"><a width="130px;"  href="Login.html"><%=session.getValue("Login")  %></a></li>
       </ul>      
     </div>
   </div>
@@ -91,12 +91,12 @@ position: relative;
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
 <table class="table login">
 <tbody>
-<tr><td><h2>Trader Login</h2></td></tr>
+<tr><td><h2><%=session.getValue("trader.login.text")  %></h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="tname" placeholder="User name"></td></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
 <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#149DDA" id="login">Login</button></td></tr><br>
-<tr align="center"><td><a href="" onclick="fp()" class"frgt">Forgot password?</a></td></tr>
+<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#149DDA" id="login"><%=session.getValue("trader.login.loginbutton")  %></button></td></tr><br>
+<tr align="center"><td><a href="" onclick="fp()" class"frgt"><%=session.getValue("trader.login.passwordforgot") %></a></td></tr>
 </tbody></table>
 </div>
 </div>

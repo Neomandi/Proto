@@ -14,13 +14,14 @@ pageEncoding="ISO-8859-1" import="java.util.*,
 	 java.sql.Statement,
 	  java.text.SimpleDateFormat,java.util.Date,
 	 java.awt.image.BufferedImage,
+	 java.util.*,
  java.io.ByteArrayInputStream,
  java.io.ByteArrayOutputStream,
  java.io.File,
  java.text.SimpleDateFormat,
  java.io.IOException,
  java.io.InputStream,
- javax.imageio.ImageIO" %><%@ page session="false" %>
+ javax.imageio.ImageIO" %>
 <html>
 <head>
 <script src="js/sweetalert.min.js"></script>
@@ -223,19 +224,8 @@ catch(NullPointerException e)
   	 location='TraderLogin.jsp';
  	 </script>						 	 
 <%
-}
-try
-{%>
-	<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, welcome to e-auction at NeoMandi.</p></div>
-<%}catch(NullPointerException e)
-{
-	%> 
-	<script type="text/javascript\">
-  	 swal({title:'YOU HAVE NOT LOGGED IN PLEASE LOGIN '});  	
-  	 location='TraderLogin.jsp';
- 	 </script>						 	 
-<%
-} %>
+}%>
+	<p style="font-size:16px; color:white;"><% out.println(tlbn.getTname());%>, <%=session.getValue("trader.product.ribbon")%>.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-placement="bottom" onclick="logout()" data-toggle="tooltip" title="Logout" ><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 <script>
@@ -292,12 +282,19 @@ try
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    					<li><a href="product.jsp">Product Search</a></li>
+    					<!-- <li><a href="product.jsp">Product Search</a></li>
                         <li><a href="TraderBlock.do">Hold Funds</a></li>
                         <li  class="active"><a href="TradeorAuction.do">Trade</a></li>
                         <li><a href="OrderStatus.do">Status</a></li>
                         <li><a href="Summary1.do">Summary</a></li>
-                        <li><a href="TraderProfile.jsp">My Profile</a></li>
+                        <li><a href="TraderProfile.jsp">My Profile</a></li> -->
+                        
+                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li class="active"><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li><a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>
@@ -394,24 +391,7 @@ try
 			 					setTimeout(function (){	countdown(59,60,hour-1); },1000);
 			 				}	
 							else
-							{	
-								//To Reload page once
-
-								/*(function(){
-										  if( window.sessionStorage )
-										  {
-										    if( !sessionStorage.getItem( 'firstLoad' ) )
-										    {
-										    	sessionStorage[ 'firstLoad' ] = true;
-										      console.log("Before reload1");
-										      window.location.reload();
-										    }  
-										    else{
-										    	console.log("Before reload2");
-										    	sessionStorage.removeItem( 'firstLoad' );								      
-										    }
-										  }
-								})(); */
+							{									
 								if (window.location.href.indexOf('reload')==-1) {
 							         window.location.replace(window.location.href+'?reload');
 							    }
@@ -546,15 +526,6 @@ try
 		 tick();
 		}
 			
-		/* var a=document.getElementById("timer").value;
-		if(typeof a==="undefined")
-		{		
-			//console.log("inside if()")	 		 
-		}
-		else
-		{
-				//	console.log("inside else)")
-		} */
 	</script>
      <%
      
@@ -576,7 +547,6 @@ try
 	    {
 			  out.println("<script type=\"text/javascript\">");
 		  	  out.println("swal('Your final cost has exceeded the amount blocked for trade. You will be redirected to the Hold fund page to block sufficient funds ');");
-		  	//  out.println("window.location='TraderBlock.do';");
 		 	  out.println("</script>");
 		}
 		else 
@@ -605,14 +575,14 @@ try
 				if(al.size()==0){
 					System.out.println(al.size()==0 );
 				%><br>
-					<center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
+					<center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("trader.trade.nolot") %>.</b></p></div></center>
 				<br>
 				<%	
 				}}
 				catch(Exception e)
 				{
 					%><br>
-					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b>No produce has been chosen by you for the auction. Please go to Product Search page to add a lot of the produce to participate in the auction.</b></p></div></center>
+					<center><div id='div' style=' top: 100px; left: 140px;'><p ><b><%=session.getValue("trader.trade.nolot") %>.</b></p></div></center>
 				<br>
 				<%	
 				}
@@ -646,34 +616,35 @@ try
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody >
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control" id="demo1<%=tlb.getLotnum()%>" type="text" value="<%= tlb.getLotnum() %>" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlb.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlb.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println(mfcb.getMyfinalcost()); %>"readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.lotcost") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo2<%=tlb.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.commission") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo3<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%= mfcb.getCommission() %>" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.marketcess") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo4<%=tlb.getLotnum()%>" type="text" style="text-align: right;" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.transportation") %> (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="transportation<%=tlb.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.myfinalcost") %> (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo8<%=tlb.getLotnum()%>" type="text"style="text-align: right;"  value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println(mfcb.getMyfinalcost()); %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="needed<%=tlb.getLotnum() %>" type="text" onclick="quantneeded<%=tlb.getLotnum()%>()"   value="<%=tlb.getQuantityneeded()%>" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlb.getLotnum() %>" type="text" value="<%=mfcb.getQuantityassigned()%>" style="width:164px"readonly></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	<tr><td><h4><%=session.getValue("trader.trade.bestbid") %> (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.mybid") %>(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
+	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlb.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="<%=session.getValue("trader.trade.enteryourbidhere") %>" data-placement=bottom class="form-control" id="demo6<%=tlb.getLotnum()%>" type="number" min="<%= mfcb.getPrice()%>"  max="999" maxlength="3" value="<%= mfcb.getPrice()%>" style="width:164px; height:30px;">
+	
 	</td>
 	</tr>
 	</tbody>
-	</table><p style="font-size: 14px; position:absolute; left: 62%;"><b>Enter your bid here</b></p>
+	</table><p style="font-size: 11px; position:absolute; left: 62%;"><b><%=session.getValue("trader.trade.enteryourbidhere") %></b></p>
 	<script>
 		function quantneeded<%=tlb.getLotnum()%>() {
 		 swal('You can increase the lotsize  in Product Search tab');
@@ -1248,7 +1219,7 @@ try
 	}
  }
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment1" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlb.getLotnum());%>();" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center">
 	<tbody>
@@ -1256,7 +1227,7 @@ try
 			<td><%if(tlb.getRigid().equals("y")){ %>
 				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">Rigid Order</div></button><br><br><%} else{ %>
 				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">Flexible Order</div></button><br><br><%} %>
-				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;">Remove lot</button>
+				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;">Remove Lot</button>
 			</td>
 		</tr>
 	</tbody>
@@ -1435,7 +1406,7 @@ try
 				  }
 				  else if(newbids>999)
 					  {
-					  		swal("You cannot bid more than 999 Rs for any lot");
+					  		swal("You cannot bid more than 999 <%=session.getValue("trader.trade.rs")%> for any lot");
 					  		document.getElementById("demo6<%out.print(tlb.getLotnum());%>").value='999'
 					  }
 				  else if(currentbids>newbids)
@@ -1641,28 +1612,28 @@ try
 	<table align="center">
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
-	<tr><td><h4>Available Lot Size (kg) (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>) </h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>"style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" style="text-align: right;"readonly></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>"style="text-align: right;" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
-<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" style="text-align: right;"type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
+	<tr><td><h4>Lot Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo2<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getLotcost() %>"style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo3<%=tlbr.getLotnum()%>" type="text" value="<%= mfcb.getCommission() %>" style="text-align: right;"readonly></td></tr>
+	<tr><td><h4>Market Cess (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo4<%=tlbr.getLotnum()%>"style="text-align: right;" type="text" value="<%= mfcb.getMarketcess()%>"readonly ></td></tr>
+<tr><td><h4>Transportation Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="transportation<%=tlbr.getLotnum()%>" style="text-align: right;" type="text" value="<%if(mfcb.getLotcost().equals("0")) out.println("0"); else out.println("3000"); %>" readonly></td></tr>
+	<tr><td><h4>My Final Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="demo8<%=tlbr.getLotnum()%>" style="text-align: right;"type="text" value="<%= mfcb.getMyfinalcost() %>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
+	<tr><td><h4>Required Lot Size (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4>Assigned Lot Size (<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  value="<%=tlbr.getQuantityneeded()%>" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" id="demo7<%=tlbr.getLotnum() %>"style="width:164px; height:30px;" type="text" value="<%=mfcb.getQuantityassigned()%>" readonly></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td><h4>Best Bid (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4>My Bid(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="demo5<%=tlbr.getLotnum()%>" type="text" value="<%=mfcb.getBestbid()%>" readonly></td><td class="inp clspad10"><input class="form-control" id="demo6<%=tlbr.getLotnum()%>" max="999" maxlength="3" data-toggle="tooltip" title="Enter your bid here" data-placement=bottom  type="number" min="<%= mfcb.getPrice()%>" style="width:164px; height:30px;"value="<%= mfcb.getPrice()%>"></td></tr>
 	</tbody>
 	</table>
@@ -2228,7 +2199,7 @@ try
 	}
  
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" id="remove" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -2514,28 +2485,28 @@ try
 	<table align="center" >
 	<tbody >
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control"  type="text" value="198BEAA0060" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="Beans"readonly ></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Beans"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf;  padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
+	<tr><td><h4>Lot Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>Market Cess (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>My Final Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
+	<tr><td><h4>Required Lot Size (<%=session.getValue("trader.trade.kg")%></h4></td><td><h4>Assigned Lot Size (<%=session.getValue("trader.trade.kg")%></h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td><h4>Best Bid (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4>My Bid(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
@@ -2548,7 +2519,7 @@ try
 		    $('[data-toggle="tooltip"]').tooltip();   
 		});
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
@@ -2574,8 +2545,8 @@ try
 	<tbody>
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="876GARA0304"></td></tr>
 	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" value="Garlic" type="text"></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %></h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
 	</tbody>
 	</table>
 </td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
@@ -2602,7 +2573,7 @@ try
 </td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton
 ();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub">Submit</button></td></tr></tbody></table>
+				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 
 </td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
@@ -2630,28 +2601,28 @@ try
 	<table align="center" >
 	<tbody >
 	<tr><td><h4>Lot Number</h4></td><td><input class="form-control"  type="text" value="198CARA0060" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
-	<tr><td><h4>Available Lot Size (kg)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf;  padding:5px;white-space:nowrap;font-weight:bold">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
-	<tr><td><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
+	<tr><td><h4>Lot Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text" value="0" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4>Commission Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>Market Cess (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text" style="text-align: right;" value="0"readonly ></td></tr>
+	<tr><td><h4>Transportation Charges (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" style="text-align: right;" type="text" value="0" readonly></td></tr>
+	<tr><td><h4>My Final Cost (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control"  type="text"style="text-align: right;"  value="0"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size (kg)</h4></td><td><h4>Assigned Lot Size (kg)</h4></td></tr>
+	<tr><td><h4>Required Lot Size (<%=session.getValue("trader.trade..kg")%>)</h4></td><td><h4>Assigned Lot Size (<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
-	<tr><td><h4>Best Bid (Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td><h4>Best Bid (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4>My Bid(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" type="text" value="0" style="height:30px;" readonly></td><td class="inp clspad10"><input data-toggle="tooltip" title="Enter your bid here" data-placement=bottom class="form-control"  type="number"  max="999" maxlength="3" value="0" style="width:164px; height:30px;">
 	</td>
 	</tr>
@@ -2660,7 +2631,7 @@ try
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
 	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub">Submit</button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
 	</td></tr>
