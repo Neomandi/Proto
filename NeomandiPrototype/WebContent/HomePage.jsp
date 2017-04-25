@@ -90,7 +90,7 @@
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
           
         </li>
-        <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
+       <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
       </div>
       </div>
