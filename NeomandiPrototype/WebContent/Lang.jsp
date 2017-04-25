@@ -50,6 +50,4 @@ English <input type="radio" name="lang" value="English" checked>
      }
 %>
 <jsp:forward page="HomePage.jsp" />
-<%
-   }
-%>
+<%}%>

@@ -135,7 +135,8 @@ body {
 	    
 	    System.out.println("in in before auction lotsize="+lotsize);
 	    double lot=Integer.parseInt(lotsize);
-		    String status="Auction yet to start";
+	    String status="";
+		   status+=session.getValue("summary.beforeauction");
 
 	    	 	String lotsize1=String.valueOf(lot);
 	    	 	double lsize=Double.parseDouble(lotsize1);
@@ -256,12 +257,18 @@ body {
                 <div class="container charge">
                     <table class="table">
                         <tr>
-                            <td>
-                                <h4>*Transportation / Loading Charges</h4></td>
-                            <td>
-                                <h4> #E-Platform Charges</h4></td>
-                            <td>
-                                <h4>^ Pre-Market Value Addition Charges</h4></td>
+                             <td>
+                     <h4><%=session.getValue("h.TLC") %>
+                     </h4>
+                  </td>
+                  <td>
+                     <h4><%=session.getValue("h.EPC") %>
+                     </h4>
+                  </td>
+                  <td>
+                     <h4><%=session.getValue("h.PMVA") %>
+                     </h4>
+                  </td>
                         </tr>
                     </table>
 

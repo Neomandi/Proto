@@ -15,12 +15,6 @@
             <script src="js/bootstrap.js" type="text/javascript"></script>
             <script src="js/moment.js" type="text/javascript"></script>
             <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <style>
 #div
 {   		
@@ -116,25 +110,25 @@ catch(Exception e)
 <%
 }
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, <%=session.getValue("trader.product.ribbon")%>.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="product.jsp">Product Search</a></li>
-    <li><a href="TraderBlock.do">Hold Funds</a></li>
-    <li><a href="TradeorAuction.do">Trade</a></li>
-    <li><a href="OrderStatus.do">Status</a></li>
-	<li class="active"><a href="Summary1.do">Summary</a></li>
-    <li><a href="TraderProfile.jsp">My Profile</a></li>
+                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li ><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li class="active"><a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>
 </div>   
 <div class="container-fluid today">
-<div class="container1" style="padding-left:5%"><h4>Today's Summary</h4></div></div>
+<div class="container1" style="padding-left:5%"><h4><%=session.getValue("f.summary") %></h4></div></div>
  <%		
  		HttpSession tradeSummary=request.getSession(false);
 		if(tradeSummary.getAttribute("todaysummarymsg")!=null)
@@ -142,7 +136,7 @@ catch(Exception e)
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
-			  <center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
+			  <center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("summary.Emessage") %></b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -163,14 +157,14 @@ catch(Exception e)
 <table class="table sum1table" id="basic-table">
 <thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h5>Lot Number</h5></td>
-	  <td><h5>Assigned Lot size(kg)</h5></td>
-	  <td><h5>Lot Cost(Rs)</h5></td>
-	  <td><h5>Commission Charges(Rs)</h5></td>
-	  <td><h5>Transportation Charges(Rs)</h5></td>
-	  <td><h5>Market Cess(Rs)</h5></td>
-	  <td><h5>My Final cost(Rs)</h5></td>
-	  <td><h5>Date</h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotnumber") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.assigned") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
+	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10" id="tb1">
@@ -194,19 +188,19 @@ catch(Exception e)
 	  </table>
 </div>
 	  </div>
-	<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
+	<div class="container-fluid  history"><div class="container tsum"><h2><%=session.getValue("f.history") %></h2></div></div>
 	<div class="container-fluid tfrom">
 	<div class="container tsum from">
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	<div align="center">
 	<form action = "tradeSummary.do" method = "post" id="myForm">	
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"> <%=session.getValue("summary.from") %><div class='input-group date' id='idfrom'>
                     <input type='text' class="form-control" value="${param. from}" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div></div>                
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"> <%=session.getValue("summary.to") %><div class='input-group date' id='idto'>
                     <input type='text' class="form-control" value="${param. to}" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -231,7 +225,7 @@ function fun2()
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
   		%>
-  		<center><div id='div' style=' background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
+  		<center><div id='div' style=' background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("history.Emessage") %>.</b></p></div></center>		 
   		<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
@@ -242,14 +236,14 @@ function fun2()
 	<table id="basic-table"  class="table sum1table ">
 	<thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h5>Lot Number</h5></td>
-	  <td><h5>Assigned Lot size(Rs)</h5></td>
-	  <td><h5>Lot Cost(Rs)</h5></td>
-	  <td><h5>Commission Charges(Rs)</h5></td>
-	  <td><h5>Transportation Charges(Rs)</h5></td>
-	  <td><h5>Market Cess(Rs)</h5></td>
-	  <td><h5>My Final cost(Rs)</h5></td>
-	  <td><h5>Date</h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotnumber") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.assigned") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
+	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  </tr></thead>

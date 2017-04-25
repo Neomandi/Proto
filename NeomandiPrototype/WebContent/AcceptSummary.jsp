@@ -336,15 +336,15 @@
             <table class="table">
                <tr>
                   <td>
-                     <h4>*Transportation / Loading Charges
+                     <h4><%=session.getValue("h.TLC") %>
                      </h4>
                   </td>
                   <td>
-                     <h4> #E-Platform Charges
+                     <h4><%=session.getValue("h.EPC") %>
                      </h4>
                   </td>
                   <td>
-                     <h4>^ Pre-Market Value Addition Charges
+                     <h4><%=session.getValue("h.PMVA") %>
                      </h4>
                   </td>
                </tr>

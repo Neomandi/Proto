@@ -106,17 +106,17 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li ><a href="HomePage.html">About Us</a></li>
-        <li><a href="Vision.html" >Vision</a></li>
-        <li><a href="Mission.html" >Mission</a></li>
-		<li><a href="Howitworks.html" >How it works</a></li>
-        <li ><a href="News.html" >News</a></li>
-		<li ><a href="ContactUs.html" >Contact Us</a></li>
-		<li class="dropdown">
-          <a class="dropdown-toggle" href="Register.html">Register</a>
-          
-        </li>
-        <li class="active"><a href="Login.html" >Login</a></li>  
+        <li><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+			        <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
+			        <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
+					<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
+			        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+					<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
+					<li class="dropdown">
+			          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
+			          
+			        </li>
+			        <li class="active"><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
       
     </div>
@@ -129,12 +129,12 @@ if(request.getAttribute("errmsg")!=null && (((String)request.getAttribute("errms
 <div class="col-lg-offset-8 col-lg-2 col-md-offset-5 col-md-3 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-6">
 <table class="table login">
 <tbody>
-<tr><td><h2 style="color:white;">Farmer Login</h2></td></tr>
+<tr><td><h2 style="color:white;"><%=session.getValue("farmer.login") %></h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="name" placeholder="User name"></td></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password"></td></td></tr>
 <!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
-<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#B6E41F" id="login">Login</button></td></tr><br>
-<tr align="center"><td><a href="" onclick="fp()" class"frgt">Forgot password?</a></td></tr>
+<tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#B6E41F" id="login"><%=session.getValue("f.login") %></button></td></tr><br>
+<tr align="center"><td><a href="" onclick="fp()" class"frgt"><%=session.getValue("f.pfargot") %></a></td></tr>
 </tbody></table>
 <script>
 document.getElementById("pwd").addEventListener("keyup", function(event) {

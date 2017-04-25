@@ -310,10 +310,15 @@ catch(NullPointerException e)
 <%
 	ServletContext context = request.getSession().getServletContext();
 	String start=(String)context.getAttribute("starttime");
-	System.out.println("starttime="+start);
+	
 	String stop=(String)context.getAttribute("endtime");
 	System.out.println("end="+stop);
 	String msg="start";
+	if(start==null)
+		start="10:30";
+	if(stop==null)
+		stop="10:40";
+	System.out.println("starttime="+start);
 %>
   <input type="hidden" id="POSTAUCTION" value="start"/>
   <div id="accord1"> 
@@ -482,7 +487,8 @@ catch(NullPointerException e)
 						            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
 						            	String start1 = simpleDateFormat.format(new Date());	
 						            	String stop1=(String)context.getAttribute("endtime");						            	
-						            	
+						            	if(stop1==null)
+						            		stop1="10:40:00";
 						            	Date d1 = new SimpleDateFormat(pattern).parse(start1);
 						            	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
 						            	long diffMs = d2.getTime() - d1.getTime();
