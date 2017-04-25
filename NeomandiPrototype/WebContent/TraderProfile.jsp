@@ -96,12 +96,12 @@ catch(Exception e)
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li ><a href="product.jsp">Product Search</a></li>
-                        <li><a href="TraderBlock.do">Hold Funds</a></li>
-                        <li><a href="TradeorAuction.do">Trade</a></li>
-                        <li><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary1.do">Summary</a></li>
-                        <li class="active"><a href="TraderProfile.jsp">My Profile</a></li>
+     <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li ><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li> <a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li class="active"><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>
@@ -110,7 +110,7 @@ catch(Exception e)
 	  <br><br>
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4 style="background: #bdd102;color:black;">My Details</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("tprofile.mydetails") %></h4>
 <div class="detail">
 <%
 					Connection con = null;
@@ -132,22 +132,22 @@ catch(Exception e)
 				%>
 <form id="myprofile">
     <table class="table">
-      <tr><td><label for="name">Name</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("tprofile.name") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("name") %> readonly></td></tr>
-      <tr><td><label for="aadhar">Aadhar Number</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("tprofile.aadhar") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr"value=<%= rs.getLong("aadharnumber") %> readonly></td></tr>
-      <tr><td><label for="mobno">Mobile Number</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("tprofile.mobile") %></label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr"value=<%= rs.getLong("mobile") %> readonly></td></tr>	  
-      <tr><td><label for="email">Email:</label></td></tr>
+      <tr><td><label for="email"><%=session.getValue("tprofile.email") %></label></td></tr>
       <tr><td><input type="email" class="form-control" id="email" placeholder="Enter email"value="<%= rs.getString("email") %>" readonly></td></tr>
-      <tr><td><label for="address">Address</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("tprofile.address") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("address")%>" readonly> 
 	   
 	  </td></tr>
       
       <tr>
                                 <td>
-                                    <label for="state">State</label>
+                                    <label for="state"><%=session.getValue("tprofile.state") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -157,7 +157,7 @@ catch(Exception e)
                             </tr>
 	 		<tr>
                                 <td>
-                                    <label for="district">District</label>
+                                    <label for="district"><%=session.getValue("tprofile.district") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -167,7 +167,7 @@ catch(Exception e)
                             </tr>
 							<tr>
                                 <td>
-                                    <label for="taluk">Taluk</label>
+                                    <label for="taluk"><%=session.getValue("tprofile.taluk") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -177,7 +177,7 @@ catch(Exception e)
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="pin">PIN</label>
+                                    <label for="pin"><%=session.getValue("tprofile.PIN") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -191,21 +191,21 @@ catch(Exception e)
 
             </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bank">
-<h4 style="background:#149DDA;">My License Details</h4>
+<h4 style="background:#149DDA;"><%=session.getValue("tprofile.licensedetails") %></h4>
 <div class="password">
 <form>
     <table class="table">
-      <tr><td><label for="name">Trade License Number</label></td></tr>
+      <tr><td><label for="name"><%=session.getValue("tprofile.lnumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("license") %>" readonly></td></tr>
-      <tr><td><label for="aadhar">Date of Registration</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("tprofile.datereg") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("dateofregistration") %>" readonly></td></tr>
-      <tr><td><label for="mobno">Place of Registration</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("tprofile.placereg") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("placeofregistration") %>" readonly></td></tr>	  
-      <tr><td><label for="address">Address</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("tprofile.laddress") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=rs.getString("address") %>" readonly></td></tr>
      
                                 <td>
-                                    <label for="state">State</label>
+                                    <label for="state"><%=session.getValue("tprofile.lstate") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -215,7 +215,7 @@ catch(Exception e)
                             </tr>
 							<tr>
                                 <td>
-                                    <label for="district">District</label>
+                                    <label for="district"><%=session.getValue("tprofile.ldistrict") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -225,7 +225,7 @@ catch(Exception e)
                             </tr>
 							<tr>
                                 <td>
-                                    <label for="taluk">Taluk</label>
+                                    <label for="taluk"><%=session.getValue("tprofile.ltaluk") %></label>
                                 </td>
                             </tr>
                             <tr>
@@ -233,7 +233,7 @@ catch(Exception e)
                                     <input type="text" class="form-control" id="taluk" value="<%= rs.getString("ltaluk") %>" readonly>
                                 </td>
                             </tr>
-	  <tr><td><label for="pin">Pin</label></td></tr>
+	  <tr><td><label for="pin"><%=session.getValue("tprofile.lpin") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("lpin") %>" readonly></td></tr>
     </table>
   </form>
@@ -281,18 +281,18 @@ catch(Exception e)
 		update();
     </script>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-<h4 style="background: #bdd102;color:black;">My Account Details</h4>
+<h4 style="background: #bdd102;color:black;"><%=session.getValue("tprofile.bankdetails") %></h4>
 <div class="detail">
 <form>
     <table class="table"> 
-  <tr><td><label for="name">Bank Name</label></td></tr>
+  <tr><td><label for="name"><%=session.getValue("tprofile.bankname") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("bankname") %>" readonly></td></tr>
-      <tr><td><label for="aadhar">Account Number</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("tprofile.accountnumber") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("accountnum") %>" readonly></td></tr>
-      <tr><td><label for="mobno">IFSC</label></td></tr>
+      <tr><td><label for="mobno"><%=session.getValue("tprofile.IFSC") %></label></td></tr>
 <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("ifsccode") %>" readonly></td></tr>	  
 
-      <tr><td><label for="address">Bank Branch</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("tprofile.bankbranch") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%= rs.getString("branch") %>" readonly></td></tr>
     </table>
   </form>    <%
