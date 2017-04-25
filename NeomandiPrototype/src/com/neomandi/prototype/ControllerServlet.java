@@ -2141,7 +2141,26 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
+				
+				Object ss = request.getSession().getValue("myLocale");
+				String str = ss.toString();
 				tlog.invalidate();
+				Locale locale = null;
+				if(str.contains("kn")){
+					locale=new Locale("kn","IN");
+				}else if(str.contains("en")){
+					locale=new Locale("en","US");
+				}
+				
+				HttpSession session = request.getSession();
+				session.putValue("myLocale",locale);
+			     ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
+			     for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
+			         String key = (String)e.nextElement();
+			         String s = bundle.getString(key);
+			         session.putValue(key,s);
+			         //System.out.println(key+" : "+s);
+			     }
 				rd=request.getRequestDispatcher("TraderLogin.jsp");
 				try {
 					rd.forward(request, response);
