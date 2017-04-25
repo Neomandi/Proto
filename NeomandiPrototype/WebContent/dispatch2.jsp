@@ -81,16 +81,16 @@ catch(Exception e)
 	 out.println("</script>");
 }
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=((String)elog.getAttribute("ename"))%>, <%=session.getValue("employee.ribbon") %></p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" data-toggle="tooltip" title="Logout" href="ELogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="ProductEntry.jsp">Product Entry</a></li>
-    <li><a href="Revenue.jsp">Revenue</a></li>
-    <li class="active"><a href="Dispatch.do">Dispatch</a></li>
+                    <li><a href="ProductEntry.jsp"><%=session.getValue("product.entry") %></a></li>
+                    <li><a href="Revenue.jsp"><%=session.getValue("revenue") %></a></li>
+                    <li  class="active"><a href="Dispatch.do"><%=session.getValue("dispatch") %></a></li>
   </ul>
 </div>
 </div>
@@ -139,13 +139,14 @@ catch(Exception e)
 			   		
 			   		<th   ></th>
 			   		<th   ></th>
-					<th  rowspan="<%=size%>" style="text-align:center;">Lot Number</th>
-					<th ></th>
-					<th colspan="2"></th>
-					<th  style="text-align:center;">Trader Name</th>
-					<th  colspan="2" style="text-align:center;">Quantity(kg)</th>
-					<th   ></th>
-			   		<th   ></th>
+					<th   style="text-align:center;"><%=session.getValue("product.label.lotnumber") %></th>
+					<th>
+					</th>
+					<th   colspan="2"></th>
+					<th   style="text-align:center;"><%=session.getValue("dispatch.tradername") %></th>
+					<th   colspan="2" style="text-align:center;"><%=session.getValue("product.label.quantity") %></th>
+					<th></th>
+			   		<th></th>
 				</tr>
 				<tbody align="center">				
 				<tr>

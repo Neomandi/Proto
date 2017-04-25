@@ -104,27 +104,27 @@ footer {
                     <thead>
                         <tr>
                             <td>
-                                <h4>Lot Number</h4></td>
+                                <h4><%=session.getValue("product.label.lotnumber") %></h4></td>
                             <td>
-                                <h4>Lot Cost<br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.lotcost") %><br/>(Rs)</h4></td>
                             <td>
                                 <h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
                             <td>
-                                <h4>Commision<br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.commision") %><br/>(Rs)</h4></td>
                             <td>
-                                <h4>Market Cess<br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.marketcess") %><br/>(Rs)</h4></td>
                             <td>
                                 <h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
                             <td>
                                 <h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
                             <td>
-                                <h4>Market Cess<br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.marketcess") %><br/>(Rs)</h4></td>
                             <td>
                                 <h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
                             <td>
                                 <h4>PMVA<sup>^</sup><br/>(Rs)</h4></td>
                             <td>
-                                <h4>NeoMandi Revenue<br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.neomandirevenue") %><br/>(Rs)</h4></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -223,7 +223,9 @@ footer {
 		else
 		{
 			 System.out.println("Inside else....");
-			 out.println("<div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen, hence, no revenue summary is available.</b></p></div>");
+			 %>
+			 <div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b><%=session.getValue("revenue.msg") %></b></p></div>
+			 <%
 		}
 	}
 	}
