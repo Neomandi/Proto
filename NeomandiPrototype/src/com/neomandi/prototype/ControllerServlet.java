@@ -442,55 +442,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}
 
-		/*if(uri.contains("FarmerMaster")){
-			System.out.println("in cs uri="+uri);
-			HttpSession hs=request.getSession(false);
-			String name=(String) hs.getAttribute("name");
-			String pass=(String) hs.getAttribute("pass");
-			System.out.println("in cs pass="+pass);
-			System.out.println("in cs name="+name);
-			
-			Model m = new Model();
-			sb=m.getSummary(name, pass, sb);
-			
-			System.out.println(" in cs sb="+sb);
-			String lotnumber=sb.getLotnumber();
-			String lotsize=sb.getLotsize();
-			String quantitysold=sb.getQuantitysold();
-			String averageprice=sb.getAverageprice();
-			String finalprice=sb.getFinalprice();
-			String status=sb.getStatus();
-			String myearnings=sb.getMyearning();
-			String slot=sb.getSlot();
-			String aadhar=sb.getAadhar();
-			System.out.println(("in cs avg="+averageprice));
-			
-			HttpSession hsr=request.getSession();
-			hsr.setAttribute("lotnumber",lotnumber);
-			hsr.setAttribute("lotsize",lotsize);
-			hsr.setAttribute("quantitysold", quantitysold);
-			hsr.setAttribute("averageprice", averageprice);
-			hsr.setAttribute("finalprice", finalprice);
-			hsr.setAttribute("status", status);
-			hsr.setAttribute("aadhar", aadhar);
-			hsr.setAttribute("slot",slot);
-			rd=request.getRequestDispatcher("FarmerMaster.jsp");
-			
 		
-			try 
-			{
-				rd.forward(request, response);			
-			}			
-			catch (ServletException e) {
-				
-				e.printStackTrace();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-			
-			
-		}*/
 		//GetSummary
 		if(uri.contains("GetSummary")){
 			System.out.println("in cs uri="+uri);
@@ -2166,7 +2118,26 @@ public class ControllerServlet extends HttpServlet {
 			}
 			else
 			{
+				
+				Object ss = request.getSession().getValue("myLocale");
+				String str = ss.toString();
 				tlog.invalidate();
+				Locale locale = null;
+				if(str.contains("kn")){
+					locale=new Locale("kn","IN");
+				}else if(str.contains("en")){
+					locale=new Locale("en","US");
+				}
+				
+				HttpSession session = request.getSession();
+				session.putValue("myLocale",locale);
+			     ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
+			     for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
+			         String key = (String)e.nextElement();
+			         String s = bundle.getString(key);
+			         session.putValue(key,s);
+			         //System.out.println(key+" : "+s);
+			     }
 				rd=request.getRequestDispatcher("TraderLogin.jsp");
 				try {
 					rd.forward(request, response);
@@ -2444,38 +2415,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 		}*/	
 		
-		//Farmer Logout
-		if(uri.contains("FLogout"))
-		{
-			HttpSession flog = request.getSession(false);
-			PrintWriter out = null;
-			try {
-				out = response.getWriter();
-			} catch (IOException e1) {
-				
-				e1.printStackTrace();
-			}
-			if(flog!=null)
-			{ 
-				flog.invalidate();
-				try 
-				{
-					rd.forward(request, response);
-					return;
-				}			
-				catch (ServletException e) {
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
-			}
-			else
-			{
-				out.println("<html><head><script>alert('Please Login!!');<script></head></html>");
-			}
-		}
+		
 		
 		if(uri.contains("tradeSummary"))
 		{

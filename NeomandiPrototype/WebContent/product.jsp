@@ -406,7 +406,7 @@
                                     <td>
                                         <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>  (kg)">
                                     </td>
-                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
+                                  <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
                                   <td></td>
                                 </tr>                                
                                 <script> 
