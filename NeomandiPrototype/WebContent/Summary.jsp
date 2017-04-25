@@ -15,12 +15,6 @@
             <script src="js/bootstrap.js" type="text/javascript"></script>
             <script src="js/moment.js" type="text/javascript"></script>
             <script src="js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <style>
 #div
 {   		
@@ -116,19 +110,19 @@ catch(Exception e)
 <%
 }
 %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, <%=session.getValue("trader.product.ribbon")%>.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    <li><a href="product.jsp">Product Search</a></li>
-    <li><a href="TraderBlock.do">Hold Funds</a></li>
-    <li><a href="TradeorAuction.do">Trade</a></li>
-    <li><a href="OrderStatus.do">Status</a></li>
-	<li class="active"><a href="Summary1.do">Summary</a></li>
-    <li><a href="TraderProfile.jsp">My Profile</a></li>
+                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li ><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li class="active"><a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>

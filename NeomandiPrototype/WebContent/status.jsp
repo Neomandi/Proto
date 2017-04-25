@@ -151,40 +151,13 @@ if((String)tlbn.getTname()==null)
 %>
 <script>
     //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-	setInterval(function()
+	
+    
+    setInterval(function()
 	{
 					funny();
 	},1000);
-    
-	 <%
-		String pattern = "HH:mm:ss";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
-		String start1 = simpleDateFormat.format(new Date());//current time	
-		
-		ServletContext context = request.getSession().getServletContext();
-		String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
-		
-		Date d1 = new SimpleDateFormat(pattern).parse(start1);
-		Date d2 = new SimpleDateFormat(pattern).parse(stop1);
-		long diffMs = d1.getTime() - d2.getTime();
-		long diffSec = diffMs / 1000;
-		long min = diffSec / 60;
-		long sec = diffSec % 60;
-		System.out.println("differnece is "+diffMs);
-		if(diffMs<0)
-		{
-		%>
-			document.getElementById('sts').value='';
-			document.getElementById("msg").textContent='Auction under progress';
-			document.getElementById("msg").innerHTML='Auction under progress';
-		<%
-		}
-		else
-		{
-		%>
-			document.getElementById("msg").textContent='Auction complete';
-		<%}%>
-    
+        
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -192,8 +165,7 @@ if((String)tlbn.getTname()==null)
 		    if (this.readyState == 4 && this.status == 200) 
 		    {	   
 		    		var string=xmlhttp.responseText;		    	 
-			    	var status=string;/* 
-			    	document.getElementById("msg").textContent=status;	 */		    	
+			    	var status=string;	    	
 			    	console.log("status is"+status);
 			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 			    	console.log(status===null);
@@ -201,6 +173,7 @@ if((String)tlbn.getTname()==null)
 				    {
 				    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+				    		//document.getElementById("sts").value='<%=session.getValue("trader.status.waiting")%>';
 				    		console.log("inside pending");
 				    }
 			    	else if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
@@ -313,6 +286,50 @@ if((String)tlbn.getTname()==null)
 	<!-- <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do"> -->
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output></center>
 	<script> 
+	<%
+	String pattern = "HH:mm:ss";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
+	String start1 = simpleDateFormat.format(new Date());//current time	
+	
+	ServletContext context = request.getSession().getServletContext();
+	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
+	String starttime=(String)context.getAttribute("Starttime");
+	
+	Date d = new SimpleDateFormat(pattern).parse(starttime);
+	Date d1 = new SimpleDateFormat(pattern).parse(start1);
+	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
+	long diffMs = d1.getTime() - d2.getTime();
+	long diffSec = diffMs / 1000;
+	long min = diffSec / 60;
+	long sec = diffSec % 60;
+	
+	long diffMs1 = d.getTime() - d1.getTime();
+	long diffSec1 = diffMs1 / 1000;
+	long min1 = diffSec1 / 60;
+	long sec1 = diffSec1 % 60;
+	System.out.println("differnece is "+diffMs1);
+	if(diffMs1<0)
+	{
+		%>
+		document.getElementById("msg").textContent="Auction is yet to start";
+		<%
+	}
+	else if(diffMs<0)
+	{
+		System.out.println("inside if");
+	%>
+		document.getElementById('sts').value='';
+		document.getElementById("msg").textContent="Auction under Progress";
+		// document.getElementById("msg").textContent='<%=session.getValue("trader.status.auctionunderprogress")%>';
+	<%
+	}
+	else
+	{System.out.println("inside else");
+	%>
+			document.getElementById("msg").textContent="Auction completed";
+	<%}%>
+	
+	
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
