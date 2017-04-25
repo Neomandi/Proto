@@ -157,14 +157,14 @@ catch(Exception e)
 <table class="table sum1table" id="basic-table">
 <thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h5>Lot Number</h5></td>
-	  <td><h5>Assigned Lot size(kg)</h5></td>
-	  <td><h5>Lot Cost(Rs)</h5></td>
-	  <td><h5>Commission Charges(Rs)</h5></td>
-	  <td><h5>Transportation Charges(Rs)</h5></td>
-	  <td><h5>Market Cess(Rs)</h5></td>
-	  <td><h5>My Final cost(Rs)</h5></td>
-	  <td><h5>Date</h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotnumber") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.assigned") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
+	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10" id="tb1">
@@ -236,14 +236,14 @@ function fun2()
 	<table id="basic-table"  class="table sum1table ">
 	<thead class="none" style="color:white"><tr>
 	  <td>&nbsp;</td>
-	  <td><h5>Lot Number</h5></td>
-	  <td><h5>Assigned Lot size(Rs)</h5></td>
-	  <td><h5>Lot Cost(Rs)</h5></td>
-	  <td><h5>Commission Charges(Rs)</h5></td>
-	  <td><h5>Transportation Charges(Rs)</h5></td>
-	  <td><h5>Market Cess(Rs)</h5></td>
-	  <td><h5>My Final cost(Rs)</h5></td>
-	  <td><h5>Date</h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotnumber") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.assigned") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
+	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
+	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
