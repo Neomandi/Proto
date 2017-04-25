@@ -387,7 +387,32 @@ public class ControllerServlet extends HttpServlet {
 			if(hc!=null)
 			{
 				hc.removeAttribute("flbean");
-				hc.invalidate();				
+				
+				@SuppressWarnings("deprecation")
+				Object ss = request.getSession().getValue("myLocale");
+				String str = ss.toString();
+				//System.out.println(str);
+				
+				hc.invalidate();
+				
+				Locale locale = null;
+				if(str.contains("kn")){
+					locale=new Locale("kn","IN");
+				}else if(str.contains("en")){
+					locale=new Locale("en","US");
+				}
+				
+				HttpSession session = request.getSession();
+				session.putValue("myLocale",locale);
+			     ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
+			     for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
+			         String key = (String)e.nextElement();
+			         String s = bundle.getString(key);
+			         session.putValue(key,s);
+			         //System.out.println(key+" : "+s);
+			     }
+							
+				
 			}
 /*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
 			 request.setAttribute("logout", msg);*/
