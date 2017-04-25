@@ -80,20 +80,7 @@ overflow:auto;
 %>
 <input type="hidden" value="<%=hour%>" id="hour">
 <input type="hidden" value="<%=minute%>" id="minute">
-<script>
-/* var hour=document.getElementById("hour");
-var minute=document.getElementById("minute");
-console.log("current time is "+hour+":"+minute+" hour!=10"+hour!=10);
-if(hour!=10){}
-	// alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
-	 else
-		 {
-		 console.log("minute<35"+minute<35)
-		 if(minute<35)
-		//	 alert("YOU CAN CHECK STATUS ONLY AFTER AUCTION IS DONE ")
-				
-		 } */
-</script>
+
 <div class="logo_relative">
 <div class="hidden-xs logo "><img src="images/trad_logo.png" class="img-responsive"></div>
 <div class="container-fluid headertop">
@@ -120,6 +107,7 @@ if((String)tlbn.getTname()==null)
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
+    					
                          <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
                         <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
                         <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
@@ -151,21 +139,43 @@ if((String)tlbn.getTname()==null)
 %>
 <script>
     //**********************************************************THIS IS FOR AUTOREFRESH**************************************************************************************
-	
-    
-    setInterval(function()
+	setInterval(function()
 	{
 					funny();
 	},1000);
-        
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
-		    {	   
-		    		var string=xmlhttp.responseText;		    	 
-			    	var status=string;	    	
+		    {
+		    	var start=document.getElementById("start").value;
+		    	var stop=document.getElementById("stop").value;
+		    	var Btime=start;
+		    	var Btime1=stop;
+		    	var d = new Date(); // for now
+		    	d.getHours(); // => 9
+		    	d.getMinutes(); // =>  30
+		    	d.getSeconds();
+		    	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		    	start1 = Etime1.split(":");
+		    	end1 =Btime1.split(":");
+
+		    	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
+		    	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
+		    	var td = endDate1.getTime() - startDate1.getTime();			
+		    	console.log("difference in time is "+ td);
+		    	if(td>0)
+		    		{
+		    			//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
+		    				document.getElementById("msg").textContent='Auction is still under progress';
+		    				document.getElementById('sts').value='';
+		    		}
+		    	else
+		    	{
+		    		document.getElementById("msg").textContent='Auction Complete.';
+			    	var string=xmlhttp.responseText;		    	 
+			    	var status=string;
 			    	console.log("status is"+status);
 			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 			    	console.log(status===null);
@@ -173,7 +183,6 @@ if((String)tlbn.getTname()==null)
 				    {
 				    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
 				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
-				    		//document.getElementById("sts").value='<%=session.getValue("trader.status.waiting")%>';
 				    		console.log("inside pending");
 				    }
 			    	else if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
@@ -203,6 +212,7 @@ if((String)tlbn.getTname()==null)
 			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
 			    	}
 			    	
+		    	}
 		      }
 		    };
 		    xmlhttp.open("POST", "Status2.do", true);
@@ -286,6 +296,7 @@ if((String)tlbn.getTname()==null)
 	<!-- <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do"> -->
 	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output></center>
 	<script> 
+	
 	<%
 	String pattern = "HH:mm:ss";
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);	
@@ -293,28 +304,15 @@ if((String)tlbn.getTname()==null)
 	
 	ServletContext context = request.getSession().getServletContext();
 	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
-	String starttime=(String)context.getAttribute("Starttime");
 	
-	Date d = new SimpleDateFormat(pattern).parse(starttime);
 	Date d1 = new SimpleDateFormat(pattern).parse(start1);
 	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
 	long diffMs = d1.getTime() - d2.getTime();
 	long diffSec = diffMs / 1000;
 	long min = diffSec / 60;
 	long sec = diffSec % 60;
-	
-	long diffMs1 = d.getTime() - d1.getTime();
-	long diffSec1 = diffMs1 / 1000;
-	long min1 = diffSec1 / 60;
-	long sec1 = diffSec1 % 60;
-	System.out.println("differnece is "+diffMs1);
-	if(diffMs1<0)
-	{
-		%>
-		document.getElementById("msg").textContent="Auction is yet to start";
-		<%
-	}
-	else if(diffMs<0)
+	System.out.println("differnece is "+diffMs);
+	if(diffMs<0)
 	{
 		System.out.println("inside if");
 	%>
@@ -329,8 +327,8 @@ if((String)tlbn.getTname()==null)
 			document.getElementById("msg").textContent="Auction completed";
 	<%}%>
 	
-	
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
+	console.log(lotcost);
 	var status=document.getElementById("status<%= osbn.getLotnum()%>").value;
 	var clas=document.getElementById("border");
 	status=status.toUpperCase();
