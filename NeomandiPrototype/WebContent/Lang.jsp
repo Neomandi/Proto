@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page import="java.util.*" %>
 <%
    String lang = request.getParameter("lang");
@@ -43,7 +42,6 @@ English <input type="radio" name="lang" value="English" checked>
      }
      session.putValue("myLocale",locale);
      ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
-    // System.out.println(bundle.getBaseBundleName());
      for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
          String key = (String)e.nextElement();
          String s = bundle.getString(key);

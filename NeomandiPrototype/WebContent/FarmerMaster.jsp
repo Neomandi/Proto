@@ -1,4 +1,4 @@
-<%@page import="java.net.InetAddress"%>
+
 <%@ page language="java" errorPage="Error.jsp" contentType="text/html; charset=ISO-8859-1"
    pageEncoding="ISO-8859-1" errorPage="Error.jsp" 
    import=" com.neomandi.prototype.JDBCHelper,  
@@ -136,8 +136,8 @@
          		  ServletContext context = request.getSession().getServletContext();
          			starttime=(String)context.getAttribute("starttime");
          			endtime=(String)context.getAttribute("endtime");
-         			//System.out.println("in farmer page starttime="+starttime);
-         			//System.out.println("in farmer page endtime="+endtime);
+         			System.out.println("in farmer page starttime="+starttime);
+         			System.out.println("in farmer page endtime="+endtime);
          	     	// String time=(String)hs.getAttribute("time");
          	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
          	     	String time=df1.format(new Date());
@@ -312,14 +312,12 @@
                            <b>
                               <h4>
                                  <b>
+        <div id="msg" style="display:inline; color:#000080;" ><%=session.getValue("f.before") %></div>&nbsp;&nbsp;
+		 <font color="#000080" ><div id="timer" style="display:inline;  color:#000080; " ></div></font>
+		  	<div id="auction" style="display:inline;  color:#000080; "></div>
+			<div id="auction1" style="display:inline;  color:#000080;"></div>
                                    
-                                   
-                                   
-                                       <div id="timer" style="display:inline;  color:#000080; " ></div> &nbsp;&nbsp;
-                                    <div id="msg"  style="display:inline; color:#000080;" ><%=session.getValue("f.before") %></div>
-                                    &nbsp;&nbsp;
-                                    <div id="auction" style="display:inline;  color:#000080; "></div>
-                                    <div id="auction1" style="display:inline;  color:#000080;"></div>
+                           
                                  </b>
                               </h4>
                            </b>
@@ -333,7 +331,7 @@
                         {
                         	%>
                         
-                       <div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b>No lot entries found, hence, auction details are not available.</b></p></div>
+                       <div id='div' style='position: absolute; top: 3px; left: 140px;'><p ><b><%=session.getValue("master.Emessage") %>.</b></p></div>
                       <%   }
                         }
                         }
@@ -349,25 +347,25 @@
       </div>
       <!-----------------------------------------------------modal image----------------------------------------------->
       <!---------modal image--------------->
-      <div class="modal fade" id="myModal" role="dialog">
+     <div class="modal fade" id="myModal" role="dialog"> 
          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
+           Modal content 
+            <div class="modal-content"> 
                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><%=session.getValue("f.productimage") %></h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                    <h4 class="modal-title"><%=session.getValue("f.productimage") %></h4> 
                  
-                   </div>
-               <div class="modal-body">
-                  <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%" id="image">
-               </div>
-               <div class="modal-footer">
+                  </div>
+                <div class="modal-body">
+                   <img src="<%=imgsrc%>" class="img-responsive trad" width="50%" height="70%" id="image"> 
+                </div>
+                <div class="modal-footer"> 
                     <button type="button" class="btn btn-default" data-dismiss="modal"><%=session.getValue("f.close")%></button>
                   
                 </div>
-            </div>
-         </div>
-      </div>
+             </div>
+          </div>
+       </div> 
       <!--------modal image end------------>
       <%
          //fetching date and time
@@ -416,11 +414,13 @@
          var Etime=document.getElementById("time").value;
          var stime=document.getElementById("stime").value;
          var etime=document.getElementById("etime").value;
-         
+         console.log("start time="+stime);
+         console.log("end time="+etime);
          
          
          var slot=document.getElementById("slot").value;
          var date=document.getElementById("date").value;
+         console.log("slot="+slot);
          var s1="slot1";
          var s2="slot2";
          var s3="slot3";
@@ -440,17 +440,15 @@
          	var Etime=document.getElementById("time").value;
          	var Btime=stime;
          	var Btime1=etime;
-         	//console.log("Btime="+Btime);
-         	//console.log("Btime1="+Btime1);
+         	console.log("Btime="+Btime);
+         console.log("Btime1="+Btime1);
          	
          	start = Etime.split(":");
          	end =Btime.split(":");
          	var startDate = new Date(0, 0, 0, start[0], start[1], start[2]);
          	var endDate = new Date(0, 0, 0, end[0], end[1], end[2]);
          	 diff = endDate.getTime() - startDate.getTime();
-         	/*console.log("end time is "+Btime);
-         	console.log("current time is "+Etime);
-         	console.log("difference in milliseconds is "+diff);*/
+         	
          	var hours = Math.floor(diff / 1000 / 60 / 60);
          	//diff -= hours* 60 * 60;
          	var seconds= Math.floor(diff /1000);
@@ -649,8 +647,7 @@
          			else
          			{
          			
-                    	var str="<div id='a1'style='display:inline;color:#000080; '>Auction has begun. Auction will end in</div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";
-         
+         				var str="<div id='a1'style='display:inline;color:#000080; '><%=session.getValue("f.during")%></div>&nbsp;&nbsp;<font color='#000080'><div id='hms' style='display:inline;color:#000080;' > 5:00</div></font>";         
                     	var strCmd = "document.getElementById('auction').style.cssText ='display:none'";
                     	var waitseconds = seconds;
                     	var timeOutPeriod = waitseconds * 1000;
@@ -688,7 +685,9 @@
                  			   }
                  		       else
                  		       {
-                 		           	var str1=" Auction has ended";
+                 		    	   
+                 		    	   
+                 		    	 	var str1="<%=session.getValue("f.after")%>";
                  		           	var strCmd2 = "document.getElementById('hms').style.cssText ='display:none'";
          			            	var waitseconds = seconds;
          			            	var timeOutPeriod = waitseconds * 1000;
