@@ -28,9 +28,7 @@ English <input type="radio" name="lang" value="English" checked>
 <%
    } else {
      Locale locale=null;
-     if (lang.equals("German")) {
-       locale=Locale.GERMANY;
-     } else if(lang.equals("Kannada")){
+     if(lang.equals("Kannada")){
     	 System.out.println("if kannada");
     	locale=new Locale("kn","IN");
      } else if (lang.equals("French")) {
@@ -46,7 +44,7 @@ English <input type="radio" name="lang" value="English" checked>
          String key = (String)e.nextElement();
          String s = bundle.getString(key);
          session.putValue(key,s);
-         //System.out.println(key+" : "+s);
+         //System.out.println(session.getValue("myLocale"));
      }
 %>
 <jsp:forward page="HomePage.jsp" />
