@@ -3031,15 +3031,16 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 							while(rs2.next())
 							{
 								osbn.setVolumesold(rs2.getString("quantityassigned")); 
+								System.out.println("farmer status "+rs2.getString("farmerstatus"));
 								if(rs2.getString("farmerstatus")==null||rs2.getString("farmerstatus").equals(""))
 									osbn.setFarmeraccept("pending");
 								else
 									osbn.setFarmeraccept(rs2.getString("farmerstatus"));
 							}	
 							osbn.setResult("LOT HAS BEEN ASSIGNED");
-							System.out.println("inside model-> inside osbn for lotnum"+lotnum+"is "+osbn);
+							//System.out.println("inside model-> inside osbn for lotnum"+lotnum+"is "+osbn);
 							al.add(osbn);		
-							System.out.println("inside al is "+al);
+						//	System.out.println("inside al is "+al);
 							
 						}
 						mc.setAl(al);
@@ -3356,8 +3357,8 @@ public String orderstatus2(String name,String pwd)
 			{
 				status=rs1.getString("farmerstatus");
 			}
-			/*System.out.println("status is "+status);
-			*/return status;
+			System.out.println("status is "+status);
+			return status;
 		}
 	}
 	catch (SQLException e) {

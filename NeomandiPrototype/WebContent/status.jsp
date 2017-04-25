@@ -113,19 +113,19 @@ if((String)tlbn.getTname()==null)
  </script>						 	 
 <%
 } %>
-<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname() %>, welcome to e-auction at NeoMandi.</p></div>
+<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far"><p style="font-size:16px; color:white;"><%=tlbn.getTname()%>, <%=session.getValue("trader.product.ribbon")%>.</p></div>
 <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right"  data-placement="bottom" data-toggle="tooltip" title="Logout" href="logout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
 </div>
 </div>
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    					<li ><a href="product.jsp">Product Search</a></li>
-                        <li><a href="TraderBlock.do">Hold Funds</a></li>
-                        <li><a href="TradeorAuction.do">Trade</a></li>
-                        <li class="active"><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary1.do">Summary</a></li>
-                        <li><a href="TraderProfile.jsp">My Profile</a></li>
+                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+                        <li ><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
+                        <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
+                        <li  class="active"><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>
+                        <li><a href="Summary1.do"><%=session.getValue("trader.product.summary") %></a></li>
+                        <li><a href="TraderProfile.jsp"><%=session.getValue("trader.product.profile") %></a></li>
   </ul>
 </div>
 </div>
@@ -174,14 +174,15 @@ if((String)tlbn.getTname()==null)
 		if(diffMs<0)
 		{
 		%>
-		document.getElementById("msg").textContent='Auction is still under progress';
-		document.getElementById('sts').value='';
+			document.getElementById('sts').value='';
+			document.getElementById("msg").textContent='Auction under progress';
+			document.getElementById("msg").innerHTML='Auction under progress';
 		<%
 		}
 		else
 		{
 		%>
-		document.getElementById("msg").textContent='Auction Complete.';
+			document.getElementById("msg").textContent='Auction complete';
 		<%}%>
     
     function funny()
@@ -189,35 +190,10 @@ if((String)tlbn.getTname()==null)
     		xmlhttp = new XMLHttpRequest();
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
-		    {
-		    	/* var start=document.getElementById("start1").value;
-		    	var stop=document.getElementById("stop1").value;
-		    	console.log(start)
-		    	var Btime=start;
-		    	var Btime1=stop;
-		    	var d = new Date(); // for now
-		    	d.getHours(); // => 9
-		    	d.getMinutes(); // =>  30
-		    	d.getSeconds();
-		    	var Etime1=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-		    	start1 = Etime1.split(":");
-		    	end1 =Btime1.split(":");
-
-		    	var startDate1 = new Date(0, 0, 0, start1[0], start1[1], start1[2]);
-		    	var endDate1 = new Date(0, 0, 0, end1[0], end1[1], end1[2]);
-		    	var td = endDate1.getTime() - startDate1.getTime();			
-		    	console.log("difference in time is "+ td);
-		    	if(td>0)
-		    		{
-		    			//	alert("Auction is stll under progress or has not yet started, please visit this page after auction");
-		    				document.getElementById("msg").textContent='Auction is still under progress';
-		    				document.getElementById('sts').value='';
-		    		}
-		    	else */
-		    	{
-		    		document.getElementById("msg").textContent='Auction Complete.';
-			    	var string=xmlhttp.responseText;		    	 
-			    	var status=string;
+		    {	   
+		    		var string=xmlhttp.responseText;		    	 
+			    	var status=string;/* 
+			    	document.getElementById("msg").textContent=status;	 */		    	
 			    	console.log("status is"+status);
 			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 			    	console.log(status===null);
@@ -254,7 +230,6 @@ if((String)tlbn.getTname()==null)
 			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
 			    	}
 			    	
-		    	}
 		      }
 		    };
 		    xmlhttp.open("POST", "Status2.do", true);
@@ -302,28 +277,28 @@ if((String)tlbn.getTname()==null)
 	<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getLotnum());%>" style="text-align: center;" readonly></td></tr>
-	<tr><td><h4>Produce</h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getProduce());%>"style="text-align: center;" readonly></td></tr>
-	<tr><td><h4>Quality Grade</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQualitygrade()%>" style="text-align: center;"readonly></td></tr>
-	<tr><td style="white-space:nowrap !important"><h4>Available Lot Size</h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQuantityavailable() %>" style="text-align: center;"readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getLotnum());%>" style="text-align: center;" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%out.println(osbn.getProduce());%>"style="text-align: center;" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQualitygrade()%>" style="text-align: center;"readonly></td></tr>
+	<tr><td style="white-space:nowrap !important"><h4><%=session.getValue("trader.trade.availablelotsize") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=osbn.getQuantityavailable() %>" style="text-align: center;"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;">
 	<table align="center">
 	<tbody>
-	<tr><td><h4>Lot Cost (Rs)</h4></td><td><input class="form-control" id="lotcost<%= osbn.getLotnum()%>" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Commission Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getCommission()==null) out.println("0"); else out.println(osbn.getCommission());  %>" style="text-align: right;" readonly></td></tr>
-	<tr><td><h4>Market Cess (Rs)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getMarketcess()==null) out.println("0"); else out.println(osbn.getMarketcess());  %>" style="text-align: right;" readonly></td></tr>
-	<tr><td style="white-space:nowrap !important"><h4>Transportation Charges (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
-	<tr><td><h4>My Final Cost (Rs)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.lotcost") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="lotcost<%= osbn.getLotnum()%>" type="text" value="<%= osbn.getLotcost()%>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.commission") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getCommission()==null) out.println("0"); else out.println(osbn.getCommission());  %>" style="text-align: right;" readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.marketcess") %>  (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="<%if(osbn.getMarketcess()==null) out.println("0"); else out.println(osbn.getMarketcess());  %>" style="text-align: right;" readonly></td></tr>
+	<tr><td style="white-space:nowrap !important"><h4><%=session.getValue("trader.trade.transportation") %> (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;"  value="<% if(osbn.getVolumesold().equals("0")) out.println("0"); else out.println("3000");%>"readonly></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.myfinalcost") %> (<%=session.getValue("trader.trade.rs")%>)</h4></td><td><input class="form-control" id="usr" type="text" style="text-align: right;" value="<%=osbn.getMyfinalcost()%>"readonly></td></tr>
 	</tbody>
 	</table>
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4>Required Lot Size(kg)</h4></td><td><h4>Assigned Lot Size(kg)</h4></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="clspad10"><input style="text-align: center;" class="form-control clsheight" id="usr" type="text"  size="10" value="<%=osbn.getQuantityneeded()%>"readonly></td><td class="clspadt5"><input class="form-control clsheight" id="usr" type="text" style="text-align: center;" value="<%if(osbn.getVolumesold()==null) out.println("0"); else out.println(osbn.getVolumesold());  %>"readonly></td></tr>
-	<tr><td><h4>Best Bid(Rs/kg)</h4></td><td><h4>My Bid(Rs/kg)</h4></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.bestbid") %> (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.mybid") %>(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text"  style="text-align: center;" value="<%if(osbn.getBestbid()==null) out.println("-"); else out.println(osbn.getBestbid());%>"readonly></td><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="<%= osbn.getBidprice()%>"  style="text-align: center;"readonly></td></tr>
 	</tbody>
 	</table>
