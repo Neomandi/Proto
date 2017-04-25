@@ -127,7 +127,7 @@ if((String)tlbn.getTname()==null)
   List al=mc.getAl();
   if(al.size()==0)
   {
-  	%><br><br><br><center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center><%
+  	%><br><br><br><center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("summary.Emessage") %></b></p></div></center><%
   }
   else
   {
@@ -304,7 +304,11 @@ if((String)tlbn.getTname()==null)
 	
 	ServletContext context = request.getSession().getServletContext();
 	String stop1=(String)context.getAttribute("endtime");// end time of auction						            	
-	
+	if(stop1==null)
+	{
+		simpleDateFormat = new SimpleDateFormat(pattern);	
+		stop1 = simpleDateFormat.format(new Date());//current time	
+	}
 	Date d1 = new SimpleDateFormat(pattern).parse(start1);
 	Date d2 = new SimpleDateFormat(pattern).parse(stop1);
 	long diffMs = d1.getTime() - d2.getTime();
