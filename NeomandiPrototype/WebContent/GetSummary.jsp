@@ -167,9 +167,9 @@
          double lot=Integer.parseInt(lotsize);
          String status="";
          if(lot==qsold)
-         status+="Fully executed .Waiting for your approval";
+         status+=session.getValue("summary.afterauctionfull");
          else
-         status+="Partially executed.Waiting for your approval";
+         status+=session.getValue("summary.afterauctionpartial");
          String lotsize1=String.valueOf(lot);
          double lsize=Double.parseDouble(lotsize1);
          lsize=lsize*100;
@@ -348,15 +348,15 @@
             <table class="table">
                <tr>
                   <td>
-                     <h4>*Transportation / Loading Charges
+                     <h4><%=session.getValue("h.TLC") %>
                      </h4>
                   </td>
                   <td>
-                     <h4> #E-Platform Charges
+                     <h4><%=session.getValue("h.EPC") %>
                      </h4>
                   </td>
                   <td>
-                     <h4>^ Pre-Market Value Addition Charges
+                     <h4><%=session.getValue("h.PMVA") %>
                      </h4>
                   </td>
                </tr>

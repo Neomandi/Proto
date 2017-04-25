@@ -134,7 +134,7 @@ catch(Exception e)
 </div>
 </div>   
 <div class="container-fluid today">
-<div class="container1" style="padding-left:5%"><h4>Today's Summary</h4></div></div>
+<div class="container1" style="padding-left:5%"><h4><%=session.getValue("f.summary") %></h4></div></div>
  <%		
  		HttpSession tradeSummary=request.getSession(false);
 		if(tradeSummary.getAttribute("todaysummarymsg")!=null)
@@ -142,7 +142,7 @@ catch(Exception e)
 			if(tradeSummary.getAttribute("todaysummarymsg")!=null &&tradeSummary.getAttribute("todaysummarymsg").equals("fail"))
 			{
 			  %><input type="hidden" id="summary" value="<%=request.getAttribute("todaysummary")%>"><br>
-			  <center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for the day.</b></p></div></center>
+			  <center><div id='div' style='background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("summary.Emessage") %></b></p></div></center>
 			  <script>
 			  var summary=document.getElementById("summary").value;
 			  console.log(summary);
@@ -194,19 +194,19 @@ catch(Exception e)
 	  </table>
 </div>
 	  </div>
-	<div class="container-fluid  history"><div class="container tsum"><h2>History</h2></div></div>
+	<div class="container-fluid  history"><div class="container tsum"><h2><%=session.getValue("f.history") %></h2></div></div>
 	<div class="container-fluid tfrom">
 	<div class="container tsum from">
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	<div align="center">
 	<form action = "tradeSummary.do" method = "post" id="myForm">	
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">FROM<div class='input-group date' id='idfrom'>
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"> <%=session.getValue("summary.from") %><div class='input-group date' id='idfrom'>
                     <input type='text' class="form-control" value="${param. from}" name="from" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                 </div></div>                
-   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10">TO<div class='input-group date' id='idto'>
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 clsmr10"> <%=session.getValue("summary.to") %><div class='input-group date' id='idto'>
                     <input type='text' class="form-control" value="${param. to}" name="to" data-placement="bottom" data-toggle="tooltip" title="dd/mm/yyyy"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -231,7 +231,7 @@ function fun2()
 	if(request.getAttribute("tradesummary").equals("no"))
 	{
   		%>
-  		<center><div id='div' style=' background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b>There are no trades recorded for this period.</b></p></div></center>		 
+  		<center><div id='div' style=' background-color: #F2F2F2; top: 100px; left: 140px;'><p ><b><%=session.getValue("history.Emessage") %>.</b></p></div></center>		 
   		<%
   	} 
 	else if(request.getAttribute("tradesummary").equals("success"))
