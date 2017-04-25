@@ -258,7 +258,7 @@
                         		%>                        		
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base"><%=session.getValue("trader.product.select.slot") %></option>                                  
-                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}><%=session.getValue("trader.product.slot1") %> ()  </option>                                                                                                                                                                                                          
+                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}><%=session.getValue("trader.product.slot1") %> (10:30-10:40)  </option>                                                                                                                                                                                                          
                                     <option value="slot2" ${param.slot == 'slot2' ? 'selected' :''}><%=session.getValue("trader.product.slot2") %> (10:40-10:45)</option>
                                     <option value="slot3" ${param.slot == 'slot3' ? 'selected' :''}><%=session.getValue("trader.product.slot3") %> (10:50-10:55)</option>
                                 </select>
@@ -335,9 +335,10 @@
             System.out.println(msg2);
             System.out.println(psr.getAttribute("msg")==null);
             if((String)request.getAttribute("productsearchresult")==null)
-            {
-            	out.println("<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b>Search the Produce from the drop down list above.</b></p></div>");
-            }
+            {%>
+            	<div id='div' style='position: absolute; top: -30px; left: 140px;'><p><b><%=session.getValue("trader.product.searchfromdropdown")%>
+            	</b></p></div>
+            <%}
             if(psr.getAttribute("msg")!=null &&psr.getAttribute("msg").equals("nill"))
             {
             	out.println("<script type=\"text/javascript\">");
@@ -403,9 +404,9 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="Enter Required quantity  (kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>  (kg)">
                                     </td>
-                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.trade.addtotradelist") %></a></td>
+                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
                                   <td></td>
                                 </tr>                                
                                 <script> 
