@@ -10,7 +10,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -47,6 +52,7 @@ public class ControllerServlet extends HttpServlet {
     	return maxvol;
     }*/
 	
+	@SuppressWarnings({ "null", "deprecation" })
 	public static void process(HttpServletRequest request,HttpServletResponse response)
 	{		
 		RequestDispatcher rd=null;	
@@ -2179,14 +2185,37 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Inside ELogout");
 			RequestDispatcher rde=null;
 			HttpSession elog = request.getSession(false);
-			
 			if(elog!=null)
 			{ 
 				System.out.println("Inside if---invalidate session");
 				elog.removeAttribute("name");
 				elog.removeAttribute("pwd");
 				elog.removeAttribute("empnumber");
+				
+				@SuppressWarnings("deprecation")
+				Object ss = request.getSession().getValue("myLocale");
+				String str = ss.toString();
+				//System.out.println(str);
+				
 				elog.invalidate();
+				
+				Locale locale = null;
+				if(str.contains("kn")){
+					locale=new Locale("kn","IN");
+				}else if(str.contains("en")){
+					locale=new Locale("en","US");
+				}
+				
+				HttpSession session = request.getSession();
+				session.putValue("myLocale",locale);
+			     ResourceBundle bundle = ResourceBundle.getBundle("com.neomandi.prototype.Message",locale);
+			     for (Enumeration e = bundle.getKeys();e.hasMoreElements();) {
+			         String key = (String)e.nextElement();
+			         String s = bundle.getString(key);
+			         session.putValue(key,s);
+			         //System.out.println(key+" : "+s);
+			     }
+				
 				//System.out.println(elog.getAttribute("name")+" "+elog.getAttribute("pwd"));
 				//out.println("alert('YOU HAVE  LOGGED OUT SUCCESSFULLY ');");
 				rde=request.getRequestDispatcher("Login.jsp");
@@ -2206,7 +2235,7 @@ public class ControllerServlet extends HttpServlet {
 			else
 			{
 				System.out.println("Inside else---invalidate session");
-				rde=request.getRequestDispatcher("Login.html");
+				rde=request.getRequestDispatcher("Login.jsp");
 				try {
 					rde.forward(request, response);
 					return;

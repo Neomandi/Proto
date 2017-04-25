@@ -92,6 +92,8 @@
         </li>
         <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
+      </div>
+      </div>
 </nav> 
 </div>
 <!-----menu bar end------>
