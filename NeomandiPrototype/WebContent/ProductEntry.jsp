@@ -60,26 +60,32 @@
     {
     	var s1 = document.getElementById(s1);
     	var s2 = document.getElementById(s2);
+    	console.log(s1.value);
+    	console.log(s2.value);
     	s2.innerHTML = "";
     	if(s1.value == "Vegetables")
     	{
-    		var optionArray = ["produce|Produce", "CARROT|Carrot", "ONION|Onion", "BEANS|Beans", "TOMATO|Tomato", "POTATO|Potato", "CUCUMBER|Cucumber", "RADISH|Radish", "GARLIC|Garlic", "CAPSICUM|Capsicum", "CABBAGE|Cabbage", "GREEN CHILLI|Green Chilli"];	
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>", "CARROT|<%=session.getValue("trader.product.carrot")%>", "ONION|<%=session.getValue("trader.product.onion")%>", "BEANS|<%=session.getValue("trader.product.beans")%>", "TOMATO|<%=session.getValue("trader.product.tomato")%>", "POTATO|<%=session.getValue("trader.product.potato")%>", "CUCUMBER|<%=session.getValue("trader.product.cucumber")%>", "RADISH|<%=session.getValue("trader.product.raddish")%>", "GARLIC|<%=session.getValue("trader.product.garlic")%>", "CAPSICUM|<%=session.getValue("trader.product.capsicum")%>", "CABBAGE|<%=session.getValue("trader.product.cabbage")%>", "GREEN CHILLI|<%=session.getValue("trader.product.greenchilli")%>"];	
     	}
     	else if(s1.value == "Fruits")
     	{
-    		var optionArray = ["produce|Produce", "APPLE|Apple", "ORANGE|Orange", "GRAPES|Grapes", "BANANA|Banana", "MANGO|Mango"];
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>", "APPLE|<%=session.getValue("trader.product.apple")%>", "ORANGE|<%=session.getValue("trader.product.orange")%>", "GRAPES|<%=session.getValue("trader.product.grapes")%>", "BANANA|<%=session.getValue("trader.product.banana")%>", "MANGO|<%=session.getValue("trader.product.mango")%>"];
     	}
     	else if(s1.value == "Grains")
     	{
-    		var optionArray = ["produce|Produce", "WHEAT|Wheat", "CORN|Corn", "RAGI|Ragi", "BARLEY|Barley", "RICE|Rice"];
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>", "WHEAT|<%=session.getValue("trader.product.wheat")%>", "CORN|<%=session.getValue("trader.product.corn")%>", "RAGI|<%=session.getValue("trader.product.ragi")%>", "BARLEY|<%=session.getValue("trader.product.barley")%>", "RICE|<%=session.getValue("trader.product.rice")%>"];
     	}
     	else if(s1.value == "Pulses")
     	{
-    		var optionArray = ["produce|Produce", "CHICKPEA|Chickpea", "HORSEGRAM|Horsegram", "PEAS|Peas"];
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>", "CHICKPEA|<%=session.getValue("trader.product.chickpea")%>", "HORSEGRAM|<%=session.getValue("trader.product.horsegram")%>", "PEAS|<%=session.getValue("trader.product.peas")%>"];
     	}
     	else if(s1.value == "Horticultural")
     	{
-    		var optionArray = ["produce|Produce", "ARECA NUT|Areca nut"];
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>","ARECA NUT|<%=session.getValue("trader.product.arecanut")%>"];
+    	}
+    	else if(s1.value == "Category")
+    	{
+    		var optionArray = ["produce|<%=session.getValue("trader.product.produce")%>"];
     	}
     	for(var option in optionArray)
     	{
@@ -321,11 +327,11 @@
                                     <td>
                                         <select class="form-control" id="category" name="category" onchange = "populate('category','produce')">
                                             <option value="Category"><%=session.getValue("product.label.category") %></option>
-                                            <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}>Vegetables</option>
-                                            <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}>Fruits</option>
-                                            <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}>Grains</option>
-                                            <option value="Pulses" ${param.category == 'Pulses' ? 'selected' :''}>Pulses</option>
-                                            <option value="Horticultural" ${param.category == 'Horticultural' ? 'selected' :''}>Horticultural</option>
+                                            <option value="Vegetables" ${param.category == 'Vegetables' ? 'selected' :''}><%=session.getValue("trader.product.vegetables") %></option>
+                                            <option value="Fruits" ${param.category == 'Fruits' ? 'selected' :''}><%=session.getValue("trader.product.fruits") %></option>
+                                            <option value="Grains" ${param.category == 'Grains' ? 'selected' :''}><%=session.getValue("trader.product.grains") %></option>
+                                            <option value="Pulses" ${param.category == 'Pulses' ? 'selected' :''}><%=session.getValue("trader.product.pulses") %></option>
+                                            <option value="Horticultural" ${param.category == 'Horticultural' ? 'selected' :''}><%=session.getValue("trader.product.horticulture") %></option>
                                         </select>
                                     </td>
                                 </tr>
@@ -340,9 +346,9 @@
                                     <td>
                                         <select class="form-control" id="quality" name="quality">
                                             <option value="Grade"><%=session.getValue("product.label.grade") %></option>
-		                                    <option value="A" ${param.grade == 'A' ? 'selected' :''}>A</option>
-		                                    <option value="B" ${param.grade == 'B' ? 'selected' :''}>B</option>
-		                                    <option value="C" ${param.grade == 'C' ? 'selected' :''}>C</option>
+											<option value="A" ${param.grade == 'A' ? 'selected' :''}><%=session.getValue("trader.product.gradea") %></option>
+                                    		<option value="B" ${param.grade == 'B' ? 'selected' :''}><%=session.getValue("trader.product.gradeb") %></option>
+                                    		<option value="C" ${param.grade == 'C' ? 'selected' :''}><%=session.getValue("trader.product.gradec") %></option>
                                         </select>
                                     </td>
                                 </tr>
