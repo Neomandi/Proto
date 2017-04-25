@@ -385,7 +385,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 /*			String msg="YOU HAVE SUCCESSFULLY LOGGED OUT";
 			 request.setAttribute("logout", msg);*/
-			 rd=request.getRequestDispatcher("FarmerLogin.jsp");	
+			 rd=request.getRequestDispatcher("Login.jsp");	
 			 try 
 				{
 					rd.forward(request, response);	
