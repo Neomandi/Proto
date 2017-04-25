@@ -147,10 +147,7 @@
          catch(SQLException e)
          {
          e.printStackTrace();	
-         }
-          	
-         
-         
+         }      	         
          	 %>		
       <div class="container-fluid sum1 pad">
          <div class="tabin">
