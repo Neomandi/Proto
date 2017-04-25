@@ -807,7 +807,8 @@ top: 0px;
     font-size: 14px;
 }**/
 #showtext{
-height:220px;  line-height: 220px;
+height:220px;  
+line-height: 220px;
 }
 .history {
     background: #bdd102;
