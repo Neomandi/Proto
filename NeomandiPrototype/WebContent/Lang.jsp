@@ -1,4 +1,3 @@
-
 <%@ page import="java.util.*" %>
 <%
    String lang = request.getParameter("lang");
@@ -51,7 +50,4 @@ English <input type="radio" name="lang" value="English" checked>
      }
 %>
 <jsp:forward page="HomePage.jsp" />
-<%
-   }
-%>
-
+<%}%>

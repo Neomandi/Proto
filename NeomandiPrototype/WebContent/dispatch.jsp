@@ -89,12 +89,12 @@ if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")
 			   <tr>
 			   		<th   ></th>
 			   		<th   ></th>
-					<th   style="text-align:center;">Lot Number</th>
+					<th   style="text-align:center;"><%=session.getValue("product.label.lotnumber") %></th>
 					<th>
 					</th>
 					<th   colspan="2"></th>
-					<th   style="text-align:center;">Trader Name</th>
-					<th   colspan="2" style="text-align:center;">Quantity(kg)</th>
+					<th   style="text-align:center;"><%=session.getValue("dispatch.tradername") %></th>
+					<th   colspan="2" style="text-align:center;"><%=session.getValue("product.label.quantity") %></th>
 					<th></th>
 			   		<th></th>
 				</tr>
@@ -104,6 +104,6 @@ if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")
 				</div>
 				</div>
 				</div>
-				<center><div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b>Auction yet to happen hence, no revenue summary is available.</b></p></div></center>
+				<center><div id='div' style='position: absolute; top: 100px; left: 140px;'><p ><b><%=session.getValue("dispatch.msg") %></b></p></div></center>
 </body>
 </html>
