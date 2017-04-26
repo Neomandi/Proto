@@ -99,7 +99,7 @@
                   
                   HttpSession hs=request.getSession(false); 
                   if((String)hs.getAttribute("name")==null){
-                  	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+                  	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://localhost:8080/NeomandiPrototype/Login.jsp';});</script>");
                   }
                   	String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offst-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
@@ -138,12 +138,7 @@
          		  ServletContext context = request.getSession().getServletContext();
          			starttime=(String)context.getAttribute("starttime");
          			endtime=(String)context.getAttribute("endtime");
-         			 if(starttime==null){
-              			String time1=df1.format(new Date());
-              	    	System.out.println("current time="+time1);
-              			 starttime=time1;
-              			 endtime=time1;
-              		 }
+         			 
          			System.out.println("in farmer page starttime="+starttime);
          			System.out.println("in farmer page endtime="+endtime);
          	     	// String time=(String)hs.getAttribute("time");
@@ -424,12 +419,7 @@
          console.log("start time="+stime);
          console.log("end time="+etime);
          
-             document.getElementById('ts').onclick = function() {
-            	 if(stime==null){
-           	  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
-           
-             }
-          }
+            
          
          var slot=document.getElementById("slot").value;
          var date=document.getElementById("date").value;
@@ -608,11 +598,7 @@
          	
          //---------------------for count down timer----------------------------------	
          var i=0;	
-         	 document.getElementById('ts').onclick = function() {
-                 
-                 location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
-                
-                }	
+         	
          function countdown(minutes,seconds,hours) 
          {
          
@@ -721,11 +707,13 @@
                  		           location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
          
                  		            }
+         			            	
          			            	if(document.getElementById("auction1")!=null){
          			            		document.getElementById("accept").disabled=false;
          								 document.getElementById("reject").disabled=false;
          			            	}
-         			            	
+         			            	//alert("Auction has ended click either accept or reject button");
+         			            	swal({title: 'Auction has ended.Please click either Accept or Reject button',showConfirmButton:true});
          			            	document.getElementById("auction1").innerHTML=str1;
                  		       }
                 		    	}
@@ -793,6 +781,7 @@
          function reject(){
          	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
           }
+          
       </script> 
       <script type="text/javascript">
          setInterval(function()
