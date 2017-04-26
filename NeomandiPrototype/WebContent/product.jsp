@@ -170,14 +170,14 @@
 					String name=null;
 					try
 					{
-						if((String)tlbn.getTname()==null)
+						if((String)tlbn.getTname()==null||tlbn.getTname().equals("null"))
 						{  System.out.println("inside"); %> 
 							<script type="text/javascript\">
 						  	 	swal(YOU HAVE NOT LOGGED IN PLEASE LOGIN );  	
 						  		location='TraderLogin.jsp';
 						 	 </script>						 	 
 						<%}
-						System.out.println((String)tlbn.getTname()==null);
+						System.out.println("(String)tlbn.getTname()==null"+(String)tlbn.getTname()==null);
 						System.out.println((String)tlbn.getTpwd()==null);
 						name=tlbn.getTname();
 						((String)tlbn.getTname()).split(":");
@@ -404,7 +404,7 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>(kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>(<%=session.getValue("trader.trade.kg")%>)">
                                     </td>
                                   <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
                                   <td></td>
