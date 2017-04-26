@@ -105,6 +105,9 @@ public class ControllerServlet extends HttpServlet {
 		if(uri.contains("openLang")){
 			
 			RequestDispatcher rdl=request.getRequestDispatcher("Lang.jsp");
+			/*HttpSession ss = request.getSession();
+			ss.setAttribute("ln", request.getParameter("lang"));
+			System.out.println(ss);*/
 			try 
 			{
 				rdl.forward(request, response);			

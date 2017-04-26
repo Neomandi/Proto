@@ -93,6 +93,13 @@
         <li><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>
       </div>
+     <div id="radios" style="position: absolute; top: 22%; right:2%;">
+            <form action="openLang.do" method="get" align="center" name="form1" id="radios">
+		<label style="color: white;">English</label> <input type="radio" name="lang" id="en" value="English">
+		<label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label> <input type="radio" name="lang" id="kn" value="Kannada">
+		   <input type="submit" id="submit" class="btn-success" value="Translate">
+		</form>
+		</div>
       </div>
 </nav> 
 </div>
@@ -147,7 +154,32 @@
 </nav>
 </div>
 
-<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.0.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<script>
+// var selected_Id = $('input[name="lang"]:checked').attr('id');
+// if(selected_Id == "en"){
+// 	$("input:radio[name='"+radioName+"'][value ='ignore']").prop('checked', true);
+// }else{
+// 	$("input:radio[name='"+radioName+"'][value ='ignore']").prop('checked', true);
+// }
+
+// $("#radios").on("change", function () {
+//     myID = $("#radios").find(":radio:checked").first().attr('id');
+//     console.log(myID);
+<%--     <% --%>
+//     	HttpSession ss = request.getSession(false);
+//     	//ss.getAttribute("ln");
+//     	if(ss.getAttribute("ln") != null && ss.getAttribute("ln").equals("Kannada")){
+<%--     %> --%>
+//     	$("#kn").attr('checked', 'checked');
+//     	console.log("kn");
+<%--     	<%} --%>
+<%--     else{%> --%>
+//     	$("#en").attr('checked', 'checked');
+//     	console.log("en");
+<%--    <% }%> --%>
+// });
+</script>
 </body>
 </html>
