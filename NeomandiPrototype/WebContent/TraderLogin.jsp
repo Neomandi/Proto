@@ -105,6 +105,7 @@ position: relative;
 <p align = "center"><b><% if(msg != null)
 							out.print(msg);
 									%></b></p>
+									
 <script>
 document.getElementById("pwd").addEventListener("keyup", function(event) {
 event.preventDefault();

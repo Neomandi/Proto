@@ -10,18 +10,18 @@
 NeoMandi
 </title>
 </head>
-<body bgcolor="#33CCFF">
-<center>
-<font face="Times New Roman,Times" size=+3>
-Welcome To NeoMandi
-</font></center>
-<hr>
-<p align="center">
-Please select a language:</p>
-<form action="openLang.do" method="post" align="center">
-English <input type="radio" name="lang" value="English" >
-&#3221;&#3240;&#3277;&#3240;&#3233; <input type="radio" name="lang" value="Kannada" checked>
-<input type="submit" value="Continue">
+<body onload="document.form1.submit()">
+<!-- <center> -->
+<!-- <font face="Times New Roman,Times" size=+3> -->
+<!-- Welcome To NeoMandi -->
+<!-- </font></center> -->
+<!-- <hr> -->
+<!-- <p align="center"> -->
+<!-- Please select a language:</p> -->
+<form action="openLang.do?lang=English" method="post" align="center" name="form1">
+<!-- English <input type="radio" name="lang" value="English" checked> -->
+<!-- &#3221;&#3240;&#3277;&#3240;&#3233; <input type="radio" name="lang" value="Kannada"> -->
+<!-- <input type="submit" value="Continue"> -->
 </form>
 </body>
 </html>
