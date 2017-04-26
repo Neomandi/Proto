@@ -7,7 +7,6 @@
 <html>
 <head>
 <title>
-NeoMandi
 </title>
 </head>
 <body onload="document.form1.submit()">
