@@ -106,25 +106,25 @@ footer {
                             <td>
                                 <h4><%=session.getValue("product.label.lotnumber") %></h4></td>
                             <td>
-                                <h4><%=session.getValue("revenue.lotcost") %><br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.lotcost") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
+                                <h4>TLC<sup>*</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4><%=session.getValue("revenue.commision") %><br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.commision") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4><%=session.getValue("revenue.marketcess") %><br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.marketcess") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
+                                <h4>EPC<sup>#</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>TLC<sup>*</sup><br/>(Rs)</h4></td>
+                                <h4>TLC<sup>*</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4><%=session.getValue("revenue.marketcess") %><br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.marketcess") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>EPC<sup>#</sup><br/>(Rs)</h4></td>
+                                <h4>EPC<sup>#</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>PMVA<sup>^</sup><br/>(Rs)</h4></td>
+                                <h4>PMVA<sup>^</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4><%=session.getValue("revenue.neomandirevenue") %><br/>(Rs)</h4></td>
+                                <h4><%=session.getValue("revenue.neomandirevenue") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                         </tr>
                     </thead>
                     <tbody>

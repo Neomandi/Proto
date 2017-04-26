@@ -113,9 +113,7 @@ catch(Exception e)
 	  <br><br>
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pass">
-
 <h4 style="background: #bdd102;color:black;"><%=session.getValue("profile.details") %></h4>
-
 <div class="detail">
 <%
 					Connection con = null;
@@ -137,7 +135,6 @@ catch(Exception e)
 				%>
 <form id="myprofile">
     <table class="table">
-
       <tr><td><label for="name"><%=session.getValue("profile.name") %></label></td></tr>
 
 	  <tr><td><input type="text" class="form-control" id="usr" value=<%= rs.getString("name") %> readonly></td></tr>
@@ -185,7 +182,7 @@ catch(Exception e)
                                 </td>
                             </tr>
 							<tr>
-
+<td>
                                     <label for="taluk"><%=session.getValue("profile.taluk") %></label>
 
                                 </td>

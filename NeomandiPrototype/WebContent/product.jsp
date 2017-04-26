@@ -362,7 +362,7 @@
                             <thead>
                                 <tr align="center">
                                     <td>
-                                        <h4>Lot Number</h4></td>
+                                        <h4><%=session.getValue("trader.trade.lotnumber") %></h4></td>
                                     <td>
                                         <h4><%=session.getValue("trader.product.marketcode") %></h4></td>
                                     <td>
@@ -404,9 +404,9 @@
                                     <td>
                                     	<h4><% if(psr1.getSlotnumber()==null) out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot1"))out.println("Slot1"); else if(psr1.getSlotnumber().equals("slot2"))out.println("Slot2"); else if(psr1.getSlotnumber().equals("slot3"))out.println("Slot3"); else out.println(psr1.getSlotnumber());%></h4>
                                     <td>
-                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>  (kg)">
+                                        <input type="number" step='50' min='0' class="form-control" id="quantityneeded<%=psr1.getLotnumber() %>" placeholder="<%=session.getValue("trader.product.enterrequiredquantity") %>(kg)">
                                     </td>
-                                    <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
+                                  <td class="tdfit"><a onclick="fun<%=psr1.getLotnumber() %>()" class="reg"><%=session.getValue("trader.product.addtotradelist") %></a></td>
                                   <td></td>
                                 </tr>                                
                                 <script> 

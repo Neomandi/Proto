@@ -171,7 +171,7 @@ else
 	  <tr><td><input type="text" class="form-control" id="a3" value="<%=tbb.getIfsc() %>" readonly></td></tr>	  
       <tr><td><label for="branch"><%=session.getValue("trader.holdfunds.bankbranch")%></label></td></tr>
       <tr><td><input type="text" class="form-control" id="email" value="<%if(tbb.getBranch()==null) out.println("--"); else out.println(tbb.getBranch()); %>" readonly></td></tr>
-      <tr><td><label for="address"><%=session.getValue("trader.holdfunds.availablebalance")%>  (Rs)</label></td></tr><br/>
+      <tr><td><label for="address"><%=session.getValue("trader.holdfunds.availablebalance")%>  (<%=session.getValue("trader.trade.rs")%>)</label></td></tr><br/>
 	  <tr><td><input type="text"  class="form-control" id="balance" readonly></td></tr>
 	  <tr><td><table align="center"><tr><td><a onclick="getbalance()" class="reg"><%=session.getValue("trader.holdfunds.getbalance")%></a></td></tr></table></td></tr>
 	  <script>
@@ -202,7 +202,7 @@ else
 <div class="bankacc">
 <br><br>
 <form id="form"><table class="table" >      
-	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="Enter Amount(Rs)"></td></tr>
+	<tr><td><input type="number" min="0" class="form-control" id="hold" placeholder="<%=session.getValue("trader.holdfunds.enteramount") %>(<%=session.getValue("trader.trade.rs") %>)"></td></tr>
 	<tr><td><table align="center"><tr><td><a id="hld" onclick="hold1()"class="reg" ><%=session.getValue("trader.holdfunds.hold")%></a></td></tr></table></td></tr>
     </table></form>
       <script>
@@ -443,11 +443,11 @@ else
 		 %><input type="hidden" value="<%=result%>" id="amount">
 	  <form>
       <table class="table">   
-	  <tr><td><label for="name"><%=session.getValue("trader.holdfunds.fundutilized")%>(Rs)</label></td></tr>
+	  <tr><td><label for="name"><%=session.getValue("trader.holdfunds.fundutilized")%>(<%=session.getValue("trader.trade.rs")%>)</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" value="<%=funds %>" readonly></td></tr>
-      <tr><td><label for="aadhar"><%=session.getValue("trader.holdfunds.netamountonhold")%>(Rs)</label></td></tr>
+      <tr><td><label for="aadhar"><%=session.getValue("trader.holdfunds.netamountonhold")%>(<%=session.getValue("trader.trade.rs")%>)</label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="netamount" value="<%=result %>" readonly/></td></tr>
-	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="Enter Amount(Rs)"/></td ></tr>	  
+	  <tr><td><input type="number" min="0" class="form-control" id="release" placeholder="<%=session.getValue("trader.holdfunds.enteramount") %>(<%=session.getValue("trader.trade.rs") %>)"/></td ></tr>	  
 	  <tr><td><table align="center"><tr><td><a id="release" onclick="holdfundsrelease()" class="reg"><%=session.getValue("trader.holdfunds.release")%></a></td></tr></table></td></tr>
       <script>
       document.getElementById("release").addEventListener("keyup", function(event) {

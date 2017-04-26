@@ -369,7 +369,7 @@
                     <h4 style="background: #bdd102;color:black;"><%=session.getValue("product.h42") %></h4>
                     <div class="bankacc">
                         <div class="bankacc1" onclick="showimageupload();">
-                            <div id="showtext"><%=session.getValue("product.image.upload") %></div>
+                            <div id="showtext" style="line-height:30px; padding-top:30%;"><%=session.getValue("product.image.upload") %></div>
 
                             <img id="blah" src="#" style="display:none">
                             <input type="file" id="fileID" name="fileID" style="display: none;" onchange="readURL(this);" required/>
