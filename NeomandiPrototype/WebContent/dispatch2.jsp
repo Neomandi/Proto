@@ -77,7 +77,7 @@ catch(Exception e)
 {
 	 out.println("<script type=\"text/javascript\">");
  	 out.println("alert('YOU HAVE NOT LOGGED IN PLEASE LOGIN ');");
- 	 out.println("location='EmployeeLogin.jsp';");
+ 	 out.println("location='Login.jsp';");
 	 out.println("</script>");
 }
 %>

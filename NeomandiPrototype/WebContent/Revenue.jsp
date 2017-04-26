@@ -73,7 +73,7 @@ footer {
 	    if((String)elog.getAttribute("ename")==null || (String)elog.getAttribute("epwd")==null)
 	    {
 	    	//System.out.println("Session invalid."+elog);
-	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='Login.html';});</script>");
+	    	out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='Login.jsp';});</script>");
 	    }
 	%>
     <div class="logo_relative">
