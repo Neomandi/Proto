@@ -80,7 +80,7 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-collapse collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="HomePage.jsp"><%=session.getValue("About.Us") %></a></li>
+        <li class="active"><a href="HomePage.jsp"><%= session.getValue("About.Us")%></a></li>
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
