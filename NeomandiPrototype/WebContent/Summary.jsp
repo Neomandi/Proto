@@ -207,7 +207,7 @@ catch(Exception e)
                     </div>
                   </div>
                 </div><br>
-<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="fun()" class="btn btn-primary">Get History</button></div>
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 pad"><button style="border-color:#BDD102 ;background-color:#BDD102;"  onclick="fun()" class="btn btn-primary"><%=session.getValue("trader.summary.gethistory") %></button></div>
 <script>function fun()
 {
 	document.getElementById("myForm").submit();
