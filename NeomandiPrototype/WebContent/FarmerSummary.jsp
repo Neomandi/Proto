@@ -106,8 +106,8 @@
                <ul class="nav nav-tabs">
                  <li ><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
                   		<li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
-                  		<li ><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
-                  		<li class="active"><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
+                  		<li class="active"><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  		<li ><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
                   		<li ><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
             </div>

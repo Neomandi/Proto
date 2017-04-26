@@ -114,7 +114,7 @@
                <ul class="nav nav-tabs">
                   <li class="active"><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
                   <li><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
-                  <li><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                  <li><a class="classbeauty" id="ts" href="FarmerSummary.jsp"> <%=session.getValue("f.summary") %></a></li>
                   <li><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
                   <li ><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
                </ul>
@@ -123,24 +123,31 @@
       </div>
      
       <% 
-        
+      SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
+    	String time=df1.format(new Date());
+    	System.out.println("current time="+time);
          	 		//System.out.println("inside else");
          	     	String pass=(String)hs.getAttribute("pass"); 
           		    // System.out.println("original password="+pass);
           		   String starttime=(String)hs.getAttribute("starttime"); 
           		 
           		 String endtime=(String)hs.getAttribute("endtime"); 
-         		 
+         		
          
          		  
          		  ServletContext context = request.getSession().getServletContext();
          			starttime=(String)context.getAttribute("starttime");
          			endtime=(String)context.getAttribute("endtime");
+         			 if(starttime==null){
+              			String time1=df1.format(new Date());
+              	    	System.out.println("current time="+time1);
+              			 starttime=time1;
+              			 endtime=time1;
+              		 }
          			System.out.println("in farmer page starttime="+starttime);
          			System.out.println("in farmer page endtime="+endtime);
          	     	// String time=(String)hs.getAttribute("time");
-         	    	SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
-         	     	String time=df1.format(new Date());
+         	    	
          		 	//System.out.println("password="+pass);
          		//	System.out.println("new time="+time);
          			HttpSession hs1=request.getSession(false);  
@@ -286,7 +293,7 @@
                            
                                   	%>  
                         <td >
-                           <h4 id="q" style="color:#000080;font-weight:bold;"><b><%if(quantity!=null){out.println(y);}else{out.println("--");}%></b></h4>
+                           <h4 id="q" style="color:#000080;font-weight:bold;"><b><%if(quantity!=null){out.println(y);}else{out.println("0");}%></b></h4>
                         </td>
                         <%  	
                            String average=(String)rs1.getString("averageprice");
@@ -300,7 +307,7 @@
                            	}
                            		%>
                         <td>
-                           <h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("--");}%></b></h4>
+                           <h4 id="a" style="color:#000080;  font-weight:bold;"><b><%if(average!=null){out.println(x);}else{out.println("0");}%></b></h4>
                         </td>
                         <td>
                            <button type="button" id="accept" class="btn accept" onclick="accept()" disabled data-toggle="modal" data-target="#myModal1"onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" type="button" style="color: white; border-radius:9px; border: 1px solid #808080;" class="btn"  data-target="#myModal"><%=session.getValue("f.accepted") %></button>
@@ -417,6 +424,12 @@
          console.log("start time="+stime);
          console.log("end time="+etime);
          
+             document.getElementById('ts').onclick = function() {
+            	 if(stime==null){
+           	  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+           
+             }
+          }
          
          var slot=document.getElementById("slot").value;
          var date=document.getElementById("date").value;
@@ -428,12 +441,13 @@
          var timedif;
          var Btime1;
          var diff;
-         
+         if(stime==null){
            document.getElementById('ts').onclick = function() {
          
          	  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
          
-           }	
+           }
+         }
          //-----------------------for slot1-----------------------------------------------------------------------------
          if(slot==s1)
          {
@@ -441,7 +455,7 @@
          	var Btime=stime;
          	var Btime1=etime;
          	console.log("Btime="+Btime);
-         console.log("Btime1="+Btime1);
+            console.log("Btime1="+Btime1);
          	
          	start = Etime.split(":");
          	end =Btime.split(":");
@@ -593,7 +607,12 @@
          		
          	
          //---------------------for count down timer----------------------------------	
-         var i=0;		
+         var i=0;	
+         	 document.getElementById('ts').onclick = function() {
+                 
+                 location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
+                
+                }	
          function countdown(minutes,seconds,hours) 
          {
          

@@ -4019,6 +4019,10 @@ public List traderHistory(String name, String pwd, String from, String to)
 				}
 				
 				System.out.println("avg="+averageprice);
+					if(quantitybidfor==null){
+						quantitybidfor="0";
+					}
+			
 				double finalprice = 0.0;
 				finalprice =  averageprice * Double.parseDouble(quantitybidfor);
 				System.out.println("avg="+averageprice+"qty="+quantitybidfor+"finalprice="+finalprice);

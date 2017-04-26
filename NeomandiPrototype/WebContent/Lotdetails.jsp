@@ -76,7 +76,7 @@
 					<%
 						HttpSession hs=request.getSession(false); 
 						if((String)hs.getAttribute("name")==null){
-							out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://neomandi.in/Login.html';});</script>");
+							out.println("<script>swal({title: 'You have not logged in. Please login',text: 'You will be redirected to login page.',timer: 2000,showConfirmButton: false},function(){window.location='http://localhost:8080/NeomandiPrototype/Login.jsp';});</script>");
 						}
 							String name=(String)hs.getAttribute("name"); %>
 					<div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
@@ -90,7 +90,7 @@
 					<ul class="nav nav-tabs">
 				  		 <li ><a href="FarmerMaster.jsp"><%=session.getValue("f.auction") %></a></li> 
                   		<li class="active"><a href="Lotdetails.jsp"><%=session.getValue("f.mylots") %></a></li>
-                 		 <li><a class="classbeauty" id="ts" href="#"> <%=session.getValue("f.summary") %></a></li>
+                 		 <li><a class="classbeauty" id="ts" href="FarmerSummary.jsp"> <%=session.getValue("f.summary") %></a></li>
                  		 <li><a href="FarmerProfile.jsp" ><%=session.getValue("f.profile") %></a></li>
                   		<li ><a href="FarmerSummaryInt.jsp" ><%=session.getValue("f.history") %></a></li>
               
@@ -564,7 +564,7 @@
 						console.log("inside countdown function");
 				document.getElementById('ts').onclick = function() {
 					  
-					  location="http://neomandi.in/FarmerSummary.jsp";
+					  location="http://localhost:8080/NeomandiPrototype/FarmerSummary.jsp";
 				  }
 				console.log("inside countdown function");
 				document.getElementById('ts').disabled='true';
@@ -588,7 +588,7 @@
 				            document.getElementById('ts').onclick = function() {
 					            	console.log("inside the count function");
 					            	//swal("Auction under progress");
-					            	   location="http://neomandi.in/BeforeAuction.do";
+					            	   location="http://localhost:8080/NeomandiPrototype/BeforeAuction.do";
 					            	}
 				        } 
 				        else 
@@ -638,7 +638,7 @@
 					        		            document.getElementById('ts').onclick = function() {
 					        		            	console.log("inside the count function");
 					        		            	//swal("Auction under progress");
-					        		            	   location="http://neomandi.in/DuringAuction.do";
+					        		            	   location="http://localhost:8080/NeomandiPrototype/DuringAuction.do";
 					        		            	}
 					        		        } 
 					        		        else 
@@ -662,7 +662,7 @@
 									            	
 									            	document.getElementById('ts').onclick = function() {
 						        		            console.log("inside the count function");
-						        		            location="http://neomandi.in/GetSummary.do";
+						        		            location="http://localhost:8080/NeomandiPrototype/GetSummary.do";
 						        		            }
 									            	if(document.getElementById("auction1")!=null){
 									            		document.getElementById("accept").disabled=false;
@@ -734,10 +734,10 @@
 				 document.getElementById("reject").disabled=false;
 			 }*/
 			 function accept(){
-				 window.location="http://neomandi.in/AcceptSummary.do";
+				 window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
 			 }
 			 function reject(){
-			   	 window.location="http://neomandi.in/RejectSummary.do";
+			   	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
 			    }
 			 
 			 
