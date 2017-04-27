@@ -11,12 +11,6 @@
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
 <script src="js/sweetalert.min.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <style>
 .tales {
   width: 100%;
@@ -45,6 +39,9 @@
     padding-left: 0px !important;
     margin-right: 0px !important;
     margin-left: 0px !important;
+}
+a{
+	cursor:pointer;
 }
 .emplog {
     border: 0px;
@@ -79,7 +76,7 @@ position: relative;
 		<li  class="dropdown">
           <a class="dropdown-toggle" href="Register.html"><%=session.getValue("Register")  %></a>          
         </li>
-        <li class="active"><a width="130px;"  href="Login.html"><%=session.getValue("Login")  %></a></li>
+        <li class="active"><a width="130px;"  href="Login.jsp"><%=session.getValue("Login")  %></a></li>
       </ul>      
     </div>
   </div>
@@ -94,9 +91,8 @@ position: relative;
 <tr><td><h2><%=session.getValue("trader.login.text")  %></h2></td></tr>
 <tr><td><input type="text" class="form-control" id="name" name="tname" placeholder="User name"></td></td></tr>
 <tr><td><input type="password" class="form-control" id="pwd" name="tpwd" placeholder="Password"></td></td></tr>
-<!-- <tr align="center"><td><a href="javascript: submitform()" class="log">Login</a></td></tr><br> -->
+<tr align="center"><td><a onclick="fp()" class="frgt"><%=session.getValue("trader.login.passwordforgot") %> ?</a></td></tr>
 <tr align="center"><td><button class="btn btn-primary" onclick="submitform()" style="width: 244px; border-radius:0px; background-color:#149DDA" id="login"><%=session.getValue("trader.login.loginbutton")  %></button></td></tr><br>
-<tr align="center"><td><a href="" onclick="fp()" class"frgt"><%=session.getValue("trader.login.passwordforgot") %></a></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -104,8 +100,7 @@ position: relative;
 <% String msg = (String)request.getAttribute("errmsg");  %>
 <p align = "center"><b><% if(msg != null)
 							out.print(msg);
-									%></b></p>
-									
+									%></b></p>									
 <script>
 document.getElementById("pwd").addEventListener("keyup", function(event) {
 event.preventDefault();
@@ -123,21 +118,47 @@ document.getElementById("name").addEventListener("keyup", function(event) {
 	});
 function fp()
 {
-	swal("Please contact Admin for password regenaration");
+	swal(    	{
+        		  title:"",
+	        	  text: "Please contact Admin for password regenaration",
+	        	  type: "warning",
+	        	  showCancelButton: false,
+	        	  showConfirmButton: true,
+	        	  confirmButtonColor: "green",
+	        	  confirmButtonText: "Okay",
+	        	  closeOnConfirm: true,
+        	},
+        	function(isConfirm)
+        	{
+        		console.log("inside confirm")
+        		  if(isConfirm)
+        		  {
+        			//swal({text:"",title:"This lot has been added for auction with new quantity of  Kgs"});
+        	 	  }
+        		  else 
+        		  { 
+        			//  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+        		  }
+            }); 
+            
+          
+		<%-- swal("<%=session.getValue("trader.forgotpassword")%>");
+        swal("ಕನ್ನಡ ");
+        alert("<%=session.getValue("trader.forgotpassword")%>");
+        alert("ಕನ್ನಡ "); --%>
 }
 
 function submitform(){
+	console.log("inside submitform")
 	var msg="";
 	if(document.getElementById("name").value==null|| document.getElementById("name").value === undefined || document.getElementById("name").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.swal("ENTER USERNAME");
     	msg="USER NAME ";
     }	
 	if(document.getElementById("pwd").value==null|| document.getElementById("pwd").value === undefined || document.getElementById("pwd").value === "")
     {
     	console.log(document.getElementById("name").value);
-    	//window.swal("ENTER USERNAME");
     	msg=msg+"PASSWORD";
     }	
 	console.log(msg.length);

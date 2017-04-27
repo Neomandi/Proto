@@ -258,7 +258,7 @@
                         		%>                        		
                                 <select class="form-control" id="slot" name="slot">
                                     <option selected value="base"><%=session.getValue("trader.product.select.slot") %></option>                                  
-                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}><%=session.getValue("trader.product.slot1") %> (10:30-10:40)  </option>                                                                                                                                                                                                          
+                                    <option value="slot1" ${param.slot == 'slot1' ? 'selected' :''}><%=session.getValue("trader.product.slot1") %> (<%=start %>-<%=stop %>)  </option>                                                                                                                                                                                                          
                                     <option value="slot2" ${param.slot == 'slot2' ? 'selected' :''}><%=session.getValue("trader.product.slot2") %> (10:40-10:45)</option>
                                     <option value="slot3" ${param.slot == 'slot3' ? 'selected' :''}><%=session.getValue("trader.product.slot3") %> (10:50-10:55)</option>
                                 </select>
