@@ -776,10 +776,10 @@
          console.log("count"+timedif);
          	
          function accept(){
-         window.location="http://localhost:8080/NeomandiPrototype/AcceptSummary.do";
+         window.location="AcceptSummary.do";
          }
          function reject(){
-         	 window.location="http://localhost:8080/NeomandiPrototype/RejectSummary.do";
+         	 window.location="RejectSummary.do";
           }
           
       </script> 
