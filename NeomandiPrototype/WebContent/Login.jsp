@@ -41,7 +41,7 @@
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
-        <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
+<%--         <li><a href="News.jsp"><%=session.getValue("News") %></a></li> --%>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
