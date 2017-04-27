@@ -750,7 +750,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Product Image</h4>
+                                <h4 class="modal-title"><%=session.getValue("trader.product.image") %></h4>
                             </div>
                             <div class="modal-body">
                             <%if(psr1.getSlotnumber().toUpperCase().equals("SLOT1")){ %>

@@ -74,10 +74,8 @@ position: relative;
         <li><a href="News.jsp"><%=session.getValue("News") %></a></li>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
-          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
-          
+          <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>          
         </li>
-
         <li class="active"><a href="Login.jsp"><%=session.getValue("Login") %></a></li>
       </ul>      
     </div>

@@ -168,7 +168,7 @@ catch(Exception e)
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10" id="tb1">
-	  <tr class="gradeX" style="height:10%">
+	  <tr  style="height:10%">
 	  <% 
 		HttpSession todaysummary=request.getSession(false);
 		List al=(List)todaysummary.getAttribute("todaysummary");
@@ -177,22 +177,22 @@ catch(Exception e)
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
 	  <td class="whiteclsbc">
 	  </td>
-	  <td>
+	  <td style="height:10%">
 	 	<h4>
 	  		<%=tsb.getLotnum() %>
 	  	</h4>
 	  </td>
-	  <td>
+	  <td style="height:10%">
 	  	<h4>
 	  		<%=tsb.getVolumesold() %>
 	  	</h4>
 	  </td>
-	  <td>
+	  <td style="height:10%">
 	  	<h4>
 	  		<%=tsb.getLotcost() %>
 	  	</h4>
 	  </td>
-	  <td>
+	  <td style="height:10%">
 	  <h4>
 	  <%=tsb.getCommission() %>
 	  </h4>
