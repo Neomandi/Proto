@@ -3051,6 +3051,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 					System.out.println(mc.getAl());
 					return mc;
 				}
+				//System.out.println("i!=1");
 				con.setAutoCommit(false);				
 				ps =con.prepareStatement("select tl.lotnum from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and  tl.lotnum  NOT IN (select lotnumber from auction_result where aadharnumber=?)");
 				ps.setString(1, name);
@@ -3059,6 +3060,7 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 				rs1 = ps.getResultSet();
 				while(rs1.next())
 				{							
+					//System.out.println("lotnumber which trade has not won "+rs1.getString("lotnum"));
 					ps =con.prepareStatement("select tl.slotnumber,tl.quantity,tl.marketcode,tl.produce,tl.qualitygrade,tl.quantityneeded from tradelist tl,treg tr where tl.aadharnumber=tr.aadharnumber and tr.name=? and tl.lotnum=? and tr.pass=?");
 					ps.setString(1, name);
 					ps.setString(2, rs1.getString("lotnum"));
@@ -3099,12 +3101,13 @@ public Myclass Increment(String name, String pwd, String increments, String lotn
 						rs3 = ps.getResultSet();
 						while(rs3.next())
 						{ 
-							System.out.println("***********************"+rs3.getString("farmerstatus"));
+							System.out.println(rs3.getString("farmerstatus"));
 							if(rs3.getString("farmerstatus")==null||rs3.getString("farmerstatus").equals(""))
 								osbn1.setFarmeraccept("PENDING");
 							else
 								osbn1.setFarmeraccept(rs3.getString("farmerstatus"));
 						}
+						//System.out.println(osbn1);
 						al.add(osbn1);
 					}
 				}

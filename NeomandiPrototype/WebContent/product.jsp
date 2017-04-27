@@ -304,11 +304,29 @@
                                		</select>                            		
                             		<% 
                             	}%>
-                            <td><a onclick="func()" id="search" class="reg"><%=session.getValue("trader.product.search") %></a></td>                           
+                            <td><a onmouseover="title();" onclick="func()" id="search" class="reg"><%=session.getValue("trader.product.search") %></a></td>                           
 						</form>
                         </tr>
                     </table>
                 </div>
+                <script>
+                //var category=document.getElementById('category').value;
+                document.getElementById("search").onmouseover = function() {var e = document.getElementById("category");
+                var category = e.options[e.selectedIndex].value;
+                
+                var e = document.getElementById("produce");
+                var produce = e.options[e.selectedIndex].value;
+                
+                var e = document.getElementById("grade");
+                var grade = e.options[e.selectedIndex].value;
+                
+                var e = document.getElementById("slot");
+                var slot = e.options[e.selectedIndex].value;
+                console.log(slot);               
+                //document.getElementById('search').setAttribute('title', 'Search the lot that belongs to '+category+' category, '+produce +' produce, of '+grade+' grade, in '+slot);
+     };
+               
+                </script>
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script type="text/javascript">
                             function func()
@@ -370,7 +388,7 @@
                                     <td>
                                         <h4><%=session.getValue("trader.product.grade") %></h4></td>
                                     <td>
-                                        <h4><%=session.getValue("trader.product.quantityavailable") %> (kg)</h4></td>
+                                        <h4><%=session.getValue("trader.product.quantityavailable") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td>
                                     <td>
                                         <h4><%=session.getValue("trader.product.slot") %></h4></td>
                                     <td>
