@@ -20,7 +20,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
 <script src="js/sweetalert.min.js" type="text/javascript"></script>
-
+   <script src="js/iphone-style-checkboxes.js" type="text/javascript"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
