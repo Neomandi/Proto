@@ -454,8 +454,20 @@
              var name=document.fregform.farmername;
              
              if (name.value=="" ) {
-              
-                 swal("Please enter your name");
+             	<%
+             		if(session.getValue("alert.msg").equals("en"))
+             		{
+             	%>
+             		swal("Hello");
+             	<%
+             		}
+             		else
+             		{
+             	%>
+             		swal("\u0CB9\u0CB2\u0CC6\u0CC2\u0CD5");
+             	<%
+             		}
+             	%>
                  document.getElementById("name").classname='error';
                  name.focus();
                  return false;
