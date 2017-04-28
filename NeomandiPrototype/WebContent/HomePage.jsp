@@ -87,13 +87,8 @@
   $('input[type=radio]').click(function() {
      $("#radios").submit();
  });
-
-
-
-
 </script>
 </head>
-
 <body class="">
 <!---menu bar------>
 <div id="header">
@@ -132,10 +127,7 @@
 <form action="openLang.do" method="post" align="center" name="form1" id="radios"> 
   <label style="color: white;">English</label>&nbsp;<input type="checkbox" name="lang"  id="en" value="English" onchange="this.form.submit()"  />&nbsp;&nbsp;&nbsp;  
   <label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label>&nbsp;<input type="checkbox" name="lang"  id="kn" value="Kannada" onchange="this.form.submit()"  /> 
-</form> 
-
-
-
+</form>  
 		</div>
       </div>
 </nav> 

@@ -32,7 +32,7 @@
 	background-color:#ffffff;
 	width:5%;
 	border-top:1px solid #fff !important;
-	height:44px;
+	height:10%;
 }
 
 tbody:before {
@@ -62,6 +62,13 @@ border-top:4px solid #fff !important;
 	color: darkblue;
 	font-weight: bold;
 }
+#tb1 tr{
+height:44px;
+}
+#tb2
+{
+	height:44%;
+	}
 #tb2 h4{
 	color: darkblue;
 	font-weight: bold;
