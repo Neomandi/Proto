@@ -153,7 +153,21 @@
 			</p>
 			
 			<video width = "640" height = "340" controls title = "video" id="myVideo" style="object-fit: fill;">
-				<source src = "Videos/NeoMandiVideo.mp4" type = "video/mp4">
+				
+				<%
+					if(session.getValue("alert.msg").equals("kn"))
+					{
+				%>
+					<source src = "Videos/NeoMandi_Kannada_Female Voice.mp4" type = "video/mp4">
+				<%
+					}
+					else
+					{
+				%>
+					<source src = "Videos/NeoMandiVideo.mp4" type = "video/mp4">
+				<%
+					}
+				%>
 			</video>
 			
 			<p align = "justify">
