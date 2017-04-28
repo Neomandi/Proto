@@ -149,7 +149,7 @@ if((String)tlbn.getTname()==null)
 		  	xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) 
 		    {
-		    	var start=document.getElementById("start").value;
+		    	/* var start=document.getElementById("start").value;
 		    	var stop=document.getElementById("stop").value;
 		    	var Btime=start;
 		    	var Btime1=stop;
@@ -171,10 +171,10 @@ if((String)tlbn.getTname()==null)
 		    				document.getElementById("msg").textContent='Auction is still under progress';
 		    				document.getElementById('sts').value='';
 		    		}
-		    	else
+		    	else*/
 		    	{
-		    		document.getElementById("msg").textContent='Auction Complete.';
-			    	var string=xmlhttp.responseText;		    	 
+		    		//document.getElementById("msg").textContent='Auction Complete.';
+			     	var string=xmlhttp.responseText;		    	 
 			    	var status=string;
 			    	console.log("status is"+status);
 			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
