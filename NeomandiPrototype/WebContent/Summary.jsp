@@ -32,6 +32,7 @@
 	background-color:#ffffff;
 	width:5%;
 	border-top:1px solid #fff !important;
+	height:44px;
 }
 
 tbody:before {
@@ -167,15 +168,15 @@ catch(Exception e)
 	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
-	  <tbody class="clsm10" id="tb1">
-	  <tr  style="height:10%">
+	  <tbody id="tb1">
+	  <tr style="height:10%">
 	  <% 
 		HttpSession todaysummary=request.getSession(false);
 		List al=(List)todaysummary.getAttribute("todaysummary");
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc">
+	  <td class="whiteclsbc" style="height:10%">
 	  </td>
 	  <td style="height:10%">
 	 	<h4>
