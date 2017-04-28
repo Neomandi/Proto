@@ -8,9 +8,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/png" href="Images1/Neomandi1.png">
 <title>NeoMandi | Empowering Farmers. Enabling Traders.</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
+<link rel="stylesheet" href="libs/pure-min.css">
+<link rel="icon" type="image1/png" href="Images/Neomandi1.png">
+    <link rel="stylesheet" href="libs/grids-responsive-min.css">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">-->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+<script src="js/sweetalert.min.js" type="text/javascript"></script>
+
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -62,7 +73,25 @@
             line-height: 200%;
         }
         @import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+     
 </style>
+ <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+      <script src="js/bootstrap.js" type="text/javascript"></script>
+      <script src="js/jquery-3.2.0.js" type="text/javascript"></script>
+<script>
+/*$('input[name=lang]').change(function(){
+    $('form').submit();
+
+});*/
+
+  $('input[type=radio]').click(function() {
+     $("#radios").submit();
+ });
+
+
+
+
+</script>
 </head>
 
 <body class="">
@@ -84,7 +113,7 @@
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
-<%--         <li><a href="News.jsp"><%=session.getValue("News") %></a></li> --%>
+<%--    <li><a href="News.jsp"><%=session.getValue("News") %></a></li> --%>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
@@ -94,11 +123,19 @@
       </ul>
       </div>
      <div id="radios" style="position: absolute; top: 22%; right:2%;">
-            <form action="openLang.do" method="get" align="center" name="form1" id="radios">
-			<label style="color: white;">English</label> <input type="radio" name="lang" id="en" value="English" >
-			<label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label> <input type="radio" name="lang" id="kn" value="Kannada">
-		   <input type="submit" id="submit" class="btn-success" value="Translate">
-		</form>
+<!--             <form action="openLang.do" method="get" align="center" name="form1" id="radios"> -->
+<!-- 			<label style="color: white;">English</label> <input type="radio" name="lang" id="en" value="English" > -->
+<!-- 			<label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label> <input type="radio" name="lang" id="kn" value="Kannada">  -->
+<%-- 		    <input type="submit" id="submit" class="btn-success" value="Translate/<%=session.getValue("home.translate")%>">  --%>
+<!--  		</form>  -->
+
+<form action="openLang.do" method="post" align="center" name="form1" id="radios"> 
+  <label style="color: white;">English</label>&nbsp;<input type="checkbox" name="lang"  id="en" value="English" onchange="this.form.submit()"  />&nbsp;&nbsp;&nbsp;  
+  <label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label>&nbsp;<input type="checkbox" name="lang"  id="kn" value="Kannada" onchange="this.form.submit()"  /> 
+</form> 
+
+
+
 		</div>
       </div>
 </nav> 
@@ -134,6 +171,11 @@
 	function myHandler(e){
 		video.currentTime=0;
 	} 
+	
+	$('input[name=paid]').change(function(){
+	     $('form').submit();
+
+	});
 </script>
 <div id="footer">
 <nav class="navbar navbar-inverse menu">
