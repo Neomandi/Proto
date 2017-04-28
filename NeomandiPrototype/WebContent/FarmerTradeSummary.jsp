@@ -156,7 +156,7 @@
                   }
                   String name=(String)hs.getAttribute("name"); %>
                <div class="col-lg-offset-1 col-lg-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 far">
-                  <p style="font-size:16px; color:white;"><%=name %>,&nbsp;&nbsp;<%=session.getValue("f.welcome") %>.</p>
+                  <p style="font-size:16px; color:white;"><%=name %>,&nbsp;&nbsp;<%=session.getValue("f.welcome") %></p>
                </div>
                <div class="col-lg-1 col-sm-2 col-md-2 col-xs-2 power"><a class="pull-right" href="FLogout.do"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
             </div>

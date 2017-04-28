@@ -48,7 +48,7 @@ cursor: pointer;
 margin-top:0px;
 } 
 .autable .table tbody tr td, .lottable .table tbody tr td, .table tbody tr td, .sum2tab .table tbody tr td {
-border-top:2px solid #fff !important;
+border-top:4px solid #fff !important;
 }
 .img-responsive {
 	height: 60px;
@@ -162,20 +162,55 @@ catch(Exception e)
 	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
-	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("trader.trade.marketcess") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
 	  </tr></thead>
 	  <tbody class="clsm10" id="tb1">
-	  <tr class="gradeX">	<% 
+	  <tr  style="height:10%">
+	  <% 
 		HttpSession todaysummary=request.getSession(false);
 		List al=(List)todaysummary.getAttribute("todaysummary");
-		//request.setAttribute("theList", al);
 		for(Object o:al)
 		{
 			TradeSummaryBean tsb=(TradeSummaryBean)o;%>
-	  <td class="whiteclsbc"></td><td><h4><%=tsb.getLotnum() %></h4></td><td><h4><%=tsb.getVolumesold() %></h4></td><td><h4><%=tsb.getLotcost() %></h4></td><td><h4><%=tsb.getCommission() %></h4></td><td><h4>3000</h4></td><td><h4><%=tsb.getMarketcess() %></h4></td><td><h4><%=tsb.getMyfinalcost() %></h4></td><td><h4><%String date=tsb.getCreated();
+	  <td class="whiteclsbc">
+	  </td>
+	  <td style="height:10%">
+	 	<h4>
+	  		<%=tsb.getLotnum() %>
+	  	</h4>
+	  </td>
+	  <td style="height:10%">
+	  	<h4>
+	  		<%=tsb.getVolumesold() %>
+	  	</h4>
+	  </td>
+	  <td style="height:10%">
+	  	<h4>
+	  		<%=tsb.getLotcost() %>
+	  	</h4>
+	  </td>
+	  <td style="height:10%">
+	  <h4>
+	  <%=tsb.getCommission() %>
+	  </h4>
+	  </td>
+	  <td>
+	  <h4>
+	  3000
+	  </h4>
+	  </td>
+	  <td>
+	  <h4>
+	  <%=tsb.getMarketcess() %>
+	  </h4>
+	  </td>
+	  <td>
+	  <h4>
+	  <%=tsb.getMyfinalcost() %>
+	  </h4></td><td><h4><%String date=tsb.getCreated();
 	  String str[]=date.split("-");String res=str[2]+"-"+str[1]+"-"+str[0]; out.println(res);%></h4></td>	  <td rowspan="3" style="border-top:0px;background-color:#fff;vertical-align:middle">
       <br><br></tr><%}%></tbody>
 	  </table>
@@ -241,7 +276,7 @@ function fun2()
 	  <td><h5><%=session.getValue("tsummary.lotcost") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.commission") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.transportation") %></h5></td>
-	  <td><h5><%=session.getValue("tsummay.Mcess") %></h5></td>
+	  <td><h5><%=session.getValue("trader.trade.marketcess") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.final") %></h5></td>
 	  <td><h5><%=session.getValue("tsummary.date") %></h5></td>
 	  <td>&nbsp;</td>
