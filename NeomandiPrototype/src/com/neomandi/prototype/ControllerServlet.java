@@ -1020,7 +1020,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 			Model m=new Model();
 			List<ProductSearchResultBean> msg = m.productSearch(psb);
-			//System.out.println("msg received from model in CS is "+msg.isEmpty());
 			if(msg.isEmpty())
 			{
 				HttpSession psr=request.getSession();

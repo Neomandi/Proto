@@ -3728,19 +3728,45 @@ public List traderHistory(String name, String pwd, String from, String to)
 			System.out.println("st[0]"+st[0]);
 			System.out.println("st[1]"+st[1]);
 			System.out.println("st[2]"+st[2]);
-			int date=(Integer.parseInt(st[0]))+1;
-			System.out.println("previous date is"+st[0]);
-			System.out.println("current date is "+date);
+			System.out.println("ft[0]"+ft[0]);
+			System.out.println("ft[1]"+ft[1]);
+			System.out.println("ft[2]"+ft[2]);
+			from=ft[2]+"-"+ft[1]+"-"+ft[0];
+			System.out.println(st);
+			
+			int date=(Integer.parseInt(st[0]));
 			st[0]=String.valueOf(date);
 			if(date<10)
-				//to=st[0]+"-0"+st[1]+"-"+st[2];
 				to=st[2]+"-"+st[1]+"-0"+st[0];
 			else
 				to=st[2]+"-"+st[1]+"-"+st[0];
-			System.out.println(to);
-			from=ft[2]+"-"+ft[0]+"-"+ft[1];
+			
+			if(st[0].equals("31"))
+			{
+				System.out.println("31");
+				st[0]="01";
+				int mnt=Integer.parseInt(st[1]);
+				st[1]=String.valueOf(mnt+1);/*
+				System.out.println(st[0]+" "+st[1]);*/
+			}
+			else if(st[0].equals("30") &&(st[1].equals("04")||st[1].equals("06")||st[1].equals("09")||st[1].equals("11")))
+			{
+				st[0]="01";
+				int mnt=Integer.parseInt(st[1]);
+				st[1]=String.valueOf(mnt+1);/*
+				System.out.println(st[0]+" "+st[1]);*/
+			}
+			else if(st[0].equals("28")&&st[1].equals("02"))
+			{
+				st[0]="01";
+				int mnt=Integer.parseInt(st[1]);
+				st[1]=String.valueOf(mnt+1);
+				System.out.println("feb "+st[0]+st[1]);
+			}
 			from=from.replace("/","-");
-			System.out.println(from);
+			to=st[2]+"-"+st[1]+"-"+st[0];
+			System.out.println(to);
+			
 			ps =con.prepareStatement("SELECT tl.created_at, tl.lotnum,tl.quantity, tbp.lotcost,tbp.commission,tbp.marketcess,tl.quantityneeded,tbp.bidprice,tbp.myfinalcost FROM traders_bid_price tbp,tradelist tl,treg tr where tr.name=? and created_at BETWEEN ? AND  ? and tr.pass=? and tr.aadharnumber=tl.aadharnumber and tl.aadharnumber=tbp.aadharnumber and tl.lotnum=tbp.lotnum;");
 			ps.setString(1,name);
 			ps.setString(2,from);
