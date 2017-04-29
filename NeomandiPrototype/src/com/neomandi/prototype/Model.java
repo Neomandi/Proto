@@ -3862,13 +3862,23 @@ public List traderHistory(String name, String pwd, String from, String to)
 						System.out.println("from-> "+from+" to->"+to );
 						String st[]=to.split("/");
 						String st1[]=from.split("/");
-						int date=Integer.parseInt(st[0])+1;
-						int date1=Integer.parseInt(st1[2]);
-						st[0]=String.valueOf(date);
-						st1[2]=String.valueOf(date1);
-						from=st1[2]+"-"+st1[1]+"-"+st1[0];
-						to=st[2]+"-"+st[1]+"-"+st[0];
+						int date=Integer.parseInt(st[0]);
+						if(date==31){
 						
+							int month=Integer.parseInt(st[1])+1;
+							date=1;
+							from=st1[2]+"-"+st1[1]+"-"+st1[0];
+							to=st[2]+"-"+month+"-"+date;
+						}
+						else{
+							date=Integer.parseInt(st[0])+1;
+							int date1=Integer.parseInt(st1[2]);
+							st[0]=String.valueOf(date);
+							st1[2]=String.valueOf(date1);
+							from=st1[2]+"-"+st1[1]+"-"+st1[0];
+							to=st[2]+"-"+st[1]+"-"+st[0];
+						
+						}
 						System.out.println("to="+to);
 						System.out.println("from="+from);
 						//getsummary details
