@@ -1634,7 +1634,7 @@ catch(NullPointerException e)
 	<table align="center">
 	<tbody>
 	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>) </h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
 	</tbody>
@@ -2577,7 +2577,7 @@ catch(NullPointerException e)
 	<table align="center" >
 	<tbody >
 	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control"  type="text" value="198CARA0060" readonly></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
@@ -2595,7 +2595,7 @@ catch(NullPointerException e)
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize")%> (<%=session.getValue("trader.trade..kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize")%> (<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize")%> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize")%> (<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.bestbid")%> (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.mybid")%>(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>

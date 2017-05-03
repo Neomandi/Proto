@@ -142,7 +142,7 @@ if((String)tlbn.getTname()==null)
 	setInterval(function()
 	{
 					funny();
-	},1000);
+	},90);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -182,34 +182,100 @@ if((String)tlbn.getTname()==null)
 			    	if(status===null||status.length==0||status.includes('null'))
 				    {
 				    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'one';
-				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+				    		//document.getElementById("sts").value="Waiting for farmer's acceptance";
 				    		console.log("inside pending");
+				    		
+				    		
+				    		<%
+				    		if(!session.getValue("alert.msg").equals("kn"))
+				    		{%>
+				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+				    		<%}%>
+				    			
+				    			<%
+				    			if(session.getValue("alert.msg").equals("kn")){%>
+				    			document.getElementById("sts").value='\u0CB0\u0CC6\u0CD6\u0CA4\u0CB0 \u0C92\u0CAA\u0CCD\u0CAA\u0CBF\u0C97\u0CC6\u0C97\u0CBE\u0C97\u0CBF \u0CA8\u0CBF\u0CB0\u0CBF\u0CD5\u0C95\u0CCD\u0CB7\u0CBF\u0CB8\u0CB2\u0CBE\u0C97\u0CC1\u0CA4\u0CCD\u0CA4\u0CBF\u0CA6\u0CC6';
+				    			<%}%>
+				    			
 				    }
 			    	else if(status!=null &&(status.includes("rejected")||status.toUpperCase() ==="REJECTED"))
 			    	{
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 			    		console.log("inside rej");
+			    	//	document.getElementById("sts").value="Farmer has rejected your bid";
+			    		
+			    		<%
+			    		if(!session.getValue("alert.msg").equals("kn"))
+			    		{%>
 			    		document.getElementById("sts").value="Farmer has rejected your bid";
+			    		<%}%>
+			    			
+			    			<%
+			    			if(session.getValue("alert.msg").equals("kn")){%>
+			    			document.getElementById("sts").value='\u0CB0\u0CC6\u0CD6\u0CA4\u0CB0\u0CC1 \u0CA8\u0CBF\u0CAE\u0CCD\u0CAE \u0CAC\u0CBF\u0CA1\u0CCD\u0CA1\u0CA8\u0CCD\u0CA8\u0CC1 \u0CA4\u0CBF\u0CB0\u0CB8\u0CCD\u0C95\u0CB0\u0CBF\u0CB8\u0CBF\u0CA6\u0CCD\u0CA6\u0CBE\u0CB0\u0CC6';
+			    			<%}%>
+			    		
+			    		
 			    		
 			    	}
 			    	else if(status!=null&&(status.includes("accepted")||status.includes("ACCEPTED")||status.toUpperCase() === "ACCEPTED"))
 			    	{
 			        	document.getElementById("one<%= osbn.getLotnum()%>").className = 'two';
 			    		console.log("inside acp");
-			    		document.getElementById("sts").value="Farmer has accepted your bid";
+			    	//	document.getElementById("sts").value="Farmer has accepted your bid";
+			    		
+			    		<%
+			    		if(!session.getValue("alert.msg").equals("kn"))
+			    		{%>
+				    		document.getElementById("sts").value="Farmer has accepted your bid";
+			    		<%}%>
+			    			
+			    			<%
+			    			if(session.getValue("alert.msg").equals("kn")){%>
+			    			document.getElementById("sts").value='\u0CB0\u0CC6\u0CD6\u0CA4\u0CB0\u0CC1 \u0CA8\u0CBF\u0CAE\u0CCD\u0CAE \u0CAC\u0CBF\u0CA1\u0CCD\u0CA1\u0CA8\u0CCD\u0CA8\u0CC1 \u0C92\u0CAA\u0CCD\u0CAA\u0CBF\u0C95\u0CC6\u0CC2\u0C82\u0CA1\u0CBF\u0CA6\u0CCD\u0CA6\u0CBE\u0CB0\u0CC6';
+						<%}%>
+			    			
+			    			
+						
 			    		
 			    	}
 			    	else if(lotcost==0 &&status!=null)
 			    	{
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 			    		console.log("inside rej");
-			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		//document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		
+			    		
+			    		
+			    		<%
+			    		if(!session.getValue("alert.msg").equals("kn"))
+			    		{%>
+				    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		<%}%>
+			    			
+			    			<%
+			    			if(session.getValue("alert.msg").equals("kn")){%>
+			    			document.getElementById("sts").value='\u0CA8\u0CBF\u0CAE\u0C97\u0CC6 \u0CAF\u0CBE\u0CB5\u0CC1\u0CA6\u0CC6 \u0CAA\u0CCD\u0CB0\u0CAE\u0CA3\u0CA6 \u0CB0\u0CBE\u0CB6\u0CBF\u0CAF\u0CC2 \u0CA8\u0CBF\u0CAF\u0CC6\u0CC2\u0CD5\u0C9C\u0CA8\u0CC6\u0CAF\u0CBE\u0C97\u0CBF\u0CB2\u0CCD\u0CB2';
+						<%}%>
+			    		
+			    		
 			    	}	    
 			    	else if(status.includes("not"))
 			    	{
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 			    		console.log("inside rej");
-			    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		//document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		
+			    		<%
+			    		if(!session.getValue("alert.msg").equals("kn"))
+			    		{%>
+				    		document.getElementById("sts").value="Lot Has Not been Assigned to you";
+			    		<%}%>
+			    			
+			    			<%
+			    			if(session.getValue("alert.msg").equals("kn")){%>
+			    			document.getElementById("sts").value='\u0CA8\u0CBF\u0CAE\u0C97\u0CC6 \u0CAF\u0CBE\u0CB5\u0CC1\u0CA6\u0CC6 \u0CAA\u0CCD\u0CB0\u0CAE\u0CA3\u0CA6 \u0CB0\u0CBE\u0CB6\u0CBF\u0CAF\u0CC2 \u0CA8\u0CBF\u0CAF\u0CC6\u0CC2\u0CD5\u0C9C\u0CA8\u0CC6\u0CAF\u0CBE\u0C97\u0CBF\u0CB2\u0CCD\u0CB2';
+						<%}%>
 			    	}
 			    	
 		    	}
@@ -292,9 +358,28 @@ if((String)tlbn.getTname()==null)
 			out.println("Lot Has Not been Assigned to you");
 		else if(Integer.parseInt(osbn.getLotcost())!=0) 
 		{
-			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) {out.println("Waiting for farmer's acceptance");%>
-	<!-- <meta http-equiv="refresh"  content="3; URL=http://neomandi.in/OrderStatus.do"> -->
-	<%} else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) out.println("Farmer has accepted your bid"); else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) out.println("Farmer has rejected your bid");  }%></header></output></center>
+			if(((String)osbn.getFarmeraccept()!=null)&&((String)osbn.getFarmeraccept().toUpperCase()).contains("PENDING")) 
+			{
+				out.println("Waiting for farmer's acceptance");
+						
+				
+	    		if(!session.getValue("alert.msg").equals("kn"))
+	    		{%>
+	    		document.getElementById("sts").value="Waiting for farmer's acceptance";
+	    		<%}%>
+	    			
+	    			<%
+	    			if(session.getValue("alert.msg").equals("kn")){%>
+	    			document.getElementById("sts").value='\u0CB0\u0CC6\u0CD6\u0CA4\u0CB0 \u0C92\u0CAA\u0CCD\u0CAA\u0CBF\u0C97\u0CC6\u0C97\u0CBE\u0C97\u0CBF \u0CA8\u0CBF\u0CB0\u0CBF\u0CD5\u0C95\u0CCD\u0CB7\u0CBF\u0CB8\u0CB2\u0CBE\u0C97\u0CC1\u0CA4\u0CCD\u0CA4\u0CBF\u0CA6\u0CC6';
+	    			<%}%>
+				<%
+			} 
+			else if(((String)osbn.getFarmeraccept()!=null) &&(((String)osbn.getFarmeraccept().toUpperCase()).contains("ACCEPT"))) 
+				out.println("Farmer has accepted your bid"); 
+			else if(((String)osbn.getFarmeraccept().toUpperCase()).contains("REJECT")) 
+				out.println("Farmer has rejected your bid");  
+		}%>
+		</header></output></center>
 	<script> 
 	
 	<%
@@ -320,15 +405,31 @@ if((String)tlbn.getTname()==null)
 	{
 		System.out.println("inside if");
 	%>
-		document.getElementById('sts').value='';
-		document.getElementById("msg").textContent="Auction under Progress";
-		// document.getElementById("msg").textContent='<%=session.getValue("trader.status.auctionunderprogress")%>';
-	<%
+		document.getElementById('sts').value='';<%
+		if(!session.getValue("alert.msg").equals("kn"))
+		{
+			%>
+			document.getElementById("msg").textContent="Auction under Progress";
+		<%}%>
+		<%
+		if(session.getValue("alert.msg").equals("kn")){%>
+		document.getElementById("msg").textContent='\u0CB9\u0CB0\u0CBE\u0C9C\u0CC1 \u0CAA\u0CCD\u0CB0\u0C97\u0CA4\u0CBF\u0CAF\u0CB2\u0CCD\u0CB2\u0CBF\u0CA6\u0CC6';
+		<%}%>
+		<%
 	}
 	else
-	{System.out.println("inside else");
-	%>
+	{
+		System.out.println("inside else");
+		if(!session.getValue("alert.msg").equals("kn"))
+		{%>
 			document.getElementById("msg").textContent="Auction completed";
+		<%}%>
+			
+			<%
+			if(session.getValue("alert.msg").equals("kn")){%>
+			document.getElementById("msg").textContent='\u0CB9\u0CB0\u0CBE\u0C9C\u0CC1 \u0CAA\u0CC2\u0CB0\u0CCD\u0CA3\u0C97\u0CC6\u0CC2\u0C82\u0CA1\u0CBF\u0CA6\u0CC6';
+			<%}%>
+		
 	<%}%>
 	
 	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;
