@@ -32,7 +32,6 @@
 	background-color:#ffffff;
 	width:5%;
 	border-top:1px solid #fff !important;
-	height:10%;
 }
 
 tbody:before {
@@ -44,6 +43,12 @@ tbody:before {
 a
 {
 cursor: pointer;
+}
+.table > tbody > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+    border-top: 1px solid #ddd;
 }
 .from table{
 margin-top:0px;
@@ -61,14 +66,13 @@ border-top:4px solid #fff !important;
 #tb1 h4{
 	color: darkblue;
 	font-weight: bold;
-}
-#tb1 tr{
-height:44px;
+	height:65%;
+	vertical-align: middle;
 }
 #tb2
 {
 	height:44%;
-	}
+}
 #tb2 h4{
 	color: darkblue;
 	font-weight: bold;
