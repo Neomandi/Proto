@@ -258,7 +258,7 @@
                            </tr>
                            <tr>
                               <td>
-                                 <label for="address">IFSC</label>
+                                 <label for="address"><%=session.getValue("profile.IFSC") %></label>
                               </td>
                            </tr>
                            <tr>

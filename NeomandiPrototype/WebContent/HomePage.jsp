@@ -108,7 +108,7 @@
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
-<%--    <li><a href="News.jsp"><%=session.getValue("News") %></a></li> --%>
+		<li><a href="News.jsp"><%=session.getValue("News") %></a></li>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
@@ -150,7 +150,7 @@
 					if(session.getValue("alert.msg").equals("kn"))
 					{
 				%>
-					<source src = "Videos/NeoMandi_Kannada_Female Voice.mp4" type = "video/mp4">
+					<source src = "Videos/NeoMandi Kannada Female Voice.mp4" type = "video/mp4">
 				<%
 					}
 					else
