@@ -3355,10 +3355,11 @@ public String orderstatus2(String name,String pwd)
 			ps.setString(1,aadharnumber);
 			ps.execute();
 			ResultSet rs1 = ps.getResultSet();
-			/*System.out.println(ps);
-			*/while(rs1.next())
+			System.out.println(ps);
+			while(rs1.next())
 			{
 				status=rs1.getString("farmerstatus");
+				System.out.println(rs1.getString("farmerstatus"));
 			}
 			return status;
 		}

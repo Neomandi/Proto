@@ -142,7 +142,7 @@ if((String)tlbn.getTname()==null)
 	setInterval(function()
 	{
 					funny();
-	},90);
+	},1000);
     function funny()
     {
     		xmlhttp = new XMLHttpRequest();
@@ -175,8 +175,8 @@ if((String)tlbn.getTname()==null)
 		    	{
 		    		//document.getElementById("msg").textContent='Auction Complete.';
 			     	var string=xmlhttp.responseText;		    	 
-			    	var status=string;
-			    	console.log("status is"+status);
+			    	var status=xmlhttp.responseText;
+			    	console.log("status is "+xmlhttp.responseText);
 			    	var lotcost=document.getElementById("lotcost<%= osbn.getLotnum()%>").value;		
 			    	console.log(status===null);
 			    	if(status===null||status.length==0||status.includes('null'))
@@ -187,6 +187,7 @@ if((String)tlbn.getTname()==null)
 				    		
 				    		
 				    		<%
+				    		
 				    		if(!session.getValue("alert.msg").equals("kn"))
 				    		{%>
 				    		document.getElementById("sts").value="Waiting for farmer's acceptance";
