@@ -108,21 +108,21 @@ footer {
                             <td>
                                 <h4><%=session.getValue("revenue.lotcost") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>TLC<sup>*</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
+                                <h4><%= session.getValue("summary.TLC")%></h4></td>
                             <td>
                                 <h4><%=session.getValue("revenue.commision") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
                                 <h4><%=session.getValue("revenue.marketcess") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>EPC<sup>#</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
+                                <h4><%= session.getValue("summary.EPC")%></h4></td>
                             <td>
-                                <h4>TLC<sup>*</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
+                                <h4><%= session.getValue("summary.TLC")%></h4></td>
                             <td>
                                 <h4><%=session.getValue("revenue.marketcess") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                             <td>
-                                <h4>EPC<sup>#</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
+                                <h4><%= session.getValue("summary.EPC")%></h4></td>
                             <td>
-                                <h4>PMVA<sup>^</sup><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
+                                <h4><%= session.getValue("summary.PMVA")%></h4></td>
                             <td>
                                 <h4><%=session.getValue("revenue.neomandirevenue") %><br/>(<%=session.getValue("trader.trade.rs") %>)</h4></td>
                         </tr>
@@ -253,11 +253,11 @@ footer {
             <table class="table">
                 <tr>
                     <td>
-                        <h4>*Transportation / Loading Charges</h4></td>
+                        <h4><%=session.getValue("h.TLC") %></h4></td>
                     <td>
-                        <h4> #E-Platform Charges</h4></td>
+                        <h4><%=session.getValue("h.EPC") %></h4></td>
                     <td>
-                        <h4>^ Pre-Market Value Addition Charges</h4></td>
+                        <h4><%=session.getValue("h.PMVA") %></h4></td>
                 </tr>
             </table>
 
