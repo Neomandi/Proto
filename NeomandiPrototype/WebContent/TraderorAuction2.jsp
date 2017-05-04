@@ -1239,8 +1239,8 @@ catch(NullPointerException e)
 	<tbody>
 		<tr>
 			<td><%if(tlb.getRigid().equals("y")){ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg">Rigid Order</div></button><br><br><%} else{ %>
-				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg">Flexible Order</div></button><br><br><%} %>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top onclick="rigid()" class="btn btn-info " id="rigid" style="width:140px;text-align: center;"><div id="rg"><%=session.getValue("trader.trade.rigidorder") %></div></button><br><br><%} else{ %>
+				<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg"><%=session.getValue("trader.trade.flexibleorder") %></div></button><br><br><%} %>
 				<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;"><%=session.getValue("trader.trade.removelot") %></button>
 			</td>
 		</tr>
@@ -1261,12 +1261,20 @@ catch(NullPointerException e)
 		     console.log("current state "+string)	
 	    	 if(string.includes('y'))
 		     {
-			    document.getElementById("rg").textContent="Flexible Order";
+			    <%if(session.getValue("alert.msg").equals("en")){%>		    	 
+			    document.getElementById("rg").textContent="Flexible Order";<%}else{
+			    %>
+	    		document.getElementById("rg").textContent=" \u0CA6\u0CCD\u0CB0\u0CB5 \u0C86\u0CA6\u0CC7\u0CB6";
+	    		<%}%>		    
 			    document.getElementById("rigid").className ="btn btn-success"
 		     }
 	    	 else if(string.includes('n'))
 	    	 {
-	    		document.getElementById("rg").textContent="Rigid Order";
+	    		 <%if(session.getValue("alert.msg").equals("en")){%>
+	    	 
+	    		document.getElementById("rg").textContent="Rigid Order";<%}else{%>
+	    		document.getElementById("rg").textContent="\u0C98\u0CA8 \u0C86\u0CA6\u0CC7\u0CB6";
+	    		<%}%>
 	    		document.getElementById("rigid").className ="btn btn-info" 
 			 }
 		 }
@@ -1626,7 +1634,7 @@ catch(NullPointerException e)
 	<table align="center">
 	<tbody>
 	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control" id="demo1<%=tlbr.getLotnum()%>" type="text" value="<%= tlbr.getLotnum() %>" readonly></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getProduce() %>"readonly ></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="<%=tlbr.getQualitygrade() %>" readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>) </h4></td><td><input class="form-control" id="usr" type="text" value="<%= tlbr.getQuantity()%>"readonly ></td></tr>
 	</tbody>
@@ -1688,7 +1696,7 @@ catch(NullPointerException e)
             });
 	</script>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="<%=session.getValue("trader.trade.increment") %>" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:153px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="<%=session.getValue("trader.trade.increment") %>" onclick="submitbutton<%out.print(tlbr.getLotnum());%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
 	<% 
 	String quantityneededs=tlbr.getQuantityneeded();
 	int quantityneeded=Integer.parseInt(quantityneededs);
@@ -2218,7 +2226,12 @@ catch(NullPointerException e)
 	</script>
 	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="<%=session.getValue("trader.trade.submithere")%>" onclick="fun<%out.print(tlbr.getLotnum());%>();" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" id="remove" class="btn btn-danger lotbtn" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td>
+	<!-- 
+	<button type="button" onclick="remove()" id="remove" class="btn btn-danger lotbtn" >Remove<br>lot</button>  -->
+	
+	
+	</td></tr></tbody></table>
 	</td></tr>
 	<% SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");%>
 	<input type="hidden" id="time" value="<%=sdf.format(new Date())%>"/>	
@@ -2530,80 +2543,26 @@ catch(NullPointerException e)
 	</tbody>
 	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b><%=session.getValue("trader.trade.enteryourbidhere") %></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:153px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap"><%=session.getValue("trader.trade.increment") %></button></td></tr>
 	<script>
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
 		});
 	</script>
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:153px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td>
+	<!-- <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> 
+	 -->
+	<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg"><%=session.getValue("trader.trade.rigidorder") %></div></button><br><br>
+	<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;"><%=session.getValue("trader.trade.removelot") %></button>	
+	</td></tr></tbody></table>
 	</td></tr>
 	</tbody></table></div>
 	</div>
 	</div>
     </div></div>
     </div>
- <!-- in documents auctionslot2.txt has working slot2 -->    <!--********************************************THIS DUMMY SLOT-2******************************************     
-        <div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord2"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> --
-  <div id="accord2" class="collapse">
-        <!----row1---
-	 <div class="one">
-<div class="container-fluid status">
-	<div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fir">
-<div class="table-responsive"> 
-<table>
-<tbody><tr><td class="col-lg-1 col-md-1 col-sm-2 col-xs-1" style="background: #bfbfbf;text-align:center;font-weight:bold">1</td>
-<td class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
-<table align="center">
-	<tbody>
-	<tr><td><h4>Lot Number</h4></td><td><input class="form-control" id="usr" type="text" value="876GARA0304"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" value="Garlic" type="text"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" value="A" type="text"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %></h4></td><td><input class="form-control" id="usr" value="5600" type="text"></td></tr>
-	</tbody>
-	</table>
-</td><td class="col-lg-3 col-md-3 col-sm-5 col-xs-5" style="background: #bfbfbf; padding:5px;white-space:nowrap;font-weight:bold">
-	<table align="center">
-	<tbody>
-	<tr><td><h4><%=session.getValue("trader.trade.lotcost")%></h4></td><td><input class="form-control" id="usr" type="text" style="text-align: center;"value="0"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.commission")%></h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.marketcess")%></h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.transportation")%></h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.myfinalcost")%></h4></td><td><input class="form-control" id="usr" type="text" value="0"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
-	<table >
-	<tbody>
-	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize")%></h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize")%></h4></td></tr>
-	<tr><td class="clspad10"><input class="form-control clsheight" id="usr" type="text"  size="10" value="3000"></td><td  class="clspadt5"><input value="0" class="form-control clsheight" id="usr" type="text"></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.bestbid")%></h4></td><td><h4><%=session.getValue("trader.trade.mybid")%></h4></td></tr>
-	<tr><td class="inp clspad10"><input class="form-control" id="usr" type="text" value="0" ></td><td value="0" class="inp clspad10"><input class="form-control" id="usr" type="text"></td></tr>
-	</tbody>
-	</table>
-
-</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton
-();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
-				 <tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid"  class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
-
-</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" class="btn btn-danger lotbtn" id="remove">Remove<br>lot</button> </td></tr></tbody></table>
-</td></tr>
-</tbody></table></div>
-</div>
-</div>
-    </div></div>
-    </div>    
-<div id="slot" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accord">Simple collapsible</button> --
-  <div id="accord3" class="collapse">
-	<!---row 4 end--->
 	 
     <div id="slot3" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
   <div id="accord3" class="collapse">
@@ -2618,7 +2577,7 @@ catch(NullPointerException e)
 	<table align="center" >
 	<tbody >
 	<tr><td><h4><%=session.getValue("trader.trade.lotnumber") %></h4></td><td><input class="form-control"  type="text" value="198CARA0060" readonly></td></tr>
-	<tr><td><h4><%=session.getValue("trader.trade.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
+	<tr><td><h4><%=session.getValue("trader.product.produce") %></h4></td><td><input class="form-control" id="usr" type="text" value="Carrot"readonly ></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.qualitygrade") %></h4></td><td><input class="form-control" id="usr" type="text" value="A" readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.availablelotsize") %> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><input class="form-control" id="usr" type="text" value="5000"readonly ></td></tr>
 	</tbody>
@@ -2636,7 +2595,7 @@ catch(NullPointerException e)
 	</td><td class="col-lg-3 col-md-2 col-sm-6 col-xs-6 bid" align="center">
 	<table >
 	<tbody>
-	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize")%> (<%=session.getValue("trader.trade..kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize")%> (<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>
+	<tr><td><h4><%=session.getValue("trader.trade.requiredlotsize")%> (<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.assignedlotsize")%> (<%=session.getValue("trader.trade.kg")%>)</h4></td></tr>
 	<tr><td class="clspad10"><input class="form-control clsheight" type="text"   value="2000" style="width:144px" readonly></td>
 	<td class="clspadt5"><input class="form-control clsheight" type="text" value="0" style="width:164px"readonly></td></tr>
 	<tr><td><h4><%=session.getValue("trader.trade.bestbid")%> (<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>)</h4></td><td><h4><%=session.getValue("trader.trade.mybid")%>(<%=session.getValue("trader.trade.rs")%>/<%=session.getValue("trader.trade.kg")%>")</h4></td></tr>
@@ -2646,11 +2605,16 @@ catch(NullPointerException e)
 	</tbody>
 	</table><p style="font-size: 14px; position:absolute; left: 64%;"><b><%=session.getValue("trader.trade.enteryourbidhere") %></b>
 	</td><td class="col-lg-1 col-md-2 col-sm-3 col-xs-3 release">
-	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:143px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap">Increment by 1</button></td></tr>
+	<table align="center"><tbody><tr><td><button class="btn btn-primary" id="increment" style="width:153px; text-align:enter; border-color:#BDD102; color:#3C4DA0; background-color:#BDD102" data-toggle="tooltip" title="Click here to Increment your bid by One Rupee" onclick="submitbutton<%%>();" class="reg" style="white-space:nowrap"><%=session.getValue("trader.trade.increment") %></button></td></tr>
 	
-	<tr><td><br><button class="btn btn-primary" id="increment" style="width:143px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
+	<tr><td><br><button class="btn btn-primary" id="increment" style="width:153px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
-	<table align="center"><tbody><tr><td><button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> </td></tr></tbody></table>
+	<table align="center"><tbody><tr><td>
+	<!-- <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> 
+	 -->
+	 <button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg"><%=session.getValue("trader.trade.rigidorder") %></div></button><br><br>
+	 <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;"><%=session.getValue("trader.trade.removelot") %></button>
+	</td></tr></tbody></table>
 	</td></tr>
 	</tbody></table></div>
 	</div>

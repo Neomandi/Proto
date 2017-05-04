@@ -87,13 +87,8 @@
   $('input[type=radio]').click(function() {
      $("#radios").submit();
  });
-
-
-
-
 </script>
 </head>
-
 <body class="">
 <!---menu bar------>
 <div id="header">
@@ -113,7 +108,7 @@
         <li><a href="Vision.jsp"><%=session.getValue("Vision") %></a></li>
         <li><a href="Mission.jsp"><%=session.getValue("Mission") %></a></li>
 		<li><a href="Howitworks.jsp"><%=session.getValue("How.it.works") %></a></li>
-<%--    <li><a href="News.jsp"><%=session.getValue("News") %></a></li> --%>
+		<li><a href="News.jsp"><%=session.getValue("News") %></a></li>
 		<li><a href="ContactUs.jsp"><%=session.getValue("Contact.Us") %></a></li>
 		<li class="dropdown">
           <a class="dropdown-toggle" href="Register.jsp"><%=session.getValue("Register") %></a>
@@ -132,10 +127,7 @@
 <form action="openLang.do" method="post" align="center" name="form1" id="radios"> 
   <label style="color: white;">English</label>&nbsp;<input type="checkbox" name="lang"  id="en" value="English" onchange="this.form.submit()"  />&nbsp;&nbsp;&nbsp;  
   <label style="color: white;">&#3221;&#3240;&#3277;&#3240;&#3233;</label>&nbsp;<input type="checkbox" name="lang"  id="kn" value="Kannada" onchange="this.form.submit()"  /> 
-</form> 
-
-
-
+</form>  
 		</div>
       </div>
 </nav> 
@@ -158,7 +150,7 @@
 					if(session.getValue("alert.msg").equals("kn"))
 					{
 				%>
-					<source src = "Videos/NeoMandi_Kannada_Female Voice.mp4" type = "video/mp4">
+					<source src = "Videos/NeoMandi Kannada Female Voice.mp4" type = "video/mp4">
 				<%
 					}
 					else

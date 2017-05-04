@@ -663,7 +663,7 @@ if(!(license.length >1) && (license.length < 10)){
 		  
 	  }</script>
 
-      <tr><td><label for="address">IFSC</label></td></tr>
+      <tr><td><label for="address"><%=session.getValue("profile.IFSC") %></label></td></tr>
 	  <tr><td><input type="text" class="form-control" id="usr" name="traderIfscCode" onclick="fun1()"></td></tr>
       <tr>
                               <td>
