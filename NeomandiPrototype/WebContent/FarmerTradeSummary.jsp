@@ -303,10 +303,10 @@
                            	double PACharge1=100;
                            	double EPUCharge1=100;
                            	double TCharge1=MUCharge1+PACharge1+EPUCharge1;
-                               double myEarn1=fprice1-TCharge1;
-                               myEarn1=myEarn1*100;
-                               myEarn1=(int)myEarn1;
-                               myEarn1=myEarn1/100;
+//                                double myEarn1=fprice1-TCharge1;
+//                                myEarn1=myEarn1*100;
+//                                myEarn1=(int)myEarn1;
+//                                myEarn1=myEarn1/100;
                                double deduction1=TCharge1+500;
                                deduction1=deduction1*100;
                                deduction1=(int)deduction1;
@@ -353,7 +353,7 @@
                            <h4  style="color:#000080;text-align:center;"><b><%=deduction1 %></b></h4>
                         </td>
                         <td class="clspadr0">
-                           <h4  style="color:#000080;text-align:center;"><b><%= myEarn1 %></b></h4>
+                           <h4  style="color:#000080;text-align:center;"><b><%= fhb.getEarnings() %></b></h4>
                         </td>
                         <td></td>
                      </tr>

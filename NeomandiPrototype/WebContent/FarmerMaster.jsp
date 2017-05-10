@@ -712,7 +712,14 @@
          								 document.getElementById("reject").disabled=false;
          			            	}
          			            	//alert("Auction has ended click either accept or reject button");
-         			            	swal({title: 'Auction has ended.Please click either Accept or Reject button',showConfirmButton:true});
+         			            	  <%if(session.getValue("alert.msg").equals("kn")){%>	
+         			            	
+         			            	swal({title: '\u0CB9\u0CB0\u0CBE\u0C9C\u0CC1 \u0CAE\u0CC1\u0C95\u0CCD\u0CA4\u0CBE\u0CAF\u0C97\u0CCA\u0C82\u0CA1\u0CBF\u0CA6\u0CC6,\u0CA6\u0CAF\u0CB5\u0CBF\u0C9F\u0CCD\u0C9F\u0CC1 \u0C92\u0CAA\u0CCD\u0CAA\u0CBF\u0CA6\u0CC6 \u0C85\u0CA5\u0CB5\u0CBE \u0CA4\u0CBF\u0CB0\u0CB8\u0CCD\u0C95\u0CB0\u0CBF\u0CB8\u0CC1 \u0CAC\u0C9F\u0CA8\u0CCD \u0CA8\u0CA8\u0CCD\u0CA8\u0CC1 \u0C95\u0CCD\u0CB2\u0CBF\u0C95\u0CCD \u0CAE\u0CBE\u0CA1\u0CBF.',showConfirmButton:true});
+         			            	
+         			            	<%}else{%>
+         			            	
+         			            	swal({title: 'Auction has ended click either accept or reject button.',showConfirmButton:true});
+         			            	<%}%>
          			            	document.getElementById("auction1").innerHTML=str1;
                  		       }
                 		    	}
