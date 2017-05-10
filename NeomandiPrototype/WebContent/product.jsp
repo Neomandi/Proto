@@ -749,7 +749,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><%=session.getValue("f.close")%></button>
+                                <button type="button" class="close" data-dismiss="modal"></button>
                                 <h4 class="modal-title"><%=session.getValue("trader.product.image") %></h4>
                             </div>
                             <div class="modal-body">
@@ -759,7 +759,7 @@
                                 <img src="ProductImages/<%=psr1.getProduce()+"-"+psr1.getQualitygrade()%>.jpg" alt="ProductImages/<%=psr1.getLotnumber()%>.jpg" class="img-responsive trad"  id="img">
                            <%} %> </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><%=session.getValue("f.close")%></button>
                             </div>
                         </div>
                     </div>

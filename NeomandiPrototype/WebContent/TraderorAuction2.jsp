@@ -2552,8 +2552,7 @@ catch(NullPointerException e)
 	<tr><td><br><button class="btn btn-primary" id="increment" style="width:153px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td>
-	<!-- <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> 
-	 -->
+	
 	<button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg"><%=session.getValue("trader.trade.rigidorder") %></div></button><br><br>
 	<button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;"><%=session.getValue("trader.trade.removelot") %></button>	
 	</td></tr></tbody></table>
@@ -2565,7 +2564,7 @@ catch(NullPointerException e)
     </div>
 	 
     <div id="slot3" class="container-fluid slot"><h5 class="text-center"  data-toggle="collapse" data-target="#accord3"><span>Auction Slot-3</span> <span class="pull-right"><i  class="fa fa-chevron-down" aria-hidden="true"></i></span></h5></div>
-  <div id="accord3" class="collapse">
+  	<div id="accord3" class="collapse">
     <div class="one">
 	<div class="container-fluid status">
 	<div class="row">
@@ -2610,8 +2609,7 @@ catch(NullPointerException e)
 	<tr><td><br><button class="btn btn-primary" id="increment" style="width:153px;border-color:#BDD102; color:#3C4DA0; background-color:#BDD102"  data-toggle="tooltip" data-placement="bottom"  title="Click here to submit your bid" onclick="" class="sub"><%=session.getValue("trader.trade.submit") %></button></td></tr></tbody></table>
 	</td><td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="background:#bfbfbf;">
 	<table align="center"><tbody><tr><td>
-	<!-- <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" >Remove<br>lot</button> 
-	 -->
+	
 	 <button type="button" data-toggle="tooltip" title="Click here to change order type" data-placement=top  onclick="rigid()" class="btn btn-success" id="rigid" style="width:140px; text-align: center;"><div id="rg"><%=session.getValue("trader.trade.rigidorder") %></div></button><br><br>
 	 <button type="button" onclick="remove()" class="btn btn-danger lotbtn" id="remove" style="width:140px;"><%=session.getValue("trader.trade.removelot") %></button>
 	</td></tr></tbody></table>

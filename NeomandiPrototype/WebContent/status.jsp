@@ -13,12 +13,6 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="font-awesome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <style>
 .text-center{
 font-size:24px !important;
@@ -30,43 +24,50 @@ line-height:36px;
 	margin:10px;
 	width:90%;
 	background-color:#BFBFBF;
-			text-align:center;
-			color:darkblue;	 
-			font-size:18px;
+	text-align:center;
+	color:darkblue;	 
+	font-size:18px;
 }
-.whiteclsbc{
-background-color:#ffffff;
-width:5%;
-border-top:1px solid #fff !important;
+.whiteclsbc
+{
+	background-color:#ffffff;
+	width:5%;
+	border-top:1px solid #fff !important;
 }
-tbody:before {
+tbody:before 
+{
     display: block;
     line-height:10px;
     color: transparent;
 }
-.from table{
-margin-top:0px;
+.from table
+{
+	margin-top:0px;
 } 
-.autable .table tbody tr td, .lottable .table tbody tr td, .table tbody tr td, .sum2tab .table tbody tr td {
-border-top:2px solid #fff !important;
+.autable .table tbody tr td, .lottable .table tbody tr td, .table tbody tr td, .sum2tab .table tbody tr td 
+{
+	border-top:2px solid #fff !important;
 }
 
-.maindiv{
-
-overflow:auto;
+.maindiv
+{
+	overflow:auto;
 }
-.img-responsive {
+.img-responsive 
+{
     height: 60px;
     width: 65px;
 }
- .tradtab a{
+.tradtab a
+{
     background-color:#0082B2;
-    }
-    body {
-		    background-image: url("images/nm-white-background-pattern.png");
-		    background-repeat:no-repeat;
-		    background-size:cover;
-		}
+}
+body 
+{
+    background-image: url("images/nm-white-background-pattern.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
 </style>
 </head>
 <body>
@@ -244,9 +245,7 @@ if((String)tlbn.getTname()==null)
 			    	{
 			    		document.getElementById("one<%= osbn.getLotnum()%>").className = 'three';
 			    		console.log("inside rej");
-			    		//document.getElementById("sts").value="Lot Has Not been Assigned to you";
-			    		
-			    		
+			    		//document.getElementById("sts").value="Lot Has Not been Assigned to you";			    		
 			    		
 			    		<%
 			    		if(!session.getValue("alert.msg").equals("kn"))

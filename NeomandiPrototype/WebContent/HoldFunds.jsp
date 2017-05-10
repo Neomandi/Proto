@@ -114,14 +114,7 @@ if(hour!=10){}
 <div class="container-fluid tradtab">
 <div class="col-lg-offset-1 col-lg-9 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 pad">
   <ul class="nav nav-tabs">
-    					<!-- <li ><a href="product.jsp">Product Search</a></li>
-                        <li  class="active"><a href="TraderBlock.do">Hold Funds</a></li>
-                        <li><a href="TradeorAuction.do">Trade</a></li>
-                        <li><a href="OrderStatus.do">Status</a></li>
-                        <li><a href="Summary1.do">Summary</a></li>
-                        <li><a href="TraderProfile.jsp">My Profile</a></li>
-                         -->
-                         <li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
+    					<li ><a href="product.jsp"><%=session.getValue("trader.product.productsearch") %></a></li>
                         <li class="active"><a href="TraderBlock.do"><%=session.getValue("trader.product.holdfunds") %></a></li>
                         <li><a href="TradeorAuction.do"><%=session.getValue("trader.product.auction") %></a></li>
                         <li><a href="OrderStatus.do"><%=session.getValue("trader.product.status") %></a></li>

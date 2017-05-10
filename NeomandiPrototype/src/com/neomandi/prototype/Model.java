@@ -333,6 +333,12 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 			else
 			{
 				con.setAutoCommit(false);
+				/*ps=con.prepareStatement("SELECT 1 FROM tradelist ");
+				ps.executeQuery();	
+				rs = ps.getResultSet();	
+				if(rs.next())
+				{
+				}*/
 				ps = con.prepareStatement("select pass from treg where name = ?");
 				ps.setString(1, name);				
 				ps.executeQuery();				
@@ -347,8 +353,7 @@ public void setFarmeracceptresult(String farmeracceptresult) {
 						msg = msg + "Your password does not match. Please provide correct password.";
 				}
 				else
-				{
-					//System.out.println(" trader has not registered ");				
+				{				
 					msg = msg + "Register first and then login.";
 				}				
 				con.commit();
@@ -1521,7 +1526,7 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 			int quantityassigned=0;
 			int bidprice=0;
 			
-			//System.out.println("lotnum which trader is bidding for is "+lotnum);
+			System.out.println("lotnum which trader is bidding for is "+lotnum);
 			ps =con.prepareStatement("SELECT lotnum, bidprice,lotcost, commission, marketcess,myfinalcost,bestbid,quantityassigned FROM traders_bid_price where aadharnumber=? and lotnum=?");
 			ps.setString(1, aadharnumber);
 			ps.setString(2, lotnum);
@@ -1563,6 +1568,12 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 				finalcost2=0;
 			else
 				finalcost2 = lotcost2 +commission2 +marketcess2 + 3000+100;
+			System.out.println("lotcost is "+lotcost2);
+			System.out.println("finalcost2 is "+finalcost2);
+			System.out.println("commission2 is "+commission2);
+			System.out.println("marketcess2 is "+marketcess2);
+			System.out.println("bidprice is "+bidprice);
+			System.out.println("quantityneeded is "+quantityneeded);
 			//************END OF NEW CODE****
 			
 			if(finalcost2>block)
@@ -1615,10 +1626,14 @@ public MyFinalCostBean tradeOrAuction1(String name, String pwd)
 						bestbid=rs3.getString("bestbid");
 					mfcb.setQuantityassigned(rs3.getString("quantityassigned"));
 					mfcb.setBestbid(bestbid);
+					System.out.println(mfcb.getBestbid());
 				}
 			}		
+			System.out.println("mfcb before returning 1 "+mfcb);
+			return mfcb;
 		}
-		con.commit();		
+		con.commit();	
+		
 		return mfcb;
 	}
 	catch(SQLException e)

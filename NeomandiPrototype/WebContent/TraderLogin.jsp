@@ -12,10 +12,12 @@
 <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
 <script src="js/sweetalert.min.js" type="text/javascript"></script>
 <style>
-.tales {
+.tales 
+{
   width: 100%;
 }
-.carousel-inner{
+.carousel-inner
+{
   width:100%;
   max-height: 319px !important;
 }
@@ -102,6 +104,12 @@ position: relative;
 							out.print(msg);
 									%></b></p>									
 <script>
+var meta = document.createElement('meta');
+meta.httpEquiv = "X-UA-Compatible";
+meta.content = "IE=edge";
+meta.charset="utf-8";
+document.getElementsByTagName('head')[0].appendChild(meta);
+
 document.getElementById("pwd").addEventListener("keyup", function(event) {
 event.preventDefault();
 console.log("inside func");
@@ -130,18 +138,17 @@ function fp()
         	},
         	function(isConfirm)
         	{
-        		console.log("inside confirm")
+        		/* console.log("inside confirm")
         		  if(isConfirm)
         		  {
         			//swal({text:"",title:"This lot has been added for auction with new quantity of  Kgs"});
         	 	  }
         		  else 
         		  { 
-        			//  swal("You will be auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
-        		  }
+        			//  swal("You will auctioning for this lot with previous mentioned quantity of "+ms+" Kg");
+        		  } */
             }); 
             
-          
 		<%-- swal("<%=session.getValue("trader.forgotpassword")%>");
         swal("ಕನ್ನಡ ");
         alert("<%=session.getValue("trader.forgotpassword")%>");
@@ -176,6 +183,7 @@ function submitform(){
 		    	if(string.includes("SUCCESS"))
 		    	{
 		    		window.location="product.jsp";
+		    		
 		    	}
 		    	else 
 		    	{
