@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
    pageEncoding="ISO-8859-1" errorPage="Error.jsp" import=" com.neomandi.prototype.JDBCHelper, 
     java.io.PrintWriter,
@@ -213,8 +214,6 @@
       <% 
          }
          if(request.getAttribute("farmerhistory")!=null)
-         
-         
          {
          if(request.getAttribute("farmerhistory").equals("no"))
          {%>

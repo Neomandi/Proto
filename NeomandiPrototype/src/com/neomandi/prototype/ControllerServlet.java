@@ -459,8 +459,7 @@ public class ControllerServlet extends HttpServlet {
 			sb=m.getSummary(name, pass, sb);
 			
 			System.out.println(" in cs sb="+sb);
-			
-			//}
+
 			String lotnumber=sb.getLotnumber();
 			String lotsize=sb.getLotsize();
 			String quantitysold=sb.getQuantitysold();

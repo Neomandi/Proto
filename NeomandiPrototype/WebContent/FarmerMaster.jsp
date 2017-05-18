@@ -124,7 +124,7 @@
       <% 
       SimpleDateFormat df1=new SimpleDateFormat("HH:mm:ss");
     	String time=df1.format(new Date());
-    	System.out.println("current time="+time);
+//     	System.out.println("current time="+time);
          	 		//System.out.println("inside else");
          	     	String pass=(String)hs.getAttribute("pass"); 
           		    // System.out.println("original password="+pass);
@@ -404,7 +404,7 @@
          	}					
          %> 
       <form>
-         <input type="hidden" value="<%=time%>" id="time" />
+        <input type="hidden" value="<%=time %>" id="time" />
          <input type="hidden" value="<%=starttime%>" id="stime" />
          <input type="hidden" value="<%=endtime%>" id="etime" />
          <input type="hidden" value="<%=slot%>" id="slot" />
