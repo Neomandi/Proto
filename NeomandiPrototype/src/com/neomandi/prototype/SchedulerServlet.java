@@ -22,31 +22,21 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
-/**
- * Servlet implementation class SchedulerServlet
- */
 public class SchedulerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public SchedulerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -79,20 +69,17 @@ public class SchedulerServlet extends HttpServlet {
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		String time = timeFormat.format(new Date());
 		Date s1t = null;
-		
-		
-		//System.out.println("Time: "+time);
-		
+				
 		DateTimeFormatter formatter1 = DateTimeFormat.forPattern("HH:mm:ss");
         LocalTime time1 = formatter1.parseLocalTime(time);
-        time1 = time1.plusMinutes(10);
+        time1 = time1.plusMinutes(10);		
 		
-		
-		//System.out.println("Time + 10min: "+time1);
-		
-		try {
+		try 
+		{
 			s1t = format.parse(date+" "+a);
-		} catch (ParseException e) {
+		} 
+		catch (ParseException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -117,12 +104,9 @@ public class SchedulerServlet extends HttpServlet {
 		System.out.println("Start time: "+t1.getStartTime());
 		System.out.println("End time: "+t1.getEndTime());
 		
-		//System.out.println("The Trigger Time: "+s1t);
-		
-		String dt = format.format(new Date());
-		
-		boolean flag = c;
-		
+		//System.out.println("The Trigger Time: "+s1t);		
+		String dt = format.format(new Date());		
+		boolean flag = c;		
 		if(flag == true)
 		{
 			try {

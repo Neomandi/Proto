@@ -980,7 +980,7 @@ public class ControllerServlet extends HttpServlet {
 				catch (IOException e) {
 					e.printStackTrace();
 				}
-				request.setAttribute("errmsg", msg);
+				/*request.setAttribute("errmsg", msg);
 			    rd=request.getRequestDispatcher("TraderLogin.jsp");
 				try 
 				{
@@ -992,7 +992,7 @@ public class ControllerServlet extends HttpServlet {
 				} catch (IOException e) {
 					
 					e.printStackTrace();
-				}
+				}*/
 			}
 		}	
 		
@@ -1291,90 +1291,7 @@ public class ControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			}			
-		}	
-		
-		/*if(uri.contains("ImageInsert")){
-		 *  response.setContentType("text/html;charset=UTF-8");
-		    // Create path components to save the file
-		    final String path = request.getParameter("destination");
-		    Part filePart = null;
-			try {
-				filePart = request.getPart("photo");
-			} catch (IllegalStateException | IOException | ServletException e2) {
-				
-				e2.printStackTrace();
-			}
-		    final String fileName = getFileName(filePart);
-
-		    OutputStream out = null;
-		    InputStream filecontent = null;
-		    PrintWriter writer = null;
-			try {
-				writer = response.getWriter();
-			} catch (IOException e1) {
-				
-				e1.printStackTrace();
-			}
-
-		    try {
-		        out = new FileOutputStream(new File(path + File.separator+ fileName));
-		        filecontent = filePart.getInputStream();
-
-		        int read = 0;
-		        final byte[] bytes = new byte[1024];
-
-		        while ((read = filecontent.read(bytes)) != -1) {
-		            out.write(bytes, 0, read);
-		        }
-		        writer.println("New file " + fileName + " created at " + path);
-		        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}", 
-		                new Object[]{fileName, path});
-		    } catch (FileNotFoundException fne) {
-		        writer.println("You either did not specify a file to upload or are "
-		                + "trying to upload a file to a protected or nonexistent "
-		                + "location.");
-		        writer.println("<br/> ERROR: " + fne.getMessage());
-
-		        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
-		                new Object[]{fne.getMessage()});
-		    } catch (IOException e) {
-				
-				e.printStackTrace();
-			} finally {
-		        if (out != null) {
-		            try {
-						out.close();
-					} catch (IOException e) {
-						
-						e.printStackTrace();
-					}
-		        }
-		        if (filecontent != null) {
-		            try {
-						filecontent.close();
-					} catch (IOException e) {
-						
-						e.printStackTrace();
-					}
-		        }
-		        if (writer != null) {
-		            writer.close();
-		        }
-		    }
-		}*/
-
-		/*private String getFileName(final Part part) {
-		    final String partHeader = part.getHeader("content-disposition");
-		    LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
-		    for (String content : part.getHeader("content-disposition").split(";")) {
-		        if (content.trim().startsWith("filename")) {
-		            return content.substring(
-		                    content.indexOf('=') + 1).trim().replace("\"", "");
-		        }
-		    }
-		    return null;
-		}*/
-				
+		}					
 		
 		if(uri.contains("AddTrade"))
 		{
@@ -1811,7 +1728,8 @@ public class ControllerServlet extends HttpServlet {
 			MyFinalCostBean mfcb=(MyFinalCostBean) m.tradeOrAuction1(name,pwd);
 			//rd=request.getRequestDispatcher("ajax2.jsp");
 			/*RequestDispatcher rd3 = request.getRequestDispatcher("TraderorAuction2.jsp");
-			*/if((mfcb.getMsg()==null))
+			*/
+			if((mfcb.getMsg()==null))
 			{
 				try 
 				{
